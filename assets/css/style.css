@@ -1,0 +1,301 @@
+/* Outermost background */
+html, body {
+  background-color: #f9f8f4;  /* airy gray */
+}
+
+/*
+ * Force vertical scrollbars on all pages.
+ * 
+ * If this is not done, the vertical scrollbar will appear on most (long)
+ * pages, but not short pages. The scrollbar's presence affects the horizontal
+ * centering of the layout, so having it sometimes visible and sometimes not
+ * makes the content appear to jump left on long pages and jump right on short
+ * pages.
+ */
+html { overflow-y: scroll }
+
+/* ========================================================================== */
+/* Navigation */
+
+.navbar {
+  margin-bottom: 0;
+}
+
+/* Fix Bootstrap regression: Center content of static navbars */
+.navbar-inner > .container { width: 940px; }
+
+/* Center the navbar */
+.navbar {
+  width: 980px;
+  margin-left: auto; margin-right: auto;
+}
+
+/* ========================================================================== */
+/* Breadcrumbs */
+
+.breadcrumb-bar {
+  background-color: #f5f5f5;
+  padding: 10px 20px 5px;
+  margin: -20px -20px 20px;
+  border-bottom: 2px solid #cdcdcd;
+}
+
+.breadcrumb-bar {
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+}
+
+.breadcrumb {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.breadcrumb li:last-child .divider {
+  display: none;
+}
+
+/* ========================================================================== */
+/* Blocks */
+
+.block-bar { }
+
+.block {
+  padding: 12px;
+  background-color: #f9f8f4;
+  border: 1px solid #cdcdcd;
+}
+
+/* ========================================================================== */
+/* Articles */
+
+/* Move the margin under the first h1 to below the .post_metadata */
+.post h1:first-child {
+  /* -0.2em looks good if there are no descenders */
+  margin-bottom: 0em;
+}
+.post-metadata {
+  margin-bottom: 1em;
+  color: #808080; /* subtle gray */
+}
+
+/* Decrease line spacing for titles that wrap */
+.post h1:first-child {
+  line-height: 1.2em;
+}
+
+/* ========================================================================== */
+/* Content Area */
+
+/* The white background content wrapper */
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+          box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+/* 
+ * Table styling
+ *   Example: /articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/
+ */
+td, th {
+  padding: .3em .5em;
+}
+table {
+  margin-bottom: 1em;
+}
+
+/*
+ * External-link styling based on CSS code found at:
+ *     http://en.wikipedia.org/skins-1.5/monobook/main.css?97
+ */
+a.external {
+	/* IE6/XP: Doesn't display the background image in the correct location
+	 *         when the decorated 'a' link wraps multiple lines.
+	 *         No non-Javascript workaround for this exists as of 11/20/2007.
+	 *         See http://www.satzansatz.de/cssd/wrappinglinkbg.html for
+	 *         a good discussion of the issue. */
+	background: url(external.png) top right no-repeat;
+	padding-right: 13px;
+}
+
+/*
+ * Heading highlighting
+ * (Supported on About and Articles (By Topic) pages.)
+ */
+h2.active,
+.tag_box .active a {
+  background-color: #85e01b; /* bright green */
+}
+
+/* Image box */
+.image-box {
+  float: right;
+  padding: 10px;
+  margin-left: 10px; margin-bottom: 10px;
+  border: 1px solid #bfbfbf;
+  background-color: #fafafa;
+}
+.image-box p {
+  margin-top: .5em;
+  margin-bottom: 0px;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 12px;
+}
+
+/* Table of Contents */
+.toc {
+  display: inline-block;
+  border: 1px solid #aaa;
+  background-color: #f9f9f9;
+  padding: 8px;
+  min-width: 150px;
+}
+.toc ul {
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 13px;
+}
+.toc ul li {
+  list-style-type: none;
+  padding: 0 0 .2em .2em;
+  padding-bottom: 0.2em;
+}
+
+acronym {
+  cursor: help;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+}
+
+/* ========================================================================== */
+/* Footer */
+
+.container > footer {
+  margin-top: 20px;
+}
+.container > footer p {
+  text-align: center; /* center align it with the container */
+}
+
+/* ========================================================================== */
+/* Override Bootswatch-Readable */
+
+/* Use standard heights for h1-h3 */
+h1, h2, h3 {
+  line-height: 1.4em;
+}
+
+/* Sane margins around headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+/* Make headings smaller: Size h{N} as h{N+1} */
+h1 { font-size: 36px; }
+h2 { font-size: 28px; }
+h3 { font-size: 20px; }
+h4 { font-size: 16px; }
+h5 { font-size: 13.6px; }
+h1 small { font-size: 20px; }
+h2 small { font-size: 16px; }
+h3 small { font-size: 13.6px; }
+
+/* No margin before first heading in a block */
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
+}
+
+/* No margin after pagination at end of block */
+.pagination:last-child {
+  margin-bottom: 0;
+}
+
+/* Don't force links in nav bar to have white background */
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: transparent;
+}
+
+/* ========================================================================== */
+/* Accent Color: Green */
+
+.navbar-inner {
+  background-color: #64a914;  /* bright green */
+  background-image: none;
+}
+
+.breadcrumb-bar {
+  background-color: #d0eab8;  /* pastel green */
+}
+.breadcrumb a,
+.breadcrumb .divider {
+  color: #52a24f;
+}
+
+a {
+  color: #52a24f;   /* grass green */
+}
+a:active, a.active {
+  color: #61815e;
+}
+a:link, a:visited {
+  color: #0c7a00;
+  text-decoration: none;
+}
+a:hover { /* must be after a:link, a:visited */
+  color: #0d5904;
+  text-decoration: underline;
+}
+
+.block {
+  background-color: #f0fad8;
+  margin-bottom: 10px;
+}
+
+/* ========================================================================== */
+/* tag_box */
+
+.tag_box {
+	list-style:none;
+	margin:0;
+	padding:5px 0 ;
+	overflow:hidden;
+}
+.tag_box li {
+	line-height:28px;
+}
+.tag_box.inline li {
+	float:left;
+}
+.tag_box a {
+	padding: 3px 6px;
+	margin: 2px;
+	background: #eee;
+	color:#005F6B;
+	border-radius: 3px;
+	text-decoration:none;
+}
+.tag_box a span{
+	vertical-align:super;
+	font-size:0.8em;
+}
+.tag_box a.active {
+	background:#57A957;
+	border:1px solid #4C964D;
+	color:#FFF;
+}

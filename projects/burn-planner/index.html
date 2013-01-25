@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Burn Planner | DaFoster</title>
+  
+  
+    
+    <meta name="description" content="Burns a series of files to multiple DVDs quickly by automatically allocating files among DVDs and naming the DVDs.
+">
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!-- KISSmetrics -->
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  var _kmk = _kmk || 'c0f4b8d2a72e47520053a9d529087ccf817f0c6b';
+  function _kms(u){
+    setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');
+  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+    <script src="/assets/js/jquery-1.8.3.min.js"></script>
+  
+  
+    <script src="/assets/js/jquery.ba-hashchange.min.js"></script>
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/projects/">Projects</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        
+        
+        
+        
+          <style>
+.logo {
+  float: right;
+  background-color: #fafafa;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  margin-left: 10px; margin-bottom: 10px;
+}
+</style>
+
+<div class="row">
+  <div class="span9">
+    <img class="logo" src="logo-128.png" />
+    
+    <h1>Burn Planner</h1>
+    
+    
+      <p>Burn Planner helps you burn a series of files to multiple DVDs quickly by
+automatically allocating files among DVDs and naming the DVDs.</p>
+
+<p>I got tired of doing this manually for all of the anime I archive to DVDs,
+so I make this program to automate the whole process.</p>
+
+<h2>Download</h2>
+
+<ul>
+<li><a href="Burn%20Planner%20v1.0.dmg">Burn Planner 1.0</a> &ndash; Mac OS X 10.5 and later</li>
+</ul>
+
+
+<h2 id="donate">Donate</h2>
+
+
+<p>If this program saves you time, consider giving back with a donation.</p>
+
+<div class="paypal">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <div>
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="donations@dafoster.net">
+            <input type="hidden" name="item_name" value="Burn Planner">
+            <input type="hidden" name="item_number" value="burnplanner">
+            <input type="hidden" name="image_url" value="http://dafoster.net/projects/burn-planner/logo-50.png">
+            <input type="hidden" name="no_shipping" value="1">
+            <input type="hidden" name="return" value="http://dafoster.net/projects/burn-planner">
+            <input type="hidden" name="cancel_return" value="http://dafoster.net/projects/burn-planner">
+            <input type="hidden" name="cn" value="Feature Requests">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="tax" value="0">
+            <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate" name="submit">
+            <select name="amount" style="width: 65px; vertical-align: top;">
+                <option value="5.00">$5</option>
+                <option value="10.00" selected="selected">$10</option>
+                <option value="15.00">$15</option>
+                <option value="20.00">$20</option>
+                <option value="25.00">$25</option>
+                <option value="">Other</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+
+    
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Projects</h3>
+  
+  <ul class="tag_box" style="margin-bottom: .5em">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="burn-planner-project" class="active">
+          <a href="/projects/burn-planner/">Burn Planner</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="crystal-web-archiver-project">
+          <a href="/projects/crystal-web-archiver/" class="external">Crystal Web Archiver</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="decimal-binary-unit-converter-project">
+          <a href="/projects/decimal-binary-unit-converter/" class="external">Dec-Bin Unit Converter</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="decomp4-project">
+          <a href="/projects/decomp4/" class="external">decomp4</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="handbrake-subtitle-support-project">
+          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
+        </li>
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="park-place-project">
+          <a href="/projects/park-place/">Park Place</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="website-project">
+          <a href="/projects/website/">Website</a>
+        </li>
+      
+    
+      
+    
+      
+    
+  </ul>
+  <p class="x-and-more-projects">And more at:</p>
+<ul>
+  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
+  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
+</ul>
+</div>
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a></p>
+      </footer>
+
+    </div>
+    
+  
+    <script>
+      $(window).hashchange(function() {
+        // Highlight heading corresponding to current anchor (if specified)
+        if (location.hash) {
+          $('h2').removeClass('active');
+          $(location.hash).addClass('active');
+        }
+      });
+      $(window).hashchange();
+    </script>
+  
+  </body>
+</html>

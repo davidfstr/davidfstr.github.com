@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>DaFoster</title>
+ <link href="http://dafoster.net/atom.xml" rel="self"/>
+ <link href="http://dafoster.net"/>
+ <updated>2013-01-25T04:07:57-08:00</updated>
+ <id>http://dafoster.net</id>
+ <author>
+   <name>David Foster</name>
+   
+ </author>
+
+ 
+ <entry>
+   <title>Things I Wish I Knew Before Working in Industry</title>
+   <link href="http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/"/>
+   <updated>2013-01-15T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</id>
+   <content type="html">&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
+Tech about things he wished he knew before working in the the software
+industry. I have found his advise to be very useful at various points during
+my career. Sadly I have lost the presenter&amp;rsquo;s name.&lt;/p&gt;
+
+&lt;p&gt;Here is my outline of his presentation. &lt;strong&gt;Emphasized&lt;/strong&gt; points are ones I&amp;rsquo;ve found
+to be particularly useful.&lt;/p&gt;
+
+&lt;h3&gt;Technology&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Future: integration&lt;/li&gt;
+&lt;li&gt;Needed: ease-of-use &amp;amp; less complexity&lt;/li&gt;
+&lt;li&gt;Do &lt;em&gt;not&lt;/em&gt; reinvent wheels!
+
+&lt;ul&gt;
+&lt;li&gt;you&amp;rsquo;ll never finish the project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Technical Knowledge&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Learn to learn&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t need to take a class to learn something&lt;/li&gt;
+&lt;li&gt;Learn a little about a lot of things&lt;/li&gt;
+&lt;li&gt;Read news highlights from worthwhile sources&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Problem Solving&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Build a network of people. Asking for advice is quicker than learning the hard way.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;There is always more than one way to do something.&lt;br/&gt;
+Weigh the pros/cons of each – then pick and choose.&lt;/li&gt;
+&lt;li&gt;Innovate &lt;em&gt;before&lt;/em&gt; you execute. Think critically before you act.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Business &amp;amp; Technology&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Technology adoption is driven by &lt;em&gt;business&lt;/em&gt;. (practicality)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Business is nothing without technology.&lt;br/&gt;
+Technology is nothing without business.&lt;/li&gt;
+&lt;li&gt;If you build a better mousetrap, they will not come.&lt;/li&gt;
+&lt;li&gt;A project, no matter how advanced, is doomed for failure without a paying customer.&lt;/li&gt;
+&lt;li&gt;Think about TCO (&lt;em&gt;total&lt;/em&gt; cost of ownership) and ROI (return on investment).&lt;br/&gt;
+You must always justify your returns.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Communication with &lt;em&gt;managers&lt;/em&gt; and &lt;em&gt;customers&lt;/em&gt; is vital!&lt;/strong&gt;&lt;br/&gt;
+If you can&amp;rsquo;t get someone to adopt your solution, what&amp;rsquo;s the point?&lt;/li&gt;
+&lt;li&gt;There is a difference between removing barriers and creating incentive (for a customer to switch to my project/product). You need both.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Promotions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s not &lt;em&gt;what&lt;/em&gt; you know.&lt;br/&gt;
+It&amp;rsquo;s not &lt;em&gt;who&lt;/em&gt; you know.&lt;br/&gt;
+&lt;strong&gt;It&amp;rsquo;s &lt;em&gt;who&lt;/em&gt; knows &lt;em&gt;what&lt;/em&gt; you know.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Doing more of the same is not enough.
+
+&lt;ul&gt;
+&lt;li&gt;Need to try new things – take on more responsibility.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Doing what is asked is not enough.&lt;/li&gt;
+&lt;li&gt;Ask you manager what the expectations are.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Working with Others&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Credit + gratitude are not limited resources.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Say thank you!&lt;/li&gt;
+&lt;li&gt;Give credit where due.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Be ambitious but be humble.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t make assumptions about others.
+
+&lt;ul&gt;
+&lt;li&gt;Give people the benefit of the doubt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Your lack of planning does not mean I need to treat your request as urgent.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Do what you say you will. Keep your word.
+
+&lt;ul&gt;
+&lt;li&gt;reliable&lt;/li&gt;
+&lt;li&gt;dependable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The best humor is &lt;em&gt;self-deprecating&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;There is always someone faster, smarter, and better looking.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Managers&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;They don&amp;rsquo;t have a magic wand. They don&amp;rsquo;t automatically fix problems.&lt;/li&gt;
+&lt;li&gt;Managers do not have a superset of the employees' (team members') knowledge.&lt;/li&gt;
+&lt;li&gt;Managers can&amp;rsquo;t read minds. Don&amp;rsquo;t assume. Communicate explicitly.&lt;/li&gt;
+&lt;li&gt;You are responsible for your own career. But ask for help.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;You and Your Job&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your job is what you make of it. Don&amp;rsquo;t be confined by a job description.&lt;/li&gt;
+&lt;li&gt;Work/Life balance doesn&amp;rsquo;t have good default settings. You must do &lt;em&gt;explicit&lt;/em&gt; actions.
+
+&lt;ul&gt;
+&lt;li&gt;plan&lt;/li&gt;
+&lt;li&gt;schedule for success&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You are not your job. Do not define yourself like this.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Workers&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;We&amp;rsquo;re employed to &lt;em&gt;add value&lt;/em&gt;, not spend money.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;It&amp;rsquo;s easy to stay busy, but are you accomplishing anything &lt;em&gt;worthwhile&lt;/em&gt;?
+
+&lt;ul&gt;
+&lt;li&gt;don&amp;rsquo;t needlessly clutter your schedule&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If you aren&amp;rsquo;t looking at it from a &lt;em&gt;customer perspective&lt;/em&gt;, you aren&amp;rsquo;t looking at it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;You can&amp;rsquo;t do everything. Pick what you &lt;em&gt;won&amp;rsquo;t&lt;/em&gt; do.&lt;/strong&gt; (The world won&amp;rsquo;t end.)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Employment&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t expect your first job to be your dream job. Look for a &lt;em&gt;path&lt;/em&gt;, not an &lt;em&gt;endpoint&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Be willing to stretch your comfort zone.
+
+&lt;ul&gt;
+&lt;li&gt;geographically, work type, etc.&lt;/li&gt;
+&lt;li&gt;Otherwise you&amp;rsquo;ll stagnate.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Know your employer&amp;rsquo;s business model.
+
+&lt;ul&gt;
+&lt;li&gt;Examples:
+
+&lt;ul&gt;
+&lt;li&gt;HP = selling ink;&lt;/li&gt;
+&lt;li&gt;Microsoft = selling Office and Windows;&lt;/li&gt;
+&lt;li&gt;Apple = iPod and (to some extent) Macs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Take a look at the annual reports for your company.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Get &lt;em&gt;internships&lt;/em&gt;, even if with competitors, maybe even delaying graduation.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It gives experience.&lt;/li&gt;
+&lt;li&gt;Increases employment opportunities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Start looking and prepare much earlier.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Successful Employment&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want to make a difference, look for chaos.&lt;br/&gt;
+Stable environments offer little opportunity.&lt;/li&gt;
+&lt;li&gt;Good employees &lt;em&gt;deal&lt;/em&gt; with challenges instead of pouting. &lt;em&gt;Adapt&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Stay above the commodity line (with regard to skill set and type of work done).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Life&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Understand other people&amp;rsquo;s &lt;em&gt;motivations&lt;/em&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;Makes it easier to find new ways of solving the underlying goal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Define your values and goals.
+
+&lt;ul&gt;
+&lt;li&gt;ex: What type of job do you want?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Your &lt;em&gt;behaviors&lt;/em&gt; should support your goals.&lt;/li&gt;
+&lt;li&gt;Expect your goals to change. Success is dynamic.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t let &lt;em&gt;others&lt;/em&gt; define success for you.&lt;/li&gt;
+&lt;li&gt;You can get rich by getting more or &lt;em&gt;wanting less&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Life is one great balancing act.
+
+&lt;ul&gt;
+&lt;li&gt;There&amp;rsquo;s no single right way of doing things.&lt;/li&gt;
+&lt;li&gt;Balancing your priorities and goals is important.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Programming is Fun. But What Matters is Solving a Real Problem.</title>
+   <link href="http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/"/>
+   <updated>2013-01-08T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</id>
+   <content type="html">&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order than results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
+
+&lt;p&gt;However I have realized programming is merely an activity. It is a &lt;em&gt;means&lt;/em&gt;, not an &lt;em&gt;end&lt;/em&gt;. My work is not inherently valuable because I have created a piece of software. Rather it is because I have created software &lt;em&gt;that solves somebody&amp;rsquo;s problem&lt;/em&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Therefore it is the &lt;em&gt;problem&lt;/em&gt; that deserves the most attention if you want to make a difference that people care about. In that vein I have been learning about the precepts of Customer Development and Customer Discovery, which deals with how to efficiently interact with customers to discover a problem that they care about.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Direct customer interaction, such as through in-person interviews of the general public, is way outside my comfort zone. However I will perservere. I think it is a very important skill for actually making a dent in the universe.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;em&gt;Refactoring&lt;/em&gt; is a systematic method for code cleanup: improving the structure of existing code without changing its behavior. I highly recommend the book &lt;a href=&quot;http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672&quot;&gt;Refactoring&lt;/a&gt; if you want a deep-dive into the topic.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;!-- Speculation: --&gt; Business majors &amp;amp; managers recognize early on the importance of solving business problems. After all, their training is around organizing other people to solve problems they identify. (Although I feel they often focus overly on managing and not enough on problem identification.)&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;For a great practical workboard around Customer Discovery (which is the first quarter of Customer Development), I highly recommend Ash Maurya&amp;rsquo;s &lt;a href=&quot;http://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172&quot;&gt;Running Lean&lt;/a&gt;. For a full overview of Customer Development, I recommend Steve Blank&amp;rsquo;s &lt;a href=&quot;http://www.amazon.com/Four-Steps-Epiphany-Successful-Strategies/dp/0976470705&quot;&gt;The Four Steps to the Epiphany&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;Steve Jobs famously said he wanted to &amp;ldquo;put a dent in the universe&amp;rdquo;. And boy did he ever.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>This website is now powered by Jekyll</title>
+   <link href="http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/"/>
+   <updated>2012-12-21T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll</id>
+   <content type="html">&lt;p&gt;And this is my first post using the new system. Articles are a lot easier to
+write, so I will be posting more frequently.&lt;/p&gt;
+
+&lt;p&gt;Previously this site was powered by the &lt;a href=&quot;http://drupal.org&quot;&gt;Drupal&lt;/a&gt; engine. I found it overly
+complex to maintain, especially for a single-user blog and portfolio website.
+For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-longer-use-drupal/&quot;&gt;Why I no longer use Drupal&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Why I no longer use Drupal</title>
+   <link href="http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/"/>
+   <updated>2012-12-16T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal</id>
+   <content type="html">&lt;p&gt;&lt;em&gt;&lt;b&gt;TLDR:&lt;/b&gt; Drupal is overly complex for a personal blog. It is hard to maintain. Simple static site generators are easier to work with in the long term.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;My portfolio website was written during college using hand-coded HTML and used server-side includes to bring in common navigation.&lt;/p&gt;
+
+&lt;p&gt;Then in January 2010 I remade my site in Drupal. It gained lots of fancy features such as first-class support for project categories and project languages. You could subscribe to almost any page as a feed. There were project specific updates that could be commented on. From a feature point of view, it rocked.&lt;/p&gt;
+
+&lt;p&gt;But some problems became apparent over time:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Security updates were frequent and difficult to apply correctly.&lt;/li&gt;
+&lt;li&gt;I didn&amp;rsquo;t like writing articles on the site because I couldn&amp;rsquo;t use simple markup formats such as Markdown.
+
+&lt;ul&gt;
+&lt;li&gt;Drupal has no good editor plugins for markup languages.&lt;/li&gt;
+&lt;li&gt;And its visual HTML editor generates messy HTML.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The theme I used for the site was complex and hard to modify.
+
+&lt;ul&gt;
+&lt;li&gt;And the CSS often interfered with my article markup, necessitating me to drop into HTML when editing certain articles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;There was no sane way to test structural changes to the site locally and then automatically deploy them to production.
+
+&lt;ul&gt;
+&lt;li&gt;Normally this would be done by keeping the site structure in the filesystem and all user content in a database. This allows the filesystem contents to be easily deployed using &lt;code&gt;git push&lt;/code&gt;, &lt;code&gt;rsync&lt;/code&gt;, or similar techniques.&lt;/li&gt;
+&lt;li&gt;Drupal, by contrast, keeps its site structure in both the filesystem &lt;em&gt;and&lt;/em&gt; in the database, along with user-generated content. Updating only the parts of the database related to site structure is cumbersome and error-prone.&lt;/li&gt;
+&lt;li&gt;Thus, I couldn&amp;rsquo;t really change the site structure after my initial deployment to production.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Nothing was in revision control, which made me nervous.&lt;/li&gt;
+&lt;li&gt;I had to hack the Drupal core to get my contact form to work with my web hosting provider.&lt;/li&gt;
+&lt;li&gt;Most of the features of the site weren&amp;rsquo;t being used by readers.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;So now I am rewriting my site yet again in straight HTML (via a simple static site generator) and outsourcing all user generated content (like comments) to third party service providers.&lt;/p&gt;
+
+&lt;p&gt;Benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Simple simple simple.&lt;/li&gt;
+&lt;li&gt;Automatic security. The web server just serves static files.&lt;/li&gt;
+&lt;li&gt;Automatic scalability, for the same reason.&lt;/li&gt;
+&lt;li&gt;Simple authoring in Markdown with powerful client-side text editors.&lt;/li&gt;
+&lt;li&gt;Instant deployment with &lt;code&gt;git push&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Everything in revision control.&lt;/li&gt;
+&lt;li&gt;I can use any web hosting provider. Hell, I can just use &lt;a href=&quot;http://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; for free.&lt;/li&gt;
+&lt;li&gt;Ultimate control over the site theme and CSS. I can fix problems myself.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Retrospect vs. Time Machine</title>
+   <link href="http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/"/>
+   <updated>2010-11-13T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</id>
+   <content type="html">&lt;h2&gt;The old Retrospect 6.0&lt;/h2&gt;
+
+&lt;p&gt;In the past I have used Retrospect 6.0 to backup my Macs, since it was one of
+the few programs that reliably backed up everything correctly, with all the
+metadata intact. But it is looking much less attractive these days&amp;hellip;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;It no longer finds my laptop on the network reliably, due to some bug.
+Especially when switching between wireless and wired networks.
+Thus I often miss backups.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It is slow.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It does not groom backups.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It stores everything inside a single monolithic file,
+which is at risk of corruption.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;The new Retrospect 8.0&lt;/h2&gt;
+
+&lt;p&gt;The latest version of Retropect (8.0) is somewhat better but has some problems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;It does not seem to backup all attributes correctly.
+For example, volume icons do not seem to be restored correctly.
+Inaccurate backups are useless.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It is more complicated to use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Automatic grooming, although supported, is so slow to be practically unusable.
+It takes maybe 2x as long to do one grooming operation as an incremental backup.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Time Machine&lt;/h2&gt;
+
+&lt;p&gt;Now there is Time Machine. Since my primary systems are 10.5+, I can use it.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;It &lt;em&gt;should&lt;/em&gt; support reliable backup of all filesystem attributes,
+since it was made by Apple, who is in a position to know about them.
+Also, Apple typically makes solid products.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It has quick, automatic, incremental backups.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It also grooms automatically while it is backing up. Grooming behavior is
+intelligent, keeping snapshots at sensible intervals.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The single-file restore interface is precise, intuitive, and fast.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Only wrinkle is that Time Machine is not really designed to backup to network
+drives, however there are &lt;a href=&quot;http://code.stephenmorley.org/articles/time-machine-on-a-network-drive/&quot;&gt;instructions for circumventing this&lt;/a&gt;.
+(Of course there is Time Machine + Time Capsule for network backups, but a
+Capsule is egregiously expensive.)&lt;/p&gt;
+
+&lt;h3&gt;2012 Update&lt;/h3&gt;
+
+&lt;p&gt;Time Machine misses a few filesystem attributes that Retrospect 6.0 nailed back
+in the day, like volume icons.&lt;/p&gt;
+
+&lt;p&gt;I think it may also strip HFS+ extended attributes, since applications appear
+to be quarantined after they are restored from a Time Machine backup.&lt;/p&gt;
+
+&lt;p&gt;One last nitpick is that TM has very poor handling for bad media and bad blocks.
+In particular if your primary hard drive develops bad blocks, which is an early
+sign of imminent failure, Time Machine will choke and refuse to backup the
+entire volume. And this is exactly at the time you need it your files backed up
+the most, when your hard drive is likely to fail.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Impact of Anime on my Programming Experience</title>
+   <link href="http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/"/>
+   <updated>2010-09-18T00:00:00-07:00</updated>
+   <id>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience</id>
+   <content type="html">&lt;p&gt;It occurs to me that anime has been an important driver for improving my programming abilities.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I did my own &lt;a href=&quot;/prism/projects/kiss/&quot;&gt;implementation of the Kisekae Set System&lt;/a&gt; (KiSS),
+a digital paper doll system which often featured anime characters.
+
+&lt;ul&gt;
+&lt;li&gt;My very first exposure to anime was to the characters of Wedding Peach,
+via an included doll file with the French KiSS viewer by John Stiles.&lt;/li&gt;
+&lt;li&gt;Taught me how to write directly to graphics buffers, in both C and
+later Java.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I initially picked up Java when I was writing &lt;strong&gt;RealMediaFixer&lt;/strong&gt;,
+a repairer of RealMedia video files. CodeWarrior&amp;rsquo;s implementation of the
+C++ iostream classes had a broken buffered stream implementation,
+so I switched to Java to use its rock solid BufferedOutputStream
+implementation.
+
+&lt;ul&gt;
+&lt;li&gt;Initial use was to repair &lt;a href=&quot;http://www.themanime.org/viewreview.php?id=396&quot;&gt;Ranma&lt;/a&gt; episodes that I downloaded over HTTP,
+on dialup!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I implemented &lt;a href=&quot;/prism/projects/hotline/&quot;&gt;my own client and server for the Hotline protocol&lt;/a&gt;,
+through which I got most of my anime prior to the introduction of
+BitTorrent.&lt;/li&gt;
+&lt;li&gt;Today I am &lt;a href=&quot;/projects/handbrake-subtitle-support/&quot;&gt;enhancing support for transcoding soft subtitles in HandBrake&lt;/a&gt;
+so that I can watch new anime on the bus.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Comparing Writing Utensils (Why Pens&nbsp;>&nbsp;Pencils)</title>
+   <link href="http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/"/>
+   <updated>2010-09-17T00:00:00-07:00</updated>
+   <id>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils</id>
+   <content type="html">&lt;p&gt;My experience using various kinds of writing utensils in school&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;&amp;gt; = &amp;ldquo;is better than&amp;rdquo;&lt;/i&gt;&lt;/p&gt;
+
+&lt;h3&gt;Why Pens &gt; Pencils&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t smudge ∴ Archive well&lt;/li&gt;
+&lt;li&gt;Force you to think about what you are writing
+
+&lt;ul&gt;
+&lt;li&gt;Mistakes are more costly, since you cannot simply use an eraser on pen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Have brighter contrast ∴ Easier to read&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Why Mechanical Pencils &gt; Traditional Pencils&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t need to be sharpened ∴
+
+&lt;ul&gt;
+&lt;li&gt;No sawdust to clean up&lt;/li&gt;
+&lt;li&gt;No special sharpener hardware needed&lt;/li&gt;
+&lt;li&gt;Lifetime is not limited to a certain number of sharpenings
+
+&lt;ul&gt;
+&lt;li&gt;Lifetime only limited to when the m-pencil is lost&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Seem to resist smearing in the short term
+
+&lt;ul&gt;
+&lt;li&gt;(but pens still win in the long term)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Why Writing Utensils &gt; Computer Keyboards [for creative projects]&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Force you to think about what you are writing
+
+&lt;ul&gt;
+&lt;li&gt;It takes a long time (comparatively) to write individual words,
+which gives you time to think about what you are writing&lt;/li&gt;
+&lt;li&gt;Mistakes are more costly, since you cannot just delete words&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Force you to think about the structure of what you are writing
+
+&lt;ul&gt;
+&lt;li&gt;Mistakes are more costly, since you cannot just cut and paste sections
+which are poorly laid out in the first place&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;No mental overhead
+
+&lt;ul&gt;
+&lt;li&gt;Using computers always incurs at least a small bit of mental overhead
+that interferes with the creative process&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Automatic revision control (in the case of pen)
+
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s easier to strike through (rather than erase) rejected ideas with
+pen, so these ideas are preserved for future analysis, which sometimes
+comes in handy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Why Computer Keyboards &gt; Writing Utensils [for non-creative projects]&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Typing speed is much higher
+
+&lt;ul&gt;
+&lt;li&gt;Gets even better if you use typing expansion software&lt;/li&gt;
+&lt;li&gt;Gets even better if you use dictation software [for prose]&lt;/li&gt;
+&lt;li&gt;Gets even better if you use a stenotype machine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Hyperlinks are easy to create and maintain
+
+&lt;ul&gt;
+&lt;li&gt;This is especially powerful when writing reference documents&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Comparing iPod Touch (2nd Gen) to iPhone 3GS</title>
+   <link href="http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/"/>
+   <updated>2010-09-17T00:00:00-07:00</updated>
+   <id>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs</id>
+   <content type="html">&lt;p&gt;I recently upgraded from an iPod Touch to an iPhone 3GS. I hate contracts, so I
+bought the 3GS off-contract from a seller on Craigslist. (And I timed my
+purchase to coincide with the release of the iPhone 4, so lots of people were
+dumping their own 3GS devices.)&lt;/p&gt;
+
+&lt;p&gt;I am routinely in WiFi hotspots: at home, enroute to work, and at work, so I
+usually put the iPhone 3GS in &amp;ldquo;Airplane Mode&amp;rdquo;, where the wireless radios are
+disabled, to conserve battery life. Therefore I effectively use my iPhone like
+a better iPod Touch most of the time.&lt;/p&gt;
+
+&lt;p&gt;From purely a specification point of view, the differences are:&lt;/p&gt;
+
+&lt;table border=&quot;1&quot;&gt;
+    &lt;thead style=&quot;background-color:#e0e0e0;&quot;&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;col&quot;&gt;
+                &amp;nbsp;&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;
+                iPod Touch (2nd Gen)&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;
+                iPhone 3GS (3rd Gen)&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                internet access&lt;/td&gt;
+            &lt;td&gt;
+                only in WiFi hotspots&lt;/td&gt;
+            &lt;td&gt;
+                universal (except subway)*&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                geolocation&lt;/td&gt;
+            &lt;td&gt;
+                WiFi triangulation only, via SkyHook&lt;/td&gt;
+            &lt;td&gt;
+                GPS-enabled (very accurate)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                external speaker quality&lt;/td&gt;
+            &lt;td&gt;
+                -&lt;/td&gt;
+            &lt;td&gt;
+                surprisingly better&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                CPU / responsiveness&lt;/td&gt;
+            &lt;td&gt;
+                -&lt;/td&gt;
+            &lt;td&gt;
+                much faster&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                battery life&lt;/td&gt;
+            &lt;td&gt;
+                - (approx 3 days)&lt;/td&gt;
+            &lt;td&gt;
+                less (approx 2 days)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                vibrate capability&lt;/td&gt;
+            &lt;td&gt;
+                no&lt;/td&gt;
+            &lt;td&gt;
+                yes&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                built-in microphone&lt;/td&gt;
+            &lt;td&gt;
+                no&lt;/td&gt;
+            &lt;td&gt;
+                yes&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                heft&lt;/td&gt;
+            &lt;td&gt;
+                lighter and thinner&lt;/td&gt;
+            &lt;td&gt;
+                -&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                headphone jack location&lt;/td&gt;
+            &lt;td&gt;
+                bottom-right&lt;/td&gt;
+            &lt;td&gt;
+                top-left&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;In practical terms, this translates to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;I never get completely lost*&lt;/b&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The combination of GPS plus internet everywhere means that I always know
+where I am on the map.&lt;/li&gt;
+&lt;li&gt;I can also get instant directions from my current location to an
+arbitrary destination. I usually take public transit, but this works with
+cars as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The iPhone is a better boombox&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I use both devices as portable external sound systems while I work.
+The better speaker quality of the iPhone is nice to have.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The iPhone user interface is more responsive&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;hellip;thanks to the better CPU.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The iPhone needs to be recharged slightly more often&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;hellip;thanks to the shorter battery life.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I never miss calendar reminders anymore&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Calendar reminders (including work meeting reminders) are not only
+audible on the iPhone but also produce a noticeable vibration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I can use Shazam to identify random music I hear&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;hellip;thanks to the built-in microphone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2012 Update:&lt;/strong&gt; This actually doesn&amp;rsquo;t work very well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I can make phone calls if I really want to&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The microphone makes it feasable. Not just for normal calls, but VoIP
+internet calls as well.&lt;/li&gt;
+&lt;li&gt;With a phone plan, you can make the normal calls as well.*&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;i&gt;* Requires phone plan, with associated subscription costs.&lt;/i&gt;&lt;/p&gt;
+
+&lt;h2&gt;The uneasy marriage with AT&amp;amp;T&lt;/h2&gt;
+
+&lt;p&gt;I hate expensive monthly fees. Here in the USA, the only officially
+supported carrier is AT&amp;amp;T, which charges at least $70/month. I don&amp;rsquo;t even use
+the voice plan, so I&amp;rsquo;m being overcharged rather significantly at the moment.&lt;/p&gt;
+
+&lt;p&gt;T-Mobile is another option for those willing to unlock their iPhones. They
+have less expensive plans, to the tune of $40/month, which I&amp;rsquo;m much in favor
+of. I intend to unlock my iPhone when I get some spare time in the next month
+or so. After all, it&amp;rsquo;s costing me $30/month to delay.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2012 Update:&lt;/strong&gt; T-Mobile is rumored to be carrying the iPhone sometime in
+2013. I just hope it isn&amp;rsquo;t &amp;ldquo;too little, too late.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2012 Update:&lt;/strong&gt; I am still using the same iPhone 3GS today.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<!-- The above line is required to enable (almost) strict mode when rendering in IE
+  || and other browsers with strange quirks modes. -->
+
+<html>
+<head>
+<title>decomp4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Tell IE 8+ to render the page in IE 7 style -->
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<base href="/prism/">
+<link rel="stylesheet" href="common/nav.css" type="text/css">
+<link rel="stylesheet" href="common/layout.css" type="text/css">
+<!--[if IE]><link rel="stylesheet" href="common/layout-ie.css" type="text/css"><![endif]-->
+<link rel="shortcut icon" href="common/images/favicon.ico" type="image/vnd.microsoft.icon">
+<!-- IE6/XP: fix rendering of transparent PNGs;
+  ||         works on most images, except the background images in the nav bar -->
+<!--[if lt IE 7]>
+<style type="text/css">
+img, div { behavior: url(common/iepngfix/iepngfix.htc) }
+</style>
+<![endif]-->
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<link rel="stylesheet" href="projects/projectIcons.css" type="text/css">
+</head>
+<body>
+<div id="container">
+
+<div id="top">
+<div id="skipnav" style="float: right;">
+<a href="/prism/projects/decomp/#content">Skip to main content</a>
+</div>
+<h1>David Foster</h1>
+</div>
+
+<div id="leftnav">
+<div id="navcontainer">
+<ul id="navlist">
+	<li><a href="/prism/" id="nav-about" class="navitem navlev1">About Me</a>
+	<ul>
+		<li><a href="projects/" id="nav-projects" class="navitem navlev2">Projects</a></li>
+		<li><a href="activities/" id="nav-activities" class="navitem navlev2">Activities</a></li>
+		<li><a href="skills/" id="nav-skills" class="navitem navlev2">Skills</a></li>
+	</ul>
+	</li>
+	<li><a href="scripts/" id="nav-scripts" class="navitem navlev1">Scripts</a></li>
+	<!-- <li><a href="wiki/" id="nav-wiki" class="navitem navlev1">Wiki</a></li> -->
+</ul>
+</div>
+</div>
+
+<div id="content-container">
+<div id="content">
+
+<div class="tright">
+	<img class="softwareDevelopmentIcon" src="projects/images/javaClassToSource.png" width="128" height="128" alt="">
+</div>
+
+<div id="breadcrumbs">
+<ul>
+	<li><a href="projects/">Projects</a></li>
+	<li>decomp4</li>
+</ul>
+</div>
+
+<h1>decomp4</h1>
+<p>
+<b>decomp4</b> is a full-featured Java <a href="projects/decomp/decompiler/">decompiler</a> <sup><a href="projects/decomp/decompiler/" style="text-decoration:none;">(what's this?)</a></sup> that I 
+developed over a period of three years between high school 
+and college. This is the largest codebase that I have written 
+from scratch, consisting of over <b>50,000</b> lines of code.
+</p>
+<p>
+This project really solidified my understanding of the Java language. Not only did I 
+end up reading the <a href="http://docs.oracle.com/javase/specs/jls/se5.0/html/j3TOC.html" class="external">Java Language Specification</a> and <a href="http://docs.oracle.com/javase/specs/jvms/se5.0/html/VMSpecTOC.doc.html" class="external">Java Virtual Machine Specification</a> 
+from cover to cover, I also had to learn several new practices to deal 
+with a such a large codebase.
+</p>
+<p>
+As of February 19, 2005, decomp4 is able to successfully decompile <b>99.68%</b> of the 
+6949 classes in the Java 2 Platform Standard Edition v1.4.1.
+</p>
+
+<table id="toc">
+<tr><td>
+<ul>
+<li><a href="projects/decomp/#features">Features</a></li>
+<li><a href="projects/decomp/#versions">Versions</a></li>
+<li><a href="projects/decomp/#papers">Papers</a></li>
+</ul>
+</td></tr>
+</table>
+<br>
+
+<a name="features"></a>
+<h2>Features</h2>
+Features include:
+<ul>
+	<li>support for all simple Java language constructs</li>
+	<li>support for <tt>synchronized</tt> blocks</li>
+	<li>support for <tt>try</tt>-<tt>catch</tt>-<tt>finally</tt> blocks</li>
+	<li>advanced type inference</li>
+	<li>advanced control flow analysis</li>
+</ul>
+
+Notable non-supported constructs (mostly from Java 1.5+) include:
+<ul>
+	<li>nested classes</li>
+	<li>generics</li>
+	<li>auto-boxing/unboxing</li>
+	<li>enhanced <tt>for</tt> loops</li>
+	<li>enum and annotation types</li>
+	<li>annotations</li>
+</ul>
+
+<a name="versions"></a>
+<h2>Versions</h2>
+Previous major versions of this project include:
+<ul>
+	<li><b>decomp3</b> (~44,000 <acronym title="lines of code" class="spell">LOC</acronym>)</li>
+	<li><b>decomp2</b> (~19,000 <acronym title="lines of code" class="spell">LOC</acronym>)</li>
+	<li><b>decomp</b> (a throwaway prototype)</li>
+</ul>
+
+<a name="papers"></a>
+<h2>Papers</h2>
+<table class="itemTable" border="0">
+	<tr>
+		<td width="63" class="itemIcon">
+			<a href="projects/decomp/papers/Decompiling%20Java-Part I.pdf">
+			<img src="projects/decomp/images/pdfDoc.png" width="45" height="45" alt=""></a>
+		</td>
+		<td>
+			Download 
+			<a href="projects/decomp/papers/Decompiling%20Java-Part I.pdf"><b>How can Java .class files be decompiled?</b></a><br>
+			<i>This paper was submitted to the Georgia Science and Engineering Fair (GSEF) in 2004.</i>
+		</td>
+	</tr>
+	<tr>
+		<td width="63" class="itemIcon">
+			<a href="projects/decomp/papers/Decompiling%20Java-Part II.pdf">
+			<img src="projects/decomp/images/pdfDoc.png" width="45" height="45" alt=""></a>
+		</td>
+		<td>
+			Download 
+			<a href="projects/decomp/papers/Decompiling%20Java-Part II.pdf"><b>Decompiling Java, Part II: Control Flow</b></a><br>
+			<i>This paper was submitted to the Intel International Science and Engineering Fair (ISEF) in 2005.</i>
+		</td>
+	</tr>
+</table>
+
+<center>
+  <!-- I used to have the page's last modified date here -->
+</center>
+
+</div>
+</div>
+
+<div id="footer">
+<div id="validator-html" style="float:left;">
+<a href="http://validator.w3.org/check/referer">
+<img src="common/images/nav/valid-html401-blue.png" width="88" height="31" alt="Valid HTML 4.01 Transitional">
+</a>
+</div>
+<div id="validator-css" style="float:right;">
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+<img src="common/images/nav/valid-css2-blue.png" width="88" height="31" alt="Valid CSS Level 2">
+</a>
+</div>
+<center>
+Copyright &copy; 2010 by <a href="#contact">David Foster</a>.<br>
+This website is designed in <a href="http://www.omnigroup.com/applications/omnigraffle/" class="external">OmniGraffle</a> and coded by hand.
+</center>
+</div>
+
+</div>
+</body>
+</html>

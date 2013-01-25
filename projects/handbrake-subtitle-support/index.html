@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HandBrake Subtitles | DaFoster</title>
+  
+  
+    
+    <meta name="description" content="Extends the popular HandBrake ripping and transcoding tool to enable processing subtitles from files, including the SSA subtitles found commonly in anime.
+">
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!-- KISSmetrics -->
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  var _kmk = _kmk || 'c0f4b8d2a72e47520053a9d529087ccf817f0c6b';
+  function _kms(u){
+    setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');
+  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/projects/">Projects</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        
+        
+          <style>
+            h3 { margin-bottom: -.3em; }
+small { font-size: 14px; }
+.span9 > hr { border-top-color: #d3d3d3; /* subtle */ }
+
+          </style>
+        
+        
+        
+          <style>
+.logo {
+  float: right;
+  background-color: #fafafa;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  margin-left: 10px; margin-bottom: 10px;
+}
+</style>
+
+<div class="row">
+  <div class="span9">
+    <img class="logo" src="logo-128.png" />
+    
+    <h1>HandBrake Subtitles</h1>
+    
+    
+      <p><a href="http://handbrake.fr/">HandBrake</a> is a popular program for ripping DVDs and for converting
+converts movie files from one format to another.</p>
+
+<p>I extended HandBrake to support subtitles from file inputs (in addition
+to DVDs) and to support the <acronym title="SubStation Alpha">SSA</acronym>
+and <acronym title="Advanced SubStation Alpha">ASS</acronym> subtitle formats,
+which are popular for encoding Japanese anime and foreign films.</p>
+
+<p>My main motivation for adding subtitle support was to watch movies on my iPhone
+while riding public transit and flying long-distance.</p>
+
+<p>This was the first open source project I participated in.</p>
+
+<h2>Download</h2>
+
+<ul>
+<li><a href="http://handbrake.fr/downloads.php">HandBrake 0.9.5 and later</a> has subtitle support</li>
+<li>I have personally tested:
+
+<ul>
+<li>HandBrake svn3563 (2010100201)</li>
+<li>HandBrake svn3567 (2010100301)</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>You may also like&hellip;</h2>
+
+<ul>
+<li><p><strong><a href="https://github.com/davidfstr/hbencode#readme">hbencode</a></strong> &ndash; A command line tool for automatically encoding multiple
+video files in bulk with optimized settings for an iPhone (or iPod Touch).</p></li>
+<li><p><strong><a href="/projects/burn-planner/">Burn Planner</a></strong> &ndash; Automatically burn lots of files to DVDs.</p></li>
+</ul>
+
+
+<h2>SSA Problems?</h2>
+
+<p>If you experience any major rendering issues with SSA subtitles, please:</p>
+
+<ul>
+<li>Check whether it is a known issue on the <a href="https://trac.handbrake.fr/report/11">HandBrake bug tracker</a>.</li>
+<li>Otherwise please send a message to the <a href="https://forum.handbrake.fr/viewforum.php?f=12">Bugs board</a> on the HandBrake forum.</li>
+<li>Only if you are not satisfied with the response there, then you may try
+<a href="https://forum.handbrake.fr/ucp.php?i=pm&amp;mode=compose&amp;u=12649">contacting me directly</a>.</li>
+</ul>
+
+
+<p>These days (as of 2011) I am more or less inactive on HandBrake development.
+Yet I am currently your best shot at getting SSA issues fixed. Therefore if you
+really want to get a particular issue fixed, you are encouraged to find a
+creative way to motivate me.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> :&ndash;)</p>
+
+<h2>Updates</h2>
+
+<h3>Simultaneous subtitle support added</h3>
+
+<p><small>2011-02-24</small></p>
+
+<p>Committed: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=18379&amp;p=93265">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=18379&amp;p=93265</a></p>
+
+<hr />
+
+<h3>HandBrake 0.9.5 released</h3>
+
+<p><small>2011-01-03</small></p>
+
+<p>Now everyone can see my SSA subtitle improvements.</p>
+
+<p><a href="http://handbrake.fr/?article=11">http://handbrake.fr/?article=11</a></p>
+
+<hr />
+
+<h3>SSA burn-in support committed!</h3>
+
+<p><small>2010-09-28</small></p>
+
+<p>At long last. The main body of work is now complete.</p>
+
+<p>Committed: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=17609&amp;start=75#p83649">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=17609&amp;start=75#p83649</a></p>
+
+<hr />
+
+<h3>SSA burn-in now compiles under all supported architectures.</h3>
+
+<p><small>2010-09-19</small></p>
+
+<p>Announced: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=17609&amp;start=50#p83250">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=17609&amp;start=50#p83250</a></p>
+
+<hr />
+
+<h3>Initial version of SSA burn-in patch completed.</h3>
+
+<p><small>2010-08-14</small></p>
+
+<p>Announced: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=17609#p81389">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=17609#p81389</a></p>
+
+<hr />
+
+<h3>Wrote HandBrake Architectural Guide.</h3>
+
+<p><small>2010-07-02</small></p>
+
+<p>This should help new developers on the HandBrake project come up to speed more quickly.</p>
+
+<p>Committed: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16559#p77909">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16559#p77909</a></p>
+
+<hr />
+
+<h3>Now decodes SSA to UTF-8 subtitles.</h3>
+
+<p><small>2010-06-01</small></p>
+
+<p>Subtitled anime is now playable on iPhone, albeit without styling info.</p>
+
+<p>Committed: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16538#p77832">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16538#p77832</a></p>
+
+<hr />
+
+<h3>Can now transcode all subtitle formats that it can output.</h3>
+
+<p><small>2010-05-20</small></p>
+
+<p>HandBrake can now transcode all subtitle formats that it can output (VOB, UTF-8, TX3G).</p>
+
+<p>Committed: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16267#p77158">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16267#p77158</a></p>
+
+<hr />
+
+<h3>General support for subtitles from file-inputs.</h3>
+
+<p><small>2010-05-04</small></p>
+
+<p>Committed: <a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16099#p76255">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=16099#p76255</a></p>
+
+<hr />
+
+<h3>Approach decided.</h3>
+
+<p><small>2010-04-13</small></p>
+
+<p>Announced to the HandBrake community here:<br/>
+<a href="https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=15967">https://forum.handbrake.fr/viewtopic.php?f=4&amp;t=15967</a></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Perhaps by introducing me to a really awesome TV show or anime series that happens not to transcode its subtitles correctly. Particularly if I&rsquo;m about to fly somewhere. Other ideas encouraged.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+    
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Projects</h3>
+  
+  <ul class="tag_box" style="margin-bottom: .5em">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="burn-planner-project">
+          <a href="/projects/burn-planner/">Burn Planner</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="crystal-web-archiver-project">
+          <a href="/projects/crystal-web-archiver/" class="external">Crystal Web Archiver</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="decimal-binary-unit-converter-project">
+          <a href="/projects/decimal-binary-unit-converter/" class="external">Dec-Bin Unit Converter</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="decomp4-project">
+          <a href="/projects/decomp4/" class="external">decomp4</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="handbrake-subtitle-support-project" class="active">
+          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
+        </li>
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="park-place-project">
+          <a href="/projects/park-place/">Park Place</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="website-project">
+          <a href="/projects/website/">Website</a>
+        </li>
+      
+    
+      
+    
+      
+    
+  </ul>
+  <p class="x-and-more-projects">And more at:</p>
+<ul>
+  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
+  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
+</ul>
+</div>
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a></p>
+      </footer>
+
+    </div>
+    
+  
+  </body>
+</html>

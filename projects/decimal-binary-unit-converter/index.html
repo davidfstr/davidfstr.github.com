@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Decimal-Binary Unit Converter | DaFoster</title>
+  
+  
+    
+    <meta name="description" content="Converts between decimal and binary byte units. For example, between kilobits and megabytes.
+">
+  
+    <meta name="author" content="David Foster">
+  
+    <meta http-equiv="refresh" content="0;URL='https://github.com/davidfstr/Decimal-Binary-Unit-Converter#readme'">
+  
+    
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!-- KISSmetrics -->
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  var _kmk = _kmk || 'c0f4b8d2a72e47520053a9d529087ccf817f0c6b';
+  function _kms(u){
+    setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');
+  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/projects/">Projects</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        
+        
+        
+        
+          
+            <style>
+.logo {
+  float: right;
+  background-color: #fafafa;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  margin-left: 10px; margin-bottom: 10px;
+}
+</style>
+
+<div class="row">
+  <div class="span9">
+    <img class="logo" src="logo-128.png" />
+    
+    <h1>Decimal-Binary Unit Converter</h1>
+    
+    
+      <em>Redirecting you to:</em><br />
+<a href="https://github.com/davidfstr/Decimal-Binary-Unit-Converter#readme">https://github.com/davidfstr/Decimal-Binary-Unit-Converter#readme</a>
+
+    
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Projects</h3>
+  
+  <ul class="tag_box" style="margin-bottom: .5em">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="burn-planner-project">
+          <a href="/projects/burn-planner/">Burn Planner</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="crystal-web-archiver-project">
+          <a href="/projects/crystal-web-archiver/" class="external">Crystal Web Archiver</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="decimal-binary-unit-converter-project" class="active">
+          <a href="/projects/decimal-binary-unit-converter/" class="external">Dec-Bin Unit Converter</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="decomp4-project">
+          <a href="/projects/decomp4/" class="external">decomp4</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="handbrake-subtitle-support-project">
+          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
+        </li>
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="park-place-project">
+          <a href="/projects/park-place/">Park Place</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="website-project">
+          <a href="/projects/website/">Website</a>
+        </li>
+      
+    
+      
+    
+      
+    
+  </ul>
+  <p class="x-and-more-projects">And more at:</p>
+<ul>
+  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
+  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
+</ul>
+</div>
+  </div>
+</div>
+
+          
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a></p>
+      </footer>
+
+    </div>
+    
+  
+  </body>
+</html>
