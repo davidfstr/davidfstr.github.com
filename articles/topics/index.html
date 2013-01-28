@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <!-- IE 8+: Hide the Compatibility View button. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <title>Articles (By Topic) | DaFoster</title>
   
   
@@ -46,10 +49,22 @@
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
     <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+      <style>
+        h2 sup {
+  /* Display as subtle */
+  color: #999999;
+  font-weight: normal;
+}
+
+      </style>
+    
 
     <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/favicon.ico">
   <!-- Update these with your own images
-    <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
@@ -113,6 +128,7 @@
               
             
               
+            
             
           </ul>
         </div>
@@ -256,8 +272,16 @@
           </ul>
         </div>
         
-        
-        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
         
         
           <div class="row">
@@ -265,7 +289,7 @@
     <h1>Articles (By Topic)</h1>
     
      
-      <h2 id="Productivity">Productivity <small>3</small></h2>
+      <h2 id="Productivity">Productivity <sup>3</sup></h2>
       <ul>
         
         
@@ -277,7 +301,7 @@
         
       </ul>
      
-      <h2 id="Personal">Personal <small>4</small></h2>
+      <h2 id="Personal">Personal <sup>4</sup></h2>
       <ul>
         
         
@@ -291,7 +315,7 @@
         
       </ul>
      
-      <h2 id="Software">Software <small>4</small></h2>
+      <h2 id="Software">Software <sup>4</sup></h2>
       <ul>
         
         
@@ -305,7 +329,7 @@
         
       </ul>
      
-      <h2 id="Business">Business <small>2</small></h2>
+      <h2 id="Business">Business <sup>2</sup></h2>
       <ul>
         
         
@@ -329,28 +353,28 @@
       
       
       
-      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <span>3</span></a></li>
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
     
       
       
       
       
       
-      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <span>4</span></a></li>
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
     
       
       
       
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <span>4</span></a></li>
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>4</sup></a></li>
     
       
       
       
       
       
-      <li id="Business-topic"><a href="/articles/topics/#Business">Business <span>2</span></a></li>
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>2</sup></a></li>
     
   </ul>
 </div>
@@ -379,7 +403,8 @@
       </div>
 
       <footer>
-        <p>&copy; 2013 <a href="/about/">David Foster</a></p>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
       </footer>
 
     </div>

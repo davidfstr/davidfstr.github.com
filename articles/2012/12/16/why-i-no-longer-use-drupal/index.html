@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <!-- IE 8+: Hide the Compatibility View button. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <title>Why I no longer use Drupal | DaFoster</title>
   
   
@@ -46,10 +49,13 @@
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
     <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
 
     <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/favicon.ico">
   <!-- Update these with your own images
-    <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
@@ -109,6 +115,7 @@
               
             
               
+            
             
           </ul>
         </div>
@@ -252,8 +259,16 @@
           </ul>
         </div>
         
-        
-        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
         
         
           <div class="row">
@@ -264,9 +279,9 @@
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <span>4</span></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>4</sup></a></span>
          
-          <span><a href="/articles/topics/#Productivity">Productivity <span>3</span></a></span>
+          <span><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></span>
         
       </span>
     </div>
@@ -344,7 +359,7 @@
         
       
       
-      <li id="Productivity-topic" class="active"><a href="/articles/topics/#Productivity">Productivity <span>3</span></a></li>
+      <li id="Productivity-topic" class="active"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
     
       
       
@@ -355,7 +370,7 @@
         
       
       
-      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <span>4</span></a></li>
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
     
       
       
@@ -368,7 +383,7 @@
         
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <span>4</span></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>4</sup></a></li>
     
       
       
@@ -379,7 +394,7 @@
         
       
       
-      <li id="Business-topic"><a href="/articles/topics/#Business">Business <span>2</span></a></li>
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>2</sup></a></li>
     
   </ul>
 </div>
@@ -405,10 +420,10 @@
   <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
-    
     var disqus_shortname = 'dafoster';
-    var disqus_url = 'http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/';
     var disqus_title = 'Why I no longer use Drupal';
+    var disqus_url = 'http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/';
+  
     
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -430,7 +445,8 @@
       </div>
 
       <footer>
-        <p>&copy; 2013 <a href="/about/">David Foster</a></p>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
       </footer>
 
     </div>
