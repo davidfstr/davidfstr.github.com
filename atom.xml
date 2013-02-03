@@ -4,13 +4,278 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-01-30T22:56:26-08:00</updated>
+ <updated>2013-02-02T19:25:53-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
+ 
+ <entry>
+   <title>Learnings from SICP (and Lisp)</title>
+   <link href="http://dafoster.net/articles/2013/02/02/learnings-from-sicp/"/>
+   <updated>2013-02-02T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2013/02/02/learnings-from-sicp</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/2013/sicp_cover.jpg&quot;
+  alt=&quot;Cover of The Structure and Interpretation of Computer Programs&quot;
+  style=&quot;float: right;&quot;
+  width=&quot;170&quot; height=&quot;246&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recently I took the liberty of reading one of the defining books in the domain of computer science: &lt;a href=&quot;http://mitpress.mit.edu/sicp/&quot;&gt;The Structure and Interpretation of Computer Programs&lt;/a&gt;, often abbreviated as SICP.&lt;/p&gt;
+
+&lt;p&gt;SICP is the computer science textbook given to computer science undergraduates at MIT. It serves as a good advanced text on software design and as a good introductory text for the Lisp programming language.&lt;/p&gt;
+
+&lt;p&gt;Here are interesting things I learned:&lt;/p&gt;
+
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#role-of-programming-languages&quot;&gt;Role of Programming Languages&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#abstract-data-types&quot;&gt;Abstract Data Types&lt;/a&gt;&lt;/li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#lisp-vs-pascal-design-philosophies&quot;&gt;Lisp vs. Pascal Design Philosophies&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#polymorphism&quot;&gt;Polymorphism&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#cross-type-operations&quot;&gt;Cross-Type Operations&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#assignments-mutable-state-and-side-effects&quot;&gt;Assignments, Mutable State, and Side Effects&lt;/a&gt;&lt;/li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#lazy-evaluation&quot;&gt;Lazy Evaluation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#declarative-languages&quot;&gt;Declarative Languages&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;role-of-programming-languages&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Role of Programming Languages&lt;/h2&gt;
+
+&lt;p&gt;Languages should:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;provide the means for &lt;strong&gt;combining simple ideas to form complex ideas&lt;/strong&gt;,&lt;/li&gt;
+&lt;li&gt;provide the means for &lt;strong&gt;abstracting units of computation&lt;/strong&gt;, and&lt;/li&gt;
+&lt;li&gt;serve as a framework within which we &lt;strong&gt;organize our ideas about processes&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Units of computation can be abstracted in several forms:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;procedure&lt;/strong&gt; &amp;ndash; &lt;em&gt;Assigns names to common patterns and then work in terms of the named abstractions directly.&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AKA function, method&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abstract data type&lt;/strong&gt; &amp;ndash; &lt;em&gt;Allows the choice of representation (i.e. the implementation) to vary separately from the API (i.e. the interface).&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Built-in language support is often provided in the form of &lt;strong&gt;classes&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;See also: LISP constructors
+
+&lt;ul&gt;
+&lt;li&gt;AKA &lt;strong&gt;constructor&lt;/strong&gt; or &lt;strong&gt;static factory method&lt;/strong&gt; in other languages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;See also: LISP selectors
+
+&lt;ul&gt;
+&lt;li&gt;AKA &lt;strong&gt;accessors&lt;/strong&gt;, mutators, or &lt;strong&gt;properties&lt;/strong&gt; in other languages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;module&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; &amp;ndash; &lt;em&gt;Groups several procedures and data types into a namespace independent from other modules.&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AKA package (Java), namespace (C++), module (Python)&lt;/li&gt;
+&lt;li&gt;Languages that don&amp;rsquo;t have built-in support for this concept typically use prefixes to create de-facto namespaces. (C, Objective-C, PHP &amp;lt; 5.3.0)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;assembly&lt;/strong&gt; &amp;ndash; &lt;em&gt;Groups several modules together in a single versioned &lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; package. Assemblies can depend on other assemblies, often from separate vendors.&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AKA &lt;strong&gt;shared library&lt;/strong&gt; (C, C++), gem (Ruby), egg (Python)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;abstract-data-types&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Abstract Data Types&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;lisp-vs-pascal-design-philosophies&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Lisp vs. Pascal Design Philosophies&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;For you youngin&amp;rsquo;s that have never used Pascal, just replace &amp;ldquo;Pascal&amp;rdquo; with &amp;ldquo;Java&amp;rdquo; in this section and you should get the right idea.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Two design philosophies:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lisp-school&lt;/strong&gt;: Create abstract data types by combining a &lt;em&gt;small&lt;/em&gt; set of general-purpose data types (especially collections). These complex structures can then be manipulated using operations on these general-purpose types.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;Lisp is for building organisms -­ imposing, breathtaking, dynamic structures built by squads fitting fluctuating myriads of simpler organisms into place.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;Lisp programs inflate libraries with functions whose utility transcends the application that produced them.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Pascal-school&lt;/strong&gt;: Create &lt;em&gt;many&lt;/em&gt; special-purpose data types (i.e. classes) and specialized operations to manipulate them.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;Pascal is for building pyramids -­ imposing, breathtaking, static structures built by armies pushing heavy blocks into place.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;In Pascal the plethora of declarable data structures induces a specialization within functions that inhibits and penalizes casual cooperation.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Roughly speaking, I think of the Lisp philosophy as &lt;strong&gt;programming with collections&lt;/strong&gt; and the Pascal philosophy as &lt;strong&gt;programming with classes&lt;/strong&gt;.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h4&gt;Usage&lt;/h4&gt;
+
+&lt;p&gt;The Pascal philosophy has won out in most statically typed languages such as C++ and Java, and in languages with poor (or nonexistant) built-in collections.&lt;/p&gt;
+
+&lt;p&gt;The Lisp philosophy is more common in dynamically typed languages that lack built-in support for classes, such as Lisp itself and JavaScript.&lt;/p&gt;
+
+&lt;p&gt;A hybrid approach (using both philosophies) is seen in languages that are dynamically typed, have built-in collections, and have built-in classes, such as Python and Ruby.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;polymorphism&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Polymorphism&lt;/h3&gt;
+
+&lt;p&gt;Polymorphism is where multiple abstract data types implement a common &lt;em&gt;interface&lt;/em&gt;, which is typically defined as a series of methods that can be called on all implementing types.&lt;/p&gt;
+
+&lt;p&gt;This allows client code, when given an object known only to implement a particular interface, to invoke interface methods on the object and end up calling the correct implementation of that method, depending on the runtime type of the object.&lt;/p&gt;
+
+&lt;h4&gt;Implementation Strategies&lt;/h4&gt;
+
+&lt;p&gt;Polymorphism can be implemented in several different ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Switch on Typecode&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Easiest to implement. Hardest to maintain.&lt;/li&gt;
+&lt;li&gt;Treated as an anti-pattern in many OO languages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual Lookup Tables&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AKA &amp;ldquo;data-directed programming&amp;rdquo; (in SICP) or v-tables (C++)&lt;/li&gt;
+&lt;li&gt;Default implementation strategy for most OO languages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Message Passing&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Most flexible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Many languages provide a &lt;em&gt;default implementation strategy&lt;/em&gt; as a language construct. For example C++ and Java use virtual lookup tables. Smalltalk and Objective-C use message passing. C doesn&amp;rsquo;t give you anything for free, so you have to roll your own polymorphism.&lt;/p&gt;
+
+&lt;h4&gt;Tradeoffs&lt;/h4&gt;
+
+&lt;p&gt;These implementation strategies for polymorphism have some tradeoffs, which are worth knowing:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Virtual lookup tables are restricted in that &lt;em&gt;the total set of operations on the abstract data type must be known in advance&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Message passing, on the other hand, can be made more flexible:
+
+&lt;ul&gt;
+&lt;li&gt;Implementing data types may choose to support more operations than the standard set on the interface.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Heck, individual &lt;em&gt;instances&lt;/em&gt; can choose to support more operations than the standard set.
+
+&lt;ul&gt;
+&lt;li&gt;In such cases, you would be able to interrogate (i.e. reflect on) an individual instance to determine what operations (i.e. messages) it understands/supports.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;cross-type-operations&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Cross-Type Operations&lt;/h3&gt;
+
+&lt;p&gt;Introducing &lt;strong&gt;cross-type operations&lt;/strong&gt;, such as &lt;code&gt;add(Integer, Complex)&lt;/code&gt;, is very tricky design issue.&lt;/p&gt;
+
+&lt;p&gt;Having explicit functions that operate on all combinations of types is possible but highly verbose. With &lt;strong&gt;n&lt;/strong&gt; types and &lt;strong&gt;m&lt;/strong&gt; operations, you need n*m functions to implement all combinations. Impractical.&lt;/p&gt;
+
+&lt;p&gt;Another strategy is to use &lt;em&gt;coercion&lt;/em&gt; to convert a value from one type to another. So instead of defining &lt;code&gt;add(Integer, Complex)&lt;/code&gt;, just define &lt;code&gt;convertToComplex(Integer) : Complex&lt;/code&gt;, and use the existing &lt;code&gt;add(Complex, Complex)&lt;/code&gt;. To convert between all types requires at least n but no more than n&lt;sup&gt;2&lt;/sup&gt; conversion functions.&lt;/p&gt;
+
+&lt;p&gt;Many programming languages have built-in facilities to automatically coerce types. For some languages (like JavaScript or PHP) these coersion rules are quite complex (and error-prone). Other languages (like ML) ban implicit coercion entirely. Java only has coercion for built-in types. C++ lets the datatype designer choose (via &lt;code&gt;implicit&lt;/code&gt; or explicit one-argument constructors). Scala relies on implicit coercion a lot to enable foreign methods to be introduced on types.&lt;/p&gt;
+
+&lt;p&gt;One wrinkle is that these conversion functions might introduce a loss in precision. For example not every integer can be represented as double of exactly the same value.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;assignments-mutable-state-and-side-effects&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Assignments, Mutable State, and Side Effects&lt;/h2&gt;
+
+&lt;p&gt;Introducing assignment creates lots of complications. In particular &lt;em&gt;referential transparency&lt;/em&gt; is lost. Optimizations related to reordering and coalescing expressions need to be a lot more careful. Static reasoning of various kinds is impaired.&lt;/p&gt;
+
+&lt;p&gt;To reduce bugs it is best to minimize the use of mutation by using immutable objects whenever possible.&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Haskell takes a very aggressive stance against assignments, mutable state, and other side effects: they are banned by default. However Haskell does allow side effects within the context of a &lt;strong&gt;monad&lt;/strong&gt;. This is a special construct unique to Haskell (so far as I know).&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;lazy-evaluation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Lazy Evaluation&lt;/h3&gt;
+
+&lt;p&gt;Normally expressions are evaluated immediately, in the order that they occur in code. &lt;strong&gt;Lazy evaluation&lt;/strong&gt; changes this behavior such that expressions are only evaluated when some primitive operation (like print or add) requires the value of the expression.&lt;/p&gt;
+
+&lt;p&gt;Lazy evaluation enables that creation of &lt;strong&gt;lazy data structures&lt;/strong&gt;, which is a useful performance optimization in some contexts.&lt;/p&gt;
+
+&lt;p&gt;Unrestricted mutation and lazy evaluation do not mix well in programming languages. Since unrestricted mutation is very common in mainstream programming languages, it is quite rare to be in an environment that supports lazy evaluation. Haskell is one of the few.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;declarative-languages&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Declarative Languages&lt;/h2&gt;
+
+&lt;p&gt;Logic programming languages are the far declarative end of the
+imperative-declarative spectrum. They can be used to deduce answers
+from a set of initial set of declarative statements.&lt;/p&gt;
+
+&lt;p&gt;Prolog is the best-known example of a logic programming language.&lt;/p&gt;
+
+&lt;p&gt;Query systems for databases are a type of logic programming language.&lt;/p&gt;
+
+&lt;p&gt;A &amp;ldquo;query&amp;rdquo; (i.e. an expression in the language) is transformed into a
+&amp;ldquo;query plan&amp;rdquo; (i.e. a specific set of steps to follow) by a query planner. The implemented of these planners is quite complex.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;conclusion&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;So those are a few interesting things I learned from reading SICP. Taking notes while reading made it a lot easier for me to remember the content. You might try it when reading a technical book with a lot of new concepts.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;For example, complex numbers can be expressed in rectangular (a + b&lt;em&gt;i&lt;/em&gt;) or polar form (r*cos(𝜽)). &amp;mdash; Some representations are better than others for different operations. Adding works better in rectangular form. Multiplying works better in polar form.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;SICP does not mention the notion of a &lt;em&gt;module&lt;/em&gt; or an &lt;em&gt;assembly&lt;/em&gt;, however these are common higher-level units for abstracting computation in languages other than Lisp.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Versioning assemblies effectively is a challenging topic onto itself. If done without care you get so-called &amp;ldquo;dependency hell&amp;rdquo;. Just getting a consistent version numbering scheme can be tricky. One popular versioning scheme is codified as &lt;a href=&quot;http://semver.org&quot;&gt;Semantic Versioning&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;In my opinion, a language that supports neither first-class collections nor first-class classes is non-viable for large scale general purpose software development. C, Assembly, and Fortran fall into this category.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;For example, the Linux virtual filesystem, which is implemented in message-passing style, has a common set of operations that all filesystems are expected to support (ex: &lt;code&gt;unlink&lt;/code&gt;). However individual filesystems may support additional operations: For example the HFS+ filesystem on Mac OS X additionally supports a &lt;code&gt;delete&lt;/code&gt; operation, which has slightly different semantics than the standard &lt;code&gt;unlink&lt;/code&gt; operation.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;A common case where eliminating mutation may &lt;em&gt;not&lt;/em&gt; be practical is when defining and working with large data structures that need many small updates made to them over time. If such a structure were made immutable, there would be a large performance penalty for recopying the entire structure whenever a small change needed to be made.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Unique Features of Various Programming Languages</title>

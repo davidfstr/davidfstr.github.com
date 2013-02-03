@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- IE 8+: Hide the Compatibility View button. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Learnings from SICP (and Lisp) | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>Learnings from SICP (and Lisp)</h1>
+    <div class="post-metadata">
+      02 Feb 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>6</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p><img src="/assets/2013/sicp_cover.jpg"
+  alt="Cover of The Structure and Interpretation of Computer Programs"
+  style="float: right;"
+  width="170" height="246" /></p>
+
+<p>Recently I took the liberty of reading one of the defining books in the domain of computer science: <a href="http://mitpress.mit.edu/sicp/">The Structure and Interpretation of Computer Programs</a>, often abbreviated as SICP.</p>
+
+<p>SICP is the computer science textbook given to computer science undergraduates at MIT. It serves as a good advanced text on software design and as a good introductory text for the Lisp programming language.</p>
+
+<p>Here are interesting things I learned:</p>
+
+<div class="toc">
+  <ul>
+    <li><a href="#role-of-programming-languages">Role of Programming Languages</a></li>
+    <li><a href="#abstract-data-types">Abstract Data Types</a></li>
+    <ul>
+      <li><a href="#lisp-vs-pascal-design-philosophies">Lisp vs. Pascal Design Philosophies</a></li>
+      <li><a href="#polymorphism">Polymorphism</a></li>
+      <li><a href="#cross-type-operations">Cross-Type Operations</a></li>
+    </ul>
+    <li><a href="#assignments-mutable-state-and-side-effects">Assignments, Mutable State, and Side Effects</a></li>
+    <ul>
+      <li><a href="#lazy-evaluation">Lazy Evaluation</a></li>
+    </ul>
+    <li><a href="#declarative-languages">Declarative Languages</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</div>
+
+
+<p><a id="role-of-programming-languages"></a></p>
+
+<h2>Role of Programming Languages</h2>
+
+<p>Languages should:</p>
+
+<ul>
+<li>provide the means for <strong>combining simple ideas to form complex ideas</strong>,</li>
+<li>provide the means for <strong>abstracting units of computation</strong>, and</li>
+<li>serve as a framework within which we <strong>organize our ideas about processes</strong>.</li>
+</ul>
+
+
+<p>Units of computation can be abstracted in several forms:</p>
+
+<ul>
+<li><strong>procedure</strong> &ndash; <em>Assigns names to common patterns and then work in terms of the named abstractions directly.</em>
+
+<ul>
+<li>AKA function, method</li>
+</ul>
+</li>
+<li><strong>abstract data type</strong> &ndash; <em>Allows the choice of representation (i.e. the implementation) to vary separately from the API (i.e. the interface).</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>
+
+<ul>
+<li>Built-in language support is often provided in the form of <strong>classes</strong>.</li>
+<li>See also: LISP constructors
+
+<ul>
+<li>AKA <strong>constructor</strong> or <strong>static factory method</strong> in other languages</li>
+</ul>
+</li>
+<li>See also: LISP selectors
+
+<ul>
+<li>AKA <strong>accessors</strong>, mutators, or <strong>properties</strong> in other languages</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>module</strong><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> &ndash; <em>Groups several procedures and data types into a namespace independent from other modules.</em>
+
+<ul>
+<li>AKA package (Java), namespace (C++), module (Python)</li>
+<li>Languages that don&rsquo;t have built-in support for this concept typically use prefixes to create de-facto namespaces. (C, Objective-C, PHP &lt; 5.3.0)</li>
+</ul>
+</li>
+<li><strong>assembly</strong> &ndash; <em>Groups several modules together in a single versioned <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> package. Assemblies can depend on other assemblies, often from separate vendors.</em>
+
+<ul>
+<li>AKA <strong>shared library</strong> (C, C++), gem (Ruby), egg (Python)</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="abstract-data-types"></a></p>
+
+<h2>Abstract Data Types</h2>
+
+<p><a id="lisp-vs-pascal-design-philosophies"></a></p>
+
+<h3>Lisp vs. Pascal Design Philosophies</h3>
+
+<p><em>For you youngin&rsquo;s that have never used Pascal, just replace &ldquo;Pascal&rdquo; with &ldquo;Java&rdquo; in this section and you should get the right idea.</em></p>
+
+<p>Two design philosophies:</p>
+
+<ul>
+<li><p><strong>Lisp-school</strong>: Create abstract data types by combining a <em>small</em> set of general-purpose data types (especially collections). These complex structures can then be manipulated using operations on these general-purpose types.</p>
+
+<ul>
+<li><p><em>&ldquo;Lisp is for building organisms -­ imposing, breathtaking, dynamic structures built by squads fitting fluctuating myriads of simpler organisms into place.&rdquo;</em></p></li>
+<li><p><em>&ldquo;Lisp programs inflate libraries with functions whose utility transcends the application that produced them.&rdquo;</em></p></li>
+</ul>
+</li>
+<li><p><strong>Pascal-school</strong>: Create <em>many</em> special-purpose data types (i.e. classes) and specialized operations to manipulate them.</p>
+
+<ul>
+<li><p><em>&ldquo;Pascal is for building pyramids -­ imposing, breathtaking, static structures built by armies pushing heavy blocks into place.&rdquo;</em></p></li>
+<li><p><em>&ldquo;In Pascal the plethora of declarable data structures induces a specialization within functions that inhibits and penalizes casual cooperation.&rdquo;</em></p></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Roughly speaking, I think of the Lisp philosophy as <strong>programming with collections</strong> and the Pascal philosophy as <strong>programming with classes</strong>.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></p>
+
+<h4>Usage</h4>
+
+<p>The Pascal philosophy has won out in most statically typed languages such as C++ and Java, and in languages with poor (or nonexistant) built-in collections.</p>
+
+<p>The Lisp philosophy is more common in dynamically typed languages that lack built-in support for classes, such as Lisp itself and JavaScript.</p>
+
+<p>A hybrid approach (using both philosophies) is seen in languages that are dynamically typed, have built-in collections, and have built-in classes, such as Python and Ruby.</p>
+
+<p><a id="polymorphism"></a></p>
+
+<h3>Polymorphism</h3>
+
+<p>Polymorphism is where multiple abstract data types implement a common <em>interface</em>, which is typically defined as a series of methods that can be called on all implementing types.</p>
+
+<p>This allows client code, when given an object known only to implement a particular interface, to invoke interface methods on the object and end up calling the correct implementation of that method, depending on the runtime type of the object.</p>
+
+<h4>Implementation Strategies</h4>
+
+<p>Polymorphism can be implemented in several different ways:</p>
+
+<ul>
+<li><strong>Switch on Typecode</strong>
+
+<ul>
+<li>Easiest to implement. Hardest to maintain.</li>
+<li>Treated as an anti-pattern in many OO languages.</li>
+</ul>
+</li>
+<li><strong>Virtual Lookup Tables</strong>
+
+<ul>
+<li>AKA &ldquo;data-directed programming&rdquo; (in SICP) or v-tables (C++)</li>
+<li>Default implementation strategy for most OO languages.</li>
+</ul>
+</li>
+<li><strong>Message Passing</strong>
+
+<ul>
+<li>Most flexible.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Many languages provide a <em>default implementation strategy</em> as a language construct. For example C++ and Java use virtual lookup tables. Smalltalk and Objective-C use message passing. C doesn&rsquo;t give you anything for free, so you have to roll your own polymorphism.</p>
+
+<h4>Tradeoffs</h4>
+
+<p>These implementation strategies for polymorphism have some tradeoffs, which are worth knowing:</p>
+
+<ul>
+<li>Virtual lookup tables are restricted in that <em>the total set of operations on the abstract data type must be known in advance</em>.</li>
+<li>Message passing, on the other hand, can be made more flexible:
+
+<ul>
+<li>Implementing data types may choose to support more operations than the standard set on the interface.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
+<li>Heck, individual <em>instances</em> can choose to support more operations than the standard set.
+
+<ul>
+<li>In such cases, you would be able to interrogate (i.e. reflect on) an individual instance to determine what operations (i.e. messages) it understands/supports.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="cross-type-operations"></a></p>
+
+<h3>Cross-Type Operations</h3>
+
+<p>Introducing <strong>cross-type operations</strong>, such as <code>add(Integer, Complex)</code>, is very tricky design issue.</p>
+
+<p>Having explicit functions that operate on all combinations of types is possible but highly verbose. With <strong>n</strong> types and <strong>m</strong> operations, you need n*m functions to implement all combinations. Impractical.</p>
+
+<p>Another strategy is to use <em>coercion</em> to convert a value from one type to another. So instead of defining <code>add(Integer, Complex)</code>, just define <code>convertToComplex(Integer) : Complex</code>, and use the existing <code>add(Complex, Complex)</code>. To convert between all types requires at least n but no more than n<sup>2</sup> conversion functions.</p>
+
+<p>Many programming languages have built-in facilities to automatically coerce types. For some languages (like JavaScript or PHP) these coersion rules are quite complex (and error-prone). Other languages (like ML) ban implicit coercion entirely. Java only has coercion for built-in types. C++ lets the datatype designer choose (via <code>implicit</code> or explicit one-argument constructors). Scala relies on implicit coercion a lot to enable foreign methods to be introduced on types.</p>
+
+<p>One wrinkle is that these conversion functions might introduce a loss in precision. For example not every integer can be represented as double of exactly the same value.</p>
+
+<p><a id="assignments-mutable-state-and-side-effects"></a></p>
+
+<h2>Assignments, Mutable State, and Side Effects</h2>
+
+<p>Introducing assignment creates lots of complications. In particular <em>referential transparency</em> is lost. Optimizations related to reordering and coalescing expressions need to be a lot more careful. Static reasoning of various kinds is impaired.</p>
+
+<p>To reduce bugs it is best to minimize the use of mutation by using immutable objects whenever possible.<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></p>
+
+<p>Haskell takes a very aggressive stance against assignments, mutable state, and other side effects: they are banned by default. However Haskell does allow side effects within the context of a <strong>monad</strong>. This is a special construct unique to Haskell (so far as I know).</p>
+
+<p><a id="lazy-evaluation"></a></p>
+
+<h3>Lazy Evaluation</h3>
+
+<p>Normally expressions are evaluated immediately, in the order that they occur in code. <strong>Lazy evaluation</strong> changes this behavior such that expressions are only evaluated when some primitive operation (like print or add) requires the value of the expression.</p>
+
+<p>Lazy evaluation enables that creation of <strong>lazy data structures</strong>, which is a useful performance optimization in some contexts.</p>
+
+<p>Unrestricted mutation and lazy evaluation do not mix well in programming languages. Since unrestricted mutation is very common in mainstream programming languages, it is quite rare to be in an environment that supports lazy evaluation. Haskell is one of the few.</p>
+
+<p><a id="declarative-languages"></a></p>
+
+<h2>Declarative Languages</h2>
+
+<p>Logic programming languages are the far declarative end of the
+imperative-declarative spectrum. They can be used to deduce answers
+from a set of initial set of declarative statements.</p>
+
+<p>Prolog is the best-known example of a logic programming language.</p>
+
+<p>Query systems for databases are a type of logic programming language.</p>
+
+<p>A &ldquo;query&rdquo; (i.e. an expression in the language) is transformed into a
+&ldquo;query plan&rdquo; (i.e. a specific set of steps to follow) by a query planner. The implemented of these planners is quite complex.</p>
+
+<p><a id="conclusion"></a></p>
+
+<h2>Conclusion</h2>
+
+<p>So those are a few interesting things I learned from reading SICP. Taking notes while reading made it a lot easier for me to remember the content. You might try it when reading a technical book with a lot of new concepts.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>For example, complex numbers can be expressed in rectangular (a + b<em>i</em>) or polar form (r*cos(𝜽)). &mdash; Some representations are better than others for different operations. Adding works better in rectangular form. Multiplying works better in polar form.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>SICP does not mention the notion of a <em>module</em> or an <em>assembly</em>, however these are common higher-level units for abstracting computation in languages other than Lisp.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Versioning assemblies effectively is a challenging topic onto itself. If done without care you get so-called &ldquo;dependency hell&rdquo;. Just getting a consistent version numbering scheme can be tricky. One popular versioning scheme is codified as <a href="http://semver.org">Semantic Versioning</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>In my opinion, a language that supports neither first-class collections nor first-class classes is non-viable for large scale general purpose software development. C, Assembly, and Fortran fall into this category.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>For example, the Linux virtual filesystem, which is implemented in message-passing style, has a common set of operations that all filesystems are expected to support (ex: <code>unlink</code>). However individual filesystems may support additional operations: For example the HFS+ filesystem on Mac OS X additionally supports a <code>delete</code> operation, which has slightly different semantics than the standard <code>unlink</code> operation.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>A common case where eliminating mutation may <em>not</em> be practical is when defining and working with large data structures that need many small updates made to them over time. If such a structure were made immutable, there would be a large performance penalty for recopying the entire structure whenever a small change needed to be made.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>6</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>2</sup></a></li>
+    
+  </ul>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/" title="Unique Features of Various Programming Languages">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'dafoster';
+    var disqus_title = 'Learnings from SICP (and Lisp)';
+    var disqus_url = 'http://dafoster.net/articles/2013/02/02/learnings-from-sicp/';
+  
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
+      </footer>
+
+    </div>
+    
+  
+  </body>
+</html>
