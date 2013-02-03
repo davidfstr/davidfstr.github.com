@@ -276,7 +276,7 @@
 
 <p>Recently I took the liberty of reading one of the defining books in the domain of computer science: <a href="http://mitpress.mit.edu/sicp/">The Structure and Interpretation of Computer Programs</a>, often abbreviated as SICP.</p>
 
-<p>SICP is the computer science textbook given to computer science undergraduates at MIT. It serves as a good advanced text on software design and as a good introductory text for the Lisp programming language.</p>
+<p>SICP is the computer science textbook given to undergraduates at MIT. It serves as a good advanced text on software design and as a good introductory text for the Lisp programming language.</p>
 
 <p>Here are interesting things I learned:</p>
 
@@ -315,7 +315,7 @@
 <p>Units of computation can be abstracted in several forms:</p>
 
 <ul>
-<li><strong>procedure</strong> &ndash; <em>Assigns names to common patterns and then work in terms of the named abstractions directly.</em>
+<li><strong>procedure</strong> &ndash; <em>Assigns names to common patterns, allowing you to work in terms of the named abstractions directly.</em>
 
 <ul>
 <li>AKA function, method</li>
@@ -368,7 +368,7 @@
 <p>Two design philosophies:</p>
 
 <ul>
-<li><p><strong>Lisp-school</strong>: Create abstract data types by combining a <em>small</em> set of general-purpose data types (especially collections). These complex structures can then be manipulated using operations on these general-purpose types.</p>
+<li><p><strong>Lisp-school</strong>: Create abstract data types by combining a <em>small</em> set of general-purpose data types (particularly collections). These complex structures can then be manipulated using operations on these general-purpose types.</p>
 
 <ul>
 <li><p><em>&ldquo;Lisp is for building organisms -­ imposing, breathtaking, dynamic structures built by squads fitting fluctuating myriads of simpler organisms into place.&rdquo;</em></p></li>
@@ -389,7 +389,7 @@
 
 <h4>Usage</h4>
 
-<p>The Pascal philosophy has won out in most statically typed languages such as C++ and Java, and in languages with poor (or nonexistant) built-in collections.</p>
+<p>The Pascal philosophy has won out in most statically typed languages such as C++ and Java, and in languages with poor (or nonexistent) built-in collections.</p>
 
 <p>The Lisp philosophy is more common in dynamically typed languages that lack built-in support for classes, such as Lisp itself and JavaScript.</p>
 
@@ -401,7 +401,7 @@
 
 <p>Polymorphism is where multiple abstract data types implement a common <em>interface</em>, which is typically defined as a series of methods that can be called on all implementing types.</p>
 
-<p>This allows client code, when given an object known only to implement a particular interface, to invoke interface methods on the object and end up calling the correct implementation of that method, depending on the runtime type of the object.</p>
+<p>This allows client code, when given an object known only to implement a particular interface, to invoke interface methods on the object and end up calling the correct implementation of that method depending on the runtime type of the object.</p>
 
 <h4>Implementation Strategies</h4>
 
@@ -446,7 +446,7 @@
 <li>Heck, individual <em>instances</em> can choose to support more operations than the standard set.
 
 <ul>
-<li>In such cases, you would be able to interrogate (i.e. reflect on) an individual instance to determine what operations (i.e. messages) it understands/supports.</li>
+<li>In such cases, you would want to interrogate (i.e. reflect on) an individual instance to determine what operations (i.e. messages) it understands/supports.</li>
 </ul>
 </li>
 </ul>
@@ -458,13 +458,20 @@
 
 <h3>Cross-Type Operations</h3>
 
-<p>Introducing <strong>cross-type operations</strong>, such as <code>add(Integer, Complex)</code>, is very tricky design issue.</p>
+<p>Introducing <strong>cross-type operations</strong>, such as <code>add(Integer, Complex)</code>, is a very tricky design issue.</p>
 
-<p>Having explicit functions that operate on all combinations of types is possible but highly verbose. With <strong>n</strong> types and <strong>m</strong> operations, you need n*m functions to implement all combinations. Impractical.</p>
+<p>Having explicit functions that operate on all combinations of types is possible but highly verbose. With <strong>n</strong> types and <strong>m</strong> operations, you need <strong>n*m</strong> functions to implement all combinations. Impractical.</p>
 
-<p>Another strategy is to use <em>coercion</em> to convert a value from one type to another. So instead of defining <code>add(Integer, Complex)</code>, just define <code>convertToComplex(Integer) : Complex</code>, and use the existing <code>add(Complex, Complex)</code>. To convert between all types requires at least n but no more than n<sup>2</sup> conversion functions.</p>
+<p>Another strategy is to use <em>coercion</em> to convert a value from one type to another. So instead of defining <code>add(Integer, Complex)</code>, just define <code>convertToComplex(Integer) : Complex</code>, and use the existing <code>add(Complex, Complex)</code>. To convert between all types requires at least <strong>n</strong> but no more than <strong>n<sup>2</sup></strong> conversion functions.</p>
 
-<p>Many programming languages have built-in facilities to automatically coerce types. For some languages (like JavaScript or PHP) these coersion rules are quite complex (and error-prone). Other languages (like ML) ban implicit coercion entirely. Java only has coercion for built-in types. C++ lets the datatype designer choose (via <code>implicit</code> or explicit one-argument constructors). Scala relies on implicit coercion a lot to enable foreign methods to be introduced on types.</p>
+<p>Many programming languages have built-in facilities to automatically coerce types. For some languages (like JavaScript or PHP) these coersion rules are quite complex (and error-prone). Other languages (like ML) ban implicit coercion entirely.</p>
+
+<ul>
+<li>Java only has coercion for built-in types.</li>
+<li>C++ lets the datatype designer choose (via <code>implicit</code> or explicit one-argument constructors).</li>
+<li>Scala relies on implicit coercion a lot to enable foreign methods to be introduced on types.</li>
+</ul>
+
 
 <p>One wrinkle is that these conversion functions might introduce a loss in precision. For example not every integer can be represented as double of exactly the same value.</p>
 
@@ -482,7 +489,7 @@
 
 <h3>Lazy Evaluation</h3>
 
-<p>Normally expressions are evaluated immediately, in the order that they occur in code. <strong>Lazy evaluation</strong> changes this behavior such that expressions are only evaluated when some primitive operation (like print or add) requires the value of the expression.</p>
+<p>Normally expressions are evaluated immediately, in the order that they occur in code. <strong>Lazy evaluation</strong> changes this behavior such that expressions are only evaluated when some primitive operation (like print or add) requires the value of the expression. Until then the unevaluated expression is passed around (as a &ldquo;thunk&rdquo;).</p>
 
 <p>Lazy evaluation enables that creation of <strong>lazy data structures</strong>, which is a useful performance optimization in some contexts.</p>
 
@@ -492,7 +499,7 @@
 
 <h2>Declarative Languages</h2>
 
-<p>Logic programming languages are the far declarative end of the
+<p>Logic programming languages are at the far declarative end of the
 imperative-declarative spectrum. They can be used to deduce answers
 from a set of initial set of declarative statements.</p>
 
