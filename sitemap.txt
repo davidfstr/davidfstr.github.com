@@ -1,6 +1,7 @@
 
 http://dafoster.net/404.html
 http://dafoster.net/about/
+http://dafoster.net/about/resume/
 http://dafoster.net/articles/
 http://dafoster.net/articles/topics/
 http://dafoster.net/atom.xml
@@ -18,6 +19,7 @@ http://dafoster.net/projects/website/
 http://dafoster.net/projects/website-2/
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/
 http://dafoster.net/articles/2013/02/02/learnings-from-sicp/
 http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/
 http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/

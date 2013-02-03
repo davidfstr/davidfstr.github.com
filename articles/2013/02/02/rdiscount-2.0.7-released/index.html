@@ -5,7 +5,7 @@
     <!-- IE 8+: Hide the Compatibility View button. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Articles (By Topic) | DaFoster</title>
+    <title>RDiscount 2.0.7 released! | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -37,15 +37,6 @@
     
     
     
-      <style>
-        h2 sup {
-  /* Display as subtle */
-  color: #999999;
-  font-weight: normal;
-}
-
-      </style>
-    
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/assets/favicon.ico">
@@ -57,10 +48,6 @@
     
     <!-- Le scripts -->
   
-    <script src="/assets/js/jquery-1.8.3.min.js"></script>
-  
-  
-    <script src="/assets/js/jquery.ba-hashchange.min.js"></script>
   
   </head>
 
@@ -278,68 +265,70 @@
         
         
           <div class="row">
-  <div class="span9">
-    <h1>Articles (By Topic)</h1>
+  <div class="span9 post">
+    <h1>RDiscount 2.0.7 released!</h1>
+    <div class="post-metadata">
+      02 Feb 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Personal">Personal <sup>5</sup></a></span>
+         
+          <span><a href="/articles/topics/#Software">Software <sup>7</sup></a></span>
+        
+      </span>
+    </div>
     
-     
-      <h2 id="Productivity">Productivity <sup>3</sup></h2>
-      <ul>
-        
-        
-          <li><span>16 Dec 2012</span> &raquo; <a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">Why I no longer use Drupal</a></li>
-        
-          <li><span>17 Sep 2010</span> &raquo; <a href="/articles/2010/09/17/comparing-writing-utensils/">Comparing Writing Utensils (Why Pens&nbsp;>&nbsp;Pencils)</a></li>
-        
-          <li><span>17 Sep 2010</span> &raquo; <a href="/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/">Comparing iPod Touch (2nd Gen) to iPhone 3GS</a></li>
-        
-      </ul>
-     
-      <h2 id="Personal">Personal <sup>5</sup></h2>
-      <ul>
-        
-        
-          <li><span>02 Feb 2013</span> &raquo; <a href="/articles/2013/02/02/rdiscount-2.0.7-released/">RDiscount 2.0.7 released!</a></li>
-        
-          <li><span>08 Jan 2013</span> &raquo; <a href="/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/">Programming is Fun. But What Matters is Solving a Real Problem.</a></li>
-        
-          <li><span>21 Dec 2012</span> &raquo; <a href="/articles/2012/12/21/this-website-is-now-powered-by-jekyll/">This website is now powered by Jekyll</a></li>
-        
-          <li><span>18 Sep 2010</span> &raquo; <a href="/articles/2010/09/18/impact-anime-my-programming-experience/">Impact of Anime on my Programming Experience</a></li>
-        
-          <li><span>17 Sep 2010</span> &raquo; <a href="/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/">Comparing iPod Touch (2nd Gen) to iPhone 3GS</a></li>
-        
-      </ul>
-     
-      <h2 id="Software">Software <sup>7</sup></h2>
-      <ul>
-        
-        
-          <li><span>02 Feb 2013</span> &raquo; <a href="/articles/2013/02/02/rdiscount-2.0.7-released/">RDiscount 2.0.7 released!</a></li>
-        
-          <li><span>02 Feb 2013</span> &raquo; <a href="/articles/2013/02/02/learnings-from-sicp/">Learnings from SICP (and Lisp)</a></li>
-        
-          <li><span>29 Jan 2013</span> &raquo; <a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a></li>
-        
-          <li><span>15 Jan 2013</span> &raquo; <a href="/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/">Things I Wish I Knew Before Working in Industry</a></li>
-        
-          <li><span>08 Jan 2013</span> &raquo; <a href="/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/">Programming is Fun. But What Matters is Solving a Real Problem.</a></li>
-        
-          <li><span>16 Dec 2012</span> &raquo; <a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">Why I no longer use Drupal</a></li>
-        
-          <li><span>13 Nov 2010</span> &raquo; <a href="/articles/2010/11/13/retrospect-vs-time-machine/">Retrospect vs. Time Machine</a></li>
-        
-      </ul>
-     
-      <h2 id="Business">Business <sup>2</sup></h2>
-      <ul>
-        
-        
-          <li><span>15 Jan 2013</span> &raquo; <a href="/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/">Things I Wish I Knew Before Working in Industry</a></li>
-        
-          <li><span>08 Jan 2013</span> &raquo; <a href="/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/">Programming is Fun. But What Matters is Solving a Real Problem.</a></li>
-        
-      </ul>
-    
+    <p>It has been just over two years since RDiscount 1.6.8 (the previous version) was posted.<br/>
+As the new maintainer, I intend to provide updates a bit more frequently. :&ndash;)</p>
+
+<p>Update to the latest version with:</p>
+
+<pre>gem update rdiscount</pre>
+
+
+<h2>What&rsquo;s New?</h2>
+
+<ul>
+<li><a href="http://michelf.ca/projects/php-markdown/extra/#footnotes">Footnotes</a> &ndash; from <em>PHP Markdown Extra</em></li>
+<li>Superscript tweaks
+
+<ul>
+<li>Be more picky about what comes before a ^ if we’re superscripting.</li>
+<li>Modify superscript grabbing so that it grabs parenthetical and alphanumeric blocks.</li>
+</ul>
+</li>
+<li>Other bug fixes
+
+<ul>
+<li>Table-of-contents generation will no longer crash for header items containing links.</li>
+<li>Adjacent new-style [link]s are no longer incorrectly combined.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>What&rsquo;s Next?</h2>
+
+<p>RDiscount 2.1.5 will be the next release of RDiscount. Planned features include:</p>
+
+<ul>
+<li>Fenced code blocks
+
+<ul>
+<li><a href="http://github.github.com/github-flavored-markdown/">backtick-delimited</a> &ndash; from <em>GitHub Flavored Markdown</em></li>
+<li><a href="http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">tilde-delimited</a> &ndash; from <em>PHP Markdown Extra</em></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Who am I?</h2>
+
+<p>I should also introduce myself: I am <a href="/about/">David Foster</a>, the new maintainer for RDiscount.</p>
+
+<p>Since I am using RDiscount on my personal website, you can expect continued updates as major new features are introduced in the underlying <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> library.</p>
+
   </div>
   
   <div class="span3 block-bar">
@@ -353,6 +342,10 @@
       
       
       
+        
+      
+        
+      
       
       <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
     
@@ -360,19 +353,35 @@
       
       
       
+        
+          
+        
       
-      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>5</sup></a></li>
+        
+      
+      
+      <li id="Personal-topic" class="active"><a href="/articles/topics/#Personal">Personal <sup>5</sup></a></li>
     
       
       
       
       
+        
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>7</sup></a></li>
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>7</sup></a></li>
     
       
       
       
+      
+        
+      
+        
       
       
       <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>2</sup></a></li>
@@ -381,24 +390,46 @@
 </div>
 
   </div>
-</div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/02/02/learnings-from-sicp/" title="Learnings from SICP (and Lisp)">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
 
-<script>
-  $(window).hashchange(function() {
-    // Highlight topic corresponding to current anchor
-    if (location.hash) {
-      var topic = location.hash.substring(1, location.hash.length);
-      
-      $('h2').removeClass('active');
-      $('.tag_box li').removeClass('active');
-      
-      $('#' + topic).addClass('active');
-      $('#' + topic + "-topic").addClass('active');
-    }
-  });
-  $(window).hashchange();
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'dafoster';
+    var disqus_title = 'RDiscount 2.0.7 released!';
+    var disqus_url = 'http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/';
+  
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
+
+
+
+  </div>
+</div>
 
         
       </div>
