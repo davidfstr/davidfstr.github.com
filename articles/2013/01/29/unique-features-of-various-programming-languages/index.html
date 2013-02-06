@@ -356,7 +356,9 @@
 </ul>
 
 
-<h3>C&#35;<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></h3>
+<h3>C&#35;</h3>
+
+<p>Very similar to Java.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
 
 <ul>
 <li><strong>Assemblies</strong>
@@ -364,6 +366,38 @@
 <ul>
 <li>This is a level of encapsulation above the typical namespaces or modules in most languages. Assemblies are similar to the idea of static/dynamic libraries in C or JAR files in Java.</li>
 <li>Notably, you can mark members as <code>internal</code>, which makes them public within the same assembly, but private to everybody outside the assembly. This is quite useful.</li>
+</ul>
+</li>
+<li><strong>Cross-language compatibility is first-class</strong> (not just for C)
+
+<ul>
+<li>C# runs in the Common Language Runtime, which was designed from the beginning to support interoperability between languages.</li>
+</ul>
+</li>
+<li><strong>Properties are first-class</strong>
+
+<ul>
+<li>No longer need to write explicit getter and (optional) setter methods.</li>
+</ul>
+</li>
+<li><strong>Listeners are first-class</strong>
+
+<ul>
+<li>Classes can declare an <em>event</em> <code>Foo</code> with <code>addFooListener</code> and <code>removeFooListener</code> functionality built in.</li>
+<li>Unfortunately the implementation has some annoyances<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</li>
+</ul>
+</li>
+<li><strong>Foreign Methods<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> are first-class</strong>
+
+<ul>
+<li>C# calls these <em>extension methods</em>.</li>
+</ul>
+</li>
+<li><strong>Partial Classes</strong>
+
+<ul>
+<li>Allows a class&rsquo;s members to be defined in multiple files.</li>
+<li>Useful to add functionality to a generated class (for example, from a parser generator) without those modifications getting lost when the class is next regenerated.</li>
 </ul>
 </li>
 </ul>
@@ -414,10 +448,12 @@
 </li>
 </ul>
 </li>
-<li><strong>Metaclasses</strong>
+<li><strong>Generators</strong> and <strong>Coroutines</strong>
 
 <ul>
-<li>Deep magic. I will say no more.</li>
+<li>Generators enable straightforward <em>pulling</em> of values from a complex data source (like a parsed data structure).</li>
+<li>Coroutines enable straightforward <em>pushing</em> of values to a complex data sink.</li>
+<li>Python calls both constructs a <em>generator</em>.</li>
 </ul>
 </li>
 </ul>
@@ -440,10 +476,10 @@
 
 <ul>
 <li>Everything is in the one global namespace.</li>
-<li>No user-defined namespaces, modules, or importing of other files.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></li>
-<li>No built-in facility for classes.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
-<li>Bizarre loose semantics for <code>==</code>.<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></li>
-<li>Multiple illegal value sentinels: <code>null</code> and <code>undefined</code>.<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup></li>
+<li>No user-defined namespaces, modules, or importing of other files.<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></li>
+<li>No built-in facility for classes.<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup></li>
+<li>Bizarre loose semantics for <code>==</code>.<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup></li>
+<li>Multiple illegal value sentinels: <code>null</code> and <code>undefined</code>.<sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup></li>
 </ul>
 </li>
 </ul>
@@ -464,7 +500,7 @@
 
 <ul>
 <li>Expressions are only evaluated when some primitive operation (like <code>print</code> or <code>add</code>) requires the value of the expression.</li>
-<li>Allows you to define your own control flow operators.<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup></li>
+<li>Allows you to define your own control flow operators.<sup id="fnref:10"><a href="#fn:10" rel="footnote">10</a></sup></li>
 <li>Allows you to extract complex expressions without fear of introducing a performance hit (since the expression will only actually be evaluated if it is needed).</li>
 </ul>
 </li>
@@ -492,7 +528,7 @@ Count me in!</li>
 </ul>
 
 
-<h3>Lisp <small>(Common Lisp, Scheme, Clojure)<sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup></small></h3>
+<h3>Lisp <small>(Common Lisp, Scheme, Clojure)<sup id="fnref:11"><a href="#fn:11" rel="footnote">11</a></sup></small></h3>
 
 <ul>
 <li><strong>Homeoiconic // Grammar and Abstract Syntax Tree (AST) equivalent</strong>
@@ -549,17 +585,21 @@ Count me in!</li>
 <li id="fn:3">
 <p>C# is by design almost a direct copy of Java. It amazes me that Microsoft (C#&rsquo;s sponsor) would spend so much effort making a copy of an existing language.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 <li id="fn:4">
-<p>Hence workarounds like <a href="http://requirejs.org">RequireJS</a> to get includes and modules.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<p>If you invoke an uninitialized event-property, it will throw a <code>NullReferenceException</code> instead of ignoring your request, as you would expect. Workaround by initializing events with an empty delegate.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
 <li id="fn:5">
-<p>Hence reimplementions of class semantics in libraries like MooTools, Prototype, and <a href="http://ejohn.org/blog/simple-javascript-inheritance/">random blog posts</a>. (That blog post has the best implementation, IMHO.)<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<p>I am referring to the <a href="http://www.refactoring.com/catalog/introduceForeignMethod.html">Foreign Method</a> design pattern here, not a native function from a <a href="http://en.wikipedia.org/wiki/Foreign_function_interface">foreign function interface</a>.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 <li id="fn:6">
-<p>Hence recommendations to always use <code>===</code> instead of <code>==</code>.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<p>Hence workarounds like <a href="http://requirejs.org">RequireJS</a> to get includes and modules.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
 <li id="fn:7">
-<p>Hence recommendations to only depend on the &ldquo;truthy&rdquo; and &ldquo;falsy&rdquo; values of expressions instead of direct comparisons with <code>null</code> or <code>undefined</code>.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<p>Hence reimplementions of class semantics in libraries like MooTools, Prototype, and <a href="http://ejohn.org/blog/simple-javascript-inheritance/">random blog posts</a>. (That blog post has the best implementation, IMHO.)<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
 <li id="fn:8">
-<p>Want to implement Ruby&rsquo;s <code>until</code> loop or <code>unless</code> conditional? No problem.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
+<p>Hence recommendations to always use <code>===</code> instead of <code>==</code>.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
 <li id="fn:9">
-<p>There are more dialects of Lisp than any other language I can think of. These 3 (Common Lisp, Scheme, and Clojure) are just the most popular dialects. I&rsquo;ve directly used <a href="http://racket-lang.org">Racket</a> in the past, which is itself a dialect of Scheme.<a href="#fnref:9" rev="footnote">&#8617;</a></p></li>
+<p>Hence recommendations to only depend on the &ldquo;truthy&rdquo; and &ldquo;falsy&rdquo; values of expressions instead of direct comparisons with <code>null</code> or <code>undefined</code>.<a href="#fnref:9" rev="footnote">&#8617;</a></p></li>
+<li id="fn:10">
+<p>Want to implement Ruby&rsquo;s <code>until</code> loop or <code>unless</code> conditional? No problem.<a href="#fnref:10" rev="footnote">&#8617;</a></p></li>
+<li id="fn:11">
+<p>There are more dialects of Lisp than any other language I can think of. These 3 (Common Lisp, Scheme, and Clojure) are just the most popular dialects. I&rsquo;ve directly used <a href="http://racket-lang.org">Racket</a> in the past, which is itself a dialect of Scheme.<a href="#fnref:11" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
