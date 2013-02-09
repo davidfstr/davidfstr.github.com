@@ -4,13 +4,112 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-06T10:27:54-08:00</updated>
+ <updated>2013-02-09T14:49:38-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
+ 
+ <entry>
+   <title>Learning Skills from Professionals</title>
+   <link href="http://dafoster.net/articles/2013/02/09/learning-skills-from-professionals/"/>
+   <updated>2013-02-09T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2013/02/09/learning-skills-from-professionals</id>
+   <content type="html">&lt;!-- Assumption: Learning the fundamentals of a profession grants certain skills to the student. Thus if you want to learn certain skills, it's often useful to learn the fundamentals of a profession where that skill is necessary. --&gt;
+
+
+&lt;p&gt;I enjoy learning new things. Particularly I enjoy learning new skills that I can apply during my day-to-day tasks. To be most efficient, I often try to learn from individuals in different professions since it is usually &lt;a href=&quot;/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/&quot;&gt;fastest to learn from others&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here a couple of professions I have interacted with and (what I view as) fundamental skills for each:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Computer Programmer, Software Engineer&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to automate anything.&lt;/li&gt;
+&lt;li&gt;Rigor. Elimination of ambiguity.
+
+&lt;ul&gt;
+&lt;li&gt;Enforced strictly by compilers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How to reason about and build complex systems through repeated use of abstraction and reduction. &lt;strong&gt;(Advanced Skill)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mathematician&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to see and combine patterns.&lt;/li&gt;
+&lt;li&gt;Explicit thought.&lt;/li&gt;
+&lt;li&gt;Rigor.
+
+&lt;ul&gt;
+&lt;li&gt;Enforced by peers (through proof verification).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Statistician&lt;/strong&gt; &gt; Mathematician
+
+&lt;ul&gt;
+&lt;li&gt;How to make justified decisions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lawyer&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to interpret and communicate the ambiguity in legal code.&lt;/li&gt;
+&lt;li&gt;Rigor.
+
+&lt;ul&gt;
+&lt;li&gt;Enforced infrequently by lawsuit proceedings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accountant&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to memorize and bend arbitrary rules for maximum benefit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical Writer&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to communicate detailed information through the written word to professionals.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Marketer&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to persuade and communicate information quickly to a specific target audience.
+
+&lt;ul&gt;
+&lt;li&gt;Enforced through metrics such as CPM, CPC, and many others.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graphic Artist&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to render a description to high quality graphics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Serial Entrepreneur&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to make reasonable decisions in the presence of extreme ambiguity.&lt;/li&gt;
+&lt;li&gt;How to quickly determine what products or services are desirable to build or offer.&lt;/li&gt;
+&lt;li&gt;How to network effectively with others.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>RDiscount 2.0.7 released!</title>
@@ -671,7 +770,7 @@ Count me in!&lt;/li&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;For example it is undefined what happens when you add to an integer variable and the variable overflows. In most compilers adding 1 to the largest integer wraps around to result in the smallest integer, and thus a number of programs depend on this behavior.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;For example it is undefined what happens when you add to an integer variable and the variable overflows. In most compilers adding 1 to the largest integer wraps around to result in the smallest integer, and thus a number of programs depend on this behavior. Other compilers &lt;a href=&quot;http://thiemonagel.de/2010/01/signed-integer-overflow/&quot;&gt;assume overflow is impossible&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;Steve Yegge has a great rant on the over-focus on objects in the Java community: &lt;a href=&quot;http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html&quot;&gt;Execution in the Kingdom of Nouns&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
