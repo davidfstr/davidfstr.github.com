@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-09T14:49:38-08:00</updated>
+ <updated>2013-02-11T19:04:19-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -804,7 +804,7 @@ Count me in!&lt;/li&gt;
    <id>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</id>
    <content type="html">&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
 Tech about things he wished he knew before working in the the software
-industry. I have found his advise to be very useful at various points during
+industry. I have found his advice to be very useful at various points during
 my career. Sadly I have lost the presenter&amp;rsquo;s name.&lt;/p&gt;
 
 &lt;p&gt;Here is my outline of his presentation. &lt;strong&gt;Emphasized&lt;/strong&gt; points are ones I&amp;rsquo;ve found
@@ -1029,13 +1029,13 @@ Stable environments offer little opportunity.&lt;/li&gt;
    <link href="http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/"/>
    <updated>2013-01-08T00:00:00-08:00</updated>
    <id>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</id>
-   <content type="html">&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order than results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
+   <content type="html">&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order that results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
 
 &lt;p&gt;However I have realized programming is merely an activity. It is a &lt;em&gt;means&lt;/em&gt;, not an &lt;em&gt;end&lt;/em&gt;. My work is not inherently valuable because I have created a piece of software. Rather it is because I have created software &lt;em&gt;that solves somebody&amp;rsquo;s problem&lt;/em&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;Therefore it is the &lt;em&gt;problem&lt;/em&gt; that deserves the most attention if you want to make a difference that people care about. In that vein I have been learning about the precepts of Customer Development and Customer Discovery, which deals with how to efficiently interact with customers to discover a problem that they care about.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;Direct customer interaction, such as through in-person interviews of the general public, is way outside my comfort zone. However I will perservere. I think it is a very important skill for actually making a dent in the universe.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Direct customer interaction, such as through in-person interviews of the general public, is way outside my comfort zone. However I will persevere. I think it is a very important skill for actually making a dent in the universe.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
