@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-18T11:43:21-08:00</updated>
+ <updated>2013-02-18T11:58:21-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -722,7 +722,7 @@ Count me in!&lt;/li&gt;
 &lt;h3&gt;Lisp &lt;small&gt;(Common Lisp, Scheme, Clojure)&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;11&lt;/a&gt;&lt;/sup&gt;&lt;/small&gt;&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Homeoiconic&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;Homoiconic&lt;/strong&gt;
 
 &lt;ul&gt;
 &lt;li&gt;When you write a Lisp program, the notation you use (the &lt;em&gt;grammar&lt;/em&gt;) is equivalent to what a compiler would see (an &lt;em&gt;abstract syntax tree&lt;/em&gt; or &lt;em&gt;AST&lt;/em&gt;).&lt;/li&gt;
