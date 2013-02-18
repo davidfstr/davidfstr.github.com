@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-11T19:04:19-08:00</updated>
+ <updated>2013-02-18T11:43:21-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -695,7 +695,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;li&gt;Allows you to extract complex expressions without fear of introducing a performance hit (since the expression will only actually be evaluated if it is needed).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pure &amp;ndash; Side effects are disallowed by default&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;Side effects banned by default&lt;/strong&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Mutation of data structures and I/O, both of which have order-sensitive side effects, are not allowed except within the confines of &lt;strong&gt;monad&lt;/strong&gt;.&lt;/li&gt;
@@ -722,19 +722,33 @@ Count me in!&lt;/li&gt;
 &lt;h3&gt;Lisp &lt;small&gt;(Common Lisp, Scheme, Clojure)&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;11&lt;/a&gt;&lt;/sup&gt;&lt;/small&gt;&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Homeoiconic // Grammar and Abstract Syntax Tree (AST) equivalent&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;Homeoiconic&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;When you write a Lisp program, the notation you use (the &lt;em&gt;grammar&lt;/em&gt;) is equivalent to what a compiler would see (an &lt;em&gt;AST&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;When you write a Lisp program, the notation you use (the &lt;em&gt;grammar&lt;/em&gt;) is equivalent to what a compiler would see (an &lt;em&gt;abstract syntax tree&lt;/em&gt; or &lt;em&gt;AST&lt;/em&gt;).&lt;/li&gt;
 &lt;li&gt;Furthermore this Lisp code is represented as a nested structure of lists, symbols, and literals, all of which can be directly generated and manipulated in Lisp itself!&lt;/li&gt;
-&lt;li&gt;This allows Lisp code at runtime to generate list structures which can then be run as Lisp code directly.&lt;/li&gt;
-&lt;li&gt;And at &lt;em&gt;compile&lt;/em&gt; time, Lisp &lt;strong&gt;macros&lt;/strong&gt; can do the same thing, generating arbitrary new statements and control structures. This is extremely powerful.
+&lt;li&gt;This allows Lisp code to generate list structures which can then be run as Lisp code directly.
+
+&lt;ul&gt;
+&lt;li&gt;Generation can be done at &lt;em&gt;compile&lt;/em&gt; time with &lt;strong&gt;macros&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Generation can be done at &lt;em&gt;runtime&lt;/em&gt; as well, and then invoked with &lt;strong&gt;eval&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;However the highly uniform structure of Lisp code, devoid of operator and syntactic diversity, makes for lousy typography and thus low readability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Macros&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A function that transforms the AST of its operands at &lt;em&gt;compile&lt;/em&gt; time to new code.&lt;/li&gt;
+&lt;li&gt;Macros can be used to generate arbitrary new statements and control structures.
 
 &lt;ul&gt;
 &lt;li&gt;Domain specific languages, in particular, are very easy to implement in Lisp thanks to macros.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;However the highly uniform structure of Lisp code, devoid of operator and syntactic diversity, makes for lousy typography and thus low readability.&lt;/li&gt;
+&lt;li&gt;Macros can also be used to perform code optimizations at compile time&lt;sup id=&quot;fnref:12&quot;&gt;&lt;a href=&quot;#fn:12&quot; rel=&quot;footnote&quot;&gt;12&lt;/a&gt;&lt;/sup&gt; (similar to  &amp;ldquo;template metaprogramming&amp;rdquo; in C++).&lt;/li&gt;
+&lt;li&gt;Fluent use of macros requires the host language to be homoiconic, which is rare. Thus Lisp remains the only well-known language family that has macros.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Lisp Conditions and Restarts&lt;/strong&gt;
@@ -747,6 +761,21 @@ Count me in!&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Allows you to save the current execution state of the program in a variable and jump back to it later. Multiple times, even. It&amp;rsquo;s like a friggin' time machine. You can implement fairly complex control flow operators with this function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Other&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fexprs&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A function whose operands are passed to it at runtime without being evaluated.&lt;/li&gt;
+&lt;li&gt;Similar to macros and lazy evaluation in terms of power.&lt;/li&gt;
+&lt;li&gt;Has fallen out of favor since the 1980s due to being difficult for compilers to optimize. Also it is hard to provide good error messages .&lt;/li&gt;
+&lt;li&gt;Furthermore most fexpr functions tend to rely on &lt;em&gt;eval&lt;/em&gt; to continue evaluating its operands. The use of &lt;em&gt;eval&lt;/em&gt; has its own problems&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -791,6 +820,8 @@ Count me in!&lt;/li&gt;
 &lt;p&gt;Want to implement Ruby&amp;rsquo;s &lt;code&gt;until&lt;/code&gt; loop or &lt;code&gt;unless&lt;/code&gt; conditional? No problem.&lt;a href=&quot;#fnref:10&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:11&quot;&gt;
 &lt;p&gt;There are more dialects of Lisp than any other language I can think of. These 3 (Common Lisp, Scheme, and Clojure) are just the most popular dialects. I&amp;rsquo;ve directly used &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; in the past, which is itself a dialect of Scheme.&lt;a href=&quot;#fnref:11&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:12&quot;&gt;
+&lt;p&gt;Prismatic performs efficient &lt;a href=&quot;http://blog.getprismatic.com/blog/2013/1/22/the-magic-of-macros-lighting-fast-templating-in-clojurescript&quot;&gt;compile-time DOM templating&lt;/a&gt; in JavaScript using macros.&lt;a href=&quot;#fnref:12&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
