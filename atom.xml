@@ -4,112 +4,13 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-18T11:58:21-08:00</updated>
+ <updated>2013-02-18T16:47:46-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
- 
- <entry>
-   <title>Learning Skills from Professionals</title>
-   <link href="http://dafoster.net/articles/2013/02/09/learning-skills-from-professionals/"/>
-   <updated>2013-02-09T00:00:00-08:00</updated>
-   <id>http://dafoster.net/articles/2013/02/09/learning-skills-from-professionals</id>
-   <content type="html">&lt;!-- Assumption: Learning the fundamentals of a profession grants certain skills to the student. Thus if you want to learn certain skills, it's often useful to learn the fundamentals of a profession where that skill is necessary. --&gt;
-
-
-&lt;p&gt;I enjoy learning new things. Particularly I enjoy learning new skills that I can apply during my day-to-day tasks. To be most efficient, I often try to learn from individuals in different professions since it is usually &lt;a href=&quot;/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/&quot;&gt;fastest to learn from others&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here a couple of professions I have interacted with and (what I view as) fundamental skills for each:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Computer Programmer, Software Engineer&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to automate anything.&lt;/li&gt;
-&lt;li&gt;Rigor. Elimination of ambiguity.
-
-&lt;ul&gt;
-&lt;li&gt;Enforced strictly by compilers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;How to reason about and build complex systems through repeated use of abstraction and reduction. &lt;strong&gt;(Advanced Skill)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mathematician&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to see and combine patterns.&lt;/li&gt;
-&lt;li&gt;Explicit thought.&lt;/li&gt;
-&lt;li&gt;Rigor.
-
-&lt;ul&gt;
-&lt;li&gt;Enforced by peers (through proof verification).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Statistician&lt;/strong&gt; &gt; Mathematician
-
-&lt;ul&gt;
-&lt;li&gt;How to make justified decisions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Lawyer&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to interpret and communicate the ambiguity in legal code.&lt;/li&gt;
-&lt;li&gt;Rigor.
-
-&lt;ul&gt;
-&lt;li&gt;Enforced infrequently by lawsuit proceedings.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Accountant&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to memorize and bend arbitrary rules for maximum benefit.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Technical Writer&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to communicate detailed information through the written word to professionals.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Marketer&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to persuade and communicate information quickly to a specific target audience.
-
-&lt;ul&gt;
-&lt;li&gt;Enforced through metrics such as CPM, CPC, and many others.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Graphic Artist&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to render a description to high quality graphics.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Serial Entrepreneur&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to make reasonable decisions in the presence of extreme ambiguity.&lt;/li&gt;
-&lt;li&gt;How to quickly determine what products or services are desirable to build or offer.&lt;/li&gt;
-&lt;li&gt;How to network effectively with others.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
- </entry>
  
  <entry>
    <title>RDiscount 2.0.7 released!</title>
@@ -774,7 +675,7 @@ Count me in!&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;A function whose operands are passed to it at runtime without being evaluated.&lt;/li&gt;
 &lt;li&gt;Similar to macros and lazy evaluation in terms of power.&lt;/li&gt;
-&lt;li&gt;Has fallen out of favor since the 1980s due to being difficult for compilers to optimize. Also it is hard to provide good error messages .&lt;/li&gt;
+&lt;li&gt;Has fallen out of favor since the 1980s due to being difficult for compilers to optimize. Also it is hard to provide good error messages.&lt;/li&gt;
 &lt;li&gt;Furthermore most fexpr functions tend to rely on &lt;em&gt;eval&lt;/em&gt; to continue evaluating its operands. The use of &lt;em&gt;eval&lt;/em&gt; has its own problems&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
