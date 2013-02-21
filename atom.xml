@@ -4,13 +4,288 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-18T17:32:15-08:00</updated>
+ <updated>2013-02-21T00:30:07-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
+ 
+ <entry>
+   <title>Visual Guide to Programming Language Properties</title>
+   <link href="http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/"/>
+   <updated>2013-02-20T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties</id>
+   <content type="html">&lt;p&gt;Here&amp;rsquo;s an interactive chart showing high-level properties of various programming languages.&lt;br/&gt;
+You can filter the chart to only show the properties that your favorite language supports.&lt;/p&gt;
+
+&lt;p&gt;Interesting observations:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Some &lt;span class=&quot;property&quot;&gt;properties&lt;/span&gt; enable (but do not always imply) other &lt;span class=&quot;property&quot;&gt;properties&lt;/span&gt;, as shown by arrows.&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;property&quot;&gt;Properties&lt;/span&gt; result in both &lt;span class=&quot;benefit&quot;&gt;benefits&lt;/span&gt; and &lt;span class=&quot;detriment&quot;&gt;detriments&lt;/span&gt; to a language, as shown by arrows.&lt;/li&gt;
+&lt;li&gt;Sometimes it is necessary for &lt;em&gt;multiple&lt;/em&gt; &lt;span class=&quot;property&quot;&gt;properties&lt;/span&gt; to be present for a particular &lt;span class=&quot;benefit&quot;&gt;benefit&lt;/span&gt; to
+manifest, as shown by arrows interrupted by a vertical bar.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Type System&lt;/h2&gt;
+
+&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+  &lt;li class=&quot;active&quot;&gt;
+    &lt;a href=&quot;#type_system-ALL&quot; class=&quot;tab-header tab-header-ALL&quot; data-toggle=&quot;tab&quot;&gt;All&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-CPP&quot; class=&quot;tab-header tab-header-CPP&quot; data-toggle=&quot;tab&quot;&gt;C++&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-OBJC&quot; class=&quot;tab-header tab-header-OBJC&quot; data-toggle=&quot;tab&quot;&gt;Objective-C&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-JAVA&quot; class=&quot;tab-header tab-header-JAVA&quot; data-toggle=&quot;tab&quot;&gt;Java&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-HASKELL&quot; class=&quot;tab-header tab-header-HASKELL&quot; data-toggle=&quot;tab&quot;&gt;Haskell&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-PYTHON&quot; class=&quot;tab-header tab-header-PYTHON&quot; data-toggle=&quot;tab&quot;&gt;Python&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-RUBY&quot; class=&quot;tab-header tab-header-RUBY&quot; data-toggle=&quot;tab&quot;&gt;Ruby&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#type_system-LISP&quot; class=&quot;tab-header tab-header-LISP&quot; data-toggle=&quot;tab&quot;&gt;Lisp&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;tab-content&quot;&gt;
+  &lt;img class=&quot;tab-pane active&quot; id=&quot;type_system-ALL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.ALL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-CPP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.CPP.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-OBJC&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.OBJC.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-JAVA&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.JAVA.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-HASKELL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.HASKELL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-PYTHON&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.PYTHON.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-RUBY&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.RUBY.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;type_system-LISP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.LISP.gif&quot; /&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;Resource Management&lt;/h2&gt;
+
+&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+  &lt;li class=&quot;active&quot;&gt;
+    &lt;a href=&quot;#resource_management-ALL&quot; class=&quot;tab-header tab-header-ALL&quot; data-toggle=&quot;tab&quot;&gt;All&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-CPP&quot; class=&quot;tab-header tab-header-CPP&quot; data-toggle=&quot;tab&quot;&gt;C++&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-OBJC&quot; class=&quot;tab-header tab-header-OBJC&quot; data-toggle=&quot;tab&quot;&gt;Objective-C&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-JAVA&quot; class=&quot;tab-header tab-header-JAVA&quot; data-toggle=&quot;tab&quot;&gt;Java&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-HASKELL&quot; class=&quot;tab-header tab-header-HASKELL&quot; data-toggle=&quot;tab&quot;&gt;Haskell&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-PYTHON&quot; class=&quot;tab-header tab-header-PYTHON&quot; data-toggle=&quot;tab&quot;&gt;Python&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-RUBY&quot; class=&quot;tab-header tab-header-RUBY&quot; data-toggle=&quot;tab&quot;&gt;Ruby&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#resource_management-LISP&quot; class=&quot;tab-header tab-header-LISP&quot; data-toggle=&quot;tab&quot;&gt;Lisp&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;tab-content&quot;&gt;
+  &lt;img class=&quot;tab-pane active&quot; id=&quot;resource_management-ALL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.ALL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-CPP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.CPP.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-OBJC&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.OBJC.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-JAVA&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.JAVA.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-HASKELL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.HASKELL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-PYTHON&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.PYTHON.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-RUBY&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.RUBY.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;resource_management-LISP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.LISP.gif&quot; /&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;Domain Specific Language Support&lt;/h2&gt;
+
+&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+  &lt;li class=&quot;active&quot;&gt;
+    &lt;a href=&quot;#dsl_support-ALL&quot; class=&quot;tab-header tab-header-ALL&quot; data-toggle=&quot;tab&quot;&gt;All&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-CPP&quot; class=&quot;tab-header tab-header-CPP&quot; data-toggle=&quot;tab&quot;&gt;C++&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-OBJC&quot; class=&quot;tab-header tab-header-OBJC&quot; data-toggle=&quot;tab&quot;&gt;Objective-C&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-JAVA&quot; class=&quot;tab-header tab-header-JAVA&quot; data-toggle=&quot;tab&quot;&gt;Java&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-HASKELL&quot; class=&quot;tab-header tab-header-HASKELL&quot; data-toggle=&quot;tab&quot;&gt;Haskell&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-PYTHON&quot; class=&quot;tab-header tab-header-PYTHON&quot; data-toggle=&quot;tab&quot;&gt;Python&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-RUBY&quot; class=&quot;tab-header tab-header-RUBY&quot; data-toggle=&quot;tab&quot;&gt;Ruby&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#dsl_support-LISP&quot; class=&quot;tab-header tab-header-LISP&quot; data-toggle=&quot;tab&quot;&gt;Lisp&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;tab-content&quot;&gt;
+  &lt;img class=&quot;tab-pane active&quot; id=&quot;dsl_support-ALL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.ALL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-CPP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.CPP.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-OBJC&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.OBJC.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-JAVA&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.JAVA.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-HASKELL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.HASKELL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-PYTHON&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.PYTHON.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-RUBY&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.RUBY.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;dsl_support-LISP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.LISP.gif&quot; /&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;Tools&lt;/h2&gt;
+
+&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+  &lt;li class=&quot;active&quot;&gt;
+    &lt;a href=&quot;#tools-ALL&quot; class=&quot;tab-header tab-header-ALL&quot; data-toggle=&quot;tab&quot;&gt;All&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-CPP&quot; class=&quot;tab-header tab-header-CPP&quot; data-toggle=&quot;tab&quot;&gt;C++&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-OBJC&quot; class=&quot;tab-header tab-header-OBJC&quot; data-toggle=&quot;tab&quot;&gt;Objective-C&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-JAVA&quot; class=&quot;tab-header tab-header-JAVA&quot; data-toggle=&quot;tab&quot;&gt;Java&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-HASKELL&quot; class=&quot;tab-header tab-header-HASKELL&quot; data-toggle=&quot;tab&quot;&gt;Haskell&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-PYTHON&quot; class=&quot;tab-header tab-header-PYTHON&quot; data-toggle=&quot;tab&quot;&gt;Python&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-RUBY&quot; class=&quot;tab-header tab-header-RUBY&quot; data-toggle=&quot;tab&quot;&gt;Ruby&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;&quot;&gt;
+    &lt;a href=&quot;#tools-LISP&quot; class=&quot;tab-header tab-header-LISP&quot; data-toggle=&quot;tab&quot;&gt;Lisp&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;tab-content&quot;&gt;
+  &lt;img class=&quot;tab-pane active&quot; id=&quot;tools-ALL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.ALL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-CPP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.CPP.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-OBJC&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.OBJC.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-JAVA&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.JAVA.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-HASKELL&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.HASKELL.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-PYTHON&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.PYTHON.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-RUBY&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.RUBY.gif&quot; /&gt;
+  &lt;img class=&quot;tab-pane &quot; id=&quot;tools-LISP&quot; src=&quot;/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.LISP.gif&quot; /&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;div class=&quot;accordion&quot; id=&quot;accordion2&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion2&quot; href=&quot;#collapseOne&quot;&gt;
+        Tool Details
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;collapseOne&quot; class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&amp;nbsp;               &lt;/th&gt;
+&lt;th&gt; C++ &lt;/th&gt;
+&lt;th&gt; ObjC        &lt;/th&gt;
+&lt;th&gt; Java  &lt;/th&gt;
+&lt;th&gt; Haskell &lt;/th&gt;
+&lt;th&gt; Python      &lt;/th&gt;
+&lt;th&gt; Ruby       &lt;/th&gt;
+&lt;th&gt; Lisp&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Code coverage        &lt;/td&gt;
+&lt;td&gt; &amp;ndash;   &lt;/td&gt;
+&lt;td&gt; &amp;ndash;           &lt;/td&gt;
+&lt;td&gt; EMMA  &lt;/td&gt;
+&lt;td&gt; hpc     &lt;/td&gt;
+&lt;td&gt; coverage.py &lt;/td&gt;
+&lt;td&gt; SimpleCov  &lt;/td&gt;
+&lt;td&gt; code-coverage&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Unit test automation &lt;/td&gt;
+&lt;td&gt; &amp;ndash;   &lt;/td&gt;
+&lt;td&gt; &amp;ndash;           &lt;/td&gt;
+&lt;td&gt; JUnit &lt;/td&gt;
+&lt;td&gt; HUnit   &lt;/td&gt;
+&lt;td&gt; unittest    &lt;/td&gt;
+&lt;td&gt; &lt;em&gt;many&lt;/em&gt;     &lt;/td&gt;
+&lt;td&gt; RackUnit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Package manager      &lt;/td&gt;
+&lt;td&gt; &amp;ndash;   &lt;/td&gt;
+&lt;td&gt; &amp;ndash;           &lt;/td&gt;
+&lt;td&gt; &amp;ndash;     &lt;/td&gt;
+&lt;td&gt; Cabal   &lt;/td&gt;
+&lt;td&gt; pip         &lt;/td&gt;
+&lt;td&gt; gem        &lt;/td&gt;
+&lt;td&gt; PLaneT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Environment isolater &lt;/td&gt;
+&lt;td&gt; &amp;ndash;   &lt;/td&gt;
+&lt;td&gt; &amp;ndash;           &lt;/td&gt;
+&lt;td&gt; &amp;ndash;     &lt;/td&gt;
+&lt;td&gt; &amp;ndash;       &lt;/td&gt;
+&lt;td&gt; virtualenv  &lt;/td&gt;
+&lt;td&gt; rvm        &lt;/td&gt;
+&lt;td&gt; &amp;ndash;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/01/29/unique-features-of-various-programming-languages/&quot;&gt;Unique Features of Various Programming Languages&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;The textual analog to these charts.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>RDiscount 2.0.7 released!</title>

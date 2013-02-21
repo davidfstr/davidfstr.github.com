@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- IE 8+: Hide the Compatibility View button. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Visual Guide to Programming Language Properties | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+      <style>
+        .property { background-color: #ceecff; }
+.benefit { background-color: #b7ef86; }
+.detriment { background-color: #eec3cc; }
+
+.tab-content { overflow: auto; }
+.tab-content img { max-width: none; }
+
+      </style>
+    
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+    <script src="/assets/js/jquery-1.8.3.min.js"></script>
+  
+  
+  
+    <script src="/assets/js/bootstrap.min.js"></script>
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>Visual Guide to Programming Language Properties</h1>
+    <div class="post-metadata">
+      20 Feb 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>8</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p>Here&rsquo;s an interactive chart showing high-level properties of various programming languages.<br/>
+You can filter the chart to only show the properties that your favorite language supports.</p>
+
+<p>Interesting observations:</p>
+
+<ul>
+<li>Some <span class="property">properties</span> enable (but do not always imply) other <span class="property">properties</span>, as shown by arrows.</li>
+<li><span class="property">Properties</span> result in both <span class="benefit">benefits</span> and <span class="detriment">detriments</span> to a language, as shown by arrows.</li>
+<li>Sometimes it is necessary for <em>multiple</em> <span class="property">properties</span> to be present for a particular <span class="benefit">benefit</span> to
+manifest, as shown by arrows interrupted by a vertical bar.</li>
+</ul>
+
+
+<h2>Type System</h2>
+
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#type_system-ALL" class="tab-header tab-header-ALL" data-toggle="tab">All</a>
+  </li>
+  <li class="">
+    <a href="#type_system-CPP" class="tab-header tab-header-CPP" data-toggle="tab">C++</a>
+  </li>
+  <li class="">
+    <a href="#type_system-OBJC" class="tab-header tab-header-OBJC" data-toggle="tab">Objective-C</a>
+  </li>
+  <li class="">
+    <a href="#type_system-JAVA" class="tab-header tab-header-JAVA" data-toggle="tab">Java</a>
+  </li>
+  <li class="">
+    <a href="#type_system-HASKELL" class="tab-header tab-header-HASKELL" data-toggle="tab">Haskell</a>
+  </li>
+  <li class="">
+    <a href="#type_system-PYTHON" class="tab-header tab-header-PYTHON" data-toggle="tab">Python</a>
+  </li>
+  <li class="">
+    <a href="#type_system-RUBY" class="tab-header tab-header-RUBY" data-toggle="tab">Ruby</a>
+  </li>
+  <li class="">
+    <a href="#type_system-LISP" class="tab-header tab-header-LISP" data-toggle="tab">Lisp</a>
+  </li>
+</ul>
+
+
+<div class="tab-content">
+  <img class="tab-pane active" id="type_system-ALL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.ALL.gif" />
+  <img class="tab-pane " id="type_system-CPP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.CPP.gif" />
+  <img class="tab-pane " id="type_system-OBJC" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.OBJC.gif" />
+  <img class="tab-pane " id="type_system-JAVA" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.JAVA.gif" />
+  <img class="tab-pane " id="type_system-HASKELL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.HASKELL.gif" />
+  <img class="tab-pane " id="type_system-PYTHON" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.PYTHON.gif" />
+  <img class="tab-pane " id="type_system-RUBY" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.RUBY.gif" />
+  <img class="tab-pane " id="type_system-LISP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/type_system.LISP.gif" />
+</div>
+
+
+<h2>Resource Management</h2>
+
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#resource_management-ALL" class="tab-header tab-header-ALL" data-toggle="tab">All</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-CPP" class="tab-header tab-header-CPP" data-toggle="tab">C++</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-OBJC" class="tab-header tab-header-OBJC" data-toggle="tab">Objective-C</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-JAVA" class="tab-header tab-header-JAVA" data-toggle="tab">Java</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-HASKELL" class="tab-header tab-header-HASKELL" data-toggle="tab">Haskell</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-PYTHON" class="tab-header tab-header-PYTHON" data-toggle="tab">Python</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-RUBY" class="tab-header tab-header-RUBY" data-toggle="tab">Ruby</a>
+  </li>
+  <li class="">
+    <a href="#resource_management-LISP" class="tab-header tab-header-LISP" data-toggle="tab">Lisp</a>
+  </li>
+</ul>
+
+
+<div class="tab-content">
+  <img class="tab-pane active" id="resource_management-ALL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.ALL.gif" />
+  <img class="tab-pane " id="resource_management-CPP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.CPP.gif" />
+  <img class="tab-pane " id="resource_management-OBJC" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.OBJC.gif" />
+  <img class="tab-pane " id="resource_management-JAVA" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.JAVA.gif" />
+  <img class="tab-pane " id="resource_management-HASKELL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.HASKELL.gif" />
+  <img class="tab-pane " id="resource_management-PYTHON" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.PYTHON.gif" />
+  <img class="tab-pane " id="resource_management-RUBY" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.RUBY.gif" />
+  <img class="tab-pane " id="resource_management-LISP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/resource_management.LISP.gif" />
+</div>
+
+
+<h2>Domain Specific Language Support</h2>
+
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#dsl_support-ALL" class="tab-header tab-header-ALL" data-toggle="tab">All</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-CPP" class="tab-header tab-header-CPP" data-toggle="tab">C++</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-OBJC" class="tab-header tab-header-OBJC" data-toggle="tab">Objective-C</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-JAVA" class="tab-header tab-header-JAVA" data-toggle="tab">Java</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-HASKELL" class="tab-header tab-header-HASKELL" data-toggle="tab">Haskell</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-PYTHON" class="tab-header tab-header-PYTHON" data-toggle="tab">Python</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-RUBY" class="tab-header tab-header-RUBY" data-toggle="tab">Ruby</a>
+  </li>
+  <li class="">
+    <a href="#dsl_support-LISP" class="tab-header tab-header-LISP" data-toggle="tab">Lisp</a>
+  </li>
+</ul>
+
+
+<div class="tab-content">
+  <img class="tab-pane active" id="dsl_support-ALL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.ALL.gif" />
+  <img class="tab-pane " id="dsl_support-CPP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.CPP.gif" />
+  <img class="tab-pane " id="dsl_support-OBJC" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.OBJC.gif" />
+  <img class="tab-pane " id="dsl_support-JAVA" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.JAVA.gif" />
+  <img class="tab-pane " id="dsl_support-HASKELL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.HASKELL.gif" />
+  <img class="tab-pane " id="dsl_support-PYTHON" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.PYTHON.gif" />
+  <img class="tab-pane " id="dsl_support-RUBY" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.RUBY.gif" />
+  <img class="tab-pane " id="dsl_support-LISP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.LISP.gif" />
+</div>
+
+
+<h2>Tools</h2>
+
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#tools-ALL" class="tab-header tab-header-ALL" data-toggle="tab">All</a>
+  </li>
+  <li class="">
+    <a href="#tools-CPP" class="tab-header tab-header-CPP" data-toggle="tab">C++</a>
+  </li>
+  <li class="">
+    <a href="#tools-OBJC" class="tab-header tab-header-OBJC" data-toggle="tab">Objective-C</a>
+  </li>
+  <li class="">
+    <a href="#tools-JAVA" class="tab-header tab-header-JAVA" data-toggle="tab">Java</a>
+  </li>
+  <li class="">
+    <a href="#tools-HASKELL" class="tab-header tab-header-HASKELL" data-toggle="tab">Haskell</a>
+  </li>
+  <li class="">
+    <a href="#tools-PYTHON" class="tab-header tab-header-PYTHON" data-toggle="tab">Python</a>
+  </li>
+  <li class="">
+    <a href="#tools-RUBY" class="tab-header tab-header-RUBY" data-toggle="tab">Ruby</a>
+  </li>
+  <li class="">
+    <a href="#tools-LISP" class="tab-header tab-header-LISP" data-toggle="tab">Lisp</a>
+  </li>
+</ul>
+
+
+<div class="tab-content">
+  <img class="tab-pane active" id="tools-ALL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.ALL.gif" />
+  <img class="tab-pane " id="tools-CPP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.CPP.gif" />
+  <img class="tab-pane " id="tools-OBJC" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.OBJC.gif" />
+  <img class="tab-pane " id="tools-JAVA" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.JAVA.gif" />
+  <img class="tab-pane " id="tools-HASKELL" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.HASKELL.gif" />
+  <img class="tab-pane " id="tools-PYTHON" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.PYTHON.gif" />
+  <img class="tab-pane " id="tools-RUBY" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.RUBY.gif" />
+  <img class="tab-pane " id="tools-LISP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/tools.LISP.gif" />
+</div>
+
+
+
+
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Tool Details
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <table>
+<thead>
+<tr>
+<th>&nbsp;               </th>
+<th> C++ </th>
+<th> ObjC        </th>
+<th> Java  </th>
+<th> Haskell </th>
+<th> Python      </th>
+<th> Ruby       </th>
+<th> Lisp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code coverage        </td>
+<td> &ndash;   </td>
+<td> &ndash;           </td>
+<td> EMMA  </td>
+<td> hpc     </td>
+<td> coverage.py </td>
+<td> SimpleCov  </td>
+<td> code-coverage</td>
+</tr>
+<tr>
+<td>Unit test automation </td>
+<td> &ndash;   </td>
+<td> &ndash;           </td>
+<td> JUnit </td>
+<td> HUnit   </td>
+<td> unittest    </td>
+<td> <em>many</em>     </td>
+<td> RackUnit</td>
+</tr>
+<tr>
+<td>Package manager      </td>
+<td> &ndash;   </td>
+<td> &ndash;           </td>
+<td> &ndash;     </td>
+<td> Cabal   </td>
+<td> pip         </td>
+<td> gem        </td>
+<td> PLaneT</td>
+</tr>
+<tr>
+<td>Environment isolater </td>
+<td> &ndash;   </td>
+<td> &ndash;           </td>
+<td> &ndash;     </td>
+<td> &ndash;       </td>
+<td> virtualenv  </td>
+<td> rvm        </td>
+<td> &ndash;</td>
+</tr>
+</tbody>
+</table>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
+
+<ul>
+<li><em>The textual analog to these charts.</em></li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>2</sup></a></li>
+    
+  </ul>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/02/02/rdiscount-2.0.7-released/" title="RDiscount 2.0.7 released!">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'dafoster';
+    var disqus_title = 'Visual Guide to Programming Language Properties';
+    var disqus_url = 'http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/';
+  
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    <script>
+      // When a tab header is clicked automatically click all
+// other tab headers with the same language
+$('.tab-header').click(function() {
+    if (!window.ignoreTabHeaderClicks) {
+        var classNameForTabsWithSameLang = this.className.split(' ')[1];
+        
+        window.ignoreTabHeaderClicks = true;
+        $('.' + classNameForTabsWithSameLang).click();
+        window.ignoreTabHeaderClicks = false;
+    }
+});
+
+    </script>
+  
+    
+  
+    <!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://dynamic.dafoster.net/piwik/" : "http://dynamic.dafoster.net/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://dynamic.dafoster.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+
+<!-- Clicky -->
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100576301); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100576301ns.gif" /></p></noscript>
+
+  
+  </body>
+</html>
