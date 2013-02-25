@@ -349,6 +349,13 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 </div>
 
 
+
+
+<br/>
+
+
+<p>† &ldquo;Programming with collections&rdquo; is discussed in <a href="/articles/2013/02/02/learnings-from-sicp/#lisp-vs-pascal-design-philosophies">Lisp vs. Pascal Design Philosophies</a>.</p>
+
 <h2>Resource Management</h2>
 
 <ul class="nav nav-tabs">
@@ -391,6 +398,15 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 </div>
 
 
+
+
+<br/>
+
+
+<p>§ See also the idea of <strong>monadic regions</strong> for block-scoped resource management.</p>
+
+<p>¶ Objective-C is the only known language that supports automatic reference counting.</p>
+
 <h2>Domain Specific Language Support</h2>
 
 <ul class="nav nav-tabs">
@@ -432,6 +448,14 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
   <img class="tab-pane " id="dsl_support-LISP" src="/assets/2013/2013-02-20-visual-guide-to-programming-language-properties/dsl_support.LISP.gif" />
 </div>
 
+
+
+
+<br/>
+
+
+<p>‡ Beyond the Lisp family, Prolog is the only other language I know of that is homoiconic.<br/>
+&nbsp;&nbsp;&nbsp;Its syntax is reasonably easy to read, unlike Lisp.</p>
 
 <h2>Tools</h2>
 
@@ -477,11 +501,11 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 
 
 
-<div class="accordion" id="accordion2">
+<div class="accordion" id="tool-details">
   <div class="accordion-group">
     <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-        Tool Details
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#tool-details" href="#collapseOne">
+        <span class="expand-symbol"></span>Tool Details
       </a>
     </div>
     <div id="collapseOne" class="accordion-body collapse">
@@ -508,7 +532,7 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 <td> hpc     </td>
 <td> coverage.py </td>
 <td> SimpleCov  </td>
-<td> code-coverage</td>
+<td> <em>varies</em> <!-- ex: code-coverage --></td>
 </tr>
 <tr>
 <td>Unit test automation </td>
@@ -518,7 +542,7 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 <td> HUnit   </td>
 <td> unittest    </td>
 <td> <em>many</em>     </td>
-<td> RackUnit</td>
+<td> <em>varies</em> <!-- ex: RackUnit --></td>
 </tr>
 <tr>
 <td>Package manager      </td>
@@ -528,7 +552,7 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 <td> Cabal   </td>
 <td> pip         </td>
 <td> gem        </td>
-<td> PLaneT</td>
+<td> <em>varies</em> <!-- ex: PLaneT --></td>
 </tr>
 <tr>
 <td>Environment isolater </td>
@@ -538,7 +562,7 @@ manifest, as shown by arrows interrupted by a vertical bar.</li>
 <td> &ndash;       </td>
 <td> virtualenv  </td>
 <td> rvm        </td>
-<td> &ndash;</td>
+<td> <em>varies</em> <!-- no known example --></td>
 </tr>
 </tbody>
 </table>
@@ -679,6 +703,19 @@ $('.tab-header').click(function() {
         window.ignoreTabHeaderClicks = true;
         $('.' + classNameForTabsWithSameLang).click();
         window.ignoreTabHeaderClicks = false;
+    }
+});
+
+// Rotate triangle symbol when accordian toggled
+$('.accordion-toggle .expand-symbol').text('▸ ');
+$('.accordion-toggle').click(function() {
+    var accordianBodySelector = $(this).attr('href');
+    var isCollapsed = $(accordianBodySelector).attr('class').indexOf("in") !== -1;
+    
+    if (isCollapsed) {
+        $('.expand-symbol', this).text('▸ ');
+    } else {
+        $('.expand-symbol', this).text('▾ ');
     }
 });
 
