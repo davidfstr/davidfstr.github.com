@@ -5,7 +5,7 @@
     <!-- IE 8+: Hide the Compatibility View button. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Retrospect vs. Time Machine | DaFoster</title>
+    <title>Notes on Racket (PLT-Scheme) | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -269,9 +269,9 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Retrospect vs. Time Machine</h1>
+    <h1>Notes on Racket (PLT-Scheme)</h1>
     <div class="post-metadata">
-      13 Nov 2010 &ndash; Filed under: 
+      01 Mar 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -280,70 +280,91 @@
       </span>
     </div>
     
-    <h2>The old Retrospect 6.0</h2>
+    <p>Generally <a href="http://racket-lang.org">Racket</a> appears to be a very usable dialect of Lisp/Scheme.</p>
 
-<p>In the past I have used Retrospect 6.0 to backup my Macs, since it was one of
-the few programs that reliably backed up everything correctly, with all the
-metadata intact. But it is looking much less attractive these days&hellip;</p>
+<p>Racket is particularly well suited for those who want to develop their own programming language (including those not based on S-expressions), given that the creators of Racket are programming language researchers. For example, a number of Racket subsets have been created to assist students who are learning Racket/Scheme via the <a href="http://htdp.org">How to Design Programs</a> book.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> The Arc language by Paul Graham is also implemented in the Racket environment.</p>
+
+<p>Racket&rsquo;s developers wanted to make sure it was a <em>practical</em> language. To that end, there is a bundled IDE (DrRacket) with syntax highlighting, parentheses matching, and integrated debugging. There is also a package management system (PLaneT).<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> And built-in libraries for working with several real-world systems, such as GUIs, networking, databases, JSON/XML, etc. A cross-platform executable can easily be built. And everything is well documented.</p>
+
+<p>Graphics and GUI programs are supported better than the average language. For example pictures are rendered natively in the Racket REPL, including their use within expressions. And the built-in Racket GUI library is fairly decent.</p>
+
+<p>The combination of a decent built-in GUI library along with the ability to compile cross-platform executables makes Racket useful for writing cross-platform GUI applications.</p>
+
+<h2>Racket&rsquo;s GUI library (RacketGUI)</h2>
+
+<p>The original version of Racket&rsquo;s GUI library was implemented on top of wxWidgets.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> Thus some of wxWidget&rsquo;s poor design decisions leak through:</p>
 
 <ul>
-<li><p>It no longer finds my laptop on the network reliably, due to some bug.
-Especially when switching between wireless and wired networks.
-Thus I often miss backups.</p></li>
-<li><p>It is slow.</p></li>
-<li><p>It does not groom backups.</p></li>
-<li><p>It stores everything inside a single monolithic file,
-which is at risk of corruption.</p></li>
+<li>A visual component is called a &ldquo;window&rdquo;, not a control.</li>
+<li>Visual components must be associated with their parent container at creation time.</li>
 </ul>
 
 
-<h2>The new Retrospect 8.0</h2>
-
-<p>The latest version of Retropect (8.0) is somewhat better but has some problems:</p>
+<p>However, some fixes were made too:</p>
 
 <ul>
-<li><p>It does not seem to backup all attributes correctly.
-For example, volume icons do not seem to be restored correctly.
-Inaccurate backups are useless.</p></li>
-<li><p>It is more complicated to use.</p></li>
-<li><p>Automatic grooming, although supported, is so slow to be practically unusable.
-It takes maybe 2x as long to do one grooming operation as an incremental backup.</p></li>
+<li>There is no notion of a wxWidgets &ldquo;sizer&rdquo; as distinct from a &ldquo;container window&rdquo;.
+
+<ul>
+<li>This simplifies the mental model considerably, since it is no longer necessary to keep track of both a &ldquo;window&rdquo; hierarchy and a sizer hierarchy.</li>
+<li>Instead, a wxWidgets &ldquo;sizer&rdquo; is represented as a lightweight RacketGUI &ldquo;pane&rdquo;, which can be nested naturally inside containers along with other components.</li>
+</ul>
+</li>
+<li>The event handling loop is managed in the background automatically.</li>
 </ul>
 
 
-<h2>Time Machine</h2>
-
-<p>Now there is Time Machine. Since my primary systems are 10.5+, I can use it.</p>
+<p>Sadly, RacketGUI lacks some advanced controls I often want:</p>
 
 <ul>
-<li><p>It <em>should</em> support reliable backup of all filesystem attributes,
-since it was made by Apple, who is in a position to know about them.
-Also, Apple typically makes solid products.</p></li>
-<li><p>It has quick, automatic, incremental backups.</p></li>
-<li><p>It also grooms automatically while it is backing up. Grooming behavior is
-intelligent, keeping snapshots at sensible intervals.</p></li>
-<li><p>The single-file restore interface is precise, intuitive, and fast.</p></li>
+<li>trees</li>
+<li>tables containing controls in cells
+
+<ul>
+<li>However the <code>list-box%</code> control supports cells that only contain text.</li>
+</ul>
+</li>
+<li>tree-tables</li>
 </ul>
 
 
-<p>Only wrinkle is that Time Machine is not really designed to backup to network
-drives, however there are <a href="http://code.stephenmorley.org/articles/time-machine-on-a-network-drive/">instructions for circumventing this</a>.
-(Of course there is Time Machine + Time Capsule for network backups, but a
-Capsule is egregiously expensive.)</p>
+<p>This is not surprising since these controls are hard to implement and are not well-supported by the original underlying wxWidgets library:</p>
 
-<h3>2012 Update</h3>
+<ul>
+<li>The wxWidgets tree interface (wxTreeCtrl) is annoying for dynamically generated trees.</li>
+<li>Tables (wxListCtrl) only support text and image cells, not controls as cells.</li>
+</ul>
 
-<p>Time Machine misses a few filesystem attributes that Retrospect 6.0 nailed back
-in the day, like volume icons.</p>
 
-<p>I think it may also strip HFS+ extended attributes, since applications appear
-to be quarantined after they are restored from a Time Machine backup.</p>
+<h3><em>Related Articles</em></h3>
 
-<p>One last nitpick is that TM has very poor handling for bad media and bad blocks.
-In particular if your primary hard drive develops bad blocks, which is an early
-sign of imminent failure, Time Machine will choke and refuse to backup the
-entire volume. And this is exactly at the time you need it your files backed up
-the most, when your hard drive is likely to fail.</p>
+<ul>
+<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
+
+<ul>
+<li><em>Describes several other programming languages and their unique features.</em></li>
+</ul>
+</li>
+<li><a href="/articles/2013/02/25/notes-on-prolog/">Notes on Prolog</a>
+
+<ul>
+<li><em>Describes Prolog, a highly declarative language. Useful for verification of proofs.</em></li>
+</ul>
+</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>The <a href="http://htdp.org">HtDP</a> book uses the dialects &ldquo;Beginning Student&rdquo;, &ldquo;Intermediate Student&rdquo;, and &ldquo;Advanced Student&rdquo;. These sublanguages restrict the use of certain language features (such as using functions as objects) and can provide better error messages (which avoid mentioning advanced features not supported by the sublanguage).<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>It is possible to import modules directly from the PLaneT repository, which will automatically download and install the module if it isn&rsquo;t already present. Neat!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Racket&rsquo;s GUI layer has apparently been redone a couple of times. Originally it was based on wxWidgets. Later it was rewritten to about 200,000 lines of C++ glue to Xt, Win32, and Carbon. Then in Racket 5.1 it was replaced with about 80,000 lines of Racket glue to Gtk, Win32, Cocoa, Cairo, and Pango. That&rsquo;s a 60% reduction in code! More details on the <a href="http://blog.racket-lang.org/2010/12/racket-version-5.html">Racket blog</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 
   </div>
   
@@ -401,11 +422,11 @@ the most, when your hard drive is likely to fail.</p>
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2010/09/18/impact-anime-my-programming-experience/" title="Impact of Anime on my Programming Experience">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/02/25/notes-on-prolog/" title="Notes on Prolog">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2012/12/16/why-i-no-longer-use-drupal/" title="Why I no longer use Drupal">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
@@ -417,8 +438,8 @@ the most, when your hard drive is likely to fail.</p>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'dafoster';
-    var disqus_title = 'Retrospect vs. Time Machine';
-    var disqus_url = 'http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/';
+    var disqus_title = 'Notes on Racket (PLT-Scheme)';
+    var disqus_url = 'http://dafoster.net/articles/2013/03/01/notes-on-racket/';
   
     
     /* * * DON'T EDIT BELOW THIS LINE * * */

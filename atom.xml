@@ -4,13 +4,106 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
  <link href="http://dafoster.net"/>
- <updated>2013-02-25T09:10:30-08:00</updated>
+ <updated>2013-03-01T19:57:21-08:00</updated>
  <id>http://dafoster.net</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
+ 
+ <entry>
+   <title>Notes on Racket (PLT-Scheme)</title>
+   <link href="http://dafoster.net/articles/2013/03/01/notes-on-racket/"/>
+   <updated>2013-03-01T00:00:00-08:00</updated>
+   <id>http://dafoster.net/articles/2013/03/01/notes-on-racket</id>
+   <content type="html">&lt;p&gt;Generally &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; appears to be a very usable dialect of Lisp/Scheme.&lt;/p&gt;
+
+&lt;p&gt;Racket is particularly well suited for those who want to develop their own programming language (including those not based on S-expressions), given that the creators of Racket are programming language researchers. For example, a number of Racket subsets have been created to assist students who are learning Racket/Scheme via the &lt;a href=&quot;http://htdp.org&quot;&gt;How to Design Programs&lt;/a&gt; book.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; The Arc language by Paul Graham is also implemented in the Racket environment.&lt;/p&gt;
+
+&lt;p&gt;Racket&amp;rsquo;s developers wanted to make sure it was a &lt;em&gt;practical&lt;/em&gt; language. To that end, there is a bundled IDE (DrRacket) with syntax highlighting, parentheses matching, and integrated debugging. There is also a package management system (PLaneT).&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; And built-in libraries for working with several real-world systems, such as GUIs, networking, databases, JSON/XML, etc. A cross-platform executable can easily be built. And everything is well documented.&lt;/p&gt;
+
+&lt;p&gt;Graphics and GUI programs are supported better than the average language. For example pictures are rendered natively in the Racket REPL, including their use within expressions. And the built-in Racket GUI library is fairly decent.&lt;/p&gt;
+
+&lt;p&gt;The combination of a decent built-in GUI library along with the ability to compile cross-platform executables makes Racket useful for writing cross-platform GUI applications.&lt;/p&gt;
+
+&lt;h2&gt;Racket&amp;rsquo;s GUI library (RacketGUI)&lt;/h2&gt;
+
+&lt;p&gt;The original version of Racket&amp;rsquo;s GUI library was implemented on top of wxWidgets.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Thus some of wxWidget&amp;rsquo;s poor design decisions leak through:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A visual component is called a &amp;ldquo;window&amp;rdquo;, not a control.&lt;/li&gt;
+&lt;li&gt;Visual components must be associated with their parent container at creation time.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;However, some fixes were made too:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;There is no notion of a wxWidgets &amp;ldquo;sizer&amp;rdquo; as distinct from a &amp;ldquo;container window&amp;rdquo;.
+
+&lt;ul&gt;
+&lt;li&gt;This simplifies the mental model considerably, since it is no longer necessary to keep track of both a &amp;ldquo;window&amp;rdquo; hierarchy and a sizer hierarchy.&lt;/li&gt;
+&lt;li&gt;Instead, a wxWidgets &amp;ldquo;sizer&amp;rdquo; is represented as a lightweight RacketGUI &amp;ldquo;pane&amp;rdquo;, which can be nested naturally inside containers along with other components.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The event handling loop is managed in the background automatically.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Sadly, RacketGUI lacks some advanced controls I often want:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;trees&lt;/li&gt;
+&lt;li&gt;tables containing controls in cells
+
+&lt;ul&gt;
+&lt;li&gt;However the &lt;code&gt;list-box%&lt;/code&gt; control supports cells that only contain text.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;tree-tables&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;This is not surprising since these controls are hard to implement and are not well-supported by the original underlying wxWidgets library:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The wxWidgets tree interface (wxTreeCtrl) is annoying for dynamically generated trees.&lt;/li&gt;
+&lt;li&gt;Tables (wxListCtrl) only support text and image cells, not controls as cells.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/01/29/unique-features-of-various-programming-languages/&quot;&gt;Unique Features of Various Programming Languages&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes several other programming languages and their unique features.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/02/25/notes-on-prolog/&quot;&gt;Notes on Prolog&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes Prolog, a highly declarative language. Useful for verification of proofs.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;The &lt;a href=&quot;http://htdp.org&quot;&gt;HtDP&lt;/a&gt; book uses the dialects &amp;ldquo;Beginning Student&amp;rdquo;, &amp;ldquo;Intermediate Student&amp;rdquo;, and &amp;ldquo;Advanced Student&amp;rdquo;. These sublanguages restrict the use of certain language features (such as using functions as objects) and can provide better error messages (which avoid mentioning advanced features not supported by the sublanguage).&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;It is possible to import modules directly from the PLaneT repository, which will automatically download and install the module if it isn&amp;rsquo;t already present. Neat!&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Racket&amp;rsquo;s GUI layer has apparently been redone a couple of times. Originally it was based on wxWidgets. Later it was rewritten to about 200,000 lines of C++ glue to Xt, Win32, and Carbon. Then in Racket 5.1 it was replaced with about 80,000 lines of Racket glue to Gtk, Win32, Cocoa, Cairo, and Pango. That&amp;rsquo;s a 60% reduction in code! More details on the &lt;a href=&quot;http://blog.racket-lang.org/2010/12/racket-version-5.html&quot;&gt;Racket blog&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Notes on Prolog</title>
@@ -837,6 +930,13 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/03/01/notes-on-racket/&quot;&gt;Notes on Racket&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes Racket, a dialect of Lisp with batteries included.&lt;/em&gt;&lt;br/&gt;
+&lt;em&gt;Useful for implementing other languages and creating cross-platform GUI programs.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2013/01/29/unique-features-of-various-programming-languages/&quot;&gt;Unique Features of Various Programming Languages&lt;/a&gt;
 
 &lt;ul&gt;
@@ -1201,6 +1301,20 @@ Count me in!&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Visualizes some of the features discussed in this article.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/03/01/notes-on-racket/&quot;&gt;Notes on Racket&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes Racket, a dialect of Lisp with batteries included.&lt;/em&gt;&lt;br/&gt;
+&lt;em&gt;Useful for implementing other languages and creating cross-platform GUI programs.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/02/25/notes-on-prolog/&quot;&gt;Notes on Prolog&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes Prolog, a highly declarative language.&lt;/em&gt;&lt;br/&gt;
+&lt;em&gt;Useful for exploring and verifying proofs.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2013/02/02/learnings-from-sicp/&quot;&gt;Learnings from SICP (and Lisp)&lt;/a&gt;
 
 &lt;ul&gt;
@@ -1233,9 +1347,9 @@ Count me in!&lt;/li&gt;
 &lt;li id=&quot;fn:10&quot;&gt;
 &lt;p&gt;Want to implement Ruby&amp;rsquo;s &lt;code&gt;until&lt;/code&gt; loop or &lt;code&gt;unless&lt;/code&gt; conditional? No problem.&lt;a href=&quot;#fnref:10&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:11&quot;&gt;
-&lt;p&gt;There are more dialects of Lisp than any other language I can think of. These 3 (Common Lisp, Scheme, and Clojure) are just the most popular dialects. I&amp;rsquo;ve directly used &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; in the past, which is itself a dialect of Scheme.&lt;a href=&quot;#fnref:11&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;There are more dialects of Lisp than any other language I can think of. These 3 (Common Lisp, Scheme, and Clojure) are just the most popular dialects. I&amp;rsquo;ve directly used &lt;a href=&quot;/articles/2013/03/01/notes-on-racket/&quot;&gt;Racket&lt;/a&gt; in the past, which is itself a dialect of Scheme.&lt;a href=&quot;#fnref:11&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:12&quot;&gt;
-&lt;p&gt;Prismatic performs efficient &lt;a href=&quot;http://blog.getprismatic.com/blog/2013/1/22/the-magic-of-macros-lighting-fast-templating-in-clojurescript&quot;&gt;compile-time DOM templating&lt;/a&gt; in JavaScript using macros.&lt;a href=&quot;#fnref:12&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Prismatic performs efficient &lt;a href=&quot;http://blog.getprismatic.com/blog/2013/1/22/the-magic-of-macros-lighting-fast-templating-in-clojurescript&quot;&gt;compile-time DOM templating&lt;/a&gt; in ClojureScript using macros.&lt;a href=&quot;#fnref:12&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
