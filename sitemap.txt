@@ -17,6 +17,7 @@ http://dafoster.net/projects/
 http://dafoster.net/projects/park-place/
 http://dafoster.net/projects/website/
 http://dafoster.net/projects/website-2/
+http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
 http://dafoster.net/articles/2013/03/01/notes-on-racket/
