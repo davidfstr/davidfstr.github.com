@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DaFoster</title>
@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 03 Mar 2013 23:55:43 -0800</pubDate>
-    <lastBuildDate>Sun, 03 Mar 2013 23:55:43 -0800</lastBuildDate>
+    <pubDate>Mon, 04 Mar 2013 00:14:16 -0800</pubDate>
+    <lastBuildDate>Mon, 04 Mar 2013 00:14:16 -0800</lastBuildDate>
 
     
     <item>
@@ -1810,7 +1810,7 @@ so that I can watch new anime on the bus.&lt;/li&gt;
     </item>
     
     <item>
-      <title>Comparing Writing Utensils (Why Pens&amp;nbsp;&gt;&amp;nbsp;Pencils)</title>
+      <title>Comparing Writing Utensils</title>
       <link>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/</link>
       <pubDate>Fri, 17 Sep 2010 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils</guid>
