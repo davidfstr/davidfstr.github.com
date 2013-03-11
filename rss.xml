@@ -6,9 +6,92 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 04 Mar 2013 00:33:52 -0800</pubDate>
-    <lastBuildDate>Mon, 04 Mar 2013 00:33:52 -0800</lastBuildDate>
+    <pubDate>Sun, 10 Mar 2013 18:47:36 -0700</pubDate>
+    <lastBuildDate>Sun, 10 Mar 2013 18:47:36 -0700</lastBuildDate>
 
+    
+    <item>
+      <title>Killer apps for software platforms</title>
+      <link>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/</link>
+      <pubDate>Sun, 10 Mar 2013 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</guid>
+      <description>&lt;p&gt;A &lt;em&gt;killer app&lt;/em&gt; is any product that is so desirable that it fuels the sale/adoption of a larger technology that the product depends on.&lt;/p&gt;
+
+&lt;p&gt;The gaming industry has been aware of the power of killer apps for a while, and often seeks to create launch titles for their new gaming systems that are killer apps. Microsoft, for example, deliberately created the first Halo game at same time as their Xbox console. And Nintendo has repeatedly introduced new Mario titles with its new consoles.&lt;/p&gt;
+
+&lt;!-- Similarly, some of the classic examples of killer apps were the first entrants in new software categories: word processors (WordStar) and spreadsheets (VisiCalc and Lotus 1-2-3). --&gt;
+
+
+&lt;p&gt;However what may not be so obvious is that killer apps exist for learning new software platforms as well, such as for APIs, SDKs, and programming languages.&lt;/p&gt;
+
+&lt;p&gt;Learning a new platform (along with the associated tools and ecosystem) takes a large investment of &lt;em&gt;time&lt;/em&gt;, and so there is a similar barrier to adoption as, say, the monetary cost of buying a new game console.&lt;/p&gt;
+
+&lt;p&gt;I think the platform-builders in the software industry could learn from the gaming industry and strategically introduce killer apps alongside new platform offerings.  I can think of no prior case where this was done deliberately (see the Appendix below), so I think our industry (i.e. software) is really missing out.&lt;/p&gt;
+
+&lt;h3&gt;Appendix&lt;/h3&gt;
+
+&lt;h4&gt;Examples for Programming Languages&lt;/h4&gt;
+
+&lt;p&gt;Killer apps for languages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby on Rails &amp;ndash;&gt; &lt;strong&gt;Ruby&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Django &amp;ndash;&gt; &lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Emacs &amp;ndash;&gt; &lt;strong&gt;Lisp&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Killer ecosystems for languages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iPhone &amp;ndash;&gt; &lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Android &amp;ndash;&gt; &lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;embedded scripting in games&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;Lua&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Killer features for languages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;interface with OS natively&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;C&lt;/strong&gt;, &lt;strong&gt;Objective-C&lt;/strong&gt; (OS X)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;garbage collection&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;hack together a deployable dynamic website fast&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;PHP&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;general-purpose scripting&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;interprocess scripting on OS X&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;AppleScript&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Other Software Examples&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GitHub &amp;ndash;&gt; &lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Outlook &amp;ndash;&gt; &lt;strong&gt;Windows&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/&quot;&gt;Programming is Fun. But What Matters is Solving a Real Problem.&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;More thoughts on business considerations as applied to software.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;More information about the adoption of Lua in the gaming industry on StackOverflow: &lt;a href=&quot;http://stackoverflow.com/questions/38338/why-is-lua-considered-a-game-language&quot;&gt;Why is Lua considered a game language?&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Although Microsoft has finally created a version of Outlook for the Mac, it is buggy and missing a number of advanced features of the Windows version. Thus two of my colleagues &lt;!-- Neeraj and Dee --&gt; who do a lot of planning run Outlook specifically on Windows despite the workplace being otherwise Mac-oriented.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Notes on Racket (PLT-Scheme)</title>
