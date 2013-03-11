@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-03-10T18:47:36-07:00</updated>
+ <updated>2013-03-10T19:23:28-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -22,7 +22,7 @@
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;A &lt;em&gt;killer app&lt;/em&gt; is any product that is so desirable that it fuels the sale/adoption of a larger technology that the product depends on.&lt;/p&gt;
 
 &lt;p&gt;The gaming industry has been aware of the power of killer apps for a while, and often seeks to create launch titles for their new gaming systems that are killer apps. Microsoft, for example, deliberately created the first Halo game at same time as their Xbox console. And Nintendo has repeatedly introduced new Mario titles with its new consoles.&lt;/p&gt;
@@ -109,7 +109,7 @@
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/03/01/notes-on-racket/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/03/01/notes-on-racket/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Generally &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; appears to be a very usable dialect of Lisp/Scheme.&lt;/p&gt;
 
 &lt;p&gt;Racket is particularly well suited for those who want to develop their own programming language (including those not based on S-expressions), given that the creators of Racket are programming language researchers. For example, a number of Racket subsets have been created to assist students who are learning Racket/Scheme via the &lt;a href=&quot;http://htdp.org&quot;&gt;How to Design Programs&lt;/a&gt; book.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; The Arc language by Paul Graham is also implemented in the Racket environment.&lt;/p&gt;
@@ -206,7 +206,7 @@
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/25/notes-on-prolog/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/02/25/notes-on-prolog/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;What is Prolog?&lt;/h2&gt;
 
 &lt;p&gt;Prolog is a declarative programming language that, given a list of axioms and a list of implication rules, can deduce the truth (or falsehood) of a logical statement.&lt;/p&gt;
@@ -410,7 +410,7 @@ printfile(Filename, Text) :-
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Here&amp;rsquo;s an interactive chart showing high-level properties of various programming languages.&lt;br/&gt;
 You can filter the chart to only show the properties that your favorite language supports.&lt;/p&gt;
 
@@ -426,7 +426,7 @@ You can filter the chart to only show the properties that your favorite language
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;It has been just over two years since RDiscount 1.6.8 (the previous version) was posted.&lt;br/&gt;
 As the new maintainer, I intend to provide updates a bit more frequently. :&amp;ndash;)&lt;/p&gt;
 
@@ -500,7 +500,7 @@ As the new maintainer, I intend to provide updates a bit more frequently. :&amp;
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/02/learnings-from-sicp/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/02/02/learnings-from-sicp/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/2013/sicp_cover.jpg&quot;
   alt=&quot;Cover of The Structure and Interpretation of Computer Programs&quot;
   style=&quot;float: right;&quot;
@@ -801,7 +801,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;blockquote&gt;
   A language that doesn't affect the way you think about programming, is not worth knowing.&lt;br/&gt;
   &lt;br/&gt;
@@ -1191,7 +1191,7 @@ Count me in!&lt;/li&gt;
    
      <category term="Business"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
 Tech about things he wished he knew before working in the the software
 industry. I have found his advice to be very useful at various points during
@@ -1426,7 +1426,7 @@ Stable environments offer little opportunity.&lt;/li&gt;
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order that results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
 
 &lt;p&gt;However I have realized programming is merely an activity. It is a &lt;em&gt;means&lt;/em&gt;, not an &lt;em&gt;end&lt;/em&gt;. My work is not inherently valuable because I have created a piece of software. Rather it is because I have created software &lt;em&gt;that solves somebody&amp;rsquo;s problem&lt;/em&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
@@ -1459,7 +1459,7 @@ Stable environments offer little opportunity.&lt;/li&gt;
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;And this is my first post using the new system. Articles are a lot easier to
 write, so I will be posting more frequently.&lt;/p&gt;
 
@@ -1491,7 +1491,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;em&gt;&lt;b&gt;TLDR:&lt;/b&gt; Drupal is overly complex for a personal blog. It is hard to maintain. Simple static site generators are easier to work with in the long term.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;My portfolio website was written during college using hand-coded HTML and used server-side includes to bring in common navigation.&lt;/p&gt;
@@ -1555,7 +1555,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;The old Retrospect 6.0&lt;/h2&gt;
 
 &lt;p&gt;In the past I have used Retrospect 6.0 to backup my Macs, since it was one of
@@ -1631,7 +1631,7 @@ the most, when your hard drive is likely to fail.&lt;/p&gt;
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;It occurs to me that anime has been an important driver for improving my programming abilities.&lt;/p&gt;
 
 &lt;p&gt;For example:&lt;/p&gt;
@@ -1676,7 +1676,7 @@ so that I can watch new anime on the bus.&lt;/li&gt;
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;My experience using various kinds of writing utensils in school&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;i&gt;&amp;gt; = &amp;ldquo;is better than&amp;rdquo;&lt;/i&gt;&lt;/p&gt;
@@ -1788,7 +1788,7 @@ comes in handy&lt;/li&gt;
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I recently upgraded from an iPod Touch to an iPhone 3GS. I hate contracts, so I
 bought the 3GS off-contract from a seller on Craigslist. (And I timed my
 purchase to coincide with the release of the iPhone 4, so lots of people were
