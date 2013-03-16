@@ -20,6 +20,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/
 http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/
 http://dafoster.net/articles/2013/03/01/notes-on-racket/
 http://dafoster.net/articles/2013/02/25/notes-on-prolog/

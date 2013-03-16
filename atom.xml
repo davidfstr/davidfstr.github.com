@@ -4,13 +4,118 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-03-10T19:23:28-07:00</updated>
+ <updated>2013-03-16T16:18:52-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</id>
+   <title>Introducing p4status: A status command for Perforce</title>
+   <published>2013-03-16T00:00:00-07:00</published>
+   <updated>2013-03-16T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;strong&gt;p4status&lt;/strong&gt; works like &lt;code&gt;git status&lt;/code&gt; (or &lt;code&gt;svn status&lt;/code&gt;), but works in Perforce.&lt;/p&gt;
+
+&lt;p&gt;It will list changelist files and locally modified files that haven&amp;rsquo;t been added to any changelist (including unadded files) in a readable format.&lt;/p&gt;
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Note
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        The 2012 version of Perforce has an official
+        &lt;b&gt;p4 status&lt;/b&gt; command. However this command is only available if 
+        your corporate Perforce server has been upgraded to 2012. If your 
+        company, like mine, has not upgraded their server, this script will 
+        make your life easier.
+    &lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;Example&lt;/h3&gt;
+
+&lt;pre&gt;
+[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
+# On changelist 154055
+# 
+# Changes to be committed in changelist default:
+#   (use &quot;p4 revert &lt;file&gt;...&quot; to discard changes in working directory)
+# 
+#       deleted:    server/apps/setupfx/splunkd/default/extract.conf
+# 
+# Changes to be committed in changelist 154076:
+#   (use &quot;p4 revert &lt;file&gt;...&quot; to discard changes in working directory)
+# 
+#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW.conf
+#       modified:   server/apps/setupfx/splunkd/default/inputs.conf
+# 
+# Changes not staged for commit:
+#   (use &quot;p4 add/edit/delete &lt;file&gt;...&quot; to update what will be committed)
+#   (use &quot;p4 sync -f &lt;file&gt;...&quot; to discard changes in working directory)
+# 
+#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW2.conf
+# 
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Installation&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download to your local &lt;code&gt;bin&lt;/code&gt; directory:
+&lt;a href=&quot;https://github.com/davidfstr/dotfiles/blob/master/bin/p4status&quot;&gt;https://github.com/davidfstr/dotfiles/blob/master/bin/p4status&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mark as executable with &lt;code&gt;chmod a+x p4status&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Usage&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cd&lt;/code&gt; to the primary directory that you&amp;rsquo;ll be working under.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;p4status&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Limitations&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Only detects unstaged files under the directory in which the command is run. Therefore it is best to reserve a terminal window that is &lt;code&gt;cd&lt;/code&gt;-ed to the correct place where this command can be run safely.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This command is too slow to run from the root of very large branches.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Alternatives&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use the excellent Git-to-Perforce bridge, &lt;a href=&quot;http://git-scm.com/docs/git-p4&quot;&gt;git-p4&lt;/a&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;This allows you to work with your Perforce repository as if it were a Git repository. And you can use Git&amp;rsquo;s very fast &lt;code&gt;git status&lt;/code&gt; command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Convince your Perforce server administrator to upgrade to the 2012 version. This may take some time, depending on the size of your company.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Projects&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/dotfiles&quot;&gt;dotfiles&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;My command-line shortcuts, including several for working with Git, particularly in an OS X environment.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <id>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</id>
