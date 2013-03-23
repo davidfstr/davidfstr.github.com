@@ -4,13 +4,168 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-03-16T16:18:52-07:00</updated>
+ <updated>2013-03-23T15:25:48-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
    
  </author>
 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</id>
+   <title>Migrating from BBEdit to Sublime Text</title>
+   <published>2013-03-22T00:00:00-07:00</published>
+   <updated>2013-03-22T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=atom&utm_medium=feed&utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I&amp;rsquo;ve been using &lt;a href=&quot;http://www.barebones.com/products/bbedit/index.html&quot;&gt;BBEdit&lt;/a&gt; as my primary text editor on the Mac for over 10 years. It is an extremely capable and mature editor with just about all the bells and whistles you can imagine. However the use of Sublime Text has been spreading throughout my workplace at Splunk&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so I decided I&amp;rsquo;d give it a try.&lt;/p&gt;
+
+&lt;p&gt;My initial impression was &amp;ldquo;BBEdit can do everything that Sublime can, what&amp;rsquo;s the deal?&amp;rdquo; But after using Sublime full-time for about a week, I&amp;rsquo;m starting to come around to it.&lt;/p&gt;
+
+&lt;p&gt;Although it is true that both have comparable feature sets, Sublime&amp;rsquo;s implementation feels more polished &amp;ndash; not just eyecandy, but actually better usability.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Incremental find
+
+&lt;ul&gt;
+&lt;li&gt;As you start typing the substring you want to find, it automatically starts searching within the current document. Frequently you don&amp;rsquo;t have to finish typing the substring in order to get the result you want.&lt;/li&gt;
+&lt;li&gt;This saves a surprising amount of time compared to BBEdit where you have to finish providing a full substring (that you think is long enough) before kicking off the search.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Edit:&lt;/strong&gt; &lt;em&gt;This is actually available in BBEdit under the &amp;ldquo;Live Search&amp;rdquo; command, but this is not part of the default Find experience and not advertised.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;View a file without &amp;ldquo;opening&amp;rdquo; it (as a persistent tab)
+
+&lt;ul&gt;
+&lt;li&gt;Sublime keeps files of current interest available as tabs in the main window. If you just click on a file, it is shown in the editor but no tab is created by default. If you decide this is an important file, you can double-click on the file name to create an actual tab for it, which makes the file easy to return to.
+
+&lt;ul&gt;
+&lt;li&gt;Most &amp;ldquo;Goto X&amp;rdquo; actions in Sublime both show a file and create an actual tab for it, which usually is what you want.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If you click on any file at all in BBEdit, it is &amp;ldquo;opened&amp;rdquo; and added to the &amp;ldquo;Currently Open Documents&amp;rdquo; section, which is analogous to Sublime&amp;rsquo;s set of open tabs. This can result in the &amp;ldquo;Currently Open Documents&amp;rdquo; section getting rather cluttered when rummaging around for a particular document, making it less useful.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Minidocument view on the right side of an open file.
+
+&lt;ul&gt;
+&lt;li&gt;This makes it easier to get a bird&amp;rsquo;s eye view of where you are in a long function or file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Additionally, Sublime&amp;rsquo;s marketing has some a much better job of exposing advanced features that turn out to be useful in daily use.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Goto Anything&amp;rdquo;
+
+&lt;ul&gt;
+&lt;li&gt;BBEdit has similar &amp;ldquo;Open File by Name&amp;rdquo;, but it&amp;rsquo;s slower, doesn&amp;rsquo;t have as expressive syntax, and isn&amp;rsquo;t incremental.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Open Folder&amp;rdquo;
+
+&lt;ul&gt;
+&lt;li&gt;This is equivalent to a BBEdit project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Plugins!
+
+&lt;ul&gt;
+&lt;li&gt;This is barely advertised on the BBEdit side but hugely promoted on the Sublime side. Thus lots of people are writing (publicly available) plugins for Sublime but not so many for BBEdit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Some features in Sublime are named more obviously:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Convert Indentation to Spaces. Convert Indentation to Tabs.
+
+&lt;ul&gt;
+&lt;li&gt;BBEdit calls these operations &amp;ldquo;Detab&amp;rdquo; and &amp;ldquo;Entab&amp;rdquo; respectively.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Some features in Sublime are easier to access:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Change the displayed tab width.
+
+&lt;ul&gt;
+&lt;li&gt;To change this for a single file in BBEdit, you have to go to &amp;ldquo;Show Fonts&amp;rdquo;, which I find completely nonintuitive.&lt;/li&gt;
+&lt;li&gt;BBEdit also allows you to change the default tab spacing &lt;em&gt;per source language&lt;/em&gt; in its preferences, which makes sense given that different languages have different conventions.&lt;/li&gt;
+&lt;li&gt;However BBEdit does not permit you to change the tab width on a per project/folder basis, which is usually what you want when working on someone else&amp;rsquo;s open source project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Access the function list. (&amp;ldquo;Goto Symbol&amp;hellip;&amp;rdquo;)
+
+&lt;ul&gt;
+&lt;li&gt;This can be done in Sublime entirely through the keyboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Sublime also has a few features lacking in BBEdit:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cross-platform support
+
+&lt;ul&gt;
+&lt;li&gt;This is huge when working in a mixed OS environment. You can use the same editor everywhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;BBEdit still is better in a few areas:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Can edit preferences in a GUI without mucking about in text files.&lt;/li&gt;
+&lt;li&gt;Can quickly split a single file vertically to edit distant sections simultaneously.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Zap Gremlins&amp;hellip;&amp;rdquo;
+
+&lt;ul&gt;
+&lt;li&gt;Deletes or replaces ASCII control characters and other nasties. Very useful for text pasted from web browsers, Word, or other less-than-pure sources of text.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Process Duplicate Lines&amp;hellip;&amp;rdquo;
+
+&lt;ul&gt;
+&lt;li&gt;Eliminate duplicate lines in a file. This is often useful after performing a series of text transformations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Process Lines Containing&amp;hellip;&amp;rdquo;
+
+&lt;ul&gt;
+&lt;li&gt;Delete (or preserve) all lines containing a subexpression. Exactly like the &lt;code&gt;grep&lt;/code&gt; command-line tool.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Can edit files on an FTP/SFTP server directly.&lt;/li&gt;
+&lt;li&gt;Customer support I&amp;rsquo;ve heard is top-notch.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I think I&amp;rsquo;m going to continue using Sublime Text. Featurewise it&amp;rsquo;s about the same as BBEdit, but the cross-platform support&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, active plugin community, and general polish &lt;!-- &amp; attention to usability --&gt; are winning me over.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Splunk makes tools for analyzing large time-series datasets, such as log files. For details see the 3 minute &lt;a href=&quot;http://www.splunk.com/view/SP-CAAAHG6&quot;&gt;Splunk Product Overview&lt;/a&gt;. I work on the Developer Platform, making it easy for other developers to build neat things on top of the Splunk core.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;It is extremely useful to be able to use the same full-featured text editor on any platform I use. I currently maintain a few open source projects that require testing, debugging, and development on multiple platforms (notably the &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; Markdown processor) and it&amp;rsquo;s nice being able to use the same editor everywhere.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  <entry>
    <id>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</id>

@@ -15,11 +15,13 @@ http://dafoster.net/projects/decomp4/
 http://dafoster.net/projects/handbrake-subtitle-support/
 http://dafoster.net/projects/
 http://dafoster.net/projects/park-place/
+http://dafoster.net/projects/rdiscount/
 http://dafoster.net/projects/website/
 http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/
 http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/
 http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/
 http://dafoster.net/articles/2013/03/01/notes-on-racket/

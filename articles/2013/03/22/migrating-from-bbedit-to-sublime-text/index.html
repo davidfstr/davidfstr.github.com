@@ -5,7 +5,7 @@
     <!-- IE 8+: Hide the Compatibility View button. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Notes on Racket (PLT-Scheme) | DaFoster</title>
+    <title>Migrating from BBEdit to Sublime Text | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -289,9 +289,9 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Notes on Racket (PLT-Scheme)</h1>
+    <h1>Migrating from BBEdit to Sublime Text</h1>
     <div class="post-metadata">
-      01 Mar 2013 &ndash; Filed under: 
+      22 Mar 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -300,88 +300,146 @@
       </span>
     </div>
     
-    <p>Generally <a href="http://racket-lang.org">Racket</a> appears to be a very usable dialect of Lisp/Scheme.</p>
+    <p>I&rsquo;ve been using <a href="http://www.barebones.com/products/bbedit/index.html">BBEdit</a> as my primary text editor on the Mac for over 10 years. It is an extremely capable and mature editor with just about all the bells and whistles you can imagine. However the use of Sublime Text has been spreading throughout my workplace at Splunk<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> so I decided I&rsquo;d give it a try.</p>
 
-<p>Racket is particularly well suited for those who want to develop their own programming language (including those not based on S-expressions), given that the creators of Racket are programming language researchers. For example, a number of Racket subsets have been created to assist students who are learning Racket/Scheme via the <a href="http://htdp.org">How to Design Programs</a> book.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> The Arc language by Paul Graham is also implemented in the Racket environment.</p>
+<p>My initial impression was &ldquo;BBEdit can do everything that Sublime can, what&rsquo;s the deal?&rdquo; But after using Sublime full-time for about a week, I&rsquo;m starting to come around to it.</p>
 
-<p>Racket&rsquo;s developers wanted to make sure it was a <em>practical</em> language. To that end, there is a bundled IDE (DrRacket) with syntax highlighting, parentheses matching, and integrated debugging. There is also a package management system (PLaneT).<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> And built-in libraries for working with several real-world systems, such as GUIs, networking, databases, JSON/XML, etc. A cross-platform executable can easily be built. And everything is well documented.</p>
-
-<p>Graphics and GUI programs are supported better than the average language. For example pictures are rendered natively in the Racket REPL, including their use within expressions. And the built-in Racket GUI library is fairly decent.</p>
-
-<p>The combination of a decent built-in GUI library along with the ability to compile cross-platform executables makes Racket useful for writing cross-platform GUI applications.</p>
-
-<h2>Racket&rsquo;s GUI library (RacketGUI)</h2>
-
-<p>The original version of Racket&rsquo;s GUI library was implemented on top of wxWidgets.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> Thus some of wxWidget&rsquo;s poor design decisions leak through:</p>
+<p>Although it is true that both have comparable feature sets, Sublime&rsquo;s implementation feels more polished &ndash; not just eyecandy, but actually better usability.</p>
 
 <ul>
-<li>A visual component is called a &ldquo;window&rdquo;, not a control.</li>
-<li>Visual components must be associated with their parent container at creation time.</li>
-</ul>
-
-
-<p>However, some fixes were made too:</p>
+<li>Incremental find
 
 <ul>
-<li>There is no notion of a wxWidgets &ldquo;sizer&rdquo; as distinct from a &ldquo;container window&rdquo;.
-
-<ul>
-<li>This simplifies the mental model considerably, since it is no longer necessary to keep track of both a &ldquo;window&rdquo; hierarchy and a sizer hierarchy.</li>
-<li>Instead, a wxWidgets &ldquo;sizer&rdquo; is represented as a lightweight RacketGUI &ldquo;pane&rdquo;, which can be nested naturally inside containers along with other components.</li>
+<li>As you start typing the substring you want to find, it automatically starts searching within the current document. Frequently you don&rsquo;t have to finish typing the substring in order to get the result you want.</li>
+<li>This saves a surprising amount of time compared to BBEdit where you have to finish providing a full substring (that you think is long enough) before kicking off the search.</li>
+<li><strong>Edit:</strong> <em>This is actually available in BBEdit under the &ldquo;Live Search&rdquo; command, but this is not part of the default Find experience and not advertised.</em></li>
 </ul>
 </li>
-<li>The event handling loop is managed in the background automatically.</li>
-</ul>
-
-
-<p>Sadly, RacketGUI lacks some advanced controls I often want:</p>
+<li>View a file without &ldquo;opening&rdquo; it (as a persistent tab)
 
 <ul>
-<li>trees</li>
-<li>tables containing controls in cells
+<li>Sublime keeps files of current interest available as tabs in the main window. If you just click on a file, it is shown in the editor but no tab is created by default. If you decide this is an important file, you can double-click on the file name to create an actual tab for it, which makes the file easy to return to.
 
 <ul>
-<li>However the <code>list-box%</code> control supports cells that only contain text.</li>
+<li>Most &ldquo;Goto X&rdquo; actions in Sublime both show a file and create an actual tab for it, which usually is what you want.</li>
 </ul>
 </li>
-<li>tree-tables</li>
-</ul>
-
-
-<p>This is not surprising since these controls are hard to implement and are not well-supported by the original underlying wxWidgets library:</p>
-
-<ul>
-<li>The wxWidgets tree interface (wxTreeCtrl) is annoying for dynamically generated trees.</li>
-<li>Tables (wxListCtrl) only support text and image cells, not controls as cells.</li>
-</ul>
-
-
-<h3><em>Related Articles</em></h3>
-
-<ul>
-<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
-
-<ul>
-<li><em>Describes several other programming languages and their unique features.</em></li>
+<li>If you click on any file at all in BBEdit, it is &ldquo;opened&rdquo; and added to the &ldquo;Currently Open Documents&rdquo; section, which is analogous to Sublime&rsquo;s set of open tabs. This can result in the &ldquo;Currently Open Documents&rdquo; section getting rather cluttered when rummaging around for a particular document, making it less useful.</li>
 </ul>
 </li>
-<li><a href="/articles/2013/02/25/notes-on-prolog/">Notes on Prolog</a>
+<li>Minidocument view on the right side of an open file.
 
 <ul>
-<li><em>Describes Prolog, a highly declarative language. Useful for verification of proofs.</em></li>
+<li>This makes it easier to get a bird&rsquo;s eye view of where you are in a long function or file.</li>
 </ul>
 </li>
 </ul>
 
+
+<p>Additionally, Sublime&rsquo;s marketing has some a much better job of exposing advanced features that turn out to be useful in daily use.</p>
+
+<ul>
+<li>&ldquo;Goto Anything&rdquo;
+
+<ul>
+<li>BBEdit has similar &ldquo;Open File by Name&rdquo;, but it&rsquo;s slower, doesn&rsquo;t have as expressive syntax, and isn&rsquo;t incremental.</li>
+</ul>
+</li>
+<li>&ldquo;Open Folder&rdquo;
+
+<ul>
+<li>This is equivalent to a BBEdit project.</li>
+</ul>
+</li>
+<li>Plugins!
+
+<ul>
+<li>This is barely advertised on the BBEdit side but hugely promoted on the Sublime side. Thus lots of people are writing (publicly available) plugins for Sublime but not so many for BBEdit.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Some features in Sublime are named more obviously:</p>
+
+<ul>
+<li>Convert Indentation to Spaces. Convert Indentation to Tabs.
+
+<ul>
+<li>BBEdit calls these operations &ldquo;Detab&rdquo; and &ldquo;Entab&rdquo; respectively.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Some features in Sublime are easier to access:</p>
+
+<ul>
+<li>Change the displayed tab width.
+
+<ul>
+<li>To change this for a single file in BBEdit, you have to go to &ldquo;Show Fonts&rdquo;, which I find completely nonintuitive.</li>
+<li>BBEdit also allows you to change the default tab spacing <em>per source language</em> in its preferences, which makes sense given that different languages have different conventions.</li>
+<li>However BBEdit does not permit you to change the tab width on a per project/folder basis, which is usually what you want when working on someone else&rsquo;s open source project.</li>
+</ul>
+</li>
+<li>Access the function list. (&ldquo;Goto Symbol&hellip;&rdquo;)
+
+<ul>
+<li>This can be done in Sublime entirely through the keyboard.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Sublime also has a few features lacking in BBEdit:</p>
+
+<ul>
+<li>Cross-platform support
+
+<ul>
+<li>This is huge when working in a mixed OS environment. You can use the same editor everywhere.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>BBEdit still is better in a few areas:</p>
+
+<ul>
+<li>Can edit preferences in a GUI without mucking about in text files.</li>
+<li>Can quickly split a single file vertically to edit distant sections simultaneously.</li>
+<li>&ldquo;Zap Gremlins&hellip;&rdquo;
+
+<ul>
+<li>Deletes or replaces ASCII control characters and other nasties. Very useful for text pasted from web browsers, Word, or other less-than-pure sources of text.</li>
+</ul>
+</li>
+<li>&ldquo;Process Duplicate Lines&hellip;&rdquo;
+
+<ul>
+<li>Eliminate duplicate lines in a file. This is often useful after performing a series of text transformations.</li>
+</ul>
+</li>
+<li>&ldquo;Process Lines Containing&hellip;&rdquo;
+
+<ul>
+<li>Delete (or preserve) all lines containing a subexpression. Exactly like the <code>grep</code> command-line tool.</li>
+</ul>
+</li>
+<li>Can edit files on an FTP/SFTP server directly.</li>
+<li>Customer support I&rsquo;ve heard is top-notch.</li>
+</ul>
+
+
+<p>I think I&rsquo;m going to continue using Sublime Text. Featurewise it&rsquo;s about the same as BBEdit, but the cross-platform support<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, active plugin community, and general polish <!-- & attention to usability --> are winning me over.</p>
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
-<p>The <a href="http://htdp.org">HtDP</a> book uses the dialects &ldquo;Beginning Student&rdquo;, &ldquo;Intermediate Student&rdquo;, and &ldquo;Advanced Student&rdquo;. These sublanguages restrict the use of certain language features (such as using functions as objects) and can provide better error messages (which avoid mentioning advanced features not supported by the sublanguage).<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>Splunk makes tools for analyzing large time-series datasets, such as log files. For details see the 3 minute <a href="http://www.splunk.com/view/SP-CAAAHG6">Splunk Product Overview</a>. I work on the Developer Platform, making it easy for other developers to build neat things on top of the Splunk core.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>It is possible to import modules directly from the PLaneT repository, which will automatically download and install the module if it isn&rsquo;t already present. Neat!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-<li id="fn:3">
-<p>Racket&rsquo;s GUI layer has apparently been redone a couple of times. Originally it was based on wxWidgets. Later it was rewritten to about 200,000 lines of C++ glue to Xt, Win32, and Carbon. Then in Racket 5.1 it was replaced with about 80,000 lines of Racket glue to Gtk, Win32, Cocoa, Cairo, and Pango. That&rsquo;s a 60% reduction in code! More details on the <a href="http://blog.racket-lang.org/2010/12/racket-version-5.html">Racket blog</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<p>It is extremely useful to be able to use the same full-featured text editor on any platform I use. I currently maintain a few open source projects that require testing, debugging, and development on multiple platforms (notably the <a href="/projects/rdiscount/">RDiscount</a> Markdown processor) and it&rsquo;s nice being able to use the same editor everywhere.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
@@ -446,11 +504,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/02/25/notes-on-prolog/" title="Notes on Prolog">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/" title="Introducing p4status: A status command for Perforce">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/03/10/killer-apps-for-software-platforms/" title="Killer apps for software platforms">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
@@ -462,8 +520,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'dafoster';
-    var disqus_title = 'Notes on Racket (PLT-Scheme)';
-    var disqus_url = 'http://dafoster.net/articles/2013/03/01/notes-on-racket/';
+    var disqus_title = 'Migrating from BBEdit to Sublime Text';
+    var disqus_url = 'http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/';
   
     
     /* * * DON'T EDIT BELOW THIS LINE * * */
