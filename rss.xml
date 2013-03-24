@@ -6,10 +6,10 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 24 Mar 2013 15:13:02 -0700</pubDate>
-    <lastBuildDate>Sun, 24 Mar 2013 15:13:02 -0700</lastBuildDate>
+    <pubDate>Sun, 24 Mar 2013 15:17:40 -0700</pubDate>
+    <lastBuildDate>Sun, 24 Mar 2013 15:17:40 -0700</lastBuildDate>
     <image>
-      <url>http://dafoster.net/assets/favicon.ico</url>
+      <url>http://dafoster.net/assets/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
