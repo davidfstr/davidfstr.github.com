@@ -6,13 +6,14 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 23 Mar 2013 15:25:48 -0700</pubDate>
-    <lastBuildDate>Sat, 23 Mar 2013 15:25:48 -0700</lastBuildDate>
+    <pubDate>Sun, 24 Mar 2013 13:13:34 -0700</pubDate>
+    <lastBuildDate>Sun, 24 Mar 2013 13:13:34 -0700</lastBuildDate>
 
+    
     
     <item>
       <title>Migrating from BBEdit to Sublime Text</title>
-      <link>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Fri, 22 Mar 2013 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been using &lt;a href=&quot;http://www.barebones.com/products/bbedit/index.html&quot;&gt;BBEdit&lt;/a&gt; as my primary text editor on the Mac for over 10 years. It is an extremely capable and mature editor with just about all the bells and whistles you can imagine. However the use of Sublime Text has been spreading throughout my workplace at Splunk&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so I decided I&amp;rsquo;d give it a try.&lt;/p&gt;
@@ -161,9 +162,10 @@
 </description>
     </item>
     
+    
     <item>
       <title>Introducing p4status: A status command for Perforce</title>
-      <link>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sat, 16 Mar 2013 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</guid>
       <description>&lt;p&gt;&lt;strong&gt;p4status&lt;/strong&gt; works like &lt;code&gt;git status&lt;/code&gt; (or &lt;code&gt;svn status&lt;/code&gt;), but works in Perforce.&lt;/p&gt;
@@ -262,9 +264,10 @@
 </description>
     </item>
     
+    
     <item>
       <title>Killer apps for software platforms</title>
-      <link>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sun, 10 Mar 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</guid>
       <description>&lt;p&gt;A &lt;em&gt;killer app&lt;/em&gt; is any product that is so desirable that it fuels the sale/adoption of a larger technology that the product depends on.&lt;/p&gt;
@@ -345,9 +348,10 @@
 </description>
     </item>
     
+    
     <item>
       <title>Notes on Racket (PLT-Scheme)</title>
-      <link>http://dafoster.net/articles/2013/03/01/notes-on-racket/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/03/01/notes-on-racket/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Fri, 01 Mar 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/03/01/notes-on-racket</guid>
       <description>&lt;p&gt;Generally &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; appears to be a very usable dialect of Lisp/Scheme.&lt;/p&gt;
@@ -438,9 +442,10 @@
 </description>
     </item>
     
+    
     <item>
       <title>Notes on Prolog</title>
-      <link>http://dafoster.net/articles/2013/02/25/notes-on-prolog/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/02/25/notes-on-prolog/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Mon, 25 Feb 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/02/25/notes-on-prolog</guid>
       <description>&lt;h2&gt;What is Prolog?&lt;/h2&gt;
@@ -638,9 +643,10 @@ printfile(Filename, Text) :-
 </description>
     </item>
     
+    
     <item>
       <title>Visual Guide to Programming Language Properties</title>
-      <link>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Wed, 20 Feb 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s an interactive chart showing high-level properties of various programming languages.&lt;br/&gt;
@@ -650,9 +656,10 @@ You can filter the chart to only show the properties that your favorite language
 </description>
     </item>
     
+    
     <item>
       <title>RDiscount 2.0.7 released!</title>
-      <link>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sat, 02 Feb 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released</guid>
       <description>&lt;p&gt;It has been just over two years since RDiscount 1.6.8 (the previous version) was posted.&lt;br/&gt;
@@ -720,9 +727,10 @@ As the new maintainer, I intend to provide updates a bit more frequently. :&amp;
 </description>
     </item>
     
+    
     <item>
       <title>Learnings from SICP (and Lisp)</title>
-      <link>http://dafoster.net/articles/2013/02/02/learnings-from-sicp/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/02/02/learnings-from-sicp/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sat, 02 Feb 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/02/02/learnings-from-sicp</guid>
       <description>&lt;p&gt;&lt;img src=&quot;/assets/2013/sicp_cover.jpg&quot;
@@ -1017,9 +1025,10 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 </description>
     </item>
     
+    
     <item>
       <title>Unique Features of Various Programming Languages</title>
-      <link>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Tue, 29 Jan 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages</guid>
       <description>&lt;blockquote&gt;
@@ -1401,9 +1410,10 @@ Count me in!&lt;/li&gt;
 </description>
     </item>
     
+    
     <item>
       <title>Things I Wish I Knew Before Working in Industry</title>
-      <link>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Tue, 15 Jan 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</guid>
       <description>&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
@@ -1628,9 +1638,10 @@ Stable environments offer little opportunity.&lt;/li&gt;
 </description>
     </item>
     
+    
     <item>
       <title>Programming is Fun. But What Matters is Solving a Real Problem.</title>
-      <link>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Tue, 08 Jan 2013 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</guid>
       <description>&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order that results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
@@ -1657,9 +1668,10 @@ Stable environments offer little opportunity.&lt;/li&gt;
 </description>
     </item>
     
+    
     <item>
       <title>This website is now powered by Jekyll</title>
-      <link>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Fri, 21 Dec 2012 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll</guid>
       <description>&lt;p&gt;And this is my first post using the new system. Articles are a lot easier to
@@ -1683,9 +1695,10 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
 </description>
     </item>
     
+    
     <item>
       <title>Why I no longer use Drupal</title>
-      <link>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sun, 16 Dec 2012 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal</guid>
       <description>&lt;p&gt;&lt;em&gt;&lt;b&gt;TLDR:&lt;/b&gt; Drupal is overly complex for a personal blog. It is hard to maintain. Simple static site generators are easier to work with in the long term.&lt;/em&gt;&lt;/p&gt;
@@ -1743,9 +1756,10 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
 </description>
     </item>
     
+    
     <item>
       <title>Retrospect vs. Time Machine</title>
-      <link>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sat, 13 Nov 2010 00:00:00 -0800</pubDate>
       <guid>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</guid>
       <description>&lt;h2&gt;The old Retrospect 6.0&lt;/h2&gt;
@@ -1815,9 +1829,10 @@ the most, when your hard drive is likely to fail.&lt;/p&gt;
 </description>
     </item>
     
+    
     <item>
       <title>Impact of Anime on my Programming Experience</title>
-      <link>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sat, 18 Sep 2010 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience</guid>
       <description>&lt;p&gt;It occurs to me that anime has been an important driver for improving my programming abilities.&lt;/p&gt;
@@ -1856,9 +1871,10 @@ so that I can watch new anime on the bus.&lt;/li&gt;
 </description>
     </item>
     
+    
     <item>
       <title>Comparing Writing Utensils</title>
-      <link>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Fri, 17 Sep 2010 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils</guid>
       <description>&lt;p&gt;My experience using various kinds of writing utensils in school&amp;hellip;&lt;/p&gt;
@@ -1962,9 +1978,10 @@ comes in handy&lt;/li&gt;
 </description>
     </item>
     
+    
     <item>
       <title>Comparing iPod Touch (2nd Gen) to iPhone 3GS</title>
-      <link>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/?utm_source=rss&utm_medium=feed&utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Fri, 17 Sep 2010 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs</guid>
       <description>&lt;p&gt;I recently upgraded from an iPod Touch to an iPhone 3GS. I hate contracts, so I
