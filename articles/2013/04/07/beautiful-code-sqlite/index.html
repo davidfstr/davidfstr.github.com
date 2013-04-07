@@ -5,7 +5,7 @@
     <!-- IE 8+: Hide the Compatibility View button. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Why I no longer use Drupal | DaFoster</title>
+    <title>Beautiful Code: SQLite | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -289,71 +289,219 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Why I no longer use Drupal</h1>
+    <h1>Beautiful Code: SQLite</h1>
     <div class="post-metadata">
-      16 Dec 2012 &ndash; Filed under: 
+      07 Apr 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
           <span><a href="/articles/topics/#Software">Software <sup>14</sup></a></span>
-         
-          <span><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></span>
         
       </span>
     </div>
     
-    <p><em><b>TLDR:</b> Drupal is overly complex for a personal blog. It is hard to maintain. Simple static site generators are easier to work with in the long term.</em></p>
+    <p>It has been said that you can learn a lot from reading other people&rsquo;s high-quality software. So I gave it a try this weekend by reading the SQLite source.</p>
 
-<p>My portfolio website was written during college using hand-coded HTML and used server-side includes to bring in common navigation.</p>
+<p>SQLite is a lightweight embedded database that does not require a standalone server. It is designed to be reliable, highly portable, and require minimal administration.</p>
 
-<p>Then in January 2010 I remade my site in Drupal. It gained lots of fancy features such as first-class support for project categories and project languages. You could subscribe to almost any page as a feed. There were project specific updates that could be commented on. From a feature point of view, it rocked.</p>
+<p>SQLite has some of the <a href="https://www.sqlite.org/testing.html">most rigorous testing methodology</a> I have seen in an open source project. Thus its true defect count is likely to be extremely low, making it high quality.</p>
 
-<p>But some problems became apparent over time:</p>
+<p>Such a high quality product probably contains useful patterns and techniques, some of which I could reuse in my own programs. So I decided to dive into the SQLite source and see what gems I could pull out. Here are my notes:</p>
+
+<h2>Architecture &amp; Design</h2>
+
+<p>I started by reading the high-level design documentation. SQLite has exceptionally good documentation of this type.</p>
 
 <ul>
-<li>Security updates were frequent and difficult to apply correctly.</li>
-<li>I didn&rsquo;t like writing articles on the site because I couldn&rsquo;t use simple markup formats such as Markdown.
+<li><p><a href="http://www.sqlite.org/docs.html">Documentation Index</a> &ndash; <em>Root of all documentation.</em></p></li>
+<li><p><a href="http://www.sqlite.org/arch.html">Architecture Documentation</a> &ndash; <em>Excellent overview of the architecture.</em></p></li>
+<li><p>Query Planner Documentation &ndash; <em>Describes how prepared statements are executed.</em></p>
 
 <ul>
-<li>Drupal has no good editor plugins for markup languages.</li>
-<li>And its visual HTML editor generates messy HTML.</li>
+<li><a href="http://www.sqlite.org/vdbe.html">The Virtual Database Engine</a></li>
+<li><a href="http://www.sqlite.org/opcode.html">Virtual Machine Opcodes</a></li>
 </ul>
 </li>
-<li>The theme I used for the site was complex and hard to modify.
+</ul>
+
+
+<h3>Internal Tools of Note</h3>
+
+<h4><a href="http://www.fossil-scm.org/index.html/doc/trunk/www/index.wiki">Fossil</a></h4>
+
+<p>Distributed version control system used by SQLite. I&rsquo;ve never heard of this. Beyond version control also provides bug tracking, a wiki, and a blog.</p>
+
+<h4><a href="http://www.sqlite.org/src/doc/trunk/doc/lemon.html">Lemon</a></h4>
+
+<p>A custom parser generator used by SQLite. Alternative to the old bison/yacc combination which has some improvements:</p>
 
 <ul>
-<li>And the CSS often interfered with my article markup, necessitating me to drop into HTML when editing certain articles.</li>
+<li>Syntax that is less error-prone.</li>
+<li>Fast. Reentrant. Thread-safe.</li>
+<li>Easier to write parsers that avoid leaking memory upon error conditions.
+
+<ul>
+<li>Important since SQLite is serious about handling out of memory conditions.</li>
 </ul>
 </li>
-<li>There was no sane way to test structural changes to the site locally and then automatically deploy them to production.
+</ul>
+
+
+<h4><a href="http://www.sqlite.org/vfs.html">VFS</a></h4>
+
+<p>OS abstraction layer. Despite the acronym (Virtual Filesystem), it is more than just filesystem manipulation routines.</p>
+
+<h2>Implementation Notes</h2>
+
+<h3>table.c (sqlite3_get_table)</h3>
 
 <ul>
-<li>Normally this would be done by keeping the site structure in the filesystem and all user content in a database. This allows the filesystem contents to be easily deployed using <code>git push</code>, <code>rsync</code>, or similar techniques.</li>
-<li>Drupal, by contrast, keeps its site structure in both the filesystem <em>and</em> in the database, along with user-generated content. Updating only the parts of the database related to site structure is cumbersome and error-prone.</li>
-<li>Thus, I couldn&rsquo;t really change the site structure after my initial deployment to production.</li>
+<li><p>This is the main entry point into the SQLite API.
+It executes a SQL statement and returns the result.</p></li>
+<li><p>First impression is that most methods have a lot of malloc-failed handling. And indeed if you read the testing procedures, they involve causing random malloc errors throughout the code, so there has to be handling for such errors.</p></li>
+<li><p>Hungarion notation is used as well. Ick. But at least it is consistent.</p>
+
+<ul>
+<li>z = string</li>
+<li>a = array</li>
+<li>p = object pointer</li>
+<li>n = int</li>
+<li>x = function pointer</li>
 </ul>
 </li>
-<li>Nothing was in revision control, which made me nervous.</li>
-<li>I had to hack the Drupal core to get my contact form to work with my web hosting provider.</li>
-<li>Most of the features of the site weren&rsquo;t being used by readers.</li>
-</ul>
-
-
-<p>So now I am rewriting my site yet again in straight HTML (via a simple static site generator) and outsourcing all user generated content (like comments) to third party service providers.</p>
-
-<p>Benefits:</p>
+<li><p><code>/* Assume 32-bit assignment is atomic */</code></p>
 
 <ul>
-<li>Simple simple simple.</li>
-<li>Automatic security. The web server just serves static files.</li>
-<li>Automatic scalability, for the same reason.</li>
-<li>Simple authoring in Markdown with powerful client-side text editors.</li>
-<li>Instant deployment with <code>git push</code>.</li>
-<li>Everything in revision control.</li>
-<li>I can use any web hosting provider. Hell, I can just use <a href="http://pages.github.com">GitHub Pages</a> for free.</li>
-<li>Ultimate control over the site theme and CSS. I can fix problems myself.</li>
+<li>Interesting that such a property would be <em>consciously</em> relied on.</li>
+</ul>
+</li>
 </ul>
 
+
+<h3>legacy.c (sqlite3_exec)</h3>
+
+<ul>
+<li><p>This is the legacy entry point into the SQLite API.
+It still exists and is actually used internally by the currently
+recommended API entry point (<code>sqlite3_get_table</code>).</p></li>
+<li><p>There are some odd syntactic conventions.</p>
+
+<ul>
+<li>Multi-line comments use double-stars to prefix middle lines.</li>
+<li>No space before closing <code>{</code>.</li>
+<li>Spaces inside outer parentheses for most statements
+(<code>if</code>, <code>while</code>, <code>assert</code>) but not all (<code>for</code>).</li>
+</ul>
+</li>
+<li><p>It appears that functions that begin with <code>sqlite3_</code> are public,
+whereas functions starting with <code>sqlite3</code> (no underscore) are private.</p></li>
+</ul>
+
+
+<h3>vdbeapi.c (sqlite3_step)</h3>
+
+<ul>
+<li><p>This function executes one or more instructions from the instruction list
+inside of a prepared SQL statement. The instruction is executed inside
+of the SQLite virtual database engine (VDBE), which is a virtual machine.</p>
+
+<ul>
+<li>It has a lot of support code for EXPLAIN and profiling callbacks.</li>
+<li>The meat of instruction execution is done by <code>sqlite3VdbeExec</code>.</li>
+</ul>
+</li>
+<li><p>Contains own mutex implementation. (<code>sqlite3_mutex_enter</code>)</p></li>
+<li><p>Deals with a somewhat crazy circumstance: If the database schema changes
+in the middle of executing a (prepared) SQL statement, the statement is
+reprepared and rerun automatically.</p></li>
+<li><p>Generally there is good commenting for weird and backward-compatibility
+behaviors.</p></li>
+<li><p>Practically every function can fail. They all return an integer error code.</p>
+
+<ul>
+<li>Some functions that operate on an in-out data structure will
+additionally store an error code (and message) in that structure.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>vdbe.c (sqlite3VdbeExec)</h3>
+
+<ul>
+<li>This function executes as many instructions as possible from a prepared
+SQL statement. It contains the monsterous switch statement that
+enumerates every possible opcode that can be executed.
+
+<ul>
+<li>Related reference documentation: <a href="http://www.sqlite.org/opcode.html">Virtual Machine Opcodes</a></li>
+<li>Related guide documentation: <a href="http://www.sqlite.org/vdbe.html">The Virtual Database Engine</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Future</h3>
+
+<ul>
+<li>If I were to continue reading into the implementation,
+I think the opcodes that manipulate B-trees would likely be
+the most interesting ones to look at.</li>
+</ul>
+
+
+<h2>Summary</h2>
+
+<p>This is a very high-quality C library.</p>
+
+<ul>
+<li>Internal commenting is good.</li>
+<li>Consistent syntax is used, despite being a bit odd IMHO.</li>
+<li>The guide-level documentation is wonderful.</li>
+<li>Error handling is air-tight and enforced by crazy amounts of test code.</li>
+<li>The architecture provides good separation of roles and is easy to understand.</li>
+<li>Once again, the documentation is excellent.</li>
+</ul>
+
+
+<p>And its design requirements show through in the implementation:</p>
+
+<p><strong>Reliable</strong></p>
+
+<ul>
+<li>There is more than 1000 times as much test code as there is product code.</li>
+<li>100% branch coverage. That&rsquo;s insanely good.</li>
+<li>Very crazy error classes such as out of memory errors, crashes, integer overflow are all considered and tested for.
+
+<ul>
+<li>Malloc checks are prevalent and handled.</li>
+<li>Transactions, journaling, and related testing deal with crashes.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>Portable</strong></p>
+
+<ul>
+<li>The chosen language is C, which is highly portable when written in the appropriate style.</li>
+<li>The so-called VFS layer provides an OS abstraction. Thus porting to an OS mainly just involves writing a new implementation of this abstraction.</li>
+<li>All C files are combined into one giant C file before being sent to the compiler, which provides for better compile-time optimizations for dumber C compilers, which may occur on embedded systems.</li>
+<li>The database format does not depend on endianness or native data type sizes, making it suitable for cross-platform use.</li>
+<li>Very low memory configurations are available, making SQLite suitable for use on embedded devices such as cellphones.</li>
+<li>The code is in the public domain, which removes any licensing barriers.</li>
+</ul>
+
+
+<p><strong>Simple</strong></p>
+
+<ul>
+<li>SQLite is embedded into the program that uses it, requiring no separate server. And no administration for such a server.</li>
+<li>Minimal schema is imposed by SQLite, distinguishing only between integers, reals, text, and blobs at a low level. And even so, a column&rsquo;s type is advisory only &ndash; you can store a value of any type in any column (except an <code>INTEGER PRIMARY KEY</code> column).</li>
+</ul>
+
+
+<p>Of course being simple sacrifices certain other properties such as high concurrency and the ability to perform fine-grained access control (which requires administrability).</p>
 
   </div>
   
@@ -370,18 +518,12 @@
       
         
       
-        
-          
-        
       
-      
-      <li id="Productivity-topic" class="active"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
     
       
       
       
-      
-        
       
         
       
@@ -396,16 +538,12 @@
           
         
       
-        
-      
       
       <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>14</sup></a></li>
     
       
       
       
-      
-        
       
         
       
@@ -425,11 +563,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2010/11/13/retrospect-vs-time-machine/" title="Retrospect vs. Time Machine">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/" title="Migrating from BBEdit to Sublime Text">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2012/12/21/this-website-is-now-powered-by-jekyll/" title="This website is now powered by Jekyll">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
