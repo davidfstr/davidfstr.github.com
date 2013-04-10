@@ -6,14 +6,204 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 07 Apr 2013 14:40:24 -0700</pubDate>
-    <lastBuildDate>Sun, 07 Apr 2013 14:40:24 -0700</lastBuildDate>
+    <pubDate>Tue, 09 Apr 2013 20:56:07 -0700</pubDate>
+    <lastBuildDate>Tue, 09 Apr 2013 20:56:07 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/assets/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Making an Existing Python Program Unicode Aware</title>
+      <link>http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 09 Apr 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware</guid>
+      <description>&lt;p&gt;Last week I decided to update one of my larger Python 2.7 projects to support Unicode fully
+and to run under Python 3.&lt;/p&gt;
+
+&lt;p&gt;Here are the steps that I took and some gotchas I ran into along the way.&lt;/p&gt;
+
+&lt;h2&gt;General Strategy&lt;/h2&gt;
+
+&lt;p&gt;Create and fully automate the unit test suite:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is important to detect any unexpected breakage from the Unicode-related changes you&amp;rsquo;ll be making soon.&lt;/li&gt;
+&lt;li&gt;Make sure your code coverage is good since tests can&amp;rsquo;t protect you from mistakes introduced in uncovered code.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Identify all boundaries where data is being exchanged between the program and the outside environment. In my case:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Direct I/O (i.e. &lt;code&gt;read&lt;/code&gt; and &lt;code&gt;write&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Filesystem access (i.e. &lt;code&gt;open&lt;/code&gt; and file paths)&lt;/li&gt;
+&lt;li&gt;Process manipulation (via the &lt;code&gt;subprocess&lt;/code&gt; module)&lt;/li&gt;
+&lt;li&gt;Command-line arguments (via &lt;code&gt;sys.argv&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Time access (via the &lt;code&gt;time&lt;/code&gt; module)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;At boundaries:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Reads should decode bytestrings to unicode using the proper encoding. You may need to do research to determine what the correct encoding is or how to determine the correct encoding at runtime.
+
+&lt;ul&gt;
+&lt;li&gt;Since my program did a lot of direct I/O on classic Mac OS data structures, the correct encoding was typically MacRoman.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sys.getfilesystemencoding()&lt;/code&gt; is sometimes appropriate. Be sure to test on Windows, where this value is typically not UTF-8.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Writes should encode unicode (or ASCII bytestring literals) to bytestrings using the proper encoding.&lt;/li&gt;
+&lt;li&gt;Ensure files and streams explicitly use either binary mode (i.e. &lt;code&gt;rb&lt;/code&gt; or &lt;code&gt;wb&lt;/code&gt;) or text mode (i.e. &lt;code&gt;rt&lt;/code&gt; or &lt;code&gt;wt&lt;/code&gt;).
+
+&lt;ul&gt;
+&lt;li&gt;UsuBytesIOally you want binary mode.&lt;/li&gt;
+&lt;li&gt;Text mode is required for certain cases, such as the output of the &lt;code&gt;json&lt;/code&gt; module. Even then, it&amp;rsquo;s a good idea to restrict text-based output to the ASCII character set since the native text encoding may not support the full Unicode set, particularly on Windows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Finally:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run the &lt;code&gt;2to3&lt;/code&gt; converter on your program so that it can be run by Python 3.&lt;/li&gt;
+&lt;li&gt;Run your new Python 3 source code in a Python 3 interpreter, perhaps inside a fresh Linux VM.&lt;/li&gt;
+&lt;li&gt;Run your test suite under the Python 3 interpreter. It should find any Unicode mistakes that still need to be fixed.&lt;/li&gt;
+&lt;li&gt;You will probably need to repeat this convert-test-fix cycle a couple of times.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Special Cases&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Most uses of &lt;code&gt;StringIO&lt;/code&gt; need to be migrated to &lt;code&gt;BytesIO&lt;/code&gt;, when used as a byte buffer. If used as a string buffer, the &lt;code&gt;StringIO&lt;/code&gt; uses need to be left at &lt;code&gt;StringIO&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;Here&amp;rsquo;s the shim I used to support &lt;code&gt;BytesIO&lt;/code&gt; and &lt;code&gt;StringIO&lt;/code&gt; in both Python 2 and 3. I put it in a utility module and the rest of the program imports the shims instead of using the standard library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;
+# BytesIO presents a stream interface to an in-memory bytestring.
+# 
+# This is equivalent to StringIO in Python 2 and to BytesIO in Python 3.
+try:
+    from io import BytesIO              # Python 3
+except ImportError:
+    from StringIO import StringIO as BytesIO
+
+# StringIO presents a stream interface to an in-memory string
+# (which is a bytestring in Python 2 and a unicode string in Python 3).
+# 
+# This is equivalent to StringIO in both Python 2 and 3.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO             # Python 3
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;When writing to a binary stream, replace uses of &lt;code&gt;output.write(chr(byte_ordinal))&lt;/code&gt; with &lt;code&gt;output.write(bchr(byte_ordinal))&lt;/code&gt; and use the following shim for &lt;code&gt;bchr&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;
+# bchr() converts the specified byte integer value to a single character
+# bytestring.
+# 
+# This is equivalent to chr() in Python 2 but requires special handling in
+# Python 3.
+if bytes == str:
+    def bchr(byte_ordinal):
+        return chr(byte_ordinal)
+else:
+    def bchr(byte_ordinal):
+        return bytes([byte_ordinal])    # Python 3
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Beware of comparisons with &lt;code&gt;''&lt;/code&gt;. Some of them probably need to be converted to comparisons with &lt;code&gt;b''&lt;/code&gt;. For example, I had to adjust my &lt;code&gt;at_eof&lt;/code&gt; utility function:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;
+def at_eof(input):
+    &quot;&quot;&quot;
+    Returns whether the specified input stream is at EOF.
+    &quot;&quot;&quot;
+    with save_stream_position(input):
+        at_eof = input.read(1) == b''
+    return at_eof
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;If your program uses human-readable ASCII bytestring literals, such as FourCC codes, make sure they are marked with the &lt;code&gt;b&lt;/code&gt; prefix appropriately.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;
+if type_code == b'APPL':
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Iteration over bytestrings works differently in Python 2 vs Python 3.
+
+&lt;ul&gt;
+&lt;li&gt;The code &lt;code&gt;for c in data:&lt;/code&gt; will give back single-character bytestrings in Python 2 but byte ordinals in Python 3.&lt;/li&gt;
+&lt;li&gt;Here&amp;rsquo;s my shim to let &lt;code&gt;for b in iterord(data):&lt;/code&gt; always iterate over byte ordinals:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;
+# iterord() iterates over the integer values of the bytes in the specified
+# bytestring.
+if bytes == str:
+    def iterord(bytes_value):           # Python 2
+        for b in bytes_value:
+            yield ord(b)
+else:
+    def iterord(bytes_value):           # Python 3
+        return bytes_value
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;time.strftime&lt;/code&gt; returns a bytestring in Python 2 and a Unicode string in Python 3. Usually you want a Unicode string. I didn&amp;rsquo;t create a shim for this since I only had one use of &lt;code&gt;strftime&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;
+now_string = time.strftime('%b %d %H:%M', time.localtime(now))
+if not isinstance(now_string, unicode):
+    now_string = now_string.decode('ascii')
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Regular expressions that are intended to apply to bytestrings instead of Unicode strings may need updating.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For example the pattern &lt;code&gt;re.compile(r'^Volume name is &quot;(.*)&quot;$')&lt;/code&gt; which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read &lt;code&gt;re.compile(br'^Volume name is &quot;(.*)&quot;$')&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Don&amp;rsquo;t forget to update your documentation to specify where Unicode (or ASCII bytestring literals) are expected.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>

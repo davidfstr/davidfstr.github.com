@@ -5,7 +5,7 @@
     <!-- IE 8+: Hide the Compatibility View button. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>This website is now powered by Jekyll | DaFoster</title>
+    <title>Making an Existing Python Program Unicode Aware | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -289,33 +289,196 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>This website is now powered by Jekyll</h1>
+    <h1>Making an Existing Python Program Unicode Aware</h1>
     <div class="post-metadata">
-      21 Dec 2012 &ndash; Filed under: 
+      09 Apr 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>15</sup></a></span>
         
       </span>
     </div>
     
-    <p>And this is my first post using the new system. Articles are a lot easier to
-write, so I will be posting more frequently.</p>
+    <p>Last week I decided to update one of my larger Python 2.7 projects to support Unicode fully
+and to run under Python 3.</p>
 
-<p>Previously this site was powered by the <a href="http://drupal.org">Drupal</a> engine. I found it overly
-complex to maintain, especially for a single-user blog and portfolio website.
-For more details see my post <a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">Why I no longer use Drupal</a>.</p>
+<p>Here are the steps that I took and some gotchas I ran into along the way.</p>
 
-<h3><em>Related Articles</em></h3>
+<h2>General Strategy</h2>
 
-<ul>
-<li><a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">Why I no longer use Drupal</a>
+<p>Create and fully automate the unit test suite:</p>
 
 <ul>
-<li><em>Details why Drupal is overly complex for a personal blog.</em></li>
+<li>This is important to detect any unexpected breakage from the Unicode-related changes you&rsquo;ll be making soon.</li>
+<li>Make sure your code coverage is good since tests can&rsquo;t protect you from mistakes introduced in uncovered code.</li>
+</ul>
+
+
+<p>Identify all boundaries where data is being exchanged between the program and the outside environment. In my case:</p>
+
+<ul>
+<li>Direct I/O (i.e. <code>read</code> and <code>write</code>)</li>
+<li>Filesystem access (i.e. <code>open</code> and file paths)</li>
+<li>Process manipulation (via the <code>subprocess</code> module)</li>
+<li>Command-line arguments (via <code>sys.argv</code>)</li>
+<li>Time access (via the <code>time</code> module)</li>
+</ul>
+
+
+<p>At boundaries:</p>
+
+<ul>
+<li>Reads should decode bytestrings to unicode using the proper encoding. You may need to do research to determine what the correct encoding is or how to determine the correct encoding at runtime.
+
+<ul>
+<li>Since my program did a lot of direct I/O on classic Mac OS data structures, the correct encoding was typically MacRoman.</li>
+<li><code>sys.getfilesystemencoding()</code> is sometimes appropriate. Be sure to test on Windows, where this value is typically not UTF-8.</li>
 </ul>
 </li>
+<li>Writes should encode unicode (or ASCII bytestring literals) to bytestrings using the proper encoding.</li>
+<li>Ensure files and streams explicitly use either binary mode (i.e. <code>rb</code> or <code>wb</code>) or text mode (i.e. <code>rt</code> or <code>wt</code>).
+
+<ul>
+<li>UsuBytesIOally you want binary mode.</li>
+<li>Text mode is required for certain cases, such as the output of the <code>json</code> module. Even then, it&rsquo;s a good idea to restrict text-based output to the ASCII character set since the native text encoding may not support the full Unicode set, particularly on Windows.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Finally:</p>
+
+<ul>
+<li>Run the <code>2to3</code> converter on your program so that it can be run by Python 3.</li>
+<li>Run your new Python 3 source code in a Python 3 interpreter, perhaps inside a fresh Linux VM.</li>
+<li>Run your test suite under the Python 3 interpreter. It should find any Unicode mistakes that still need to be fixed.</li>
+<li>You will probably need to repeat this convert-test-fix cycle a couple of times.</li>
+</ul>
+
+
+<h2>Special Cases</h2>
+
+<ul>
+<li>Most uses of <code>StringIO</code> need to be migrated to <code>BytesIO</code>, when used as a byte buffer. If used as a string buffer, the <code>StringIO</code> uses need to be left at <code>StringIO</code>.
+
+<ul>
+<li>Here&rsquo;s the shim I used to support <code>BytesIO</code> and <code>StringIO</code> in both Python 2 and 3. I put it in a utility module and the rest of the program imports the shims instead of using the standard library.</li>
+</ul>
+</li>
+</ul>
+
+
+<pre>
+# BytesIO presents a stream interface to an in-memory bytestring.
+# 
+# This is equivalent to StringIO in Python 2 and to BytesIO in Python 3.
+try:
+    from io import BytesIO              # Python 3
+except ImportError:
+    from StringIO import StringIO as BytesIO
+
+# StringIO presents a stream interface to an in-memory string
+# (which is a bytestring in Python 2 and a unicode string in Python 3).
+# 
+# This is equivalent to StringIO in both Python 2 and 3.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO             # Python 3
+</pre>
+
+
+<ul>
+<li>When writing to a binary stream, replace uses of <code>output.write(chr(byte_ordinal))</code> with <code>output.write(bchr(byte_ordinal))</code> and use the following shim for <code>bchr</code>:</li>
+</ul>
+
+
+<pre>
+# bchr() converts the specified byte integer value to a single character
+# bytestring.
+# 
+# This is equivalent to chr() in Python 2 but requires special handling in
+# Python 3.
+if bytes == str:
+    def bchr(byte_ordinal):
+        return chr(byte_ordinal)
+else:
+    def bchr(byte_ordinal):
+        return bytes([byte_ordinal])    # Python 3
+</pre>
+
+
+<ul>
+<li>Beware of comparisons with <code>''</code>. Some of them probably need to be converted to comparisons with <code>b''</code>. For example, I had to adjust my <code>at_eof</code> utility function:</li>
+</ul>
+
+
+<pre>
+def at_eof(input):
+    """
+    Returns whether the specified input stream is at EOF.
+    """
+    with save_stream_position(input):
+        at_eof = input.read(1) == b''
+    return at_eof
+</pre>
+
+
+<ul>
+<li>If your program uses human-readable ASCII bytestring literals, such as FourCC codes, make sure they are marked with the <code>b</code> prefix appropriately.</li>
+</ul>
+
+
+<pre>
+if type_code == b'APPL':
+</pre>
+
+
+<ul>
+<li>Iteration over bytestrings works differently in Python 2 vs Python 3.
+
+<ul>
+<li>The code <code>for c in data:</code> will give back single-character bytestrings in Python 2 but byte ordinals in Python 3.</li>
+<li>Here&rsquo;s my shim to let <code>for b in iterord(data):</code> always iterate over byte ordinals:</li>
+</ul>
+</li>
+</ul>
+
+
+<pre>
+# iterord() iterates over the integer values of the bytes in the specified
+# bytestring.
+if bytes == str:
+    def iterord(bytes_value):           # Python 2
+        for b in bytes_value:
+            yield ord(b)
+else:
+    def iterord(bytes_value):           # Python 3
+        return bytes_value
+</pre>
+
+
+<ul>
+<li><code>time.strftime</code> returns a bytestring in Python 2 and a Unicode string in Python 3. Usually you want a Unicode string. I didn&rsquo;t create a shim for this since I only had one use of <code>strftime</code>.</li>
+</ul>
+
+
+<pre>
+now_string = time.strftime('%b %d %H:%M', time.localtime(now))
+if not isinstance(now_string, unicode):
+    now_string = now_string.decode('ascii')
+</pre>
+
+
+<ul>
+<li><p>Regular expressions that are intended to apply to bytestrings instead of Unicode strings may need updating.</p>
+
+<ul>
+<li>For example the pattern <code>re.compile(r'^Volume name is "(.*)"$')</code> which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read <code>re.compile(br'^Volume name is "(.*)"$')</code></li>
+</ul>
+</li>
+<li><p>Don&rsquo;t forget to update your documentation to specify where Unicode (or ASCII bytestring literals) are expected.</p></li>
 </ul>
 
 
@@ -342,20 +505,20 @@ For more details see my post <a href="/articles/2012/12/16/why-i-no-longer-use-d
       
       
         
-          
-        
       
       
-      <li id="Personal-topic" class="active"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
     
       
       
       
       
         
+          
+        
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>15</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>15</sup></a></li>
     
       
       
@@ -379,11 +542,11 @@ For more details see my post <a href="/articles/2012/12/16/why-i-no-longer-use-d
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2012/12/16/why-i-no-longer-use-drupal/" title="Why I no longer use Drupal">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/04/07/beautiful-code-sqlite/" title="Beautiful Code: SQLite">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/" title="Programming is Fun. But What Matters is Solving a Real Problem.">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
