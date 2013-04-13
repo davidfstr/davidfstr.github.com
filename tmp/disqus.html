@@ -3,12 +3,8 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Burn Planner | DaFoster</title>
+    <title>Disqus Reverts IE 8+ to Compatibility Mode | DaFoster</title>
   
-  
-    
-    <meta name="description" content="Burns a series of files to multiple DVDs quickly by automatically allocating files among DVDs and naming the DVDs.
-">
   
     <meta name="author" content="David Foster">
   
@@ -45,17 +41,6 @@
     
     
     
-      <style>
-        .logo {
-  float: right;
-  background-color: #fafafa;
-  border: 1px solid #dfdfdf;
-  padding: 20px;
-  margin-left: 10px; margin-bottom: 10px;
-}
-
-      </style>
-    
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/assets/favicon.ico">
@@ -67,10 +52,6 @@
     
     <!-- Le scripts -->
   
-    <script src="/assets/js/jquery-1.8.3.min.js"></script>
-  
-  
-    <script src="/assets/js/jquery.ba-hashchange.min.js"></script>
   
   
   </head>
@@ -234,39 +215,6 @@
               
                 
                 
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
                   
                 
               
@@ -291,8 +239,41 @@
                 
                 
               
+                
+                
               
-              <li><a href="/projects/">Projects</a> <span class="divider">&gt;</span></li>
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
               
             
             
@@ -313,208 +294,125 @@
         
         
           <div class="row">
-  <div class="span9">
-    <img class="logo" src="logo-128.png" alt="Logo for Burn Planner"/>
+  <div class="span9 post">
+    <h1>Disqus Reverts IE 8+ to Compatibility Mode</h1>
+    <div class="post-metadata">
+      MISSING_DATE &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+        
+      </span>
+    </div>
     
-    <h1>Burn Planner</h1>
-    
-    
-      <p>Burn Planner helps you burn a series of files to multiple DVDs quickly by
-automatically allocating files among DVDs and naming the DVDs.</p>
-
-<p>I got tired of doing this manually for all of the anime I archive to DVDs,
-so I make this program to automate the whole process.</p>
-
-<h2>Download</h2>
-
-<ul>
-<li><a href="Burn%20Planner%20v1.0.dmg">Burn Planner 1.0</a> &ndash; Mac OS X 10.5 and later</li>
-</ul>
-
-
-<h2 id="donate">Donate</h2>
-
-
-<p>If this program saves you time, consider giving back with a donation.</p>
-
-<div class="paypal">
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-        <div>
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="donations@dafoster.net">
-            <input type="hidden" name="item_name" value="Burn Planner">
-            <input type="hidden" name="item_number" value="burnplanner">
-            <input type="hidden" name="image_url" value="http://dafoster.net/projects/burn-planner/logo-50.png">
-            <input type="hidden" name="no_shipping" value="1">
-            <input type="hidden" name="return" value="http://dafoster.net/projects/burn-planner">
-            <input type="hidden" name="cancel_return" value="http://dafoster.net/projects/burn-planner">
-            <input type="hidden" name="cn" value="Feature Requests">
-            <input type="hidden" name="currency_code" value="USD">
-            <input type="hidden" name="tax" value="0">
-            <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif"
-                width="147" height="47"
-                alt="Donate" name="submit">
-            <select name="amount" style="width: 65px; vertical-align: top;">
-                <option value="5.00">$5</option>
-                <option value="10.00" selected="selected">$10</option>
-                <option value="15.00">$15</option>
-                <option value="20.00">$20</option>
-                <option value="25.00">$25</option>
-                <option value="">Other</option>
-            </select>
-        </div>
-    </form>
-</div>
-
-
-    
+    <p>
+      This is a test article that includes Disqus commenting.
+    </p>
+    <p>
+      In IE 8+ this webpage will revert to Compatibility Mode instead of
+      Standards Mode when Disqus loads unless the following is put in the
+      [head] tag:
+    </p>
+    <pre>
+      [!-- IE 8+: Hide the Compatibility View button. --]
+      [meta http-equiv="X-UA-Compatible" content="IE=edge"]</pre>
+    <p>
+      Unfortunately the <code>X-UA-Compatible</code> does not pass the W3C
+      validator, so using that header breaks validation for a site.
+    </p>
+    <p>
+      So in summary there are two problems:
+    </p>
+    <ol>
+      <li>Disqus generates weird HTML that puts IE 8+ into Compatibility Mode.</li>
+      <li>X-UA-Compatible is not recognized as a valid [meta] HTTP header.
+        <ul>
+          <li>I have filed bugs to get this fixed, but I no longer have the
+              energy to keep sheparding these bugs, especially since I have
+              eliminated the use of Disqus on my blog, which obviates the
+              need to do any of this.</li>
+          <li>It would probably be best for someone on the IE team to push
+              the X-UA-Compatible header (or a new UA-Compatible variant)
+              towards standardization.</li>
+        </ul>
+      </li>
+    </ol>
   </div>
   
   <div class="span3 block-bar">
     <div class="block">
-  <h3>Projects</h3>
+  <h3>Topics</h3>
   
-  <ul class="tag_box" style="margin-bottom: .5em">
+  <ul class="tag_box">
+    
     
       
+      
+      
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
     
       
+      
+      
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
     
       
+      
+      
+      
+      
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>15</sup></a></li>
     
       
-    
       
-    
       
-    
       
-    
       
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="burn-planner-project" class="active">
-          <a href="/projects/burn-planner/">Burn Planner</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="crystal-web-archiver-project">
-          <a href="/projects/crystal-web-archiver/" class="external">Crystal Web Archiver</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="decimal-binary-unit-converter-project">
-          <a href="/projects/decimal-binary-unit-converter/" class="external">Dec-Bin Unit Converter</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="decomp4-project">
-          <a href="/projects/decomp4/" class="external">decomp4</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="handbrake-subtitle-support-project">
-          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
-        </li>
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="park-place-project">
-          <a href="/projects/park-place/">Park Place</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="rdiscount-project">
-          <a href="/projects/rdiscount/" class="external">RDiscount</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="website-project">
-          <a href="/projects/website/">Website</a>
-        </li>
-      
-    
-      
-    
-      
-    
-      
-    
-      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
     
   </ul>
-  <p class="x-and-more-projects">And more at:</p>
-<ul>
-  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
-  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
-</ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe
+  </a>
 </div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev disabled"><a>&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'dafoster';
+    var disqus_title = 'Disqus Reverts IE 8+ to Compatibility Mode';
+    var disqus_url = 'http://dafoster.net/tmp/disqus.html';
+  
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
   </div>
 </div>
 
@@ -529,17 +427,6 @@ so I make this program to automate the whole process.</p>
 
     </div>
     
-  
-    <script>
-      $(window).hashchange(function() {
-        // Highlight heading corresponding to current anchor (if specified)
-        if (location.hash) {
-          $('h2').removeClass('active');
-          $(location.hash).addClass('active');
-        }
-      });
-      $(window).hashchange();
-    </script>
   
   
   
