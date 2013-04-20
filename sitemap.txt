@@ -20,6 +20,7 @@ http://dafoster.net/projects/website/
 http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
+http://dafoster.net/sites/default/files/downloads/projects/burn-planner/Burn Planner v1.0.dmg
 http://dafoster.net/tmp/disqus.html
 
 http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware/
