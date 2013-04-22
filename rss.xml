@@ -6,14 +6,130 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 20 Apr 2013 14:35:02 -0700</pubDate>
-    <lastBuildDate>Sat, 20 Apr 2013 14:35:02 -0700</lastBuildDate>
+    <pubDate>Sun, 21 Apr 2013 21:11:41 -0700</pubDate>
+    <lastBuildDate>Sun, 21 Apr 2013 21:11:41 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/assets/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Exploring Onionland: The Tor .onion Darknet</title>
+      <link>http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 21 Apr 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet</guid>
+      <description>&lt;p&gt;Today I decided to explore the realm of Tor Hidden Services, which can be identified via URLs that appear to be on an &lt;code&gt;.onion&lt;/code&gt; top-level domain.&lt;/p&gt;
+
+&lt;p&gt;The first hurdle is getting to your first site, since all domains have gibberish-looking names:&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Core.onion&lt;/strong&gt; (&lt;a href=&quot;http://eqt5g4fuenphqinx.onion/&quot;&gt;eqt5g4fuenphqinx.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;The original starting point for many users since 2007.&lt;/li&gt;
+&lt;li&gt;I began my exploration here.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Finding Things&lt;/h2&gt;
+
+&lt;p&gt;The first thing you realize is that there are &lt;em&gt;no search engines&lt;/em&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Instead you have to resort to the primitive method of recursively following links from previous sites you found. Bookmarks are essential. It&amp;rsquo;s like 1995 all over again.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Directory service sites exist with the sole purpose of listing links to other sites:&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TorDir&lt;/strong&gt; (&lt;a href=&quot;http://dppmfxaacucguzpc.onion/&quot;&gt;dppmfxaacucguzpc.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;The original directory site (to my knowledge) since 2007.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Hidden Wiki&lt;/strong&gt; (&lt;a href=&quot;http://kpvz7ki2v5agwt35.onion/wiki/index.php/Main_Page&quot;&gt;kpvz7ki2v5agwt35.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;The original popular wiki, running the same Mediawiki software as Wikipedia.&lt;/li&gt;
+&lt;li&gt;The main purpose seems to be acting as a directory, although there are a few other interesting articles as well. &lt;!-- http://kpvz7ki2v5agwt35.onion/wiki/index.php/The_Matrix --&gt;&lt;/li&gt;
+&lt;li&gt;Sadly the moderators seem to be losing against spammers, who repeated change links on the home page to redirect through a certain &lt;code&gt;coinurl.com&lt;/code&gt; site. Thus it is necessary to go through &lt;a href=&quot;http://kpvz7ki2v5agwt35.onion/wiki/index.php?title=Main_Page&amp;amp;oldid=52408&quot;&gt;older revisions of the main page&lt;/a&gt; to get anything useful.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And also:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TorList&lt;/strong&gt; (&lt;a href=&quot;http://torlinksysgthcbz.onion/&quot;&gt;torlinksysgthcbz.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;A newer, more limited, and less organized directory. Moderated.&lt;/li&gt;
+&lt;li&gt;Useful because all its links fit on a single page, so it is a decent starting point.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Parallel Worlds&lt;/h2&gt;
+
+&lt;p&gt;For most popular websites on the public internet, there is a clone in Onionland.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Twitter &amp;ndash;&gt; &lt;strong&gt;TorStatusNet&lt;/strong&gt; (&lt;a href=&quot;http://lotjbov3gzzf23hc.onion/&quot;&gt;lotjbov3gzzf23hc.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;Microblogging.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Gmail / Hotmail &amp;ndash;&gt; &lt;strong&gt;Tor Mail&lt;/strong&gt; (&lt;a href=&quot;http://jhiwjjlqpyawmpjx.onion/&quot;&gt;jhiwjjlqpyawmpjx.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;Free email service.&lt;/li&gt;
+&lt;li&gt;Can communicate with regular email addresses too.&lt;/li&gt;
+&lt;li&gt;Although rumored to be unreliable. &lt;!-- http://utup22qsb6ebeejs.onion/?p=149 --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;4chan &amp;ndash;&gt; &lt;strong&gt;TorChan&lt;/strong&gt; (&lt;a href=&quot;http://zw3crggtadila2sg.onion/imageboard/&quot;&gt;zw3crggtadila2sg.onion&lt;/a&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;Imageboard. NSFW.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I can only assume human wants must be fairly consistent.&lt;/p&gt;
+
+&lt;h2&gt;Commerce&lt;/h2&gt;
+
+&lt;p&gt;The universal currency for making transactions is &lt;a href=&quot;http://bitcoin.org/en/&quot;&gt;BitCoin&lt;/a&gt;, probably because it is far less traceable than standard currency.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s really surprising and a bit disturbing what can be purchased: drugs, weapons, assassinations&amp;nbsp;(!!!), among other things. &lt;!-- (No links for you!) --&gt;&lt;/p&gt;
+
+&lt;h2&gt;Final Thoughts&lt;/h2&gt;
+
+&lt;p&gt;It feels really weird being in a part of the internet that is completely unreachable from Google (or any normal search engine). Much like visiting another country the laws, norms, and aesthetics are different.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; It is an interesting place to visit, but perhaps not the most desirable place to live.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Since domain names basically consist of gibberish, it is not practical to verify whether you are at the authentic URL for a domain, since it is hard to remember and recognize the domain name. Thus it relatively easy to get redirected to a spoofed version of a website and not be aware of it. Certain sites like &lt;strong&gt;Black Market&lt;/strong&gt;, which I can only assume have been spoofed a lot in the past, take special measures such as putting the (gibberish) domain name in the site logo and instructing visitors on the main home page to check the domain name explicitly. Hardly a reliable solution.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Okay, there are are few search engines such as &lt;strong&gt;DeepSearch&lt;/strong&gt; (&lt;a href=&quot;http://hpuuigeld2cz2fd3.onion/&quot;&gt;hpuuigeld2cz2fd3.onion&lt;/a&gt;) and &lt;strong&gt;The Abyss&lt;/strong&gt; (&lt;a href=&quot;http://nstmo7lvh4l32epo.onion/&quot;&gt;nstmo7lvh4l32epo.onion&lt;/a&gt;), but they&amp;rsquo;re about as effective as WebCrawler was back in the day.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;If your corporate intranet or wiki has no decent search facility (likely), it&amp;rsquo;s the same feeling of not being able to find anything. The only company I&amp;rsquo;ve worked for that had &lt;em&gt;good&lt;/em&gt; internal search was Google (circa 2008). Microsoft sure didn&amp;rsquo;t (circa 2011), although they were using some third-party engine internally, not Bing.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;The only directory services site on the public web I still know of is the &lt;a href=&quot;http://www.dmoz.org&quot;&gt;Open Directory Project&lt;/a&gt;. It&amp;rsquo;s been a long time since I&amp;rsquo;ve used them.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;Instead of travelling to another country physically, you can try browsing the internet in a different language, which is similarly partitioned from the English internet. For example Germany&amp;rsquo;s Facebook is &lt;a href=&quot;http://www.studivz.net/&quot;&gt;studiVZ&lt;/a&gt;. China&amp;rsquo;s Google is &lt;a href=&quot;http://www.baidu.com&quot;&gt;Baidu&lt;/a&gt;. Naturally you need to be able to read the language in question to try this exercise seriously.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>

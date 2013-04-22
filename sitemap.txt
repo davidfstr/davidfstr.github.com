@@ -22,6 +22,7 @@ http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 http://dafoster.net/tmp/disqus.html
 
+http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/
 http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware/
 http://dafoster.net/articles/2013/04/07/beautiful-code-sqlite/
 http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/
