@@ -12,8 +12,6 @@
   
     <meta name="author" content="David Foster">
   
-    <meta http-equiv="refresh" content="0;URL='https://github.com/rtomayko/rdiscount#readme'">
-  
     
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
@@ -310,23 +308,142 @@
         <![endif]-->
         
         
-          
-            <div class="row">
+          <div class="row">
   <div class="span9">
     <img class="logo" src="logo-128.png" alt="Logo for RDiscount"/>
     
     <h1>RDiscount</h1>
     
     
-      <em>Redirecting you to:</em><br />
-<a href="https://github.com/rtomayko/rdiscount#readme">https://github.com/rtomayko/rdiscount#readme</a>
+      <p>RDiscount converts documents in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> syntax to HTML.</p>
+
+<p>It uses the excellent <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> processor by David Loren Parsens
+for this purpose, and thereby inherits Discount&rsquo;s numerous useful
+extensions to the Markdown language.</p>
+
+<h2>Why use Discount? <small>(and RDiscount)</small></h2>
+
+<p>Discount is fast and supports many useful extensions to the original Markdown language:</p>
+
+<ul>
+<li>Multi-level bulleted lists</li>
+<li><a href="http://michelf.ca/projects/php-markdown/extra/#footnotes">Footnotes</a>&shy;<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> &ndash; from <em>PHP Markdown Extra</em></li>
+<li><a href="http://michelf.ca/projects/php-markdown/extra/#table">Tables</a> &ndash; from <em>PHP Markdown Extra</em></li>
+<li>Images with sizes
+
+<ul>
+<li><code>![GitHub Favicon](https://github.com/favicon.ico =16x16)</code> &rarr; <img src="https://github.com/favicon.ico" height="16" width="16" alt="GitHub Favicon" /></li>
+</ul>
+</li>
+<li>Typographic substitutions with <a href="http://daringfireball.net/projects/smartypants/">SmartyPants</a>
+
+<ul>
+<li>Straight quotes (&quot; and &#39;) &rarr; “curly” quotes</li>
+</ul>
+</li>
+<li><a href="http://www.pell.portland.or.us/~orc/Code/discount/#Language.extensions">&hellip;and more</a></li>
+</ul>
+
+
+<p>Discount 2.1.5 (soon to be supported in RDiscount) also has:</p>
+
+<ul>
+<li>Fenced code blocks &ndash; from <em>GitHub Flavored Markdown</em>
+
+<ul>
+<li><a href="https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks">backtick-delimited</a> – from <em>GitHub Flavored Markdown</em></li>
+<li><a href="http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">tilde-delimited</a> – from <em>PHP Markdown Extra</em></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Some of these extensions are not enabled by default.
+See usage instructions below to enable additional extensions.</p>
+
+<h2>Installation</h2>
+
+<pre>gem install rdiscount</pre>
+
+
+<h2>Usage <small>in Ruby and Jekyll</small></h2>
+
+<h3>In Ruby</h3>
+
+<p>RDiscount implements the basic protocol popularized by RedCloth and adopted by BlueCloth:</p>
+
+<pre>
+require 'rdiscount'
+markdown = RDiscount.new("Hello World!")
+puts markdown.to_html
+</pre>
+
+
+<p>Additional extensions can be turned on when creating the RDiscount object:</p>
+
+<pre>
+markdown = RDiscount.new("Hello World!", :smart, :filter_html)
+</pre>
+
+
+<p>For a list of all possible extensions, see the instance attributes in the
+<a href="http://rdoc.info/github/rtomayko/rdiscount/master/RDiscount">RDiscount class documentation</a>.</p>
+
+<p>Inject RDiscount into your BlueCloth-using code by replacing your bluecloth require statements with the following:</p>
+
+<pre>
+begin
+  require 'rdiscount'
+  BlueCloth = RDiscount
+rescue LoadError
+  require 'bluecloth'
+end
+</pre>
+
+
+<h3>In Jekyll</h3>
+
+<p>In your site&rsquo;s <code>_config.yml</code> file, add the line:</p>
+
+<pre>
+markdown: rdiscount
+</pre>
+
+
+<p>To enable extensions, add the following section with the desired list of extensions:</p>
+
+<pre>
+rdiscount:
+  extensions:
+    - autolink      # greedily urlify links
+    - footnotes     # footnotes
+    - smart         # typographic substitutions with SmartyPants
+</pre>
+
+
+<p>For a list of all possible extensions, see the instance attributes in the
+<a href="http://rdoc.info/github/rtomayko/rdiscount/master/RDiscount">RDiscount class documentation</a>.</p>
+
+<h2>Contributing</h2>
+
+<p>All development is coordinated on the <a href="https://github.com/rtomayko/rdiscount">GitHub project page</a>.</p>
+
+<p>Please report bugs and feature requests on the <a href="https://github.com/rtomayko/rdiscount/issues">issue tracker</a>.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>I&rsquo;m a footnote!<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 
     
   </div>
   
   <div class="span3 block-bar">
     <div class="block">
-  <h3>Projects</h3>
+  <h3>Other Projects</h3>
   
   <ul class="tag_box" style="margin-bottom: .5em">
     
@@ -437,7 +554,7 @@
         
         
         <li id="rdiscount-project" class="active">
-          <a href="/projects/rdiscount/" class="external">RDiscount</a>
+          <a href="/projects/rdiscount/">RDiscount</a>
         </li>
       
     
@@ -465,14 +582,13 @@
   </ul>
   <p class="x-and-more-projects">And more at:</p>
 <ul>
-  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
   <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
+  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
 </ul>
 </div>
   </div>
 </div>
 
-          
         
       </div>
 
