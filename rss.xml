@@ -6,14 +6,275 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 28 Apr 2013 11:32:40 -0700</pubDate>
-    <lastBuildDate>Sun, 28 Apr 2013 11:32:40 -0700</lastBuildDate>
+    <pubDate>Mon, 29 Apr 2013 22:54:35 -0700</pubDate>
+    <lastBuildDate>Mon, 29 Apr 2013 22:54:35 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Copyrights and Licenses for Software</title>
+      <link>http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 30 Apr 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software</guid>
+      <description>&lt;p&gt;This is a quick premier on copyrights and licenses for software developers who may not know their rights under United States law. I cannot speak for international copyright law.&lt;/p&gt;
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Disclaimer
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        This article presents legal information but does not provide legal advise. Although all information is correct to the best of my knowledge, I will not be held responsible for the consequences of actions you take based on information found to be incorrect or misleading.
+    &lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;Copyrights&lt;/h2&gt;
+
+&lt;p&gt;The first time that a piece of software is published, whether it be in binary or source form, it automatically gains copyright status. This is true even if you don&amp;rsquo;t include the magic words &lt;code&gt;Copyright (c) 2013 David Foster&lt;/code&gt;.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3&gt;Copyright grants the author certain exclusive rights.&lt;/h3&gt;
+
+&lt;p&gt;That is, other people don&amp;rsquo;t get these rights. Such rights include (but are not limited to):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The right to &lt;em&gt;distribute&lt;/em&gt; the software, even for free.&lt;/li&gt;
+&lt;li&gt;The right to &lt;em&gt;sell&lt;/em&gt; the software.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;But then you might ask how download sites like Download.com can operate: If by default only the original author has the right to distribute the software they create, a download site would need to get special permission (i.e. a &lt;em&gt;license&lt;/em&gt;) to distribute most programs on their site, which would be time consuming (and therefore expensive).&lt;/p&gt;
+
+&lt;p&gt;In reality, download sites generally rely on software authors to not &lt;em&gt;enforce&lt;/em&gt; their copyrights. Which brings us to another point:&lt;/p&gt;
+
+&lt;h3&gt;Copyrights are useless unless they are enforced.&lt;/h3&gt;
+
+&lt;p&gt;Enforcement takes the form of the copyright holder actively looking for &lt;em&gt;infringers&lt;/em&gt;: other people that who are distributing or selling the software without permission.&lt;/p&gt;
+
+&lt;p&gt;For example, the MPAA may issue a DMCA takedown request to a YouTube user who has (without permission) posted an episode of a TV show that MPAA owns. If the user does not comply with the takedown, the MPAA may sue the user for infringement.&lt;/p&gt;
+
+&lt;h2&gt;Licenses&lt;/h2&gt;
+
+&lt;h3&gt;A copyright holder may waive or share some rights by issuing a &lt;em&gt;license&lt;/em&gt;.&lt;/h3&gt;
+
+&lt;p&gt;Licenses may be issued to individuals or companies. For example  a particular distributor may be granted the right to market and sell the software on behalf of the original developer.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;For open source software, licenses are typically granted to the community as a whole (i.e. every recipient of the program). This is typically done by including a file called &lt;code&gt;LICENSE&lt;/code&gt; or &lt;code&gt;COPYING&lt;/code&gt; with the software. A license may also be found in the software&amp;rsquo;s &lt;code&gt;README&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can write your own custom license (if you feel comfortable writing in legalese). Or you can use one of the more common existing licenses from the community. (See &lt;a href=&quot;#common_licenses&quot;&gt;Common Licenses&lt;/a&gt; below for a list.)&lt;/p&gt;
+
+&lt;h3&gt;Dual Licensing&lt;/h3&gt;
+
+&lt;p&gt;Sometimes the same piece of software is offered under multiple licenses.&lt;/p&gt;
+
+&lt;p&gt;For example the Qt GUI toolkit has been available under both the GPL license and (with payment) a commercial closed-source license for a long time. Since companies don&amp;rsquo;t like basing their own closed source software on GPL-licensed original software, this gives them an option to use a more corporate-friendly commercial license.&lt;/p&gt;
+
+&lt;p&gt;When creating a new piece of software that is based on or uses dual-licensed software, you should document which license the original software is being used under.&lt;/p&gt;
+
+&lt;p&gt;If you are the original author of a piece of software, you can issue a new version of the software under additional licenses.&lt;/p&gt;
+
+&lt;h3&gt;Changing a Software&amp;rsquo;s License&lt;/h3&gt;
+
+&lt;p&gt;Under rare circumstances, the license provided with software can change.&lt;/p&gt;
+
+&lt;p&gt;As the copyright holder of a piece of software, you may decide to release a new version with a different set of licenses than prior versions. For example you could change the license offered from &lt;a href=&quot;#bsd&quot;&gt;BSD&lt;/a&gt; to &lt;a href=&quot;#gpl&quot;&gt;GPL&lt;/a&gt;, a rather radical change. Such a change would only be in effect for the newly released version &amp;ndash; it would have no effect on older released versions.&lt;/p&gt;
+
+&lt;p&gt;If you are not the copyright holder of a piece of software, you cannot change the license(s) under which it is offered.&lt;/p&gt;
+
+&lt;p&gt;If there are contributors beyond the original author whose changes have been incorporated into the software, they become partial copyright holders in the software as well unless they explicitly waive their copyright interests via a Contributor Agreeement or similar document. In the event of multiple copyright holders, all holders must agree to any proposed changes in the set of licenses under which the software is offered. Since there may be a large number of contributors (and thus copyright holders), it may be impossible to get permission from everyone, thereby making a license change infeasible.&lt;/p&gt;
+
+&lt;p&gt;Projects that are particularly aware of copyright concerns may require all contributors to sign a Contributor Agreement that either waives all copyright interests or explicitly assigns the copyright associated with all contributions to the original author.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3&gt;No Warranty&lt;/h3&gt;
+
+&lt;p&gt;All software licenses I have seen explicitly disclaim all warranties. Meaning that if the software harms someone, they can&amp;rsquo;t sue you for it. This is great for software developers but  in my opinion bad for society.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;common_licenses&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Common Licenses&lt;/h3&gt;
+
+&lt;p&gt;Here are the most common open source licenses, arranged generally from most permissive to most restrictive.&lt;/p&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t care about the details and only want to know when to use which license, skip to the &lt;a href=&quot;#license_summary&quot;&gt;summary&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;mit&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Public Domain&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; &lt;small&gt;&amp;mdash; ultimately permissive&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do whatever you want with this software.&lt;/li&gt;
+&lt;li&gt;This software cannot ever be placed under copyright or any license.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;mit&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;MIT License &lt;small&gt;&amp;mdash; super permissive, simple&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do whatever you want with this software.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;bsd&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;BSD License &lt;small&gt;&amp;mdash; permissive, simple&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can redistribute this software.&lt;/li&gt;
+&lt;li&gt;(Other rights are not expressedly waived.)&lt;/li&gt;
+&lt;li&gt;There are several &lt;a href=&quot;http://en.wikipedia.org/w/index.php?title=BSD_licenses&amp;amp;oldid=539421860&quot;&gt;variants&lt;/a&gt; of this license.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;apache&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Apache 2.0 License &lt;small&gt;&amp;mdash; permissive, complex&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can do anything normally restricted by copyright.&lt;/li&gt;
+&lt;li&gt;You can do anything normally restricted by patent rights.&lt;/li&gt;
+&lt;li&gt;Redistribution must be done under certain terms.&lt;/li&gt;
+&lt;li&gt;Submissions by contributors automatically fall under
+this license unless specified otherwise.&lt;/li&gt;
+&lt;li&gt;You may NOT use trademarks related to this software
+(except in a few special cases).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;lgpl&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;LGPL License 2.1 &lt;small&gt;&amp;mdash; restrictive, complex&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can redistribute this software.&lt;/li&gt;
+&lt;li&gt;You can modify this software and distribute the derived work. However the derived work must also be LGPL-licensed.&lt;/li&gt;
+&lt;li&gt;You can relicense a copy of this software under the GPL. (This is an irreversible action for works derived from the new copy.)&lt;/li&gt;
+&lt;li&gt;If you create your own software that uses this LGPL-software, the license of your source code is unaffected. However the resulting &lt;em&gt;executable&lt;/em&gt; and (sometimes) the &lt;em&gt;object code&lt;/em&gt; must satisfy the following terms:
+
+&lt;ul&gt;
+&lt;li&gt;Modification of the executable and object code is permitted for personal use.&lt;/li&gt;
+&lt;li&gt;Reverse engineering of the executable and object code is permitted.&lt;/li&gt;
+&lt;li&gt;You must give notice that the executable and object code uses this software and that this software is licensed under the LGPL. You must also provide a copy of the LGPL license text.&lt;/li&gt;
+&lt;li&gt;If the software displays copyright notices during its operation (such as in an About box), the LGPL copyright notice for this software must be included and a reference to the full LGPL license text must be provided.&lt;/li&gt;
+&lt;li&gt;Either:
+
+&lt;ul&gt;
+&lt;li&gt;(1) Include the source code for this software (including any modifications you made to it) when distributing the executable and object code.&lt;/li&gt;
+&lt;li&gt;(2) Require that the user of the executable or object code have this software installed locally already, and use shared library mechanisms to link the executable against the (unmodified) local copy of this software.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If distributing an executable, the nondistributed form of your software must include any data or utility programs necessary to compile the executable.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;gpl&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;GPL License 2.0 &lt;small&gt;&amp;mdash; restrictive, complex, &amp;ldquo;viral&amp;rdquo;&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can redistribute the source code of this software.&lt;/li&gt;
+&lt;li&gt;You can modify this software and distribute the derived work.  However the derived work must also be GPL-licensed.&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;You can distribute this software or any software you create based on it, in executable or object code form, provided that you also distribute the corresponding source code (or provide a written offer to do so).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;No License &lt;small&gt;&amp;mdash; ultimately restrictive&lt;/small&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You cannot redistribute or sell this software.&lt;/li&gt;
+&lt;li&gt;You cannot create new software that is based on this software (i.e. derivative works).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;license_summary&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Choosing a License&lt;/h3&gt;
+
+&lt;p&gt;It is best to pick the license whose terms convey the message you want to send:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Public Domain&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do anything you want with this software. It is free forever.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MIT&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do anything you want with this software. (Although I might change my mind later.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BSD (4-clause)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do anything you want with this software, although I want to be attributed (i.e. mentioned as the original author). But I don&amp;rsquo;t want my name used to promote other things.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Apache&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can do most things with this software.&lt;br/&gt;
+(And my lawyers want a precise definition of what &amp;ldquo;most things&amp;rdquo; means.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LGPL&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I want the source code for this software library (and any derived software) to be freely available forever. I also want to enforce that all improvements to this software library that are incorporated into other products be available for independent inspection.&lt;/li&gt;
+&lt;li&gt;I don&amp;rsquo;t care if these extra terms made it burdensome for commercial entities to use my library, although I would like to make it possible for them to still use it if desired.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPL&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I want the source code for this software library and any external software that uses it to be freely available forever.&lt;/li&gt;
+&lt;li&gt;I don&amp;rsquo;t care if this means that my software will never be incorporated into a commercial product.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Copyright Notice; No License&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t even think about incorporating this software into another product, or selling it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No Copyright Notice; No License&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I don&amp;rsquo;t know about copyright or licenses. Ask me if you want to do something with my software.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Now that I&amp;rsquo;ve figured all of this out, it&amp;rsquo;s time to update the licenses I&amp;rsquo;m using for &lt;a href=&quot;https://github.com/davidfstr?tab=repositories&quot;&gt;my own open source projects&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;However if you &lt;em&gt;do&lt;/em&gt; include the magic words &lt;code&gt;Copyright (c) 2013 David Foster&lt;/code&gt; it is easier to demonstrate &lt;em&gt;willful&lt;/em&gt; infringement when you sue someone for infringing your copyright. Willful infringment entitles the copyright owner to higher &lt;em&gt;damages&lt;/em&gt; (i.e. payments from the infringer) than vanilla infringement.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;If you sell any apps on the App Store, you signed an agreement giving Apple such marketing rights.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;For example my present company Splunk requires that all contributors to its open source projects sign a Contributor Agreement of this type.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;Technically the state of being in the &amp;ldquo;public domain&amp;rdquo; is not a license. Any work explicitly released into the public domain is not subject to copyright law at all. In particular there is no copyright holder and can never be a copyright holder in the future.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;At face value this doesn&amp;rsquo;t actually seem like a restriction. However the LGPL text cautions, &amp;ldquo;It may happen that this requirement contradicts the license restrictions of other proprietary libraries that do not normally accompany the operating system. Such a contradiction means you cannot use both them and the Library together in an executable that you distribute.&amp;rdquo;&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;The GPL is ambiguous with respect to whether a piece of software that you create based on the GPL-licensed software (including merely linking to it) should be considered a derivative work or not. If so, then the GPL is truly &amp;ldquo;viral&amp;rdquo;: any piece of code that interfaces with GPL-licensed software must also be licensed under the GPL. If not, the GPL still specifies unambiguously that programs based on GPL-licensed software must be distributed with all accompanying source code. Neither proposition is tolerable for most corporate software entities.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
