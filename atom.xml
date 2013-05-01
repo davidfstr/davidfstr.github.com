@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-04-30T19:23:49-07:00</updated>
+ <updated>2013-04-30T19:30:35-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -24,7 +24,7 @@
      <category term="Software"/>
    
    <link rel="alternate" href="http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;This is a quick premier on copyrights and licenses for software developers who may not know their rights under United States law. I cannot speak for international copyright law.&lt;/p&gt;
+   <content type="html">&lt;p&gt;This is a quick overview of copyrights and licenses for software developers who may not know their rights under United States law. I cannot speak for international copyright law.&lt;/p&gt;
 
 &lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
     &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
@@ -56,7 +56,7 @@
 
 &lt;h3&gt;Copyrights are useless unless they are enforced.&lt;/h3&gt;
 
-&lt;p&gt;Enforcement takes the form of the copyright holder actively looking for &lt;em&gt;infringers&lt;/em&gt;: other people that who are distributing or selling the software without permission.&lt;/p&gt;
+&lt;p&gt;Enforcement takes the form of the copyright holder actively looking for &lt;em&gt;infringers&lt;/em&gt;: other people who are distributing or selling the software without permission.&lt;/p&gt;
 
 &lt;p&gt;For example, the MPAA may issue a DMCA takedown request to a YouTube user who has (without permission) posted an episode of a TV show that MPAA owns. If the user does not comply with the takedown, the MPAA may sue the user for infringement.&lt;/p&gt;
 
@@ -94,7 +94,7 @@
 
 &lt;h3&gt;No Warranty&lt;/h3&gt;
 
-&lt;p&gt;All software licenses I have seen explicitly disclaim all warranties. Meaning that if the software harms someone, they can&amp;rsquo;t sue you for it. This is great for software developers but  in my opinion bad for society.&lt;/p&gt;
+&lt;p&gt;All software licenses I have seen explicitly disclaim all warranties. Meaning that if the software harms someone, you can&amp;rsquo;t sue the developer for it. This is great for software developers but in my opinion bad for society.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;common_licenses&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
