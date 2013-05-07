@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>About | DaFoster</title>
+    <title>Avoid feeling like a port on the Mac | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -53,10 +53,6 @@
     
     <!-- Le scripts -->
   
-    <script src="/assets/js/jquery-1.8.3.min.js"></script>
-  
-  
-    <script src="/assets/js/jquery.ba-hashchange.min.js"></script>
   
   
   </head>
@@ -207,6 +203,80 @@
               <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
               
             
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
             
             
           </ul>
@@ -225,207 +295,93 @@
         
         
           <div class="row">
-  <div class="span9">
-    <h1>About</h1>
+  <div class="span9 post">
+    <h1>Avoid feeling like a port on the Mac</h1>
+    <div class="post-metadata">
+      May 07, 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>17</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p>Mac users get rather annoyed when using programs that feel like they&rsquo;re just a port from another OS (usually Windows).</p>
 
-
-
-
-<div class="image-box">
-  <img src="portrait.jpg" width="120" height="160" alt="Portrait of David Foster" />
-  <p>A picture of me</p>
-</div>
-
-
-<p>My name is <strong>David Foster</strong> and I enjoy developing software for fun and profit.</p>
-
-<p>Thinking of hiring me? Read my <a href="#biography">biography</a> below then
-check out my <a href="/about/resume/">resume</a>.</p>
-
-<div class="toc">
-  <ul>
-    <li><a href="#biography">Biography</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</div>
-
-
-
-
-<h2 id="biography">Biography</h2>
-
-
-<p>I initially discovered computers when I was 4 and starting programming them at 6.
-Since then, programming has been one of my most enduring hobbies.
-Witness my large number of <a href="/projects/">personal projects</a>.</p>
-
-<p>Beyond that I enjoy:</p>
+<p>Here&rsquo;s are a few important points for making your Mac app feel like a native app:</p>
 
 <ul>
-<li>reading;</li>
-<li>learning about languages (both spoken and programming);</li>
-<li>teaching;</li>
-<li>playing badminton and pool; and</li>
-<li>watching the occasional anime series.</li>
+<li><p>The user should never have to refresh local information that an application is viewing. Refresh should happen automatically when needed.</p>
+
+<ul>
+<li><p><em>Exception:</em> Web browsers. (The HTTP protocol provides no means to detect whether a web page requires refresh while it is being viewed.)</p></li>
+<li><p><em>Common violation:</em> Wait for an application to close, without auto-refreshing the application list. [<em>violated by Adobe Flash Updater</em>]</p></li>
+<li><p><em>Common violation:</em> Wait for disk to be inserted, without auto-refreshing the disk list.</p></li>
+</ul>
+</li>
+<li><p>When altering settings, change take effect <em>immediately</em>. If these settings are presented in a dialog, the changes can be reverted by pressing Cancel.</p>
+
+<ul>
+<li><p><em>Common violation:</em> Settings dialogs that have an &ldquo;Apply&rdquo; button in addition to &ldquo;OK&rdquo; and &ldquo;Cancel&rdquo;.</p></li>
+</ul>
+</li>
+<li><p>When dialogs are used to present information, the buttons in the dialog should have titles that are useful and easy to interpret. The default action should be presented as the right-most button.</p>
+
+<ul>
+<li><p><em>Example:</em> The Log Out action presents a dialog asking the user to confirm whether they want to log out, with buttons &ldquo;Cancel&rdquo; and &ldquo;Log Out&rdquo;.</p></li>
+<li><p><em>Common violation:</em> Any dialog with &ldquo;Yes&rdquo;, &ldquo;No&rdquo;, and &ldquo;Cancel&rdquo; buttons.</p></li>
+</ul>
+</li>
+<li><p>Don&rsquo;t ask the user any information that can be detected automatically with high confidence.</p>
+
+<ul>
+<li><p><em>Common violation:</em> Asking the user what language to use. [<em>Some installers</em>]</p></li>
+<li><p><em>Common violation:</em> Web pages for downloading software that prompt the user to select 32-bit vs. 64-bit architecture or an OS version.</p></li>
+</ul>
+</li>
+<li><p>Aesthetics are important. If you make an ugly app, it probably won&rsquo;t be used.</p></li>
+<li><p>Drag &amp; drop should be supported whenever it seems like it should make sense.</p></li>
 </ul>
 
 
-<h2 id="contact">Contact</h2>
+<p>And now for some nitpicks related to command key shortcuts:</p>
+
+<ul>
+<li><p>Common command key shortcuts must be supported and not modified:</p>
+
+<ul>
+<li><p>Command-Shift-Z = Redo [<em>violated by all Microsoft programs</em>]</p></li>
+<li><p>Command-Left/Right = Move to beginning and end of line [<em>violated by all Microsoft programs</em>]</p></li>
+<li><p>Command-F = Find [<em>violated by Microsoft Outlook</em>]</p></li>
+<li><p>Command-P = Print [<em>violated by Sublime Text</em>]</p></li>
+</ul>
+</li>
+<li><p>All command key shortcuts must include the command key. That is neither Control nor Option (Alt) can be the primary modifier for a shortcut sequence.</p></li>
+<li><p>Do not make shortcuts with the function keys (F1 &ndash; F15). They are hard to remember.</p></li>
+<li><p>All command key shortcuts must be tied to a menu item.</p>
+
+<ul>
+<li><p><em>Example:</em> Command-Option-Escape (Force Quit), which is analogous to Control-Alt-Delete on Windows, can actually be found in the Apple menu.</p></li>
+<li><p><em>Exception:</em> Command-Shift-3 and Command-Shift-4 are legacy shortcuts that take screenshots.</p></li>
+</ul>
+</li>
+<li><p>There is no such thing as the Apple key. You probably meant the Command key.</p></li>
+<li><p>There is no such thing as the Backspace key. You probably meant the Delete key &ndash; which is not to be confused with the Forward Delete key, which most Windows users just call Delete.</p></li>
+<li><p>Not all users have a right mouse button. In that case, you must instruct the user to Control-click instead of right-click.</p>
+
+<ul>
+<li><em>Exemplar:</em> The game Black and White detects whether the primary mouse is a single-button or a multi-button mouse and provides different instructions (and mouse graphics) for each case.</li>
+</ul>
+</li>
+</ul>
 
 
-<p>Need to contact me? Solve the following puzzle to get my email:</p>
-
-<p><strong>MyEmail = &ldquo;david&rdquo; + RemoveVowels(&ldquo;foster&rdquo;) + &ldquo;@gmail.com&rdquo;</strong></p>
-
-<p><em>(The letters A, E, I, O, and U are vowels.)</em></p>
+<p>For all other issues, including other philosphical concerns to consider, read and follow the OS X <a href="https://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html">Human Interface Guidelines</a>&nbsp;(HIG). This is one of the best descriptions of the &ldquo;Zen of the Mac&rdquo;. Every Mac developer should reread this every few years.</p>
 
   </div>
   
   <div class="span3 block-bar">
-    <div class="block">
-  <h3>Projects</h3>
-  
-  <ul class="tag_box" style="margin-bottom: .5em">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="burn-planner-project">
-          <a href="/projects/burn-planner/">Burn Planner</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="crystal-web-archiver-project">
-          <a href="/projects/crystal-web-archiver/" class="external">Crystal Web Archiver</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="decimal-binary-unit-converter-project">
-          <a href="/projects/decimal-binary-unit-converter/" class="external">Dec-Bin Unit Converter</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="decomp4-project">
-          <a href="/projects/decomp4/" class="external">decomp4</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="handbrake-subtitle-support-project">
-          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
-        </li>
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="park-place-project">
-          <a href="/projects/park-place/">Park Place</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="rdiscount-project">
-          <a href="/projects/rdiscount/">RDiscount</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="website-project">
-          <a href="/projects/website/">Website</a>
-        </li>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </ul>
-  <p class="x-and-more-projects">And more at:</p>
-<ul>
-  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
-  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
-</ul>
-</div>
     <div class="block">
   <h3>Topics</h3>
   
@@ -436,12 +392,18 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
       
       
       
+        
+          
+        
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>17</sup></a></li>
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>17</sup></a></li>
     
       
       
       
+      
+        
       
       
       <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
@@ -450,6 +412,8 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
       
       
       
+        
+      
       
       <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
     
@@ -457,12 +421,16 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
       
       
       
+        
+      
       
       <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>3</sup></a></li>
     
       
       
       
+      
+        
       
       
       <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>1</sup></a></li>
@@ -474,6 +442,22 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
   </a>
 </div>
 
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/04/30/copyrights-and-licenses-for-software/" title="Copyrights and Licenses for Software">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
   </div>
 </div>
 
@@ -488,17 +472,6 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
 
     </div>
     
-  
-    <script>
-      $(window).hashchange(function() {
-        // Highlight heading corresponding to current anchor (if specified)
-        if (location.hash) {
-          $('h2').removeClass('active');
-          $(location.hash).addClass('active');
-        }
-      });
-      $(window).hashchange();
-    </script>
   
   
   

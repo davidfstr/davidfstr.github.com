@@ -6,14 +6,94 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 04 May 2013 15:43:00 -0700</pubDate>
-    <lastBuildDate>Sat, 04 May 2013 15:43:00 -0700</lastBuildDate>
+    <pubDate>Tue, 07 May 2013 12:40:28 -0700</pubDate>
+    <lastBuildDate>Tue, 07 May 2013 12:40:28 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Avoid feeling like a port on the Mac</title>
+      <link>http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 07 May 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac</guid>
+      <description>&lt;p&gt;Mac users get rather annoyed when using programs that feel like they&amp;rsquo;re just a port from another OS (usually Windows).&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s are a few important points for making your Mac app feel like a native app:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The user should never have to refresh local information that an application is viewing. Refresh should happen automatically when needed.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Exception:&lt;/em&gt; Web browsers. (The HTTP protocol provides no means to detect whether a web page requires refresh while it is being viewed.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Common violation:&lt;/em&gt; Wait for an application to close, without auto-refreshing the application list. [&lt;em&gt;violated by Adobe Flash Updater&lt;/em&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Common violation:&lt;/em&gt; Wait for disk to be inserted, without auto-refreshing the disk list.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When altering settings, change take effect &lt;em&gt;immediately&lt;/em&gt;. If these settings are presented in a dialog, the changes can be reverted by pressing Cancel.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Common violation:&lt;/em&gt; Settings dialogs that have an &amp;ldquo;Apply&amp;rdquo; button in addition to &amp;ldquo;OK&amp;rdquo; and &amp;ldquo;Cancel&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When dialogs are used to present information, the buttons in the dialog should have titles that are useful and easy to interpret. The default action should be presented as the right-most button.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Example:&lt;/em&gt; The Log Out action presents a dialog asking the user to confirm whether they want to log out, with buttons &amp;ldquo;Cancel&amp;rdquo; and &amp;ldquo;Log Out&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Common violation:&lt;/em&gt; Any dialog with &amp;ldquo;Yes&amp;rdquo;, &amp;ldquo;No&amp;rdquo;, and &amp;ldquo;Cancel&amp;rdquo; buttons.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Don&amp;rsquo;t ask the user any information that can be detected automatically with high confidence.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Common violation:&lt;/em&gt; Asking the user what language to use. [&lt;em&gt;Some installers&lt;/em&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Common violation:&lt;/em&gt; Web pages for downloading software that prompt the user to select 32-bit vs. 64-bit architecture or an OS version.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Aesthetics are important. If you make an ugly app, it probably won&amp;rsquo;t be used.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Drag &amp;amp; drop should be supported whenever it seems like it should make sense.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And now for some nitpicks related to command key shortcuts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Common command key shortcuts must be supported and not modified:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Command-Shift-Z = Redo [&lt;em&gt;violated by all Microsoft programs&lt;/em&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Command-Left/Right = Move to beginning and end of line [&lt;em&gt;violated by all Microsoft programs&lt;/em&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Command-F = Find [&lt;em&gt;violated by Microsoft Outlook&lt;/em&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Command-P = Print [&lt;em&gt;violated by Sublime Text&lt;/em&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;All command key shortcuts must include the command key. That is neither Control nor Option (Alt) can be the primary modifier for a shortcut sequence.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Do not make shortcuts with the function keys (F1 &amp;ndash; F15). They are hard to remember.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;All command key shortcuts must be tied to a menu item.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Example:&lt;/em&gt; Command-Option-Escape (Force Quit), which is analogous to Control-Alt-Delete on Windows, can actually be found in the Apple menu.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Exception:&lt;/em&gt; Command-Shift-3 and Command-Shift-4 are legacy shortcuts that take screenshots.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There is no such thing as the Apple key. You probably meant the Command key.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There is no such thing as the Backspace key. You probably meant the Delete key &amp;ndash; which is not to be confused with the Forward Delete key, which most Windows users just call Delete.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Not all users have a right mouse button. In that case, you must instruct the user to Control-click instead of right-click.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Exemplar:&lt;/em&gt; The game Black and White detects whether the primary mouse is a single-button or a multi-button mouse and provides different instructions (and mouse graphics) for each case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For all other issues, including other philosphical concerns to consider, read and follow the OS X &lt;a href=&quot;https://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html&quot;&gt;Human Interface Guidelines&lt;/a&gt;&amp;nbsp;(HIG). This is one of the best descriptions of the &amp;ldquo;Zen of the Mac&amp;rdquo;. Every Mac developer should reread this every few years.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>
