@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-05-07T20:08:10-07:00</updated>
+ <updated>2013-05-08T17:36:44-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -900,6 +900,8 @@ the most interesting ones to look at.&lt;/li&gt;
    <updated>2013-03-22T00:00:00-07:00</updated>
    
      <category term="Software"/>
+   
+     <category term="Productivity"/>
    
    <link rel="alternate" href="http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I&amp;rsquo;ve been using &lt;a href=&quot;http://www.barebones.com/products/bbedit/index.html&quot;&gt;BBEdit&lt;/a&gt; as my primary text editor on the Mac for over 10 years. It is an extremely capable and mature editor with just about all the bells and whistles you can imagine. However the use of Sublime Text has been spreading throughout my workplace at Splunk&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so I decided I&amp;rsquo;d give it a try.&lt;/p&gt;
