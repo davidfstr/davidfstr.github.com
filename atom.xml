@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-05-08T17:36:44-07:00</updated>
+ <updated>2013-05-11T21:16:30-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,617 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/05/11/book-outline</id>
+   <title>Programming for Perfectionists (P4P): A Book Outline</title>
+   <published>2013-05-11T00:00:00-07:00</published>
+   <updated>2013-05-11T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/05/11/book-outline/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I&amp;rsquo;ve read a lot of programming books. Many focus on teaching a particular language or tool, or are for teaching beginner developers the ropes. Precious few are designed to bring intermediate developers up to an advanced level. It&amp;rsquo;s time to change that.&lt;/p&gt;
+
+&lt;p&gt;Here is an outline of a book I would like to write. I will probably try writing some of these sections and chapters as future article posts. When that happens, each section below will be replaced with a link to the associated article.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Programming for Perfectionists&amp;rdquo; is the working title for the book and may be revised later.&lt;/p&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The purpose of this book is to provide a &lt;em&gt;wide and shallow&lt;/em&gt; overview of important concepts in real-world software development. As such the treatment of various topics will not be comprehensive. Entire books have been written on the topic of each chapter, and appropriate references will be provided where appropriate.&lt;/p&gt;
+
+&lt;p&gt;This book will not teach specific tools, languages, or programs in depth. It deals in concepts and patterns. However references to specific tools and languages will be provided liberally in concrete examples.&lt;/p&gt;
+
+&lt;p&gt;Many concepts presented here are ones that I feel are missing from the traditional &amp;ldquo;computer science&amp;rdquo; curriculum, yet which I feel to be vital to understand when working with real-world software.&lt;/p&gt;
+
+&lt;h2&gt;Fundamentals&lt;/h2&gt;
+
+&lt;h3&gt;Representations&lt;/h3&gt;
+
+&lt;p&gt;Many developers do not understand the common ways of representing various kinds of real-world data, such as integers, color, and time. This leads to errors such as integer overflow vulnerabilities, munging of international characters, ignorance of color correction, and bugs that only trigger at midnight on leap years.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Numbers&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Integers
+
+&lt;ul&gt;
+&lt;li&gt;Fixed-precision 2&amp;rsquo;s complement&lt;/li&gt;
+&lt;li&gt;Arbitrary Precision Integers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Decimals
+
+&lt;ul&gt;
+&lt;li&gt;Floating Point&lt;/li&gt;
+&lt;li&gt;Fixed Point&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Text&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Characters and Codepoints&lt;/li&gt;
+&lt;li&gt;Text Encodings
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;ANSI&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Unicode, UTF-8, UCS-2, UTF-16
+
+&lt;ul&gt;
+&lt;li&gt;Basic Multilingual Plane, Astral Characters&lt;/li&gt;
+&lt;li&gt;BOM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Characters&amp;rdquo; and &amp;ldquo;Strings&amp;rdquo; in popular programming languages&lt;/li&gt;
+&lt;li&gt;Line-ending sequences&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Color&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Color Models, &amp;ldquo;RGB&amp;rdquo;, Colorspaces, CIE, Gamma&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pictures&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Resolution
+
+&lt;ul&gt;
+&lt;li&gt;Magic: 72 dpi and 96 dpi&lt;/li&gt;
+&lt;li&gt;Resolution Independence&lt;/li&gt;
+&lt;li&gt;Pixel Doubling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Non-Square Pixels (ex: NTSC)&lt;/li&gt;
+&lt;li&gt;Anamorphic Projections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sound&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Video&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Collections&lt;/h3&gt;
+
+&lt;p&gt;Collections are the backbone for representing compound data in any programming language. Specific implementations are covered in great detail in most any traditional CS textbook. However there are a number of more advanced collections which are useful for tough problems.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Basic Collections&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Arrays
+
+&lt;ul&gt;
+&lt;li&gt;Bit Vectors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Lists
+
+&lt;ul&gt;
+&lt;li&gt;Array lists&lt;/li&gt;
+&lt;li&gt;Linked lists&lt;/li&gt;
+&lt;li&gt;Linked lists of arbitrary objects&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Sets
+
+&lt;ul&gt;
+&lt;li&gt;Hash set&lt;/li&gt;
+&lt;li&gt;Linked hash set&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Sorted Sets
+
+&lt;ul&gt;
+&lt;li&gt;Red &amp;amp; black trees&lt;/li&gt;
+&lt;li&gt;Heaps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Maps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advanced Collections&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Bags
+
+&lt;ul&gt;
+&lt;li&gt;Counted Bags&lt;/li&gt;
+&lt;li&gt;Partitioning Bags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Multimaps&lt;/li&gt;
+&lt;li&gt;Bidi Multimaps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advanced Data Structures&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Trees&lt;/li&gt;
+&lt;li&gt;Graphs (including: directed, multi)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Error Handling&lt;/h3&gt;
+
+&lt;p&gt;There are many more ways for a program to fail than succeed.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Signaling (Error Codes vs. Exceptions vs. Sentinels)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sentinels &amp;ndash; null, 0, -1, false&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Guarantees after failure&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In original state (Atomic, Transactional)&lt;/li&gt;
+&lt;li&gt;In different but valid state&lt;/li&gt;
+&lt;li&gt;In different and potentially illegal state&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Behaviors upon failure&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Delegate to caller&lt;/li&gt;
+&lt;li&gt;Handle internally
+
+&lt;ul&gt;
+&lt;li&gt;Aside: Minix is the extreme of this approach.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Exit program
+
+&lt;ul&gt;
+&lt;li&gt;Linux Kernel: panic()&lt;/li&gt;
+&lt;li&gt;Python, PHP: die()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Display to user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error Locality &amp;amp; Failing Fast&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Assertions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Designing Error Messages&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error Seriousness&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Expected &amp;ndash; &lt;code&gt;Exception&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Unexpected &amp;ndash; &lt;code&gt;RuntimeException&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fatal &amp;ndash; &lt;code&gt;Error&lt;/code&gt; (esp. &lt;code&gt;OutOfMemoryError&lt;/code&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;Aside: Certain programs are actually designed to handle OOM errors (ex: SQLite). Most are not.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Bonus:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Checked Exceptions&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exception Wrapping&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Concurrency&lt;/h3&gt;
+
+&lt;p&gt;Early languages like C pretend that threads don&amp;rsquo;t even exist. And even amidst the multi-core systems today, many programmers would like to pretend that concurrent execution doesn&amp;rsquo;t exist. A huge number of concurrency-related bugs are found in production code today.&lt;/p&gt;
+
+&lt;p&gt;Many developers are familiar with the &amp;ldquo;shared memory &amp;amp; locks&amp;rdquo; model used by most mainstream programming languages for working with concurrency. This model unfortunately makes it very easy to introduce bugs, and these bugs are often difficult to detect since they depend on the precise ordering of randomly-ordered events. Deadlocks and livelocks also lurk to trip the unwary. This and other more-robust models will be presented here.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Terminology&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Processes, Threads, and Green Threads&lt;/li&gt;
+&lt;li&gt;Concurrency vs. Parallelism&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shared Memory &amp;amp; Locks Model&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Thread Safe vs. Thread Unsafe vs. Thread Hostile&lt;/li&gt;
+&lt;li&gt;Deadlocks, Livelocks, and Lock Hierarchies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Apartment Threading&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Thread Affinity&lt;/li&gt;
+&lt;li&gt;Run Loops&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Actor Model&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Immutability&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read-Copy-Update&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Memory Management&lt;/h3&gt;
+
+&lt;p&gt;Tradeoffs should be described for each of the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Manual Memory Management&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ownership &amp;ndash; &amp;ldquo;Own &amp;amp; Borrow&amp;rdquo; Model&lt;/li&gt;
+&lt;li&gt;Hierarchy, Composites vs. Aggregates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reference Counting&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Automatic Reference Counting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Garbage Collection&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Generational Collectors&lt;/li&gt;
+&lt;li&gt;Mark &amp;amp; Sweep&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Bonus:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Special-Purpose Memory Allocators&lt;/strong&gt; (to reduce calls to system&amp;rsquo;s malloc)
+
+&lt;ul&gt;
+&lt;li&gt;Slab Allocaters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Languages&lt;/h2&gt;
+
+&lt;h3&gt;The Right Tool for the Right Job &lt;small&gt;(Comparing Programming Languages)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;A programming language is a tool for getting work done. Some tools are better at certain tasks than others. Thus picking your tool wisely for the task at hand will save you effort down the road.&lt;/p&gt;
+
+&lt;p&gt;It should also be noted that a programming language does not stand alone; it comes with an entire ecosystem of tools and people along with it. Such ecosystems often cater to a particular domain and make it easier to work with programs in that domain.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Native Development (Desktop, Mobile, and Embedded)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;C/C++ &amp;ndash; lingua franca; easiest to bind to OS; hand-optimized performance-critical code&lt;/li&gt;
+&lt;li&gt;Java &amp;ndash; rich cross-platform development (including GUIs); server programming&lt;/li&gt;
+&lt;li&gt;Python &amp;ndash; rich cross-platform CLI scripting; text &amp;amp; data processing&lt;/li&gt;
+&lt;li&gt;C# &amp;ndash; rich Windows app programming&lt;/li&gt;
+&lt;li&gt;Objective-C &amp;ndash; native OS X development; native iOS development&lt;/li&gt;
+&lt;li&gt;PowerShell &amp;ndash; Windows CLI scripting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web Development (Server-Side)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PHP &amp;ndash; web application prototyping; most widely deployed server-side scripting language
+
+&lt;ul&gt;
+&lt;li&gt;Java &amp;amp; JSP &amp;ndash; Java&amp;rsquo;s clone of PHP&lt;/li&gt;
+&lt;li&gt;C# &amp;amp; ASP.NET &amp;ndash; Microsoft&amp;rsquo;s clone of PHP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ruby &amp;amp; Ruby on Rails &amp;ndash; bleeding-edge full-stack web framework&lt;/li&gt;
+&lt;li&gt;Python &amp;amp; Django &amp;ndash; mature full-stack web framework; rapid development; excellent ORM&lt;/li&gt;
+&lt;li&gt;Python &amp;amp; web2py &amp;ndash; mature full-stack web framework
+
+&lt;ul&gt;
+&lt;li&gt;Anecdotal evidence suggests PHP refugees like web2py a bit better than Django,
+probably because it uses implicit behavior (i.e. magic) to avoid boilerplate.
+In contrast Django&amp;rsquo;s philosophy is &amp;ldquo;explicit is better than implicit&amp;rdquo;,
+which is more in line with general Python philosophy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python &amp;amp; (lots of choices) &amp;ndash; lightweight web framework; for maximum control
+
+&lt;ul&gt;
+&lt;li&gt;Pyramid&lt;/li&gt;
+&lt;li&gt;Flask&lt;/li&gt;
+&lt;li&gt;web.py&lt;/li&gt;
+&lt;li&gt;CherryPy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web Development (Client-Side)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTML, CSS, JavaScript &amp;ndash; assembly languages&lt;/li&gt;
+&lt;li&gt;Haml, Sass, CoffeeScript &amp;ndash; 2nd-order languages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Special-Purpose Languages&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fortran &amp;ndash; high-performance numerical programming&lt;/li&gt;
+&lt;li&gt;Lua &amp;ndash; embedded game programming (ex: game mods, AIs)&lt;/li&gt;
+&lt;li&gt;Lisp (Racket) &amp;ndash; academic programming&lt;sup&gt;AcadProg&lt;/sup&gt;; dynamic; great for embedded DSLs&lt;/li&gt;
+&lt;li&gt;Haskell &amp;ndash; academic programming&lt;sup&gt;AcadProg&lt;/sup&gt;; static; better compile-time safety than any mainstream language&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;span style=&quot;font-variant: small-caps;&quot;&gt;AcadProg&lt;/span&gt;: This language tends to be used in academia, especially by programming language researchers. Thus it also gets various cutting-edge programming language features before mainstream languages.&lt;/p&gt;
+
+&lt;h3&gt;Ideas that Change the World &lt;small&gt;(Programming Paradigms)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;The following paradigms are presented in chronological order by their recognition in the wider programming community.&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;(Ye Olde) Structured Programming (ALGOL)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ban &lt;code&gt;goto&lt;/code&gt; &amp;ndash; GOTO Considered Harmful&lt;/li&gt;
+&lt;li&gt;single entry, single exit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Declarative Programming (Prolog, SQL, and other DSLs)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Tell me what you want to do and I&amp;rsquo;ll figure out how to actually do it.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Object-Oriented Programming (Smalltalk &amp;amp; Java)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Decomposing the behavior of a large system into smart modules that interact with each other through interfaces.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Functional Programming (Lisp &amp;amp; Haskell)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Higher-order functions.&lt;/li&gt;
+&lt;li&gt;Building complex data structures out of simple primitive collections (especially lists).&lt;/li&gt;
+&lt;li&gt;Constrained side effects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Process&lt;/h2&gt;
+
+&lt;h3&gt;Collaborative Software Development&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Open Source&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stand on the shoulders of giants. Learn new techniques.&lt;/li&gt;
+&lt;li&gt;Work on projects you&amp;rsquo;re passionate about.&lt;/li&gt;
+&lt;li&gt;Start your own projects to get free development resources from the community.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Version Control Systems&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Centralized (CVS, SVN, Perforce)&lt;/li&gt;
+&lt;li&gt;Distributed (Git, Mercurial)&lt;/li&gt;
+&lt;li&gt;Patches &amp;ndash; create, view, apply, submit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automated Build Systems&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;configure, make (C&lt;wbr/&gt;)&lt;/li&gt;
+&lt;li&gt;Ant (Java)&lt;/li&gt;
+&lt;li&gt;Rake (Ruby)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dependency Management&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Versioning
+
+&lt;ul&gt;
+&lt;li&gt;Semantic Versioning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Package Managers, Environment Isolators&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Code Conventions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Philosophy&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clarity is paramount.&lt;/li&gt;
+&lt;li&gt;Consistency is a close second.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Indentation&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2 columns vs. 4 columns&lt;/li&gt;
+&lt;li&gt;Tabs vs. spaces&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;80 column lines&lt;/strong&gt; (or max 100)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Brace positioning&lt;/strong&gt; (when applicable)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Whitespace around operators&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method ordering and grouping&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blank lines and paragraphs&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Communicating Software Designs &lt;small&gt;(UML &amp;amp; other diagrammatic notations)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Most of the following diagram notations assume the use of object-oriented programming. Non-OO languages do not have any standard diagram types, to my knowledge.&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;(Ye Olde) Flow Chart&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Class Diagrams&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;State Charts&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sequence &amp;amp; Communication Diagrams&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use Cases (Fully Dressed)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CRC Cards&lt;/strong&gt; (designing classes with responsibilities in mind)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Detecting Defects Early &lt;small&gt;(Testing)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unit Testing, Code Coverage, Continuous Integration&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Static Analysis&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Compiler
+
+&lt;ul&gt;
+&lt;li&gt;Strong static typing&lt;/li&gt;
+&lt;li&gt;Enabling extra warnings (&lt;code&gt;-Wall&lt;/code&gt;, &lt;code&gt;-Weverything&lt;/code&gt;, &lt;code&gt;-Werror&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Lint&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Analysis&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Valgrind&lt;/li&gt;
+&lt;li&gt;Fault Injection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test Matrixes, Environment Isolators, Virtual Machines&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ldquo;Large Hammers&amp;rdquo;&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fuzzing&lt;/li&gt;
+&lt;li&gt;Stress Testing&lt;/li&gt;
+&lt;li&gt;Longhaul Testing&lt;/li&gt;
+&lt;li&gt;(many more)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Improving Code Quality &lt;small&gt;(Basic Refactoring)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;Transforming the structure of existing code to improve it while maintaining its original behavior is a process called refactoring. Regularly applying refactoring to your code will greatly extend its maintainable life.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rename Method or Variable&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extract Method&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Introduce Explaining Variable&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replace Magic Number with Symbolic Constant&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replace Nested Conditional with Guard Clauses&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Meta:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Duplication is the root of all evil.&lt;/li&gt;
+&lt;li&gt;Prefer delegation over inheritance.&lt;/li&gt;
+&lt;li&gt;Prefer interfaces over abstract classes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;When It Breaks &lt;small&gt;(Debugging Techniques)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;No program is perfect. Even if one were, requirement changes will break it soon enough.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Print Statements, Logging&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debuggers&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Breakpoints, Catchpoints&lt;/li&gt;
+&lt;li&gt;Conditional Breakpoints &amp;amp; Watching variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Heap Analyzers&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Making It Faster &lt;small&gt;(Profiling/Instrumentation)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;Meta:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Premature optimization is frequently a waste of time.
+
+&lt;ul&gt;
+&lt;li&gt;Programmer time is more valuable that machine time.&lt;/li&gt;
+&lt;li&gt;Algorithm choice has a larger impact on performance than almost any manual tweaking.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Maintaining Legacy Code Safely &lt;small&gt;(Advanced Refactoring)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Although the concept of refactoring can be applied to any code, not just legacy code, the &lt;/em&gt;deliberate and careful&lt;em&gt; application of refactoring techniques is mostly restricted to legacy code.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is covered in great detail in the &amp;ldquo;Refactoring&amp;rdquo; book by Martin Fowler.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Comments?&lt;/h2&gt;
+
+&lt;p&gt;Does any of this content sound interesting to you? If so, &lt;a href=&quot;/contact/&quot;&gt;drop me a line&lt;/a&gt;. I may add/remove content and/or modify the order that I write the chapters based on feedback.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;For example, the early appearance of the Ruby on Rails web framework in the Ruby language caused a lot of the Ruby ecosystem to cater to web development needs. Subsequently Ruby gained the &amp;ldquo;move fast and break things&amp;rdquo; web mentality, along with the necessary tooling to support that mentality: heavy-duty testing, continuous integration, semantic versioning, package management, etc.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
