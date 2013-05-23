@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-05-19T12:31:19-07:00</updated>
+ <updated>2013-05-23T08:56:53-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -17,19 +17,41 @@
  
  <entry>
    <id>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful</id>
-   <title>Implicit Partial Application (Currying) Considered Harmful</title>
+   <title>Implicit Partial Application Considered Harmful</title>
    <published>2013-05-12T00:00:00-07:00</published>
    <updated>2013-05-12T00:00:00-07:00</updated>
    
      <category term="Software"/>
    
    <link rel="alternate" href="http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+   <content type="html">&lt;!--
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
     &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
         Audience
     &lt;/p&gt;
     &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
         I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function's signature requires. In academic-speak, this is called &quot;partial application of a function&quot;.
+    &lt;/p&gt;
+&lt;/div&gt;
+--&gt;
+
+
+
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Purpose
+    &lt;/p&gt;
+    &lt;p&gt;
+        This article is intended to convey my confusion and minor frustration
+        with trying to understand part of Haskell's syntax as I currently
+        learn Haskell.
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        Since Haskell has many unfamilar concepts relative to other languages
+        I know well, I am likely to make some terminology mistakes here. I am
+        learning and welcome corrections. Please see the discussion on
+        &lt;a href=&quot;http://www.reddit.com/r/haskell/comments/1elklu/currying_considered_harmful/&quot;&gt;Reddit&lt;/a&gt;.
     &lt;/p&gt;
 &lt;/div&gt;
 
@@ -106,7 +128,7 @@
 
 &lt;p&gt;What a mess. If &lt;code&gt;alpha&lt;/code&gt; does not in fact take two arguments then I have to exert non-trivial effort to derive the type of the expression &amp;ndash; or even what the expression semantics are.&lt;/p&gt;
 
-&lt;h2&gt;Eliminating the Ambiguity&lt;/h2&gt;
+&lt;h2&gt;Reducing the Ambiguity&lt;/h2&gt;
 
 &lt;p&gt;There are two ways I can see to simplify these weird cases:&lt;/p&gt;
 
