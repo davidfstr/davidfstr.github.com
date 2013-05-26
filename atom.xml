@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-05-23T08:56:53-07:00</updated>
+ <updated>2013-05-25T18:02:33-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -232,7 +232,7 @@ alpha(beta)(gamma, ...)
 (/ 20)
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;This last form uses left-currying, which is obvious since &lt;code&gt;/&lt;/code&gt; is a well-known built-in infix operator that requires an unspecified left argument, which would be filled in by currying.&lt;/p&gt;
+&lt;p&gt;This last form uses partial application to fill in the first argument of &lt;code&gt;/&lt;/code&gt;, which is obvious since &lt;code&gt;/&lt;/code&gt; is a well-known built-in infix operator that requires an unspecified left argument.&lt;/p&gt;
 </content>
  </entry>
  

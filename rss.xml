@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Thu, 23 May 2013 08:56:53 -0700</pubDate>
-    <lastBuildDate>Thu, 23 May 2013 08:56:53 -0700</lastBuildDate>
+    <pubDate>Sat, 25 May 2013 18:02:33 -0700</pubDate>
+    <lastBuildDate>Sat, 25 May 2013 18:02:33 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -229,7 +229,7 @@ alpha(beta)(gamma, ...)
 (/ 20)
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;This last form uses left-currying, which is obvious since &lt;code&gt;/&lt;/code&gt; is a well-known built-in infix operator that requires an unspecified left argument, which would be filled in by currying.&lt;/p&gt;
+&lt;p&gt;This last form uses partial application to fill in the first argument of &lt;code&gt;/&lt;/code&gt;, which is obvious since &lt;code&gt;/&lt;/code&gt; is a well-known built-in infix operator that requires an unspecified left argument.&lt;/p&gt;
 </description>
     </item>
     
