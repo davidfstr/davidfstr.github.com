@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>RDiscount 2.0.7 released | DaFoster</title>
+    <title>RDiscount 2.1.6 released | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -296,9 +296,9 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>RDiscount 2.0.7 released</h1>
+    <h1>RDiscount 2.1.6 released</h1>
     <div class="post-metadata">
-      Feb 02, 2013 &ndash; Filed under: 
+      May 28, 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -307,38 +307,16 @@
       </span>
     </div>
     
-    <p>It has been just over two years since <a href="/projects/rdiscount/">RDiscount</a> 1.6.8 (the previous version) was posted.<br/>
-As the new maintainer, I intend to provide updates a bit more frequently. :-)</p>
+    <p>There are several new features in <a href="/projects/rdiscount/">RDiscount</a> 2.1.6. My favorite is fenced code blocks.</p>
 
 <p>Update to the latest version with:</p>
 
 <pre><code>gem update rdiscount
 </code></pre>
 
+<p>RDiscount now has feature parity with the latest Discount release.</p>
+
 <h2>What&rsquo;s New?</h2>
-
-<ul>
-<li><a href="http://michelf.ca/projects/php-markdown/extra/#footnotes">Footnotes</a> - from <em>PHP Markdown Extra</em></li>
-<li>Superscript tweaks
-
-<ul>
-<li>Be more picky about what comes before a ^ if we’re superscripting.</li>
-<li>Modify superscript grabbing so that it grabs parenthetical and alphanumeric blocks.</li>
-</ul>
-</li>
-<li>Other bug fixes
-
-<ul>
-<li>Table-of-contents generation will no longer crash for header items containing links.</li>
-<li>Adjacent new-style [link]s are no longer incorrectly combined.</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>What&rsquo;s Next?</h2>
-
-<p>RDiscount 2.1.5 will be the next release of RDiscount. Planned features include:</p>
 
 <ul>
 <li>Fenced code blocks
@@ -348,18 +326,35 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)</p
 <li><a href="http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">tilde-delimited</a> - from <em>PHP Markdown Extra</em></li>
 </ul>
 </li>
+<li>New extensions:
+
+<ul>
+<li><code>:no_superscript</code> - Disables superscript processing.</li>
+<li><code>:no_strikethrough</code> - Disables strikethrough processing.</li>
+</ul>
+</li>
+<li>License changed from 4-clause BSD to the more-permissive 3-clause BSD.</li>
+<li>Fix <code>--</code> and <code>---</code> to be converted to <code>&amp;ndash;</code> and <code>&amp;mdash;</code> correctly.</li>
+<li>Fix handling of tables that have leading and trailing pipe characters.</li>
+<li>Fix generated table of contents to be valid HTML.<br/>
+Handling of special characters in headings is also improved.</li>
+<li>Fix recognition of HTML tags that contain <code>-</code> or <code>_</code>.</li>
 </ul>
 
 
-<h2>Who am I?</h2>
+<h2>What&rsquo;s Next?</h2>
 
-<p>I should also introduce myself: I am <a href="/about/">David Foster</a>, the new maintainer for RDiscount.</p>
-
-<p>Since I am using RDiscount on my personal website, you can expect continued updates as major new features are introduced in the underlying <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> library.</p>
+<p>Only David Loren Parsons knows.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> :-)</p>
 
 <h3><em>Related Articles</em></h3>
 
 <ul>
+<li><a href="/articles/2013/02/02/rdiscount-2.0.7-released/">RDiscount 2.0.7 released</a>
+
+<ul>
+<li><em>Release notes for the previous release of RDiscount.</em></li>
+</ul>
+</li>
 <li><a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">Why I no longer use Drupal</a>
 
 <ul>
@@ -368,6 +363,14 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)</p
 </ul>
 </li>
 </ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>David Loren Parsons is the author and maintainer of the Discount library underlying RDiscount.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 
   </div>
@@ -444,11 +447,11 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)</p
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/02/02/learnings-from-sicp/" title="Learnings from SICP (and Lisp)">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/" title="Implicit Partial Application Considered Harmful">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/02/20/visual-guide-to-programming-language-properties/" title="Visual Guide to Programming Language Properties">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

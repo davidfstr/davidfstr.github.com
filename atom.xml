@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-05-25T18:02:33-07:00</updated>
+ <updated>2013-05-28T20:20:57-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,84 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released</id>
+   <title>RDiscount 2.1.6 released</title>
+   <published>2013-05-28T00:00:00-07:00</published>
+   <updated>2013-05-28T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;There are several new features in &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; 2.1.6. My favorite is fenced code blocks.&lt;/p&gt;
+
+&lt;p&gt;Update to the latest version with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem update rdiscount
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;RDiscount now has feature parity with the latest Discount release.&lt;/p&gt;
+
+&lt;h2&gt;What&amp;rsquo;s New?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fenced code blocks
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot;&gt;backtick-delimited&lt;/a&gt; - from &lt;em&gt;GitHub Flavored Markdown&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks&quot;&gt;tilde-delimited&lt;/a&gt; - from &lt;em&gt;PHP Markdown Extra&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New extensions:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;:no_superscript&lt;/code&gt; - Disables superscript processing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:no_strikethrough&lt;/code&gt; - Disables strikethrough processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;License changed from 4-clause BSD to the more-permissive 3-clause BSD.&lt;/li&gt;
+&lt;li&gt;Fix &lt;code&gt;--&lt;/code&gt; and &lt;code&gt;---&lt;/code&gt; to be converted to &lt;code&gt;&amp;amp;ndash;&lt;/code&gt; and &lt;code&gt;&amp;amp;mdash;&lt;/code&gt; correctly.&lt;/li&gt;
+&lt;li&gt;Fix handling of tables that have leading and trailing pipe characters.&lt;/li&gt;
+&lt;li&gt;Fix generated table of contents to be valid HTML.&lt;br/&gt;
+Handling of special characters in headings is also improved.&lt;/li&gt;
+&lt;li&gt;Fix recognition of HTML tags that contain &lt;code&gt;-&lt;/code&gt; or &lt;code&gt;_&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;What&amp;rsquo;s Next?&lt;/h2&gt;
+
+&lt;p&gt;Only David Loren Parsons knows.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; :-)&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/02/02/rdiscount-2.0.7-released/&quot;&gt;RDiscount 2.0.7 released&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Release notes for the previous release of RDiscount.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2012/12/16/why-i-no-longer-use-drupal/&quot;&gt;Why I no longer use Drupal&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Why Jekyll (and not Drupal) is awesome for making a personal website or blog.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Jekyll can use RDiscount for Markdown rendering.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;David Loren Parsons is the author and maintainer of the Discount library underlying RDiscount.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -58,9 +136,8 @@
 
 &lt;p&gt;Consider the following function-call expression in Haskell:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-(alpha beta gamma)
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(alpha beta gamma)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What can be deduced?&lt;/p&gt;
 
@@ -126,7 +203,7 @@
 
 &lt;h3&gt;Summary&lt;/h3&gt;
 
-&lt;p&gt;What a mess. If &lt;code&gt;alpha&lt;/code&gt; does not in fact take two arguments then I have to exert non-trivial effort to derive the type of the expression &amp;ndash; or even what the expression semantics are.&lt;/p&gt;
+&lt;p&gt;What a mess. If &lt;code&gt;alpha&lt;/code&gt; does not in fact take two arguments then I have to exert non-trivial effort to derive the type of the expression - or even what the expression semantics are.&lt;/p&gt;
 
 &lt;h2&gt;Reducing the Ambiguity&lt;/h2&gt;
 
@@ -155,7 +232,7 @@
 &lt;/pre&gt;
 
 
-&lt;p&gt;Notice that each conceptually different case now has a unique syntactic representation &amp;ndash; it&amp;rsquo;s no longer just &lt;code&gt;(alpha beta gamma)&lt;/code&gt; for all cases.&lt;/p&gt;
+&lt;p&gt;Notice that each conceptually different case now has a unique syntactic representation - it&amp;rsquo;s no longer just &lt;code&gt;(alpha beta gamma)&lt;/code&gt; for all cases.&lt;/p&gt;
 
 &lt;h3&gt;Use a grouping operator for function application&lt;/h3&gt;
 
@@ -208,29 +285,25 @@ alpha(beta)(gamma, ...)
 
 &lt;p&gt;I originally got bitten by this syntactic ambiguity when trying to decipher the meaning of:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-(flip (/) 20)
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(flip (/) 20)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I was not previously familar with &lt;code&gt;flip&lt;/code&gt; and so I assumed that it took two arguments, a function (namely &lt;code&gt;(/)&lt;/code&gt;) and a non-function (namely &lt;code&gt;20&lt;/code&gt;). And that it probably returned a function, since its surrounding context expected a function.&lt;/p&gt;
 
 &lt;p&gt;In fact &lt;code&gt;flip&lt;/code&gt; takes only one argument and thus is more clearly written as:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-((flip (/)) 20)
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;((flip (/)) 20)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And inlined further to be the lower-order:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-(\x -&amp;gt; x / 20)
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(\x -&amp;gt; x / 20)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And, if desired, further rewritten to be the more-compact:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-(/ 20)
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(/ 20)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This last form uses partial application to fill in the first argument of &lt;code&gt;/&lt;/code&gt;, which is obvious since &lt;code&gt;/&lt;/code&gt; is a well-known built-in infix operator that requires an unspecified left argument.&lt;/p&gt;
 </content>
@@ -405,7 +478,7 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;&lt;strong&gt;Signaling (Error Codes vs. Exceptions vs. Sentinels)&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Sentinels &amp;ndash; null, 0, -1, false&lt;/li&gt;
+&lt;li&gt;Sentinels - null, 0, -1, false&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Guarantees after failure&lt;/strong&gt;
@@ -446,9 +519,9 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;&lt;strong&gt;Error Seriousness&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Expected &amp;ndash; &lt;code&gt;Exception&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Unexpected &amp;ndash; &lt;code&gt;RuntimeException&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Fatal &amp;ndash; &lt;code&gt;Error&lt;/code&gt; (esp. &lt;code&gt;OutOfMemoryError&lt;/code&gt;)
+&lt;li&gt;Expected - &lt;code&gt;Exception&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Unexpected - &lt;code&gt;RuntimeException&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fatal - &lt;code&gt;Error&lt;/code&gt; (esp. &lt;code&gt;OutOfMemoryError&lt;/code&gt;)
 
 &lt;ul&gt;
 &lt;li&gt;Aside: Certain programs are actually designed to handle OOM errors (ex: SQLite). Most are not.&lt;/li&gt;
@@ -513,7 +586,7 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;&lt;strong&gt;Manual Memory Management&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Ownership &amp;ndash; &amp;ldquo;Own &amp;amp; Borrow&amp;rdquo; Model&lt;/li&gt;
+&lt;li&gt;Ownership - &amp;ldquo;Own &amp;amp; Borrow&amp;rdquo; Model&lt;/li&gt;
 &lt;li&gt;Hierarchy, Composites vs. Aggregates&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -557,27 +630,27 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;&lt;strong&gt;Native Development (Desktop, Mobile, and Embedded)&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;C/C++ &amp;ndash; lingua franca; easiest to bind to OS; hand-optimized performance-critical code&lt;/li&gt;
-&lt;li&gt;Java &amp;ndash; rich cross-platform development (including GUIs); server programming&lt;/li&gt;
-&lt;li&gt;Python &amp;ndash; rich cross-platform CLI scripting; text &amp;amp; data processing&lt;/li&gt;
-&lt;li&gt;C# &amp;ndash; rich Windows app programming&lt;/li&gt;
-&lt;li&gt;Objective-C &amp;ndash; native OS X development; native iOS development&lt;/li&gt;
-&lt;li&gt;PowerShell &amp;ndash; Windows CLI scripting&lt;/li&gt;
+&lt;li&gt;C/C++ - lingua franca; easiest to bind to OS; hand-optimized performance-critical code&lt;/li&gt;
+&lt;li&gt;Java - rich cross-platform development (including GUIs); server programming&lt;/li&gt;
+&lt;li&gt;Python - rich cross-platform CLI scripting; text &amp;amp; data processing&lt;/li&gt;
+&lt;li&gt;C# - rich Windows app programming&lt;/li&gt;
+&lt;li&gt;Objective-C - native OS X development; native iOS development&lt;/li&gt;
+&lt;li&gt;PowerShell - Windows CLI scripting&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Web Development (Server-Side)&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;PHP &amp;ndash; web application prototyping; most widely deployed server-side scripting language
+&lt;li&gt;PHP - web application prototyping; most widely deployed server-side scripting language
 
 &lt;ul&gt;
-&lt;li&gt;Java &amp;amp; JSP &amp;ndash; Java&amp;rsquo;s clone of PHP&lt;/li&gt;
-&lt;li&gt;C# &amp;amp; ASP.NET &amp;ndash; Microsoft&amp;rsquo;s clone of PHP&lt;/li&gt;
+&lt;li&gt;Java &amp;amp; JSP - Java&amp;rsquo;s clone of PHP&lt;/li&gt;
+&lt;li&gt;C# &amp;amp; ASP.NET - Microsoft&amp;rsquo;s clone of PHP&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Ruby &amp;amp; Ruby on Rails &amp;ndash; bleeding-edge full-stack web framework&lt;/li&gt;
-&lt;li&gt;Python &amp;amp; Django &amp;ndash; mature full-stack web framework; rapid development; excellent ORM&lt;/li&gt;
-&lt;li&gt;Python &amp;amp; web2py &amp;ndash; mature full-stack web framework
+&lt;li&gt;Ruby &amp;amp; Ruby on Rails - bleeding-edge full-stack web framework&lt;/li&gt;
+&lt;li&gt;Python &amp;amp; Django - mature full-stack web framework; rapid development; excellent ORM&lt;/li&gt;
+&lt;li&gt;Python &amp;amp; web2py - mature full-stack web framework
 
 &lt;ul&gt;
 &lt;li&gt;Anecdotal evidence suggests PHP refugees like web2py a bit better than Django,
@@ -586,7 +659,7 @@ In contrast Django&amp;rsquo;s philosophy is &amp;ldquo;explicit is better than 
 which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Python &amp;amp; (lots of choices) &amp;ndash; lightweight web framework; for maximum control
+&lt;li&gt;Python &amp;amp; (lots of choices) - lightweight web framework; for maximum control
 
 &lt;ul&gt;
 &lt;li&gt;Pyramid&lt;/li&gt;
@@ -600,17 +673,17 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Web Development (Client-Side)&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;HTML, CSS, JavaScript &amp;ndash; assembly languages&lt;/li&gt;
-&lt;li&gt;Haml, Sass, CoffeeScript &amp;ndash; 2nd-order languages&lt;/li&gt;
+&lt;li&gt;HTML, CSS, JavaScript - assembly languages&lt;/li&gt;
+&lt;li&gt;Haml, Sass, CoffeeScript - 2nd-order languages&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Special-Purpose Languages&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Fortran &amp;ndash; high-performance numerical programming&lt;/li&gt;
-&lt;li&gt;Lua &amp;ndash; embedded game programming (ex: game mods, AIs)&lt;/li&gt;
-&lt;li&gt;Lisp (Racket) &amp;ndash; academic programming&lt;sup&gt;AcadProg&lt;/sup&gt;; dynamic; great for embedded DSLs&lt;/li&gt;
-&lt;li&gt;Haskell &amp;ndash; academic programming&lt;sup&gt;AcadProg&lt;/sup&gt;; static; better compile-time safety than any mainstream language&lt;/li&gt;
+&lt;li&gt;Fortran - high-performance numerical programming&lt;/li&gt;
+&lt;li&gt;Lua - embedded game programming (ex: game mods, AIs)&lt;/li&gt;
+&lt;li&gt;Lisp (Racket) - academic programming&lt;sup&gt;AcadProg&lt;/sup&gt;; dynamic; great for embedded DSLs&lt;/li&gt;
+&lt;li&gt;Haskell - academic programming&lt;sup&gt;AcadProg&lt;/sup&gt;; static; better compile-time safety than any mainstream language&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -671,7 +744,7 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;Centralized (CVS, SVN, Perforce)&lt;/li&gt;
 &lt;li&gt;Distributed (Git, Mercurial)&lt;/li&gt;
-&lt;li&gt;Patches &amp;ndash; create, view, apply, submit&lt;/li&gt;
+&lt;li&gt;Patches - create, view, apply, submit&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Automated Build Systems&lt;/strong&gt;
@@ -908,7 +981,7 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;All command key shortcuts must include the command key. That is neither Control nor Option (Alt) can be the primary modifier for a shortcut sequence.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Do not make shortcuts with the function keys (F1 &amp;ndash; F15). They are hard to remember.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Do not make shortcuts with the function keys (F1 - F15). They are hard to remember.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;All command key shortcuts must be tied to a menu item.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -917,7 +990,7 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;There is no such thing as the Apple key. You probably meant the Command key.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;There is no such thing as the Backspace key. You probably meant the Delete key &amp;ndash; which is not to be confused with the Forward Delete key, which most Windows users just call Delete.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There is no such thing as the Backspace key. You probably meant the Delete key - which is not to be confused with the Forward Delete key, which most Windows users just call Delete.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Not all users have a right mouse button. In that case, you must instruct the user to Control-click instead of right-click.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1001,7 +1074,7 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 
 &lt;p&gt;Under rare circumstances, the license provided with software can change.&lt;/p&gt;
 
-&lt;p&gt;As the copyright holder of a piece of software, you may decide to release a new version with a different set of licenses than prior versions. For example you could change the license offered from &lt;a href=&quot;#bsd&quot;&gt;BSD&lt;/a&gt; to &lt;a href=&quot;#gpl&quot;&gt;GPL&lt;/a&gt;, a rather radical change. Such a change would only be in effect for the newly released version &amp;ndash; it would have no effect on older released versions.&lt;/p&gt;
+&lt;p&gt;As the copyright holder of a piece of software, you may decide to release a new version with a different set of licenses than prior versions. For example you could change the license offered from &lt;a href=&quot;#bsd&quot;&gt;BSD&lt;/a&gt; to &lt;a href=&quot;#gpl&quot;&gt;GPL&lt;/a&gt;, a rather radical change. Such a change would only be in effect for the newly released version - it would have no effect on older released versions.&lt;/p&gt;
 
 &lt;p&gt;If you are not the copyright holder of a piece of software, you cannot change the license(s) under which it is offered.&lt;/p&gt;
 
@@ -1264,13 +1337,13 @@ this license unless specified otherwise.&lt;/li&gt;
 &lt;p&gt;For most popular websites on the public internet, there is a clone in Onionland.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Twitter &amp;ndash;&gt; &lt;strong&gt;TorStatusNet&lt;/strong&gt; (&lt;a href=&quot;http://lotjbov3gzzf23hc.onion/&quot;&gt;lotjbov3gzzf23hc.onion&lt;/a&gt;)
+&lt;li&gt;Twitter -&gt; &lt;strong&gt;TorStatusNet&lt;/strong&gt; (&lt;a href=&quot;http://lotjbov3gzzf23hc.onion/&quot;&gt;lotjbov3gzzf23hc.onion&lt;/a&gt;)
 
 &lt;ul&gt;
 &lt;li&gt;Microblogging.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Gmail / Hotmail &amp;ndash;&gt; &lt;strong&gt;Tor Mail&lt;/strong&gt; (&lt;a href=&quot;http://jhiwjjlqpyawmpjx.onion/&quot;&gt;jhiwjjlqpyawmpjx.onion&lt;/a&gt;)
+&lt;li&gt;Gmail / Hotmail -&gt; &lt;strong&gt;Tor Mail&lt;/strong&gt; (&lt;a href=&quot;http://jhiwjjlqpyawmpjx.onion/&quot;&gt;jhiwjjlqpyawmpjx.onion&lt;/a&gt;)
 
 &lt;ul&gt;
 &lt;li&gt;Free email service.&lt;/li&gt;
@@ -1278,7 +1351,7 @@ this license unless specified otherwise.&lt;/li&gt;
 &lt;li&gt;Although rumored to be unreliable. &lt;!-- http://utup22qsb6ebeejs.onion/?p=149 --&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;4chan &amp;ndash;&gt; &lt;strong&gt;TorChan&lt;/strong&gt; (&lt;a href=&quot;http://zw3crggtadila2sg.onion/imageboard/&quot;&gt;zw3crggtadila2sg.onion&lt;/a&gt;)
+&lt;li&gt;4chan -&gt; &lt;strong&gt;TorChan&lt;/strong&gt; (&lt;a href=&quot;http://zw3crggtadila2sg.onion/imageboard/&quot;&gt;zw3crggtadila2sg.onion&lt;/a&gt;)
 
 &lt;ul&gt;
 &lt;li&gt;Imageboard. NSFW.&lt;/li&gt;
@@ -1546,9 +1619,9 @@ if not isinstance(now_string, unicode):
 &lt;p&gt;I started by reading the high-level design documentation. SQLite has exceptionally good documentation of this type.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.sqlite.org/docs.html&quot;&gt;Documentation Index&lt;/a&gt; &amp;ndash; &lt;em&gt;Root of all documentation.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.sqlite.org/arch.html&quot;&gt;Architecture Documentation&lt;/a&gt; &amp;ndash; &lt;em&gt;Excellent overview of the architecture.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Query Planner Documentation &amp;ndash; &lt;em&gt;Describes how prepared statements are executed.&lt;/em&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.sqlite.org/docs.html&quot;&gt;Documentation Index&lt;/a&gt; - &lt;em&gt;Root of all documentation.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.sqlite.org/arch.html&quot;&gt;Architecture Documentation&lt;/a&gt; - &lt;em&gt;Excellent overview of the architecture.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Query Planner Documentation - &lt;em&gt;Describes how prepared statements are executed.&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.sqlite.org/vdbe.html&quot;&gt;The Virtual Database Engine&lt;/a&gt;&lt;/li&gt;
@@ -1730,7 +1803,7 @@ the most interesting ones to look at.&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;SQLite is embedded into the program that uses it, requiring no separate server. And no administration for such a server.&lt;/li&gt;
-&lt;li&gt;Minimal schema is imposed by SQLite, distinguishing only between integers, reals, text, and blobs at a low level. And even so, a column&amp;rsquo;s type is advisory only &amp;ndash; you can store a value of any type in any column (except an &lt;code&gt;INTEGER PRIMARY KEY&lt;/code&gt; column).&lt;/li&gt;
+&lt;li&gt;Minimal schema is imposed by SQLite, distinguishing only between integers, reals, text, and blobs at a low level. And even so, a column&amp;rsquo;s type is advisory only - you can store a value of any type in any column (except an &lt;code&gt;INTEGER PRIMARY KEY&lt;/code&gt; column).&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -1754,7 +1827,7 @@ the most interesting ones to look at.&lt;/li&gt;
 
 &lt;p&gt;My initial impression was &amp;ldquo;BBEdit can do everything that Sublime can, what&amp;rsquo;s the deal?&amp;rdquo; But after using Sublime full-time for about a week, I&amp;rsquo;m starting to come around to it.&lt;/p&gt;
 
-&lt;p&gt;Although it is true that both have comparable feature sets, Sublime&amp;rsquo;s implementation feels more polished &amp;ndash; not just eyecandy, but actually better usability.&lt;/p&gt;
+&lt;p&gt;Although it is true that both have comparable feature sets, Sublime&amp;rsquo;s implementation feels more polished - not just eyecandy, but actually better usability.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Incremental find
@@ -2044,37 +2117,37 @@ the most interesting ones to look at.&lt;/li&gt;
 &lt;p&gt;Killer apps for languages:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Ruby on Rails &amp;ndash;&gt; &lt;strong&gt;Ruby&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Django &amp;ndash;&gt; &lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Emacs &amp;ndash;&gt; &lt;strong&gt;Lisp&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Ruby on Rails -&gt; &lt;strong&gt;Ruby&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Django -&gt; &lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Emacs -&gt; &lt;strong&gt;Lisp&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;p&gt;Killer ecosystems for languages:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;iPhone &amp;ndash;&gt; &lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Android &amp;ndash;&gt; &lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;embedded scripting in games&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;Lua&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;iPhone -&gt; &lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Android -&gt; &lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;embedded scripting in games&lt;/em&gt; -&gt; &lt;strong&gt;Lua&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;p&gt;Killer features for languages:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;interface with OS natively&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;C&lt;/strong&gt;, &lt;strong&gt;Objective-C&lt;/strong&gt; (OS X)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;garbage collection&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;hack together a deployable dynamic website fast&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;PHP&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;general-purpose scripting&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;interprocess scripting on OS X&lt;/em&gt; &amp;ndash;&gt; &lt;strong&gt;AppleScript&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;interface with OS natively&lt;/em&gt; -&gt; &lt;strong&gt;C&lt;/strong&gt;, &lt;strong&gt;Objective-C&lt;/strong&gt; (OS X)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;garbage collection&lt;/em&gt; -&gt; &lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;hack together a deployable dynamic website fast&lt;/em&gt; -&gt; &lt;strong&gt;PHP&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;general-purpose scripting&lt;/em&gt; -&gt; &lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;interprocess scripting on OS X&lt;/em&gt; -&gt; &lt;strong&gt;AppleScript&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;h4&gt;Other Software Examples&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;GitHub &amp;ndash;&gt; &lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Outlook &amp;ndash;&gt; &lt;strong&gt;Windows&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;GitHub -&gt; &lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Outlook -&gt; &lt;strong&gt;Windows&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -2328,7 +2401,7 @@ add(X, Y, Result) :- Result is X + Y.
 
 &lt;p&gt;It is possible to run Prolog in an interactive fashion by using the &lt;code&gt;assert&lt;/code&gt; special rule at runtime to define new statements (i.e. axioms and rules). And &lt;code&gt;listing&lt;/code&gt; will display the set of statements that have been defined. Finally &lt;code&gt;retract&lt;/code&gt; and &lt;code&gt;retractall&lt;/code&gt; can be used to undefine statements.&lt;/p&gt;
 
-&lt;p&gt;These special rules, however, are not restricted to use in the interpreter &amp;ndash; they can also be used at runtime by rules in programs. For example memoization&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; is a good use for dynamic calls to &lt;code&gt;assert&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;These special rules, however, are not restricted to use in the interpreter - they can also be used at runtime by rules in programs. For example memoization&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; is a good use for dynamic calls to &lt;code&gt;assert&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Question Evaluation &lt;small&gt;(Unification, Backtracking)&lt;/small&gt;&lt;/h2&gt;
 
@@ -2425,25 +2498,25 @@ You can filter the chart to only show the properties that your favorite language
  
  <entry>
    <id>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released</id>
-   <title>RDiscount 2.0.7 released!</title>
+   <title>RDiscount 2.0.7 released</title>
    <published>2013-02-02T00:00:00-08:00</published>
    <updated>2013-02-02T00:00:00-08:00</updated>
    
      <category term="Software"/>
    
    <link rel="alternate" href="http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;It has been just over two years since RDiscount 1.6.8 (the previous version) was posted.&lt;br/&gt;
-As the new maintainer, I intend to provide updates a bit more frequently. :&amp;ndash;)&lt;/p&gt;
+   <content type="html">&lt;p&gt;It has been just over two years since &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; 1.6.8 (the previous version) was posted.&lt;br/&gt;
+As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt;/p&gt;
 
 &lt;p&gt;Update to the latest version with:&lt;/p&gt;
 
-&lt;pre&gt;gem update rdiscount&lt;/pre&gt;
-
+&lt;pre&gt;&lt;code&gt;gem update rdiscount
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2&gt;What&amp;rsquo;s New?&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://michelf.ca/projects/php-markdown/extra/#footnotes&quot;&gt;Footnotes&lt;/a&gt; &amp;ndash; from &lt;em&gt;PHP Markdown Extra&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://michelf.ca/projects/php-markdown/extra/#footnotes&quot;&gt;Footnotes&lt;/a&gt; - from &lt;em&gt;PHP Markdown Extra&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;Superscript tweaks
 
 &lt;ul&gt;
@@ -2469,8 +2542,8 @@ As the new maintainer, I intend to provide updates a bit more frequently. :&amp;
 &lt;li&gt;Fenced code blocks
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot;&gt;backtick-delimited&lt;/a&gt; &amp;ndash; from &lt;em&gt;GitHub Flavored Markdown&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks&quot;&gt;tilde-delimited&lt;/a&gt; &amp;ndash; from &lt;em&gt;PHP Markdown Extra&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot;&gt;backtick-delimited&lt;/a&gt; - from &lt;em&gt;GitHub Flavored Markdown&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks&quot;&gt;tilde-delimited&lt;/a&gt; - from &lt;em&gt;PHP Markdown Extra&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2553,13 +2626,13 @@ As the new maintainer, I intend to provide updates a bit more frequently. :&amp;
 &lt;p&gt;Units of computation can be abstracted in several forms:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;procedure&lt;/strong&gt; &amp;ndash; &lt;em&gt;Assigns names to common patterns, allowing you to work in terms of the named abstractions directly.&lt;/em&gt;
+&lt;li&gt;&lt;strong&gt;procedure&lt;/strong&gt; - &lt;em&gt;Assigns names to common patterns, allowing you to work in terms of the named abstractions directly.&lt;/em&gt;
 
 &lt;ul&gt;
 &lt;li&gt;AKA function, method&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;abstract data type&lt;/strong&gt; &amp;ndash; &lt;em&gt;Allows the choice of representation (i.e. the implementation) to vary separately from the API (i.e. the interface).&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+&lt;li&gt;&lt;strong&gt;abstract data type&lt;/strong&gt; - &lt;em&gt;Allows the choice of representation (i.e. the implementation) to vary separately from the API (i.e. the interface).&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Built-in language support is often provided in the form of &lt;strong&gt;classes&lt;/strong&gt;.&lt;/li&gt;
@@ -2577,14 +2650,14 @@ As the new maintainer, I intend to provide updates a bit more frequently. :&amp;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;module&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; &amp;ndash; &lt;em&gt;Groups several procedures and data types into a namespace independent from other modules.&lt;/em&gt;
+&lt;li&gt;&lt;strong&gt;module&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; - &lt;em&gt;Groups several procedures and data types into a namespace independent from other modules.&lt;/em&gt;
 
 &lt;ul&gt;
 &lt;li&gt;AKA package (Java), namespace (C++), module (Python)&lt;/li&gt;
 &lt;li&gt;Languages that don&amp;rsquo;t have built-in support for this concept typically use prefixes to create de-facto namespaces. (C, Objective-C, PHP &amp;lt; 5.3.0)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;assembly&lt;/strong&gt; &amp;ndash; &lt;em&gt;Groups several modules together in a single versioned &lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; package. Assemblies can depend on other assemblies, often from separate vendors.&lt;/em&gt;
+&lt;li&gt;&lt;strong&gt;assembly&lt;/strong&gt; - &lt;em&gt;Groups several modules together in a single versioned &lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; package. Assemblies can depend on other assemblies, often from separate vendors.&lt;/em&gt;
 
 &lt;ul&gt;
 &lt;li&gt;AKA &lt;strong&gt;shared library&lt;/strong&gt; (C, C++), gem (Ruby), egg (Python)&lt;/li&gt;
@@ -2782,7 +2855,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;For example, complex numbers can be expressed in rectangular (a + b&lt;em&gt;i&lt;/em&gt;) or polar form (r*cos(𝜽)). &amp;mdash; Some representations are better than others for different operations. Adding works better in rectangular form. Multiplying works better in polar form.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;For example, complex numbers can be expressed in rectangular (a + b&lt;em&gt;i&lt;/em&gt;) or polar form (r*cos(𝜽)). &amp;ndash; Some representations are better than others for different operations. Adding works better in rectangular form. Multiplying works better in polar form.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;SICP does not mention the notion of a &lt;em&gt;module&lt;/em&gt; or an &lt;em&gt;assembly&lt;/em&gt;, however these are common higher-level units for abstracting computation in languages other than Lisp.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
