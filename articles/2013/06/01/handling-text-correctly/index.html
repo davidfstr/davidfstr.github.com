@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Handling Text Correctly | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+      <style>
+        /* Horizontal scrolling code blocks */
+pre      { overflow-x: auto; word-wrap: normal; }
+pre code { white-space: pre; }
+
+/* Prevent word breaks for "UTF-8" and similar phrases */
+.nobr { white-space: nowrap; }
+
+      </style>
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>Handling Text Correctly</h1>
+    <div class="post-metadata">
+      Jun 01, 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>21</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <div style="padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;">
+    <p style="font-weight: bold; color: #487858;">
+        Series
+    </p>
+    <p style="margin-bottom: 0em;">
+        This article is part of the <a href="/articles/2013/05/11/book-outline/">Programming for Perfectionists</a> series.
+    </p>
+</div>
+
+
+
+
+<div class="toc">
+  <ul>
+    <li><a href="#characters-sets-and-encodings">Characters, Sets, and Encodings</a></li>
+    <ul>
+      <li><a href="#important-character-sets">Important Character Sets</a></li>
+      <li><a href="#unicode">Unicode</a></li>
+      <ul>
+        <li><a href="#unicode-character-encodings">Unicode Character Encodings</a></li>
+      </ul>
+    </ul>
+    <li><a href="#common-mistakes-and-practical-tips">Common Mistakes &amp; Practical Tips</a></li>
+    <ul>
+      <li><a href="#you-cannot-interpret-a-byte-array-as-a-string-without-knowing-its-encoding">You cannot interpret a byte array as a string without knowing its encoding.</a></li>
+      <ul>
+        <li><a href="#reading-text-files">Reading Text Files</a></li>
+        <li><a href="#converting-between-bytes-and-strings">Converting Between Bytes and Strings</a></li>
+      </ul>
+      <li><a href="#a-char-in-your-favorite-language-is-probably-not-a-character">A "char" (in your favorite language) is probably not a character.</a></li>
+      <ul>
+        <li><a href="#8-bit-chars">8-bit chars</a></li>
+        <li><a href="#16-bit-chars">16-bit chars</a></li>
+        <li><a href="#32-bit-chars">32-bit chars and variable-bit chars</a></li>
+      </ul>
+    </ul>
+    <li><a href="#end-of-line-sequences">End of Line Sequences</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</div>
+
+
+<p><a id="characters-sets-and-encodings"></a></p>
+
+<h2>Characters, Sets, and Encodings</h2>
+
+<p>Text is made up of multiple <strong>characters</strong> (or <strong>codepoints</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>), each of which represents a different letter, symbol or punctuation mark. The word &ldquo;Hello&rdquo;, for example is made of the characters &ldquo;H&rdquo;, &ldquo;e&rdquo;, &ldquo;l&rdquo;, &ldquo;l&rdquo;, and &ldquo;o&rdquo;. This collection of characters is called a <strong>string</strong>. Each character is assigned a number using a <strong>character set</strong> (sometimes called a <em>code page</em> or a <em>charset</em>).</p>
+
+<p>For example the <strong>ASCII</strong> character set assigns numbers in the range (0-127) for characters in most Western European languages.</p>
+
+<div style="font-size: 20px; margin-left: 3em; font-family: monospace; margin-bottom: 12px; line-height: 1.1em;">
+H &rarr; 72<br/>
+e &rarr; 101<br/> 
+l &rarr; 76<br/>
+l &rarr; 76<br/>
+o &rarr; 111
+</div>
+
+
+<p>ASCII is one of the oldest character sets. Most other sets use the same mappings as ASCII, while defining additional mappings of their own for numbers above 127.</p>
+
+<p>After mapping a character to a number, that number is converted to an actual byte sequence for storage. The entire process of converting a character to a byte sequence is defined by a <strong>character encoding</strong>.</p>
+
+<p>Since many character sets provide mappings to numbers in the range 0-255 (which fit in 8-bit bytes), you can output the character number as a single byte. For example, to output &ldquo;Hello&rdquo; in ASCII, you would emit the byte sequence:</p>
+
+<table>
+<thead>
+<tr>
+<th>H  </th>
+<th> e   </th>
+<th> l  </th>
+<th> l  </th>
+<th> o</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>72 </td>
+<td> 101 </td>
+<td> 76 </td>
+<td> 76 </td>
+<td> 111</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Many English-speakers, being only familiar with the Western European character sets which are always encoded with individual 8-bits bytes, often use the terms <em>character set</em> and <em>character encoding</em> interchangably.</p>
+
+<p>However the East Asian languages such as Chinese, Japanese, and Korean (CJK) have many more than 256 characters, making it impossible to fit them in only 8-bit bytes. Therefore each character must be encoded using multiple bytes, possibly a variable number of bytes. Thus either a fixed-width encoding (often 16-bits per character) or a variable width encoding (with differing numbers of bytes per character) may be used.</p>
+
+<p><a id="important-character-sets"></a></p>
+
+<h3>Important Character Sets</h3>
+
+<p>The following are the most prevalent non-Unicode character sets you are likely to encounter. All of these character sets are encoded with a single byte per character.</p>
+
+<table>
+<thead>
+<tr>
+<th>Character Set                   </th>
+<th> Character Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASCII                           </td>
+<td> single byte (7-bit)</td>
+</tr>
+<tr>
+<td>Windows-1252 (Windows Latin 1)  </td>
+<td> single byte</td>
+</tr>
+<tr>
+<td>ISO 8859-1 (ISO Latin 1)        </td>
+<td> single byte</td>
+</tr>
+<tr>
+<td>Mac OS Roman                    </td>
+<td> single byte</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Informally (and in practice), these may also be described as character encodings. So a text file &ldquo;in ASCII encoding&rdquo; refers to a file in the ASCII character set with its standard single-byte encoding.</p>
+
+<ul>
+<li><strong>ASCII</strong>
+
+<ul>
+<li>7-bit character set for representing characters common to most Western European languages.</li>
+<li><p>⚠ Many programs and APIs that claim to input or output &ldquo;ASCII&rdquo; (or &ldquo;ANSI&rdquo;<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>) are actually unaware of character sets and will accept strings in whatever the operating system&rsquo;s default character set happens to be (often Windows-1252).</p></li>
+</ul>
+</li>
+<li><strong>Windows-1252</strong> (AKA <strong>Windows Latin 1</strong>)
+
+<ul>
+<li><p>This is the default character set on English Windows systems.</p></li>
+</ul>
+</li>
+<li><strong>ISO 8859-1</strong> (AKA <strong>ISO Latin 1</strong>)
+
+<ul>
+<li>The default character set for web pages and other HTTP traffic.</li>
+<li><p>⚠ In practice this is <em>very</em> frequently confused with <b>Windows-1252</b>, which differs in only a handful of characters. In fact this confusion is to such a degree that the draft HTML 5 specification requires that documents advertised as ISO-8859-1 actually be parsed as Windows-1252.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p></li>
+</ul>
+</li>
+<li><strong>Mac OS Roman</strong>
+
+<ul>
+<li>This is the default character set on most Macintosh systems prior to Mac OS X.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Not every character set can represent every character in the world. For example Windows-1252 cannot represent any Chinese or Japanese characters, although GBK and Shift JIS respectively can. This means that you cannot in general mix text from two sources that uses a different character sets without converting to a new character set (that can represent all characters in both sets). Typically the Unicode character set (discussed below) is used for this purpose.</p>
+
+<table>
+<thead>
+<tr>
+<th>Character Set                           </th>
+<th> Character Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows-932 (&ldquo;Shift JIS&rdquo;)<!--[^WStd]--> </td>
+<td> variable width, 1-2 bytes</td>
+</tr>
+<tr>
+<td>Windows-936 (&ldquo;GBK&rdquo;)                     </td>
+<td> variable width, 1-2 bytes</td>
+</tr>
+</tbody>
+</table>
+
+
+<!--
+[^WStd]: It should be noted that that the official Shift JIS and GBK specifications differ from their implementations in Windows. However it is the Windows implementations that have become the de-facto standards. Therefore if you see an unqualified reference to "Shift JIS", it most likely refers to Windows-932 instead of the official standard.
+-->
+
+
+<p><a id="unicode"></a></p>
+
+<h3>Unicode</h3>
+
+<p><strong>Unicode</strong> is a character set just like ASCII or Windows-1252: it maps characters to numbers.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> However it is sufficiently important to justify special mention.</p>
+
+<p>The Unicode character set is designed to support all characters in all character sets that came before it, plus many more. If you can think of a character, it&rsquo;s almost certainly in Unicode. (And if it isn&rsquo;t, it&rsquo;s likely not in any character set.) In this sense, Unicode can be viewed as the universal character set.</p>
+
+<blockquote><p>Any program written today that wishes to represent characters correctly should be using the Unicode character set and one of its associated encodings.</p></blockquote>
+
+<p>Originally, Unicode mapped characters to numbers in the range 0x0000-0xFFFF, requiring only 16 bits to represent each character. At that time it was possible to encode each Unicode character using a 2-byte fixed width encoding, known as <strong>UCS-2</strong>. Many early Unicode-aware systems, such as Java, were designed around this original specification.</p>
+
+<p>In 1996, Unicode was extended to map characters to numbers in the larger range of 0x00000-0x10FFFF, requiring up to 20 bits per character. Thus UCS-2, being limited to 16-bits, was no longer capable of representing all Unicode characters. In its place arose the <strong>UTF-16</strong> encoding which, like UCS-2, uses a single 16-bit value to represent characters in range 0x0000-0xFFFF (the <strong>basic multilingual plane</strong>) and two 16-bit values to represent characters in range 0x10000-0x10FFFF (the <strong>supplemental plane</strong> or <strong>astral plane</strong>). And so many UCS-2 systems were retroactively upgraded to use UTF-16 in place of UCS-2.</p>
+
+<p>Today, UTF-16 is the most common in-memory representation for Unicode strings. However, many programs incorrectly treat individual 16-bit values from UTF-16 directly as characters, due to ignorance of UTF-16&rsquo;s variable-width nature. In many cases this causes no problems, since most programs operate on strings and substrings opaquely, as opposed to working with individual characters. However problems will arise if unaware programs attempt to manipulate characters directly, such as by counting the number of characters in a string or by filtering individual characters.</p>
+
+<p><a id="unicode-character-encodings"></a></p>
+
+<h4>Unicode Character Encodings</h4>
+
+<p>Unlike the other character sets discussed previously, the Unicode character set has <em>multiple</em> different encodings.</p>
+
+<table>
+<thead>
+<tr>
+<th>Character Set   </th>
+<th> Character Encoding    </th>
+<th> Character Encoding Scheme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unicode         </td>
+<td> UTF-8                 </td>
+<td> variable width, 1-4 bytes</td>
+</tr>
+<tr>
+<td></td>
+<td> UCS-2                 </td>
+<td> fixed width, 2 bytes</td>
+</tr>
+<tr>
+<td></td>
+<td> UTF-16                </td>
+<td> variable width, 2 or 4 bytes</td>
+</tr>
+<tr>
+<td></td>
+<td> UTF-32 / UCS-4        </td>
+<td> fixed width, 4 bytes</td>
+</tr>
+</tbody>
+</table>
+
+
+<ul>
+<li><strong>UTF-8</strong>
+
+<ul>
+<li>This is the default on-disk encoding for most modern Unicode-aware programs.
+
+<ul>
+<li>Many text editors save in this format by default.</li>
+<li>Python 2.5+ source files are assumed to be UTF-8 by default.</li>
+</ul>
+</li>
+<li>It can represent any character in the Unicode character set, and thus any character in the world.</li>
+<li>It is compact, representing all ASCII characters as single bytes and most other characters as two bytes.</li>
+<li><p>⚠ Programs may optionally prepend a <strong>byte-order-mark (BOM)</strong> at the beginning of a file to mark it as UTF-8. Most Windows programs do this, for example. Programs that input <span class="nobr">UTF-8</span> files should be prepared to handle BOMs.</p></li>
+</ul>
+</li>
+<li><strong>UCS-2</strong>
+
+<ul>
+<li>This is the native encoding used by early Unicode-aware systems, such as Java 1.4 and below.</li>
+<li>It can only represent Unicode characters in the basic plane (0x0000-0xFFFF), but no higher.<br/>
+In particular characters in the supplementary planes (0x10000-0x10FFFF), sometimes known as <strong>astral characters</strong>, cannot be represented.</li>
+<li><p>Many APIs that originally only supported UCS-2 were retroactively upgraded to use <span class="nobr">UTF-16</span>.</p></li>
+</ul>
+</li>
+<li><strong>UTF-16</strong>
+
+<ul>
+<li>This is the default in-memory encoding for most modern Unicode-aware systems, including Windows, Mac OS X, the Java 1.5+ runtime<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>, the .NET runtime (including C#), and Python 2.x<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>.</li>
+<li>It can represent any character in the Unicode character set.</li>
+<li>Characters in the basic plane (0x0000-0xFFFF) are encoded as a single 16-bit value.<br/>
+Astral characters (0x10000-0x10FFFF) are encoded as two 16-bit <strong>surrogate</strong> values.</li>
+<li>⚠ It is common for code to incorrectly manipulate UTF-16 data as if it were fixed-width <span class="nobr">UCS-2<span> instead.</li>
+<li>⚠ Programs may optionally prepend a <em>byte-order-mark (BOM)</em> at the beginning of a file to mark it as UTF-16 or to specify a byte-ordering other than big-endian. Programs that input <span class="nobr">UTF-16<span> files should be prepared to handle BOMs.</li>
+<li><p>⚠ Some outdated documentation and APIs may refer to the UTF-16 encoding as the &ldquo;Unicode encoding&rdquo;. Notably C#&rsquo;s <a href="http://msdn.microsoft.com/en-us/library/system.text.unicodeencoding.aspx">UnicodeEncoding</a>, Mac OS X&rsquo;s <a href="http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/doc/c_ref/NSUnicodeStringEncoding">NSUnicodeStringEncoding</a> or Python 2.2-3.2&rsquo;s <code>unicode</code> type on &ldquo;narrow&rdquo; builds, which are the default.</p></li>
+</ul>
+</li>
+<li><strong>UTF-32 / UCS-4</strong>
+
+<ul>
+<li>This is a fixed width encoding capable of representing any Unicode character directly as a 32-bit value.</li>
+<li>Because it is space inefficient, this encoding is rarely seen in practice.
+
+<ul>
+<li>Python 2.2-3.2 offers &ldquo;wide&rdquo; builds use UTF-32.</li>
+</ul>
+</li>
+<li>⚠ Programs may optionally prepend a <em>byte-order-mark (BOM)</em> at the beginning of a file to mark it as UTF-32 or to specify a byte-ordering other than big-endian. Programs that input <span class="nobr">UTF-32</span> files should be prepared to handle BOMs.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="common-mistakes-and-practical-tips"></a></p>
+
+<h2>Common Mistakes &amp; Practical Tips</h2>
+
+<p><a id="you-cannot-interpret-a-byte-array-as-a-string-without-knowing-its-encoding"></a></p>
+
+<h3>You cannot interpret a byte array as a string without knowing its encoding.</h3>
+
+<p><a id="reading-text-files"></a></p>
+
+<h4>Reading Text Files</h4>
+
+<p>You cannot read a text file correctly without knowing its encoding.</p>
+
+<p>If you do not specify an encoding explicitly when opening a text file, your language&rsquo;s standard library or operating system will usually pick a default encoding, which depends on the spoken language it is running in, among other factors.</p>
+
+<p>Unfortunately most filesystems do not store the encoding of a text file.<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup> So there are a few options for determining an encoding:</p>
+
+<ul>
+<li><strong>Define a particular encoding as the expected input.</strong>
+
+<ul>
+<li><p>For example, a receipt-processing program may explicitly document UTF-8 as the encoding for its input files.</p></li>
+</ul>
+</li>
+<li><strong>Look at the contents of the input file to auto-detect the encoding:</strong>
+
+<ul>
+<li>You could detect UTF byte-order-marks at the beginning of a file to automatically assume one of the UTF encodings.</li>
+<li>You could define a special syntax at the beginning of the input files to indicate the encoding.
+
+<ul>
+<li>XML uses a prelude at the top of a file to indicate what encoding it uses. For example <code>&lt;?xml version="1.0" encoding="windows-1252"?&gt;</code> specifies that the document is in Window-1252 encoding. (Of course to even read this initial text, you have to make the working assumption that the top of the file is some encoding that is a superset of ASCII.)</li>
+<li>Python source files use a line such as <code># -*- coding: utf-8 -*-</code> to indicate the encoding is other than the default. (Python 2.0-2.4 uses Windows Latin 1 as the default encoding; Python 2.5-2.7 uses ASCII, Python 3.x uses UTF-8.)</li>
+</ul>
+</li>
+<li><p>Failing these options, you could fall back to a defined encoding (such as ASCII for Python source files) or to the operating system&rsquo;s default encoding (which can vary).</p></li>
+</ul>
+</li>
+<li><strong>Always use the operating system&rsquo;s default encoding.</strong>
+
+<ul>
+<li>This is often the behavior if you use your favorite programming language&rsquo;s default mechanism for reading a file, such as Java&rsquo;s <code>FileReader</code> class. (Interestingly, C#&rsquo;s <code>StreamReader</code> and <code>StreamWriter</code> classes always use UTF-8 instead of the operating system default.)</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="converting-between-bytes-and-strings"></a></p>
+
+<h4>Converting Between Bytes and Strings</h4>
+
+<p>You cannot correctly convert a byte array to a string without specifying the encoding to use.</p>
+
+<p>Unfortunately many languages allow you to omit the encoding, and then will try to guess the encoding (usually incorrectly) if you fail to specify it.</p>
+
+<p>Consider the following Java program:</p>
+
+<pre><code>byte[] goodbyeBytes = {'T', 's', 'c', 'h', \uC3BC, \uC39F, '!'};
+String goodbyeString = new String(goodbyeBytes);              // WRONG: OS-dependent
+</code></pre>
+
+<p>This program will decode different strings on different operating systems! On Mac OS X and Linux where the platform&rsquo;s default charset is UTF-8, the correct result (&ldquo;Tschüß!&rdquo;) will be obtained since the original bytes were encoded in UTF-8. However on Windows the bogus result &ldquo;TschÃ¼ÃŸ!&rdquo; will be decoded because the default charset is Windows-1252.</p>
+
+<p>Here&rsquo;s the fixed program, which specifies the UTF-8 charset explicitly:</p>
+
+<pre><code>byte[] goodbyeBytes = {'T', 's', 'c', 'h', \uC3BC, \uC39F, '!'};
+String goodbyeString = new String(goodbyeBytes, "UTF-8");     // CORRECT
+</code></pre>
+
+<p>As another example, consider the Java <code>InputStreamReader</code> and <code>FileReader</code> classes, both of which convert from byte streams to character streams.</p>
+
+<pre><code>byte[] goodbyeBytes = {'T', 's', 'c', 'h', \uC3BC, \uC39F, '!'};
+InputStream goodbyeStream = new ByteArrayInputStream(goodbyeBytes);
+Reader goodbyeReader = new InputStreamReader(goodbyeStream);  // WRONG: OS-dependent
+</code></pre>
+
+<p>Or the even more innocent-looking:</p>
+
+<pre><code>Reader goodbyeReader = new FileReader("goodbye.txt");         // WRONG: OS-dependent
+</code></pre>
+
+<p>Both of these examples are wrong for the same reason: they don&rsquo;t specify the encoding. And both can be fixed by adding <code>"UTF-8"</code> as the second argument to the appropriate constructor.</p>
+
+<p>Of course the same problems happen when encoding a string to a byte stream:</p>
+
+<pre><code>String goodbyeString = "Tschüß!";
+byte[] goodbyeBytes = goodbyeString.getBytes();               // WRONG: OS-dependent
+</code></pre>
+
+<p>And when encoding a character stream to a byte stream:</p>
+
+<pre><code>ByteArrayOutputStream goodbyeStream = new ByteArrayOutputStream();
+Writer goodbyeWriter = new OutputStreamWriter(goodbyeStream); // WRONG: OS-dependent
+goodbyeWriter.write("Tschüß!");
+byte[] goodbyeBytes = goodbyeStream.toByteArray();
+</code></pre>
+
+<p>And when writing to text files:</p>
+
+<pre><code>Writer goodbyeWriter = new FileWriter("goodbye.txt");         // WRONG: OS-dependent
+goodbyeWriter.write("Tschüß!");
+</code></pre>
+
+<p><a id="a-char-in-your-favorite-language-is-probably-not-a-character"></a></p>
+
+<h3>A &ldquo;char&rdquo; (in your favorite language) is probably not a character.</h3>
+
+<p>Many programming languages have a &ldquo;char&rdquo; datatype that is intended for representing a character. Usually this &ldquo;char&rdquo; datatype could do this effectively at the time the language was written but not in the present day, as the notion of a character has been extended over time.</p>
+
+<p><a id="8-bit-chars"></a></p>
+
+<h4>8-bit chars (C/C++)</h4>
+
+<p>In C/C++, a &ldquo;char&rdquo; holds one byte. When C was first invented, 8-bit fixed-width character encodings were the norm. Therefore a single &ldquo;char&rdquo; was able to represent a single character precisely. However with the advent of CJK languages and multi-byte encodings, this no longer worked. Therefore a C string by itself today can only be safely interpreted as a raw byte stream. As mentioned above, you can only process it properly if you know what encoding it is in.</p>
+
+<p>Without any further information, C string is often assumed to be in the operating system&rsquo;s default encoding, although you cannot be sure. The correct encoding to use depends on where the string was input from.</p>
+
+<p>A program can work with strings in a few ways:</p>
+
+<ul>
+<li><p><strong>Choose a particular in-memory encoding that all functions should use.</strong></p>
+
+<ul>
+<li><p>All foreign strings will be converted to this encoding at the time of input (regardless of source). And upon output, strings will be converted to the appropriate proper output encoding.</p></li>
+<li><p>UTF-8 and UTF-16 are both good candidates for such an in-memory encoding since they can both represent the full repertoire of Unicode characters. Therefore you won&rsquo;t lose any data by converting to/from them.</p>
+
+<ul>
+<li><p>UTF-8 is compact and a superset of ASCII, so you can pass UTF-8 strings to brain-dead functions that are encoding unaware and get correct behavior as long as only ASCII characters are being used.</p></li>
+<li><p>UTF-16 is convenient because functions that are unaware of astral characters will still get correct behavior as long as basic-plane Unicode characters are used, which are the most common.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Pass around the text encoding around with the underlying byte array, possibly with a custom string datatype.</strong>
+
+<ul>
+<li>No encoding conversion overhead with reading the input stream.</li>
+<li>Cannot mix text with different encodings.</li>
+<li><p>Ruby takes this approach with its built-in <code>String</code> type.</p></li>
+</ul>
+</li>
+<li><strong>Blithely ignore encoding issues altogether and get unexpected results when working with international characters.</strong>
+
+<ul>
+<li>Many programs written in languages where the default string type in not Unicode take this option out of ignorance. In particular this includes many programs in C, PHP, and <span class="nobr">Python 2.x</span>.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Gotchas:</p>
+
+<ul>
+<li>Beware of methods that take exactly one <code>char</code> or return exactly one <code>char</code>.
+
+<ul>
+<li>They almost certainly aren&rsquo;t aware of non-ASCII or Unicode characters.</li>
+</ul>
+</li>
+<li>Beware of any libraries that don&rsquo;t document what text encoding it assumes.
+
+<ul>
+<li>They almost certainly aren&rsquo;t aware of non-ASCII or Unicode characters.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="16-bit-chars"></a></p>
+
+<h4>16-bit chars (Java, C#, Objective-C, Python 2.2-3.2, C/C++&rsquo;s <code>wchar</code>)</h4>
+
+<p>Java and C#&rsquo;s <code>char</code> are 16-bits wide. So are C/C++&rsquo;s <code>wchar</code> and Mac OS X&rsquo;s <code>unichar</code>. And so are the elements of a Python 2.x string when it is compiled in the default &ldquo;narrow&rdquo; mode.</p>
+
+<p>16-bits is sufficient to hold a Unicode character in the basic plane (0x0000-0xFFFF) but not an astral character in a supplemental plane (0x10000-0x10FFFF). In the case of these languages, a <code>char</code> represents a single UTF-16 code unit (i.e. either a character in the basic plane or a surrogate) as opposed to an actual character.</p>
+
+<p>Therefore text-aware programs in these languages need to be particularly careful to deal with astral characters correctly, since those characters cannot fit into a single <code>char</code> variable.</p>
+
+<p>Here is a typical Java program that is unaware of astral characters:</p>
+
+<pre><code>String str = "Hello";
+for (int i=0, n=str.length(); i&lt;n; i++) {
+    // WRONG: Does not handle characters outside the basic plane (0x0000-0xFFFF)
+    char c = str.charAt(i);
+
+    // ... Do something with the character, like filtering out invalid characters.
+}
+</code></pre>
+
+<p>And here is a much-longer but correct version that correctly identifies surrogates and decodes them to astral characters correctly:</p>
+
+<pre><code>String str = "Hello";
+for (int i=0, n=str.length(); i&lt;n; i++) {
+    char c1 = str.charAt(i);
+
+    // CORRECT. Handles all Unicode characters.
+    int codepoint;
+    if (Character.isHighSurrogate(c1)) {
+        if (i+1 &lt; n) {
+            char c2 = str.charAt(i+1);
+            if (Character.isLowSurrogate(c2)) {
+                // Surrogate pair
+                codepoint = Character.toCodePoint(c1, c2);
+
+                i++;
+            } else {
+                // High-surrogate alone
+                codepoint = (int) c1;
+            }
+        } else {
+            // High-surrogate alone at end of string
+            codepoint = (int) c1;
+        }
+    } else {
+        // Not a surrogate pair
+        codepoint = (int) c1;
+    }
+
+    // ... Do something with the character, like filtering out invalid characters.
+}
+</code></pre>
+
+<p>Gotchas:</p>
+
+<ul>
+<li>Beware of methods that take exactly one <code>char</code> or return exactly one <code>char</code>.
+
+<ul>
+<li>They almost certainly aren&rsquo;t aware of astral characters.</li>
+</ul>
+</li>
+<li>You can&rsquo;t iterate over the characters in a &ldquo;string&rdquo; by iterating over the <code>char</code>s.
+
+<ul>
+<li>Instead you have to use a loop like the above to iterate over the true characters.<br/>
+This example stores the true character in the <code>codepoint</code> variable.</li>
+</ul>
+</li>
+<li>You can&rsquo;t get the i<sup>th</sup> character of a &ldquo;string&rdquo; by getting the i<sup>th</sup> <code>char</code>.
+
+<ul>
+<li>No general workaround.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="32-bit-chars"></a></p>
+
+<h4>32-bit chars and variable-bit chars (Python 3.3+, Haskell)</h4>
+
+<p>If you&rsquo;re fortunate enough to work in an environment with 32-bit or variable-bit chars then your <code>char</code> is in fact a character. Horray!</p>
+
+<p>The only popular environment I know of with real characters is Python 3.3+, or Python 2.2-3.2 when configured to be in &ldquo;wide&rdquo; mode (which is not the default).</p>
+
+<p><a id="end-of-line-sequences"></a></p>
+
+<h2>End of Line Sequences</h2>
+
+<p>Improper handling of end-of-line (EOL) sequences is not uncommon.</p>
+
+<p>There are three common ways to end a line:</p>
+
+<ul>
+<li>Linux: <code>\n</code> (line feed alone)</li>
+<li>Windows: <code>\r\n</code> (carriage return + line feed)</li>
+<li>Mac OS 9: <code>\r</code> (carriage return alone)</li>
+</ul>
+
+
+<p>It is possible for multiple styles to occur in the same file or string.</p>
+
+<p>It should also be noted that the last line in a file or string might or might not be followed by an EOL sequence. Therefore you can&rsquo;t assume that every line ends with an EOL sequence.</p>
+
+<p>As the following examples demonstrate, you need to read your language&rsquo;s documentation carefully if you want to process lines in a consistent fashion.</p>
+
+<h4>Java Line Reader Example</h4>
+
+<p>Consider the following Java program:</p>
+
+<pre><code>// Prints the specified file to standard output.
+public static void main(String[] args) {
+    String filePath = args[0];
+    BufferedReader lineReader =
+        new BufferedReader(new FileReader(filePath, "UTF-8"));
+    try {
+        String nextLine;
+        while ((nextLine = lineReader.readLine()) != null) {
+            System.out.println(nextLine);
+        }
+    } finally {
+        lineReader.close();
+    }
+}
+</code></pre>
+
+<p>The <code>BufferedReader</code> class can deal with all end-of-line sequences. Therefore this program is resilient against mixed input.</p>
+
+<p>However <code>println</code> (in the <code>PrintWriter</code> class) emits the OS-specific end-of-line sequence, which means that this program will have different output on different operating systems. Not necessarily what you&rsquo;d expect.</p>
+
+<h4>Python 2.x Line Reader Example</h4>
+
+<p>Consider the following Python 2.x program:</p>
+
+<pre><code>import codecs
+
+file_path = sys.argv[1]
+with codecs.open(file_path, 'rb', 'utf-8') as stream:
+    for line_with_terminator in stream:
+        line = line_with_terminator.rstrip(u'\r\n')    # remove any trailing '\r' and '\n's
+        print line
+</code></pre>
+
+<p>Notice that in the Python version it is necessary to explicitly remove the <code>\r</code> and <code>\n</code> characters, since Python&rsquo;s line iteration behavior is to return the entire line plus the end-of-line sequence (if available).</p>
+
+<p>Python&rsquo;s <code>print</code> statement always uses <code>\n</code> as the end-of-line sequence, regardless of what OS it is running on. It&rsquo;s nice that this is a consistent behavior, but it might not be what you expect if you are developing on Windows.</p>
+
+<p>Here is perhaps a more typical program that fails to handle the last line correctly if it doesn&rsquo;t end with an EOL sequence:</p>
+
+<pre><code>import codecs
+
+file_path = sys.argv[1]
+with open(file_path, 'rU') as stream:     # the U mode converts all line endings to '\n'
+    for line_with_terminator in stream:
+        # WRONG: If last line lack an EOL this will chop off its trailing character improperly
+        line = line_with_terminator[:-1]  # remove trailing '\n'
+        # WRONG: Treating a bytestring as if it were a Unicode string
+        print line
+</code></pre>
+
+<p>Errors like this explain why lots of Unix programs warn about or get confused by files that don&rsquo;t end with a final EOL.</p>
+
+<p>And here is another typical variation that does not handle end-of-line sequences properly:</p>
+
+<pre><code>import codecs
+
+file_path = sys.argv[1]
+with open(file_path, 'rb') as stream:
+    for line_with_terminator in stream:
+        # WRONG: Assumes EOL is one byte long, which is incorrect on Windows
+        line = line_with_terminator[:-1]  # remove trailing '\n'
+        # WRONG: Treating a bytestring as if it were a Unicode string
+        print line
+</code></pre>
+
+<p>This kind of program will get extra <code>\r</code> characters on the end of each line when run on Windows. It also fails to handle final lines that lack an EOL.</p>
+
+<p><a id="summary"></a></p>
+
+<h2>Summary</h2>
+
+<p>Working with text is tricky. Your programming language probably has default handling that isn&rsquo;t quite what you want (or expect) so always read the documentation carefully. And if your program is intended to be usable in multiple languages, you actually should write tests that check for proper handling of Unicode characters.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>To be precise, the definition of <em>character</em> used here is exactly the same as a <em>Unicode codepoint</em>, for those readers who are already familiar with Unicode.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Windows documentation often refers to the default character set (or sometimes the ASCII character set) as the &ldquo;ANSI encoding&rdquo;. This is misleading since this is not a single concrete encoding and has nothing to do with the ANSI standards body. For example, the Save dialog in Windows Notepad (in Windows 7) and <a href="http://msdn.microsoft.com/en-us/library/cc231241(v=prot.10).aspx">Unicode Versus ANSI String Representations</a> use &ldquo;ANSI&rdquo; to refer to the default encoding, whereas <a href="http://msdn.microsoft.com/en-us/library/aa368046(v=vs.85).aspx">Copy a Unicode File to an ANSI File</a> uses &ldquo;ANSI&rdquo; to refer to the ASCII encoding.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p><a href="http://dev.w3.org/html5/spec/Overview.html#character-encodings-0">HTML 5 Draft Recommendation — 12 April 2010, 8.1 Character encodings</a>, retrieved 2010-04-12.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>The full Unicode standard also covers a wide variety of rules related to handling characters, such as sorting, rendering, and other operations. For our purposes though, we are only concerned with the Unicode character set.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>Compare the documentation for java.lang.String between <a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/String.html">Java 1.4</a> and <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html">Java 1.5</a>. The 1.5 documentation clearly states UTF-16 as the internal string encoding.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p><a href="http://www.python.org/dev/peps/pep-0261/">PEP 261</a> describes Python 2.x&rsquo;s Unicode handling with respect to characters in the supplementary planes. &ldquo;Narrow&rdquo; Python builds (the default) use UTF-16 internally; &ldquo;wide&rdquo; Python builds use UTF-32 internally. (The distinction between narrow and wide builds disappeared in Python 3.3.)<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<li id="fn:7">
+<p>The HFS filesystem used in Mac OS 9 and Mac OS X is one of the few filesystems that stores the encoding of text files as file metadata. However I think almost no modern OS X program is aware of this.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>21</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>1</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <!-- Begin Follow button -->
+  <iframe
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
+    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
+  <!-- End Follow button -->
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/05/28/rdiscount-2.1.6-released/" title="RDiscount 2.1.6 released">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    <!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://dynamic.dafoster.net/piwik/" : "http://dynamic.dafoster.net/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://dynamic.dafoster.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+
+<!-- Clicky -->
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100576301); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100576301ns.gif" /></p></noscript>
+
+  
+  </body>
+</html>
