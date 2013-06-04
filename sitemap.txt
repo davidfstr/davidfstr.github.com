@@ -2,6 +2,7 @@
 http://dafoster.net/404.html
 http://dafoster.net/about/
 http://dafoster.net/about/resume/
+http://dafoster.net/apps/
 http://dafoster.net/articles/
 http://dafoster.net/articles/topics/
 http://dafoster.net/atom.xml
@@ -20,7 +21,6 @@ http://dafoster.net/projects/website/
 http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
-http://dafoster.net/tmp/disqus.html
 
 http://dafoster.net/articles/2013/06/01/handling-text-correctly/
 http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released/

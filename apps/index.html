@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Disqus Reverts IE 8+ to Compatibility Mode | DaFoster</title>
+    <title>Web Applications | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -74,6 +74,8 @@
               
             
               
+            
+              
                 <li><a href="/articles/">Articles</a></li>
               
             
@@ -99,8 +101,6 @@
             
               
                 <li><a href="/projects/">Projects</a></li>
-              
-            
               
             
               
@@ -154,10 +154,10 @@
               
                 
                 
-                  
-                
               
                 
+                
+                  
                 
               
                 
@@ -203,80 +203,6 @@
               <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
               
             
-              
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-                  
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-              
-              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
-              
-            
             
             
           </ul>
@@ -294,140 +220,16 @@
         <![endif]-->
         
         
-          <div class="row">
-  <div class="span9 post">
-    <h1>Disqus Reverts IE 8+ to Compatibility Mode</h1>
-    <div class="post-metadata">
-      MISSING_DATE &ndash; Filed under: 
-      <span class="tag_box inline">
-        
-        
-      </span>
-    </div>
-    
-    <p>
-      This is a test article that includes Disqus commenting.
-    </p>
-    <p>
-      In IE 8+ this webpage will revert to Compatibility Mode instead of
-      Standards Mode when Disqus loads unless the following is put in the
-      [head] tag:
-    </p>
-    <pre>
-      [!-- IE 8+: Hide the Compatibility View button. --]
-      [meta http-equiv="X-UA-Compatible" content="IE=edge"]</pre>
-    <p>
-      Unfortunately the <code>X-UA-Compatible</code> does not pass the W3C
-      validator, so using that header breaks validation for a site.
-    </p>
-    <p>
-      So in summary there are two problems:
-    </p>
-    <ol>
-      <li>Disqus generates weird HTML that puts IE 8+ into Compatibility Mode.</li>
-      <li>X-UA-Compatible is not recognized as a valid [meta] HTTP header.
-        <ul>
-          <li>I have filed bugs to get this fixed, but I no longer have the
-              energy to keep sheparding these bugs, especially since I have
-              eliminated the use of Disqus on my blog, which obviates the
-              need to do any of this.</li>
-          <li>It would probably be best for someone on the IE team to push
-              the X-UA-Compatible header (or a new UA-Compatible variant)
-              towards standardization.</li>
-        </ul>
-      </li>
-    </ol>
-  </div>
-  
-  <div class="span3 block-bar">
-    <div class="block">
-  <h3>Topics</h3>
-  
-  <ul class="tag_box">
-    
-    
-      
-      
-      
-      
-      
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>21</sup></a></li>
-    
-      
-      
-      
-      
-      
-      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
-    
-      
-      
-      
-      
-      
-      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>4</sup></a></li>
-    
-      
-      
-      
-      
-      
-      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
-    
-      
-      
-      
-      
-      
-      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>1</sup></a></li>
-    
-  </ul>
-  <hr style="margin: .5em 0;"/>
-  <!-- Begin Follow button -->
-  <iframe
-    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
-    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
-  <!-- End Follow button -->
-  <a class="subscribe" href="feed://dafoster.net/atom.xml">
-    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
-  </a>
-</div>
+          <h1>Web Applications</h1>
 
-  </div>
-  
-  <div class="span12">
-    <div class="pagination pagination-centered">
-      <ul>
-      
-        <li class="prev disabled"><a>&larr; Previous</a></li>
-      
-        <li><a href="/articles/">Index</a></li>
-      
-        <li class="next disabled"><a>Next &rarr;</a>
-      
-      </ul>
-    </div>
-    
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'dafoster';
-    var disqus_title = 'Disqus Reverts IE 8+ to Compatibility Mode';
-    var disqus_url = 'http://dafoster.net/tmp/disqus.html';
-  
-    
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<p>Here a few small web apps I&rsquo;ve written that are not important enough
+to merit listing as individual <a href="/projects/">projects</a>.</p>
 
-  </div>
-</div>
+<ul>
+<li><a href="/apps/ga-url-builder/">Google Analytics URL Builder</a></li>
+</ul>
+
+
 
         
       </div>
