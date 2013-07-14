@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 28 Jun 2013 20:20:24 -0700</pubDate>
-    <lastBuildDate>Fri, 28 Jun 2013 20:20:24 -0700</lastBuildDate>
+    <pubDate>Sat, 13 Jul 2013 17:48:20 -0700</pubDate>
+    <lastBuildDate>Sat, 13 Jul 2013 17:48:20 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -17,11 +17,797 @@
     
     
     <item>
-      <title>Handling Text Correctly</title>
-      <link>http://dafoster.net/articles/2013/06/01/handling-text-correctly/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 01 Jun 2013 00:00:00 -0700</pubDate>
-      <guid>http://dafoster.net/articles/2013/06/01/handling-text-correctly</guid>
-      <description>&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+      <title>Error Handling</title>
+      <link>http://dafoster.net/articles/2013/07/13/error-handling/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 13 Jul 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/07/13/error-handling</guid>
+      <description>&lt;p&gt;Most of the time programs operate happily inside their &lt;em&gt;main scenario&lt;/em&gt;. Occasionally they need to cope with unusual circumstances, such as being no longer able to read data from the network because the user has turned off their WiFi. The process by which a program responds to an error is called &lt;em&gt;error handling&lt;/em&gt;.&lt;/p&gt;
+
+&lt;!--
+In many domains error handling is not treated very seriously as errors may be uncommon or the cost of improper handling may be low. In other domains such as telecom or real-time systems, all error cases need to be considered carefully.
+--&gt;
+
+
+
+
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#behaviors-upon-failure&quot;&gt;Behaviors Upon Failure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#reporting-errors&quot;&gt;Reporting Errors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#error-seriousness&quot;&gt;Error Seriousness&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#guarantees-after-failure&quot;&gt;Guarantees after Failure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#failing-fast&quot;&gt;Failing Fast (and Error Locality)&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#assert-vs-if&quot;&gt;assert vs. if&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#implementation-considerations-for-exceptions&quot;&gt;Implementation Considerations for Exceptions&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#exceptions-are-api&quot;&gt;Exceptions are API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#designing-exception-hierarchies&quot;&gt;Designing Exception Hierarchies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#designing-error-messages&quot;&gt;Designing Error Messages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#translating-exceptions-during-handling&quot;&gt;Translating Exceptions During Handling&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#wrapping-low-level-exceptions-in-high-level-exceptions&quot;&gt;Wrapping Low-Level Exceptions in High-Level Exceptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#wrapping-error-codes-in-exceptions&quot;&gt;Wrapping Error Codes in Exceptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#promoting-error-sentinels-to-exceptions&quot;&gt;Promoting Error Sentinels to Exceptions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#avoid-using-error-codes-in-generic-exceptions&quot;&gt;Avoid Using Error Codes in Generic Exceptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#avoid-using-exceptions-for-flow-control&quot;&gt;Avoid Using Exceptions for Flow Control&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#using-exceptions-for-thread-termination&quot;&gt;Using Exceptions for Thread Termination&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#summary&quot;&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;behaviors-upon-failure&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Behaviors Upon Failure&lt;/h2&gt;
+
+&lt;p&gt;At the time an error occurs in a function there are a few things it can do:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Delegate to its caller&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Typically a function doesn&amp;rsquo;t have enough information to decide how to handle the error itself. In such a case the error is reported to the calling function, which is typically higher-level and has more context.&lt;/li&gt;
+&lt;li&gt;For example if an I/O error occurs while parsing data from a file, the parser will typically just report the I/O error to the code that invoked the parser. The parser itself only knows how to parse things and not what should be done in the case of an I/O error.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The particular error handling strategy of a function reporting an error to its caller is so common that many programming languages provide special mechanisms to support it, particularly in the form of &lt;em&gt;exceptions&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Display the error to the user and continue&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is a common pattern for routine errors in interactive programs.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;For example a web browser that cannot access a particular webpage will display an error page explaining why the page could not be accessed.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Display the error to the user and exit&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is a common pattern for unexpected errors in contexts where total program failure is deemed acceptable.&lt;/li&gt;
+&lt;li&gt;In languages that use exceptions, any unhandled exceptions that bubble out of the main function or to the initial function in a thread will terminate the program or the thread. Programs can avoid this fate by adding a top-level exception handler that takes alternate action.&lt;/li&gt;
+&lt;li&gt;Examples:
+
+&lt;ul&gt;
+&lt;li&gt;In PHP it is an idiom to use the &lt;code&gt;die()&lt;/code&gt; function upon the failure of many operations:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;pre&gt;&lt;code&gt;$connection = mysql_connect('localhost', 'dbuser', 'password') or die('Could not connect to MySQL server.');
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The Linux kernel makes great use of the &lt;code&gt;panic()&lt;/code&gt; function when it gets into a bad state, stopping the entire operation of the computer.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Log the error and continue&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is a common pattern for non-interactive programs and programs that need to keep running continuously, such as web servers.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Naturally there needs to be somebody who goes through the log occasionally to look for problems if this error handling strategy is used.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ignore the error implicitly and continue blindly&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is almost always done out of laziness.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In C, this just means ignoring the result of a function that returns an error code.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ignore the error explicitly and continue boldly&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is usually done out of laziness.&lt;/li&gt;
+&lt;li&gt;One legitimate case when this is done is ignoring I/O errors when closing a resource during cleanup, since there isn&amp;rsquo;t anything sensible that can be done at that point. A Java example:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;pre&gt;&lt;code&gt;r = new Resource();
+try {
+    ...
+} finally {
+    try {
+        r.close();
+    } catch (IOException e) {
+        // ignore
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Less common handling strategies include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Prompt the user to decide what to do&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Attempt recovery and retry (or resume) the original operation&lt;/strong&gt;, perhaps with different inputs&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;reporting-errors&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Reporting Errors&lt;/h2&gt;
+
+&lt;p&gt;When a function wants to report an error, it has to pass information about the error to its caller. There are a few ways that error information can be encapsulated:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Error Codes&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When a function is designed to report errors using error codes, it is declared to return an integer or other integer alias (ex: &lt;code&gt;OSErr&lt;/code&gt;). Upon success the function returns 0 (or &lt;code&gt;noErr&lt;/code&gt;). Upon failure the function returns some other value that describes the type of error encountered. Should the function need to return other values upon success it must declare &lt;em&gt;out parameters&lt;/em&gt; to pass them back to the caller.&lt;/li&gt;
+&lt;li&gt;Error codes have several disadvantages that make their use uncommon in modern high level languages:
+
+&lt;ul&gt;
+&lt;li&gt;An error code only describes the type of error encountered, but not any additional contextual information that would be useful in handling the error. Typically only the function that is one hop away from the error site has enough additional context to actually handle the error nicely.
+
+&lt;ul&gt;
+&lt;li&gt;For example if you try to open a nonexistent file on classic Mac OS, you&amp;rsquo;ll get back the error code &lt;code&gt;fnfErr&lt;/code&gt; which indicates that the specified file was not found. Note however that this error code alone doesn&amp;rsquo;t include information about &lt;em&gt;which&lt;/em&gt; file couldn&amp;rsquo;t be found, which is necessary context to display a meaningful error message.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A function that uses error codes relies on its caller to check whether it returns an error. Lazy callers might not actually check, causing any reported errors to be ignored silently.
+
+&lt;ul&gt;
+&lt;li&gt;For example I have never seen a C program actually check the result of &lt;code&gt;printf()&lt;/code&gt;, even though it can return an error code upon I/O error. This behavior is reasonable in this case because there isn&amp;rsquo;t much a program can do to alert the user if it can&amp;rsquo;t print to the screen.&lt;/li&gt;
+&lt;li&gt;More problematic are C programs that fail to check the result of &lt;code&gt;malloc()&lt;/code&gt; for &lt;code&gt;NULL&lt;/code&gt; when allocating objects. Such programs will crash when &lt;code&gt;malloc&lt;/code&gt; returns &lt;code&gt;NULL&lt;/code&gt; during an out-of-memory condition and the caller tries to manipulate it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;When an error code occupies the return value of a function, that return value can&amp;rsquo;t be used for &amp;ldquo;normal&amp;rdquo; function output. This typically means that multiple functions returning error codes cannot be chained together on the same line, increasing verbosity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The one advantage of error codes is that they are very fast to create and return, improving performance in fragments of code that experience a large number of errors. However this performance-over-usability tradeoff is almost never worth it in modern programs.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;These days error codes are only used commonly in programming languages like C that don&amp;rsquo;t support the use of exceptions.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error Sentinels&lt;/strong&gt; (such as &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;-1&lt;/code&gt;, or &lt;code&gt;0&lt;/code&gt;)
+
+&lt;ul&gt;
+&lt;li&gt;A function that reports errors using error sentinels uses its return value to return the normal output of the function most of the time. However when an error occurs, a special invalid&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; value (a &lt;em&gt;sentinel&lt;/em&gt;) is returned instead.
+
+&lt;ul&gt;
+&lt;li&gt;For example if you &lt;code&gt;read()&lt;/code&gt; from an &lt;code&gt;InputStream&lt;/code&gt; in Java, usually the resultant byte value is returned. But if the end-of-file is reached, the special value of &lt;code&gt;-1&lt;/code&gt; is returned instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Error sentinels suffer from the same disadvantages as error codes. And they have the same performance advantage.&lt;/li&gt;
+&lt;li&gt;Unfortunately the use of error sentinels, especially &lt;code&gt;null&lt;/code&gt;, remains common in many modern programs despite their disadvantages. Even in cases where a &lt;a href=&quot;https://en.wikipedia.org/wiki/Null_Object_pattern&quot;&gt;Null Object&lt;/a&gt; could be used to better effect.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Some statically typed languages like Haskell and SML explicitly represent the potential of a sentinel being returned using a datatype such as &lt;code&gt;Maybe&lt;/code&gt; or &lt;code&gt;Option&lt;/code&gt;. Typically this is done so that the compiler can automatically flag callers that aren&amp;rsquo;t checking for sentinels properly, eliminating their largest disadvantage.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exceptions&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;An &lt;em&gt;exception&lt;/em&gt; is an object that encapsulates information about an error. This includes not only the type of error but also additional contextual information that can be used to generate a reasonable error message and assist in debugging by an end-user or developer.
+
+&lt;ul&gt;
+&lt;li&gt;Exceptions also typically include a &lt;em&gt;stack trace&lt;/em&gt; which can be used to pinpoint the location in the program where the error occurred originally, which is valuable for debugging.&lt;/li&gt;
+&lt;li&gt;Some languages like Java and Python provide &lt;em&gt;exception chaining&lt;/em&gt; (or &lt;em&gt;wrapping&lt;/em&gt;), which is special support for higher-level exceptions to reference any lower-level exceptions that caused the higher-level exception to occur.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A function that uses exceptions for error reporting can &lt;em&gt;throw&lt;/em&gt; (or &lt;em&gt;raise&lt;/em&gt;) an exception when an error occurs. When this happens the runtime looks for an enclosing &lt;em&gt;exception handler&lt;/em&gt; that knows how to deal with the exception. If it finds a handler the handler is run. If no such handler is found the function terminates and the same exception is rethrown at the point in the caller function where the throwing function was called. Should there be no caller, such as in the case of the main function or the initial function of a thread, the program or thread terminates.&lt;/li&gt;
+&lt;li&gt;Exceptions are the preferred method for error handling in most modern languages. They have the principal advantages of preserving detailed information about the error that occurred and being difficult to accidentally ignore.&lt;/li&gt;
+&lt;li&gt;One disadvantage of using exceptions is that they are relatively expensive to create and throw which can be a problem if the related error is relatively common, such as attempting to read past the end of a file. They also typically require special language support for throwing them, which rules out their use in simpler languages like C.&lt;/li&gt;
+&lt;li&gt;Some languages such as Java additionally have the notion of a &lt;em&gt;checked exception&lt;/em&gt;. When a function throws a checked exception, it is required to declare the type of the exception in its signature. When a caller tries to invoke a function that declares a checked exception in its signature, the compiler enforces that the caller actually handles the exception - either with an exception handler or by delegating to a higher-level function.
+
+&lt;ul&gt;
+&lt;li&gt;It is challenging to design APIs that use checked exceptions since they propagate virally through function declarations. I will probably write a future article that specifically deals with using checked exceptions effectively.&lt;/li&gt;
+&lt;li&gt;Some statically typed languages like Haskell implement the semantics of checked exceptions using a datatype such as &lt;code&gt;Either&lt;/code&gt;. Compilers in such languages enforce that callers explicitly unpack the &lt;code&gt;Either&lt;/code&gt; value and handle any contained exception object explicitly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In summary:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Exceptions should be used for most error reporting needs.&lt;/li&gt;
+&lt;li&gt;Error sentinels should be used to report &lt;a href=&quot;#common-error&quot;&gt;common errors&lt;/a&gt; where the performance penalty of exceptions is too much.&lt;/li&gt;
+&lt;li&gt;Error codes should be avoided entirely unless the programming language does not support exceptions, in which case error codes should be used instead.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;error-seriousness&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Error Seriousness&lt;/h2&gt;
+
+&lt;p&gt;Often the seriousness of an error is related to how it is handled. Generally speaking, errors are either:
+&lt;a id=&quot;common-error&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Common&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For example reading past the end of a file falls into this category, as it will always happen (once) whenever a program attempts to read an entire file into memory.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Very few errors fall into this category.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Expected&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;These errors are likely to occur in normal operation, but not commonly.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I/O errors related to reading from a file or from a network socket are an example.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unexpected&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unexpected errors are ones for which the programmer did not plan any explicit handling.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This includes dividing by zero, dereferencing a null pointer, attempting to access an object off the end of an array, reading from a file that was closed, and other &amp;ldquo;programmer errors&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fatal&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fatal errors are a rare and particularly nasty subset of unexpected errors for which there is no good recovery strategy. Such errors almost always terminate the program when &lt;span class=&quot;nobr&quot;&gt;they occur&lt;/span&gt;.&lt;/li&gt;
+&lt;li&gt;Fatal errors include running out of memory&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, the inability to locate a method or library which the program was linked against, and other nasty conditions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- NOTE: This paragraph is (usefully) redundant with the summary in the &quot;Reporting Errors&quot; section above: --&gt;
+
+
+&lt;p&gt;Common errors are typically reported using error sentinels or error codes for performance reasons. Other error categories are usually reported using exceptions unless the language in use doesn&amp;rsquo;t support exceptions, in which case error codes are used instead.&lt;/p&gt;
+
+&lt;p&gt;The standard libraries of programming languages typically distinguish between expected, unexpected, and fatal errors by using different exception base classes for each. This makes it easy to write exception handlers that can catch all thrown exceptions in a particular category. For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Java uses &lt;code&gt;Error&lt;/code&gt; as the base class for fatal errors, &lt;code&gt;RuntimeException&lt;/code&gt; for unexpected errors, and all other subclasses of &lt;code&gt;Exception&lt;/code&gt; for expected errors.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;C# uses &lt;code&gt;SystemException&lt;/code&gt; (informally) as the base class for unexpected and fatal errors. All other subclasses of &lt;code&gt;Exception&lt;/code&gt; are used for expected errors.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Python uses &lt;code&gt;StandardError&lt;/code&gt; (informally) as the base class for unexpected and fatal errors. All other subclasses of &lt;code&gt;Exception&lt;/code&gt; are used for expected errors.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;If a language supports checked exceptions, the expected exceptions should generally be marked as checked to force callers to handle them appropriately. Conversely, unexpected and fatal exceptions should &lt;em&gt;not&lt;/em&gt; be marked as checked since this burdens the caller unnecessarily.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;guarantees-after-failure&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Guarantees after Failure&lt;/h2&gt;
+
+&lt;p&gt;When an error occurs in the middle of multi-step function, the function has to make a decision about what kind of state it wants to leave the program in when it returns to its caller. In general a function can leave the program:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;in its original state,&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This usually involves rolling back or reversing any actions performed prior to the error.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Functions that make this guarantee are called &lt;em&gt;atomic&lt;/em&gt; or &lt;em&gt;transactional&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;in a different but valid state,&lt;/strong&gt; or
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;If a full rollback is not possible, it is still usually possible to partially rollback to a &lt;span class=&quot;nobr&quot;&gt;valid state&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;in a different and potentially illegal state.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Naive functions may simply return immediately upon error, leaving whatever resources they were using in a bad state.&lt;/li&gt;
+&lt;li&gt;This is particularly a problem for programs that use exceptions for error handling, as the default behavior when an exception is thrown is to return immediately, without performing any cleanup.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Any complex fault-tolerant function should document which of these guarantees it makes.&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; If it makes no guarantees at all, the caller may have to assume that whatever resource the function was operating on is in a bad state if the function returns an error.&lt;/p&gt;
+
+&lt;p&gt;Consider the concrete example of a program that copies a comma-separated-value (CSV) file to a new file. This generally involves the steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Open the source CSV file.&lt;/li&gt;
+&lt;li&gt;Open the destination file, replacing any previously existing file.&lt;/li&gt;
+&lt;li&gt;Loop over each row (or byte) of the source CSV file and write each row to the destination.&lt;/li&gt;
+&lt;li&gt;Close the destination file.&lt;/li&gt;
+&lt;li&gt;Close the source file.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Here is a naive implementation that makes no guarantees to its caller in the event of an error.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** Copies the source CSV file to the destination file. */
+// (I didn't think about error handling at all.)
+public static void copyCsvFile(File sourceFile, File destFile) throws IOException {
+    InputStream fileIn = new FileInputStream(sourceFile);
+    OutputStream fileOut = new FileOutputStream(destFile);
+    int b;
+    while ((b = fileIn.read()) != -1) {
+        fileOut.write(b);
+    }
+    fileOut.close();
+    fileIn.close();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now imagine what happens if an I/O error occurs in the middle of copying bytes: The &lt;code&gt;write&lt;/code&gt; method will throw an &lt;code&gt;IOException&lt;/code&gt; and since &lt;code&gt;copyCsvFile&lt;/code&gt; has no matching exception handler, the &lt;code&gt;copyCsvFile&lt;/code&gt; function itself will stop and rethrow the &lt;code&gt;IOException&lt;/code&gt;. Notably, the destination file is left with incomplete and invalid CSV contents. And neither the source nor the destination file is closed, leaking those resources from the operating system.&lt;/p&gt;
+
+&lt;p&gt;We can at least avoid leaking resources by adding logic that ensures that resources are always closed when the function completes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** Copies the source CSV file to the destination file. */
+// (No open file handles will be leaked even in the event of an error.)
+public static void copyCsvFile(File sourceFile, File destFile) throws IOException {
+    InputStream fileIn = new FileInputStream(sourceFile);
+    try {
+        OutputStream fileOut = new FileOutputStream(destFile);
+        try {
+            int b;
+            while ((b = fileIn.read()) != -1) {
+                fileOut.write(b);
+            }
+            fileOut.flush();
+        } finally {
+            try {
+                fileOut.close();
+            } catch (IOException e) {
+                // Ignore I/O errors upon close since nothing can be done
+            }
+        }
+    } finally {
+        try {
+            fileIn.close();
+        } catch (IOException e) {
+            // Ignore I/O errors upon close since nothing can be done
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This improved function will no longer leak open file handles in the event of an error but it will still leave an invalid destination CSV file.&lt;/p&gt;
+
+&lt;p&gt;If we document the additional guarantee that the function performs an &lt;em&gt;atomic&lt;/em&gt; file copy, we&amp;rsquo;d want to explicitly code the function to delete the destination file in the event that it couldn&amp;rsquo;t be fully copied. Here&amp;rsquo;s an implementation:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** Copies the source CSV file to the destination file atomically. */
+public static void copyCsvFile(File sourceFile, File destFile) throws IOException {
+    InputStream fileIn = new FileInputStream(sourceFile);
+    try {
+        OutputStream fileOut = new FileOutputStream(destFile);
+        boolean finishedCopying = false;
+        try {
+            int b;
+            while ((b = fileIn.read()) != -1) {
+                fileOut.write(b);
+            }
+            fileOut.flush();
+            finishedCopying = true;
+        } finally {
+            try {
+                fileOut.close();
+            } catch (IOException e) {
+                // Ignore I/O errors upon close since nothing can be done
+            }
+
+            if (!finishedCopying) {
+                boolean deleteSuccess = destFile.delete();
+                // If the delete fails then the rollback failed.
+                // Since there's nothing that can be done in that case,
+                // we ignore deletion failures.
+            }
+        }
+    } finally {
+        try {
+            fileIn.close();
+        } catch (IOException e) {
+            // Ignore I/O errors upon close since nothing can be done
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we wanted to get even more fancy we could document instead that the function guarantees that it will copy as much of the source CSV file to the destination CSV file, leaving the longest valid destination CSV file even in the case of an error. In particular if the entire file cannot be copied, the function will copy as many complete lines from the source CSV file as possible, stripping off any incompletely written lines.&lt;/p&gt;
+
+&lt;p&gt;This is actually relatively difficult to implement correctly in Java while still &lt;a href=&quot;/articles/2013/06/01/handling-text-correctly/&quot;&gt;handling characters correctly&lt;/a&gt; and preserving end-of-line sequences, so here&amp;rsquo;s a Python 2 implementation instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def copy_csv_file(source_filepath, dest_filepath):
+    &quot;&quot;&quot;
+    Copies the source CSV file to the destination file.
+
+    If an error occurs while copying, as many rows as possible are copied,
+    leaving a valid destination CSV file.
+    &quot;&quot;&quot;
+    with open(source_filepath, 'rb') as file_in:
+        offset_to_last_line_written = 0
+        finished_copying = False
+        file_out = open(dest_filepath, 'wb')
+        try:
+            while True:
+                cur_line_bytes = file_in.readline()
+                file_out.write(cur_line_bytes)
+                offset_to_last_line_written = file_out.tell()
+            file_out.flush()
+            finished_copying = True
+        finally:
+            truncated_successfully = False
+            if not finished_copying:
+                try:
+                    file_out.truncate(offset_to_last_line_written)
+                    truncated_successfully = True
+                except IOError:
+                    # Unable to truncate. Will try to delete the file instead...
+                    pass
+
+            try:
+                file_out.close()
+            finally:
+                if not finished_copying and not truncated_successfully:
+                    try:
+                        os.remove(dest_filepath)
+                    except IOError:
+                        # Unable to truncate or remove the destination file.
+                        # Nothing else can be done.
+                        pass
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Actually the preceding implementation isn&amp;rsquo;t correct in the presence of output stream buffering (unless it is line-buffered), since it could be the case that the &lt;code&gt;offset_to_last_line_written&lt;/code&gt; points to the end of a line that in fact has not been written to disk but is rather in the output buffer. A correct and performant implementation that additionally handles that case is left as a &lt;span class=&quot;nobr&quot;&gt;(non-trivial)&lt;/span&gt; exercise for the reader.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;failing-fast&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Failing Fast &lt;small&gt;and Error Locality&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;Errors are easiest to handle when they are signaled at the exact point where a problem first occurred, or as close to it as possible. Thus functions should try to &lt;em&gt;fail fast&lt;/em&gt; whenever possible.&lt;/p&gt;
+
+&lt;p&gt;It is a good idea for functions to check their inputs (especially their arguments) immediately upon invocation to see whether they conform to the expected format. This provides early warning of state corruption that could get introduced into the derived output of the function.&lt;/p&gt;
+
+&lt;p&gt;In addition if there are points where a function can make a non-trivial assertion about its current state, and this assertion is at risk of breaking due to modifications by maintainers, it should make an explicit check that the assertion is true.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;assert-vs-if&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;&lt;code&gt;assert&lt;/code&gt; vs. &lt;code&gt;if&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;When checking assertions, a function can always use the humble &lt;code&gt;if&lt;/code&gt; statement:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class Registry {
+    private Map&amp;lt;String, Object&amp;gt; items = new LinkedHashMap&amp;lt;String, Object&amp;gt;();
+
+    public void register(String id, Object item) {
+        if (id == null)
+            throw new IllegalArgumentException(
+                &quot;Cannot register an item with a null ID.&quot;);
+        if (item == null)
+            throw new IllegalArgumentException(
+                &quot;Cannot register a null item with ID \&quot;&quot; + id + &quot;\&quot;.&quot;);
+
+        if (items.containsKey(id))
+            throw new IllegalStateException(
+                &quot;Already have an item registered with the ID \&quot;&quot; + id + &quot;\&quot;.&quot;);
+        items.put(id, item);
+    }
+
+    // (... more methods ...)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However there is also an &lt;code&gt;assert&lt;/code&gt; statement in many languages. The &lt;code&gt;assert&lt;/code&gt; statement typically differs from &lt;code&gt;if&lt;/code&gt; in that it can be compiled-out of the program automatically if desired, for a modest performance boost at the expense of safety. Therefore &lt;code&gt;assert&lt;/code&gt; should typically only be used in performance-critical code (that has been verified as such by a profiler).&lt;/p&gt;
+
+&lt;p&gt;In practice I almost never use &lt;code&gt;assert&lt;/code&gt;, preferring to rely on &lt;code&gt;if&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;implementation-considerations-for-exceptions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Implementation Considerations for Exceptions&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;exceptions-are-api&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Exceptions are API&lt;/h3&gt;
+
+&lt;p&gt;Expected exceptions&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; are part of a function&amp;rsquo;s API. Consequently:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Expected exceptions should be given the same coverage in a function&amp;rsquo;s documentation as its parameters or return type. Remembering to document expected exceptions is particularly important when writing API documentation for languages lacking checked exceptions (i.e. everything other than Java, including C#).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Callers may depend on the expected exceptions in the function&amp;rsquo;s API documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;A function cannot remove or change the exceptions it throws without breaking callers that have been coded to expect the old set of exceptions. And new exceptions that are added will not be expected by existing callers.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;designing-exception-hierarchies&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Designing Exception Hierarchies&lt;/h3&gt;
+
+&lt;p&gt;It is generally a good idea have a separate exception type for each specific type of error that a caller might want to handle distinctly. That way a caller can easily write an exception handler that catches a specific exception of interest. For example &lt;code&gt;FileNotFoundException&lt;/code&gt; is likely to be treated distinctly from a generic &lt;code&gt;IOException&lt;/code&gt;, so it is given a separate exception type (that inherits from the generic &lt;code&gt;IOException&lt;/code&gt; class).&lt;/p&gt;
+
+&lt;p&gt;Errors that are not likely to be handled distinctly by the caller can just reuse a generic exception class directly. For example a piece of code that detected a &amp;ldquo;bad media&amp;rdquo; error when reading from a disk could just throw a plain &lt;code&gt;IOException&lt;/code&gt; with a message instead of creating a special subclass. However note that by doing this you provide no API for any caller that &lt;em&gt;does&lt;/em&gt; in fact want to catch this kind of exception.&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;designing-error-messages&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Designing Error Messages&lt;/h3&gt;
+
+&lt;p&gt;An error message typically accompanies an exception, and it is this message that is typically presented verbatim to the user if high-level code doesn&amp;rsquo;t recognize the exception type itself. Therefore it is important that the message be:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;well-formatted&lt;/strong&gt;,
+
+&lt;ul&gt;
+&lt;li&gt;Therefore basic grammar rules apply, such as beginning sentences with a capital letter and ending them with a period.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A surprising number of real-world exception messages don&amp;rsquo;t even meet this low bar.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;understandable by the user&lt;/strong&gt;,
+
+&lt;ul&gt;
+&lt;li&gt;This is a tricky requirement because the point where an exception is generated may not know the kind of user that will eventually receive the exception, particularly if it is a low-level error that is deeply buried or if the error occurs in a widely-used utility function.&lt;/li&gt;
+&lt;li&gt;In general &lt;em&gt;expected&lt;/em&gt; errors are likely to reach a normal non-programmer end-user, so they should be written with that audience in mind.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;By constrast &lt;em&gt;unexpected&lt;/em&gt; and &lt;em&gt;fatal&lt;/em&gt; errors are typically programmer errors and only likely to be seen by other developers when developing a program. Therefore they should be written with the developer in mind.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;specific&lt;/strong&gt;, and
+
+&lt;ul&gt;
+&lt;li&gt;An error message without sufficient contextual information cannot be easily corrected by the person that receives it. Messages should contain enough information for the user to easily locate the problem and fix it themselves.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;For example a error encountered while parsing a text file should include information about the &lt;em&gt;location&lt;/em&gt; of the parse error, so that the user can find the problem in the original document. Any good compiler will give you at least a line number when it encounters a syntax error and may even provide a specific column number as well.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;in the correct spoken language&lt;/strong&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;In particular if the user&amp;rsquo;s current locale is non-English (such as German), a German message should be presented if possible, not a default English one.&lt;/li&gt;
+&lt;li&gt;Programs that are only intended to be used in a single locale can ignore this guideline and naively emit messages in the expected locale&amp;rsquo;s language.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;translating-exceptions-during-handling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Translating Exceptions During Handling&lt;/h3&gt;
+
+&lt;p&gt;&lt;a id=&quot;wrapping-low-level-exceptions-in-high-level-exceptions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Wrapping Low-Level Exceptions in High-Level Exceptions&lt;/h4&gt;
+
+&lt;p&gt;It is common for a single system to have a single high-level exception type that is thrown by most of its functions. For example a parser&amp;rsquo;s functions may all throw the high-level &lt;code&gt;ParseException&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;However the implementation of such a system may delegate to other systems that use a different set of exceptions. In the case of a parser, it typically has to read the characters it is parsing from an I/O stream, which may throw a low-level &lt;code&gt;IOException&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, top-level parser functions have a few options in reporting the underlying &lt;code&gt;IOException&lt;/code&gt; as a possible failure case to its caller:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Expose&lt;/strong&gt; - The top-level function declares that it throws both &lt;code&gt;ParseException&lt;/code&gt; and &lt;code&gt;IOException&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;However this exposes the implementation detail that the parsing system relies on the I/O system and forces the caller to deal with the low-level &lt;code&gt;IOException&lt;/code&gt; directly.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Therefore this is not generally recommended for top-level functions, although it may be used by internal functions.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wrap&lt;/strong&gt; - The top-level function intercepts &lt;code&gt;IOException&lt;/code&gt;s and translates them to a generic &lt;code&gt;ParseException&lt;/code&gt; that wraps the original &lt;code&gt;IOException&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;This allows the top-level parsing functions to present the simpler exception API of just throwing a &lt;code&gt;ParseException&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Callers of the parser remain able to intercept and extract the underlying &lt;code&gt;IOException&lt;/code&gt; if they wish.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Map&lt;/strong&gt; - The top-level function intercepts &lt;code&gt;IOException&lt;/code&gt;s and maps them to a special subclass of &lt;code&gt;ParseException&lt;/code&gt; (like &lt;code&gt;ParseIOException&lt;/code&gt;), optionally wrapping the original &lt;code&gt;IOException&lt;/code&gt; for further inspection by the caller.
+
+&lt;ul&gt;
+&lt;li&gt;This is similar to the &amp;ldquo;wrapping&amp;rdquo; approach, but makes it even easier for the caller to catch the underlying exception since it can directly catch the mapped exception (&lt;code&gt;ParseIOException&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Thus this approach is preferable if the underlying failure case is sufficiently important to advertise prominently in the exception API.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In summary, most low-level level exceptions should be wrapped in the generic high-level exception. For &lt;em&gt;prominent&lt;/em&gt; low-level exceptions, they should be mapped to a specific high-level exception subclass.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a Java example of a parser taking the &amp;ldquo;wrapping&amp;rdquo; approach to low-level I/O exceptions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// The top-level methods of this class all throw ParseException in their API.
+public class RuleParser {
+    public static Rule parse(InputStream input) throws ParseException {
+        try {
+            return new RuleParser(input).readRule();
+        } catch (IOException e) {
+            throw new ParseException(&quot;I/O error while parsing rule.&quot;, e);
+        }
+    }
+
+    private Rule readRule() throws ParseException, IOException {
+        // (...)
+    }
+
+    // (...)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a id=&quot;wrapping-error-codes-in-exceptions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Wrapping Error Codes in Exceptions&lt;/h4&gt;
+
+&lt;p&gt;Sometimes a high-level function using exceptions needs to report an error received from a low-level function that uses error codes. In this case the low-level error code needs to be communicated to the caller somehow via an exception.&lt;/p&gt;
+
+&lt;p&gt;Typically the low-level function comes from an overall subsystem of some kind which uses error codes in general for error reporting. In such a case it is typical to define a generic exception to wrap all error codes received from the subsystem. This generic exception should preserve the original error code for inspection by callers, along with whatever extra context may be available from the subsystem, typically just an error message.&lt;/p&gt;
+
+&lt;p&gt;For example Python uses the &lt;code&gt;OSError&lt;/code&gt; exception to wrap error codes received from the underlying C library. It is populated with the error code received from the C &lt;code&gt;errno&lt;/code&gt; global variable and the message received from the C function &lt;code&gt;perror()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now the high-level function may not want to report this kind of low-level subsystem exception directly, in which case the &amp;ldquo;wrap&amp;rdquo; or &amp;ldquo;map&amp;rdquo; technique discussed above in &lt;a href=&quot;#wrapping-low-level-exceptions-in-high-level-exceptions&quot;&gt;&amp;ldquo;Wrapping Low-Level Exceptions in High-Level Exceptions&amp;rdquo;&lt;/a&gt; should be used in addition.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;promoting-error-sentinels-to-exceptions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Promoting Error Sentinels to Exceptions&lt;/h4&gt;
+
+&lt;p&gt;Typically error sentinels are used to report common errors that are intended to be handled immediately by the caller. However if the caller cannot handle the error itself but needs to delegate to its second-order caller, it typically needs to promote the sentinel to an exception.&lt;/p&gt;
+
+&lt;p&gt;As an example, the end-of-stream condition when reading from a stream is generally considered to be a common error in Java. However a function that is parsing a data structure out of a stream does &lt;em&gt;not&lt;/em&gt; expect an end-of-stream when it is in the middle of parsing a structure. Thus the parser wishes to report the end-of-stream condition to its caller as either an expected or unexpected error (depending on context), both of which require an exception.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class BinaryInputStream extends FilterInputStream {
+    public BinaryInputStream(InputStream in) {
+        super(in);
+    }
+
+    public int readUInt8() throws IOException {
+        int b = this.read();
+        if (b == -1) {
+            throw new EOFException(&quot;Unexpected end of stream.&quot;);
+        }
+        return b;
+    }
+
+    public int readUInt16() throws IOException {
+        return
+            (readUInt8() &amp;lt;&amp;lt; 8) |
+            (readUInt8() &amp;lt;&amp;lt; 0);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the preceding example the &lt;code&gt;-1&lt;/code&gt; error sentinel was promoted to an &lt;code&gt;EOFException&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;avoid-using-error-codes-in-generic-exceptions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Avoid Using Error Codes in Generic Exceptions&lt;/h3&gt;
+
+&lt;p&gt;The use of internal error codes within a generic exception class should generally be avoided, since this makes it difficult to handle them. (One exception to this guideline is when using an exception to wrap &lt;em&gt;external&lt;/em&gt; error codes received from another subsystem, as described above in &lt;a href=&quot;#wrapping-error-codes-in-exceptions&quot;&gt;&amp;ldquo;Wrapping External Error Codes in Exceptions&amp;rdquo;&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Consider the following example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// A generic exception that wraps its own set of error codes. DON'T DO THIS.
+public class FetchException extends RuntimeException {
+    private int code;
+    private String text;
+
+    public static final int JOB_NOTREADY = 1;
+    public static final int TIMEOUT = 2;
+    public static final int AMBIGUOUS_NAME = 3;
+
+    FetchException(int code, String text) {
+        super(text);
+        this.code = code;
+        this.text = text;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getText() {
+        return text;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you actually wanted to detect the &lt;code&gt;JOB_NOTREADY&lt;/code&gt; case, you&amp;rsquo;d have to write code like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public Job fetchJob(String jobName) {
+    for (int triesLeft = MAX_FETCH_ATTEMPTS; triesLeft &amp;gt; 0; triesLeft--) {
+        try {
+            return service.getJobs().get(jobName);
+        } catch (FetchException e) {
+            if (e.getCode() == FetchException.JOB_NOTREADY) {
+                // Retry again
+                continue;
+            } else {
+                throw e;
+            }
+        }
+    }
+    throw new FetchException(TIMEOUT,
+        &quot;Job \&quot;&quot; + jobName + &quot;\&quot; was not ready after &quot; +
+            MAX_FETCH_ATTEMPTS + &quot; fetch attempts.&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s not pleasant having to put that if-statement in the exception handler. And the throwing of the &lt;code&gt;TIMEOUT&lt;/code&gt;-coded &lt;code&gt;FetchException&lt;/code&gt; couldn&amp;rsquo;t save contextual information like the &lt;code&gt;jobName&lt;/code&gt; and &lt;code&gt;MAX_FETCH_ATTEMPTS&lt;/code&gt; in a machine-readable field since the generic &lt;code&gt;FetchException&lt;/code&gt; didn&amp;rsquo;t have fields that were specific to the &lt;code&gt;TIMEOUT&lt;/code&gt; code.&lt;/p&gt;
+
+&lt;p&gt;A better solution would be to use specific subclasses of &lt;code&gt;FetchException&lt;/code&gt; instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class FetchException extends RuntimeException { ... }
+
+public class JobNotReadyException extends FetchException { ... }
+
+public class FetchTimeoutException extends FetchException {
+    private String jobName;
+    private int numFetchAttempts;
+
+    FetchTimeoutException(String jobName, int numFetchAttempts) {
+        super(&quot;Job \&quot;&quot; + jobName + &quot;\&quot; was not ready after &quot; +
+            MAX_FETCH_ATTEMPTS + &quot; fetch attempts.&quot;);
+        this.jobName = jobName;
+        this.numFetchAttempts = numFetchAttempts;
+    }
+
+    // (... Accessors for jobName and numFetchAttempts ...)
+}
+
+public class AmbiguousNameException extends FetchException { ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then the code could be simplified to just read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public Job fetchJob(String jobName) {
+    for (int triesLeft = MAX_FETCH_ATTEMPTS; triesLeft &amp;gt; 0; triesLeft--) {
+        try {
+            return service.getJobs().get(jobName);
+        } catch (JobNotReadyException e) {
+            // Retry again
+            continue;
+        }
+    }
+    throw new FetchTimeoutException(jobName, MAX_FETCH_ATTEMPTS);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a id=&quot;avoid-using-exceptions-for-flow-control&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Avoid Using Exceptions for Flow Control&lt;/h3&gt;
+
+&lt;p&gt;Sometimes programs report &lt;em&gt;common&lt;/em&gt; errors in the form of an exception instead of using a more appropriate mechanism such as an error sentinel. This is inefficient since throwing exceptions is slow in the common case. And it is awkward for the caller who must have an explicit exception handler around every invocation to deal with the common case. Don&amp;rsquo;t do it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;using-exceptions-for-thread-termination&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Using Exceptions for Thread Termination&lt;/h4&gt;
+
+&lt;p&gt;However one case where exceptions are useful as a means of flow control is to force (or recommend) that a thread terminate. Such exceptions are classified as fatal errors so that most exception handlers ignore them.&lt;/p&gt;
+
+&lt;p&gt;For example Java uses the &lt;code&gt;ThreadDeath&lt;/code&gt; exception (a subclass of the fatal &lt;code&gt;Error&lt;/code&gt;) to terminate a thread. And Python uses the &lt;code&gt;KeyboardInterrupt&lt;/code&gt; exception (a subclass of the fatal &lt;code&gt;BaseException&lt;/code&gt;) to kill the main thread when the user presses Control-C.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;summary&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Error handling is hard. But you&amp;rsquo;ll provide a better experience by properly handling and communicating errors back the user.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be that guy who provides useless generic error messages:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/generic_ie_error.png&quot; height=&quot;353&quot; width=&quot;725&quot; alt=&quot;Awful error message from Internet Explorer 9&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(I doubt even the program itself knows what went wrong.)&lt;/p&gt;
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
     &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
         Series
     &lt;/p&gt;
@@ -30,10 +816,38 @@
     &lt;/p&gt;
 &lt;/div&gt;
 
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Flawed functions that return sentinel values that are actually &lt;em&gt;valid&lt;/em&gt; place extra onus on the caller to perform additional checks to determine whether an error actually occurred. For example PHP&amp;rsquo;s &lt;a href=&quot;http://php.net/manual/en/function.stream-get-contents.php&quot;&gt;&lt;code&gt;stream_get_contents&lt;/code&gt;&lt;/a&gt; function can return &lt;code&gt;''&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; upon failure. But it can also return &lt;code&gt;''&lt;/code&gt; upon success. See my insane &lt;a href=&quot;https://github.com/splunk/splunk-sdk-php/blob/master/Splunk/Util.php&quot;&gt;workaround&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Most programs treat out-of-memory errors as fatal, although there are a few hardened programs like SQLite that treat out-of-memory as an &lt;em&gt;expected&lt;/em&gt; error.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;The C# exception heirarchy is illustrated in &lt;a href=&quot;http://book.javanb.com/From-Java-To-Csharp-A-Developers-Guide/0321136225_ch13lev1sec2.html&quot;&gt;&amp;ldquo;C# exception hierarchy&amp;rdquo;&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;The Python exception heirarchy is documented in &lt;a href=&quot;http://docs.python.org/2/library/exceptions.html#exception-hierarchy&quot;&gt;&amp;ldquo;Exception Hierarchy&amp;rdquo;&lt;/a&gt;.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;Java has a few annoying examples where unexpected exceptions were marked as checked, burdening all subsequent callers. In particular &lt;code&gt;Object.clone()&lt;/code&gt; throws the checked &lt;code&gt;CloneNotSupportedException&lt;/code&gt;, making it hard to use. And Java&amp;rsquo;s reflection library throws the checked &lt;code&gt;IllegalAccessException&lt;/code&gt; and &lt;code&gt;InvocationTargetException&lt;/code&gt; whenever you try to &lt;code&gt;invoke()&lt;/code&gt; a method, neither of which are expected errors. And &lt;code&gt;Thread.sleep()&lt;/code&gt; throws the checked &lt;code&gt;InterruptedException&lt;/code&gt;. Now &lt;code&gt;IOException&lt;/code&gt;, thrown by all I/O functions, is legitimately a checked exception because it is an expected exception.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;Instead of documenting the guarantees after failure for individual functions, it also common to document an overall failure handling strategy for the entire system. For example most databases are documented as generally operating in a transactional fashion, with failed operations leaving the database in its original state. Of course some functions may deviate from the general policy, in which case the deviation should be documented.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:7&quot;&gt;
+&lt;p&gt;Unexpected and fatal exceptions, on the other hand, are &lt;em&gt;not&lt;/em&gt; typically part of a function&amp;rsquo;s API. As such, callers should not write exception handlers that depend on them.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:8&quot;&gt;
+&lt;p&gt;In this circumstance a caller is forced to guess the exception type by parsing the exception&amp;rsquo;s message. However this solution is brittle since the message isn&amp;rsquo;t part of the API and could change in the future or vary depending on the current locale.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 
-
-
-&lt;div class=&quot;toc&quot;&gt;
+</description>
+    </item>
+    
+    
+    <item>
+      <title>Handling Text Correctly</title>
+      <link>http://dafoster.net/articles/2013/06/01/handling-text-correctly/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 01 Jun 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/06/01/handling-text-correctly</guid>
+      <description>&lt;div class=&quot;toc&quot;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;#characters-sets-and-encodings&quot;&gt;Characters, Sets, and Encodings&lt;/a&gt;&lt;/li&gt;
     &lt;ul&gt;
@@ -666,6 +1480,16 @@ with open(file_path, 'rb') as stream:
 &lt;h2&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;Working with text is tricky. Your programming language probably has default handling that isn&amp;rsquo;t quite what you want (or expect) so always read the documentation carefully. And if your program is intended to be usable in multiple languages, you actually should write tests that check for proper handling of Unicode characters.&lt;/p&gt;
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Series
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        This article is part of the &lt;a href=&quot;/articles/2013/05/11/book-outline/&quot;&gt;Programming for Perfectionists&lt;/a&gt; series.
+    &lt;/p&gt;
+&lt;/div&gt;
+
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
@@ -988,6 +1812,60 @@ alpha(beta)(gamma, ...)
 
 &lt;p&gt;&amp;ldquo;Programming for Perfectionists&amp;rdquo; is the working title for the book and may be revised later.&lt;/p&gt;
 
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#fundamentals&quot;&gt;Fundamentals&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#representations&quot;&gt;Representations&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#numbers&quot;&gt;Numbers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#text&quot;&gt;Text&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#color&quot;&gt;Color&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#pictures&quot;&gt;Pictures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sound&quot;&gt;Sound&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#time&quot;&gt;Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#video&quot;&gt;Video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#collections&quot;&gt;Collections&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#error-handling&quot;&gt;Error Handling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#concurrency&quot;&gt;Concurrency&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#memory-management&quot;&gt;Memory Management&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Languages&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#comparing-programming-languages&quot;&gt;Comparing Programming Languages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#programming-paradigms&quot;&gt;Programming Paradigms&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#process&quot;&gt;Process&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#collaborative-software-development&quot;&gt;Collaborative Software Development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#code-conventions&quot;&gt;Code Conventions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#communicating-software-designs&quot;&gt;Communicating Software Designs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detecting-defects-early&quot;&gt;Detecting Defects Early (Testing)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#improving-code-quality&quot;&gt;Improving Code Quality (Basic Refactoring)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#debugging-techniques&quot;&gt;Debugging Techniques&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#profiling-instrumentation&quot;&gt;Profiling/Instrumentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#maintaining-legacy-code-safely&quot;&gt;Maintaining Legacy Code Safely (Advanced Refactoring)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#comments&quot;&gt;Comments?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#progress&quot;&gt;Progress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;introduction&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;The purpose of this book is to provide a &lt;em&gt;wide and shallow&lt;/em&gt; overview of important concepts in real-world software development. As such the treatment of various topics will not be comprehensive. Entire books have been written on the topic of each chapter, and appropriate references will be provided where appropriate.&lt;/p&gt;
@@ -996,14 +1874,18 @@ alpha(beta)(gamma, ...)
 
 &lt;p&gt;Many concepts presented here are ones that I feel are missing from the traditional &amp;ldquo;computer science&amp;rdquo; curriculum, yet which I feel to be vital to understand when working with real-world software.&lt;/p&gt;
 
+&lt;p&gt;&lt;a id=&quot;fundamentals&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Fundamentals&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;representations&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Representations&lt;/h3&gt;
 
-&lt;p&gt;Many developers do not understand the common ways of representing various kinds of real-world data, such as integers, color, and time. This leads to errors such as integer overflow vulnerabilities, munging of international characters, ignorance of color correction, and bugs that only trigger at midnight on leap years.&lt;/p&gt;
+&lt;p&gt;Many developers do not understand the common ways of representing various kinds of real-world data, such as text, integers, color, and time. This leads to errors such as munging of international characters, integer overflow vulnerabilities, ignorance of color correction, and bugs that only trigger at midnight on leap years.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Numbers&lt;/strong&gt;
+&lt;li&gt;&lt;a id=&quot;numbers&quot;&gt;&lt;/a&gt;&lt;strong&gt;Numbers&lt;/strong&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Integers
@@ -1022,7 +1904,7 @@ alpha(beta)(gamma, ...)
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/articles/2013/06/01/handling-text-correctly/&quot;&gt;&lt;strong&gt;Text&lt;/strong&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a id=&quot;text&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/articles/2013/06/01/handling-text-correctly/&quot;&gt;&lt;strong&gt;Text&lt;/strong&gt;&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Characters and Codepoints&lt;/li&gt;
@@ -1043,13 +1925,13 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;Line-ending sequences&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Color&lt;/strong&gt;
+&lt;li&gt;&lt;a id=&quot;color&quot;&gt;&lt;/a&gt;&lt;strong&gt;Color&lt;/strong&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Color Models, &amp;ldquo;RGB&amp;rdquo;, Colorspaces, CIE, Gamma&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pictures&lt;/strong&gt;
+&lt;li&gt;&lt;a id=&quot;pictures&quot;&gt;&lt;/a&gt;&lt;strong&gt;Pictures&lt;/strong&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Resolution
@@ -1064,11 +1946,13 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;Anamorphic Projections&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Sound&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Video&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a id=&quot;sound&quot;&gt;&lt;/a&gt;&lt;strong&gt;Sound&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a id=&quot;time&quot;&gt;&lt;/a&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a id=&quot;video&quot;&gt;&lt;/a&gt;&lt;strong&gt;Video&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;collections&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Collections&lt;/h3&gt;
 
@@ -1133,7 +2017,9 @@ alpha(beta)(gamma, ...)
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Error Handling&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;error-handling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;There are many more ways for a program to fail than succeed.&lt;/p&gt;
 
@@ -1203,6 +2089,8 @@ alpha(beta)(gamma, ...)
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;concurrency&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Concurrency&lt;/h3&gt;
 
 &lt;p&gt;Early languages like C pretend that threads don&amp;rsquo;t even exist. And even amidst the multi-core systems today, many programmers would like to pretend that concurrent execution doesn&amp;rsquo;t exist. A huge number of concurrency-related bugs are found in production code today.&lt;/p&gt;
@@ -1240,6 +2128,8 @@ alpha(beta)(gamma, ...)
 &lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;memory-management&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Memory Management&lt;/h3&gt;
 
@@ -1281,9 +2171,13 @@ alpha(beta)(gamma, ...)
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;languages&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Languages&lt;/h2&gt;
 
-&lt;h3&gt;The Right Tool for the Right Job &lt;small&gt;(Comparing Programming Languages)&lt;/small&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;comparing-programming-languages&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Comparing Programming Languages &lt;small&gt;(The Right Tool for the Right Job)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;A programming language is a tool for getting work done. Some tools are better at certain tasks than others. Thus picking your tool wisely for the task at hand will save you effort down the road.&lt;/p&gt;
 
@@ -1354,7 +2248,9 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 
 &lt;p&gt;&lt;span style=&quot;font-variant: small-caps;&quot;&gt;AcadProg&lt;/span&gt;: This language tends to be used in academia, especially by programming language researchers. Thus it also gets various cutting-edge programming language features before mainstream languages.&lt;/p&gt;
 
-&lt;h3&gt;Ideas that Change the World &lt;small&gt;(Programming Paradigms)&lt;/small&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;programming-paradigms&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Programming Paradigms &lt;small&gt;(Ideas that Change the World)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;The following paradigms are presented in chronological order by their recognition in the wider programming community.&lt;/em&gt;&lt;/p&gt;
 
@@ -1389,7 +2285,11 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;process&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;collaborative-software-development&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Collaborative Software Development&lt;/h3&gt;
 
@@ -1433,6 +2333,8 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;code-conventions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Code Conventions&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -1458,7 +2360,9 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Communicating Software Designs &lt;small&gt;(UML &amp;amp; other diagrammatic notations)&lt;/small&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;communicating-software-designs&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Communicating Software Designs &lt;small&gt;(UML &amp;amp; Other Diagrammatic Notations)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;Most of the following diagram notations assume the use of object-oriented programming. Non-OO languages do not have any standard diagram types, to my knowledge.&lt;/em&gt;&lt;/p&gt;
 
@@ -1471,6 +2375,8 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;CRC Cards&lt;/strong&gt; (designing classes with responsibilities in mind)&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;detecting-defects-early&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Detecting Defects Early &lt;small&gt;(Testing)&lt;/small&gt;&lt;/h3&gt;
 
@@ -1509,6 +2415,8 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;improving-code-quality&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Improving Code Quality &lt;small&gt;(Basic Refactoring)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;Transforming the structure of existing code to improve it while maintaining its original behavior is a process called refactoring. Regularly applying refactoring to your code will greatly extend its maintainable life.&lt;/p&gt;
@@ -1531,7 +2439,9 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;When It Breaks &lt;small&gt;(Debugging Techniques)&lt;/small&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;debugging-techniques&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Debugging Techniques &lt;small&gt;(When It Breaks)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;No program is perfect. Even if one were, requirement changes will break it soon enough.&lt;/p&gt;
 
@@ -1548,7 +2458,9 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Making It Faster &lt;small&gt;(Profiling/Instrumentation)&lt;/small&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;profiling-instrumentation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Profiling/Instrumentation &lt;small&gt;(Making It Faster)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;Meta:&lt;/p&gt;
 
@@ -1563,19 +2475,26 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;maintaining-legacy-code-safely&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Maintaining Legacy Code Safely &lt;small&gt;(Advanced Refactoring)&lt;/small&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;Although the concept of refactoring can be applied to any code, not just legacy code, the &lt;/em&gt;deliberate and careful&lt;em&gt; application of refactoring techniques is mostly restricted to legacy code.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;This is covered in great detail in the &amp;ldquo;Refactoring&amp;rdquo; book by Martin Fowler.&lt;/em&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;a id=&quot;comments&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Comments?&lt;/h2&gt;
 
 &lt;p&gt;Does any of this content sound interesting to you? If so, &lt;a href=&quot;/contact/&quot;&gt;drop me a line&lt;/a&gt;. I may add/remove content and/or modify the order that I write the chapters based on feedback.&lt;/p&gt;
 
+&lt;p&gt;&lt;a id=&quot;progress&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Progress&lt;/h2&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2013-07-13&lt;/strong&gt;: Added the &lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt; chapter.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;2013-06-01&lt;/strong&gt;: Added the &lt;a href=&quot;/articles/2013/06/01/handling-text-correctly/&quot;&gt;Text&lt;/a&gt; chapter.&lt;/li&gt;
 &lt;/ul&gt;
 

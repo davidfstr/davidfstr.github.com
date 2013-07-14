@@ -308,7 +308,7 @@
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>21</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>22</sup></a></span>
         
       </span>
     </div>
@@ -319,6 +319,60 @@
 
 <p>&ldquo;Programming for Perfectionists&rdquo; is the working title for the book and may be revised later.</p>
 
+<div class="toc">
+  <ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#fundamentals">Fundamentals</a>
+
+<ul>
+<li><a href="#representations">Representations</a>
+
+<ul>
+<li><a href="#numbers">Numbers</a></li>
+<li><a href="#text">Text</a></li>
+<li><a href="#color">Color</a></li>
+<li><a href="#pictures">Pictures</a></li>
+<li><a href="#sound">Sound</a></li>
+<li><a href="#time">Time</a></li>
+<li><a href="#video">Video</a></li>
+</ul>
+</li>
+<li><a href="#collections">Collections</a></li>
+<li><a href="#error-handling">Error Handling</a></li>
+<li><a href="#concurrency">Concurrency</a></li>
+<li><a href="#memory-management">Memory Management</a></li>
+</ul>
+</li>
+<li><a href="#">Languages</a>
+
+<ul>
+<li><a href="#comparing-programming-languages">Comparing Programming Languages</a></li>
+<li><a href="#programming-paradigms">Programming Paradigms</a></li>
+</ul>
+</li>
+<li><a href="#process">Process</a>
+
+<ul>
+<li><a href="#collaborative-software-development">Collaborative Software Development</a></li>
+<li><a href="#code-conventions">Code Conventions</a></li>
+<li><a href="#communicating-software-designs">Communicating Software Designs</a></li>
+<li><a href="#detecting-defects-early">Detecting Defects Early (Testing)</a></li>
+<li><a href="#improving-code-quality">Improving Code Quality (Basic Refactoring)</a></li>
+<li><a href="#debugging-techniques">Debugging Techniques</a></li>
+<li><a href="#profiling-instrumentation">Profiling/Instrumentation</a></li>
+<li><a href="#maintaining-legacy-code-safely">Maintaining Legacy Code Safely (Advanced Refactoring)</a></li>
+</ul>
+</li>
+<li><a href="#comments">Comments?</a></li>
+<li><a href="#progress">Progress</a></li>
+</ul>
+
+
+</div>
+
+
+<p><a id="introduction"></a></p>
+
 <h2>Introduction</h2>
 
 <p>The purpose of this book is to provide a <em>wide and shallow</em> overview of important concepts in real-world software development. As such the treatment of various topics will not be comprehensive. Entire books have been written on the topic of each chapter, and appropriate references will be provided where appropriate.</p>
@@ -327,14 +381,18 @@
 
 <p>Many concepts presented here are ones that I feel are missing from the traditional &ldquo;computer science&rdquo; curriculum, yet which I feel to be vital to understand when working with real-world software.</p>
 
+<p><a id="fundamentals"></a></p>
+
 <h2>Fundamentals</h2>
+
+<p><a id="representations"></a></p>
 
 <h3>Representations</h3>
 
-<p>Many developers do not understand the common ways of representing various kinds of real-world data, such as integers, color, and time. This leads to errors such as integer overflow vulnerabilities, munging of international characters, ignorance of color correction, and bugs that only trigger at midnight on leap years.</p>
+<p>Many developers do not understand the common ways of representing various kinds of real-world data, such as text, integers, color, and time. This leads to errors such as munging of international characters, integer overflow vulnerabilities, ignorance of color correction, and bugs that only trigger at midnight on leap years.</p>
 
 <ul>
-<li><strong>Numbers</strong>
+<li><a id="numbers"></a><strong>Numbers</strong>
 
 <ul>
 <li>Integers
@@ -353,7 +411,7 @@
 </li>
 </ul>
 </li>
-<li><a href="/articles/2013/06/01/handling-text-correctly/"><strong>Text</strong></a>
+<li><a id="text"></a><a href="/articles/2013/06/01/handling-text-correctly/"><strong>Text</strong></a>
 
 <ul>
 <li>Characters and Codepoints</li>
@@ -374,13 +432,13 @@
 <li>Line-ending sequences</li>
 </ul>
 </li>
-<li><strong>Color</strong>
+<li><a id="color"></a><strong>Color</strong>
 
 <ul>
 <li>Color Models, &ldquo;RGB&rdquo;, Colorspaces, CIE, Gamma</li>
 </ul>
 </li>
-<li><strong>Pictures</strong>
+<li><a id="pictures"></a><strong>Pictures</strong>
 
 <ul>
 <li>Resolution
@@ -395,11 +453,13 @@
 <li>Anamorphic Projections</li>
 </ul>
 </li>
-<li><strong>Sound</strong></li>
-<li><strong>Time</strong></li>
-<li><strong>Video</strong></li>
+<li><a id="sound"></a><strong>Sound</strong></li>
+<li><a id="time"></a><strong>Time</strong></li>
+<li><a id="video"></a><strong>Video</strong></li>
 </ul>
 
+
+<p><a id="collections"></a></p>
 
 <h3>Collections</h3>
 
@@ -464,7 +524,9 @@
 </ul>
 
 
-<h3>Error Handling</h3>
+<p><a id="error-handling"></a></p>
+
+<h3><a href="/articles/2013/07/13/error-handling/">Error Handling</a></h3>
 
 <p>There are many more ways for a program to fail than succeed.</p>
 
@@ -534,6 +596,8 @@
 </ul>
 
 
+<p><a id="concurrency"></a></p>
+
 <h3>Concurrency</h3>
 
 <p>Early languages like C pretend that threads don&rsquo;t even exist. And even amidst the multi-core systems today, many programmers would like to pretend that concurrent execution doesn&rsquo;t exist. A huge number of concurrency-related bugs are found in production code today.</p>
@@ -571,6 +635,8 @@
 </li>
 </ul>
 
+
+<p><a id="memory-management"></a></p>
 
 <h3>Memory Management</h3>
 
@@ -612,9 +678,13 @@
 </ul>
 
 
+<p><a id="languages"></a></p>
+
 <h2>Languages</h2>
 
-<h3>The Right Tool for the Right Job <small>(Comparing Programming Languages)</small></h3>
+<p><a id="comparing-programming-languages"></a></p>
+
+<h3>Comparing Programming Languages <small>(The Right Tool for the Right Job)</small></h3>
 
 <p>A programming language is a tool for getting work done. Some tools are better at certain tasks than others. Thus picking your tool wisely for the task at hand will save you effort down the road.</p>
 
@@ -685,7 +755,9 @@ which is more in line with general Python philosophy.</li>
 
 <p><span style="font-variant: small-caps;">AcadProg</span>: This language tends to be used in academia, especially by programming language researchers. Thus it also gets various cutting-edge programming language features before mainstream languages.</p>
 
-<h3>Ideas that Change the World <small>(Programming Paradigms)</small></h3>
+<p><a id="programming-paradigms"></a></p>
+
+<h3>Programming Paradigms <small>(Ideas that Change the World)</small></h3>
 
 <p><em>The following paradigms are presented in chronological order by their recognition in the wider programming community.</em></p>
 
@@ -720,7 +792,11 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
+<p><a id="process"></a></p>
+
 <h2>Process</h2>
+
+<p><a id="collaborative-software-development"></a></p>
 
 <h3>Collaborative Software Development</h3>
 
@@ -764,6 +840,8 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
+<p><a id="code-conventions"></a></p>
+
 <h3>Code Conventions</h3>
 
 <ul>
@@ -789,7 +867,9 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
-<h3>Communicating Software Designs <small>(UML &amp; other diagrammatic notations)</small></h3>
+<p><a id="communicating-software-designs"></a></p>
+
+<h3>Communicating Software Designs <small>(UML &amp; Other Diagrammatic Notations)</small></h3>
 
 <p><em>Most of the following diagram notations assume the use of object-oriented programming. Non-OO languages do not have any standard diagram types, to my knowledge.</em></p>
 
@@ -802,6 +882,8 @@ which is more in line with general Python philosophy.</li>
 <li><strong>CRC Cards</strong> (designing classes with responsibilities in mind)</li>
 </ul>
 
+
+<p><a id="detecting-defects-early"></a></p>
 
 <h3>Detecting Defects Early <small>(Testing)</small></h3>
 
@@ -840,6 +922,8 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
+<p><a id="improving-code-quality"></a></p>
+
 <h3>Improving Code Quality <small>(Basic Refactoring)</small></h3>
 
 <p>Transforming the structure of existing code to improve it while maintaining its original behavior is a process called refactoring. Regularly applying refactoring to your code will greatly extend its maintainable life.</p>
@@ -862,7 +946,9 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
-<h3>When It Breaks <small>(Debugging Techniques)</small></h3>
+<p><a id="debugging-techniques"></a></p>
+
+<h3>Debugging Techniques <small>(When It Breaks)</small></h3>
 
 <p>No program is perfect. Even if one were, requirement changes will break it soon enough.</p>
 
@@ -879,7 +965,9 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
-<h3>Making It Faster <small>(Profiling/Instrumentation)</small></h3>
+<p><a id="profiling-instrumentation"></a></p>
+
+<h3>Profiling/Instrumentation <small>(Making It Faster)</small></h3>
 
 <p>Meta:</p>
 
@@ -894,19 +982,26 @@ which is more in line with general Python philosophy.</li>
 </ul>
 
 
+<p><a id="maintaining-legacy-code-safely"></a></p>
+
 <h3>Maintaining Legacy Code Safely <small>(Advanced Refactoring)</small></h3>
 
 <p><em>Although the concept of refactoring can be applied to any code, not just legacy code, the </em>deliberate and careful<em> application of refactoring techniques is mostly restricted to legacy code.</em></p>
 
 <p><em>This is covered in great detail in the &ldquo;Refactoring&rdquo; book by Martin Fowler.</em></p>
 
+<p><a id="comments"></a></p>
+
 <h2>Comments?</h2>
 
 <p>Does any of this content sound interesting to you? If so, <a href="/contact/">drop me a line</a>. I may add/remove content and/or modify the order that I write the chapters based on feedback.</p>
 
+<p><a id="progress"></a></p>
+
 <h2>Progress</h2>
 
 <ul>
+<li><strong>2013-07-13</strong>: Added the <a href="/articles/2013/07/13/error-handling/">Error Handling</a> chapter.</li>
 <li><strong>2013-06-01</strong>: Added the <a href="/articles/2013/06/01/handling-text-correctly/">Text</a> chapter.</li>
 </ul>
 
@@ -937,7 +1032,7 @@ which is more in line with general Python philosophy.</li>
         
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>21</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>22</sup></a></li>
     
       
       

@@ -22,6 +22,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2013/07/13/error-handling/
 http://dafoster.net/articles/2013/06/01/handling-text-correctly/
 http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released/
 http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/
