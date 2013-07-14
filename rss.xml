@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 13 Jul 2013 17:48:20 -0700</pubDate>
-    <lastBuildDate>Sat, 13 Jul 2013 17:48:20 -0700</lastBuildDate>
+    <pubDate>Sat, 13 Jul 2013 17:54:30 -0700</pubDate>
+    <lastBuildDate>Sat, 13 Jul 2013 17:54:30 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -3568,29 +3568,27 @@ the most interesting ones to look at.&lt;/li&gt;
 
 &lt;h3&gt;Example&lt;/h3&gt;
 
-&lt;pre&gt;
-[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
+&lt;pre&gt;&lt;code&gt;[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
 # On changelist 154055
 # 
 # Changes to be committed in changelist default:
-#   (use &quot;p4 revert &lt;file&gt;...&quot; to discard changes in working directory)
+#   (use &quot;p4 revert &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
 # 
 #       deleted:    server/apps/setupfx/splunkd/default/extract.conf
 # 
 # Changes to be committed in changelist 154076:
-#   (use &quot;p4 revert &lt;file&gt;...&quot; to discard changes in working directory)
+#   (use &quot;p4 revert &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
 # 
 #       new file:   server/apps/setupfx/splunkd/default/inputs-NEW.conf
 #       modified:   server/apps/setupfx/splunkd/default/inputs.conf
 # 
 # Changes not staged for commit:
-#   (use &quot;p4 add/edit/delete &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;p4 sync -f &lt;file&gt;...&quot; to discard changes in working directory)
+#   (use &quot;p4 add/edit/delete &amp;lt;file&amp;gt;...&quot; to update what will be committed)
+#   (use &quot;p4 sync -f &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
 # 
 #       new file:   server/apps/setupfx/splunkd/default/inputs-NEW2.conf
 # 
-&lt;/pre&gt;
-
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3&gt;Installation&lt;/h3&gt;
 
