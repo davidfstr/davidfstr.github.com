@@ -6,14 +6,82 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 14 Jul 2013 14:40:09 -0700</pubDate>
-    <lastBuildDate>Sun, 14 Jul 2013 14:40:09 -0700</lastBuildDate>
+    <pubDate>Sat, 27 Jul 2013 14:37:47 -0700</pubDate>
+    <lastBuildDate>Sat, 27 Jul 2013 14:37:47 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Sending email from command line scripts</title>
+      <link>http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 27 Jul 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts</guid>
+      <description>&lt;p&gt;This weekend I open-sourced a script called &lt;a href=&quot;https://github.com/davidfstr/notifymail&quot;&gt;notifymail&lt;/a&gt; which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.&lt;/p&gt;
+
+&lt;p&gt;It is very easy to configure &lt;code&gt;notifymail&lt;/code&gt; for the first time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pip install notifymail
+$ notifymail.py --setup
+SMTP Server Hostname: smtp.gmail.com
+SMTP Server Port [465]: 587
+SMTP Server Uses TLS (y/n) [n]: yes
+SMTP Username: robot@gmail.com
+SMTP Password: ********
+From Address [robot@gmail.com]: robot@gmail.com
+From Name (optional) []: notifymail
+To Address: admin@example.com
+
+Verifying connection to SMTP server... OK
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check your mail provider&amp;rsquo;s documentation to get the SMTP settings mentioned above. For example I made an internet search for &amp;ldquo;gmail SMTP settings&amp;rdquo; to find &lt;a href=&quot;https://support.google.com/mail/troubleshooter/1668960?hl=en#ts=1665119,1665162&quot;&gt;Gmail&amp;rsquo;s SMTP settings&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Gmail SMTP Server:&lt;/strong&gt; smtp.gmail.com&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gmail SMTP Port:&lt;/strong&gt; 587 (for TLS)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gmail SMTP Uses TLS?&lt;/strong&gt; yes&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Once you have &lt;code&gt;notifymail&lt;/code&gt; installed, you can send an email to yourself in a Python script with as little code as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import notifymail
+notifymail.send('Subject', 'Hello World', from_name='greeting_script')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or you can invoke &lt;code&gt;notifymail&lt;/code&gt; from the command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &quot;Hello World&quot; | notifymail.py -s &quot;Subject&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Full documentation is available on the &lt;a href=&quot;https://github.com/davidfstr/notifymail#readme&quot;&gt;notifymail project page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Hasn&amp;rsquo;t this been done before?&lt;/h2&gt;
+
+&lt;p&gt;I reinvented my own wheel to send email principally because of the poor documentation of other alternatives:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;mail&lt;/code&gt; and &lt;code&gt;postfix&lt;/code&gt; were so complicated I couldn&amp;rsquo;t figure out how to set them up.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;ssmtp&lt;/code&gt; didn&amp;rsquo;t work after I tried to configure it and there was no good documentation to help me debug why it wasn&amp;rsquo;t working.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For reference, here&amp;rsquo;s &lt;a href=&quot;http://unix.stackexchange.com/questions/36982/can-i-set-up-system-mail-to-use-an-external-smtp-server&quot;&gt;some information for setting up those alternatives&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Fun things to do with &lt;code&gt;notifymail&lt;/code&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I have a script called &lt;code&gt;heartbeat&lt;/code&gt; that periodically attempts to connect to all of my servers via SSH. If it cannot connect to a server it sends me an email with &lt;code&gt;notifymail&lt;/code&gt;. If it cannot access email it displays a sticky Growl notification locally.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I have another script called &lt;code&gt;meetupfilter&lt;/code&gt; that tracks incoming &amp;ldquo;New Meetup Group&amp;rdquo; emails from &lt;a href=&quot;http://www.meetup.com/&quot;&gt;Meetup&lt;/a&gt;. It waits until all such announced groups have at least 3 events on their calendar before sending me a notification at my personal email with &lt;code&gt;notifymail&lt;/code&gt;. That way I don&amp;rsquo;t hear about Meetup groups that appear but then fizzle out immediately, which is a surprising number. I may open-source this script eventually if I &lt;a href=&quot;/contact&quot;&gt;hear there is interest&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>

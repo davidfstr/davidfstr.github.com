@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Comparing Writing Utensils | DaFoster</title>
+    <title>Sending email from command line scripts | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -296,113 +296,76 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Comparing Writing Utensils</h1>
+    <h1>Sending email from command line scripts</h1>
     <div class="post-metadata">
-      Sep 17, 2010 &ndash; Filed under: 
+      Jul 27, 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
+         
+          <span><a href="/articles/topics/#Software">Software <sup>23</sup></a></span>
          
           <span><a href="/articles/topics/#Productivity">Productivity <sup>5</sup></a></span>
         
       </span>
     </div>
     
-    <p>My experience using various kinds of writing utensils in school&hellip;</p>
+    <p>This weekend I open-sourced a script called <a href="https://github.com/davidfstr/notifymail">notifymail</a> which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.</p>
 
-<p><i>&gt; = &ldquo;is better than&rdquo;</i></p>
+<p>It is very easy to configure <code>notifymail</code> for the first time:</p>
 
-<h3>Why Pens > Pencils</h3>
+<pre><code>$ pip install notifymail
+$ notifymail.py --setup
+SMTP Server Hostname: smtp.gmail.com
+SMTP Server Port [465]: 587
+SMTP Server Uses TLS (y/n) [n]: yes
+SMTP Username: robot@gmail.com
+SMTP Password: ********
+From Address [robot@gmail.com]: robot@gmail.com
+From Name (optional) []: notifymail
+To Address: admin@example.com
 
-<ul>
-<li>Don&rsquo;t smudge ∴ Archive well</li>
-<li>Force you to think about what you are writing
+Verifying connection to SMTP server... OK
+</code></pre>
 
-<ul>
-<li>Mistakes are more costly, since you cannot simply use an eraser on pen</li>
-</ul>
-</li>
-<li>Have brighter contrast ∴ Easier to read</li>
-</ul>
-
-
-<h3>Why Mechanical Pencils > Traditional Pencils</h3>
-
-<ul>
-<li>Don&rsquo;t need to be sharpened ∴
+<p>Check your mail provider&rsquo;s documentation to get the SMTP settings mentioned above. For example I made an internet search for &ldquo;gmail SMTP settings&rdquo; to find <a href="https://support.google.com/mail/troubleshooter/1668960?hl=en#ts=1665119,1665162">Gmail&rsquo;s SMTP settings</a>:</p>
 
 <ul>
-<li>No sawdust to clean up</li>
-<li>No special sharpener hardware needed</li>
-<li>Lifetime is not limited to a certain number of sharpenings
-
-<ul>
-<li>Lifetime only limited to when the m-pencil is lost</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Seem to resist smearing in the short term
-
-<ul>
-<li>(but pens still win in the long term)</li>
-</ul>
-</li>
+<li><strong>Gmail SMTP Server:</strong> smtp.gmail.com</li>
+<li><strong>Gmail SMTP Port:</strong> 587 (for TLS)</li>
+<li><strong>Gmail SMTP Uses TLS?</strong> yes</li>
 </ul>
 
 
-<h3>Why Writing Utensils > Computer Keyboards [for creative projects]</h3>
+<p>Once you have <code>notifymail</code> installed, you can send an email to yourself in a Python script with as little code as:</p>
+
+<pre><code>import notifymail
+notifymail.send('Subject', 'Hello World', from_name='greeting_script')
+</code></pre>
+
+<p>Or you can invoke <code>notifymail</code> from the command line:</p>
+
+<pre><code>$ echo "Hello World" | notifymail.py -s "Subject"
+</code></pre>
+
+<p>Full documentation is available on the <a href="https://github.com/davidfstr/notifymail#readme">notifymail project page</a>.</p>
+
+<h2>Hasn&rsquo;t this been done before?</h2>
+
+<p>I reinvented my own wheel to send email principally because of the poor documentation of other alternatives:</p>
 
 <ul>
-<li>Force you to think about what you are writing
-
-<ul>
-<li>It takes a long time (comparatively) to write individual words,
-which gives you time to think about what you are writing</li>
-<li>Mistakes are more costly, since you cannot just delete words</li>
-</ul>
-</li>
-<li>Force you to think about the structure of what you are writing
-
-<ul>
-<li>Mistakes are more costly, since you cannot just cut and paste sections
-which are poorly laid out in the first place</li>
-</ul>
-</li>
-<li>No mental overhead
-
-<ul>
-<li>Using computers always incurs at least a small bit of mental overhead
-that interferes with the creative process</li>
-</ul>
-</li>
-<li>Automatic revision control (in the case of pen)
-
-<ul>
-<li>It&rsquo;s easier to strike through (rather than erase) rejected ideas with
-pen, so these ideas are preserved for future analysis, which sometimes
-comes in handy</li>
-</ul>
-</li>
+<li><p><code>mail</code> and <code>postfix</code> were so complicated I couldn&rsquo;t figure out how to set them up.</p></li>
+<li><p><code>ssmtp</code> didn&rsquo;t work after I tried to configure it and there was no good documentation to help me debug why it wasn&rsquo;t working.</p></li>
 </ul>
 
 
-<h3>Why Computer Keyboards > Writing Utensils [for non-creative projects]</h3>
+<p>For reference, here&rsquo;s <a href="http://unix.stackexchange.com/questions/36982/can-i-set-up-system-mail-to-use-an-external-smtp-server">some information for setting up those alternatives</a>.</p>
+
+<h2>Fun things to do with <code>notifymail</code></h2>
 
 <ul>
-<li>Typing speed is much higher
-
-<ul>
-<li>Gets even better if you use typing expansion software</li>
-<li>Gets even better if you use dictation software [for prose]</li>
-<li>Gets even better if you use a stenotype machine</li>
-</ul>
-</li>
-<li>Hyperlinks are easy to create and maintain
-
-<ul>
-<li>This is especially powerful when writing reference documents</li>
-</ul>
-</li>
+<li><p>I have a script called <code>heartbeat</code> that periodically attempts to connect to all of my servers via SSH. If it cannot connect to a server it sends me an email with <code>notifymail</code>. If it cannot access email it displays a sticky Growl notification locally.</p></li>
+<li><p>I have another script called <code>meetupfilter</code> that tracks incoming &ldquo;New Meetup Group&rdquo; emails from <a href="http://www.meetup.com/">Meetup</a>. It waits until all such announced groups have at least 3 events on their calendar before sending me a notification at my personal email with <code>notifymail</code>. That way I don&rsquo;t hear about Meetup groups that appear but then fizzle out immediately, which is a surprising number. I may open-source this script eventually if I <a href="/contact">hear there is interest</a>.</p></li>
 </ul>
 
 
@@ -420,13 +383,19 @@ comes in handy</li>
       
       
         
+          
+        
+      
+        
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>23</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>23</sup></a></li>
     
       
       
       
+      
+        
       
         
           
@@ -441,6 +410,8 @@ comes in handy</li>
       
         
       
+        
+      
       
       <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>4</sup></a></li>
     
@@ -450,12 +421,16 @@ comes in handy</li>
       
         
       
+        
+      
       
       <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
     
       
       
       
+      
+        
       
         
       
@@ -480,11 +455,11 @@ comes in handy</li>
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/" title="Comparing iPod Touch (2nd Gen) to iPhone 3GS">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/07/13/error-handling/" title="Error Handling">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2010/09/18/impact-anime-my-programming-experience/" title="Impact of Anime on my Programming Experience">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
