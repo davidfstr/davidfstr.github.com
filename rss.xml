@@ -6,14 +6,113 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 03 Aug 2013 13:29:16 -0700</pubDate>
-    <lastBuildDate>Sat, 03 Aug 2013 13:29:16 -0700</lastBuildDate>
+    <pubDate>Sat, 03 Aug 2013 14:16:40 -0700</pubDate>
+    <lastBuildDate>Sat, 03 Aug 2013 14:16:40 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Skills I Learned at Microsoft</title>
+      <link>http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 03 Aug 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft</guid>
+      <description>&lt;h2&gt;Social&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to manage managers.
+
+&lt;ul&gt;
+&lt;li&gt;Detailed time tracking.
+
+&lt;ul&gt;
+&lt;li&gt;I&amp;rsquo;ve done this internally at every job I&amp;rsquo;ve had,
+but only at Microsoft did I need to report on it externally.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Managing expectations.&lt;/li&gt;
+&lt;li&gt;The no-surprises principle.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Bad news is okay (socially) if it is known in advance.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How an &lt;a href=&quot;http://www.linkedin.com/in/rforsbach&quot;&gt;A-grade SDET&lt;/a&gt; (technical tester) thinks.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Techniques for making designs mure testable,
+especially in the presence of multi-threading.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How an &lt;a href=&quot;http://www.linkedin.com/pub/candace-jackson/40/267/354&quot;&gt;A-grade PM&lt;/a&gt; (Program Manager) can manage politics for you.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to work around certain mediocre coworkers. (This is not common.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t use made up words until you&amp;rsquo;ve looked them up first.
+
+&lt;ul&gt;
+&lt;li&gt;Counterintuitive. However your &amp;ldquo;made up word&amp;rdquo; may actually
+exist and it may not be a pleasant word.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Productivity&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;How to aggressively filter my email inbox.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The zero-inbox style of email management.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Macro programming on Windows via AutoHotkey.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.keyboardmaestro.com/&quot;&gt;Keyboard Maestro&lt;/a&gt; on the Mac is more capable and more polished,
+but AutoHotkey was the best thing I found for Windows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Technical&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Microsoft-specific tooling:
+
+&lt;ul&gt;
+&lt;li&gt;Visual Studio&lt;/li&gt;
+&lt;li&gt;TAEF (for testing)&lt;/li&gt;
+&lt;li&gt;Octopus (for deployment of MSIs)&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WiX (for development of MSIs)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Formalized code review via CodeFlow.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(Also did this at Google with Mondrian.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Heap profiling to track down memory leaks.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Failing to unregister listeners can cause memory leaks,
+particularly if an object registers a listener
+on another longer-lived (or immortal) object.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How to write &lt;em&gt;detailed&lt;/em&gt; technical specifications.
+
+&lt;ul&gt;
+&lt;li&gt;However the utility of such highly detailed specifications is limited.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>
