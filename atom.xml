@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-08-04T09:43:33-07:00</updated>
+ <updated>2013-08-04T11:31:17-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,115 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk</id>
+   <title>Skills I'm Learning at Splunk</title>
+   <published>2013-08-04T00:00:00-07:00</published>
+   <updated>2013-08-04T00:00:00-07:00</updated>
+   
+     <category term="Personal"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;h2&gt;Technical &amp;amp; Tools&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaScript ecosystem.
+
+&lt;ul&gt;
+&lt;li&gt;Enormous but highly fragmented.&lt;/li&gt;
+&lt;li&gt;Infrastructure for many basic things either does not exist or
+the community has not standardized on a particular tool.
+
+&lt;ul&gt;
+&lt;li&gt;Includes &amp;amp; Modules
+
+&lt;ul&gt;
+&lt;li&gt;raw &amp;lt;script&amp;gt; tags&lt;/li&gt;
+&lt;li&gt;node-require&lt;/li&gt;
+&lt;li&gt;AMD-require (require.js)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Class Declarations
+
+&lt;ul&gt;
+&lt;li&gt;too many alternatives to name&lt;/li&gt;
+&lt;li&gt;My favorite one actually comes from a &lt;a href=&quot;http://ejohn.org/blog/simple-javascript-inheritance/&quot;&gt;blog post&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;li&gt;Code Coverage&lt;/li&gt;
+&lt;li&gt;Documentation&lt;/li&gt;
+&lt;li&gt;Lint &amp;ndash; &lt;em&gt;JSHint, JSLint&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Minification &amp;ndash; &lt;em&gt;many choices&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP ecosystem.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Multi-layer system design, as occurs in the new &lt;a href=&quot;http://dev.splunk.com/view/app-framework/SP-CAAAEMA&quot;&gt;Splunk App Framework&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;GitHub.
+
+&lt;ul&gt;
+&lt;li&gt;Good code reviews.
+Not as good at Microsoft&amp;rsquo;s CodeFlow or Google&amp;rsquo;s Mondrian though.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Most awesome developer community I&amp;rsquo;ve ever seen.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;StackOverflow.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Quickly lookup answers to technical questions.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;JIRA.
+
+&lt;ul&gt;
+&lt;li&gt;A really good task tracking system.&lt;/li&gt;
+&lt;li&gt;Far better than the Product Studio system I used at Microsoft.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Social&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Tactfully&lt;/em&gt; give feedback (in code reviews, etc)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Interviewing &amp;amp; hiring&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mentoring&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Talking with customers
+
+&lt;ul&gt;
+&lt;li&gt;I was a booth guy at the 2012 Splunk .conf conference.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I have some friends who use Splunk too at their workplaces.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!--
+* How an [A-grade office manager] operates.
+--&gt;
+
+
+&lt;h2&gt;Other&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The difference between marketing and sales.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Supporting systems in production that I wrote
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I&amp;rsquo;m looking at you: &lt;a href=&quot;http://blogs.splunk.com/2012/09/20/analyzing-flurry-data/&quot;&gt;Flurry App&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Lots of fascinating theoretical stuff from &lt;a href=&quot;http://madhadron.com&quot;&gt;Fred&lt;/a&gt;, our resident
+ex-mathematician ex-physicist turned programmer.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  
  <entry>

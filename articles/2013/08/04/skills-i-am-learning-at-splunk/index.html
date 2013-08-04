@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Avoid feeling like a port on the Mac | DaFoster</title>
+    <title>Skills I'm Learning at Splunk | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -296,88 +296,113 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Avoid feeling like a port on the Mac</h1>
+    <h1>Skills I'm Learning at Splunk</h1>
     <div class="post-metadata">
-      May 07, 2013 &ndash; Filed under: 
+      Aug 04, 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>23</sup></a></span>
+          <span><a href="/articles/topics/#Personal">Personal <sup>6</sup></a></span>
         
       </span>
     </div>
     
-    <p>Mac users get rather annoyed when using programs that feel like they&rsquo;re just a port from another OS (usually Windows).</p>
-
-<p>Here&rsquo;s are a few important points for making your Mac app feel like a native app:</p>
+    <h2>Technical &amp; Tools</h2>
 
 <ul>
-<li><p>The user should never have to refresh local information that an application is viewing. Refresh should happen automatically when needed.</p>
+<li>JavaScript ecosystem.
 
 <ul>
-<li><p><em>Exception:</em> Web browsers. (The HTTP protocol provides no means to detect whether a web page requires refresh while it is being viewed.)</p></li>
-<li><p><em>Common violation:</em> Wait for an application to close, without auto-refreshing the application list. [<em>violated by Adobe Flash Updater</em>]</p></li>
-<li><p><em>Common violation:</em> Wait for disk to be inserted, without auto-refreshing the disk list.</p></li>
+<li>Enormous but highly fragmented.</li>
+<li>Infrastructure for many basic things either does not exist or
+the community has not standardized on a particular tool.
+
+<ul>
+<li>Includes &amp; Modules
+
+<ul>
+<li>raw &lt;script&gt; tags</li>
+<li>node-require</li>
+<li>AMD-require (require.js)</li>
 </ul>
 </li>
-<li><p>When altering settings, change take effect <em>immediately</em>. If these settings are presented in a dialog, the changes can be reverted by pressing Cancel.</p>
+<li>Class Declarations
 
 <ul>
-<li><p><em>Common violation:</em> Settings dialogs that have an &ldquo;Apply&rdquo; button in addition to &ldquo;OK&rdquo; and &ldquo;Cancel&rdquo;.</p></li>
+<li>too many alternatives to name</li>
+<li>My favorite one actually comes from a <a href="http://ejohn.org/blog/simple-javascript-inheritance/">blog post</a>.</li>
 </ul>
 </li>
-<li><p>When dialogs are used to present information, the buttons in the dialog should have titles that are useful and easy to interpret. The default action should be presented as the right-most button.</p>
-
-<ul>
-<li><p><em>Example:</em> The Log Out action presents a dialog asking the user to confirm whether they want to log out, with buttons &ldquo;Cancel&rdquo; and &ldquo;Log Out&rdquo;.</p></li>
-<li><p><em>Common violation:</em> Any dialog with &ldquo;Yes&rdquo;, &ldquo;No&rdquo;, and &ldquo;Cancel&rdquo; buttons.</p></li>
+<li>Testing</li>
+<li>Code Coverage</li>
+<li>Documentation</li>
+<li>Lint &ndash; <em>JSHint, JSLint</em></li>
+<li><p>Minification &ndash; <em>many choices</em></p></li>
 </ul>
 </li>
-<li><p>Don&rsquo;t ask the user any information that can be detected automatically with high confidence.</p>
-
-<ul>
-<li><p><em>Common violation:</em> Asking the user what language to use. [<em>Some installers</em>]</p></li>
-<li><p><em>Common violation:</em> Web pages for downloading software that prompt the user to select 32-bit vs. 64-bit architecture or an OS version.</p></li>
 </ul>
 </li>
-<li><p>Aesthetics are important. If you make an ugly app, it probably won&rsquo;t be used.</p></li>
-<li><p>Drag &amp; drop should be supported whenever it seems like it should make sense.</p></li>
-</ul>
-
-
-<p>And now for some nitpicks related to command key shortcuts:</p>
+<li><p>PHP ecosystem.</p></li>
+<li><p>Multi-layer system design, as occurs in the new <a href="http://dev.splunk.com/view/app-framework/SP-CAAAEMA">Splunk App Framework</a></p></li>
+<li>GitHub.
 
 <ul>
-<li><p>Common command key shortcuts must be supported and not modified:</p>
-
-<ul>
-<li><p>Command-Shift-Z = Redo [<em>violated by all Microsoft programs</em>]</p></li>
-<li><p>Command-Left/Right = Move to beginning and end of line [<em>violated by all Microsoft programs</em>]</p></li>
-<li><p>Command-F = Find [<em>violated by Microsoft Outlook</em>]</p></li>
-<li><p>Command-P = Print [<em>violated by Sublime Text</em>]</p></li>
+<li>Good code reviews.
+Not as good at Microsoft&rsquo;s CodeFlow or Google&rsquo;s Mondrian though.</li>
+<li><p>Most awesome developer community I&rsquo;ve ever seen.</p></li>
 </ul>
 </li>
-<li><p>All command key shortcuts must include the command key. That is neither Control nor Option (Alt) can be the primary modifier for a shortcut sequence.</p></li>
-<li><p>Do not make shortcuts with the function keys (F1 - F15). They are hard to remember.</p></li>
-<li><p>All command key shortcuts must be tied to a menu item.</p>
+<li>StackOverflow.
 
 <ul>
-<li><p><em>Example:</em> Command-Option-Escape (Force Quit), which is analogous to Control-Alt-Delete on Windows, can actually be found in the Apple menu.</p></li>
-<li><p><em>Exception:</em> Command-Shift-3 and Command-Shift-4 are legacy shortcuts that take screenshots.</p></li>
+<li><p>Quickly lookup answers to technical questions.</p></li>
 </ul>
 </li>
-<li><p>There is no such thing as the Apple key. You probably meant the Command key.</p></li>
-<li><p>There is no such thing as the Backspace key. You probably meant the Delete key - which is not to be confused with the Forward Delete key, which most Windows users just call Delete.</p></li>
-<li><p>Not all users have a right mouse button. In that case, you must instruct the user to Control-click instead of right-click.</p>
+<li>JIRA.
 
 <ul>
-<li><em>Exemplar:</em> The game Black and White detects whether the primary mouse is a single-button or a multi-button mouse and provides different instructions (and mouse graphics) for each case.</li>
+<li>A really good task tracking system.</li>
+<li>Far better than the Product Studio system I used at Microsoft.</li>
 </ul>
 </li>
 </ul>
 
 
-<p>For all other issues, including other philosphical concerns to consider, read and follow the OS X <a href="https://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html">Human Interface Guidelines</a>&nbsp;(HIG). This is one of the best descriptions of the &ldquo;Zen of the Mac&rdquo;. Every Mac developer should reread this every few years.</p>
+<h2>Social</h2>
+
+<ul>
+<li><p><em>Tactfully</em> give feedback (in code reviews, etc)</p></li>
+<li><p>Interviewing &amp; hiring</p></li>
+<li><p>Mentoring</p></li>
+<li>Talking with customers
+
+<ul>
+<li>I was a booth guy at the 2012 Splunk .conf conference.</li>
+<li><p>I have some friends who use Splunk too at their workplaces.</p></li>
+</ul>
+</li>
+</ul>
+
+
+<!--
+* How an [A-grade office manager] operates.
+-->
+
+
+<h2>Other</h2>
+
+<ul>
+<li><p>The difference between marketing and sales.</p></li>
+<li>Supporting systems in production that I wrote
+
+<ul>
+<li><p>I&rsquo;m looking at you: <a href="http://blogs.splunk.com/2012/09/20/analyzing-flurry-data/">Flurry App</a></p></li>
+</ul>
+</li>
+<li>Lots of fascinating theoretical stuff from <a href="http://madhadron.com">Fred</a>, our resident
+ex-mathematician ex-physicist turned programmer.</li>
+</ul>
+
 
   </div>
   
@@ -393,20 +418,20 @@
       
       
         
-          
-        
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>23</sup></a></li>
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>23</sup></a></li>
     
       
       
       
       
         
+          
+        
       
       
-      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>6</sup></a></li>
+      <li id="Personal-topic" class="active"><a href="/articles/topics/#Personal">Personal <sup>6</sup></a></li>
     
       
       
@@ -453,11 +478,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/04/30/copyrights-and-licenses-for-software/" title="Copyrights and Licenses for Software">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/08/03/skills-i-learned-at-microsoft/" title="Skills I Learned at Microsoft">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/05/11/book-outline/" title="Programming for Perfectionists (P4P): A Book Outline">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
