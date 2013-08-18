@@ -343,7 +343,7 @@
 <li><a href="#memory-management">Memory Management</a></li>
 </ul>
 </li>
-<li><a href="#">Languages</a>
+<li><a href="#languages">Languages</a>
 
 <ul>
 <li><a href="#comparing-programming-languages">Comparing Programming Languages</a></li>
@@ -361,6 +361,12 @@
 <li><a href="#debugging-techniques">Debugging Techniques</a></li>
 <li><a href="#profiling-instrumentation">Profiling/Instrumentation</a></li>
 <li><a href="#maintaining-legacy-code-safely">Maintaining Legacy Code Safely (Advanced Refactoring)</a></li>
+</ul>
+</li>
+<li><a href="#other">Other</a>
+
+<ul>
+<li><a href="#persistence">Persistence</a></li>
 </ul>
 </li>
 <li><a href="#comments">Comments?</a></li>
@@ -989,6 +995,65 @@ which is more in line with general Python philosophy.</li>
 <p><em>Although the concept of refactoring can be applied to any code, not just legacy code, the </em>deliberate and careful<em> application of refactoring techniques is mostly restricted to legacy code.</em></p>
 
 <p><em>This is covered in great detail in the &ldquo;Refactoring&rdquo; book by Martin Fowler.</em></p>
+
+<p><a id="other"></a></p>
+
+<h2>Other</h2>
+
+<p>The topics in this section don&rsquo;t fit in any of the other major topics. Should these extra topics not form a cohesive whole, they will not be included in the book.</p>
+
+<p><a id="persistence"></a></p>
+
+<h3>Persistence</h3>
+
+<ul>
+<li>Prefer the use of a standard metaformat instead of rolling your own format.<br/>
+You&rsquo;ll save a ton of time.</li>
+<li><strong>Standard Metaformats</strong>
+
+<ul>
+<li>XML</li>
+<li>JSON</li>
+<li>YAML</li>
+<li>Config files
+
+<ul>
+<li>UNIX config file</li>
+<li>Windows INI file</li>
+<li>Mac Plist file</li>
+</ul>
+</li>
+<li>SQLite database</li>
+</ul>
+</li>
+<li><strong>Considerations with custom formats</strong>:
+
+<ul>
+<li>Text vs. Binary</li>
+<li>Backward Compatibility, Forward Compatibility, Version Numbers</li>
+<li>Extensibility</li>
+<li>In-place Modifications &amp; Appendability
+
+<ul>
+<li>For text formats, this means the preservation of comments and whitespace.</li>
+</ul>
+</li>
+<li>Partially-loadable</li>
+</ul>
+</li>
+<li><strong>Examples of custom formats</strong>:
+
+<ul>
+<li>Hotline protocol - highly extensible, featureful, binary protocol</li>
+<li>Mac resource fork format - partially-loadable appendable binary file format</li>
+<li>QuickTime video container - highly extensible binary file format</li>
+<li>Matroska video container - highly extensible binary file format</li>
+<li>ZIP file format</li>
+</ul>
+</li>
+<li><strong>Bundles</strong> - a means for combining multiple subfiles into a single virtual file</li>
+</ul>
+
 
 <p><a id="comments"></a></p>
 

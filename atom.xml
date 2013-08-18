@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-08-13T23:26:02-07:00</updated>
+ <updated>2013-08-17T19:39:54-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -2313,7 +2313,7 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;&lt;a href=&quot;#memory-management&quot;&gt;Memory Management&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Languages&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;#languages&quot;&gt;Languages&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#comparing-programming-languages&quot;&gt;Comparing Programming Languages&lt;/a&gt;&lt;/li&gt;
@@ -2331,6 +2331,12 @@ alpha(beta)(gamma, ...)
 &lt;li&gt;&lt;a href=&quot;#debugging-techniques&quot;&gt;Debugging Techniques&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#profiling-instrumentation&quot;&gt;Profiling/Instrumentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#maintaining-legacy-code-safely&quot;&gt;Maintaining Legacy Code Safely (Advanced Refactoring)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#other&quot;&gt;Other&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#persistence&quot;&gt;Persistence&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#comments&quot;&gt;Comments?&lt;/a&gt;&lt;/li&gt;
@@ -2959,6 +2965,65 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 &lt;p&gt;&lt;em&gt;Although the concept of refactoring can be applied to any code, not just legacy code, the &lt;/em&gt;deliberate and careful&lt;em&gt; application of refactoring techniques is mostly restricted to legacy code.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;This is covered in great detail in the &amp;ldquo;Refactoring&amp;rdquo; book by Martin Fowler.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;other&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Other&lt;/h2&gt;
+
+&lt;p&gt;The topics in this section don&amp;rsquo;t fit in any of the other major topics. Should these extra topics not form a cohesive whole, they will not be included in the book.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;persistence&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Persistence&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Prefer the use of a standard metaformat instead of rolling your own format.&lt;br/&gt;
+You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Standard Metaformats&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;XML&lt;/li&gt;
+&lt;li&gt;JSON&lt;/li&gt;
+&lt;li&gt;YAML&lt;/li&gt;
+&lt;li&gt;Config files
+
+&lt;ul&gt;
+&lt;li&gt;UNIX config file&lt;/li&gt;
+&lt;li&gt;Windows INI file&lt;/li&gt;
+&lt;li&gt;Mac Plist file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SQLite database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Considerations with custom formats&lt;/strong&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Text vs. Binary&lt;/li&gt;
+&lt;li&gt;Backward Compatibility, Forward Compatibility, Version Numbers&lt;/li&gt;
+&lt;li&gt;Extensibility&lt;/li&gt;
+&lt;li&gt;In-place Modifications &amp;amp; Appendability
+
+&lt;ul&gt;
+&lt;li&gt;For text formats, this means the preservation of comments and whitespace.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Partially-loadable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Examples of custom formats&lt;/strong&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Hotline protocol - highly extensible, featureful, binary protocol&lt;/li&gt;
+&lt;li&gt;Mac resource fork format - partially-loadable appendable binary file format&lt;/li&gt;
+&lt;li&gt;QuickTime video container - highly extensible binary file format&lt;/li&gt;
+&lt;li&gt;Matroska video container - highly extensible binary file format&lt;/li&gt;
+&lt;li&gt;ZIP file format&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bundles&lt;/strong&gt; - a means for combining multiple subfiles into a single virtual file&lt;/li&gt;
+&lt;/ul&gt;
+
 
 &lt;p&gt;&lt;a id=&quot;comments&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
