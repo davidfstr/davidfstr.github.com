@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-08-17T19:39:54-07:00</updated>
+ <updated>2013-08-19T18:55:28-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,57 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/08/19/interactive-computing</id>
+   <title>Interactive Computing</title>
+   <published>2013-08-19T00:00:00-07:00</published>
+   <updated>2013-08-19T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/08/19/interactive-computing/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I spent a considerable amount of time yesterday going through the work of &lt;a href=&quot;http://worrydream.com/&quot;&gt;Bret Victor&lt;/a&gt;, who appears to be on a personal mission to bring interactive computing to mainstream developers. The tools he&amp;rsquo;s prototyping and building are just incredible.&lt;/p&gt;
+
+&lt;p&gt;What the heck do I mean by &lt;em&gt;interactive computing&lt;/em&gt; you ask? This is perhaps best demonstrated by examples from Bret&amp;rsquo;s portfolio:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://vimeo.com/36579366&quot;&gt;&lt;strong&gt;Inventing on Principle&lt;/strong&gt;&lt;/a&gt; (54 minutes)
+
+&lt;ul&gt;
+&lt;li&gt;Shows 5 different demos where Bret has programs or other complex objects where he can tweak the object at runtime and get immediate feedback. This is incredibly empowering.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It makes me feel that a lot of the developer tools I&amp;rsquo;ve been using are obsolete. Particularly for advanced applications that involve the analysis and exploration of data.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://worrydream.com/LadderOfAbstraction/&quot;&gt;&lt;strong&gt;Up and Down the Ladder of Abstraction&lt;/strong&gt;&lt;/a&gt; (13 pages)
+
+&lt;ul&gt;
+&lt;li&gt;Shows how an algorithm based on tunable parameters can be inspected and modified at runtime with immediate feedback.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;By happenstance I&amp;rsquo;ve been fighting the problem of lacking immediate feedback recently: I&amp;rsquo;ve been writing a number of tools for processing complex semi-structured information where the algorithms needed a lot of tweaking.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; To gain a limited form of live tweaking I wrote a &lt;a href=&quot;http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program/&quot;&gt;function decorator&lt;/a&gt; that allowed me to modify and reload functions at runtime without interrupting the program. The tools that Bret is prototyping are considerably more advanced than this, allowing changes to individual expressions without even a reload step.&lt;/p&gt;
+
+&lt;p&gt;Other small steps in the direction of interactivity in mainstream environments include the display of non-text results in interactive prompts. The &lt;a href=&quot;http://ipython.org/notebook.html&quot;&gt;IPython&lt;/a&gt; environment, for example, allows image values to be displayed directly in interactive prompts. This is great for statistical visualizations on complex datasets and for image processing functions. The &lt;a href=&quot;http://docs.racket-lang.org/quick/index.html&quot;&gt;Racket&lt;/a&gt; environment (a Scheme/Lisp dialect) also supports direct display of image values. It would be nice if HTML elements, sound waveforms, and video objects were also directly displayable.&lt;/p&gt;
+
+&lt;p&gt;The recent work on the &lt;a href=&quot;http://www.chris-granger.com/2012/04/12/light-table---a-new-ide-concept/&quot;&gt;Light Table&lt;/a&gt; web IDE is directly inspired by Bret&amp;rsquo;s work, which I didn&amp;rsquo;t realize the first time I heard about it. And now I notice that Light Table has support for Python&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; in addition to the original Clojure and JavaScript/HTML languages. Sweet.&lt;/p&gt;
+
+&lt;p&gt;Exciting developments.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;In case you&amp;rsquo;re wondering, these tools are designed to scrape various kinds of data from popular websites. I&amp;rsquo;m experimenting with the idea of making it easy to extract structured information out of semi-structured websites. If it was trivially easy to get data out of websites, what could you do with it? What new mashups and applications would arise that you didn&amp;rsquo;t think of before?&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Sadly it seems that Light Table&amp;rsquo;s current Python support is limited to allowing reevaluation of individual expressions upon request. Its support for Clojure is better, including an &amp;ldquo;instarepl&amp;rdquo; which evaluates all expressions as they are typed and displays the results of all intermediate variables and data flows.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>

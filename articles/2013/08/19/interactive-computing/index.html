@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>RDiscount 2.0.7 released | DaFoster</title>
+    <title>Interactive Computing | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -296,9 +296,9 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>RDiscount 2.0.7 released</h1>
+    <h1>Interactive Computing</h1>
     <div class="post-metadata">
-      Feb 02, 2013 &ndash; Filed under: 
+      Aug 19, 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -307,67 +307,43 @@
       </span>
     </div>
     
-    <p>It has been just over two years since <a href="/projects/rdiscount/">RDiscount</a> 1.6.8 (the previous version) was posted.<br/>
-As the new maintainer, I intend to provide updates a bit more frequently. :-)</p>
+    <p>I spent a considerable amount of time yesterday going through the work of <a href="http://worrydream.com/">Bret Victor</a>, who appears to be on a personal mission to bring interactive computing to mainstream developers. The tools he&rsquo;s prototyping and building are just incredible.</p>
 
-<p>Update to the latest version with:</p>
-
-<pre><code>gem update rdiscount
-</code></pre>
-
-<h2>What&rsquo;s New?</h2>
+<p>What the heck do I mean by <em>interactive computing</em> you ask? This is perhaps best demonstrated by examples from Bret&rsquo;s portfolio:</p>
 
 <ul>
-<li><a href="http://michelf.ca/projects/php-markdown/extra/#footnotes">Footnotes</a> - from <em>PHP Markdown Extra</em></li>
-<li>Superscript tweaks
+<li><a href="http://vimeo.com/36579366"><strong>Inventing on Principle</strong></a> (54 minutes)
 
 <ul>
-<li>Be more picky about what comes before a ^ if we’re superscripting.</li>
-<li>Modify superscript grabbing so that it grabs parenthetical and alphanumeric blocks.</li>
+<li>Shows 5 different demos where Bret has programs or other complex objects where he can tweak the object at runtime and get immediate feedback. This is incredibly empowering.</li>
+<li><p>It makes me feel that a lot of the developer tools I&rsquo;ve been using are obsolete. Particularly for advanced applications that involve the analysis and exploration of data.</p></li>
 </ul>
 </li>
-<li>Other bug fixes
+<li><a href="http://worrydream.com/LadderOfAbstraction/"><strong>Up and Down the Ladder of Abstraction</strong></a> (13 pages)
 
 <ul>
-<li>Table-of-contents generation will no longer crash for header items containing links.</li>
-<li>Adjacent new-style [link]s are no longer incorrectly combined.</li>
+<li>Shows how an algorithm based on tunable parameters can be inspected and modified at runtime with immediate feedback.</li>
 </ul>
 </li>
 </ul>
 
 
-<h2>What&rsquo;s Next?</h2>
+<p>By happenstance I&rsquo;ve been fighting the problem of lacking immediate feedback recently: I&rsquo;ve been writing a number of tools for processing complex semi-structured information where the algorithms needed a lot of tweaking.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> To gain a limited form of live tweaking I wrote a <a href="http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program/">function decorator</a> that allowed me to modify and reload functions at runtime without interrupting the program. The tools that Bret is prototyping are considerably more advanced than this, allowing changes to individual expressions without even a reload step.</p>
 
-<p>RDiscount 2.1.5 will be the next release of RDiscount. Planned features include:</p>
+<p>Other small steps in the direction of interactivity in mainstream environments include the display of non-text results in interactive prompts. The <a href="http://ipython.org/notebook.html">IPython</a> environment, for example, allows image values to be displayed directly in interactive prompts. This is great for statistical visualizations on complex datasets and for image processing functions. The <a href="http://docs.racket-lang.org/quick/index.html">Racket</a> environment (a Scheme/Lisp dialect) also supports direct display of image values. It would be nice if HTML elements, sound waveforms, and video objects were also directly displayable.</p>
 
-<ul>
-<li>Fenced code blocks
+<p>The recent work on the <a href="http://www.chris-granger.com/2012/04/12/light-table---a-new-ide-concept/">Light Table</a> web IDE is directly inspired by Bret&rsquo;s work, which I didn&rsquo;t realize the first time I heard about it. And now I notice that Light Table has support for Python<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> in addition to the original Clojure and JavaScript/HTML languages. Sweet.</p>
 
-<ul>
-<li><a href="http://github.github.com/github-flavored-markdown/">backtick-delimited</a> - from <em>GitHub Flavored Markdown</em></li>
-<li><a href="http://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">tilde-delimited</a> - from <em>PHP Markdown Extra</em></li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Who am I?</h2>
-
-<p>I should also introduce myself: I am <a href="/about/">David Foster</a>, the new maintainer for RDiscount.</p>
-
-<p>Since I am using RDiscount on my personal website, you can expect continued updates as major new features are introduced in the underlying <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> library.</p>
-
-<h3><em>Related Articles</em></h3>
-
-<ul>
-<li><a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">Why I no longer use Drupal</a>
-
-<ul>
-<li><em>Why Jekyll (and not Drupal) is awesome for making a personal website or blog.</em></li>
-<li><em>Jekyll can use RDiscount for Markdown rendering.</em></li>
-</ul>
-</li>
-</ul>
+<p>Exciting developments.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>In case you&rsquo;re wondering, these tools are designed to scrape various kinds of data from popular websites. I&rsquo;m experimenting with the idea of making it easy to extract structured information out of semi-structured websites. If it was trivially easy to get data out of websites, what could you do with it? What new mashups and applications would arise that you didn&rsquo;t think of before?<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Sadly it seems that Light Table&rsquo;s current Python support is limited to allowing reevaluation of individual expressions upon request. Its support for Clojure is better, including an &ldquo;instarepl&rdquo; which evaluates all expressions as they are typed and displays the results of all intermediate variables and data flows.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 
   </div>
@@ -444,11 +420,11 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)</p
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/02/02/learnings-from-sicp/" title="Learnings from SICP (and Lisp)">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program/" title="Fixing a function at runtime without restarting the program">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/02/20/visual-guide-to-programming-language-properties/" title="Visual Guide to Programming Language Properties">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
