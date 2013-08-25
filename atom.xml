@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-08-19T18:55:28-07:00</updated>
+ <updated>2013-08-25T16:06:17-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,216 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages</id>
+   <title>How I learn new programming languages</title>
+   <published>2013-08-25T00:00:00-07:00</published>
+   <updated>2013-08-25T00:00:00-07:00</updated>
+   
+     <category term="Personal"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I don&amp;rsquo;t learn new programming languages very often. It simply requires an enormous amount of time to properly understand the local philosophy, community, tools, and ecosystem. But every so often I see a glimmer in an unfamilar language that merits me picking it up.&lt;/p&gt;
+
+&lt;p&gt;Very recently I decided to learn Clojure to fulfill my future needs for a high-power language&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Before embarking on this journey, I thought it would be valuable to reflect on how I&amp;rsquo;ve learned other languages in the past and why I learned them.&lt;/p&gt;
+
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#my-journey&quot;&gt;My Journey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#patterns-of-learning&quot;&gt;Patterns of Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#appendix&quot;&gt;Appendix&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;my-journey&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;My Journey&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HyperTalk &amp;amp; HyperCard&lt;/strong&gt; &amp;ndash; Play
+
+&lt;ul&gt;
+&lt;li&gt;This was my first programming language, first used at age 6.&lt;/li&gt;
+&lt;li&gt;The HyperCard environment was sufficiently well designed that I could &lt;em&gt;play&lt;/em&gt; with existing programs, copy bits and pieces to assemble my own, and eventually build components from scratch.&lt;/li&gt;
+&lt;li&gt;The physicality of the system, the straightforward syntax, and the composability of program elements enabled this kind of play. I do not know of any programming environments today in which this would be possible.
+
+&lt;ul&gt;
+&lt;li&gt;Visual Basic is promising, although I&amp;rsquo;ve never used it. It has physicality and native graphics.&lt;/li&gt;
+&lt;li&gt;DarkBASIC is also promising for making 3D games, although I haven&amp;rsquo;t used it for anything serious. It has native 3D graphics.&lt;/li&gt;
+&lt;li&gt;Python has a REPL that you can experiment with and has reasonably straightforward and consistent syntax. However it has no native graphics and no physicality.&lt;/li&gt;
+&lt;li&gt;Processing has a built-in graphics. But it&amp;rsquo;s not designed for composability at all, meaning that you can&amp;rsquo;t mix and match parts from different programs. Its function naming is also haphazard and inconsistent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;My game &lt;a href=&quot;/prism/projects/dungeons/&quot;&gt;Dungeons&lt;/a&gt; was the most advanced program I wrote in HyperCard. Other kids at National Computer Camp would line up at my computer who wanted to play it - a very humbling experience.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BASIC, Pascal&lt;/strong&gt; &amp;ndash; Instructional Setting
+
+&lt;ul&gt;
+&lt;li&gt;At age 8 I picked these languages up at National Computer Camp because the instructors insisted on learning them before going on to other languages. &lt;!-- With my prior two years of HyperTalk and general programming experience, I blew through these languages very quickly. --&gt;&lt;/li&gt;
+&lt;li&gt;These were my first compiled languages.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Neither of these languages were distinctive enough for me to keep using.&lt;br/&gt;
+I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C, C++&lt;/strong&gt; &amp;ndash; Brute Force, Instructional Setting
+
+&lt;ul&gt;
+&lt;li&gt;I learned these to interface directly with the Mac operating system and to do programs in color, since HyperCard only supported black &amp;amp; white graphics.&lt;/li&gt;
+&lt;li&gt;I also had some instructional assistance at National Computer Camp during the summer.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I wish I could remember how I internalized pointers and manual memory management, since these are some of the most confusing bits of these languages for beginners. And most annoying for experts.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java&lt;/strong&gt; &amp;ndash; Brute Force
+
+&lt;ul&gt;
+&lt;li&gt;I initially learned Java in 2001 when I tried to write RealMediaFixer in C++.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; When doing this I discovered that CodeWarrior&amp;rsquo;s buffered I/O implementation was busted on Mac OS, behaving in a nondeterministic fashion. So I picked the most similar-looking language to C++ I&amp;rsquo;d heard of, namely Java, and ported RealMediaFixer to use it instead. It worked on the first try and I didn&amp;rsquo;t look back to C++ for several years. (After all, why would I use a language where &lt;em&gt;I/O&lt;/em&gt; was broken?)&lt;/li&gt;
+&lt;li&gt;I just wrote tons and tons of programs in Java for the next 8 years or so, through the rest of middle school, high school, and college.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;I also had some early instructional assistance at National Computer Camp. I am forever grateful to whatever instructor introduced me to the &lt;a href=&quot;http://docs.oracle.com/javase/6/docs/api/&quot;&gt;Java API documentation&lt;/a&gt;, allowing me to teach myself arbitrary parts of the Java standard library without relying on books or tutorials. Once you can teach yourself, the learning game is really on.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;My Java decompiler &lt;a href=&quot;/prism/projects/decomp/&quot;&gt;decomp4&lt;/a&gt; was the most advanced program I wrote in Java.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt; &amp;ndash; Targeted Large Projects
+
+&lt;ul&gt;
+&lt;li&gt;While interning at Google in 2008 I noticed that they had three primary languages: Java, C++, and Python. Since Google engineers were the smartest group of developers I&amp;rsquo;d ever run into, I figured they might be on to something with Python. So I started reading about Python and its capabilities.&lt;/li&gt;
+&lt;li&gt;My first attempt at a real program was the implementing of DiskSurveyorX in late 2008, a disk space visualizer.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; Unfortunately the best GUI toolkit available in Python, wxPython, I found to be far too clunky to use. So I ended up reverting to implementing in Java using the Swing toolkit.&lt;/li&gt;
+&lt;li&gt;My second and successful attempt to write a substantial Python program was &lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal Web Archiver&lt;/a&gt; in late 2011, a website downloader and archival system.
+
+&lt;ul&gt;
+&lt;li&gt;Again I had to use wxPython. This time though I ended up writing an abstraction layer over the worst parts to remove much of the pain.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Python is currently my favorite language for general purpose programming. Particularly for scripting, data analysis, and other kinds of exploratory work.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JavaScript&lt;/strong&gt; &amp;ndash; Socialization, Brute Force (via Employment)
+
+&lt;ul&gt;
+&lt;li&gt;I&amp;rsquo;ve been using JavaScript, HTML, and CSS since mid-2012 to create rich web applications, primarily in the form of Splunk&amp;rsquo;s app development framework. JavaScript was chosen because it is the lingua-franca of web development and because of its enormous leveragable ecosystem of libraries such as JQuery, Backbone, and Bootstrap.&lt;/li&gt;
+&lt;li&gt;Advanced JavaScript is almost impossible to learn on your own because there is no patron company that controls it nor is there a Benevolent Dictator for Life to provide officially blessed documentation or tutorials for how to use the language effectively. And this language has a sufficiently large number of design flaws that you need to learn to use it in a &lt;em&gt;disciplined&lt;/em&gt; fashion.&lt;/li&gt;
+&lt;li&gt;I wouldn&amp;rsquo;t have been able to get far in JavaScript without help from my coworker Itay who was already proficient. Should you not have access to such a resource probably the next-best thing is to look for non-trivial projects on Github and read them. For example I learned a lot by playing with &lt;a href=&quot;http://browserquest.mozilla.org/&quot;&gt;BrowserQuest&lt;/a&gt; and reading its &lt;a href=&quot;https://github.com/mozilla/BrowserQuest&quot;&gt;source code&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;patterns-of-learning&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Patterns of Learning&lt;/h2&gt;
+
+&lt;p&gt;The primary patterns observed in my learning journey above include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Play&lt;/strong&gt; &amp;ndash; undirected learning, by oneself
+
+&lt;ul&gt;
+&lt;li&gt;This only works well with exceptionally well-designed programming environments. Sadly there are very few modern environments that fit the bill.
+
+&lt;ul&gt;
+&lt;li&gt;HyperCard is dead. Visual Basic is dying. DarkBASIC is not well known.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Processing and Racket work okay but have some issues.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Brute Force&lt;/strong&gt; &amp;ndash; writing lots and lots of programs
+
+&lt;ul&gt;
+&lt;li&gt;This method will certainly give you the most understanding. It also takes the most time.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Having access to a mentor to check your work is useful but not required.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Targeted Large Projects&lt;/strong&gt; &amp;ndash; writing a small number of projects geared toward getting the most experience
+
+&lt;ul&gt;
+&lt;li&gt;This is similar to the &amp;ldquo;brute force&amp;rdquo; approach but is more &lt;a href=&quot;http://expertenough.com/1423/deliberate-practice&quot;&gt;tactical&lt;/a&gt;. It also requires more mental effort.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;These primary patterns are coupled with a few secondary patterns:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Instructional Setting&lt;/strong&gt; &amp;ndash; taking a class to learn basic and intermediate skills
+
+&lt;ul&gt;
+&lt;li&gt;I only found taking classes to be useful when my programming foundations were weak. Such classes provide very little value to me today.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Note that taking a class isn&amp;rsquo;t enough by itself. You have to practice on your own outside the class and after the class is finished.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Socialization&lt;/strong&gt; &amp;ndash; working with other developers to learn intermediate and advanced skills
+
+&lt;ul&gt;
+&lt;li&gt;Some things you can only learn efficiently from other developers.&lt;/li&gt;
+&lt;li&gt;Socialization is particularly useful for learning things in a highly fragmented ecosystem (such as JavaScript) or in settings with advanced concepts (such as overall program architecture or the functional programming paradigm).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;appendix&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Appendix&lt;/h2&gt;
+
+&lt;p&gt;There are a few languages I learned enough of to decide they weren&amp;rsquo;t worth using in new projects:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PHP&lt;/strong&gt; &amp;ndash; most widely deployed server-side web language
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/&quot;&gt;Just say no.&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ruby&lt;/strong&gt; &amp;ndash; used primarily as a server-side web language
+
+&lt;ul&gt;
+&lt;li&gt;Insufficiently distinct from Python.&lt;/li&gt;
+&lt;li&gt;Poor backward compatibility guarantees. No release notes.&lt;/li&gt;
+&lt;li&gt;Sloppy design: Non-formal grammar. Syntax schizophrenia. Monkeypatching accepted as a valid practice. Mutable strings. &lt;!-- Non-uniform string representation. --&gt;&lt;/li&gt;
+&lt;li&gt;But superior packaging, dependency management, and isolation systems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/01/29/unique-features-of-various-programming-languages/&quot;&gt;Unique Features of Various Programming Languages&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes unique features of several languages mentioned in this article.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Paul Graham&amp;rsquo;s essays on Lisp and language power are a thought-provoking read. By my assessment the current most-powerful languages out there are &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; and various members of the Lisp family (ex: Scheme, &lt;a href=&quot;http://racket-lang.org/&quot;&gt;Racket&lt;/a&gt;, &lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt;). I&amp;rsquo;ve decided to pass over Haskell for the time being for a number of reasons, particularly because of its high learning curve. I will probably return to it eventually.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;strong&gt;RealMediaFixer&lt;/strong&gt; was a program I wrote that repaired RealMedia (&lt;code&gt;.rm&lt;/code&gt;) files playable in RealPlayer. Such files downloaded over dialup would often get subtlely corrupted. Since downloading a 30-minute video could easily take a day it was more practical to try repairing the broken file rather than redownloading it.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;I have a huge trove of Java programs from this time period I&amp;rsquo;d like to publish some day. A very small subset of these programs are listed on &lt;a href=&quot;/prism/projects/&quot;&gt;my old projects page&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;&lt;strong&gt;DiskSurveyorX&lt;/strong&gt; was a disk space visualizer program that used similar visualizations as the original DiskSurveyor program for classic Mac OS. It however had some nice usability improvements pulled from my learnings from the information visualization class I took at the Technische Universität München. A modern disk space visualizer that uses a similar visualization is &lt;a href=&quot;http://www.daisydiskapp.com/&quot;&gt;DaisyDisk&lt;/a&gt;, which I highly recommend.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;For desktop GUI development, the Java + Swing combination is still my favorite. Followed closely by the Objective-C + Cocoa + Mac combination. I don&amp;rsquo;t care about GUI programs on Windows or Linux. However now practically all GUI development is going to the web, where solutions based on HTML + CSS + JavaScript reign supreme.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>

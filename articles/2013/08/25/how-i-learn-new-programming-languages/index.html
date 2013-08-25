@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>How I learn new programming languages | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>How I learn new programming languages</h1>
+    <div class="post-metadata">
+      Aug 25, 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Personal">Personal <sup>7</sup></a></span>
+         
+          <span><a href="/articles/topics/#Software">Software <sup>26</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p>I don&rsquo;t learn new programming languages very often. It simply requires an enormous amount of time to properly understand the local philosophy, community, tools, and ecosystem. But every so often I see a glimmer in an unfamilar language that merits me picking it up.</p>
+
+<p>Very recently I decided to learn Clojure to fulfill my future needs for a high-power language<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. Before embarking on this journey, I thought it would be valuable to reflect on how I&rsquo;ve learned other languages in the past and why I learned them.</p>
+
+<div class="toc">
+  <ul>
+<li><a href="#my-journey">My Journey</a></li>
+<li><a href="#patterns-of-learning">Patterns of Learning</a></li>
+<li><a href="#appendix">Appendix</a></li>
+</ul>
+
+
+</div>
+
+
+<p><a id="my-journey"></a></p>
+
+<h2>My Journey</h2>
+
+<ul>
+<li><strong>HyperTalk &amp; HyperCard</strong> &ndash; Play
+
+<ul>
+<li>This was my first programming language, first used at age 6.</li>
+<li>The HyperCard environment was sufficiently well designed that I could <em>play</em> with existing programs, copy bits and pieces to assemble my own, and eventually build components from scratch.</li>
+<li>The physicality of the system, the straightforward syntax, and the composability of program elements enabled this kind of play. I do not know of any programming environments today in which this would be possible.
+
+<ul>
+<li>Visual Basic is promising, although I&rsquo;ve never used it. It has physicality and native graphics.</li>
+<li>DarkBASIC is also promising for making 3D games, although I haven&rsquo;t used it for anything serious. It has native 3D graphics.</li>
+<li>Python has a REPL that you can experiment with and has reasonably straightforward and consistent syntax. However it has no native graphics and no physicality.</li>
+<li>Processing has a built-in graphics. But it&rsquo;s not designed for composability at all, meaning that you can&rsquo;t mix and match parts from different programs. Its function naming is also haphazard and inconsistent.</li>
+</ul>
+</li>
+<li><p>My game <a href="/prism/projects/dungeons/">Dungeons</a> was the most advanced program I wrote in HyperCard. Other kids at National Computer Camp would line up at my computer who wanted to play it - a very humbling experience.</p></li>
+</ul>
+</li>
+<li><strong>BASIC, Pascal</strong> &ndash; Instructional Setting
+
+<ul>
+<li>At age 8 I picked these languages up at National Computer Camp because the instructors insisted on learning them before going on to other languages. <!-- With my prior two years of HyperTalk and general programming experience, I blew through these languages very quickly. --></li>
+<li>These were my first compiled languages.</li>
+<li><p>Neither of these languages were distinctive enough for me to keep using.<br/>
+I did no major projects in these languages.</p></li>
+</ul>
+</li>
+<li><strong>C, C++</strong> &ndash; Brute Force, Instructional Setting
+
+<ul>
+<li>I learned these to interface directly with the Mac operating system and to do programs in color, since HyperCard only supported black &amp; white graphics.</li>
+<li>I also had some instructional assistance at National Computer Camp during the summer.</li>
+<li><p>I wish I could remember how I internalized pointers and manual memory management, since these are some of the most confusing bits of these languages for beginners. And most annoying for experts.</p></li>
+</ul>
+</li>
+<li><strong>Java</strong> &ndash; Brute Force
+
+<ul>
+<li>I initially learned Java in 2001 when I tried to write RealMediaFixer in C++.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> When doing this I discovered that CodeWarrior&rsquo;s buffered I/O implementation was busted on Mac OS, behaving in a nondeterministic fashion. So I picked the most similar-looking language to C++ I&rsquo;d heard of, namely Java, and ported RealMediaFixer to use it instead. It worked on the first try and I didn&rsquo;t look back to C++ for several years. (After all, why would I use a language where <em>I/O</em> was broken?)</li>
+<li>I just wrote tons and tons of programs in Java for the next 8 years or so, through the rest of middle school, high school, and college.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></li>
+<li>I also had some early instructional assistance at National Computer Camp. I am forever grateful to whatever instructor introduced me to the <a href="http://docs.oracle.com/javase/6/docs/api/">Java API documentation</a>, allowing me to teach myself arbitrary parts of the Java standard library without relying on books or tutorials. Once you can teach yourself, the learning game is really on.</li>
+<li><p>My Java decompiler <a href="/prism/projects/decomp/">decomp4</a> was the most advanced program I wrote in Java.</p></li>
+</ul>
+</li>
+<li><strong>Python</strong> &ndash; Targeted Large Projects
+
+<ul>
+<li>While interning at Google in 2008 I noticed that they had three primary languages: Java, C++, and Python. Since Google engineers were the smartest group of developers I&rsquo;d ever run into, I figured they might be on to something with Python. So I started reading about Python and its capabilities.</li>
+<li>My first attempt at a real program was the implementing of DiskSurveyorX in late 2008, a disk space visualizer.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> Unfortunately the best GUI toolkit available in Python, wxPython, I found to be far too clunky to use. So I ended up reverting to implementing in Java using the Swing toolkit.</li>
+<li>My second and successful attempt to write a substantial Python program was <a href="/projects/crystal-web-archiver/">Crystal Web Archiver</a> in late 2011, a website downloader and archival system.
+
+<ul>
+<li>Again I had to use wxPython. This time though I ended up writing an abstraction layer over the worst parts to remove much of the pain.</li>
+</ul>
+</li>
+<li><p>Python is currently my favorite language for general purpose programming. Particularly for scripting, data analysis, and other kinds of exploratory work.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></p></li>
+</ul>
+</li>
+<li><strong>JavaScript</strong> &ndash; Socialization, Brute Force (via Employment)
+
+<ul>
+<li>I&rsquo;ve been using JavaScript, HTML, and CSS since mid-2012 to create rich web applications, primarily in the form of Splunk&rsquo;s app development framework. JavaScript was chosen because it is the lingua-franca of web development and because of its enormous leveragable ecosystem of libraries such as JQuery, Backbone, and Bootstrap.</li>
+<li>Advanced JavaScript is almost impossible to learn on your own because there is no patron company that controls it nor is there a Benevolent Dictator for Life to provide officially blessed documentation or tutorials for how to use the language effectively. And this language has a sufficiently large number of design flaws that you need to learn to use it in a <em>disciplined</em> fashion.</li>
+<li>I wouldn&rsquo;t have been able to get far in JavaScript without help from my coworker Itay who was already proficient. Should you not have access to such a resource probably the next-best thing is to look for non-trivial projects on Github and read them. For example I learned a lot by playing with <a href="http://browserquest.mozilla.org/">BrowserQuest</a> and reading its <a href="https://github.com/mozilla/BrowserQuest">source code</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="patterns-of-learning"></a></p>
+
+<h2>Patterns of Learning</h2>
+
+<p>The primary patterns observed in my learning journey above include:</p>
+
+<ul>
+<li><strong>Play</strong> &ndash; undirected learning, by oneself
+
+<ul>
+<li>This only works well with exceptionally well-designed programming environments. Sadly there are very few modern environments that fit the bill.
+
+<ul>
+<li>HyperCard is dead. Visual Basic is dying. DarkBASIC is not well known.</li>
+<li><p>Processing and Racket work okay but have some issues.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Brute Force</strong> &ndash; writing lots and lots of programs
+
+<ul>
+<li>This method will certainly give you the most understanding. It also takes the most time.</li>
+<li><p>Having access to a mentor to check your work is useful but not required.</p></li>
+</ul>
+</li>
+<li><strong>Targeted Large Projects</strong> &ndash; writing a small number of projects geared toward getting the most experience
+
+<ul>
+<li>This is similar to the &ldquo;brute force&rdquo; approach but is more <a href="http://expertenough.com/1423/deliberate-practice">tactical</a>. It also requires more mental effort.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>These primary patterns are coupled with a few secondary patterns:</p>
+
+<ul>
+<li><strong>Instructional Setting</strong> &ndash; taking a class to learn basic and intermediate skills
+
+<ul>
+<li>I only found taking classes to be useful when my programming foundations were weak. Such classes provide very little value to me today.</li>
+<li><p>Note that taking a class isn&rsquo;t enough by itself. You have to practice on your own outside the class and after the class is finished.</p></li>
+</ul>
+</li>
+<li><strong>Socialization</strong> &ndash; working with other developers to learn intermediate and advanced skills
+
+<ul>
+<li>Some things you can only learn efficiently from other developers.</li>
+<li>Socialization is particularly useful for learning things in a highly fragmented ecosystem (such as JavaScript) or in settings with advanced concepts (such as overall program architecture or the functional programming paradigm).</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a id="appendix"></a></p>
+
+<h2>Appendix</h2>
+
+<p>There are a few languages I learned enough of to decide they weren&rsquo;t worth using in new projects:</p>
+
+<ul>
+<li><strong>PHP</strong> &ndash; most widely deployed server-side web language
+
+<ul>
+<li><p><a href="http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/">Just say no.</a></p></li>
+</ul>
+</li>
+<li><strong>Ruby</strong> &ndash; used primarily as a server-side web language
+
+<ul>
+<li>Insufficiently distinct from Python.</li>
+<li>Poor backward compatibility guarantees. No release notes.</li>
+<li>Sloppy design: Non-formal grammar. Syntax schizophrenia. Monkeypatching accepted as a valid practice. Mutable strings. <!-- Non-uniform string representation. --></li>
+<li>But superior packaging, dependency management, and isolation systems.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
+
+<ul>
+<li><em>Describes unique features of several languages mentioned in this article.</em></li>
+</ul>
+</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Paul Graham&rsquo;s essays on Lisp and language power are a thought-provoking read. By my assessment the current most-powerful languages out there are <a href="http://www.haskell.org/">Haskell</a> and various members of the Lisp family (ex: Scheme, <a href="http://racket-lang.org/">Racket</a>, <a href="http://clojure.org/">Clojure</a>). I&rsquo;ve decided to pass over Haskell for the time being for a number of reasons, particularly because of its high learning curve. I will probably return to it eventually.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p><strong>RealMediaFixer</strong> was a program I wrote that repaired RealMedia (<code>.rm</code>) files playable in RealPlayer. Such files downloaded over dialup would often get subtlely corrupted. Since downloading a 30-minute video could easily take a day it was more practical to try repairing the broken file rather than redownloading it.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>I have a huge trove of Java programs from this time period I&rsquo;d like to publish some day. A very small subset of these programs are listed on <a href="/prism/projects/">my old projects page</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p><strong>DiskSurveyorX</strong> was a disk space visualizer program that used similar visualizations as the original DiskSurveyor program for classic Mac OS. It however had some nice usability improvements pulled from my learnings from the information visualization class I took at the Technische Universität München. A modern disk space visualizer that uses a similar visualization is <a href="http://www.daisydiskapp.com/">DaisyDisk</a>, which I highly recommend.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>For desktop GUI development, the Java + Swing combination is still my favorite. Followed closely by the Objective-C + Cocoa + Mac combination. I don&rsquo;t care about GUI programs on Windows or Linux. However now practically all GUI development is going to the web, where solutions based on HTML + CSS + JavaScript reign supreme.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>26</sup></a></li>
+    
+      
+      
+      
+      
+        
+          
+        
+      
+        
+      
+      
+      <li id="Personal-topic" class="active"><a href="/articles/topics/#Personal">Personal <sup>7</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>5</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>1</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <!-- Begin Follow button -->
+  <iframe
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
+    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
+  <!-- End Follow button -->
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/08/19/interactive-computing/" title="Interactive Computing">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
