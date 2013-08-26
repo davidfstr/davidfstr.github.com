@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-08-25T16:06:17-07:00</updated>
+ <updated>2013-08-25T17:27:44-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -209,7 +209,7 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;Paul Graham&amp;rsquo;s essays on Lisp and language power are a thought-provoking read. By my assessment the current most-powerful languages out there are &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; and various members of the Lisp family (ex: Scheme, &lt;a href=&quot;http://racket-lang.org/&quot;&gt;Racket&lt;/a&gt;, &lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt;). I&amp;rsquo;ve decided to pass over Haskell for the time being for a number of reasons, particularly because of its high learning curve. I will probably return to it eventually.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Paul Graham&amp;rsquo;s essays on &lt;a href=&quot;http://www.paulgraham.com/icad.html&quot;&gt;Lisp and language power&lt;/a&gt; are a thought-provoking read. By my assessment the current most-powerful languages out there are &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; and various members of the Lisp family (ex: Scheme, &lt;a href=&quot;http://racket-lang.org/&quot;&gt;Racket&lt;/a&gt;, &lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt;). I&amp;rsquo;ve decided to pass over Haskell for the time being for a number of reasons, particularly because of its high learning curve. I will probably return to it eventually.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;&lt;strong&gt;RealMediaFixer&lt;/strong&gt; was a program I wrote that repaired RealMedia (&lt;code&gt;.rm&lt;/code&gt;) files playable in RealPlayer. Such files downloaded over dialup would often get subtlely corrupted. Since downloading a 30-minute video could easily take a day it was more practical to try repairing the broken file rather than redownloading it.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
@@ -5283,6 +5283,24 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a list of a few well-known languages I&amp;rsquo;ve worked with and some of the more interesting features I&amp;rsquo;ve encountered:&lt;/p&gt;
 
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#c&quot;&gt;C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#java&quot;&gt;Java&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#csharp&quot;&gt;C&amp;#35;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#python&quot;&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#javascript&quot;&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#haskell&quot;&gt;Haskell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#lisp&quot;&gt;Lisp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#other&quot;&gt;Other&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;c&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;C&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -5296,6 +5314,8 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;java&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Java&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -5304,7 +5324,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;There are no standalone functions.&lt;/li&gt;
 &lt;li&gt;Design Patterns can be used to describe high level object coordination patterns.&lt;/li&gt;
-&lt;li&gt;However sometimes the community&amp;rsquo;s focus on objects can be a bit extreme&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
+&lt;li&gt;However sometimes the community&amp;rsquo;s focus on objects can be a bit extreme.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Checked exceptions&lt;/strong&gt;
@@ -5348,6 +5368,8 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;csharp&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;C&amp;#35;&lt;/h3&gt;
 
@@ -5395,6 +5417,8 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;python&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Python&lt;/h3&gt;
 
@@ -5452,6 +5476,8 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;javascript&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;JavaScript&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -5486,6 +5512,8 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;haskell&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Haskell&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -5493,8 +5521,17 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Expressions are only evaluated when some primitive operation (like &lt;code&gt;print&lt;/code&gt; or &lt;code&gt;add&lt;/code&gt;) requires the value of the expression.&lt;/li&gt;
-&lt;li&gt;Allows you to define your own control flow operators.&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; rel=&quot;footnote&quot;&gt;10&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Allows you to glue programs together in new ways. In particular, execution
+of multiple functions can be interleaved trivially and termination
+conditions can be separated from looped computation.
+
+&lt;ul&gt;
+&lt;li&gt;This is explained in more detail in &lt;a href=&quot;http://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf&quot;&gt;Why Functional Programming (1990)&lt;/a&gt;,
+§4 &amp;ldquo;Gluing Programs Together&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Allows you to extract complex expressions without fear of introducing a performance hit (since the expression will only actually be evaluated if it is needed).&lt;/li&gt;
+&lt;li&gt;Allows you to define your own control flow operators.&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; rel=&quot;footnote&quot;&gt;10&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Side effects banned by default&lt;/strong&gt;
@@ -5520,6 +5557,8 @@ Count me in!&lt;/li&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;lisp&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Lisp &lt;small&gt;(Common Lisp, Scheme, Clojure)&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;11&lt;/a&gt;&lt;/sup&gt;&lt;/small&gt;&lt;/h3&gt;
 
@@ -5567,6 +5606,8 @@ Count me in!&lt;/li&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;a id=&quot;other&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Other&lt;/h3&gt;
 
