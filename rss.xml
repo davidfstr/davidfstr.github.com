@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 04 Sep 2013 19:04:42 -0700</pubDate>
-    <lastBuildDate>Wed, 04 Sep 2013 19:04:42 -0700</lastBuildDate>
+    <pubDate>Wed, 04 Sep 2013 19:07:35 -0700</pubDate>
+    <lastBuildDate>Wed, 04 Sep 2013 19:07:35 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -23,17 +23,7 @@
       <guid>http://dafoster.net/articles/2013/09/04/regular-expressions</guid>
       <description>&lt;p&gt;Regular expressions are a concise way to search and transform strings using patterns. They are available in numerous text editors and programming languages.&lt;/p&gt;
 
-&lt;p&gt;Below are some slides I presented to the Splunk Seattle office about regular expressions. I introduce basic regular expressions and show the intermediate and advanced syntax which I use commonly. The second-to-last slide has a nice cheatsheet for the subset of the regex language that I actually use.&lt;/p&gt;
-
-&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/25887455&quot; width=&quot;644&quot; height=&quot;400&quot; frameborder=&quot;1&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
-
-
-
-
-&lt;!--
-If you're lucky enough to be in a language with monadic parser combinators (like Haskell's Parsec), consider using them instead.
---&gt;
-
+&lt;p&gt;&lt;a href=&quot;/articles/2013/09/04/regular-expressions/&quot;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

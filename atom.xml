@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-09-04T19:04:42-07:00</updated>
+ <updated>2013-09-04T19:07:35-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -28,17 +28,7 @@
    <link rel="alternate" href="http://dafoster.net/articles/2013/09/04/regular-expressions/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Regular expressions are a concise way to search and transform strings using patterns. They are available in numerous text editors and programming languages.&lt;/p&gt;
 
-&lt;p&gt;Below are some slides I presented to the Splunk Seattle office about regular expressions. I introduce basic regular expressions and show the intermediate and advanced syntax which I use commonly. The second-to-last slide has a nice cheatsheet for the subset of the regex language that I actually use.&lt;/p&gt;
-
-&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/25887455&quot; width=&quot;644&quot; height=&quot;400&quot; frameborder=&quot;1&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
-
-
-
-
-&lt;!--
-If you're lucky enough to be in a language with monadic parser combinators (like Haskell's Parsec), consider using them instead.
---&gt;
-
+&lt;p&gt;&lt;a href=&quot;/articles/2013/09/04/regular-expressions/&quot;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>
  
