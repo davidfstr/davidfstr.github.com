@@ -6,14 +6,290 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 09 Sep 2013 20:31:11 -0700</pubDate>
-    <lastBuildDate>Mon, 09 Sep 2013 20:31:11 -0700</lastBuildDate>
+    <pubDate>Mon, 30 Sep 2013 21:59:58 -0700</pubDate>
+    <lastBuildDate>Mon, 30 Sep 2013 21:59:58 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Strange Loop 2013 Highlights</title>
+      <link>http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights</guid>
+      <description>&lt;p&gt;This year I attended &lt;a href=&quot;https://thestrangeloop.com/&quot;&gt;Strange Loop&lt;/a&gt;, a conference on emerging tools, languages, and trends in software. I found the following sessions to be most interesting.&lt;/p&gt;
+
+&lt;p&gt;Session videos are available for attendees now, and for the general public closer to March 2014.&lt;/p&gt;
+
+&lt;h2&gt;Emerging Languages Camp&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/noether&quot;&gt;&lt;strong&gt;Noether: Symmetry in Programming Language Design&lt;/strong&gt;&lt;/a&gt; - Daira Hopwood - 45 min
+
+&lt;ul&gt;
+&lt;li&gt;A language system, composed of several different language levels, each level breaking successively more symmetries to gain expressive power at the expense of static reasoning about the program&amp;rsquo;s behavior. Very flexible.&lt;/li&gt;
+&lt;li&gt;This is the only language presented during the Emerging Languages Camp that had a strong theoretical foundation.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I will definitely be looking into this language family when it has been implemented.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/nimrod&quot;&gt;&lt;strong&gt;Nimrod: A new approach to meta programming&lt;/strong&gt;&lt;/a&gt; - Andreas Rumpf - 25 min
+
+&lt;ul&gt;
+&lt;li&gt;A new statically-typed systems language. Full-featured.&lt;/li&gt;
+&lt;li&gt;Already has non-trivial tooling, such as an IDE.&lt;/li&gt;
+&lt;li&gt;Has a realtime garbage collector, macros, whole program dead code elimination, and generics.&lt;/li&gt;
+&lt;li&gt;Can automatically promote sideeffect-free functions to &lt;em&gt;compile&lt;/em&gt;-time execution.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time optimizations on the AST can be coded directly in Nimrod. This is similar to macros but acts like a global peephole optimization. Very powerful.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/j-language&quot;&gt;&lt;strong&gt;The J Programming Language&lt;/strong&gt;&lt;/a&gt; -  Tracy Harms - 27 min
+
+&lt;ul&gt;
+&lt;li&gt;An array-based data language.&lt;/li&gt;
+&lt;li&gt;Successor to the famous &lt;a href=&quot;https://en.wikipedia.org/wiki/APL_(programming_language)&quot;&gt;APL language&lt;/a&gt;, which allows very succinct representations of numeric computations. Although extremely hard to read for those unfamiliar with the syntax:
+
+&lt;ul&gt;
+&lt;li&gt;Find all prime numbers: &lt;code&gt;(~R∊R∘.×R)/R←1↓ιR&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Conway&amp;rsquo;s Game of Life: &lt;code&gt;life←{↑1 ⍵∨.∧3 4=+/,¯1 0 1∘.⊖¯1 0 1∘.⌽⊂⍵}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you&amp;rsquo;ve never used an array-based numerical language before, this is a great beginner&amp;rsquo;s introduction.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/bodol&quot;&gt;&lt;strong&gt;BODOL, or How To Accidentally Build Your Own Language&lt;/strong&gt;&lt;/a&gt; - Bodil Stokke - 42 min
+
+&lt;ul&gt;
+&lt;li&gt;A guide to implementing your own language on top of Clojure.&lt;/li&gt;
+&lt;li&gt;A very entertaining presentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Honorable Mention:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/qbrt-bytecode&quot;&gt;&lt;strong&gt;Qbrt Bytecode: Interface Between Code and Execution&lt;/strong&gt;&lt;/a&gt; - Matthew Graham - 26 min
+
+&lt;ul&gt;
+&lt;li&gt;A bytecode assembly language with builtin primitives for concurrency and inline asynchronous I/O.&lt;/li&gt;
+&lt;li&gt;I liked the presentation itself although I&amp;rsquo;m not sure I&amp;rsquo;d want to use Qbert for any of my own projects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Unsessions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;QuickCheck&lt;/strong&gt; - no video available
+
+&lt;ul&gt;
+&lt;li&gt;QuickCheck is a testing tool that automatically generates test cases for a program given a description of its inputs, outputs, and expected semantics. Quite powerful.&lt;/li&gt;
+&lt;li&gt;When a failing test case is found, QuickCheck is able to automatically reduce the test case to the &lt;em&gt;minimal&lt;/em&gt; reproducing test case. Extremely useful.&lt;/li&gt;
+&lt;li&gt;Although QuickCheck was originally written for Haskell, there are now ports to several other languages.&lt;/li&gt;
+&lt;li&gt;There a commercial versions of QuickCheck that are superior to the open-source versions in a few ways.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Sessions &amp;amp; Themes&lt;/h2&gt;
+
+&lt;h3&gt;Async &lt;small&gt;(Reducing callback hell)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;If you only watch one of these presentations, pick the Clojure one.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Async in C# and F#&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Although not presented at Strange Loop, the implementation of the &lt;code&gt;async&lt;/code&gt; and &lt;code&gt;await&lt;/code&gt; keywords in C# and F# seems to have greatly inspired similar mechanisms in other languages.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;async&lt;/code&gt;/&lt;code&gt;await&lt;/code&gt; avoids the callback hell problem often seen in JavaScript, where a series of nested callbacks just keeps increasing the indentation level of the code. And callbacks in the midst of complex control flow like loops are even more problematic.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/scala-async&quot;&gt;&lt;strong&gt;Async in Scala&lt;/strong&gt;&lt;/a&gt; - Philipp Haller - 44 min
+
+&lt;ul&gt;
+&lt;li&gt;Similar to async/await in C# and F#.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Implemented in Scala as a macro, using the experimental support for Scala macros.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/clojure-core-async&quot;&gt;&lt;strong&gt;Async in Clojure: Channels &amp;amp; Queues&lt;/strong&gt;&lt;/a&gt; - Rich Hickey - 44 min
+
+&lt;ul&gt;
+&lt;li&gt;Appears to be different in spirit to the async-implementation in other languages: Seems to be intended for implementing &lt;em&gt;channels&lt;/em&gt; (from the Go language), rather than attempting to target the callback hell problem.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The presentation itself has some interesting general thoughts on concurrency in software.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Async in Python&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Again, not presented at Strange Loop, but it appears that the &lt;code&gt;yield from&lt;/code&gt; expression in Python 3 can be used to implement C#/F#-style async/await. I need to look into this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Creativity and Artificial Intelligence&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/ai-machine-creativity&quot;&gt;&lt;strong&gt;Creative Machines&lt;/strong&gt;&lt;/a&gt; - Joseph Wilk - 41 min
+
+&lt;ul&gt;
+&lt;li&gt;Interesting philosohpical discussion on how computers can create creative things.&lt;/li&gt;
+&lt;li&gt;Teaching computers to play music.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Joseph&amp;rsquo;s program for creating music compositions makes, in his opinion, better music than he could compose himself. This brings up the interesting observation that a student, in this case a computer, can surpass the teacher. This is not unheard of when both teacher and student are human, but it&amp;rsquo;s a bit uncomfortable to conventional thinking when the student is a &amp;ldquo;soulless&amp;rdquo; or &amp;ldquo;non-understanding&amp;rdquo; computer and the teacher is a &amp;ldquo;sentient&amp;rdquo; human.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/nintendo-automation&quot;&gt;&lt;strong&gt;Learnfun and Playfun: A Nintendo automation system&lt;/strong&gt;&lt;/a&gt; - Tom Murphy VII - 28 min
+
+&lt;ul&gt;
+&lt;li&gt;Teaching computers to play video games.&lt;/li&gt;
+&lt;li&gt;I found it particularly amusing that the computer learned to manipulate the random number generator (by pausing the game for calculated periods) to create its own luck. In pinball games this allowed the computer to play perfectly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Theory Meets Practice&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/data-types-issues&quot;&gt;&lt;strong&gt;The Trouble With Types&lt;/strong&gt;&lt;/a&gt; - Martin Odersky - 49 min
+
+&lt;ul&gt;
+&lt;li&gt;A balanced description of static vs. dynamic types, a classic debate in computing.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Martin himself, being the creator of Scala, is firmly in the static typing camp but still provides a good overview of when dynamic typing is useful as well.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/abstract-algebra-analytics&quot;&gt;&lt;strong&gt;Add ALL the things: abstract algebra meets analytics&lt;/strong&gt;&lt;/a&gt; - Avi Bryant - 37 min
+
+&lt;ul&gt;
+&lt;li&gt;A good introduction to parts of category theory, using analytics systems for concrete examples throughout the talk.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There was another presentation on category theory at Strange Loop but I found this talk far easier to follow.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/reimagining-software&quot;&gt;&lt;strong&gt;Finding a way out&lt;/strong&gt;&lt;/a&gt; - Chris Granger - 33 min
+
+&lt;ul&gt;
+&lt;li&gt;Thoughts on the future of programming and how it can be made better.&lt;/li&gt;
+&lt;li&gt;The second half of the presentation walks through a demo of Aurora, a new alpha-stage tool that Chris is working on, incorporating some of Chris&amp;rsquo;s new thoughts on the programming process.&lt;/li&gt;
+&lt;li&gt;Chris Granger is the creator of Light Table, a visual programming environment that attempts to bring improved interactivity and feedback to the development process. Light Table is inspired by Bret Victor&amp;rsquo;s excellent talk &lt;a href=&quot;http://vimeo.com/36579366&quot;&gt;Inventing on Principle&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Tools&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/javascript-asmjs&quot;&gt;&lt;strong&gt;Native Speed on the Web: JavaScript and asm.js&lt;/strong&gt;&lt;/a&gt; - Alon Zakai - 30 min
+
+&lt;ul&gt;
+&lt;li&gt;Useful overview of asm.js, which can compile C/C++ to fast JavaScript.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This capability is very exciting since it can connect programs written for the traditional desktop environment to the web deployment platform. For example my efforts at making old Mac software easy to emulate on modern hardware, which currently requires installation on a desktop computer, could be altered to be widely deployable to the web.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/birth-death-javascript&quot;&gt;&lt;strong&gt;The Birth &amp;amp; Death of JavaScript&lt;/strong&gt;&lt;/a&gt; - Gary Bernhardt - 20 min (without comments) or 40 min (with)
+
+&lt;ul&gt;
+&lt;li&gt;A very creative presentation on how asm.js could be used to make major changes to computing, bringing all traditional desktop applications to the browser.&lt;/li&gt;
+&lt;li&gt;Uses the narrative style of presenting as if from a different time period, also used to great effect in Bret Victor&amp;rsquo;s talk on &lt;a href=&quot;http://vimeo.com/71278954&quot;&gt;The Future of Programming&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Minorities in Computing&lt;/h3&gt;
+
+&lt;h4&gt;Women&lt;/h4&gt;
+
+&lt;p&gt;It&amp;rsquo;s been known for some time that women are strongly underrepresented in computing. I know they&amp;rsquo;re falling out of the training pipeline early as I receive almost no women applicants to the Splunk Seattle office.&lt;/p&gt;
+
+&lt;p&gt;So far the primary discouraging factors I&amp;rsquo;ve been able to identify include a lack of female role models in software and a hostile learning environment created by guys when girls try to enter the field.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/software-development-everyone&quot;&gt;&lt;strong&gt;Making Software Development Make Sense to Everyone&lt;/strong&gt;&lt;/a&gt; - Jen Myers - 58 min
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Very informative. Full of data and ideas.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rails Girls: Empowering women through code&lt;/strong&gt; - Adriana Palacio, Laura Garcia - 13 min
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Key takeaway is that there are a lack of female role models in computing.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/history-women-technology&quot;&gt;&lt;strong&gt;The History of Women in Technology&lt;/strong&gt;&lt;/a&gt; - Sarah Dutkiewicz - 40 min
+
+&lt;ul&gt;
+&lt;li&gt;Reviews a number of important women in computing. Unfortunately very few from the modern era.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Kids&lt;/h4&gt;
+
+&lt;p&gt;It is also difficult to get kids into computing. No longer are computers widely shipped with BASIC interpreters, HyperCard, or other well-designed introductory programming environments that kids can just jump into. Additionally the bar for what is considered an acceptable game or program has risen considerably, making it harder to get excited about simple programs.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/hopscotch&quot;&gt;&lt;strong&gt;How to teach your kid to code with Hopscotch&lt;/strong&gt;&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Hopscotch is a visual programming language for the iPad designed to help kids get started with programming.&lt;/li&gt;
+&lt;li&gt;Another system for introducing kids to programming is &lt;a href=&quot;http://scratch.mit.edu/&quot;&gt;Scratch&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Notes:
+
+&lt;ul&gt;
+&lt;li&gt;Finding good &lt;em&gt;ideas&lt;/em&gt; for programs is tricky. For kids, ideas have to be applicable to their cultural context. Drawing things is more interesting than scraping Twitter.&lt;/li&gt;
+&lt;li&gt;Making all available tools and commands &lt;em&gt;visible&lt;/em&gt; is important for a system designed for learning.&lt;/li&gt;
+&lt;li&gt;The game of &amp;ldquo;program your parent&amp;rdquo; is amusing.&lt;/li&gt;
+&lt;li&gt;Traditional editors, code, and IDEs actually look rather intimidating to new users. It&amp;rsquo;s like a non-aviation operator being confronted with the full control panel of an airplane cockpit.&lt;/li&gt;
+&lt;li&gt;Poor typing skills is a non-trivial barrier for young kids.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Other&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/style-methodology&quot;&gt;&lt;strong&gt;Exercises in Style&lt;/strong&gt;&lt;/a&gt; - Crista Lopes - 39 min
+
+&lt;ul&gt;
+&lt;li&gt;A fascinating experient where the same program is written in several different styles.&lt;/li&gt;
+&lt;li&gt;This experiment makes it obvious that not only are there lots of ways of writing the same program, but also that different languages encourage different styles.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The material in this presentation will eventually be incorporated into a book &lt;a href=&quot;http://www.amazon.com/gp/product/1482227371/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=1482227371&amp;amp;linkCode=as2&amp;amp;tag=dafo07-20&quot;&gt;Exercises in Programming Style&lt;/a&gt; that will be released in Spring of 2014. I&amp;rsquo;m definitely getting a copy.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.infoq.com/presentations/php-history&quot;&gt;&lt;strong&gt;Taking PHP Seriously&lt;/strong&gt;&lt;/a&gt; - Keith Adams - 40 min
+
+&lt;ul&gt;
+&lt;li&gt;Reviews the &lt;em&gt;good&lt;/em&gt; parts of PHP.&lt;/li&gt;
+&lt;li&gt;Introduces Hack, a gradually-typed version of PHP that in production use at Facebook.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The HipHop project also includes a lot of useful tools such as a debugger, profiler, and IDE integration.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!--
+* [**Programming a 144-computer chip to minimize power**](http://www.infoq.com/presentations/power-144-chip) - Chuck Moore - 40 min
+    * A custom hardware programming environment for programming very low power applications.
+    * Easily the lowest-level talk at the conference. Basically involves using a custom assembly language. Includes tips and tricks to optimize the assembly for the hardware and power.
+    * Skip this presentation if low-level programming and bit twiddling isn't your thing.
+--&gt;
+
+</description>
+    </item>
     
     
     <item>
