@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 04 Oct 2013 22:30:10 -0700</pubDate>
-    <lastBuildDate>Fri, 04 Oct 2013 22:30:10 -0700</lastBuildDate>
+    <pubDate>Fri, 04 Oct 2013 22:35:22 -0700</pubDate>
+    <lastBuildDate>Fri, 04 Oct 2013 22:35:22 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -21,7 +21,7 @@
       <link>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Fri, 04 Oct 2013 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods</guid>
-      <description>&lt;p&gt;This Washington state initiative requires foods that are themselves GMO to be labeled as such. Exempt are foods containing 1% or less of potentially GMO ingredients.&lt;/p&gt;
+      <description>&lt;p&gt;This Washington state initiative requires foods that are themselves GMO to be labeled as such. Exempt are foods containing 0.9% or less of potentially GMO ingredients.&lt;/p&gt;
 
 &lt;p&gt;The system for enforcing these restrictions requires farmers to track the origin of ingredients more carefully. It also requires farmers to have special labeling requirements for WA that differ from the rest of the United States.&lt;/p&gt;
 
