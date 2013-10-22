@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 21 Oct 2013 23:58:19 -0700</pubDate>
-    <lastBuildDate>Mon, 21 Oct 2013 23:58:19 -0700</lastBuildDate>
+    <pubDate>Tue, 22 Oct 2013 00:00:43 -0700</pubDate>
+    <lastBuildDate>Tue, 22 Oct 2013 00:00:43 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -45,7 +45,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;Stop NSA analysts from wiretapping people without due process&lt;/a&gt;&lt;br/&gt;
-http://bit.ly/nsatap&lt;/li&gt;
+&lt;u&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;http://bit.ly/nsatap&lt;/a&gt;&lt;/u&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
