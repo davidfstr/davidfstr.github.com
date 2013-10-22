@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-10-04T22:35:22-07:00</updated>
+ <updated>2013-10-21T23:58:19-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -16,12 +16,72 @@
  
  
  <entry>
+   <id>http://dafoster.net/articles/2013/10/21/shame-on-the-nsa</id>
+   <title>Shame on the NSA</title>
+   <published>2013-10-21T00:00:00-07:00</published>
+   <updated>2013-10-21T00:00:00-07:00</updated>
+   
+     <category term="Politics"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/10/21/shame-on-the-nsa/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I work in the data analysis industry and am appalled that the kinds of tools I am building are being abused by the government to spy on ordinary citizens without public oversight.&lt;/p&gt;
+
+&lt;p&gt;This power is too easily used to harass and detain individuals who express an opinion disagreeing with those in power, such as the multiple extrajudicial actions taken against Edward Snowden and others for blowing the whistle on unethical government action.&lt;/p&gt;
+
+&lt;p&gt;To summarize &lt;strong&gt;current NSA capabilities&lt;/strong&gt; that have been revealed:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;The NSA can tap the email and phone of arbitrary persons solely on the authority of an analyst, without a warrant. Including US citizens.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Online texting and voice-over-IP services (i.e. online telephone) can also be tapped. Including Skype, the largest provider.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The NSA can store the communications of US citizens for 5 years without a warrant.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The NSA is tapping into not just the communications of individuals or particular corporations, but also into the internet backbone itself. This covers ALL non-encrypted internet communications passing through the US.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;As for encrypted communications, the NSA has been deliberately attempting to insert backdoors and weaknesses into the standard encryption mechanisms used to conduct trusted communications on the internet.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;But often there is no need to break encryption: The most popular online service providers are compelled to provide data directly from their servers to the NSA under the PRISM program. As of late 2012 this affects services provided by Microsoft, Yahoo, Google, Facebook, PalTalk, YouTube, Skype, AOL, and Apple.&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;This behavior is wildly in violation of the 4th Amendment, which is intended to protect Americans against unreasonable search and seizures. I don’t care if there is a lower law such as the Patriot Act which supposedly authorizes these actions. I am sure that was never the intent of Congress.&lt;/p&gt;
+
+&lt;p&gt;I think the best starting point to counter these encroachments is to directly &lt;strong&gt;fight back against the most egregious violations&lt;/strong&gt;. In particular I find the lack of any court oversight over individual NSA analysts to be appalling.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;d like to join me in this first battle, please &lt;strong&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;sign my petition&lt;/a&gt;&lt;/strong&gt; to stop NSA analysts from being able to wiretap people without oversight and &lt;strong&gt;share it with others&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;Stop NSA analysts from wiretapping people without due process&lt;/a&gt;&lt;br/&gt;
+http://bit.ly/nsatap&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I expect this will be a long war. But worth fighting for.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/&quot;&gt;http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/&quot;&gt;http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant&quot;&gt;http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant&lt;/a&gt;&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/&quot;&gt;http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/&lt;/a&gt;&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html&quot;&gt;https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html&lt;/a&gt;&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg&quot;&gt;http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg&lt;/a&gt;&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
    <id>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods</id>
    <title>WA Initiative 522: GMO Food Labeling</title>
    <published>2013-10-04T00:00:00-07:00</published>
    <updated>2013-10-04T00:00:00-07:00</updated>
    
-     <category term="Offtopic"/>
+     <category term="Politics"/>
    
    <link rel="alternate" href="http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This Washington state initiative requires foods that are themselves GMO to be labeled as such. Exempt are foods containing 0.9% or less of potentially GMO ingredients.&lt;/p&gt;
