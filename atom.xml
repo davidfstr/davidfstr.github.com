@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-10-22T00:17:45-07:00</updated>
+ <updated>2013-10-23T22:39:59-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -52,7 +52,7 @@
 &lt;/ul&gt;
 
 
-&lt;p&gt;I expect this will be a long war. But worth fighting for.&lt;/p&gt;
+&lt;p&gt;I expect this will be a long war. &lt;!-- But worth fighting for. --&gt;&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;

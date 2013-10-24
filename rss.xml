@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 22 Oct 2013 00:17:45 -0700</pubDate>
-    <lastBuildDate>Tue, 22 Oct 2013 00:17:45 -0700</lastBuildDate>
+    <pubDate>Wed, 23 Oct 2013 22:39:59 -0700</pubDate>
+    <lastBuildDate>Wed, 23 Oct 2013 22:39:59 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -49,7 +49,7 @@
 &lt;/ul&gt;
 
 
-&lt;p&gt;I expect this will be a long war. But worth fighting for.&lt;/p&gt;
+&lt;p&gt;I expect this will be a long war. &lt;!-- But worth fighting for. --&gt;&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
