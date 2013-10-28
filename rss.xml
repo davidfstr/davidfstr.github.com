@@ -6,14 +6,90 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 23 Oct 2013 22:39:59 -0700</pubDate>
-    <lastBuildDate>Wed, 23 Oct 2013 22:39:59 -0700</lastBuildDate>
+    <pubDate>Sun, 27 Oct 2013 18:04:07 -0700</pubDate>
+    <lastBuildDate>Sun, 27 Oct 2013 18:04:07 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Scrivener: An IDE for thinkers, creators, and writers</title>
+      <link>http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 27 Oct 2013 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers</guid>
+      <description>&lt;p&gt;Today I invested a few hours into learning &lt;a href=&quot;http://www.literatureandlatte.com/&quot;&gt;Scrivener&lt;/a&gt;, a tool created for the purpose of writing long-form texts such as books, screenplays, etc. However it wasn&amp;rsquo;t the word processing capabilities of Scrivener that caught my eye but rather its system for &lt;strong&gt;organizing&lt;/strong&gt; the fragments, research materials, and other documents that support the act of creating something new.&lt;/p&gt;
+
+&lt;p&gt;I have been looking for a way to organize the disparate source material I&amp;rsquo;ve been collecting on a few large project areas. For example I&amp;rsquo;ve been investigating ways for make more interactive software development tools since being inspired by &lt;a href=&quot;http://worrydream.com/&quot;&gt;Bret Victor&lt;/a&gt;&amp;rsquo;s work.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve already been using &lt;a href=&quot;https://evernote.com/&quot;&gt;Evernote&lt;/a&gt; as a way to &lt;strong&gt;capture&lt;/strong&gt; sources of inspiration such as webpages, tech talk summaries, and research paper PDFs. However Evernote has a pretty terrible organizational model:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You have exactly one level of hierarchical nesting available in the form of &amp;ldquo;notebooks&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Within a notebook you have no ability to rearrange individual &amp;ldquo;notes&amp;rdquo; in a custom order.&lt;/li&gt;
+&lt;li&gt;Notebooks themselves cannot be rearranged.&lt;/li&gt;
+&lt;li&gt;The little tiles that preview individual notes cannot be customized in any way.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Scrivener on the other hand is extremely flexible with how it allows you to organize the documents that comprise a project:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Documents can be rich-text, images, audio, or video. Rich-text documents can be edited natively.&lt;/li&gt;
+&lt;li&gt;Documents can be given arbitrary names and reordered at will.&lt;/li&gt;
+&lt;li&gt;Documents can be arbitrarily nested inside folders. And indeed inside other documents as well.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Folders can be viewed in &lt;strong&gt;corkboard mode&lt;/strong&gt; where items inside the folder are represented as index cards summarizing each item laid out on a virtual corkboard. This is great for getting an overview of a folder&amp;rsquo;s contents.
+
+&lt;ul&gt;
+&lt;li&gt;The text on an item&amp;rsquo;s index card can be customized.&lt;/li&gt;
+&lt;li&gt;The corkboard can be put into a freeform mode where items can be rearranged at will in space. This is great for spatial organization.&lt;/li&gt;
+&lt;li&gt;If a corkboard item itself contains multiple items, it appears as a &lt;em&gt;stack&lt;/em&gt; of index cards instead of just an individual index card. This is great for determining at a glance how &amp;ldquo;big&amp;rdquo; something actually is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Items can be given a &lt;strong&gt;label&lt;/strong&gt; (with a color and name) and a &lt;strong&gt;status&lt;/strong&gt;, both of which are displayed visually on its summarizing index card. Custom metadata can be given as well. All of this metadata can be used for targeted searches.&lt;/li&gt;
+&lt;li&gt;There are several ways to &lt;strong&gt;view and edit multiple documents at once&lt;/strong&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Selecting a folder displays all of its contained items as a single continuous editable document.&lt;/li&gt;
+&lt;li&gt;Selecting multiple individual documents will also present a single continuous document.&lt;/li&gt;
+&lt;li&gt;The main editor view can be split horizontally or vertically to allow working on two documents side-by-side, or the same document at two locations.&lt;/li&gt;
+&lt;li&gt;Documents can be opened in separate QuickReference windows to arrange them off to the side.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Documents can be located using a targeted search.&lt;/li&gt;
+&lt;li&gt;Folder (and file) icons can be customized. This great for indicating at a glance how &amp;ldquo;big&amp;rdquo; a folder is or what kind of thing it represents. A good set of built-in icons are provided, and you can add your own.&lt;/li&gt;
+&lt;li&gt;Custom &lt;strong&gt;collections&lt;/strong&gt; of documents can be created that allow you to quickly browse between a subset of the documents in the project. These collections can be created manually, or automatically by a populating search.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Other nice features include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All changes to documents are saved automatically.&lt;/li&gt;
+&lt;li&gt;Version control is built in, allowing you to take snapshots of a document at different times.
+
+&lt;ul&gt;
+&lt;li&gt;Previous versions can be restored if you made an undesirable change to the current version.&lt;/li&gt;
+&lt;li&gt;Multiple versions can be compared using diffs that are aware of not just lines but also paragraphs, clauses, and individual words.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Right now my plan is to continue capturing source materal using Evernote, since it excels at capture. But then I&amp;rsquo;ll move the captured items over to Scrivener in order to actually organize them into something coherent I can chew on.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;There isn&amp;rsquo;t a strong distinction between folders and documents. Folders can themselves have textual content, although this isn&amp;rsquo;t common. Marking an item as a &amp;ldquo;folder&amp;rdquo; is mainly a hint to Scrivener that the item&amp;rsquo;s primary function is to group items together.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
