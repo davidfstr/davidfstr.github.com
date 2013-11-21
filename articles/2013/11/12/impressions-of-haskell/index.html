@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Impressions of Haskell | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+    <script src="/assets/js/jquery-1.8.3.min.js"></script>
+  
+  
+  
+    <script src="/assets/js/bootstrap.min.js"></script>
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>Impressions of Haskell</h1>
+    <div class="post-metadata">
+      Nov 12, 2013 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>29</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p>I finally found an online tutorial for Haskell that involves writing a <em>non-trivial</em> program:</p>
+
+<ul>
+<li><a href="http://jonathan.tang.name/files/scheme_in_48/tutorial/functions.html">Write Yourself a Scheme in 48 Hours</a></li>
+</ul>
+
+
+<p>It&rsquo;s an excellent tutorial and has given me a good impression of Haskell for building a medium-sized non-trivial program: a LISP interpreter.</p>
+
+<p>This impression, however, has been more negative than positive. I would consider Haskell for use for doing programs that do heavy computation with pure functions alone.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> However if there&rsquo;s any significant amount of I/O, error handling, or state, using Haskell is just bloody painful.</p>
+
+<h3>Monads are painful</h3>
+
+<ul>
+<li><p>I/O must be done inside an I/O <em>monad</em>.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p></li>
+<li><p>Error handling must be done inside an error monad.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p></li>
+<li><p>Passing around shared state must be done inside a state monad.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></p></li>
+</ul>
+
+
+<p>The preceding by itself would not be such a problem except that, in addition:</p>
+
+<ul>
+<li><p>Code that is pure uses a different syntax than code that is in a monad.</p></li>
+<li><p>Code that needs to be in multiple monads at the same time is a royal pain to write. It requires the use of <em>monad transformers</em> and explicit converting (or &ldquo;lifting&rdquo;) between individual monads and combined monads.</p></li>
+</ul>
+
+
+<p>Having monadic code be in a different syntax than pure code requires the programmer to learn and use two different syntaxes. And these syntaxes aren&rsquo;t even similar: they read in different directions. Mixing code that is both pure and monadic becomes confusing. Upgrading pure code to be monadic, which is not uncommon during development and maintenance, requires a lot of non-trivial syntactic transformations.</p>
+
+<ul>
+<li><strong>Pure code</strong> - Reads inside-out, generally bottom-to-top and right-to-left.</li>
+<li><strong>Monadic code</strong> - Reads top-to-bottom (with do-notation) and left-to-right (with bind operations).</li>
+<li><strong>Pure + monadic code</strong> - Reads in multiple directions.</li>
+</ul>
+
+
+<!--
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#pure" data-toggle="tab">Pure Code</a></li>
+  <li><a href="#monadic" data-toggle="tab">Monadic Code</a></li>
+  <li><a href="#mixed" data-toggle="tab">Pure + Monadic Code</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="pure">
+    <p><i>Reads inside-out, generally bottom-to-top and right-to-left.</i></p>
+    <p>[TODO: code sample]</p>
+  </div>
+  <div class="tab-pane fade" id="monadic">
+    <p><i>Reads top-to-bottom (with do-notation) and left-to-right (with bind operations).</i></p>
+    <p>[TODO: code sample]</p>
+  </div>
+  <div class="tab-pane fade" id="mixed">
+    <p><i>Reads in multiple directions.</i></p>
+    <p>[TODO: code sample]</p>
+  </div>
+</div>
+-->
+
+
+<p>Using a pure value within monadic code requires you to &ldquo;lift&rdquo; the pure value into a monad value with an explicit conversion. Similarly using a monadic value in multi-monadic code (created by a monad transformer) requires you to lift the monadic value into a multi-monad value first. These explicit conversions pepper and obscure the main program logic. One has to do an annoying amount of gymnastics to make the type system happy.</p>
+
+<h3>Code golf erodes readability</h3>
+
+<p>Another factor complicating the readability of code is the Haskell community&rsquo;s propensity for <em>code golf</em>: the tendancy to write code that is especially terse to the point of making it difficult to understand. There are many language and library features in Haskell that enable this:</p>
+
+<ul>
+<li>Overuse of operator overloading and custom operators:
+
+<ul>
+<li>The ability to mix custom infix and prefix operators in the same expression. Confusing.</li>
+<li>The ability to treat an infix operator as prefix or visa-versa, when using certain syntax. Inconsistent.</li>
+<li>The usage of custom operators in ambiguous fashion requiring knowledge of either the operator associativity or precedence to disambiguate. Requires non-local knowledge to parse expressions.
+
+<ul>
+<li><p>For example the <code>$</code> operator appears to be a precedence hack to avoid the need to parenthesize an expression properly. I don&rsquo;t think it worth introducing tricky syntax to avoid typing a single close paren.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Implicit partial application of functions. Infix operator sections.
+
+<ul>
+<li><p>You must know the arity of a function to determine what an expression containing that function means.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> Requires non-local knowledge to parse expressions.</p></li>
+</ul>
+</li>
+<li>Point-free style.
+
+<ul>
+<li>Discourages the use of explaining variables.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Terseness at the expense of readability was a hallmark of Perl. I don&rsquo;t find it any more attractive in Haskell.</p>
+
+<p>Here&rsquo;s a short example containing monadic code, point-free style, and an operator section.</p>
+
+<pre><code>-- Parses the expression in the first argument to the program, evaluates it, and prints the result.
+main :: IO ()
+main = getArgs &gt;&gt;= putStrLn . show . eval . readExpr . (!! 0)
+</code></pre>
+
+<p>I argue that the preceding code is manifestly confusing for any newcomer to Haskell, yet this type of code I see frequently in Haskell written by others.</p>
+
+<p>It is possible to rewrite the code to be more explicit:</p>
+
+<pre><code>main = do args &lt;- getArgs
+          putStrLn (show (eval (readExpr (args !! 0))))
+</code></pre>
+
+<p>Although I think the preceding would not be considered idiomatic Haskell.</p>
+
+<h3>The end?</h3>
+
+<p>Haskell&rsquo;s strong type system and heavy restrictions on mutable state provide good assurance that the programs you write are correct, assuming you manage to write the program in the first place.</p>
+
+<p>However I find Haskell difficult to write (due to monads and the type system) and difficult to read (due to code golf). I also do not require such a high assurance of correctness in the domains I work in. I typically find that a disciplined minimization of mutable state in other languages is sufficent to provide the necessary level of correctness I require, and with more flexibility during maintenance.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Types of programs I might consider doing in Haskell include, for example, maze generators, Sudoku solvers (non-visual), parsers, and compilers. Games involving lots of state such as platformers, adventure games, or anything with multiple screens would be a pain. GUIs and other interactive programs based on events would be a pain.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>A <em>monad</em> is a particular pattern of sequencing computation involving the type system. The use of monads is unique to Haskell so far as I am aware.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Granted it is possible to handle errors using <a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Exception.html#v%3athrow"><code>throw</code></a> but this is discouraged because it yields non-deterministic ordering with respect to I/O operations. It is also possible to use <a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Exception.html#v%3athrowIO"><code>throwIO</code></a> but only if the function is already in the IO monad. Should the function be otherwise pure, you&rsquo;d be forced to &ldquo;infect&rdquo; it with the IO monad in order to use <code>throwIO</code>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>Of course you could just incorporate the shared state into the parameters and return type of all functions, but this gets annoying fast. Granted it is possible to use <a href="http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-IORef.html"><code>IORef</code>s</a> if the function using state is already in the IO monad. Should the function be otherwise pure, you&rsquo;d be forced to &ldquo;infect&rdquo; it with the IO monad in order to use <code>IORef</code>s.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p><p>I wrote an <a href="/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/">entire article</a> on just this point of implicit partial application being confusing. Unfortunately I think r/haskell was confused by my argument.</p> <p>Consider the expression <code>f 3</code> by itself, possibly part of a larger expression like <code>f 3 $ g</code>. In a typical language I consider functions to be entities that take some fixed number of arguments and then produce a single result. This means that if I encounter a well-named function <code>f</code> that I haven&rsquo;t seen before, I can usually guess from its name what it does and what its return type is. I can also assume that an expression like <code>f 3</code> will evaluate to this assumed return type.</p> <p>In Haskell I cannot make that assumption: Support for implicit partial function application might mean that an expression <code>f 3</code> might not evaluate to the return type of <code>f</code>. I have to ask myself &ldquo;Does it look like this function needs more arguments here to perform the action that its name suggests?&rdquo;. If the answer is yes then I assume that the expression evaluates to a new function with some unknown number of arguments with the return type I expect. That&rsquo;s very confusing. I object to the possibility that two function applications that begin with <code>f 3 ...</code> could return different types of values.</p><a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>29</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>7</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>7</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>1</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <!-- Begin Follow button -->
+  <iframe
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
+    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
+  <!-- End Follow button -->
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/" title="Scrivener: An IDE for thinkers, creators, and writers">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

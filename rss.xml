@@ -6,14 +6,158 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 27 Oct 2013 18:04:07 -0700</pubDate>
-    <lastBuildDate>Sun, 27 Oct 2013 18:04:07 -0700</lastBuildDate>
+    <pubDate>Wed, 20 Nov 2013 20:17:06 -0800</pubDate>
+    <lastBuildDate>Wed, 20 Nov 2013 20:17:06 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Impressions of Haskell</title>
+      <link>http://dafoster.net/articles/2013/11/12/impressions-of-haskell/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 12 Nov 2013 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2013/11/12/impressions-of-haskell</guid>
+      <description>&lt;p&gt;I finally found an online tutorial for Haskell that involves writing a &lt;em&gt;non-trivial&lt;/em&gt; program:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://jonathan.tang.name/files/scheme_in_48/tutorial/functions.html&quot;&gt;Write Yourself a Scheme in 48 Hours&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;It&amp;rsquo;s an excellent tutorial and has given me a good impression of Haskell for building a medium-sized non-trivial program: a LISP interpreter.&lt;/p&gt;
+
+&lt;p&gt;This impression, however, has been more negative than positive. I would consider Haskell for use for doing programs that do heavy computation with pure functions alone.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; However if there&amp;rsquo;s any significant amount of I/O, error handling, or state, using Haskell is just bloody painful.&lt;/p&gt;
+
+&lt;h3&gt;Monads are painful&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I/O must be done inside an I/O &lt;em&gt;monad&lt;/em&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Error handling must be done inside an error monad.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Passing around shared state must be done inside a state monad.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The preceding by itself would not be such a problem except that, in addition:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Code that is pure uses a different syntax than code that is in a monad.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Code that needs to be in multiple monads at the same time is a royal pain to write. It requires the use of &lt;em&gt;monad transformers&lt;/em&gt; and explicit converting (or &amp;ldquo;lifting&amp;rdquo;) between individual monads and combined monads.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Having monadic code be in a different syntax than pure code requires the programmer to learn and use two different syntaxes. And these syntaxes aren&amp;rsquo;t even similar: they read in different directions. Mixing code that is both pure and monadic becomes confusing. Upgrading pure code to be monadic, which is not uncommon during development and maintenance, requires a lot of non-trivial syntactic transformations.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pure code&lt;/strong&gt; - Reads inside-out, generally bottom-to-top and right-to-left.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monadic code&lt;/strong&gt; - Reads top-to-bottom (with do-notation) and left-to-right (with bind operations).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pure + monadic code&lt;/strong&gt; - Reads in multiple directions.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!--
+&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#pure&quot; data-toggle=&quot;tab&quot;&gt;Pure Code&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#monadic&quot; data-toggle=&quot;tab&quot;&gt;Monadic Code&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#mixed&quot; data-toggle=&quot;tab&quot;&gt;Pure + Monadic Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;tab-content&quot;&gt;
+  &lt;div class=&quot;tab-pane fade in active&quot; id=&quot;pure&quot;&gt;
+    &lt;p&gt;&lt;i&gt;Reads inside-out, generally bottom-to-top and right-to-left.&lt;/i&gt;&lt;/p&gt;
+    &lt;p&gt;[TODO: code sample]&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tab-pane fade&quot; id=&quot;monadic&quot;&gt;
+    &lt;p&gt;&lt;i&gt;Reads top-to-bottom (with do-notation) and left-to-right (with bind operations).&lt;/i&gt;&lt;/p&gt;
+    &lt;p&gt;[TODO: code sample]&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tab-pane fade&quot; id=&quot;mixed&quot;&gt;
+    &lt;p&gt;&lt;i&gt;Reads in multiple directions.&lt;/i&gt;&lt;/p&gt;
+    &lt;p&gt;[TODO: code sample]&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+--&gt;
+
+
+&lt;p&gt;Using a pure value within monadic code requires you to &amp;ldquo;lift&amp;rdquo; the pure value into a monad value with an explicit conversion. Similarly using a monadic value in multi-monadic code (created by a monad transformer) requires you to lift the monadic value into a multi-monad value first. These explicit conversions pepper and obscure the main program logic. One has to do an annoying amount of gymnastics to make the type system happy.&lt;/p&gt;
+
+&lt;h3&gt;Code golf erodes readability&lt;/h3&gt;
+
+&lt;p&gt;Another factor complicating the readability of code is the Haskell community&amp;rsquo;s propensity for &lt;em&gt;code golf&lt;/em&gt;: the tendancy to write code that is especially terse to the point of making it difficult to understand. There are many language and library features in Haskell that enable this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Overuse of operator overloading and custom operators:
+
+&lt;ul&gt;
+&lt;li&gt;The ability to mix custom infix and prefix operators in the same expression. Confusing.&lt;/li&gt;
+&lt;li&gt;The ability to treat an infix operator as prefix or visa-versa, when using certain syntax. Inconsistent.&lt;/li&gt;
+&lt;li&gt;The usage of custom operators in ambiguous fashion requiring knowledge of either the operator associativity or precedence to disambiguate. Requires non-local knowledge to parse expressions.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;For example the &lt;code&gt;$&lt;/code&gt; operator appears to be a precedence hack to avoid the need to parenthesize an expression properly. I don&amp;rsquo;t think it worth introducing tricky syntax to avoid typing a single close paren.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Implicit partial application of functions. Infix operator sections.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You must know the arity of a function to determine what an expression containing that function means.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; Requires non-local knowledge to parse expressions.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Point-free style.
+
+&lt;ul&gt;
+&lt;li&gt;Discourages the use of explaining variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Terseness at the expense of readability was a hallmark of Perl. I don&amp;rsquo;t find it any more attractive in Haskell.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a short example containing monadic code, point-free style, and an operator section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-- Parses the expression in the first argument to the program, evaluates it, and prints the result.
+main :: IO ()
+main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I argue that the preceding code is manifestly confusing for any newcomer to Haskell, yet this type of code I see frequently in Haskell written by others.&lt;/p&gt;
+
+&lt;p&gt;It is possible to rewrite the code to be more explicit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;main = do args &amp;lt;- getArgs
+          putStrLn (show (eval (readExpr (args !! 0))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although I think the preceding would not be considered idiomatic Haskell.&lt;/p&gt;
+
+&lt;h3&gt;The end?&lt;/h3&gt;
+
+&lt;p&gt;Haskell&amp;rsquo;s strong type system and heavy restrictions on mutable state provide good assurance that the programs you write are correct, assuming you manage to write the program in the first place.&lt;/p&gt;
+
+&lt;p&gt;However I find Haskell difficult to write (due to monads and the type system) and difficult to read (due to code golf). I also do not require such a high assurance of correctness in the domains I work in. I typically find that a disciplined minimization of mutable state in other languages is sufficent to provide the necessary level of correctness I require, and with more flexibility during maintenance.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Types of programs I might consider doing in Haskell include, for example, maze generators, Sudoku solvers (non-visual), parsers, and compilers. Games involving lots of state such as platformers, adventure games, or anything with multiple screens would be a pain. GUIs and other interactive programs based on events would be a pain.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;A &lt;em&gt;monad&lt;/em&gt; is a particular pattern of sequencing computation involving the type system. The use of monads is unique to Haskell so far as I am aware.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Granted it is possible to handle errors using &lt;a href=&quot;http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Exception.html#v%3athrow&quot;&gt;&lt;code&gt;throw&lt;/code&gt;&lt;/a&gt; but this is discouraged because it yields non-deterministic ordering with respect to I/O operations. It is also possible to use &lt;a href=&quot;http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Exception.html#v%3athrowIO&quot;&gt;&lt;code&gt;throwIO&lt;/code&gt;&lt;/a&gt; but only if the function is already in the IO monad. Should the function be otherwise pure, you&amp;rsquo;d be forced to &amp;ldquo;infect&amp;rdquo; it with the IO monad in order to use &lt;code&gt;throwIO&lt;/code&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;Of course you could just incorporate the shared state into the parameters and return type of all functions, but this gets annoying fast. Granted it is possible to use &lt;a href=&quot;http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-IORef.html&quot;&gt;&lt;code&gt;IORef&lt;/code&gt;s&lt;/a&gt; if the function using state is already in the IO monad. Should the function be otherwise pure, you&amp;rsquo;d be forced to &amp;ldquo;infect&amp;rdquo; it with the IO monad in order to use &lt;code&gt;IORef&lt;/code&gt;s.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;&lt;p&gt;I wrote an &lt;a href=&quot;/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/&quot;&gt;entire article&lt;/a&gt; on just this point of implicit partial application being confusing. Unfortunately I think r/haskell was confused by my argument.&lt;/p&gt; &lt;p&gt;Consider the expression &lt;code&gt;f 3&lt;/code&gt; by itself, possibly part of a larger expression like &lt;code&gt;f 3 $ g&lt;/code&gt;. In a typical language I consider functions to be entities that take some fixed number of arguments and then produce a single result. This means that if I encounter a well-named function &lt;code&gt;f&lt;/code&gt; that I haven&amp;rsquo;t seen before, I can usually guess from its name what it does and what its return type is. I can also assume that an expression like &lt;code&gt;f 3&lt;/code&gt; will evaluate to this assumed return type.&lt;/p&gt; &lt;p&gt;In Haskell I cannot make that assumption: Support for implicit partial function application might mean that an expression &lt;code&gt;f 3&lt;/code&gt; might not evaluate to the return type of &lt;code&gt;f&lt;/code&gt;. I have to ask myself &amp;ldquo;Does it look like this function needs more arguments here to perform the action that its name suggests?&amp;rdquo;. If the answer is yes then I assume that the expression evaluates to a new function with some unknown number of arguments with the return type I expect. That&amp;rsquo;s very confusing. I object to the possibility that two function applications that begin with &lt;code&gt;f 3 ...&lt;/code&gt; could return different types of values.&lt;/p&gt;&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
