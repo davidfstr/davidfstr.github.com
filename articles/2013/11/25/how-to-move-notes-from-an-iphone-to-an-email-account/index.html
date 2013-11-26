@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Regular Expressions | DaFoster</title>
+    <title>How to move notes from an iPhone to an email account | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -296,31 +296,54 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Regular Expressions</h1>
+    <h1>How to move notes from an iPhone to an email account</h1>
     <div class="post-metadata">
-      Sep 04, 2013 &ndash; Filed under: 
+      Nov 25, 2013 &ndash; Filed under: 
       <span class="tag_box inline">
         
-         
-          <span><a href="/articles/topics/#Software">Software <sup>29</sup></a></span>
          
           <span><a href="/articles/topics/#Productivity">Productivity <sup>8</sup></a></span>
         
       </span>
     </div>
     
-    <p>Regular expressions are a concise way to search and transform strings using patterns. They are available in numerous text editors and programming languages.</p>
+    <p>If you have notes in the &ldquo;On My Phone&rdquo; or &ldquo;On My Mac&rdquo; accounts but want to move them to an email account instead, this article provides instructions for moving the notes. It&rsquo;s surprisingly tricky.</p>
 
-<p>Below are some slides I presented to the Splunk Seattle office about regular expressions. I introduce basic regular expressions and show the intermediate and advanced syntax which I use commonly. The second-to-last slide has a nice cheatsheet for the subset of the regex language that I actually use.</p>
+<p><img src="/assets/2013/notes-accounts-on-iphone.png" alt="" /></p>
 
-<iframe src="http://www.slideshare.net/slideshow/embed_code/25887455" width="644" height="400" frameborder="1" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<h2>Easy Way</h2>
 
+<p>Mail every note to yourself and copy the contents into the Notes program (if using OS X 10.8 - 10.9) or into Mail (if using OS X 10.7 or earlier).</p>
 
+<p><strong>Pros:</strong> Tedious but straightforward.<br/>
+<strong>Cons:</strong> Loses the dates associated with the original notes which will mess up their ordering.</p>
 
+<h2>Hard Way</h2>
 
-<!--
-If you're lucky enough to be in a language with monadic parser combinators (like Haskell's Parsec), consider using them instead.
--->
+<p>First you will need <strong>OS X 10.7 (Lion)</strong>, either already running on a computer you own or installed on a virtual machine, such as created by <a href="http://www.parallels.com/products/desktop/">Parallels</a> or <a href="http://www.vmware.com/products/fusion/">VMware</a>. OS X 10.8 (Mountain Lion) and OS X 10.9 (Mavericks) <a href="https://support.apple.com/kb/HT4191">removed the notes syncing feature</a> that these instructions depend on.</p>
+
+<ol>
+<li><p>Sync the iPhone with iTunes. Be sure that in the <strong>Info</strong> tab of iTunes that the <strong>Sync notes</strong> option is checked. If the option isn&rsquo;t there then you might be running OS X 10.8+ where this option was removed.</p>
+
+<p><img src="/assets/2013/notes-sync-in-itunes.png" alt="" /></p></li>
+<li><p>Open Mail and configure it with the email account that you want the notes to be synced with. Make sure that in the Mail preferences that the <strong>Show notes in Inbox</strong> option is checked.</p>
+
+<p><img src="/assets/2013/notes-show-in-mail.png" alt="" /></p></li>
+<li><p>You should see a <strong>Notes</strong> folder in the left sidebar of the main mail window. It should also have a triangle that expands to show &ldquo;On My Mac&rdquo; and your email account. If there is no triangle then you may need to quit and relaunch Mail for it to pick up the synced notes from iTunes.</p>
+
+<p><img src="/assets/2013/notes-in-mail-sidebar.png" alt="" /></p></li>
+<li><p>Move all the notes inside the &ldquo;On My Mac&rdquo; to your email account.</p></li>
+<li><p>Verify that your iPhone sees the notes added to your email account.</p></li>
+<li><p>Tell iTunes to sync with the phone again so that the notes moved from &ldquo;On My Mac&rdquo; no longer appear on the iPhone under the &ldquo;On My Mac&rdquo; account.</p>
+
+<p><img src="/assets/2013/notes-sync-in-itunes.png" alt="" /></p>
+
+<p>This last step didn&rsquo;t work as expected for me, as no notes disappeared from the &ldquo;On My Mac&rdquo; account on my iPhone. I tried using iTunes&rsquo;s special option to forcefully replace all notes on the iPhone with the Mac&rsquo;s notes on the next sync. That didn&rsquo;t work either.</p>
+
+<p><img src="/assets/2013/notes-force-sync.png" alt="" /></p>
+
+<p>In the end to remove the old notes from the &ldquo;On My Mac&rdquo; account on the iPhone, I manually deleted each note on the iPhone itself. Not ideal but it didn&rsquo;t take too long.</p></li>
+</ol>
 
 
   </div>
@@ -337,19 +360,13 @@ If you're lucky enough to be in a language with monadic parser combinators (like
       
       
         
-          
-        
-      
-        
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>29</sup></a></li>
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>29</sup></a></li>
     
       
       
       
-      
-        
       
         
           
@@ -364,16 +381,12 @@ If you're lucky enough to be in a language with monadic parser combinators (like
       
         
       
-        
-      
       
       <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>7</sup></a></li>
     
       
       
       
-      
-        
       
         
       
@@ -386,16 +399,12 @@ If you're lucky enough to be in a language with monadic parser combinators (like
       
         
       
-        
-      
       
       <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
     
       
       
       
-      
-        
       
         
       
@@ -420,11 +429,11 @@ If you're lucky enough to be in a language with monadic parser combinators (like
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/08/25/how-i-learn-new-programming-languages/" title="How I learn new programming languages">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2013/11/12/impressions-of-haskell/" title="Impressions of Haskell">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/09/30/strange-loop-2013-highlights/" title="Strange Loop 2013 Highlights">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

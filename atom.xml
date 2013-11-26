@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-11-20T20:17:06-08:00</updated>
+ <updated>2013-11-25T22:06:28-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,57 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account</id>
+   <title>How to move notes from an iPhone to an email account</title>
+   <published>2013-11-25T00:00:00-08:00</published>
+   <updated>2013-11-25T00:00:00-08:00</updated>
+   
+     <category term="Productivity"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;If you have notes in the &amp;ldquo;On My Phone&amp;rdquo; or &amp;ldquo;On My Mac&amp;rdquo; accounts but want to move them to an email account instead, this article provides instructions for moving the notes. It&amp;rsquo;s surprisingly tricky.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/notes-accounts-on-iphone.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Easy Way&lt;/h2&gt;
+
+&lt;p&gt;Mail every note to yourself and copy the contents into the Notes program (if using OS X 10.8 - 10.9) or into Mail (if using OS X 10.7 or earlier).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pros:&lt;/strong&gt; Tedious but straightforward.&lt;br/&gt;
+&lt;strong&gt;Cons:&lt;/strong&gt; Loses the dates associated with the original notes which will mess up their ordering.&lt;/p&gt;
+
+&lt;h2&gt;Hard Way&lt;/h2&gt;
+
+&lt;p&gt;First you will need &lt;strong&gt;OS X 10.7 (Lion)&lt;/strong&gt;, either already running on a computer you own or installed on a virtual machine, such as created by &lt;a href=&quot;http://www.parallels.com/products/desktop/&quot;&gt;Parallels&lt;/a&gt; or &lt;a href=&quot;http://www.vmware.com/products/fusion/&quot;&gt;VMware&lt;/a&gt;. OS X 10.8 (Mountain Lion) and OS X 10.9 (Mavericks) &lt;a href=&quot;https://support.apple.com/kb/HT4191&quot;&gt;removed the notes syncing feature&lt;/a&gt; that these instructions depend on.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Sync the iPhone with iTunes. Be sure that in the &lt;strong&gt;Info&lt;/strong&gt; tab of iTunes that the &lt;strong&gt;Sync notes&lt;/strong&gt; option is checked. If the option isn&amp;rsquo;t there then you might be running OS X 10.8+ where this option was removed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/notes-sync-in-itunes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open Mail and configure it with the email account that you want the notes to be synced with. Make sure that in the Mail preferences that the &lt;strong&gt;Show notes in Inbox&lt;/strong&gt; option is checked.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/notes-show-in-mail.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You should see a &lt;strong&gt;Notes&lt;/strong&gt; folder in the left sidebar of the main mail window. It should also have a triangle that expands to show &amp;ldquo;On My Mac&amp;rdquo; and your email account. If there is no triangle then you may need to quit and relaunch Mail for it to pick up the synced notes from iTunes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/notes-in-mail-sidebar.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move all the notes inside the &amp;ldquo;On My Mac&amp;rdquo; to your email account.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Verify that your iPhone sees the notes added to your email account.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Tell iTunes to sync with the phone again so that the notes moved from &amp;ldquo;On My Mac&amp;rdquo; no longer appear on the iPhone under the &amp;ldquo;On My Mac&amp;rdquo; account.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/notes-sync-in-itunes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This last step didn&amp;rsquo;t work as expected for me, as no notes disappeared from the &amp;ldquo;On My Mac&amp;rdquo; account on my iPhone. I tried using iTunes&amp;rsquo;s special option to forcefully replace all notes on the iPhone with the Mac&amp;rsquo;s notes on the next sync. That didn&amp;rsquo;t work either.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2013/notes-force-sync.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the end to remove the old notes from the &amp;ldquo;On My Mac&amp;rdquo; account on the iPhone, I manually deleted each note on the iPhone itself. Not ideal but it didn&amp;rsquo;t take too long.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</content>
+ </entry>
  
  
  <entry>

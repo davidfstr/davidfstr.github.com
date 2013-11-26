@@ -22,6 +22,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account/
 http://dafoster.net/articles/2013/11/12/impressions-of-haskell/
 http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/
 http://dafoster.net/articles/2013/10/21/shame-on-the-nsa/
