@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 25 Nov 2013 22:08:00 -0800</pubDate>
-    <lastBuildDate>Mon, 25 Nov 2013 22:08:00 -0800</lastBuildDate>
+    <pubDate>Mon, 25 Nov 2013 22:19:07 -0800</pubDate>
+    <lastBuildDate>Mon, 25 Nov 2013 22:19:07 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -25,14 +25,11 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/2013/notes-accounts-on-iphone.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h2&gt;Easy Way&lt;/h2&gt;
+&lt;h2&gt;Easy Way &lt;small&gt;(Straightforward but tedious)&lt;/small&gt;&lt;/h2&gt;
 
 &lt;p&gt;Mail every note to yourself and copy the contents into the Notes program (if using OS X 10.8 - 10.9) or into Mail (if using OS X 10.7 or earlier).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Pros:&lt;/strong&gt; Straightforward.&lt;br/&gt;
-&lt;strong&gt;Cons:&lt;/strong&gt; Tedious. Loses the dates associated with the original notes which will mess up their ordering.&lt;/p&gt;
-
-&lt;h2&gt;Hard Way&lt;/h2&gt;
+&lt;h2&gt;Hard Way &lt;small&gt;(Perfect migration but lots of steps)&lt;/small&gt;&lt;/h2&gt;
 
 &lt;p&gt;First you will need &lt;strong&gt;OS X 10.7 (Lion)&lt;/strong&gt;, either already running on a computer you own or installed on a virtual machine, such as created by &lt;a href=&quot;http://www.parallels.com/products/desktop/&quot;&gt;Parallels&lt;/a&gt; or &lt;a href=&quot;http://www.vmware.com/products/fusion/&quot;&gt;VMware&lt;/a&gt;. OS X 10.8 (Mountain Lion) and OS X 10.9 (Mavericks) &lt;a href=&quot;https://support.apple.com/kb/HT4191&quot;&gt;removed the notes syncing feature&lt;/a&gt; that these instructions depend on.&lt;/p&gt;
 
