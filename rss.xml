@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 25 Nov 2013 22:19:07 -0800</pubDate>
-    <lastBuildDate>Mon, 25 Nov 2013 22:19:07 -0800</lastBuildDate>
+    <pubDate>Mon, 25 Nov 2013 22:23:44 -0800</pubDate>
+    <lastBuildDate>Mon, 25 Nov 2013 22:23:44 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -28,6 +28,8 @@
 &lt;h2&gt;Easy Way &lt;small&gt;(Straightforward but tedious)&lt;/small&gt;&lt;/h2&gt;
 
 &lt;p&gt;Mail every note to yourself and copy the contents into the Notes program (if using OS X 10.8 - 10.9) or into Mail (if using OS X 10.7 or earlier).&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color: red&quot;&gt;&lt;strong&gt;Caution:&lt;/strong&gt; This method loses the dates of the original notes which will mess up their ordering.&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2&gt;Hard Way &lt;small&gt;(Perfect migration but lots of steps)&lt;/small&gt;&lt;/h2&gt;
 
