@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2013-11-25T22:06:28-08:00</updated>
+ <updated>2013-11-25T22:08:00-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -32,8 +32,8 @@
 
 &lt;p&gt;Mail every note to yourself and copy the contents into the Notes program (if using OS X 10.8 - 10.9) or into Mail (if using OS X 10.7 or earlier).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Pros:&lt;/strong&gt; Tedious but straightforward.&lt;br/&gt;
-&lt;strong&gt;Cons:&lt;/strong&gt; Loses the dates associated with the original notes which will mess up their ordering.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pros:&lt;/strong&gt; Straightforward.&lt;br/&gt;
+&lt;strong&gt;Cons:&lt;/strong&gt; Tedious. Loses the dates associated with the original notes which will mess up their ordering.&lt;/p&gt;
 
 &lt;h2&gt;Hard Way&lt;/h2&gt;
 
