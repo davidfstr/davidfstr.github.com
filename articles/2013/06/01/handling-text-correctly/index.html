@@ -307,7 +307,11 @@
       </span>
     </div>
     
-    <div class="toc">
+    <p>A remarkable number of programs do not handle text in a reasonable fashion, which causes those programs to break when confronted with non-English characters and symbols. Even the standard libraries of most programming languages are not immune.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p>This chapter describes the foundation of how text handling works in software and gives examples of common pitfalls when working with text in real code. Upon completion you should be able to evaluate your favorite programming environment&rsquo;s built-in support for handling text and be able to write programs that handle text correctly and consistently across operating systems.</p>
+
+<div class="toc">
   <ul>
     <li><a href="#characters-sets-and-encodings">Characters, Sets, and Encodings</a></li>
     <ul>
@@ -341,7 +345,7 @@
 
 <h2>Characters, Sets, and Encodings</h2>
 
-<p>Text is made up of multiple <strong>characters</strong> (or <strong>codepoints</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>), each of which represents a different letter, symbol or punctuation mark. The word &ldquo;Hello&rdquo;, for example is made of the characters &ldquo;H&rdquo;, &ldquo;e&rdquo;, &ldquo;l&rdquo;, &ldquo;l&rdquo;, and &ldquo;o&rdquo;. This collection of characters is called a <strong>string</strong>. Each character is assigned a number using a <strong>character set</strong> (sometimes called a <em>code page</em> or a <em>charset</em>).</p>
+<p>Text is made up of multiple <strong>characters</strong> (or <strong>codepoints</strong><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>), each of which represents a different letter, symbol or punctuation mark. The word &ldquo;Hello&rdquo;, for example is made of the characters &ldquo;H&rdquo;, &ldquo;e&rdquo;, &ldquo;l&rdquo;, &ldquo;l&rdquo;, and &ldquo;o&rdquo;. This collection of characters is called a <strong>string</strong>. Each character is assigned a number using a <strong>character set</strong> (sometimes called a <em>code page</em> or a <em>charset</em>).</p>
 
 <p>For example the <strong>ASCII</strong> character set assigns numbers in the range (0-127) for characters in most Western European languages.</p>
 
@@ -427,7 +431,7 @@ o &rarr; 111
 
 <ul>
 <li>7-bit character set for representing characters common to most Western European languages.</li>
-<li><p>⚠ Many programs and APIs that claim to input or output &ldquo;ASCII&rdquo; (or &ldquo;ANSI&rdquo;<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>) are actually unaware of character sets and will accept strings in whatever the operating system&rsquo;s default character set happens to be (often Windows-1252).</p></li>
+<li><p>⚠ Many programs and APIs that claim to input or output &ldquo;ASCII&rdquo; (or &ldquo;ANSI&rdquo;<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>) are actually unaware of character sets and will accept strings in whatever the operating system&rsquo;s default character set happens to be (often Windows-1252).</p></li>
 </ul>
 </li>
 <li><strong>Windows-1252</strong> (AKA <strong>Windows Latin 1</strong>)
@@ -440,7 +444,7 @@ o &rarr; 111
 
 <ul>
 <li>The default character set for web pages and other HTTP traffic.</li>
-<li><p>⚠ In practice this is <em>very</em> frequently confused with <b>Windows-1252</b>, which differs in only a handful of characters. In fact this confusion is to such a degree that the draft HTML 5 specification requires that documents advertised as ISO-8859-1 actually be parsed as Windows-1252.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p></li>
+<li><p>⚠ In practice this is <em>very</em> frequently confused with <b>Windows-1252</b>, which differs in only a handful of characters. In fact this confusion is to such a degree that the draft HTML 5 specification requires that documents advertised as ISO-8859-1 actually be parsed as Windows-1252.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></p></li>
 </ul>
 </li>
 <li><strong>Mac OS Roman</strong>
@@ -483,7 +487,7 @@ o &rarr; 111
 
 <h3>Unicode</h3>
 
-<p><strong>Unicode</strong> is a character set just like ASCII or Windows-1252: it maps characters to numbers.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> However it is sufficiently important to justify special mention.</p>
+<p><strong>Unicode</strong> is a character set just like ASCII or Windows-1252: it maps characters to numbers.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> However it is sufficiently important to justify special mention.</p>
 
 <p>The Unicode character set is designed to support all characters in all character sets that came before it, plus many more. If you can think of a character, it&rsquo;s almost certainly in Unicode. (And if it isn&rsquo;t, it&rsquo;s likely not in any character set.) In this sense, Unicode can be viewed as the universal character set.</p>
 
@@ -562,7 +566,7 @@ In particular <strong>supplementary characters</strong> in the supplementary pla
 <li><strong>UTF-16</strong>
 
 <ul>
-<li>This is the default in-memory encoding for most modern Unicode-aware systems, including Windows, Mac OS X, the Java 1.5+ runtime<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>, the .NET runtime (including C#), and Python 2.x<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>.</li>
+<li>This is the default in-memory encoding for most modern Unicode-aware systems, including Windows, Mac OS X, the Java 1.5+ runtime<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>, the .NET runtime (including C#), and Python 2.x<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup>.</li>
 <li>It can represent any character in the Unicode character set.</li>
 <li>Characters in the basic plane (0x0000-0xFFFF) are encoded as a single 16-bit value.<br/>
 Supplementary characters (0x10000-0x10FFFF) are encoded as two 16-bit <strong>surrogate</strong> values.</li>
@@ -603,7 +607,7 @@ Supplementary characters (0x10000-0x10FFFF) are encoded as two 16-bit <strong>su
 
 <p>If you do not specify an encoding explicitly when opening a text file, your language&rsquo;s standard library or operating system will usually pick a default encoding, which depends on the spoken language it is running in, among other factors.</p>
 
-<p>Unfortunately most filesystems do not store the encoding of a text file.<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup> So there are a few options for determining an encoding:</p>
+<p>Unfortunately most filesystems do not store the encoding of a text file.<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup> So there are a few options for determining an encoding:</p>
 
 <ul>
 <li><strong>Define a particular encoding as the expected input.</strong>
@@ -669,7 +673,20 @@ Reader footReader = new InputStreamReader(footStream);        // WRONG: OS-depen
 <pre><code>Reader footReader = new FileReader("foot.txt");               // WRONG: OS-dependent
 </code></pre>
 
-<p>Both of these examples are wrong for the same reason: they don&rsquo;t specify the encoding. And both can be fixed by adding <code>"UTF-8"</code> as the second argument to the appropriate constructor.</p>
+<p>Both of these examples are wrong for the same reason: they don&rsquo;t specify the encoding.</p>
+
+<p>The former example can be fixed by adding <code>"UTF-8"</code> as the second constructor argument:</p>
+
+<pre><code>byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
+InputStream footStream = new ByteArrayInputStream(footBytes);
+Reader footReader = new InputStreamReader(footStream, "UTF-8");    // CORRECT
+</code></pre>
+
+<p>Fixing the second example unfortunately requires using an entirely different class since <code>FileReader</code> has no constructer with an encoding parameter.</p>
+
+<pre><code>Reader footReader = new InputStreamReader(
+    new FileInputStream("foot.txt"), "UTF-8");                // CORRECT
+</code></pre>
 
 <p>Of course the same problems happen when encoding a string to a byte stream:</p>
 
@@ -732,7 +749,7 @@ footWriter.write("fu\u00DF");
 <li><strong>Blithely ignore encoding issues altogether and get unexpected results when working with international characters.</strong>
 
 <ul>
-<li>Many programs written in languages where the default string type in not Unicode take this option out of ignorance. In particular this includes many programs in C, PHP, and <span class="nobr">Python 2.x</span>.</li>
+<li>Many programs written in languages where the default string type is not Unicode take this option out of ignorance. In particular this includes many programs in C, PHP, and <span class="nobr">Python 2.x</span>.</li>
 </ul>
 </li>
 </ul>
@@ -950,23 +967,38 @@ with open(file_path, 'rb') as stream:
     </p>
 </div>
 
+
+<p><strong>Updates:</strong></p>
+
+<ul>
+<li>2014-01-01:
+
+<ul>
+<li>Add introduction.</li>
+<li>Spell out how to add encoding parameter to <code>FileReader</code> and <code>InputStreamReader</code>.</li>
+</ul>
+</li>
+</ul>
+
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
-<p>To be precise, the definition of <em>character</em> used here is exactly the same as a <em>Unicode codepoint</em>, for those readers who are already familiar with Unicode.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>Specific examples of how the standard libraries of various languages mishandle text, see <a href="http://mortoray.com/2013/11/27/the-string-type-is-broken/">The String Type is Broken</a>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>Windows documentation often refers to the default character set (or sometimes the ASCII character set) as the &ldquo;ANSI encoding&rdquo;. This is misleading since this is not a single concrete encoding and has nothing to do with the ANSI standards body. For example, the Save dialog in Windows Notepad (in Windows 7) and <a href="http://msdn.microsoft.com/en-us/library/cc231241(v=prot.10).aspx">Unicode Versus ANSI String Representations</a> use &ldquo;ANSI&rdquo; to refer to the default encoding, whereas <a href="http://msdn.microsoft.com/en-us/library/aa368046(v=vs.85).aspx">Copy a Unicode File to an ANSI File</a> uses &ldquo;ANSI&rdquo; to refer to the ASCII encoding.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>To be precise, the definition of <em>character</em> used here is exactly the same as a <em>Unicode codepoint</em>, for those readers who are already familiar with Unicode.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
-<p><a href="http://dev.w3.org/html5/spec/Overview.html#character-encodings-0">HTML 5 Draft Recommendation — 12 April 2010, 8.1 Character encodings</a>, retrieved 2010-04-12.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<p>Windows documentation often refers to the default character set (or sometimes the ASCII character set) as the &ldquo;ANSI encoding&rdquo;. This is misleading since this is not a single concrete encoding and has nothing to do with the ANSI standards body. For example, the Save dialog in Windows Notepad (in Windows 7) and <a href="http://msdn.microsoft.com/en-us/library/cc231241(v=prot.10).aspx">Unicode Versus ANSI String Representations</a> use &ldquo;ANSI&rdquo; to refer to the default encoding, whereas <a href="http://msdn.microsoft.com/en-us/library/aa368046(v=vs.85).aspx">Copy a Unicode File to an ANSI File</a> uses &ldquo;ANSI&rdquo; to refer to the ASCII encoding.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 <li id="fn:4">
-<p>The full Unicode standard also covers a wide variety of rules related to handling characters, such as sorting, rendering, and other operations. For our purposes though, we are only concerned with the Unicode character set.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<p><a href="http://dev.w3.org/html5/spec/Overview.html#character-encodings-0">HTML 5 Draft Recommendation — 12 April 2010, 8.1 Character encodings</a>, retrieved 2010-04-12.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
 <li id="fn:5">
-<p>Compare the documentation for java.lang.String between <a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/String.html">Java 1.4</a> and <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html">Java 1.5</a>. The 1.5 documentation clearly states UTF-16 as the internal string encoding.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<p>The full Unicode standard also covers a wide variety of rules related to handling characters, such as sorting, rendering, and other operations. For our purposes though, we are only concerned with the Unicode character set.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 <li id="fn:6">
-<p><a href="http://www.python.org/dev/peps/pep-0261/">PEP 261</a> describes Python 2.x&rsquo;s Unicode handling with respect to characters in the supplementary planes. &ldquo;Narrow&rdquo; Python builds (the default) use UTF-16 internally; &ldquo;wide&rdquo; Python builds use UTF-32 internally. (The distinction between narrow and wide builds disappeared in Python 3.3.)<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<p>Compare the documentation for java.lang.String between <a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/String.html">Java 1.4</a> and <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html">Java 1.5</a>. The 1.5 documentation clearly states UTF-16 as the internal string encoding.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
 <li id="fn:7">
-<p>The HFS filesystem used in Mac OS 9 and Mac OS X is one of the few filesystems that stores the encoding of text files as file metadata. However I think almost no modern OS X program is aware of this.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<p><a href="http://www.python.org/dev/peps/pep-0261/">PEP 261</a> describes Python 2.x&rsquo;s Unicode handling with respect to characters in the supplementary planes. &ldquo;Narrow&rdquo; Python builds (the default) use UTF-16 internally; &ldquo;wide&rdquo; Python builds use UTF-32 internally. (The distinction between narrow and wide builds disappeared in Python 3.3.)<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<li id="fn:8">
+<p>The HFS filesystem used in Mac OS 9 and Mac OS X is one of the few filesystems that stores the encoding of text files as file metadata. However I think almost no modern OS X program is aware of this.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
@@ -1071,7 +1103,7 @@ with open(file_path, 'rb') as stream:
       </div>
 
       <footer>
-        <p>&copy; 2013 <a href="/about/">David Foster</a>
+        <p>&copy; 2014 <a href="/about/">David Foster</a>
         
         </p>
       </footer>
