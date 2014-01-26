@@ -6,14 +6,257 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Thu, 23 Jan 2014 23:57:24 -0800</pubDate>
-    <lastBuildDate>Thu, 23 Jan 2014 23:57:24 -0800</lastBuildDate>
+    <pubDate>Sun, 26 Jan 2014 13:58:43 -0800</pubDate>
+    <lastBuildDate>Sun, 26 Jan 2014 13:58:43 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Agda: First Impressions</title>
+      <link>http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Fri, 24 Jan 2014 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation</guid>
+      <description>&lt;p&gt;These are my first impressions of the Agda programming language after researching it in some depth but before writing any actual Agda programs.&lt;/p&gt;
+
+&lt;p&gt;If you only want the highlights, just read the &lt;a href=&quot;#executive-summary&quot;&gt;Executive Summary&lt;/a&gt;. If you also want to see supporting material and notes, continue reading further.&lt;/p&gt;
+
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#executive-summary&quot;&gt;Executive Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#getting-started&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#environment&quot;&gt;Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#libraries&quot;&gt;Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#papers&quot;&gt;Papers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#books&quot;&gt;Books&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#other-resources&quot;&gt;Other Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;executive-summary&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Executive Summary&lt;/h2&gt;
+
+&lt;p&gt;Agda, by virtue of it possessing a &lt;em&gt;dependent type system&lt;/em&gt;, makes it a very powerful programming language. Agda is distinguished from its cousins like Coq in that it makes more of an effort at being a &lt;em&gt;programming language&lt;/em&gt; as opposed to being merely a proof assistant. Certainly worthy of study for the purpose of learning what a truly powerful type system is capable of expressing.&lt;/p&gt;
+
+&lt;p&gt;However Agda I judge to not presently be worthy as a full production-quality programming language, suitable for long term development. My reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Agda lacks a package manager
+
+&lt;ul&gt;
+&lt;li&gt;Acts as a barrier for the creation of 3rd party libraries.
+A language cannot be used effectively without 3rd party libraries.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Library discoverability is also impaired.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The standard library has a version number less than 1.0, namely 0.7.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A lack of a forward-compatibility promise from the standard library
+is not acceptable for long term development.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I can find no books about Agda development, let alone &lt;em&gt;real-world&lt;/em&gt;
+Agda development.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Other tripping points:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Agda does not have a (traditional-style) documentation generator tool,
+which discourages somewhat the creation of API documentation and
+especially the creation of guide-level documentation.
+
+&lt;ul&gt;
+&lt;li&gt;Agda API documentation is instead issued via hyperlinked versions
+of Agda source code, which appear to emulate the Agda Emacs mode
+that Agda is traditionally developed with.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Such API documentation &lt;em&gt;can&lt;/em&gt; be used effectively but it is not the
+format that the larger programming community expects (i.e. styled
+HTML) and is lacking in aesthetic appeal.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Agda only appears to have integration with the Emacs code editor.
+In particular there is no obvious integration with any GUI code editors,
+like Sublime Text. And such editor integration is &lt;em&gt;necessary&lt;/em&gt; at minimum
+for the Unicode-style input that Agda requires.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Agda&amp;rsquo;s main website and &amp;ldquo;marketing&amp;rdquo; has very little polish.
+
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s a shame that this matters, but it makes Agda appear unfinished
+and not ready for prime time. In practice this will scare away users.&lt;/li&gt;
+&lt;li&gt;The main website, for example, is just a stock wiki.&lt;/li&gt;
+&lt;li&gt;Agda has no logo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I expect that many of these shortcomings will be addressed over time.&lt;/p&gt;
+
+&lt;p&gt;In the meantime, as I mentioned before, I think Agda is still worthy of investigation for expanding one&amp;rsquo;s knowledge of what is possible in a powerful type system. In fact, any language where you can do something like write a sorting function that both works and proves itself to be a correct implementation in the same stroke deserves a closer look.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;getting-started&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;Official website of Agda is &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php&quot;&gt;http://wiki.portal.chalmers.se/agda/pmwiki.php&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Yes, it&amp;rsquo;s a wiki. Automatically lowers the quality. :-(&lt;/li&gt;
+&lt;li&gt;(1) &amp;ldquo;Agda is a dependently typed functional programming language.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;(2) &amp;ldquo;Agda is a proof assistant.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Uses Unicode operators all over the place. Nice to read. Tricky to type. Even library developers use them.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;environment&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Environment&lt;/h2&gt;
+
+&lt;p&gt;Has 3 backends: Haskell, JavaScript, and Epic&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Only the Haskell one should be taken seriously, since the
+latest version of the standard library (0.7) only supports
+the Haskell backend.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Agda should not be used on Windows. None of the core release maintainers run Windows.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Strongly expects that you use Emacs, as Agda provides its own interactive Emacs mode.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;libraries&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Libraries&lt;/h2&gt;
+
+&lt;p&gt;Apparently the Agda community is sufficiently small that all libraries (of significance?) can be listed comfortably on the main Agda website at &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Libraries&quot;&gt;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Libraries&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Informal sampling shows several libraries to be outdated,
+not updated within the last 2 years.&lt;/li&gt;
+&lt;li&gt;Therefore the number of actual &lt;em&gt;usable&lt;/em&gt; up-to-date libraries
+is expected to be quite small, in the 4-7 range. Not promising.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Only two libraries under the &lt;a href=&quot;https://github.com/agda&quot;&gt;https://github.com/agda&lt;/a&gt; umbrella have been updated within the last year. One of them is the Agda standard library. Not a good sign of activity.&lt;/p&gt;
+
+&lt;p&gt;Libraries do not carry external documentation. Instead all documentation is within the source code itself. The expectation is that you will use the Agda emacs mode to jump around between modules and explore to find what you want. Not ideal but serviceable.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;There seems to be some tool used to compile HTML that acts like the
+Agda Emacs mode. In particular hyperlinking between modules is
+supported.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Readers of the documentation are assumed to have high mathematical training. I see terms like &amp;ldquo;communative semiring&amp;rdquo;, &amp;ldquo;coinductive&amp;rdquo;, &amp;ldquo;lemma&amp;rdquo;, and &amp;ldquo;decidable&amp;rdquo;.&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href=&quot;https://github.com/agda/agda-frp-js&quot;&gt;agda-frp-js&lt;/a&gt; &lt;small&gt;(last activity 2 years ago)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;This is an FRP implementation in Agda. I&amp;rsquo;ll look at it because I&amp;rsquo;ve been working in FRP systems recently (i.e. Elm). And because I&amp;rsquo;d like to see how well libraries are packaged by the Agda community.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Beh&amp;rdquo; is short for &amp;ldquo;behavior&amp;rdquo; and is equivalent to an Elm Signal.&lt;/p&gt;
+
+&lt;p&gt;I note that there is no API documentation whatsoever for the module. You have to browse through the examples in the source tree manually. This suggests that either Agda has no doc generator tool (likely!) or this library author simply didn&amp;rsquo;t bother to generate docs for the public to read.&lt;/p&gt;
+
+&lt;p&gt;Virtually no comments.&lt;/p&gt;
+
+&lt;p&gt;Has own definition of Bool (booleans), RSet (function types), Int (integer types), and possibly other super primitive notions. This appears to be related to the use of the JavaScript backend, as most of these primitives have native JS code defined for many of these definitions.&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href=&quot;https://github.com/agda/agda-frp-ltl&quot;&gt;agda-frp-ltl&lt;/a&gt; &lt;small&gt;(last activity 2 years ago)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;Not going to look at this closely due to the lack of activity.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;papers&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Papers&lt;/h2&gt;
+
+&lt;p&gt;Agda is used in quite a number of academic papers. Certainly more papers than actual libraries, so far as I can tell. There&amp;rsquo;s a whole &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.PapersUsingAgda&quot;&gt;list of papers that use Agda&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href=&quot;http://ivanych.net/doc/SafeFunctionalProgrammingDependentTypes.pdf&quot;&gt;Safe Functional Reactive Programming through Dependent Types (2009)&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Describes an FRP system that is slightly more powerful than that of Yampa. It defines a type system around FRP that guarantees that FRP programs written within the type system will necessarily continue to make progress (i.e. not deadlock). (It is possible for an FRP system to deadlock if its signal graph get reconfigured into certain kinds of loops.) It also eliminates the distinction between continuous and discrete signals, reducing one class of errors. Furthermore it allows programs to include feedback loops and uninitialised signals in an FRP program, whilst guaranteeing evaluation progress at the type level.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;books&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Books&lt;/h2&gt;
+
+&lt;p&gt;Hard to find books on Agda. I get nothing.&lt;/p&gt;
+
+&lt;p&gt;However I do see some &lt;a href=&quot;http://stackoverflow.com/questions/13796557/books-about-coq&quot;&gt;books on Coq&lt;/a&gt;, which Agda is inspired by. Let&amp;rsquo;s not get distracted by those at the moment.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;other-resources&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Other Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cse.chalmers.se/~ulfn/papers/afp08/tutorial.pdf&quot;&gt;Dependently Typed Programming in Agda (2008)&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Appears to be the original paper that introduced the Agda
+programming language. Or at the very least a fairly complete
+description of the language along with tutorial-style content.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.staff.science.uu.nl/~swier004/Publications/ThePowerOfPi.pdf&quot;&gt;The Power of Pi (2008)&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Despite the indescriptive name, promises to show a number of design
+patterns and techniques that apply to dependently types languages,
+particularly Agda.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Dependent types matter. And not just for program verification
+ and proof assistants: dependent types matter to programmers.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;This paper demonstrates how to program with dependent types.
+ In particular, we present three case studies.
+ Each case study describes a domain-specific language that is
+ difficult to embed in conventional functional languages such
+ as Haskell.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;design patterns of dependently-typed programming&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;ldquo;domain-specific embedded type systems&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://oxij.org/note/BrutalDepTypes/&quot;&gt;Brutal (Meta)Introduction to Dependent Types in Agda&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Aims to describe at a high-level how dependently typed languages
+work at the level of theory, without going into too many
+details. Uses Agda as a concrete language to work with.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/liamoc/learn-you-an-agda/blob/master/pages/introduction.md&quot;&gt;Learn You an Agda&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Already read this. Good high level introduction to the &lt;em&gt;promise&lt;/em&gt;
+(or taste) of what&amp;rsquo;s possible in dependently typed languages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;p&gt;I forget the specific tutorial where I first recognized that you could write this kind of provably correct sorting function. You end up having a sorting function with a signature like &lt;code&gt;sort : (inList : List a) -&amp;gt; (outList : List a, IsSorted outList, EqElements inList outList)&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;The &lt;code&gt;IsSorted outList&lt;/code&gt; type represents proofs that &lt;code&gt;outList&lt;/code&gt; is sorted. Thus the existence of a member of the &lt;code&gt;IsSorted outList&lt;/code&gt; type proves that &lt;code&gt;outList&lt;/code&gt; is sorted. Similarly the &lt;code&gt;EqElements inList outList&lt;/code&gt; is a proof type where &lt;code&gt;inList&lt;/code&gt; and &lt;code&gt;outList&lt;/code&gt; are proven to have equal elements.&lt;/p&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;None of the people who currently release Agda are running Windows according to the latest &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII&quot;&gt;Agda Implementors' Meeting&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>

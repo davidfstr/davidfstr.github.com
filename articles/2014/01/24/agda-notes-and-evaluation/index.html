@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Agda: First Impressions | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>Agda: First Impressions</h1>
+    <div class="post-metadata">
+      Jan 24, 2014 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>30</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p>These are my first impressions of the Agda programming language after researching it in some depth but before writing any actual Agda programs.</p>
+
+<p>If you only want the highlights, just read the <a href="#executive-summary">Executive Summary</a>. If you also want to see supporting material and notes, continue reading further.</p>
+
+<div class="toc">
+  <ul>
+<li><a href="#executive-summary">Executive Summary</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#environment">Environment</a></li>
+<li><a href="#libraries">Libraries</a></li>
+<li><a href="#papers">Papers</a></li>
+<li><a href="#books">Books</a></li>
+<li><a href="#other-resources">Other Resources</a></li>
+</ul>
+
+
+</div>
+
+
+<p><a id="executive-summary"></a></p>
+
+<h2>Executive Summary</h2>
+
+<p>Agda, by virtue of it possessing a <em>dependent type system</em>, makes it a very powerful programming language. Agda is distinguished from its cousins like Coq in that it makes more of an effort at being a <em>programming language</em> as opposed to being merely a proof assistant. Certainly worthy of study for the purpose of learning what a truly powerful type system is capable of expressing.</p>
+
+<p>However Agda I judge to not presently be worthy as a full production-quality programming language, suitable for long term development. My reasons:</p>
+
+<ul>
+<li>Agda lacks a package manager
+
+<ul>
+<li>Acts as a barrier for the creation of 3rd party libraries.
+A language cannot be used effectively without 3rd party libraries.</li>
+<li><p>Library discoverability is also impaired.</p></li>
+</ul>
+</li>
+<li>The standard library has a version number less than 1.0, namely 0.7.
+
+<ul>
+<li><p>A lack of a forward-compatibility promise from the standard library
+is not acceptable for long term development.</p></li>
+</ul>
+</li>
+<li>I can find no books about Agda development, let alone <em>real-world</em>
+Agda development.</li>
+</ul>
+
+
+<p>Other tripping points:</p>
+
+<ul>
+<li>Agda does not have a (traditional-style) documentation generator tool,
+which discourages somewhat the creation of API documentation and
+especially the creation of guide-level documentation.
+
+<ul>
+<li>Agda API documentation is instead issued via hyperlinked versions
+of Agda source code, which appear to emulate the Agda Emacs mode
+that Agda is traditionally developed with.</li>
+<li><p>Such API documentation <em>can</em> be used effectively but it is not the
+format that the larger programming community expects (i.e. styled
+HTML) and is lacking in aesthetic appeal.</p></li>
+</ul>
+</li>
+<li><p>Agda only appears to have integration with the Emacs code editor.
+In particular there is no obvious integration with any GUI code editors,
+like Sublime Text. And such editor integration is <em>necessary</em> at minimum
+for the Unicode-style input that Agda requires.</p></li>
+<li>Agda&rsquo;s main website and &ldquo;marketing&rdquo; has very little polish.
+
+<ul>
+<li>It&rsquo;s a shame that this matters, but it makes Agda appear unfinished
+and not ready for prime time. In practice this will scare away users.</li>
+<li>The main website, for example, is just a stock wiki.</li>
+<li>Agda has no logo.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>I expect that many of these shortcomings will be addressed over time.</p>
+
+<p>In the meantime, as I mentioned before, I think Agda is still worthy of investigation for expanding one&rsquo;s knowledge of what is possible in a powerful type system. In fact, any language where you can do something like write a sorting function that both works and proves itself to be a correct implementation in the same stroke deserves a closer look.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p><a id="getting-started"></a></p>
+
+<h2>Getting Started</h2>
+
+<p>Official website of Agda is <a href="http://wiki.portal.chalmers.se/agda/pmwiki.php">http://wiki.portal.chalmers.se/agda/pmwiki.php</a>:</p>
+
+<ul>
+<li>Yes, it&rsquo;s a wiki. Automatically lowers the quality. :-(</li>
+<li>(1) &ldquo;Agda is a dependently typed functional programming language.&rdquo;</li>
+<li>(2) &ldquo;Agda is a proof assistant.&rdquo;</li>
+</ul>
+
+
+<p>Uses Unicode operators all over the place. Nice to read. Tricky to type. Even library developers use them.</p>
+
+<p><a id="environment"></a></p>
+
+<h2>Environment</h2>
+
+<p>Has 3 backends: Haskell, JavaScript, and Epic</p>
+
+<ul>
+<li>Only the Haskell one should be taken seriously, since the
+latest version of the standard library (0.7) only supports
+the Haskell backend.</li>
+</ul>
+
+
+<p>Agda should not be used on Windows. None of the core release maintainers run Windows.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<p>Strongly expects that you use Emacs, as Agda provides its own interactive Emacs mode.</p>
+
+<p><a id="libraries"></a></p>
+
+<h2>Libraries</h2>
+
+<p>Apparently the Agda community is sufficiently small that all libraries (of significance?) can be listed comfortably on the main Agda website at <a href="http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Libraries">http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Libraries</a>.</p>
+
+<ul>
+<li>Informal sampling shows several libraries to be outdated,
+not updated within the last 2 years.</li>
+<li>Therefore the number of actual <em>usable</em> up-to-date libraries
+is expected to be quite small, in the 4-7 range. Not promising.</li>
+</ul>
+
+
+<p>Only two libraries under the <a href="https://github.com/agda">https://github.com/agda</a> umbrella have been updated within the last year. One of them is the Agda standard library. Not a good sign of activity.</p>
+
+<p>Libraries do not carry external documentation. Instead all documentation is within the source code itself. The expectation is that you will use the Agda emacs mode to jump around between modules and explore to find what you want. Not ideal but serviceable.</p>
+
+<ul>
+<li>There seems to be some tool used to compile HTML that acts like the
+Agda Emacs mode. In particular hyperlinking between modules is
+supported.</li>
+</ul>
+
+
+<p>Readers of the documentation are assumed to have high mathematical training. I see terms like &ldquo;communative semiring&rdquo;, &ldquo;coinductive&rdquo;, &ldquo;lemma&rdquo;, and &ldquo;decidable&rdquo;.</p>
+
+<h3><a href="https://github.com/agda/agda-frp-js">agda-frp-js</a> <small>(last activity 2 years ago)</small></h3>
+
+<p>This is an FRP implementation in Agda. I&rsquo;ll look at it because I&rsquo;ve been working in FRP systems recently (i.e. Elm). And because I&rsquo;d like to see how well libraries are packaged by the Agda community.</p>
+
+<p>&ldquo;Beh&rdquo; is short for &ldquo;behavior&rdquo; and is equivalent to an Elm Signal.</p>
+
+<p>I note that there is no API documentation whatsoever for the module. You have to browse through the examples in the source tree manually. This suggests that either Agda has no doc generator tool (likely!) or this library author simply didn&rsquo;t bother to generate docs for the public to read.</p>
+
+<p>Virtually no comments.</p>
+
+<p>Has own definition of Bool (booleans), RSet (function types), Int (integer types), and possibly other super primitive notions. This appears to be related to the use of the JavaScript backend, as most of these primitives have native JS code defined for many of these definitions.</p>
+
+<h3><a href="https://github.com/agda/agda-frp-ltl">agda-frp-ltl</a> <small>(last activity 2 years ago)</small></h3>
+
+<p>Not going to look at this closely due to the lack of activity.</p>
+
+<p><a id="papers"></a></p>
+
+<h2>Papers</h2>
+
+<p>Agda is used in quite a number of academic papers. Certainly more papers than actual libraries, so far as I can tell. There&rsquo;s a whole <a href="http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.PapersUsingAgda">list of papers that use Agda</a>.</p>
+
+<h3><a href="http://ivanych.net/doc/SafeFunctionalProgrammingDependentTypes.pdf">Safe Functional Reactive Programming through Dependent Types (2009)</a></h3>
+
+<p>Describes an FRP system that is slightly more powerful than that of Yampa. It defines a type system around FRP that guarantees that FRP programs written within the type system will necessarily continue to make progress (i.e. not deadlock). (It is possible for an FRP system to deadlock if its signal graph get reconfigured into certain kinds of loops.) It also eliminates the distinction between continuous and discrete signals, reducing one class of errors. Furthermore it allows programs to include feedback loops and uninitialised signals in an FRP program, whilst guaranteeing evaluation progress at the type level.</p>
+
+<p><a id="books"></a></p>
+
+<h2>Books</h2>
+
+<p>Hard to find books on Agda. I get nothing.</p>
+
+<p>However I do see some <a href="http://stackoverflow.com/questions/13796557/books-about-coq">books on Coq</a>, which Agda is inspired by. Let&rsquo;s not get distracted by those at the moment.</p>
+
+<p><a id="other-resources"></a></p>
+
+<h2>Other Resources</h2>
+
+<ul>
+<li><a href="http://www.cse.chalmers.se/~ulfn/papers/afp08/tutorial.pdf">Dependently Typed Programming in Agda (2008)</a>
+
+<ul>
+<li><p>Appears to be the original paper that introduced the Agda
+programming language. Or at the very least a fairly complete
+description of the language along with tutorial-style content.</p></li>
+</ul>
+</li>
+<li><a href="http://www.staff.science.uu.nl/~swier004/Publications/ThePowerOfPi.pdf">The Power of Pi (2008)</a>
+
+<ul>
+<li>Despite the indescriptive name, promises to show a number of design
+patterns and techniques that apply to dependently types languages,
+particularly Agda.</li>
+<li>&ldquo;Dependent types matter. And not just for program verification
+ and proof assistants: dependent types matter to programmers.&rdquo;</li>
+<li>&ldquo;This paper demonstrates how to program with dependent types.
+ In particular, we present three case studies.
+ Each case study describes a domain-specific language that is
+ difficult to embed in conventional functional languages such
+ as Haskell.&rdquo;</li>
+<li>&ldquo;design patterns of dependently-typed programming&rdquo;</li>
+<li><p>&ldquo;domain-specific embedded type systems&rdquo;</p></li>
+</ul>
+</li>
+<li><a href="http://oxij.org/note/BrutalDepTypes/">Brutal (Meta)Introduction to Dependent Types in Agda</a>
+
+<ul>
+<li><p>Aims to describe at a high-level how dependently typed languages
+work at the level of theory, without going into too many
+details. Uses Agda as a concrete language to work with.</p></li>
+</ul>
+</li>
+<li><a href="https://github.com/liamoc/learn-you-an-agda/blob/master/pages/introduction.md">Learn You an Agda</a>
+
+<ul>
+<li>Already read this. Good high level introduction to the <em>promise</em>
+(or taste) of what&rsquo;s possible in dependently typed languages.</li>
+</ul>
+</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><p>I forget the specific tutorial where I first recognized that you could write this kind of provably correct sorting function. You end up having a sorting function with a signature like <code>sort : (inList : List a) -&gt; (outList : List a, IsSorted outList, EqElements inList outList)</code>.</p> <p>The <code>IsSorted outList</code> type represents proofs that <code>outList</code> is sorted. Thus the existence of a member of the <code>IsSorted outList</code> type proves that <code>outList</code> is sorted. Similarly the <code>EqElements inList outList</code> is a proof type where <code>inList</code> and <code>outList</code> are proven to have equal elements.</p><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>None of the people who currently release Agda are running Windows according to the latest <a href="http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII">Agda Implementors' Meeting</a>.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>30</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>7</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>1</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <!-- Begin Follow button -->
+  <iframe
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
+    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
+  <!-- End Follow button -->
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account/" title="How to move notes from an iPhone to an email account">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2014 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
