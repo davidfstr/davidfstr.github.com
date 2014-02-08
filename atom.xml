@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2014-01-27T21:09:12-08:00</updated>
+ <updated>2014-02-08T11:53:08-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,104 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2014/02/02/what-is-color</id>
+   <title>What is Color?</title>
+   <published>2014-02-02T00:00:00-08:00</published>
+   <updated>2014-02-02T00:00:00-08:00</updated>
+   
+     <category term="Offtopic"/>
+   
+     <category term="Personal"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2014/02/02/what-is-color/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Color is a perceived property of light that enters the eye.&lt;/p&gt;
+
+&lt;p&gt;Understanding color requires understanding of light, the inputs used by people to detect light (i.e. tristimulous cone responses), and the mental process used to synthesize these inputs into a perceived color.&lt;/p&gt;
+
+&lt;h3&gt;Light&lt;/h3&gt;
+
+&lt;p&gt;Light can be described as a signal: an amplitude that varies over time.&lt;/p&gt;
+
+&lt;p&gt;This signal (in the time domain) can be transformed to another signal in the frequency domain which makes it easy to see what individual &lt;em&gt;frequencies&lt;/em&gt; of light contribute to the overall light signal.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2014/what-is-color/Fourier_transform_time_and_frequency_domains_(small).gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/File:Helium_neon_laser_spectrum.svg&quot;&gt;Light produced by lasers&lt;/a&gt; is very &lt;em&gt;coherent&lt;/em&gt;: it only emits light in a narrow frequency band. By contrast the &lt;a href=&quot;https://en.wikipedia.org/wiki/File:Solar_Spectrum.png&quot;&gt;light produced by the sun&lt;/a&gt; is &lt;em&gt;full spectrum&lt;/em&gt;, including light in a wide band of frequencies. Having a full spectrum or &lt;a href=&quot;https://en.wikipedia.org/wiki/Color_rendering_index&quot;&gt;high CRI&lt;/a&gt; light source is desirable for distinguishing colors.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.gelighting.com/na/business_lighting/spectral_power_distribution_curves/pop_curves.htm?1&quot;&gt;Light produced by incandescent bulbs&lt;/a&gt; is continuous but heavily-weighted toward the higher (red) frequencies.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/w/index.php?title=Fluorescent_lamp&amp;amp;oldid=593363932#Phosphor_composition&quot;&gt;Light produced by florescent bulbs&lt;/a&gt;&amp;nbsp;(CFLs) varies considerably depending on the type of phosphurs used in the bulb.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; However all CFLs produce &lt;em&gt;discrete&lt;/em&gt; spectra, combining only a few tiny frequency bands. Discrete spectra (and thus CFLs) are not good for color discrimination.&lt;/p&gt;
+
+&lt;h3&gt;Tristimulous Values&lt;/h3&gt;
+
+&lt;p&gt;A color C as perceived by person P can be described by a tristimulus value (S,M,L) corresponding to the level of excitation of the S-cones, M-cones, and L-cones in the eye of person P.&lt;/p&gt;
+
+&lt;p&gt;Cone tristimulus values are ultimately what the brain perceives as color. This is rather interesting because it means that &lt;strong&gt;color is &lt;em&gt;not&lt;/em&gt; an absolute property of light&lt;/strong&gt;. In fact you can have &lt;em&gt;different&lt;/em&gt; light signals that generate the &lt;em&gt;same&lt;/em&gt; tristimulous values (i.e. perceived color) in the same person.&lt;/p&gt;
+
+&lt;h3&gt;Cone Frequency Responses&lt;/h3&gt;
+
+&lt;p&gt;Each type of cone is sensitive to different frequencies of light.&lt;/p&gt;
+
+&lt;p&gt;Among people who see color normally (&amp;ldquo;color-normatives&amp;rdquo;), each type of cone has approximately the same frequency response across individuals:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2014/what-is-color/slide-sml-cones.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To obtain the tristimulus value (S,M,L) for a particular light signal, the light signal in the frequency domain must be multiplied by each cone&amp;rsquo;s frequency response graph (or absorbtance graph), and then integrated over the full domain.&lt;/p&gt;
+
+&lt;h3&gt;Colorblindness&lt;/h3&gt;
+
+&lt;p&gt;A person who is colorblind has cone types whose frequency response graphs differ from color-normatives.&lt;/p&gt;
+
+&lt;p&gt;Research suggests that the most common type of alteration to the typical frequency response graphs is that the M-cone and L-cone graphs are shifted closer together, making it more difficult to distinguish frequencies close to 550nm (i.e. red and green).&lt;/p&gt;
+
+&lt;h2&gt;EnChroma glasses&lt;/h2&gt;
+
+&lt;p&gt;EnChroma glasses make it easier for colorblind persons (and even color-normative persons) to distinguish colors in the presence of bright full-spectrum light (such as sunlight). These glasses work by reflecting a narrow frequency band between the M-cones and L-cones.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;I speculate that this selective reflection strategy improves color differentiation ability by causing higher contrast between the M-cone and L-cone tristimulus values when wide-spectrum reds and greens are viewed through such lenses.&lt;/p&gt;
+
+&lt;p&gt;It has been observed that EnChroma glasses do not improve performance on the Ishihara color vision test. This makes sense to me because I expect that these tests use &lt;em&gt;narrow-spectrum&lt;/em&gt; reds and greens, likely even residing in the frequency band that EnChroma glasses reflect.&lt;/p&gt;
+
+&lt;h2&gt;Could I make an &amp;ldquo;EnChroma computer monitor&amp;rdquo;?&lt;/h2&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Objective:&lt;/strong&gt; Find a way to simulate the effect of Enchroma glasses when applied to a computer monitor.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;I have seen a programs that filter colors on the screen to attain different effects:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://justgetflux.com/&quot;&gt;f.lux&lt;/a&gt;: Simulates daylight and dusk-light by altering ambient color temperature.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.colororacle.org/&quot;&gt;Color Oracle&lt;/a&gt;: Simulates colorblind vision for color-normative individuals.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Very accurate.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Could I make a filtering program like this that would alter onscreen colors in such a way that a colorblind individual could distinguish them more easily? This would be very useful to me since I am colorblind myself and would like to be able to distinguish colors more easily.&lt;/p&gt;
+
+&lt;p&gt;The principal difficulty I foresee is that my computer monitor may not be a full-spectrum light source. Indeed the manual for the DELL U2711 (my monitor) does not have any information about its spectral output. So I would need to measure it with a spectrometer or similar instrument. Unfortunately Amazon only appears to carry simple spectrometers that give spectral lines only, not their intensities or the full spectral graph.&lt;/p&gt;
+
+&lt;h3&gt;Additional References&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/csintro/csintro_intro/csintro_intro.html#//apple_ref/doc/uid/TP30001148&quot;&gt;Apple &gt; Color Management Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/DrawColor/Concepts/AboutColorSpaces.html#//apple_ref/doc/uid/20000758-BBCHACHA&quot;&gt;Apple &gt; Color Programming Topics &gt; Color Spaces&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;General Electric provides data about the display spectra for several of its bulbs: &lt;a href=&quot;http://www.gelighting.com/na/business_lighting/spectral_power_distribution_curves/&quot;&gt;http://www.gelighting.com/na/business_lighting/spectral_power_distribution_curves/&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;The discovery underlying EnChroma glasses is documented in this news report: &lt;a href=&quot;http://abclocal.go.com/kgo/story?section=news/health&amp;amp;id=8964511&quot;&gt;http://abclocal.go.com/kgo/story?section=news/health&amp;amp;id=8964511&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Color Oracle uses research from: &lt;a href=&quot;http://vision.psychol.cam.ac.uk/jdmollon/papers/colourmaps.pdf&quot;&gt;Digital video colourmaps for checking the legibility of displays by dichromats&lt;/a&gt;&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
