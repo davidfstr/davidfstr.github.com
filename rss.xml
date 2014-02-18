@@ -6,14 +6,684 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 08 Feb 2014 11:53:08 -0800</pubDate>
-    <lastBuildDate>Sat, 08 Feb 2014 11:53:08 -0800</lastBuildDate>
+    <pubDate>Mon, 17 Feb 2014 20:42:26 -0800</pubDate>
+    <lastBuildDate>Mon, 17 Feb 2014 20:42:26 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Agda: Second Impressions</title>
+      <link>http://dafoster.net/articles/2014/02/17/agda-second-impressions/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Mon, 17 Feb 2014 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2014/02/17/agda-second-impressions</guid>
+      <description>&lt;p&gt;These are my second impressions of the Agda programming language after writing (or trying to write) a few simple Agda programs.&lt;/p&gt;
+
+&lt;p&gt;If you only want the highlights, just read the &lt;a href=&quot;#executive-summary&quot;&gt;Executive Summary&lt;/a&gt;. If you also want to see supporting material and notes, continue reading further.&lt;/p&gt;
+
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#executive-summary&quot;&gt;Executive Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#programs&quot;&gt;Programs&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#peano&quot;&gt;Peano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#hellonumber&quot;&gt;HelloNumber&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#helloworld&quot;&gt;HelloWorld&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#printtwothings&quot;&gt;PrintTwoThings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#echoinput&quot;&gt;EchoInput&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#promptforname&quot;&gt;PromptForName&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#echoinputreverse&quot;&gt;EchoInputReverse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#parseint&quot;&gt;ParseInt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;executive-summary&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Executive Summary&lt;/h2&gt;
+
+&lt;p&gt;Agda is simultaneously touted as (1) a dependently-typed &lt;em&gt;programming language&lt;/em&gt; and (2) a proof assistant. I find that Agda is a considerably better proof assistant than it is a programming language at this time.&lt;/p&gt;
+
+&lt;p&gt;A few issues I found when trying to use Agda as a programming language to get real work done:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I/O is painful:
+
+&lt;ul&gt;
+&lt;li&gt;The Agda standard library lacks any functions for reading from standard input. Clearly the ability to write basic command-line programs is not a priority for the Agda library implementors.
+
+&lt;ul&gt;
+&lt;li&gt;You must implement such functions yourself as native functions that call into Haskell.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The I/O that does exist is based on Haskell&amp;rsquo;s I/O monad, which by itself is difficult enough to learn.&lt;/li&gt;
+&lt;li&gt;It appears that one has to learn what &lt;a href=&quot;http://adam.chlipala.net/cpdt/html/Coinductive.html&quot;&gt;coinduction&lt;/a&gt; is in order to use Agda&amp;rsquo;s native &lt;code&gt;IO&lt;/code&gt; module. Yet another abstract academic construct.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I can work around this by restricting myself to the &lt;code&gt;IO.Primitive&lt;/code&gt; module. This module directly mirrors Haskell&amp;rsquo;s IO system and thus only requires knowledge of monads.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Some basic numerical operations are very inefficient.
+
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;div&lt;/code&gt; and &lt;code&gt;mod&lt;/code&gt; operators for the default implementation of natural numbers (&lt;code&gt;Data.Nat&lt;/code&gt;) run in &lt;em&gt;linear&lt;/em&gt; time relative to the magnitude of the divisor.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Consequently it takes about &lt;strong&gt;16 seconds&lt;/strong&gt; to print the number 4000 because of division inefficiency when formatting the number for display.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;At least &lt;code&gt;≤?&lt;/code&gt;, &lt;code&gt;≟&lt;/code&gt;, &lt;code&gt;+&lt;/code&gt;, and &lt;code&gt;*&lt;/code&gt; appear to be logarithmic- or constant-time.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &amp;ldquo;Hello World&amp;rdquo; program compiles to a 14 MB binary. Unacceptably large.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &amp;ldquo;Hello World&amp;rdquo; program takes 3 seconds to compile. Unacceptably slow.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;It takes quite a lot of effort to get a basic environment running. You have to:
+
+&lt;ul&gt;
+&lt;li&gt;Install Agda.&lt;/li&gt;
+&lt;li&gt;Install the Agda standard library separately.&lt;/li&gt;
+&lt;li&gt;Compile the Agda IO.FFI module manually.&lt;/li&gt;
+&lt;li&gt;Install and learn Emacs.&lt;/li&gt;
+&lt;li&gt;Configure Emacs to work with Agda.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/01/24/agda-notes-and-evaluation/&quot;&gt;Agda: First Impressions&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Previous article in this series.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;programs&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Programs&lt;/h2&gt;
+
+&lt;p&gt;The following are all the simple programs I&amp;rsquo;ve written with Agda so far.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;peano&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Peano&lt;/h3&gt;
+
+&lt;p&gt;A manual reimplementation of natural numbers (i.e. non-negative integers) just so that I can get my Agda environment up and running.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;Peano.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module Peano where
+
+data ℕ : Set where
+  zero : ℕ
+  suc : ℕ → ℕ
+
+_+_ : ℕ → ℕ → ℕ
+zero + zero  = zero
+zero + n     = n
+(suc n) + n' = suc (n + n')
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;I resent being forced to use Emacs as opposed to my favorite text editor.
+
+&lt;ul&gt;
+&lt;li&gt;Particularly since the installation instructions are not bulletproof.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;hellonumber&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;HelloNumber&lt;/h3&gt;
+
+&lt;p&gt;A program that prints the number 5.&lt;/p&gt;
+
+&lt;p&gt;No more reimplementing silly stuff like numbers. Let&amp;rsquo;s use the standard library.&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;HelloNumber.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module HelloNumber where
+
+-- Agda standard library 0.7
+open import Data.Nat
+open import Data.Nat.Show using (show)
+open import Data.Unit using (⊤)
+open import IO
+import IO.Primitive as Prim
+
+five : ℕ
+five = 5
+
+main' : IO ⊤
+main' = putStrLn (show five)
+
+main : Prim.IO ⊤
+main = run main'
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href=&quot;https://github.com/agda/agda-stdlib/&quot;&gt;Agda standard library&lt;/a&gt; is not installed with Agda by default. WTF?
+
+&lt;ul&gt;
+&lt;li&gt;It also has not yet reached v1.0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Standard library IO appears to be defined equivalently to Haskell&amp;rsquo;s IO monad.&lt;/li&gt;
+&lt;li&gt;I am amused that compiling the IO module also implies compiling the entirety of Algebra.&lt;/li&gt;
+&lt;li&gt;I&amp;rsquo;m sad that declaration order in Agda matters. In particular items must be declared before they can be used.
+
+&lt;ul&gt;
+&lt;li&gt;This forces me to write programs in the annoying bottom-to-top order, requiring lots of extra up-down eye scanning for large programs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Surprise! The main function doesn&amp;rsquo;t have type &lt;code&gt;IO ⊤&lt;/code&gt; (which would be equivalent to the Haskell &lt;code&gt;IO ()&lt;/code&gt;). Instead it has type &lt;code&gt;Prim.IO ⊤&lt;/code&gt; which can be obtained by passing an &lt;code&gt;IO ⊤&lt;/code&gt; through the &lt;code&gt;IO.run&lt;/code&gt; function.&lt;/li&gt;
+&lt;li&gt;Even after installing the standard library, I have to manually compile the IO.FFI library to perform basic IO. *grumble*&lt;/li&gt;
+&lt;li&gt;My test program that just prints the number 5 takes up 14 MB. What a waste of space&amp;hellip;
+
+&lt;ul&gt;
+&lt;li&gt;I assume those 14 MB are primarily the bulk added by the standard library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;helloworld&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;HelloWorld&lt;/h3&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s try printing strings, which should allow writing the standard &amp;ldquo;Hello world&amp;rdquo; program.&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;HelloWorld.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module HelloWorld where
+
+-- Agda standard library 0.7
+open import Data.String
+open import Data.Unit using (⊤)
+open import IO
+import IO.Primitive as Prim
+
+greeting : String
+greeting = &quot;Hello World&quot;
+
+main' : IO ⊤
+main' = putStrLn greeting
+
+main : Prim.IO ⊤
+main = run main'
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;It takes 3 seconds to type-check my Hello World program when compiling to an executable. That&amp;rsquo;s really slow.
+
+&lt;ul&gt;
+&lt;li&gt;I hope those 3 seconds are just fixed overhead and not proportional to the size of the program.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;printtwothings&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;PrintTwoThings&lt;/h3&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s try stringing multiple IO actions together.&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;PrintTwoThings.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module PrintTwoThings where
+
+-- Agda standard library 0.7
+open import Coinduction using (♯_)
+open import Data.String
+open import Data.Unit using (⊤)
+open import IO
+import IO.Primitive as Prim
+
+doThis : IO ⊤
+doThis = putStr &quot;Everybody say coinductive deep embedding! &quot;
+
+thenThat : IO ⊤
+thenThat = putStrLn &quot;Coinductive deep embedding!&quot;
+
+main' : IO ⊤
+main' = (♯ doThis) &amp;gt;&amp;gt; (♯ thenThat)
+
+main : Prim.IO ⊤
+main = run main'
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Surprise! The &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; operator used to join two IO actions isn&amp;rsquo;t &lt;code&gt;IO A -&amp;gt; IO B -&amp;gt; IO B&lt;/code&gt;. Rather it is &lt;code&gt;∞ (IO A) -&amp;gt; ∞ (IO B) -&amp;gt; IO B&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;This means I need to wrap IO actions inside the &lt;code&gt;∞&lt;/code&gt; type before I can chain them together.&lt;/li&gt;
+&lt;li&gt;What is the &lt;code&gt;∞&lt;/code&gt; type? No idea. It has something to do with &amp;ldquo;coinduction&amp;rdquo;, which Wikipedia failed to explain to me coherently.
+
+&lt;ul&gt;
+&lt;li&gt;Information &lt;a href=&quot;http://people.inf.elte.hu/divip/AgdaTutorial/Revise.Coinduction.html&quot;&gt;here&lt;/a&gt; suggests that a &lt;code&gt;∞ A&lt;/code&gt; represents a lazy unevaluated computation of type &lt;code&gt;A&lt;/code&gt; that might not terminate when it is actually evaluated.&lt;/li&gt;
+&lt;li&gt;Representing the possibility of nontermination explicitly is probably required since Agda normally requires all of its function definitions to provably terminate.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;According to the &lt;code&gt;Coinduction&lt;/code&gt; library, I can make a &lt;code&gt;∞&lt;/code&gt; using the &lt;code&gt;♯&lt;/code&gt; operator which takes a value of any type &lt;code&gt;A&lt;/code&gt; and makes a &lt;code&gt;∞ A&lt;/code&gt; out of it.&lt;/li&gt;
+&lt;li&gt;Therefore instead of &lt;code&gt;action1 &amp;gt;&amp;gt; action2&lt;/code&gt; I need &lt;code&gt;♯ action1 &amp;gt;&amp;gt; ♯ action2&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!--
+#### Interlude: Agda evaluates strictly?
+
+It appears that Agda performs strict evaluation by default. Thus the introducion of the &quot;coinductive&quot; type `∞` to represent potentially infinite computations.
+
+However if this is the case then calling out to Haskell functions through the foreign function interface could get weird since Haskell *is* a lazily evaluation language.
+--&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;echoinput&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;EchoInput&lt;/h3&gt;
+
+&lt;p&gt;Read a line from standard input. Write it back to the screen.&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;EchoInput.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module EchoInput where
+
+-- Agda standard library 0.7
+open import Data.String
+open import Foreign.Haskell using (Unit)
+open import IO.Primitive
+
+postulate
+  getLine : IO Costring
+
+{-# COMPILED getLine getLine #-}
+
+doThis : IO Costring
+doThis = getLine
+
+thenThat : Costring → IO Unit
+thenThat = λ s → putStrLn s
+
+main : IO Unit
+main = doThis &amp;gt;&amp;gt;= thenThat
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;There is no function in the standard library to read from standard input. Nor is there a reference to &lt;code&gt;stdin&lt;/code&gt; itself. Unbelievable.
+
+&lt;ul&gt;
+&lt;li&gt;I can &lt;a href=&quot;http://people.inf.elte.hu/divip/AgdaTutorial/Revise.IO.html&quot;&gt;define getLine manually&lt;/a&gt; using the foreign function interface. But I really shouldn&amp;rsquo;t have to define such a simple function. This should be in the standard library&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;When writing native IO functions it&amp;rsquo;s a lot easier to directly use Agda&amp;rsquo;s &lt;code&gt;Primitive.IO&lt;/code&gt; module instead of the regular &lt;code&gt;IO&lt;/code&gt; module. I no longer need to use &lt;code&gt;∞&lt;/code&gt; or &lt;code&gt;♯&lt;/code&gt; either, which is nice.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;promptforname&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;PromptForName&lt;/h3&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;PromptForName.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module PromptForName where
+
+-- Agda standard library 0.7
+open import Data.String
+open import Foreign.Haskell using (Unit)
+open import IO.Primitive
+
+postulate
+  getLine : IO Costring
+
+{-# COMPILED getLine getLine #-}
+
+main : IO Unit
+main = 
+  putStrLn (toCostring &quot;What's your name?&quot;) &amp;gt;&amp;gt;= (λ _ → 
+  getLine &amp;gt;&amp;gt;= (λ s → 
+  putStr (toCostring &quot;Hello &quot;) &amp;gt;&amp;gt;= (λ _ → 
+  putStrLn s)))
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Surprise! &lt;code&gt;Primitive.IO&lt;/code&gt; defines the &lt;code&gt;&amp;gt;&amp;gt;=&lt;/code&gt; operator but not &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;. Asymmetric with the regular &lt;code&gt;IO&lt;/code&gt; module.&lt;/li&gt;
+&lt;li&gt;Native IO functions require &lt;code&gt;Costring&lt;/code&gt; objects. So a string literal has to be passed to &lt;code&gt;toCostring&lt;/code&gt; to be used.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;echoinputreverse&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;EchoInputReverse&lt;/h3&gt;
+
+&lt;p&gt;Read a line from standard input. Reverse it in Agda. Write the reversed line back to the screen.&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;EchoInputReverse.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module EchoInputReverse where
+
+-- Agda standard library 0.7
+open import Data.List using (reverse)
+open import Data.String
+open import Foreign.Haskell using (Unit)
+open import IO.Primitive
+
+postulate
+  getLine : IO String
+
+{-# COMPILED getLine getLine #-}
+
+main : IO Unit
+main = 
+  getLine &amp;gt;&amp;gt;= (λ s → 
+  return (toCostring (fromList (reverse (toList s)))) &amp;gt;&amp;gt;= (λ s' → 
+  putStrLn s'))
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Problem: The line from standard input is a &lt;code&gt;Costring&lt;/code&gt;. I can&amp;rsquo;t reverse it or do anything useful with it without first converting it to a &lt;code&gt;String&lt;/code&gt;. But there is no function in the standard library to do this conversion, even as a runtime cast.&lt;/li&gt;
+&lt;li&gt;Surprise workaround: Even though the Haskell type &lt;code&gt;String&lt;/code&gt; maps to the Agda type &lt;code&gt;Costring&lt;/code&gt; in the general case, it is still possible to postulate that it maps directly to the Agda type &lt;code&gt;String&lt;/code&gt; for certain functions where you can assert that the string won&amp;rsquo;t be infinite.
+
+&lt;ul&gt;
+&lt;li&gt;So the Agda FFI must be capable of performing implicit coercion between the native &lt;code&gt;Costring&lt;/code&gt; and &lt;code&gt;String&lt;/code&gt; datatypes. This is &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/agda.php?n=Docs.FFI&quot;&gt;not documented&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;This approach has the disadvantage that it marks the result of &lt;code&gt;getLine&lt;/code&gt; as being a &lt;em&gt;finite&lt;/em&gt; string when it may not in fact be. See discussion at &lt;a href=&quot;http://stackoverflow.com/questions/21808186/reading-a-line-of-standard-input-as-a-string-instead-of-a-costring/&quot;&gt;StackOverflow&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;parseint&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;ParseInt&lt;/h3&gt;
+
+&lt;p&gt;Prompt the user for a number, parse it, and output it. If an invalid number was input, output zero.&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+
+    &lt;code&gt;ParseInt.agda&lt;/code&gt;
+
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+
+    &lt;pre&gt;&lt;code&gt;module ParseInt where
+
+-- Agda standard library 0.7
+open import Data.Char
+open import Data.List
+open import Data.Maybe
+open import Data.Nat
+open import Data.Nat.Show
+open import Data.String
+open import Foreign.Haskell using (Unit)
+open import IO.Primitive
+
+postulate
+  getLine : IO String
+
+{-# COMPILED getLine getLine #-}
+
+parseInt : String → Maybe ℕ
+parseInt s = 
+  then? (unwrap (parseDigits s)) (λ s' → 
+  just (digitsToℕ s'))
+  where
+    parseDigits : String → List (Maybe ℕ)
+    parseDigits s = map toDigit (toList s) where
+      toDigit : Char → Maybe ℕ
+      toDigit '0' = just 0
+      toDigit '1' = just 1
+      toDigit '2' = just 2
+      toDigit '3' = just 3
+      toDigit '4' = just 4
+      toDigit '5' = just 5
+      toDigit '6' = just 6
+      toDigit '7' = just 7
+      toDigit '8' = just 8
+      toDigit '9' = just 9
+      toDigit _   = nothing
+
+    -- TODO: There's probably a standard-library function that does this
+    --       but I can't find it.
+    unwrap : List (Maybe ℕ) → Maybe (List ℕ)
+    unwrap xs = unwrap' (just []) xs where
+      unwrap' : Maybe (List ℕ) → List (Maybe ℕ) → Maybe (List ℕ)
+      unwrap' (just xs) (just y ∷ ys) = unwrap' (just (Data.List._++_ xs [ y ])) ys  -- makes unwrap O(N^2)!
+      unwrap' (just xs) (nothing ∷ _) = nothing
+      unwrap' (just xs) []            = just xs
+      unwrap' nothing   _             = nothing
+
+    -- TODO: Look for a monadic _&amp;gt;&amp;gt;=_ that does the same thing
+    then? : {A : Set} → {B : Set} → Maybe A → (A → Maybe B) → Maybe B
+    then? nothing _ = nothing
+    then? (just r1) op2 = op2 r1
+
+    digitsToℕ : List ℕ → ℕ
+    digitsToℕ xs = digitsToℕ' (reverse xs) where
+      digitsToℕ' : List ℕ → ℕ
+      digitsToℕ' []       = 0
+      digitsToℕ' (x ∷ xs) = x + (10 * (digitsToℕ' xs))
+
+ℕ? : Maybe ℕ -&amp;gt; ℕ
+ℕ? (just x) = x
+ℕ? nothing  = 0
+
+main : IO Unit
+main = 
+  getLine &amp;gt;&amp;gt;= (λ s → 
+  return (show (ℕ? (parseInt s))) &amp;gt;&amp;gt;= (λ s' → 
+  putStrLn (toCostring s')))
+&lt;/code&gt;&lt;/pre&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Agda type checking errors are really hard to read:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Actual:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List Char !=&amp;lt; _A_10 s → _B_11 s of type Set
+when checking that the expression toList s has type
+_A_10 s → _B_11 s
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Better:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Expected type (A → B) but found type (List Char).
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Agda&amp;rsquo;s &lt;code&gt;show&lt;/code&gt; function that converts a natural number to a string has quadratic performance!
+
+&lt;ul&gt;
+&lt;li&gt;It takes 0.3s to print 1000, 2.2s to print 2000, 6.9s to print 3000, and 15.9s to print 4000.&lt;/li&gt;
+&lt;li&gt;This is crazy! It probably means that at least one of {&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, &lt;code&gt;mod&lt;/code&gt;} is not constant time. Not cool.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Indeed the &lt;code&gt;_divMod_&lt;/code&gt; operator runs in &lt;em&gt;linear&lt;/em&gt; time with respect to the magnitude of the dividend. Madness.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Surprise! Equality comparison between two numbers is not &lt;code&gt;=&lt;/code&gt; or &lt;code&gt;==&lt;/code&gt; but rather &lt;code&gt;≟&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;It doesn&amp;rsquo;t return a &lt;code&gt;Bool&lt;/code&gt; either. Instead it returns a fancy boolean called a &lt;code&gt;Decidable&lt;/code&gt; with an embedded equality proof.&lt;/li&gt;
+&lt;li&gt;A &lt;code&gt;Decidable&lt;/code&gt; can be converted to a regular boolean with the &lt;code&gt;⌊_⌋&lt;/code&gt; operator. Weird.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I suspect that (arbitrary precision) natural numbers from &lt;code&gt;Data.Nat&lt;/code&gt; take &lt;em&gt;linear&lt;/em&gt; memory to represent rather than &lt;em&gt;logarithmic&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;There is another module called &lt;code&gt;Data.Bin&lt;/code&gt; which provides a representation of natural numbers which uses an efficient binary representation. But most of the standard library does not use it.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;I found configuring Emacs for Agda to be nontrivial. I had to learn enough Emacs Lisp to debug my &lt;code&gt;.emacs&lt;/code&gt; configuration file.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Kudos to &lt;a href=&quot;https://github.com/liamoc/learn-you-an-agda/blob/master/pages/peano.md&quot;&gt;Learn You an Agda &gt; Hello, Peano&lt;/a&gt; for helping me implement this first Agda program.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -197,6 +867,18 @@ and not ready for prime time. In practice this will scare away users.&lt;/li&gt;
 
 &lt;p&gt;In the meantime, as I mentioned before, I think Agda is still worthy of investigation for expanding one&amp;rsquo;s knowledge of what is possible in a powerful type system. In fact, any language where you can do something like write a sorting function that both works and proves itself to be a correct implementation in the same stroke deserves a closer look.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/02/17/agda-second-impressions/&quot;&gt;Agda: Second Impressions&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Next article in this series.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
 &lt;p&gt;&lt;a id=&quot;getting-started&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Getting Started&lt;/h2&gt;
@@ -341,7 +1023,7 @@ details. Uses Agda as a concrete language to work with.&lt;/p&gt;&lt;/li&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;&lt;p&gt;I forget the specific tutorial where I first recognized that you could write this kind of provably correct sorting function. You end up having a sorting function with a signature like &lt;code&gt;sort : (inList : List a) -&amp;gt; (outList : List a, IsSorted outList, EqElements inList outList)&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;The &lt;code&gt;IsSorted outList&lt;/code&gt; type represents proofs that &lt;code&gt;outList&lt;/code&gt; is sorted. Thus the existence of a member of the &lt;code&gt;IsSorted outList&lt;/code&gt; type proves that &lt;code&gt;outList&lt;/code&gt; is sorted. Similarly the &lt;code&gt;EqElements inList outList&lt;/code&gt; is a proof type where &lt;code&gt;inList&lt;/code&gt; and &lt;code&gt;outList&lt;/code&gt; are proven to have equal elements.&lt;/p&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;p&gt;I first recognized that you could write this kind of provably correct sorting function when I read &lt;a href=&quot;http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/intertheodraft1.pdf&quot;&gt;these slides&lt;/a&gt; at &lt;a href=&quot;http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/interactiveTheoremProvingForAgdaUsers.html&quot;&gt;swan.ac.uk&lt;/a&gt;. You end up having a sorting function with a signature like &lt;code&gt;sort : (inList : List a) -&amp;gt; (outList : List a, IsSorted outList, EqElements inList outList)&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;The &lt;code&gt;IsSorted outList&lt;/code&gt; type represents proofs that &lt;code&gt;outList&lt;/code&gt; is sorted. Thus the existence of a member of the &lt;code&gt;IsSorted outList&lt;/code&gt; type proves that &lt;code&gt;outList&lt;/code&gt; is sorted. Similarly the &lt;code&gt;EqElements inList outList&lt;/code&gt; is a proof type where &lt;code&gt;inList&lt;/code&gt; and &lt;code&gt;outList&lt;/code&gt; are proven to have equal elements.&lt;/p&gt;&lt;p&gt;See also the &lt;a href=&quot;http://mazzo.li/posts/AgdaSort.html&quot;&gt;dedicated article at mazzo.li&lt;/a&gt;&lt;/p&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;None of the people who currently release Agda are running Windows according to the latest &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII&quot;&gt;Agda Implementors' Meeting&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;

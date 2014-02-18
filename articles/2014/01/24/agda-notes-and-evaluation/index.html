@@ -310,7 +310,7 @@
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>30</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>31</sup></a></span>
         
       </span>
     </div>
@@ -398,6 +398,18 @@ and not ready for prime time. In practice this will scare away users.</li>
 <p>I expect that many of these shortcomings will be addressed over time.</p>
 
 <p>In the meantime, as I mentioned before, I think Agda is still worthy of investigation for expanding one&rsquo;s knowledge of what is possible in a powerful type system. In fact, any language where you can do something like write a sorting function that both works and proves itself to be a correct implementation in the same stroke deserves a closer look.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="/articles/2014/02/17/agda-second-impressions/">Agda: Second Impressions</a>
+
+<ul>
+<li><em>Next article in this series.</em></li>
+</ul>
+</li>
+</ul>
+
 
 <p><a id="getting-started"></a></p>
 
@@ -543,7 +555,7 @@ details. Uses Agda as a concrete language to work with.</p></li>
 <hr/>
 <ol>
 <li id="fn:1">
-<p><p>I forget the specific tutorial where I first recognized that you could write this kind of provably correct sorting function. You end up having a sorting function with a signature like <code>sort : (inList : List a) -&gt; (outList : List a, IsSorted outList, EqElements inList outList)</code>.</p> <p>The <code>IsSorted outList</code> type represents proofs that <code>outList</code> is sorted. Thus the existence of a member of the <code>IsSorted outList</code> type proves that <code>outList</code> is sorted. Similarly the <code>EqElements inList outList</code> is a proof type where <code>inList</code> and <code>outList</code> are proven to have equal elements.</p><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p><p>I first recognized that you could write this kind of provably correct sorting function when I read <a href="http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/intertheodraft1.pdf">these slides</a> at <a href="http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/interactiveTheoremProvingForAgdaUsers.html">swan.ac.uk</a>. You end up having a sorting function with a signature like <code>sort : (inList : List a) -&gt; (outList : List a, IsSorted outList, EqElements inList outList)</code>.</p> <p>The <code>IsSorted outList</code> type represents proofs that <code>outList</code> is sorted. Thus the existence of a member of the <code>IsSorted outList</code> type proves that <code>outList</code> is sorted. Similarly the <code>EqElements inList outList</code> is a proof type where <code>inList</code> and <code>outList</code> are proven to have equal elements.</p><p>See also the <a href="http://mazzo.li/posts/AgdaSort.html">dedicated article at mazzo.li</a></p><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
 <p>None of the people who currently release Agda are running Windows according to the latest <a href="http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII">Agda Implementors' Meeting</a>.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 </ol>
@@ -568,7 +580,7 @@ details. Uses Agda as a concrete language to work with.</p></li>
         
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>30</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>31</sup></a></li>
     
       
       
