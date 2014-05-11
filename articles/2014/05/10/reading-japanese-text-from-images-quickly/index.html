@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Introducing p4status: A status command for Perforce | DaFoster</title>
+    <title>Reading Japanese text from images | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -40,6 +40,19 @@
     <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
     
     
+    
+      <style>
+        
+.bad { background-color: pink; }
+.good { background-color: MediumSeaGreen; }
+
+/* Make kanji big so that they are legible */
+.kanji { font-size: 28px; }
+
+/* Extra spacing between bulleted list items to separate large kanji characters */
+.post ul li { line-height: 36px; }
+
+      </style>
     
 
     <!-- Le fav and touch icons -->
@@ -304,107 +317,133 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Introducing p4status: A status command for Perforce</h1>
+    <h1>Reading Japanese text from images</h1>
     <div class="post-metadata">
-      Mar 16, 2013 &ndash; Filed under: 
+      May 10, 2014 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>31</sup></a></span>
+          <span><a href="/articles/topics/#Offtopic">Offtopic <sup>3</sup></a></span>
         
       </span>
     </div>
     
-    <p><strong>p4status</strong> works like <code>git status</code> (or <code>svn status</code>), but works in Perforce.</p>
+    <p>I&rsquo;ve been intensively studying Japanese recently<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and something I have to do quite a lot is look up Japanese words that I see in images. Particularly words that involve a lot of kanji characters.</p>
 
-<p>It will list changelist files and locally modified files that haven&rsquo;t been added to any changelist (including unadded files) in a readable format.</p>
+<p>Last evening I hacked together a program that allows me to select arbitrary Japanese from an image on my screen, performs optical character recognition (OCR) on it, and outputs it as regular Unicode text. This regular text can then be looked up in an online Japanese-English dictionary, such as the excellent <a href="http://jisho.org/">jisho.org</a>.</p>
 
-<div style="padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;">
-    <p style="font-weight: bold; color: #487858;">
-        Note
-    </p>
-    <p style="margin-bottom: 0em;">
-        The 2012 version of Perforce has an official
-        <b>p4 status</b> command. However this command is only available if 
-        your corporate Perforce server has been upgraded to 2012. If your 
-        company, like mine, has not upgraded their server, this script will 
-        make your life easier.
-    </p>
-</div>
+<p>Let&rsquo;s take the following sentence:</p>
+
+<p><img src="/assets/2014/kanji.png" alt="Japanese sentence with lots of kanji" /></p>
+
+<p>The first word in that sentence already has 4 kanji characters, which would normally take a long time to look up individually.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<p>With my program, I can take a screenshot of this sentence as it appears on my screen and the program will immediately output the following text:</p>
+
+<ul>
+<li><p class="kanji">痴話喧嘩は<span class="bad">維</span>続中か</p></li>
+</ul>
 
 
-<h3>Example</h3>
+<p>Then I can lookup the words as usual from jisho.org&rsquo;s <a href="http://jisho.org/words/">Words</a> search:</p>
 
-<pre><code>[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
-# On changelist 154055
+<ul>
+<li><span class="kanji">痴話喧嘩</span> = lover&rsquo;s quarrel</li>
+<li><span class="kanji"><span class="bad">維</span>続</span> = ?</li>
+<li><span class="kanji">中</span> = inside; in (a space or building)</li>
+</ul>
+
+
+<p>Character recognition still isn&rsquo;t perfect, as demonstrated by the character marked in <span class="bad">pink</span> above, which wasn&rsquo;t decoded correctly.</p>
+
+<p>Nevertheless even having a partially correct character is useful, as I can still use jisho.org&rsquo;s <a href="http://jisho.org/kanji/">Kanji</a> search to break it down into its component radicals:</p>
+
+<ul>
+<li><span class="kanji"><span class="bad">維</span> = <span class="good">小</span> + <span class="good">幺</span> + <span class="good">糸</span> + <span class="bad">隹</span></span></li>
+</ul>
+
+
+<p>And then use a few of the <em>correct</em> radicals in the <a href="http://jisho.org/kanji/radicals/">Kanji by Radicals</a> search to quickly find the correct character:</p>
+
+<ul>
+<li><span class="kanji"><span class="good">継</span> = <span class="good">小</span> + <span class="good">幺</span> + <span class="good">糸</span> + ｜ + 米</span></li>
+</ul>
+
+
+<p>And so the original word can now be looked up correctly:</p>
+
+<ul>
+<li><span class="kanji"><span class="good">継</span>続</span> = continuation</li>
+</ul>
+
+
+<h2>How it Works</h2>
+
+<p>The program operates by waiting for you to take a screenshot using Command-Shift-4 (on the Mac), observing the new screenshot appearing on the desktop, and feeding it to the <a href="https://code.google.com/p/nhocr/">nhocr</a> tool, which reads the Japanese text inside the screenshot and prints it.</p>
+
+<h2>Source Code</h2>
+
+<pre><code>#!/usr/bin/env python
 # 
-# Changes to be committed in changelist default:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
+# nhocr_desktop.py
+#
+# Waits for screenshots to appear on the desktop,
+# scans them for Japanese text using OCR,
+# and prints out the text that was decoded from the image.
 # 
-#       deleted:    server/apps/setupfx/splunkd/default/extract.conf
+# This script is useful for rapidly converting on-screen Japanese
+# text to actual text that can be looked up.
+#
+# Prerequisites:
+#   * nhocr
+#   * ImageMagick
+#   * Python 2.7 - maybe 2.6 okay too
+#   * watchdog
 # 
-# Changes to be committed in changelist 154076:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
+# @author David Foster
 # 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW.conf
-#       modified:   server/apps/setupfx/splunkd/default/inputs.conf
-# 
-# Changes not staged for commit:
-#   (use "p4 add/edit/delete &lt;file&gt;..." to update what will be committed)
-#   (use "p4 sync -f &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW2.conf
-# 
+
+import os.path
+import subprocess
+import time
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+class ScreenshotFileCreationEventHandler(FileSystemEventHandler):
+    def on_created(self, event):
+        if not event.is_directory:
+            if 'Screen Shot' in os.path.basename(event.src_path):
+                # Convert screenshot to PPM format with ImageMagick
+                subprocess.check_call([
+                    'convert', event.src_path, '/tmp/line.ppm'])
+
+                line = subprocess.check_output([
+                    'nhocr', '-line', '/tmp/line.ppm', '-o', '-'])
+                print line.decode('utf-8'),
+
+event_handler = ScreenshotFileCreationEventHandler()
+
+observer = Observer()
+observer.schedule(event_handler, '/Users/me/Desktop', recursive=False)
+observer.start()
+
+print 'Waiting for screenshots on the desktop to analyze...'
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    observer.stop()
+observer.join()
 </code></pre>
-
-<h3>Installation</h3>
-
-<ul>
-<li>Download to your local <code>bin</code> directory:
-<a href="https://github.com/davidfstr/dotfiles/blob/master/bin/p4status">https://github.com/davidfstr/dotfiles/blob/master/bin/p4status</a></li>
-<li>Mark as executable with <code>chmod a+x p4status</code></li>
-</ul>
-
-
-<h3>Usage</h3>
-
-<ul>
-<li><code>cd</code> to the primary directory that you&rsquo;ll be working under.</li>
-<li>Run <code>p4status</code>.</li>
-</ul>
-
-
-<h3>Limitations</h3>
-
-<ul>
-<li><p>Only detects unstaged files under the directory in which the command is run. Therefore it is best to reserve a terminal window that is <code>cd</code>-ed to the correct place where this command can be run safely.</p></li>
-<li><p>This command is too slow to run from the root of very large branches.</p></li>
-</ul>
-
-
-<h3>Alternatives</h3>
-
-<ul>
-<li>Use the excellent Git-to-Perforce bridge, <a href="http://git-scm.com/docs/git-p4">git-p4</a>.
-
-<ul>
-<li>This allows you to work with your Perforce repository as if it were a Git repository. And you can use Git&rsquo;s very fast <code>git status</code> command.</li>
-</ul>
-</li>
-<li>Convince your Perforce server administrator to upgrade to the 2012 version. This may take some time, depending on the size of your company.</li>
-</ul>
-
-
-<h3><em>Related Projects</em></h3>
-
-<ul>
-<li><a href="https://github.com/davidfstr/dotfiles">dotfiles</a>
-
-<ul>
-<li><em>My command-line shortcuts, including several for working with Git, particularly in an OS X environment.</em></li>
-</ul>
-</li>
-</ul>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>All this studying is one reason I haven&rsquo;t posted in a while.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Individual kanji can be looked up by their component radicals at jisho.org&rsquo;s <a href="http://jisho.org/kanji/radicals/">Kanji by Radicals</a> search. Unfortunately it can take a few minutes to lookup each character.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 
   </div>
@@ -421,11 +460,9 @@
       
       
         
-          
-        
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>31</sup></a></li>
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>31</sup></a></li>
     
       
       
@@ -459,9 +496,11 @@
       
       
         
+          
+        
       
       
-      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>3</sup></a></li>
+      <li id="Offtopic-topic" class="active"><a href="/articles/topics/#Offtopic">Offtopic <sup>3</sup></a></li>
     
       
       
@@ -490,11 +529,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/03/10/killer-apps-for-software-platforms/" title="Killer apps for software platforms">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2014/02/17/agda-second-impressions/" title="Agda: Second Impressions">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/" title="Migrating from BBEdit to Sublime Text">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

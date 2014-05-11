@@ -23,6 +23,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly/
 http://dafoster.net/articles/2014/02/17/agda-second-impressions/
 http://dafoster.net/articles/2014/02/02/what-is-color/
 http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation/

@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2014-02-17T20:42:26-08:00</updated>
+ <updated>2014-05-10T23:48:47-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,136 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly</id>
+   <title>Reading Japanese text from images</title>
+   <published>2014-05-10T00:00:00-07:00</published>
+   <updated>2014-05-10T00:00:00-07:00</updated>
+   
+     <category term="Offtopic"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I&amp;rsquo;ve been intensively studying Japanese recently&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, and something I have to do quite a lot is look up Japanese words that I see in images. Particularly words that involve a lot of kanji characters.&lt;/p&gt;
+
+&lt;p&gt;Last evening I hacked together a program that allows me to select arbitrary Japanese from an image on my screen, performs optical character recognition (OCR) on it, and outputs it as regular Unicode text. This regular text can then be looked up in an online Japanese-English dictionary, such as the excellent &lt;a href=&quot;http://jisho.org/&quot;&gt;jisho.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take the following sentence:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2014/kanji.png&quot; alt=&quot;Japanese sentence with lots of kanji&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first word in that sentence already has 4 kanji characters, which would normally take a long time to look up individually.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;With my program, I can take a screenshot of this sentence as it appears on my screen and the program will immediately output the following text:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p class=&quot;kanji&quot;&gt;痴話喧嘩は&lt;span class=&quot;bad&quot;&gt;維&lt;/span&gt;続中か&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Then I can lookup the words as usual from jisho.org&amp;rsquo;s &lt;a href=&quot;http://jisho.org/words/&quot;&gt;Words&lt;/a&gt; search:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;kanji&quot;&gt;痴話喧嘩&lt;/span&gt; = lover&amp;rsquo;s quarrel&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;kanji&quot;&gt;&lt;span class=&quot;bad&quot;&gt;維&lt;/span&gt;続&lt;/span&gt; = ?&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;kanji&quot;&gt;中&lt;/span&gt; = inside; in (a space or building)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Character recognition still isn&amp;rsquo;t perfect, as demonstrated by the character marked in &lt;span class=&quot;bad&quot;&gt;pink&lt;/span&gt; above, which wasn&amp;rsquo;t decoded correctly.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless even having a partially correct character is useful, as I can still use jisho.org&amp;rsquo;s &lt;a href=&quot;http://jisho.org/kanji/&quot;&gt;Kanji&lt;/a&gt; search to break it down into its component radicals:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;kanji&quot;&gt;&lt;span class=&quot;bad&quot;&gt;維&lt;/span&gt; = &lt;span class=&quot;good&quot;&gt;小&lt;/span&gt; + &lt;span class=&quot;good&quot;&gt;幺&lt;/span&gt; + &lt;span class=&quot;good&quot;&gt;糸&lt;/span&gt; + &lt;span class=&quot;bad&quot;&gt;隹&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And then use a few of the &lt;em&gt;correct&lt;/em&gt; radicals in the &lt;a href=&quot;http://jisho.org/kanji/radicals/&quot;&gt;Kanji by Radicals&lt;/a&gt; search to quickly find the correct character:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;kanji&quot;&gt;&lt;span class=&quot;good&quot;&gt;継&lt;/span&gt; = &lt;span class=&quot;good&quot;&gt;小&lt;/span&gt; + &lt;span class=&quot;good&quot;&gt;幺&lt;/span&gt; + &lt;span class=&quot;good&quot;&gt;糸&lt;/span&gt; + ｜ + 米&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And so the original word can now be looked up correctly:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;kanji&quot;&gt;&lt;span class=&quot;good&quot;&gt;継&lt;/span&gt;続&lt;/span&gt; = continuation&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;How it Works&lt;/h2&gt;
+
+&lt;p&gt;The program operates by waiting for you to take a screenshot using Command-Shift-4 (on the Mac), observing the new screenshot appearing on the desktop, and feeding it to the &lt;a href=&quot;https://code.google.com/p/nhocr/&quot;&gt;nhocr&lt;/a&gt; tool, which reads the Japanese text inside the screenshot and prints it.&lt;/p&gt;
+
+&lt;h2&gt;Source Code&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+# 
+# nhocr_desktop.py
+#
+# Waits for screenshots to appear on the desktop,
+# scans them for Japanese text using OCR,
+# and prints out the text that was decoded from the image.
+# 
+# This script is useful for rapidly converting on-screen Japanese
+# text to actual text that can be looked up.
+#
+# Prerequisites:
+#   * nhocr
+#   * ImageMagick
+#   * Python 2.7 - maybe 2.6 okay too
+#   * watchdog
+# 
+# @author David Foster
+# 
+
+import os.path
+import subprocess
+import time
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+class ScreenshotFileCreationEventHandler(FileSystemEventHandler):
+    def on_created(self, event):
+        if not event.is_directory:
+            if &#39;Screen Shot&#39; in os.path.basename(event.src_path):
+                # Convert screenshot to PPM format with ImageMagick
+                subprocess.check_call([
+                    &#39;convert&#39;, event.src_path, &#39;/tmp/line.ppm&#39;])
+
+                line = subprocess.check_output([
+                    &#39;nhocr&#39;, &#39;-line&#39;, &#39;/tmp/line.ppm&#39;, &#39;-o&#39;, &#39;-&#39;])
+                print line.decode(&#39;utf-8&#39;),
+
+event_handler = ScreenshotFileCreationEventHandler()
+
+observer = Observer()
+observer.schedule(event_handler, &#39;/Users/me/Desktop&#39;, recursive=False)
+observer.start()
+
+print &#39;Waiting for screenshots on the desktop to analyze...&#39;
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    observer.stop()
+observer.join()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;All this studying is one reason I haven&amp;rsquo;t posted in a while.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Individual kanji can be looked up by their component radicals at jisho.org&amp;rsquo;s &lt;a href=&quot;http://jisho.org/kanji/radicals/&quot;&gt;Kanji by Radicals&lt;/a&gt; search. Unfortunately it can take a few minutes to lookup each character.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -150,7 +280,7 @@ data ℕ : Set where
 _+_ : ℕ → ℕ → ℕ
 zero + zero  = zero
 zero + n     = n
-(suc n) + n' = suc (n + n')
+(suc n) + n&#39; = suc (n + n&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -203,11 +333,11 @@ import IO.Primitive as Prim
 five : ℕ
 five = 5
 
-main' : IO ⊤
-main' = putStrLn (show five)
+main&#39; : IO ⊤
+main&#39; = putStrLn (show five)
 
 main : Prim.IO ⊤
-main = run main'
+main = run main&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -273,11 +403,11 @@ import IO.Primitive as Prim
 greeting : String
 greeting = &quot;Hello World&quot;
 
-main' : IO ⊤
-main' = putStrLn greeting
+main&#39; : IO ⊤
+main&#39; = putStrLn greeting
 
 main : Prim.IO ⊤
-main = run main'
+main = run main&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -331,11 +461,11 @@ doThis = putStr &quot;Everybody say coinductive deep embedding! &quot;
 thenThat : IO ⊤
 thenThat = putStrLn &quot;Coinductive deep embedding!&quot;
 
-main' : IO ⊤
-main' = (♯ doThis) &amp;gt;&amp;gt; (♯ thenThat)
+main&#39; : IO ⊤
+main&#39; = (♯ doThis) &amp;gt;&amp;gt; (♯ thenThat)
 
 main : Prim.IO ⊤
-main = run main'
+main = run main&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -463,7 +593,7 @@ postulate
 
 main : IO Unit
 main = 
-  putStrLn (toCostring &quot;What's your name?&quot;) &amp;gt;&amp;gt;= (λ _ → 
+  putStrLn (toCostring &quot;What&#39;s your name?&quot;) &amp;gt;&amp;gt;= (λ _ → 
   getLine &amp;gt;&amp;gt;= (λ s → 
   putStr (toCostring &quot;Hello &quot;) &amp;gt;&amp;gt;= (λ _ → 
   putStrLn s)))
@@ -517,8 +647,8 @@ postulate
 main : IO Unit
 main = 
   getLine &amp;gt;&amp;gt;= (λ s → 
-  return (toCostring (fromList (reverse (toList s)))) &amp;gt;&amp;gt;= (λ s' → 
-  putStrLn s'))
+  return (toCostring (fromList (reverse (toList s)))) &amp;gt;&amp;gt;= (λ s&#39; → 
+  putStrLn s&#39;))
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -578,33 +708,33 @@ postulate
 
 parseInt : String → Maybe ℕ
 parseInt s = 
-  then? (unwrap (parseDigits s)) (λ s' → 
-  just (digitsToℕ s'))
+  then? (unwrap (parseDigits s)) (λ s&#39; → 
+  just (digitsToℕ s&#39;))
   where
     parseDigits : String → List (Maybe ℕ)
     parseDigits s = map toDigit (toList s) where
       toDigit : Char → Maybe ℕ
-      toDigit '0' = just 0
-      toDigit '1' = just 1
-      toDigit '2' = just 2
-      toDigit '3' = just 3
-      toDigit '4' = just 4
-      toDigit '5' = just 5
-      toDigit '6' = just 6
-      toDigit '7' = just 7
-      toDigit '8' = just 8
-      toDigit '9' = just 9
+      toDigit &#39;0&#39; = just 0
+      toDigit &#39;1&#39; = just 1
+      toDigit &#39;2&#39; = just 2
+      toDigit &#39;3&#39; = just 3
+      toDigit &#39;4&#39; = just 4
+      toDigit &#39;5&#39; = just 5
+      toDigit &#39;6&#39; = just 6
+      toDigit &#39;7&#39; = just 7
+      toDigit &#39;8&#39; = just 8
+      toDigit &#39;9&#39; = just 9
       toDigit _   = nothing
 
-    -- TODO: There's probably a standard-library function that does this
-    --       but I can't find it.
+    -- TODO: There&#39;s probably a standard-library function that does this
+    --       but I can&#39;t find it.
     unwrap : List (Maybe ℕ) → Maybe (List ℕ)
-    unwrap xs = unwrap' (just []) xs where
-      unwrap' : Maybe (List ℕ) → List (Maybe ℕ) → Maybe (List ℕ)
-      unwrap' (just xs) (just y ∷ ys) = unwrap' (just (Data.List._++_ xs [ y ])) ys  -- makes unwrap O(N^2)!
-      unwrap' (just xs) (nothing ∷ _) = nothing
-      unwrap' (just xs) []            = just xs
-      unwrap' nothing   _             = nothing
+    unwrap xs = unwrap&#39; (just []) xs where
+      unwrap&#39; : Maybe (List ℕ) → List (Maybe ℕ) → Maybe (List ℕ)
+      unwrap&#39; (just xs) (just y ∷ ys) = unwrap&#39; (just (Data.List._++_ xs [ y ])) ys  -- makes unwrap O(N^2)!
+      unwrap&#39; (just xs) (nothing ∷ _) = nothing
+      unwrap&#39; (just xs) []            = just xs
+      unwrap&#39; nothing   _             = nothing
 
     -- TODO: Look for a monadic _&amp;gt;&amp;gt;=_ that does the same thing
     then? : {A : Set} → {B : Set} → Maybe A → (A → Maybe B) → Maybe B
@@ -612,10 +742,10 @@ parseInt s =
     then? (just r1) op2 = op2 r1
 
     digitsToℕ : List ℕ → ℕ
-    digitsToℕ xs = digitsToℕ' (reverse xs) where
-      digitsToℕ' : List ℕ → ℕ
-      digitsToℕ' []       = 0
-      digitsToℕ' (x ∷ xs) = x + (10 * (digitsToℕ' xs))
+    digitsToℕ xs = digitsToℕ&#39; (reverse xs) where
+      digitsToℕ&#39; : List ℕ → ℕ
+      digitsToℕ&#39; []       = 0
+      digitsToℕ&#39; (x ∷ xs) = x + (10 * (digitsToℕ&#39; xs))
 
 ℕ? : Maybe ℕ -&amp;gt; ℕ
 ℕ? (just x) = x
@@ -624,8 +754,8 @@ parseInt s =
 main : IO Unit
 main = 
   getLine &amp;gt;&amp;gt;= (λ s → 
-  return (show (ℕ? (parseInt s))) &amp;gt;&amp;gt;= (λ s' → 
-  putStrLn (toCostring s')))
+  return (show (ℕ? (parseInt s))) &amp;gt;&amp;gt;= (λ s&#39; → 
+  putStrLn (toCostring s&#39;)))
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -1038,7 +1168,7 @@ details. Uses Agda as a concrete language to work with.&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
 &lt;p&gt;&lt;p&gt;I first recognized that you could write this kind of provably correct sorting function when I read &lt;a href=&quot;http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/intertheodraft1.pdf&quot;&gt;these slides&lt;/a&gt; at &lt;a href=&quot;http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/interactiveTheoremProvingForAgdaUsers.html&quot;&gt;swan.ac.uk&lt;/a&gt;. You end up having a sorting function with a signature like &lt;code&gt;sort : (inList : List a) -&amp;gt; (outList : List a, IsSorted outList, EqElements inList outList)&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;The &lt;code&gt;IsSorted outList&lt;/code&gt; type represents proofs that &lt;code&gt;outList&lt;/code&gt; is sorted. Thus the existence of a member of the &lt;code&gt;IsSorted outList&lt;/code&gt; type proves that &lt;code&gt;outList&lt;/code&gt; is sorted. Similarly the &lt;code&gt;EqElements inList outList&lt;/code&gt; is a proof type where &lt;code&gt;inList&lt;/code&gt; and &lt;code&gt;outList&lt;/code&gt; are proven to have equal elements.&lt;/p&gt;&lt;p&gt;See also the &lt;a href=&quot;http://mazzo.li/posts/AgdaSort.html&quot;&gt;dedicated article at mazzo.li&lt;/a&gt;&lt;/p&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;None of the people who currently release Agda are running Windows according to the latest &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII&quot;&gt;Agda Implementors' Meeting&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;None of the people who currently release Agda are running Windows according to the latest &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII&quot;&gt;Agda Implementors&#39; Meeting&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -1710,7 +1840,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
 * [**Programming a 144-computer chip to minimize power**](http://www.infoq.com/presentations/power-144-chip) - Chuck Moore - 40 min
     * A custom hardware programming environment for programming very low power applications.
     * Easily the lowest-level talk at the conference. Basically involves using a custom assembly language. Includes tips and tricks to optimize the assembly for the hardware and power.
-    * Skip this presentation if low-level programming and bit twiddling isn't your thing.
+    * Skip this presentation if low-level programming and bit twiddling isn&#39;t your thing.
 --&gt;
 
 </content>
@@ -2020,7 +2150,7 @@ from retriable import retriable
 @retriable
 def identity(input):
     if input in [5, 7]:
-        raise ValueError('Could not understand input: %d' % input)
+        raise ValueError(&#39;Could not understand input: %d&#39; % input)
     return input
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2044,7 +2174,7 @@ for i in xrange(1, 10 + 1):
 3
 4
 &amp;gt; /Users/davidf/Projects/scrape-tools/flakey.py(7)identity()
--&amp;gt; raise ValueError('Could not understand input: %d' % input)
+-&amp;gt; raise ValueError(&#39;Could not understand input: %d&#39; % input)
 (Pdb) 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2064,7 +2194,7 @@ for i in xrange(1, 10 + 1):
 5
 6
 &amp;gt; /Users/davidf/Projects/scrape-tools/flakey.py(7)identity()
--&amp;gt; raise ValueError('Could not understand input: %d' % input)
+-&amp;gt; raise ValueError(&#39;Could not understand input: %d&#39; % input)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now the function handled &lt;code&gt;5&lt;/code&gt; but crashed on input &lt;code&gt;7&lt;/code&gt;. Again we fix the function by removing the condition completely, leaving only: &lt;code&gt;def identity(input): return input&lt;/code&gt;. Resaving and retrying the function gives:&lt;/p&gt;
@@ -2121,10 +2251,10 @@ def retriable(func):
     Tested On: CPython 2.7
     &quot;&quot;&quot;
 
-    if sys._getframe().f_back.f_code.co_name != '&amp;lt;module&amp;gt;':
+    if sys._getframe().f_back.f_code.co_name != &#39;&amp;lt;module&amp;gt;&#39;:
         raise AssertionError(
-            'The @retriable decorator can only be safely applied to ' +
-            'top-level functions within a module.')
+            &#39;The @retriable decorator can only be safely applied to &#39; +
+            &#39;top-level functions within a module.&#39;)
 
     module = sys.modules[func.__module__]
     func_name = func.__name__
@@ -2141,14 +2271,14 @@ def retriable(func):
                 # Prompt user whether to try again or not
                 while True:
                     choice = raw_input(
-                        '[R]etry after reload, Rais[E], or [Q]uit? [R] ')
-                    if len(choice) == 0 or choice[0].lower() == 'r':
+                        &#39;[R]etry after reload, Rais[E], or [Q]uit? [R] &#39;)
+                    if len(choice) == 0 or choice[0].lower() == &#39;r&#39;:
                         # Retry after reload
                         break
-                    elif choice[0].lower() == 'e':
+                    elif choice[0].lower() == &#39;e&#39;:
                         # Raise
                         raise
-                    elif choice[0].lower() == 'q':
+                    elif choice[0].lower() == &#39;q&#39;:
                         # Quit
                         sys.exit(1)
                     else:
@@ -2170,7 +2300,7 @@ def retriable(func):
  
  <entry>
    <id>http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk</id>
-   <title>Skills I'm Learning at Splunk</title>
+   <title>Skills I&#39;m Learning at Splunk</title>
    <published>2013-08-04T00:00:00-07:00</published>
    <updated>2013-08-04T00:00:00-07:00</updated>
    
@@ -2421,7 +2551,7 @@ Verifying connection to SMTP server... OK
 &lt;p&gt;Once you have &lt;code&gt;notifymail&lt;/code&gt; installed, you can send an email to yourself in a Python script with as little code as:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;import notifymail
-notifymail.send('Subject', 'Hello World', from_name='greeting_script')
+notifymail.send(&#39;Subject&#39;, &#39;Hello World&#39;, from_name=&#39;greeting_script&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Or you can invoke &lt;code&gt;notifymail&lt;/code&gt; from the command line:&lt;/p&gt;
@@ -2547,7 +2677,7 @@ In many domains error handling is not treated very seriously as errors may be un
 &lt;li&gt;In PHP it is an idiom to use the &lt;code&gt;die()&lt;/code&gt; function upon the failure of many operations:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;pre&gt;&lt;code&gt;$connection = mysql_connect('localhost', 'dbuser', 'password') or die('Could not connect to MySQL server.');
+&lt;li&gt;&lt;pre&gt;&lt;code&gt;$connection = mysql_connect(&#39;localhost&#39;, &#39;dbuser&#39;, &#39;password&#39;) or die(&#39;Could not connect to MySQL server.&#39;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -2786,7 +2916,7 @@ try {
 &lt;p&gt;Here is a naive implementation that makes no guarantees to its caller in the event of an error.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;/** Copies the source CSV file to the destination file. */
-// (I didn't think about error handling at all.)
+// (I didn&#39;t think about error handling at all.)
 public static void copyCsvFile(File sourceFile, File destFile) throws IOException {
     InputStream fileIn = new FileInputStream(sourceFile);
     OutputStream fileOut = new FileOutputStream(destFile);
@@ -2859,7 +2989,7 @@ public static void copyCsvFile(File sourceFile, File destFile) throws IOExceptio
             if (!finishedCopying) {
                 boolean deleteSuccess = destFile.delete();
                 // If the delete fails then the rollback failed.
-                // Since there's nothing that can be done in that case,
+                // Since there&#39;s nothing that can be done in that case,
                 // we ignore deletion failures.
             }
         }
@@ -2884,10 +3014,10 @@ public static void copyCsvFile(File sourceFile, File destFile) throws IOExceptio
     If an error occurs while copying, as many rows as possible are copied,
     leaving a valid destination CSV file.
     &quot;&quot;&quot;
-    with open(source_filepath, 'rb') as file_in:
+    with open(source_filepath, &#39;rb&#39;) as file_in:
         offset_to_last_line_written = 0
         finished_copying = False
-        file_out = open(dest_filepath, 'wb')
+        file_out = open(dest_filepath, &#39;wb&#39;)
         try:
             while True:
                 cur_line_bytes = file_in.readline()
@@ -3137,7 +3267,7 @@ public class RuleParser {
 
 &lt;p&gt;Consider the following example:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;// A generic exception that wraps its own set of error codes. DON'T DO THIS.
+&lt;pre&gt;&lt;code&gt;// A generic exception that wraps its own set of error codes. DON&#39;T DO THIS.
 public class FetchException extends RuntimeException {
     private int code;
     private String text;
@@ -3262,7 +3392,7 @@ public class AmbiguousNameException extends FetchException { ... }
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;Flawed functions that return sentinel values that are actually &lt;em&gt;valid&lt;/em&gt; place extra onus on the caller to perform additional checks to determine whether an error actually occurred. For example PHP&amp;rsquo;s &lt;a href=&quot;http://php.net/manual/en/function.stream-get-contents.php&quot;&gt;&lt;code&gt;stream_get_contents&lt;/code&gt;&lt;/a&gt; function can return &lt;code&gt;''&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; upon failure. But it can also return &lt;code&gt;''&lt;/code&gt; upon success. See my insane &lt;a href=&quot;https://github.com/splunk/splunk-sdk-php/blob/master/Splunk/Util.php&quot;&gt;workaround&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Flawed functions that return sentinel values that are actually &lt;em&gt;valid&lt;/em&gt; place extra onus on the caller to perform additional checks to determine whether an error actually occurred. For example PHP&amp;rsquo;s &lt;a href=&quot;http://php.net/manual/en/function.stream-get-contents.php&quot;&gt;&lt;code&gt;stream_get_contents&lt;/code&gt;&lt;/a&gt; function can return &lt;code&gt;&#39;&#39;&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; upon failure. But it can also return &lt;code&gt;&#39;&#39;&lt;/code&gt; upon success. See my insane &lt;a href=&quot;https://github.com/splunk/splunk-sdk-php/blob/master/Splunk/Util.php&quot;&gt;workaround&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;Most programs treat out-of-memory errors as fatal, although there are a few hardened programs like SQLite that treat out-of-memory as an &lt;em&gt;expected&lt;/em&gt; error.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
@@ -3635,7 +3765,7 @@ Supplementary characters (0x10000-0x10FFFF) are encoded as two 16-bit &lt;strong
 
 &lt;p&gt;Consider the following Java program:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
 String footString = new String(footBytes);                    // WRONG: OS-dependent
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -3643,13 +3773,13 @@ String footString = new String(footBytes);                    // WRONG: OS-depen
 
 &lt;p&gt;Here&amp;rsquo;s the fixed program, which specifies the UTF-8 encoding explicitly:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
 String footString = new String(footBytes, &quot;UTF-8&quot;);           // CORRECT
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As another example, consider the Java &lt;code&gt;InputStreamReader&lt;/code&gt; and &lt;code&gt;FileReader&lt;/code&gt; classes, both of which convert from byte streams to character streams.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
 InputStream footStream = new ByteArrayInputStream(footBytes);
 Reader footReader = new InputStreamReader(footStream);        // WRONG: OS-dependent
 &lt;/code&gt;&lt;/pre&gt;
@@ -3663,7 +3793,7 @@ Reader footReader = new InputStreamReader(footStream);        // WRONG: OS-depen
 
 &lt;p&gt;The former example can be fixed by adding &lt;code&gt;&quot;UTF-8&quot;&lt;/code&gt; as the second constructor argument:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
 InputStream footStream = new ByteArrayInputStream(footBytes);
 Reader footReader = new InputStreamReader(footStream, &quot;UTF-8&quot;);    // CORRECT
 &lt;/code&gt;&lt;/pre&gt;
@@ -3898,9 +4028,9 @@ public static void main(String[] args) {
 &lt;pre&gt;&lt;code&gt;import codecs
 
 file_path = sys.argv[1]
-with codecs.open(file_path, 'rb', 'utf-8') as stream:
+with codecs.open(file_path, &#39;rb&#39;, &#39;utf-8&#39;) as stream:
     for line_with_terminator in stream:
-        line = line_with_terminator.rstrip(u'\r\n')    # remove any trailing '\r' and '\n's
+        line = line_with_terminator.rstrip(u&#39;\r\n&#39;)    # remove any trailing &#39;\r&#39; and &#39;\n&#39;s
         print line
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -3913,10 +4043,10 @@ with codecs.open(file_path, 'rb', 'utf-8') as stream:
 &lt;pre&gt;&lt;code&gt;import codecs
 
 file_path = sys.argv[1]
-with open(file_path, 'rU') as stream:     # the U mode converts all line endings to '\n'
+with open(file_path, &#39;rU&#39;) as stream:     # the U mode converts all line endings to &#39;\n&#39;
     for line_with_terminator in stream:
         # WRONG: If last line lack an EOL this will chop off its trailing character improperly
-        line = line_with_terminator[:-1]  # remove trailing '\n'
+        line = line_with_terminator[:-1]  # remove trailing &#39;\n&#39;
         # WRONG: Treating a bytestring as if it were a Unicode string
         print line
 &lt;/code&gt;&lt;/pre&gt;
@@ -3928,10 +4058,10 @@ with open(file_path, 'rU') as stream:     # the U mode converts all line endings
 &lt;pre&gt;&lt;code&gt;import codecs
 
 file_path = sys.argv[1]
-with open(file_path, 'rb') as stream:
+with open(file_path, &#39;rb&#39;) as stream:
     for line_with_terminator in stream:
         # WRONG: Assumes EOL is one byte long, which is incorrect on Windows
-        line = line_with_terminator[:-1]  # remove trailing '\n'
+        line = line_with_terminator[:-1]  # remove trailing &#39;\n&#39;
         # WRONG: Treating a bytestring as if it were a Unicode string
         print line
 &lt;/code&gt;&lt;/pre&gt;
@@ -4085,7 +4215,7 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
         Audience
     &lt;/p&gt;
     &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
-        I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function's signature requires. In academic-speak, this is called &quot;partial application of a function&quot;.
+        I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function&#39;s signature requires. In academic-speak, this is called &quot;partial application of a function&quot;.
     &lt;/p&gt;
 &lt;/div&gt;
 --&gt;
@@ -4099,7 +4229,7 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
     &lt;/p&gt;
     &lt;p&gt;
         This article is intended to convey my confusion and minor frustration
-        with trying to understand part of Haskell's syntax as I currently
+        with trying to understand part of Haskell&#39;s syntax as I currently
         learn Haskell.
     &lt;/p&gt;
     &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
@@ -4200,11 +4330,11 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
 (alpha beta gamma ...)   
 
 -- alpha takes 1 argument and returns a 1-argument function;
--- expression's return type matches that of the 1-argument function
+-- expression&#39;s return type matches that of the 1-argument function
 ((alpha beta) gamma)
 
 -- alpha takes 1 argument and returns a (1+K)-argument function;
--- expression's return type is a partially applied K-argument function
+-- expression&#39;s return type is a partially applied K-argument function
 ((alpha beta) gamma ...)
 &lt;/pre&gt;
 
@@ -4229,11 +4359,11 @@ alpha(beta, gamma)
 alpha(beta, gamma, ...)   
 
 -- alpha takes 1 argument and returns a 1-argument function;
--- expression's return type matches that of the 1-argument function
+-- expression&#39;s return type matches that of the 1-argument function
 alpha(beta)(gamma)
 
 -- alpha takes 1 argument and returns a (1+K)-argument function;
--- expression's return type is a partially applied K-argument function
+-- expression&#39;s return type is a partially applied K-argument function
 alpha(beta)(gamma, ...)
 &lt;/pre&gt;
 
@@ -5666,7 +5796,7 @@ else:
 
 
 &lt;ul&gt;
-&lt;li&gt;Beware of comparisons with &lt;code&gt;''&lt;/code&gt;. Some of them probably need to be converted to comparisons with &lt;code&gt;b''&lt;/code&gt;. For example, I had to adjust my &lt;code&gt;at_eof&lt;/code&gt; utility function:&lt;/li&gt;
+&lt;li&gt;Beware of comparisons with &lt;code&gt;&#39;&#39;&lt;/code&gt;. Some of them probably need to be converted to comparisons with &lt;code&gt;b&#39;&#39;&lt;/code&gt;. For example, I had to adjust my &lt;code&gt;at_eof&lt;/code&gt; utility function:&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -5676,7 +5806,7 @@ def at_eof(input):
     Returns whether the specified input stream is at EOF.
     &quot;&quot;&quot;
     with save_stream_position(input):
-        at_eof = input.read(1) == b''
+        at_eof = input.read(1) == b&#39;&#39;
     return at_eof
 &lt;/pre&gt;
 
@@ -5687,7 +5817,7 @@ def at_eof(input):
 
 
 &lt;pre&gt;
-if type_code == b'APPL':
+if type_code == b&#39;APPL&#39;:
 &lt;/pre&gt;
 
 
@@ -5721,9 +5851,9 @@ else:
 
 
 &lt;pre&gt;
-now_string = time.strftime('%b %d %H:%M', time.localtime(now))
+now_string = time.strftime(&#39;%b %d %H:%M&#39;, time.localtime(now))
 if not isinstance(now_string, unicode):
-    now_string = now_string.decode('ascii')
+    now_string = now_string.decode(&#39;ascii&#39;)
 &lt;/pre&gt;
 
 
@@ -5731,7 +5861,7 @@ if not isinstance(now_string, unicode):
 &lt;li&gt;&lt;p&gt;Regular expressions that are intended to apply to bytestrings instead of Unicode strings may need updating.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;For example the pattern &lt;code&gt;re.compile(r'^Volume name is &quot;(.*)&quot;$')&lt;/code&gt; which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read &lt;code&gt;re.compile(br'^Volume name is &quot;(.*)&quot;$')&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;For example the pattern &lt;code&gt;re.compile(r&#39;^Volume name is &quot;(.*)&quot;$&#39;)&lt;/code&gt; which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read &lt;code&gt;re.compile(br&#39;^Volume name is &quot;(.*)&quot;$&#39;)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Don&amp;rsquo;t forget to update your documentation to specify where Unicode (or ASCII bytestring literals) are expected.&lt;/p&gt;&lt;/li&gt;
@@ -6563,7 +6693,7 @@ add(X, Y, Result) :- Result is X + Y.
 
 &lt;p&gt;Some built-in clauses trigger side effects when they are examined by the unification algorithm. Programs take advantage of such &amp;ldquo;impure predicates&amp;rdquo; to do I/O and other types of side-effecting work.&lt;/p&gt;
 
-&lt;p&gt;For example asking the question &lt;code&gt;print('Hello')&lt;/code&gt; will print &lt;code&gt;Hello&lt;/code&gt; to the screen.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;For example asking the question &lt;code&gt;print(&#39;Hello&#39;)&lt;/code&gt; will print &lt;code&gt;Hello&lt;/code&gt; to the screen.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;To write to a file you might define:&lt;/p&gt;
 
@@ -6575,7 +6705,7 @@ printfile(Filename, Text) :-
 &lt;/pre&gt;
 
 
-&lt;p&gt;And then pose the question &lt;code&gt;printfile('hogwarts.txt', 'Hogwarts')&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;And then pose the question &lt;code&gt;printfile(&#39;hogwarts.txt&#39;, &#39;Hogwarts&#39;)&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;During evaluation, the &lt;code&gt;printfile&lt;/code&gt; is rewritten to &lt;code&gt;open(...) AND write(...) AND nl(...) AND close(...)&lt;/code&gt;. Each of those subclauses is then each evaluated to &lt;code&gt;true&lt;/code&gt; (performing the associated side effect) and the overall clause becomes just &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
 
@@ -6613,7 +6743,7 @@ printfile(Filename, Text) :-
 &lt;li id=&quot;fn:6&quot;&gt;
 &lt;p&gt;Memoization is where a function that computes a value caches the result of the computation so that repeated invocations with the same input can immediately return the saved result. This can speed of performance in certain applications. See &lt;a href=&quot;http://www.learnprolognow.org/lpnpage.php?pagetype=html&amp;amp;pageid=lpn-htmlse48&quot;&gt;LPM §11.1 &amp;ldquo;Database Manipulation&amp;rdquo;&lt;/a&gt; for an example.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:7&quot;&gt;
-&lt;p&gt;Note that &lt;code&gt;'Hello'&lt;/code&gt; (with single quotes) is a variable, not a string. The string &lt;code&gt;&quot;Hello&quot;&lt;/code&gt; (with double quotes) is equivalent to a list of codepoints (&lt;code&gt;[72, 101, 108, 108, 111]&lt;/code&gt;).&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Note that &lt;code&gt;&#39;Hello&#39;&lt;/code&gt; (with single quotes) is a variable, not a string. The string &lt;code&gt;&quot;Hello&quot;&lt;/code&gt; (with double quotes) is equivalent to a list of codepoints (&lt;code&gt;[72, 101, 108, 108, 111]&lt;/code&gt;).&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -7025,7 +7155,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
    
    <link rel="alternate" href="http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;blockquote&gt;
-  A language that doesn't affect the way you think about programming, is not worth knowing.&lt;br/&gt;
+  A language that doesn&#39;t affect the way you think about programming, is not worth knowing.&lt;br/&gt;
   &lt;br/&gt;
   &amp;ndash; &lt;a href=&quot;http://www-pu.informatik.uni-tuebingen.de/users/klaeren/epigrams.html&quot;&gt;Alan Perlis&lt;/a&gt;
 &lt;/blockquote&gt;
@@ -7193,7 +7323,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Collections are first class&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;You can type &lt;code&gt;[1,2,3]&lt;/code&gt; to get a list, &lt;code&gt;{'key': 'value'}&lt;/code&gt; to get a dictionary, and &lt;code&gt;{1,2,3}&lt;/code&gt; to get a set. So much faster than &lt;code&gt;new ArrayList&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, &lt;code&gt;new HashMap&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, or &lt;code&gt;new HashSet&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You can type &lt;code&gt;[1,2,3]&lt;/code&gt; to get a list, &lt;code&gt;{&#39;key&#39;: &#39;value&#39;}&lt;/code&gt; to get a dictionary, and &lt;code&gt;{1,2,3}&lt;/code&gt; to get a set. So much faster than &lt;code&gt;new ArrayList&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, &lt;code&gt;new HashMap&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, or &lt;code&gt;new HashSet&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Functions are first class&lt;/strong&gt;
@@ -7353,7 +7483,7 @@ Count me in!&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Call-with-current-continuation&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Allows you to save the current execution state of the program in a variable and jump back to it later. Multiple times, even. It&amp;rsquo;s like a friggin' time machine. You can implement fairly complex control flow operators with this function.&lt;/li&gt;
+&lt;li&gt;Allows you to save the current execution state of the program in a variable and jump back to it later. Multiple times, even. It&amp;rsquo;s like a friggin&#39; time machine. You can implement fairly complex control flow operators with this function.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -7565,7 +7695,7 @@ It&amp;rsquo;s not &lt;em&gt;who&lt;/em&gt; you know.&lt;br/&gt;
 
 &lt;ul&gt;
 &lt;li&gt;They don&amp;rsquo;t have a magic wand. They don&amp;rsquo;t automatically fix problems.&lt;/li&gt;
-&lt;li&gt;Managers do not have a superset of the employees' (team members') knowledge.&lt;/li&gt;
+&lt;li&gt;Managers do not have a superset of the employees&#39; (team members&#39;) knowledge.&lt;/li&gt;
 &lt;li&gt;Managers can&amp;rsquo;t read minds. Don&amp;rsquo;t assume. Communicate explicitly.&lt;/li&gt;
 &lt;li&gt;You are responsible for your own career. But ask for help.&lt;/li&gt;
 &lt;/ul&gt;
