@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Submitting a Python App to the Mac App Store | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 post">
+    <h1>Submitting a Python App to the Mac App Store</h1>
+    <div class="post-metadata">
+      Jun 24, 2014 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>32</sup></a></span>
+        
+      </span>
+    </div>
+    
+    <p>Recently I needed to submit a Python app to the Mac App Store. Since there seemed to be no good documentation online for doing this, I had to figure it out myself. Here&rsquo;s what I learned:</p>
+
+<h2>Building a Python app for the Mac App Store</h2>
+
+<p>Below I will explain how to make a Python script into a Mac App Store app. I would recommend that you download my <a href="https://github.com/davidfstr/Python-in-Mac-App-Store#hello-app-store">example Python app that can be submitted to the Mac App Store</a> and examine its build system while reading the rest of this article.</p>
+
+<h3>Get a Python script</h3>
+
+<p>First, I assume you already have a Python script that you&rsquo;d like to package as an application and submit.</p>
+
+<p>My example app uses <code>src/HelloAppStore.py</code> as the main script.</p>
+
+<h3>Make it into a regular app</h3>
+
+<p>A Python script, along with its included Python modules and dependencies, can be bundled into a regular Mac app using <a href="http://svn.pythonmac.org/py2app/py2app/trunk/doc/index.html#abstract">py2app</a>.</p>
+
+<p>I won&rsquo;t repeat the py2app documentation, but you generally need to create a <code>setup.py</code> file that looks something like this:</p>
+
+<pre><code>from setuptools import setup
+
+APP = ['src/HelloAppStore.py']
+DATA_FILES = []
+OPTIONS = {
+    'argv_emulation': True,
+    #'iconfile': 'src/Icon.icns',  # optional
+    #'plist': 'src/Info.plist',    # optional
+}
+
+setup(
+    app=APP,
+    data_files=DATA_FILES,
+    options={'py2app': OPTIONS},
+    setup_requires=['py2app'],
+)
+</code></pre>
+
+<p>Then you can build <code>dist/HelloAppStore.app</code> into a nice double-clickable app by running the command:</p>
+
+<pre><code>python setup.py py2app
+</code></pre>
+
+<p>My example app runs the above command as part of the <code>./build-app.sh</code> script.</p>
+
+<h3>Alter the app to conform to Mac App Store constraints</h3>
+
+<p>There are several additional nontrivial restrictions that must be satisfied before an app can be submitted to the Mac App Store:</p>
+
+<ul>
+<li>It must be able to run in <strong>sandboxed</strong> mode.</li>
+<li>It must be <strong>code-signed</strong>.</li>
+<li>It must not depend on any <strong>deprecated APIs</strong> (like QuickTime), even from included libraries.</li>
+<li>It must not include any <strong>PowerPC code</strong>, even from included libraries.</li>
+<li>It must have a <strong>large app icon</strong> (with sizes up to 1024x1024).</li>
+<li>It must have a specified <strong>app store category</strong>.</li>
+<li>It must not have any content that Apple finds <strong>offensive</strong> in its sole discretion.</li>
+</ul>
+
+
+<p>An exhaustive list of restrictions can be found in the <a href="https://developer.apple.com/appstore/mac/resources/approval/guidelines.html">Mac App Store Review Guidelines</a>.</p>
+
+<h4>Sandboxing</h4>
+
+<p>Mac App Store apps must be sandboxed. Sandboxed apps are restricted in several ways, but the most significant restriction is the <strong>inability to read/write arbitrary files</strong>.</p>
+
+<p>In particular an app cannot write to a file outside of its sandbox container unless a <strong>native</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> open/save dialog is used to prompt for the location of the file or the file already resides within the app&rsquo;s container directory.</p>
+
+<p>It&rsquo;s a good idea to read the <a href="https://developer.apple.com/app-sandboxing/">App Sandboxing</a> documentation to understand the full set of restrictions and how to overcome them when necessary (and when possible).</p>
+
+<p>My example app enables sandboxing by specifying that <code>com.apple.security.app-sandbox = true</code> in the <code>src/app.entitlements</code> file. This entitlements file is used in the code-signing process described in the next section.</p>
+
+<h4>Code-signing</h4>
+
+<p>Mac App Store apps must be code-signed. This means you must go through some extra hoops to generate signing certificates, download them to your dev machine, and alter your build script to sign the final app package with it.</p>
+
+<p>These certificates have to be generated by Apple as part of your Mac Developer Program subscription ($99/year). And renewed annually if you wish to continue making app updates.</p>
+
+<p>Since Python apps are built outside of Xcode, you&rsquo;ll have to use the <code>codesign</code> tool manually to sign your app.</p>
+
+<p>My example app runs the <code>codesign</code> tool as part of the <code>./build-app.sh</code> script, recursively signing the inner frameworks, helper tools, and finally the outer application binaries. As part of the signing process the application binaries are also embedded with <em>entitlements</em>, which are used to enable sandboxing.</p>
+
+<p>See the <a href="https://developer.apple.com/library/mac/documentation/Security/Conceptual/CodeSigningGuide/CodeSigningGuide.pdf">Code Signing Guide</a> for more information about manual code-signing.</p>
+
+<h4>Deprecated APIs</h4>
+
+<p>Your Python script probably won&rsquo;t be directly using any deprecated APIs. However your Python script might depend on other libraries that <em>do</em>. Such dependencies can be difficult or impossible to eliminate. Typically you have to modify and recompile the dependency manually.</p>
+
+<p>In particular the very popular <strong>wxPython</strong> GUI toolkit <a href="https://groups.google.com/forum/#!topic/wxpython-mac/BeUS9GHigvE">depends on deprecated QuickTime APIs</a> at the time of writing, making any Python app that depends on it inadmissible to be submitted to the Mac App Store.</p>
+
+<p>My example app has no workarounds for deprecated APIs.</p>
+
+<h4>PowerPC Code</h4>
+
+<p>Your Python script probably won&rsquo;t be directly using any old PowerPC code. However, again, your Python script might depend on other libraries that <em>do</em>. In fact Python 2.7 itself includes PowerPC code.</p>
+
+<p>Luckily any PowerPC code can be stripped out easily using the <code>lipo</code> tool, so you just need to add some extra <code>lipo</code> commands to your build script.</p>
+
+<p>My example app uses <code>lipo</code> in the <code>./build-app.sh</code> script to remove PowerPC code from the <code>python2.7</code> library.</p>
+
+<h4>Large App Icon</h4>
+
+<p>If you don&rsquo;t have an app icon you&rsquo;ll have to create one. If you <em>do</em> already have an app icon, I&rsquo;ll bet you it doesn&rsquo;t meet the minimum 1024x1024 pixel size requirement.</p>
+
+<p>Creating an icon entails creating several images for your icon at various specific sizes, and then using the <code>iconutil</code> command to generate a final <code>.icns</code> icon file.</p>
+
+<p>My example app contains a <code>./build-icon.sh</code> script that can be used to generate <code>src/Icon.icns</code> from images in the <code>src/Icon.iconset</code> directory.</p>
+
+<p>See the <a href="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AppleHIGuidelines/IconsImages/IconsImages.html#//apple_ref/doc/uid/20000967-TP6">Icon Design Guidelines</a> in the OS X Human Interface Guidelines for more information about creating icons.</p>
+
+<h4>App Store Category</h4>
+
+<p>The <code>Info.plist</code> file inside a Mac App Store app is required to specify what category on the Mac App Store it belongs to under the <code>LSApplicationCategoryType</code> key.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    ...
+    &lt;key&gt;LSApplicationCategoryType&lt;/key&gt;
+    &lt;string&gt;public.app-category.reference&lt;/string&gt;
+    ...
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+
+<p>So far as I can tell, the set of valid values for this key is not documented anywhere. Therefore to find new values, I created a new Cocoa Application project in Xcode (where I could specify the app category in a dropdown), compiled the app, and opened its <code>Info.plist</code> file to see what value it had for the <code>LSApplicationCategoryType</code> key.</p>
+
+<h2>Submitting your app to the store</h2>
+
+<p>Regular apps written in Objective-C for the Mac App Store are usually submitted directly from within Xcode. This is not an option for Python apps that you build outside of Xcode.</p>
+
+<p>Instead you have to use an older app submission tool called <strong>Application Loader</strong> to upload your app. However Application Loader doesn&rsquo;t submit a <code>.app</code> package directly; it requires an installer <code>.pkg</code> instead.</p>
+
+<p>An installer package can be built from your <code>.app</code> using the <code>productbuild</code> tool.</p>
+
+<p>My example app runs the <code>productbuild</code> tool as part of the <code>./build-pkg.sh</code> script which creates an installer package containing the app.</p>
+
+<p>For more information about the <code>productbuild</code> tool, see its man page.</p>
+
+<h2>Fin</h2>
+
+<p>Hopefully you should now have a good idea of what is involved in submitting a Python app to the Mac App Store.</p>
+
+<p>If you&rsquo;d like to actually try out the process of submitting an app, try building and submitting my <a href="https://github.com/davidfstr/Python-in-Mac-App-Store#hello-app-store">example app</a> using the instructions in its README.</p>
+
+<hr />
+
+<p>Please send comments and corrections to <a href="/contact/">David Foster</a>.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Therefore if you are using a GUI toolkit that uses a simulated open/save dialog rather than a native one, your app won&rsquo;t be able to access the files the user selects!<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>32</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <!-- Begin Follow button -->
+  <iframe
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
+    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
+  <!-- End Follow button -->
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2014/05/10/reading-japanese-text-from-images-quickly/" title="Reading Japanese text from images">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2014 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

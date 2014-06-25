@@ -6,14 +6,178 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 08 Jun 2014 13:48:44 -0700</pubDate>
-    <lastBuildDate>Sun, 08 Jun 2014 13:48:44 -0700</lastBuildDate>
+    <pubDate>Tue, 24 Jun 2014 23:43:27 -0700</pubDate>
+    <lastBuildDate>Tue, 24 Jun 2014 23:43:27 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Submitting a Python App to the Mac App Store</title>
+      <link>http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 24 Jun 2014 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store</guid>
+      <description>&lt;p&gt;Recently I needed to submit a Python app to the Mac App Store. Since there seemed to be no good documentation online for doing this, I had to figure it out myself. Here&amp;rsquo;s what I learned:&lt;/p&gt;
+
+&lt;h2&gt;Building a Python app for the Mac App Store&lt;/h2&gt;
+
+&lt;p&gt;Below I will explain how to make a Python script into a Mac App Store app. I would recommend that you download my &lt;a href=&quot;https://github.com/davidfstr/Python-in-Mac-App-Store#hello-app-store&quot;&gt;example Python app that can be submitted to the Mac App Store&lt;/a&gt; and examine its build system while reading the rest of this article.&lt;/p&gt;
+
+&lt;h3&gt;Get a Python script&lt;/h3&gt;
+
+&lt;p&gt;First, I assume you already have a Python script that you&amp;rsquo;d like to package as an application and submit.&lt;/p&gt;
+
+&lt;p&gt;My example app uses &lt;code&gt;src/HelloAppStore.py&lt;/code&gt; as the main script.&lt;/p&gt;
+
+&lt;h3&gt;Make it into a regular app&lt;/h3&gt;
+
+&lt;p&gt;A Python script, along with its included Python modules and dependencies, can be bundled into a regular Mac app using &lt;a href=&quot;http://svn.pythonmac.org/py2app/py2app/trunk/doc/index.html#abstract&quot;&gt;py2app&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I won&amp;rsquo;t repeat the py2app documentation, but you generally need to create a &lt;code&gt;setup.py&lt;/code&gt; file that looks something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from setuptools import setup
+
+APP = [&#39;src/HelloAppStore.py&#39;]
+DATA_FILES = []
+OPTIONS = {
+    &#39;argv_emulation&#39;: True,
+    #&#39;iconfile&#39;: &#39;src/Icon.icns&#39;,  # optional
+    #&#39;plist&#39;: &#39;src/Info.plist&#39;,    # optional
+}
+
+setup(
+    app=APP,
+    data_files=DATA_FILES,
+    options={&#39;py2app&#39;: OPTIONS},
+    setup_requires=[&#39;py2app&#39;],
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you can build &lt;code&gt;dist/HelloAppStore.app&lt;/code&gt; into a nice double-clickable app by running the command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python setup.py py2app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My example app runs the above command as part of the &lt;code&gt;./build-app.sh&lt;/code&gt; script.&lt;/p&gt;
+
+&lt;h3&gt;Alter the app to conform to Mac App Store constraints&lt;/h3&gt;
+
+&lt;p&gt;There are several additional nontrivial restrictions that must be satisfied before an app can be submitted to the Mac App Store:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It must be able to run in &lt;strong&gt;sandboxed&lt;/strong&gt; mode.&lt;/li&gt;
+&lt;li&gt;It must be &lt;strong&gt;code-signed&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;It must not depend on any &lt;strong&gt;deprecated APIs&lt;/strong&gt; (like QuickTime), even from included libraries.&lt;/li&gt;
+&lt;li&gt;It must not include any &lt;strong&gt;PowerPC code&lt;/strong&gt;, even from included libraries.&lt;/li&gt;
+&lt;li&gt;It must have a &lt;strong&gt;large app icon&lt;/strong&gt; (with sizes up to 1024x1024).&lt;/li&gt;
+&lt;li&gt;It must have a specified &lt;strong&gt;app store category&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;It must not have any content that Apple finds &lt;strong&gt;offensive&lt;/strong&gt; in its sole discretion.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;An exhaustive list of restrictions can be found in the &lt;a href=&quot;https://developer.apple.com/appstore/mac/resources/approval/guidelines.html&quot;&gt;Mac App Store Review Guidelines&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Sandboxing&lt;/h4&gt;
+
+&lt;p&gt;Mac App Store apps must be sandboxed. Sandboxed apps are restricted in several ways, but the most significant restriction is the &lt;strong&gt;inability to read/write arbitrary files&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In particular an app cannot write to a file outside of its sandbox container unless a &lt;strong&gt;native&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; open/save dialog is used to prompt for the location of the file or the file already resides within the app&amp;rsquo;s container directory.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s a good idea to read the &lt;a href=&quot;https://developer.apple.com/app-sandboxing/&quot;&gt;App Sandboxing&lt;/a&gt; documentation to understand the full set of restrictions and how to overcome them when necessary (and when possible).&lt;/p&gt;
+
+&lt;p&gt;My example app enables sandboxing by specifying that &lt;code&gt;com.apple.security.app-sandbox = true&lt;/code&gt; in the &lt;code&gt;src/app.entitlements&lt;/code&gt; file. This entitlements file is used in the code-signing process described in the next section.&lt;/p&gt;
+
+&lt;h4&gt;Code-signing&lt;/h4&gt;
+
+&lt;p&gt;Mac App Store apps must be code-signed. This means you must go through some extra hoops to generate signing certificates, download them to your dev machine, and alter your build script to sign the final app package with it.&lt;/p&gt;
+
+&lt;p&gt;These certificates have to be generated by Apple as part of your Mac Developer Program subscription ($99/year). And renewed annually if you wish to continue making app updates.&lt;/p&gt;
+
+&lt;p&gt;Since Python apps are built outside of Xcode, you&amp;rsquo;ll have to use the &lt;code&gt;codesign&lt;/code&gt; tool manually to sign your app.&lt;/p&gt;
+
+&lt;p&gt;My example app runs the &lt;code&gt;codesign&lt;/code&gt; tool as part of the &lt;code&gt;./build-app.sh&lt;/code&gt; script, recursively signing the inner frameworks, helper tools, and finally the outer application binaries. As part of the signing process the application binaries are also embedded with &lt;em&gt;entitlements&lt;/em&gt;, which are used to enable sandboxing.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;https://developer.apple.com/library/mac/documentation/Security/Conceptual/CodeSigningGuide/CodeSigningGuide.pdf&quot;&gt;Code Signing Guide&lt;/a&gt; for more information about manual code-signing.&lt;/p&gt;
+
+&lt;h4&gt;Deprecated APIs&lt;/h4&gt;
+
+&lt;p&gt;Your Python script probably won&amp;rsquo;t be directly using any deprecated APIs. However your Python script might depend on other libraries that &lt;em&gt;do&lt;/em&gt;. Such dependencies can be difficult or impossible to eliminate. Typically you have to modify and recompile the dependency manually.&lt;/p&gt;
+
+&lt;p&gt;In particular the very popular &lt;strong&gt;wxPython&lt;/strong&gt; GUI toolkit &lt;a href=&quot;https://groups.google.com/forum/#!topic/wxpython-mac/BeUS9GHigvE&quot;&gt;depends on deprecated QuickTime APIs&lt;/a&gt; at the time of writing, making any Python app that depends on it inadmissible to be submitted to the Mac App Store.&lt;/p&gt;
+
+&lt;p&gt;My example app has no workarounds for deprecated APIs.&lt;/p&gt;
+
+&lt;h4&gt;PowerPC Code&lt;/h4&gt;
+
+&lt;p&gt;Your Python script probably won&amp;rsquo;t be directly using any old PowerPC code. However, again, your Python script might depend on other libraries that &lt;em&gt;do&lt;/em&gt;. In fact Python 2.7 itself includes PowerPC code.&lt;/p&gt;
+
+&lt;p&gt;Luckily any PowerPC code can be stripped out easily using the &lt;code&gt;lipo&lt;/code&gt; tool, so you just need to add some extra &lt;code&gt;lipo&lt;/code&gt; commands to your build script.&lt;/p&gt;
+
+&lt;p&gt;My example app uses &lt;code&gt;lipo&lt;/code&gt; in the &lt;code&gt;./build-app.sh&lt;/code&gt; script to remove PowerPC code from the &lt;code&gt;python2.7&lt;/code&gt; library.&lt;/p&gt;
+
+&lt;h4&gt;Large App Icon&lt;/h4&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t have an app icon you&amp;rsquo;ll have to create one. If you &lt;em&gt;do&lt;/em&gt; already have an app icon, I&amp;rsquo;ll bet you it doesn&amp;rsquo;t meet the minimum 1024x1024 pixel size requirement.&lt;/p&gt;
+
+&lt;p&gt;Creating an icon entails creating several images for your icon at various specific sizes, and then using the &lt;code&gt;iconutil&lt;/code&gt; command to generate a final &lt;code&gt;.icns&lt;/code&gt; icon file.&lt;/p&gt;
+
+&lt;p&gt;My example app contains a &lt;code&gt;./build-icon.sh&lt;/code&gt; script that can be used to generate &lt;code&gt;src/Icon.icns&lt;/code&gt; from images in the &lt;code&gt;src/Icon.iconset&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AppleHIGuidelines/IconsImages/IconsImages.html#//apple_ref/doc/uid/20000967-TP6&quot;&gt;Icon Design Guidelines&lt;/a&gt; in the OS X Human Interface Guidelines for more information about creating icons.&lt;/p&gt;
+
+&lt;h4&gt;App Store Category&lt;/h4&gt;
+
+&lt;p&gt;The &lt;code&gt;Info.plist&lt;/code&gt; file inside a Mac App Store app is required to specify what category on the Mac App Store it belongs to under the &lt;code&gt;LSApplicationCategoryType&lt;/code&gt; key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&amp;gt;
+&amp;lt;plist version=&quot;1.0&quot;&amp;gt;
+&amp;lt;dict&amp;gt;
+    ...
+    &amp;lt;key&amp;gt;LSApplicationCategoryType&amp;lt;/key&amp;gt;
+    &amp;lt;string&amp;gt;public.app-category.reference&amp;lt;/string&amp;gt;
+    ...
+&amp;lt;/dict&amp;gt;
+&amp;lt;/plist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So far as I can tell, the set of valid values for this key is not documented anywhere. Therefore to find new values, I created a new Cocoa Application project in Xcode (where I could specify the app category in a dropdown), compiled the app, and opened its &lt;code&gt;Info.plist&lt;/code&gt; file to see what value it had for the &lt;code&gt;LSApplicationCategoryType&lt;/code&gt; key.&lt;/p&gt;
+
+&lt;h2&gt;Submitting your app to the store&lt;/h2&gt;
+
+&lt;p&gt;Regular apps written in Objective-C for the Mac App Store are usually submitted directly from within Xcode. This is not an option for Python apps that you build outside of Xcode.&lt;/p&gt;
+
+&lt;p&gt;Instead you have to use an older app submission tool called &lt;strong&gt;Application Loader&lt;/strong&gt; to upload your app. However Application Loader doesn&amp;rsquo;t submit a &lt;code&gt;.app&lt;/code&gt; package directly; it requires an installer &lt;code&gt;.pkg&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;An installer package can be built from your &lt;code&gt;.app&lt;/code&gt; using the &lt;code&gt;productbuild&lt;/code&gt; tool.&lt;/p&gt;
+
+&lt;p&gt;My example app runs the &lt;code&gt;productbuild&lt;/code&gt; tool as part of the &lt;code&gt;./build-pkg.sh&lt;/code&gt; script which creates an installer package containing the app.&lt;/p&gt;
+
+&lt;p&gt;For more information about the &lt;code&gt;productbuild&lt;/code&gt; tool, see its man page.&lt;/p&gt;
+
+&lt;h2&gt;Fin&lt;/h2&gt;
+
+&lt;p&gt;Hopefully you should now have a good idea of what is involved in submitting a Python app to the Mac App Store.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;d like to actually try out the process of submitting an app, try building and submitting my &lt;a href=&quot;https://github.com/davidfstr/Python-in-Mac-App-Store#hello-app-store&quot;&gt;example app&lt;/a&gt; using the instructions in its README.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Please send comments and corrections to &lt;a href=&quot;/contact/&quot;&gt;David Foster&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Therefore if you are using a GUI toolkit that uses a simulated open/save dialog rather than a native one, your app won&amp;rsquo;t be able to access the files the user selects!&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
