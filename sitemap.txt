@@ -23,6 +23,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2014/11/22/error-handling-styles/
 http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months/
 http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store/
 http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly/

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Notes on Racket (PLT-Scheme) | DaFoster</title>
+    <title>Error handling styles in programming | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -304,9 +304,9 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Notes on Racket (PLT-Scheme)</h1>
+    <h1>Error handling styles in programming</h1>
     <div class="post-metadata">
-      Mar 01, 2013 &ndash; Filed under: 
+      Nov 22, 2014 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -315,90 +315,76 @@
       </span>
     </div>
     
-    <p>Generally <a href="http://racket-lang.org">Racket</a> appears to be a very usable dialect of Lisp/Scheme.</p>
+    <p>There are many ways that programs can handle errors at runtime. The excellent book <a href="https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;linkCode=w01&amp;linkId=7FSPMMHJB3KVNUKV&amp;creativeASIN=1482227371">Exercises in Programming Style</a> proposes an interesting categorization of common error handling patterns. Fascinatingly, the programming language that you work in often actively encourages one particular error handling pattern over another.</p>
 
-<p>Racket is particularly well suited for those who want to develop their own programming language (including those not based on S-expressions), given that the creators of Racket are programming language researchers. For example, a number of Racket subsets have been created to assist students who are learning Racket/Scheme via the <a href="http://htdp.org">How to Design Programs</a> book.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> The Arc language by Paul Graham is also implemented in the Racket environment.</p>
+<h2>Reinterpret and Continue <small>(Constructivist)</small></h2>
 
-<p>Racket&rsquo;s developers wanted to make sure it was a <em>practical</em> language. To that end, there is a bundled IDE (DrRacket) with syntax highlighting, parentheses matching, and integrated debugging. There is also a package management system (PLaneT).<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> And built-in libraries for working with several real-world systems, such as GUIs, networking, databases, JSON/XML, etc. A cross-platform executable can easily be built. And everything is well documented.</p>
+<p><img style="float: right;" src="/assets/2014/error-handling-styles/constructivist.jpg" title="Constructivist"/></p>
 
-<p>Graphics and GUI programs are supported better than the average language. For example pictures are rendered natively in the Racket REPL, including their use within expressions. And the built-in Racket GUI library is fairly decent.</p>
+<p>In this style, a function that receives a bad input or encounters an error always returns a sensible result to its caller, silently reinterpreting the error to a valid value. Such a function will never crash the program but may produce unexpected results in the presence of bad inputs or errors.</p>
 
-<p>The combination of a decent built-in GUI library along with the ability to compile cross-platform executables makes Racket useful for writing cross-platform GUI applications.</p>
+<p>Languages whose standard libraries and syntax regularly reinterpret errors and questionable input make it difficult to write programs that are not in this style.</p>
 
-<h2>Racket&rsquo;s GUI library (RacketGUI)</h2>
+<p>Environments that encourage this style:</p>
 
-<p>The original version of Racket&rsquo;s GUI library was implemented on top of wxWidgets.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> Thus some of wxWidget&rsquo;s poor design decisions leak through:</p>
-
-<ul>
-<li>A visual component is called a &ldquo;window&rdquo;, not a control.</li>
-<li>Visual components must be associated with their parent container at creation time.</li>
-</ul>
-
-
-<p>However, some fixes were made too:</p>
+<p><img style="float: right;" src="/assets/2014/error-handling-styles/php-web.png" title="PHP, HTML, CSS, JavaScript"/></p>
 
 <ul>
-<li>There is no notion of a wxWidgets &ldquo;sizer&rdquo; as distinct from a &ldquo;container window&rdquo;.
+<li><strong>PHP</strong>
 
 <ul>
-<li>This simplifies the mental model considerably, since it is no longer necessary to keep track of both a &ldquo;window&rdquo; hierarchy and a sizer hierarchy.</li>
-<li>Instead, a wxWidgets &ldquo;sizer&rdquo; is represented as a lightweight RacketGUI &ldquo;pane&rdquo;, which can be nested naturally inside containers along with other components.</li>
+<li>Very few PHP errors will actually crash the program - instead you get strange results and error text inserted into rendered pages.</li>
+<li>Errors are printed to a server log file that nobody reads.</li>
 </ul>
 </li>
-<li>The event handling loop is managed in the background automatically.</li>
-</ul>
-
-
-<p>Sadly, RacketGUI lacks some advanced controls I often want:</p>
+<li><strong>HTML, CSS</strong>
 
 <ul>
-<li>trees</li>
-<li>tables containing controls in cells
-
-<ul>
-<li>However the <code>list-box%</code> control supports cells that only contain text.</li>
+<li>Web browsers reinterpret bad markup as best they can to valid markup. Of course different browsers do this in different ways, so the only way to get a consistent rendering is to use valid markup.</li>
+<li>Rendering errors are not generally logged anywhere.</li>
 </ul>
 </li>
-<li>tree-tables</li>
+<li><strong>JavaScript</strong></li>
 </ul>
 
 
-<p>This is not surprising since these controls are hard to implement and are not well-supported by the original underlying wxWidgets library:</p>
+<p>Developers that wish to use a more Fail Fast style of error handling (see below) but are forced to write in one of these languages may use special validation and linting tools to look for errors in the program text before they can be reinterpreted.</p>
+
+<h2>Fail Fast <small>(Tantrum, Passive Aggressive)</small></h2>
+
+<p>In this style, a function that receives a bad input or encounters an error refuses to continue, returning an error back to its caller.</p>
+
+<p><img style="float: right;" src="/assets/2014/error-handling-styles/tantrum.jpg" title="Tantrum"/></p>
+
+<p><img style="float: right; clear: both; margin-top: .5em; margin-left: .5em;" src="/assets/2014/error-handling-styles/passive-aggressive.jpg" title="Passive Aggressive"/></p>
+
+<p><a href="https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;linkCode=w01&amp;linkId=7FSPMMHJB3KVNUKV&amp;creativeASIN=1482227371">Exercises in Programming Style</a> makes the additional distinction that functions in some programs try to handle errors immediately at their point of detection no matter what (&ldquo;Tantrum&rdquo;), whereas functions in other programs prefer to bubble up errors to callers until a caller with enough context is reached that decides to actually handle the error (&ldquo;Passive Aggressive&rdquo;).</p>
+
+<p>Programs in the Tantrum substyle have lots of error handling code scattered throughout the program text, whereas programs in the Passive Aggressive substyle tend to consolidate most error handling code in top-level functions and let lower-level code just bubble up errors.</p>
+
+<p>Languages that have built-in exceptions make it easy to implement programs in the Passive Aggressive substyle.</p>
+
+<p>Environments that encourage this style:</p>
+
+<p><img style="float: right;" src="/assets/2014/error-handling-styles/java-csharp-python.png" title="Java, C#, Python"/></p>
 
 <ul>
-<li>The wxWidgets tree interface (wxTreeCtrl) is annoying for dynamically generated trees.</li>
-<li>Tables (wxListCtrl) only support text and image cells, not controls as cells.</li>
+<li><strong>Java</strong></li>
+<li><strong>C#</strong></li>
+<li><strong>Python</strong></li>
 </ul>
 
 
 <h3><em>Related Articles</em></h3>
 
 <ul>
-<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
+<li><a href="/articles/2013/07/13/error-handling/">Error Handling</a>
 
 <ul>
-<li><em>Describes several other programming languages and their unique features.</em></li>
-</ul>
-</li>
-<li><a href="/articles/2013/02/25/notes-on-prolog/">Notes on Prolog</a>
-
-<ul>
-<li><em>Describes Prolog, a highly declarative language. Useful for verification of proofs.</em></li>
+<li><em>More comprehensively discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.</em></li>
 </ul>
 </li>
 </ul>
-
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>The <a href="http://htdp.org">HtDP</a> book uses the dialects &ldquo;Beginning Student&rdquo;, &ldquo;Intermediate Student&rdquo;, and &ldquo;Advanced Student&rdquo;. These sublanguages restrict the use of certain language features (such as using functions as objects) and can provide better error messages (which avoid mentioning advanced features not supported by the sublanguage).<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>It is possible to import modules directly from the PLaneT repository, which will automatically download and install the module if it isn&rsquo;t already present. Neat!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-<li id="fn:3">
-<p>Racket&rsquo;s GUI layer has apparently been redone a couple of times. Originally it was based on wxWidgets. Later it was rewritten to about 200,000 lines of C++ glue to Xt, Win32, and Carbon. Then in Racket 5.1 it was replaced with about 80,000 lines of Racket glue to Gtk, Win32, Cocoa, Cairo, and Pango. That&rsquo;s a 60% reduction in code! More details on the <a href="http://blog.racket-lang.org/2010/12/racket-version-5.html">Racket blog</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
 
 
   </div>
@@ -484,11 +470,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/02/25/notes-on-prolog/" title="Notes on Prolog">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2014/11/08/learning-japanese-the-first-6-months/" title="Learning Japanese - the first 6 months">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/03/10/killer-apps-for-software-platforms/" title="Killer apps for software platforms">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

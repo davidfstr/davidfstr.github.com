@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2014-11-10T21:06:36-08:00</updated>
+ <updated>2014-11-22T13:52:32-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,90 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2014/11/22/error-handling-styles</id>
+   <title>Error handling styles in programming</title>
+   <published>2014-11-22T00:00:00-08:00</published>
+   <updated>2014-11-22T00:00:00-08:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2014/11/22/error-handling-styles/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;There are many ways that programs can handle errors at runtime. The excellent book &lt;a href=&quot;https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;amp;linkCode=w01&amp;amp;linkId=7FSPMMHJB3KVNUKV&amp;amp;creativeASIN=1482227371&quot;&gt;Exercises in Programming Style&lt;/a&gt; proposes an interesting categorization of common error handling patterns. Fascinatingly, the programming language that you work in often actively encourages one particular error handling pattern over another.&lt;/p&gt;
+
+&lt;h2&gt;Reinterpret and Continue &lt;small&gt;(Constructivist)&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2014/error-handling-styles/constructivist.jpg&quot; title=&quot;Constructivist&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;In this style, a function that receives a bad input or encounters an error always returns a sensible result to its caller, silently reinterpreting the error to a valid value. Such a function will never crash the program but may produce unexpected results in the presence of bad inputs or errors.&lt;/p&gt;
+
+&lt;p&gt;Languages whose standard libraries and syntax regularly reinterpret errors and questionable input make it difficult to write programs that are not in this style.&lt;/p&gt;
+
+&lt;p&gt;Environments that encourage this style:&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2014/error-handling-styles/php-web.png&quot; title=&quot;PHP, HTML, CSS, JavaScript&quot;/&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PHP&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Very few PHP errors will actually crash the program - instead you get strange results and error text inserted into rendered pages.&lt;/li&gt;
+&lt;li&gt;Errors are printed to a server log file that nobody reads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTML, CSS&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Web browsers reinterpret bad markup as best they can to valid markup. Of course different browsers do this in different ways, so the only way to get a consistent rendering is to use valid markup.&lt;/li&gt;
+&lt;li&gt;Rendering errors are not generally logged anywhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JavaScript&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Developers that wish to use a more Fail Fast style of error handling (see below) but are forced to write in one of these languages may use special validation and linting tools to look for errors in the program text before they can be reinterpreted.&lt;/p&gt;
+
+&lt;h2&gt;Fail Fast &lt;small&gt;(Tantrum, Passive Aggressive)&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;In this style, a function that receives a bad input or encounters an error refuses to continue, returning an error back to its caller.&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2014/error-handling-styles/tantrum.jpg&quot; title=&quot;Tantrum&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right; clear: both; margin-top: .5em; margin-left: .5em;&quot; src=&quot;/assets/2014/error-handling-styles/passive-aggressive.jpg&quot; title=&quot;Passive Aggressive&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;amp;linkCode=w01&amp;amp;linkId=7FSPMMHJB3KVNUKV&amp;amp;creativeASIN=1482227371&quot;&gt;Exercises in Programming Style&lt;/a&gt; makes the additional distinction that functions in some programs try to handle errors immediately at their point of detection no matter what (&amp;ldquo;Tantrum&amp;rdquo;), whereas functions in other programs prefer to bubble up errors to callers until a caller with enough context is reached that decides to actually handle the error (&amp;ldquo;Passive Aggressive&amp;rdquo;).&lt;/p&gt;
+
+&lt;p&gt;Programs in the Tantrum substyle have lots of error handling code scattered throughout the program text, whereas programs in the Passive Aggressive substyle tend to consolidate most error handling code in top-level functions and let lower-level code just bubble up errors.&lt;/p&gt;
+
+&lt;p&gt;Languages that have built-in exceptions make it easy to implement programs in the Passive Aggressive substyle.&lt;/p&gt;
+
+&lt;p&gt;Environments that encourage this style:&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2014/error-handling-styles/java-csharp-python.png&quot; title=&quot;Java, C#, Python&quot;/&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Java&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C#&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;More comprehensively discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -3752,6 +3836,18 @@ public class AmbiguousNameException extends FetchException { ... }
 &lt;p&gt;&lt;img src=&quot;/assets/2013/generic_ie_error.png&quot; height=&quot;353&quot; width=&quot;725&quot; alt=&quot;Awful error message from Internet Explorer 9&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;(I doubt even the program itself knows what went wrong.)&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/11/22/error-handling-styles/&quot;&gt;Error handling styles in programming&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Summarizes the most prominent strategies for handling runtime errors.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
 
 &lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
     &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
