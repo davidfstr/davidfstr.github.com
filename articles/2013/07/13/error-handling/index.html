@@ -1130,9 +1130,9 @@ public class AmbiguousNameException extends FetchException { ... }
 <li id="fn:2">
 <p>Most programs treat out-of-memory errors as fatal, although there are a few hardened programs like SQLite that treat out-of-memory as an <em>expected</em> error.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
-<p>The C# exception heirarchy is illustrated in <a href="http://book.javanb.com/From-Java-To-Csharp-A-Developers-Guide/0321136225_ch13lev1sec2.html">&ldquo;C# exception hierarchy&rdquo;</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<p>The C# exception hierarchy is illustrated in <a href="http://book.javanb.com/From-Java-To-Csharp-A-Developers-Guide/0321136225_ch13lev1sec2.html">&ldquo;C# exception hierarchy&rdquo;</a>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 <li id="fn:4">
-<p>The Python exception heirarchy is documented in <a href="http://docs.python.org/2/library/exceptions.html#exception-hierarchy">&ldquo;Exception Hierarchy&rdquo;</a>.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<p>The Python exception hierarchy is documented in <a href="http://docs.python.org/2/library/exceptions.html#exception-hierarchy">&ldquo;Exception Hierarchy&rdquo;</a>.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
 <li id="fn:5">
 <p>Java has a few annoying examples where unexpected exceptions were marked as checked, burdening all subsequent callers. In particular <code>Object.clone()</code> throws the checked <code>CloneNotSupportedException</code>, making it hard to use. And Java&rsquo;s reflection library throws the checked <code>IllegalAccessException</code> and <code>InvocationTargetException</code> whenever you try to <code>invoke()</code> a method, neither of which are expected errors. And <code>Thread.sleep()</code> throws the checked <code>InterruptedException</code>. Now <code>IOException</code>, thrown by all I/O functions, is legitimately a checked exception because it is an expected exception.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 <li id="fn:6">

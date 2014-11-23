@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2014-11-22T13:56:43-08:00</updated>
+ <updated>2014-11-23T12:37:38-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -2495,7 +2495,7 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;Insufficiently distinct from Python.&lt;/li&gt;
 &lt;li&gt;Poor backward compatibility guarantees. No release notes.&lt;/li&gt;
-&lt;li&gt;Sloppy design: Non-formal grammar. Syntax schizophrenia. Monkeypatching accepted as a valid practice. Mutable strings. &lt;!-- Non-uniform string representation. --&gt;&lt;/li&gt;
+&lt;li&gt;Sloppy design: &lt;a href=&quot;http://madhadron.com/posts/2014-11-10-languages_for_humans_and_subhumans.html&quot;&gt;Non-formal grammar.&lt;/a&gt; Syntax schizophrenia. Monkeypatching accepted as a valid practice. Mutable strings. &lt;!-- Non-uniform string representation. --&gt;&lt;/li&gt;
 &lt;li&gt;But superior packaging, dependency management, and isolation systems.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -3866,9 +3866,9 @@ public class AmbiguousNameException extends FetchException { ... }
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;Most programs treat out-of-memory errors as fatal, although there are a few hardened programs like SQLite that treat out-of-memory as an &lt;em&gt;expected&lt;/em&gt; error.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
-&lt;p&gt;The C# exception heirarchy is illustrated in &lt;a href=&quot;http://book.javanb.com/From-Java-To-Csharp-A-Developers-Guide/0321136225_ch13lev1sec2.html&quot;&gt;&amp;ldquo;C# exception hierarchy&amp;rdquo;&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;The C# exception hierarchy is illustrated in &lt;a href=&quot;http://book.javanb.com/From-Java-To-Csharp-A-Developers-Guide/0321136225_ch13lev1sec2.html&quot;&gt;&amp;ldquo;C# exception hierarchy&amp;rdquo;&lt;/a&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:4&quot;&gt;
-&lt;p&gt;The Python exception heirarchy is documented in &lt;a href=&quot;http://docs.python.org/2/library/exceptions.html#exception-hierarchy&quot;&gt;&amp;ldquo;Exception Hierarchy&amp;rdquo;&lt;/a&gt;.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;The Python exception hierarchy is documented in &lt;a href=&quot;http://docs.python.org/2/library/exceptions.html#exception-hierarchy&quot;&gt;&amp;ldquo;Exception Hierarchy&amp;rdquo;&lt;/a&gt;.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:5&quot;&gt;
 &lt;p&gt;Java has a few annoying examples where unexpected exceptions were marked as checked, burdening all subsequent callers. In particular &lt;code&gt;Object.clone()&lt;/code&gt; throws the checked &lt;code&gt;CloneNotSupportedException&lt;/code&gt;, making it hard to use. And Java&amp;rsquo;s reflection library throws the checked &lt;code&gt;IllegalAccessException&lt;/code&gt; and &lt;code&gt;InvocationTargetException&lt;/code&gt; whenever you try to &lt;code&gt;invoke()&lt;/code&gt; a method, neither of which are expected errors. And &lt;code&gt;Thread.sleep()&lt;/code&gt; throws the checked &lt;code&gt;InterruptedException&lt;/code&gt;. Now &lt;code&gt;IOException&lt;/code&gt;, thrown by all I/O functions, is legitimately a checked exception because it is an expected exception.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:6&quot;&gt;
