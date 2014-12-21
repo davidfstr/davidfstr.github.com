@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Making an Existing Python Program Unicode Aware | DaFoster</title>
+    <title>Spectrum of Languages by Hardware&nbsp;Distance | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -41,6 +41,16 @@
     
     
     
+      <style>
+        /* Full width article */
+.post { width: 100% }
+.block-bar { display: none; }
+
+/* Add space between the diagram bottom and the following text */
+#spectrum-diagram { margin-bottom: 1em; }
+
+      </style>
+    
 
     <!-- Le fav and touch icons -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -53,7 +63,11 @@
     
     <!-- Le scripts -->
   
+    <script src="/assets/js/jquery-1.8.3.min.js"></script>
   
+  
+  
+    <script src="/assets/js/bootstrap.min.js"></script>
   
   </head>
 
@@ -304,9 +318,9 @@
         
           <div class="row">
   <div class="span9 post">
-    <h1>Making an Existing Python Program Unicode Aware</h1>
+    <h1>Spectrum of Languages by Hardware&nbsp;Distance</h1>
     <div class="post-metadata">
-      Apr 09, 2013 &ndash; Filed under: 
+      Dec 20, 2014 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -315,186 +329,104 @@
       </span>
     </div>
     
-    <p>Last week I decided to update one of my larger Python 2.7 projects to support Unicode fully
-and to run under Python 3.</p>
+    <p>Programming languages (and the ecosystems that surround them) are incredibly interesting. They can be sliced in many different ways based on syntactic similarity, type system similarity, suitedness for various problem domains, and many other attributes.</p>
 
-<p>Here are the steps that I took and some gotchas I ran into along the way.</p>
+<p>Below I present an spectrum of various languages, arranged by <strong>distance from the underlying hardware</strong>:</p>
 
-<h2>General Strategy</h2>
-
-<p>Create and fully automate the unit test suite:</p>
-
-<ul>
-<li>This is important to detect any unexpected breakage from the Unicode-related changes you&rsquo;ll be making soon.</li>
-<li>Make sure your code coverage is good since tests can&rsquo;t protect you from mistakes introduced in uncovered code.</li>
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#diagram-tldr" class="tab-header" data-toggle="tab">
+      TLDR
+    </a>
+  </li>
+  <li class="">
+    <a href="#diagram-full" class="tab-header" data-toggle="tab">
+      Full
+    </a>
+  </li>
 </ul>
 
 
-<p>Identify all boundaries where data is being exchanged between the program and the outside environment. In my case:</p>
+<div class="tab-content" id="spectrum-diagram">
+  <img class="tab-pane active" id="diagram-tldr" src="/assets/2014/hardware-distance/tldr-125perc-72dpi.png" />
+  <img class="tab-pane"        id="diagram-full" src="/assets/2014/hardware-distance/full-100perc-72dpi.png" />
+</div>
+
+
+<p>A few interesting patterns become evident in this diagram:</p>
 
 <ul>
-<li>Direct I/O (i.e. <code>read</code> and <code>write</code>)</li>
-<li>Filesystem access (i.e. <code>open</code> and file paths)</li>
-<li>Process manipulation (via the <code>subprocess</code> module)</li>
-<li>Command-line arguments (via <code>sys.argv</code>)</li>
-<li>Time access (via the <code>time</code> module)</li>
-</ul>
-
-
-<p>At boundaries:</p>
+<li><strong>Expressiveness <span title="is proportional to" style="cursor: help">∝</span> Distance from Hardware</strong>
 
 <ul>
-<li>Reads should decode bytestrings to unicode using the proper encoding. You may need to do research to determine what the correct encoding is or how to determine the correct encoding at runtime.
-
-<ul>
-<li>Since my program did a lot of direct I/O on classic Mac OS data structures, the correct encoding was typically MacRoman.</li>
-<li><code>sys.getfilesystemencoding()</code> is sometimes appropriate. Be sure to test on Windows, where this value is typically not UTF-8.</li>
+<li>Usually the closer you are to the hardware, the more you have to think like a computer and less like a human, decreasing expressiveness.</li>
+<li><p>There are some outlier languages (such as Go, Lua, and Forth) which are more expressive than their distance from the hardware would suggest.</p></li>
 </ul>
 </li>
-<li>Writes should encode unicode (or ASCII bytestring literals) to bytestrings using the proper encoding.</li>
-<li>Ensure files and streams explicitly use either binary mode (i.e. <code>rb</code> or <code>wb</code>) or text mode (i.e. <code>rt</code> or <code>wt</code>).
+<li><strong>Type systems tend to be similar for languages with similar hardware-distance.</strong>
 
 <ul>
-<li>UsuBytesIOally you want binary mode.</li>
-<li>Text mode is required for certain cases, such as the output of the <code>json</code> module. Even then, it&rsquo;s a good idea to restrict text-based output to the ASCII character set since the native text encoding may not support the full Unicode set, particularly on Windows.</li>
+<li>Bare Metal languages like machine code and assembly have no type system at all. Every piece of data is just a machine word and no type checking is done at all.</li>
+<li>Almost Bare Metal languages like C and C++ have a type system that is just strong enough to tell the compiler how to compile operations efficiently, but these type systems are not specifically designed for the elimination of bugs or expressiveness.</li>
+<li>High Level languages care more about expressiveness, and they tend to divide into two camps: <strong>statically-typed</strong> (Java, C#) and <strong>dynamically-typed</strong> (Python, Ruby, Lisps).</li>
+<li><p>Anything that is Intermediate Typed or below has a stronger focus on the type system, usually for preventing bugs or just having very precise types.</p></li>
 </ul>
 </li>
-</ul>
-
-
-<p>Finally:</p>
+<li><strong>&ldquo;PhD required below this line&rdquo;</strong>
 
 <ul>
-<li>Run the <code>2to3</code> converter on your program so that it can be run by Python 3.</li>
-<li>Run your new Python 3 source code in a Python 3 interpreter, perhaps inside a fresh Linux VM.</li>
-<li>Run your test suite under the Python 3 interpreter. It should find any Unicode mistakes that still need to be fixed.</li>
-<li>You will probably need to repeat this convert-test-fix cycle a couple of times.</li>
-</ul>
-
-
-<h2>Special Cases</h2>
-
-<ul>
-<li>Most uses of <code>StringIO</code> need to be migrated to <code>BytesIO</code>, when used as a byte buffer. If used as a string buffer, the <code>StringIO</code> uses need to be left at <code>StringIO</code>.
-
-<ul>
-<li>Here&rsquo;s the shim I used to support <code>BytesIO</code> and <code>StringIO</code> in both Python 2 and 3. I put it in a utility module and the rest of the program imports the shims instead of using the standard library.</li>
+<li>I have observed generally two large groups of people that work with programming languages, the <strong>Practitioners</strong> and the <strong>Academics</strong>. Each group uses their own specialized jargon<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> and tends not to talk to each other that much.</li>
+<li>Languages inside the &ldquo;PhD required below this line&rdquo; area are generally used primarily by Academics, and therefore their documentation (often only in the form of research papers) is difficult to read by Practitioners.</li>
+<li>I currently group myself as a Practitioner who is trying to read Academic.</li>
+<li>Of course some so-called Academic languages are sometimes used in practice for commercial systems. The Java bytecode verifier, for example, is defined in Prolog.</li>
+<li><p>Many languages in or near this region are lumped under the vague term <strong>functional programming</strong>, which roughly translates to a programming style that avoids mutable data structures &amp; side effects by default, or just &ldquo;a language that feels like Haskell&rdquo; (the canonical &ldquo;functional&rdquo; language).</p></li>
 </ul>
 </li>
+<li><strong>Middle of the spectrum = Sweet spot</strong>
+
+<ul>
+<li>There are a quite a lot of languages in the middle layers (High Level and Intermediate Typed). Probably because they intersect most with expressive languages, which are the most fun to program in.</li>
+<li>Programming near the hardware is unfun and generally unnecessary unless you&rsquo;re writing an OS, an embedded system, a CPU-intensive scientific computation, or a graphics shader.</li>
+<li><p>I suspect there aren&rsquo;t as many languages at the bottom in Academic-land because there are fewer Academics than Practitioners, such languages are harder to write (because of more complex type systems), or because I simply am not aware of many such languages as a non-Academic.</p></li>
 </ul>
-
-
-<pre>
-# BytesIO presents a stream interface to an in-memory bytestring.
-# 
-# This is equivalent to StringIO in Python 2 and to BytesIO in Python 3.
-try:
-    from io import BytesIO              # Python 3
-except ImportError:
-    from StringIO import StringIO as BytesIO
-
-# StringIO presents a stream interface to an in-memory string
-# (which is a bytestring in Python 2 and a unicode string in Python 3).
-# 
-# This is equivalent to StringIO in both Python 2 and 3.
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO             # Python 3
-</pre>
-
+</li>
+<li><strong>Declarative Languages that are general-purpose are rare.</strong>
 
 <ul>
-<li>When writing to a binary stream, replace uses of <code>output.write(chr(byte_ordinal))</code> with <code>output.write(bchr(byte_ordinal))</code> and use the following shim for <code>bchr</code>:</li>
-</ul>
-
-
-<pre>
-# bchr() converts the specified byte integer value to a single character
-# bytestring.
-# 
-# This is equivalent to chr() in Python 2 but requires special handling in
-# Python 3.
-if bytes == str:
-    def bchr(byte_ordinal):
-        return chr(byte_ordinal)
-else:
-    def bchr(byte_ordinal):
-        return bytes([byte_ordinal])    # Python 3
-</pre>
-
-
-<ul>
-<li>Beware of comparisons with <code>''</code>. Some of them probably need to be converted to comparisons with <code>b''</code>. For example, I had to adjust my <code>at_eof</code> utility function:</li>
-</ul>
-
-
-<pre>
-def at_eof(input):
-    """
-    Returns whether the specified input stream is at EOF.
-    """
-    with save_stream_position(input):
-        at_eof = input.read(1) == b''
-    return at_eof
-</pre>
-
-
-<ul>
-<li>If your program uses human-readable ASCII bytestring literals, such as FourCC codes, make sure they are marked with the <code>b</code> prefix appropriately.</li>
-</ul>
-
-
-<pre>
-if type_code == b'APPL':
-</pre>
-
-
-<ul>
-<li>Iteration over bytestrings works differently in Python 2 vs Python 3.
-
-<ul>
-<li>The code <code>for c in data:</code> will give back single-character bytestrings in Python 2 but byte ordinals in Python 3.</li>
-<li>Here&rsquo;s my shim to let <code>for b in iterord(data):</code> always iterate over byte ordinals:</li>
+<li>Most Declarative Languages are domain-specific. Arguably Prolog is general since it answers arbitrary questions from logic. And arguably SQL is general because most data stores (and every SQL database) is queryable with it.</li>
+<li>Other examples of declarative languages not listed here are VHDL and Verilog (used for hardware design), and ReceiptTally<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> (used for personal finance).</li>
 </ul>
 </li>
 </ul>
 
 
-<pre>
-# iterord() iterates over the integer values of the bytes in the specified
-# bytestring.
-if bytes == str:
-    def iterord(bytes_value):           # Python 2
-        for b in bytes_value:
-            yield ord(b)
-else:
-    def iterord(bytes_value):           # Python 3
-        return bytes_value
-</pre>
-
+<h3><em>Related Articles</em></h3>
 
 <ul>
-<li><code>time.strftime</code> returns a bytestring in Python 2 and a Unicode string in Python 3. Usually you want a Unicode string. I didn&rsquo;t create a shim for this since I only had one use of <code>strftime</code>.</li>
-</ul>
-
-
-<pre>
-now_string = time.strftime('%b %d %H:%M', time.localtime(now))
-if not isinstance(now_string, unicode):
-    now_string = now_string.decode('ascii')
-</pre>
-
+<li><a href="/articles/2013/02/20/visual-guide-to-programming-language-properties/">Visual Guide to Programming Language Properties</a>
 
 <ul>
-<li><p>Regular expressions that are intended to apply to bytestrings instead of Unicode strings may need updating.</p>
-
-<ul>
-<li>For example the pattern <code>re.compile(r'^Volume name is "(.*)"$')</code> which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read <code>re.compile(br'^Volume name is "(.*)"$')</code></li>
+<li><em>Shows programming language features, how they are related, and which features are present in popular languages.</em></li>
+<li><em>Visualizes some of the languages discussed in this article.</em></li>
 </ul>
 </li>
-<li><p>Don&rsquo;t forget to update your documentation to specify where Unicode (or ASCII bytestring literals) are expected.</p></li>
+<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
+
+<ul>
+<li><em>Discusses several programming languages and their unique features.</em></li>
 </ul>
+</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Examples of Practitioner-jargon: &ldquo;inheritance&rdquo;, &ldquo;generics&rdquo;, &ldquo;dependency injection&rdquo;, &ldquo;covariance&rdquo;. Examples of Academic-jargon: &ldquo;monad&rdquo;, &ldquo;functor&rdquo;, &ldquo;reduce&rdquo;, &ldquo;dependent type&rdquo;, &ldquo;currying&rdquo;. More examples from this <a href="http://www.slideshare.net/ScottWlaschin/fp-patterns-buildstufflt/10">presentation on functional programming</a>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>ReceiptTally is a custom language of my own designed to describe household receipts. With this description it can be calculated who owes whom money for reimbursement purposes. I haven&rsquo;t bothered to make this project public at this time.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 
   </div>
@@ -580,11 +512,11 @@ if not isinstance(now_string, unicode):
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/04/07/beautiful-code-sqlite/" title="Beautiful Code: SQLite">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2014/11/22/error-handling-styles/" title="Error handling styles in programming">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/" title="Exploring Onionland: The Tor .onion Darknet">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
