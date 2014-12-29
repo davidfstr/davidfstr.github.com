@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 21 Dec 2014 17:53:28 -0800</pubDate>
-    <lastBuildDate>Sun, 21 Dec 2014 17:53:28 -0800</lastBuildDate>
+    <pubDate>Mon, 29 Dec 2014 17:06:15 -0500</pubDate>
+    <lastBuildDate>Mon, 29 Dec 2014 17:06:15 -0500</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -19,7 +19,7 @@
     <item>
       <title>Spectrum of Languages by Hardware&amp;nbsp;Distance</title>
       <link>http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 20 Dec 2014 00:00:00 -0800</pubDate>
+      <pubDate>Sat, 20 Dec 2014 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance</guid>
       <description>&lt;p&gt;Programming languages (and the ecosystems that surround them) are incredibly interesting. They can be sliced in many different ways based on syntactic similarity, type system similarity, suitedness for various problem domains, and many other attributes.&lt;/p&gt;
 
@@ -127,7 +127,7 @@
     <item>
       <title>Error handling styles in programming</title>
       <link>http://dafoster.net/articles/2014/11/22/error-handling-styles/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 22 Nov 2014 00:00:00 -0800</pubDate>
+      <pubDate>Sat, 22 Nov 2014 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2014/11/22/error-handling-styles</guid>
       <description>&lt;p&gt;There are many ways that programs can handle errors at runtime. The excellent book &lt;a href=&quot;https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;amp;linkCode=w01&amp;amp;linkId=7FSPMMHJB3KVNUKV&amp;amp;creativeASIN=1482227371&quot;&gt;Exercises in Programming Style&lt;/a&gt; proposes an interesting categorization of common error handling patterns. Fascinatingly, the programming language that you work in often actively encourages one particular error handling pattern over another.&lt;/p&gt;
 
@@ -207,7 +207,7 @@
     <item>
       <title>Learning Japanese - the first 6 months</title>
       <link>http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 08 Nov 2014 00:00:00 -0800</pubDate>
+      <pubDate>Sat, 08 Nov 2014 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months</guid>
       <description>&lt;p&gt;So I haven&amp;rsquo;t written any posts for a long time. Mainly this is because I&amp;rsquo;ve been studying Japanese and preparing to go to Japan for a two week trip, which I have now returned from.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
@@ -399,7 +399,7 @@ Another good source for basic grammar and vocabulary is &lt;a href=&quot;http://
     <item>
       <title>Submitting a Python App to the Mac App Store</title>
       <link>http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 24 Jun 2014 00:00:00 -0700</pubDate>
+      <pubDate>Tue, 24 Jun 2014 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store</guid>
       <description>&lt;p&gt;Recently I needed to submit a Python app to the Mac App Store. Since there seemed to be no good documentation online for doing this, I had to figure it out myself. Here&amp;rsquo;s what I learned:&lt;/p&gt;
 
@@ -563,7 +563,7 @@ setup(
     <item>
       <title>Reading Japanese text from images</title>
       <link>http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 10 May 2014 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 10 May 2014 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been intensively studying Japanese recently&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, and something I have to do quite a lot is look up Japanese words that I see in images. Particularly words that involve a lot of kanji characters.&lt;/p&gt;
 
@@ -689,7 +689,7 @@ observer.join()
     <item>
       <title>Agda: Second Impressions</title>
       <link>http://dafoster.net/articles/2014/02/17/agda-second-impressions/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Mon, 17 Feb 2014 00:00:00 -0800</pubDate>
+      <pubDate>Mon, 17 Feb 2014 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2014/02/17/agda-second-impressions</guid>
       <description>&lt;p&gt;These are my second impressions of the Agda programming language after writing (or trying to write) a few simple Agda programs.&lt;/p&gt;
 
@@ -1364,7 +1364,7 @@ _A_10 s → _B_11 s
     <item>
       <title>What is Color?</title>
       <link>http://dafoster.net/articles/2014/02/02/what-is-color/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 02 Feb 2014 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 02 Feb 2014 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2014/02/02/what-is-color</guid>
       <description>&lt;p&gt;Color is a perceived property of light that enters the eye.&lt;/p&gt;
 
@@ -1464,7 +1464,7 @@ _A_10 s → _B_11 s
     <item>
       <title>Agda: First Impressions</title>
       <link>http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 24 Jan 2014 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 24 Jan 2014 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation</guid>
       <description>&lt;p&gt;These are my first impressions of the Agda programming language after researching it in some depth but before writing any actual Agda programs.&lt;/p&gt;
 
@@ -1721,7 +1721,7 @@ pages fell off the internet a while ago.&lt;/li&gt;
     <item>
       <title>How to move notes from an iPhone to an email account</title>
       <link>http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Mon, 25 Nov 2013 00:00:00 -0800</pubDate>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account</guid>
       <description>&lt;p&gt;If you have notes in the &amp;ldquo;On My Phone&amp;rdquo; or &amp;ldquo;On My Mac&amp;rdquo; accounts but want to move them to an email account instead, this article provides instructions for moving the notes. It&amp;rsquo;s surprisingly tricky.&lt;/p&gt;
 
@@ -1767,7 +1767,7 @@ pages fell off the internet a while ago.&lt;/li&gt;
     <item>
       <title>Impressions of Haskell</title>
       <link>http://dafoster.net/articles/2013/11/12/impressions-of-haskell/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 12 Nov 2013 00:00:00 -0800</pubDate>
+      <pubDate>Tue, 12 Nov 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/11/12/impressions-of-haskell</guid>
       <description>&lt;p&gt;I finally found an online tutorial for Haskell that involves writing a &lt;em&gt;non-trivial&lt;/em&gt; program:&lt;/p&gt;
 
@@ -1911,7 +1911,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
     <item>
       <title>Scrivener: An IDE for thinkers, creators, and writers</title>
       <link>http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 27 Oct 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sun, 27 Oct 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers</guid>
       <description>&lt;p&gt;Today I invested a few hours into learning &lt;a href=&quot;http://www.literatureandlatte.com/&quot;&gt;Scrivener&lt;/a&gt;, a tool created for the purpose of writing long-form texts such as books, screenplays, etc. However it wasn&amp;rsquo;t the word processing capabilities of Scrivener that caught my eye but rather its system for &lt;strong&gt;organizing&lt;/strong&gt; the fragments, research materials, and other documents that support the act of creating something new.&lt;/p&gt;
 
@@ -1987,7 +1987,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
     <item>
       <title>Shame on the NSA</title>
       <link>http://dafoster.net/articles/2013/10/21/shame-on-the-nsa/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Mon, 21 Oct 2013 00:00:00 -0700</pubDate>
+      <pubDate>Mon, 21 Oct 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/10/21/shame-on-the-nsa</guid>
       <description>&lt;p&gt;I work in the data analysis industry and am appalled that the kinds of tools I am building are being abused by the government to spy on ordinary citizens without public oversight.&lt;/p&gt;
 
@@ -2043,7 +2043,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
     <item>
       <title>WA Initiative 522: GMO Food Labeling</title>
       <link>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 04 Oct 2013 00:00:00 -0700</pubDate>
+      <pubDate>Fri, 04 Oct 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods</guid>
       <description>&lt;p&gt;This Washington state initiative requires foods that are themselves GMO to be labeled as such. Exempt are foods containing 0.9% or less of potentially GMO ingredients.&lt;/p&gt;
 
@@ -2092,7 +2092,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
     <item>
       <title>Strange Loop 2013 Highlights</title>
       <link>http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Mon, 30 Sep 2013 00:00:00 -0700</pubDate>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights</guid>
       <description>&lt;p&gt;This year I attended &lt;a href=&quot;https://thestrangeloop.com/&quot;&gt;Strange Loop&lt;/a&gt;, a conference on emerging tools, languages, and trends in software. I found the following sessions to be most interesting.&lt;/p&gt;
 
@@ -2368,7 +2368,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
     <item>
       <title>Regular Expressions</title>
       <link>http://dafoster.net/articles/2013/09/04/regular-expressions/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Wed, 04 Sep 2013 00:00:00 -0700</pubDate>
+      <pubDate>Wed, 04 Sep 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/09/04/regular-expressions</guid>
       <description>&lt;p&gt;Regular expressions are a concise way to search and transform strings using patterns. They are available in numerous text editors and programming languages.&lt;/p&gt;
 
@@ -2380,7 +2380,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
     <item>
       <title>How I learn new programming languages</title>
       <link>http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 25 Aug 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sun, 25 Aug 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages</guid>
       <description>&lt;p&gt;I don&amp;rsquo;t learn new programming languages very often. It simply requires an enormous amount of time to properly understand the local philosophy, community, tools, and ecosystem. But every so often I see a glimmer in an unfamilar language that merits me picking it up.&lt;/p&gt;
 
@@ -2584,7 +2584,7 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
     <item>
       <title>Interactive Computing</title>
       <link>http://dafoster.net/articles/2013/08/19/interactive-computing/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Mon, 19 Aug 2013 00:00:00 -0700</pubDate>
+      <pubDate>Mon, 19 Aug 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/08/19/interactive-computing</guid>
       <description>&lt;p&gt;I spent a considerable amount of time yesterday going through the work of &lt;a href=&quot;http://worrydream.com/&quot;&gt;Bret Victor&lt;/a&gt;, who appears to be on a personal mission to bring interactive computing to mainstream developers. The tools he&amp;rsquo;s prototyping and building are just incredible.&lt;/p&gt;
 
@@ -2631,7 +2631,7 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
     <item>
       <title>Fixing a function at runtime without restarting the program</title>
       <link>http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 13 Aug 2013 00:00:00 -0700</pubDate>
+      <pubDate>Tue, 13 Aug 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program</guid>
       <description>&lt;p&gt;This weekend I spent some time writing programs that scrape the contents of various websites to extract information. One challenge when doing this is that webpages are a mess and the functions I wrote to parse the webpages would frequently crash due to some kind of unexpected input. So I decided I wanted a way to fix these functions at runtime without needing to restart the entire program.&lt;/p&gt;
 
@@ -2799,7 +2799,7 @@ def retriable(func):
     <item>
       <title>Skills I&#39;m Learning at Splunk</title>
       <link>http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 04 Aug 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sun, 04 Aug 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk</guid>
       <description>&lt;h2&gt;Technical &amp;amp; Tools&lt;/h2&gt;
 
@@ -2904,7 +2904,7 @@ ex-mathematician ex-physicist turned programmer.&lt;/li&gt;
     <item>
       <title>Skills I Learned at Microsoft</title>
       <link>http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 03 Aug 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 03 Aug 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft</guid>
       <description>&lt;h2&gt;Social&lt;/h2&gt;
 
@@ -3003,7 +3003,7 @@ on another longer-lived (or immortal) object.&lt;/p&gt;&lt;/li&gt;
     <item>
       <title>Sending email from command line scripts</title>
       <link>http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 27 Jul 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 27 Jul 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts</guid>
       <description>&lt;p&gt;This weekend I open-sourced a script called &lt;a href=&quot;https://github.com/davidfstr/notifymail&quot;&gt;notifymail&lt;/a&gt; which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.&lt;/p&gt;
 
@@ -3071,7 +3071,7 @@ notifymail.send(&#39;Subject&#39;, &#39;Hello World&#39;, from_name=&#39;greetin
     <item>
       <title>Error Handling</title>
       <link>http://dafoster.net/articles/2013/07/13/error-handling/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 13 Jul 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 13 Jul 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/07/13/error-handling</guid>
       <description>&lt;p&gt;Most of the time programs operate happily inside their &lt;em&gt;main scenario&lt;/em&gt;. Occasionally they need to cope with unusual circumstances, such as being no longer able to read data from the network because the user has turned off their WiFi. The process by which a program responds to an error is called &lt;em&gt;error handling&lt;/em&gt;.&lt;/p&gt;
 
@@ -3909,7 +3909,7 @@ public class AmbiguousNameException extends FetchException { ... }
     <item>
       <title>Handling Text Correctly</title>
       <link>http://dafoster.net/articles/2013/06/01/handling-text-correctly/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 01 Jun 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 01 Jun 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/06/01/handling-text-correctly</guid>
       <description>&lt;p&gt;A remarkable number of programs do not handle text in a reasonable fashion, which causes those programs to break when confronted with non-English characters and symbols. Even the standard libraries of most programming languages are not immune.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
@@ -4613,7 +4613,7 @@ with open(file_path, &#39;rb&#39;) as stream:
     <item>
       <title>RDiscount 2.1.6 released</title>
       <link>http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 28 May 2013 00:00:00 -0700</pubDate>
+      <pubDate>Tue, 28 May 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released</guid>
       <description>&lt;p&gt;There are several new features in &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; 2.1.6. My favorite is fenced code blocks.&lt;/p&gt;
 
@@ -4687,7 +4687,7 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
     <item>
       <title>Implicit Partial Application Considered Harmful</title>
       <link>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 12 May 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sun, 12 May 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful</guid>
       <description>&lt;!--
 &lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
@@ -4900,7 +4900,7 @@ alpha(beta)(gamma, ...)
     <item>
       <title>Programming for Perfectionists (P4P): A Book Outline</title>
       <link>http://dafoster.net/articles/2013/05/11/book-outline/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 11 May 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 11 May 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/05/11/book-outline</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve read a lot of programming books. Many focus on teaching a particular language or tool, or are for teaching beginner developers the ropes. Precious few are designed to bring intermediate developers up to an advanced level. It&amp;rsquo;s time to change that.&lt;/p&gt;
 
@@ -5674,7 +5674,7 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
     <item>
       <title>Avoid feeling like a port on the Mac</title>
       <link>http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 07 May 2013 00:00:00 -0700</pubDate>
+      <pubDate>Tue, 07 May 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac</guid>
       <description>&lt;p&gt;Mac users get rather annoyed when using programs that feel like they&amp;rsquo;re just a port from another OS (usually Windows).&lt;/p&gt;
 
@@ -5754,7 +5754,7 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
     <item>
       <title>Copyrights and Licenses for Software</title>
       <link>http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 30 Apr 2013 00:00:00 -0700</pubDate>
+      <pubDate>Tue, 30 Apr 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software</guid>
       <description>&lt;p&gt;This is a quick overview of copyrights and licenses for software developers who may not know their rights under United States law. I cannot speak for international copyright law.&lt;/p&gt;
 
@@ -6015,7 +6015,7 @@ this license unless specified otherwise.&lt;/li&gt;
     <item>
       <title>Exploring Onionland: The Tor .onion Darknet</title>
       <link>http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 21 Apr 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sun, 21 Apr 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet</guid>
       <description>&lt;p&gt;Today I decided to explore the realm of Tor Hidden Services, which can be identified via URLs that appear to be on an &lt;code&gt;.onion&lt;/code&gt; top-level domain.&lt;/p&gt;
 
@@ -6144,7 +6144,7 @@ this license unless specified otherwise.&lt;/li&gt;
     <item>
       <title>Making an Existing Python Program Unicode Aware</title>
       <link>http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 09 Apr 2013 00:00:00 -0700</pubDate>
+      <pubDate>Tue, 09 Apr 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware</guid>
       <description>&lt;p&gt;Last week I decided to update one of my larger Python 2.7 projects to support Unicode fully
 and to run under Python 3.&lt;/p&gt;
@@ -6334,7 +6334,7 @@ if not isinstance(now_string, unicode):
     <item>
       <title>Beautiful Code: SQLite</title>
       <link>http://dafoster.net/articles/2013/04/07/beautiful-code-sqlite/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 07 Apr 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sun, 07 Apr 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/04/07/beautiful-code-sqlite</guid>
       <description>&lt;p&gt;It has been said that you can learn a lot from reading other people&amp;rsquo;s high-quality software. So I gave it a try this weekend by reading the SQLite source.&lt;/p&gt;
 
@@ -6545,7 +6545,7 @@ the most interesting ones to look at.&lt;/li&gt;
     <item>
       <title>Migrating from BBEdit to Sublime Text</title>
       <link>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 22 Mar 2013 00:00:00 -0700</pubDate>
+      <pubDate>Fri, 22 Mar 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been using &lt;a href=&quot;http://www.barebones.com/products/bbedit/index.html&quot;&gt;BBEdit&lt;/a&gt; as my primary text editor on the Mac for over 10 years. It is an extremely capable and mature editor with just about all the bells and whistles you can imagine. However the use of Sublime Text has been spreading throughout my workplace at Splunk&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so I decided I&amp;rsquo;d give it a try.&lt;/p&gt;
 
@@ -6707,7 +6707,7 @@ the most interesting ones to look at.&lt;/li&gt;
     <item>
       <title>Introducing p4status: A status command for Perforce</title>
       <link>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 16 Mar 2013 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 16 Mar 2013 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</guid>
       <description>&lt;p&gt;&lt;strong&gt;p4status&lt;/strong&gt; works like &lt;code&gt;git status&lt;/code&gt; (or &lt;code&gt;svn status&lt;/code&gt;), but works in Perforce.&lt;/p&gt;
 
@@ -6807,7 +6807,7 @@ the most interesting ones to look at.&lt;/li&gt;
     <item>
       <title>Killer apps for software platforms</title>
       <link>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 10 Mar 2013 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 10 Mar 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</guid>
       <description>&lt;p&gt;A &lt;em&gt;killer app&lt;/em&gt; is any product that is so desirable that it fuels the sale/adoption of a larger technology that the product depends on.&lt;/p&gt;
 
@@ -6891,7 +6891,7 @@ the most interesting ones to look at.&lt;/li&gt;
     <item>
       <title>Notes on Racket (PLT-Scheme)</title>
       <link>http://dafoster.net/articles/2013/03/01/notes-on-racket/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 01 Mar 2013 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 01 Mar 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/03/01/notes-on-racket</guid>
       <description>&lt;p&gt;Generally &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; appears to be a very usable dialect of Lisp/Scheme.&lt;/p&gt;
 
@@ -6985,7 +6985,7 @@ the most interesting ones to look at.&lt;/li&gt;
     <item>
       <title>Notes on Prolog</title>
       <link>http://dafoster.net/articles/2013/02/25/notes-on-prolog/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Mon, 25 Feb 2013 00:00:00 -0800</pubDate>
+      <pubDate>Mon, 25 Feb 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/02/25/notes-on-prolog</guid>
       <description>&lt;h2&gt;What is Prolog?&lt;/h2&gt;
 
@@ -7186,7 +7186,7 @@ printfile(Filename, Text) :-
     <item>
       <title>Visual Guide to Programming Language Properties</title>
       <link>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Wed, 20 Feb 2013 00:00:00 -0800</pubDate>
+      <pubDate>Wed, 20 Feb 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s an interactive chart showing high-level properties of various programming languages.&lt;br/&gt;
 You can filter the chart to only show the properties that your favorite language supports.&lt;/p&gt;
@@ -7199,7 +7199,7 @@ You can filter the chart to only show the properties that your favorite language
     <item>
       <title>RDiscount 2.0.7 released</title>
       <link>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 02 Feb 2013 00:00:00 -0800</pubDate>
+      <pubDate>Sat, 02 Feb 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released</guid>
       <description>&lt;p&gt;It has been just over two years since &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; 1.6.8 (the previous version) was posted.&lt;br/&gt;
 As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt;/p&gt;
@@ -7270,7 +7270,7 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt
     <item>
       <title>Learnings from SICP (and Lisp)</title>
       <link>http://dafoster.net/articles/2013/02/02/learnings-from-sicp/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 02 Feb 2013 00:00:00 -0800</pubDate>
+      <pubDate>Sat, 02 Feb 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/02/02/learnings-from-sicp</guid>
       <description>&lt;p&gt;&lt;img src=&quot;/assets/2013/sicp_cover.jpg&quot;
   alt=&quot;Cover of The Structure and Interpretation of Computer Programs&quot;
@@ -7568,7 +7568,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
     <item>
       <title>Unique Features of Various Programming Languages</title>
       <link>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 29 Jan 2013 00:00:00 -0800</pubDate>
+      <pubDate>Tue, 29 Jan 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages</guid>
       <description>&lt;blockquote&gt;
   A language that doesn&#39;t affect the way you think about programming, is not worth knowing.&lt;br/&gt;
@@ -7994,7 +7994,7 @@ Count me in!&lt;/li&gt;
     <item>
       <title>Things I Wish I Knew Before Working in Industry</title>
       <link>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 15 Jan 2013 00:00:00 -0800</pubDate>
+      <pubDate>Tue, 15 Jan 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</guid>
       <description>&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
 Tech about things he wished he knew before working in the the software
@@ -8222,7 +8222,7 @@ Stable environments offer little opportunity.&lt;/li&gt;
     <item>
       <title>Programming is Fun. But What Matters is Solving a Real Problem.</title>
       <link>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Tue, 08 Jan 2013 00:00:00 -0800</pubDate>
+      <pubDate>Tue, 08 Jan 2013 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</guid>
       <description>&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order that results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
 
@@ -8252,7 +8252,7 @@ Stable environments offer little opportunity.&lt;/li&gt;
     <item>
       <title>This website is now powered by Jekyll</title>
       <link>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 21 Dec 2012 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 21 Dec 2012 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll</guid>
       <description>&lt;p&gt;And this is my first post using the new system. Articles are a lot easier to
 write, so I will be posting more frequently.&lt;/p&gt;
@@ -8279,7 +8279,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
     <item>
       <title>Why I no longer use Drupal</title>
       <link>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sun, 16 Dec 2012 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 16 Dec 2012 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal</guid>
       <description>&lt;p&gt;&lt;em&gt;&lt;b&gt;TLDR:&lt;/b&gt; Drupal is overly complex for a personal blog. It is hard to maintain. Simple static site generators are easier to work with in the long term.&lt;/em&gt;&lt;/p&gt;
 
@@ -8340,7 +8340,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
     <item>
       <title>Retrospect vs. Time Machine</title>
       <link>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 13 Nov 2010 00:00:00 -0800</pubDate>
+      <pubDate>Sat, 13 Nov 2010 00:00:00 -0500</pubDate>
       <guid>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</guid>
       <description>&lt;h2&gt;The old Retrospect 6.0&lt;/h2&gt;
 
@@ -8413,7 +8413,7 @@ the most, when your hard drive is likely to fail.&lt;/p&gt;
     <item>
       <title>Impact of Anime on my Programming Experience</title>
       <link>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 18 Sep 2010 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 18 Sep 2010 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience</guid>
       <description>&lt;p&gt;It occurs to me that anime has been an important driver for improving my programming abilities.&lt;/p&gt;
 
@@ -8455,7 +8455,7 @@ so that I can watch new anime on the bus.&lt;/li&gt;
     <item>
       <title>Comparing Writing Utensils</title>
       <link>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 17 Sep 2010 00:00:00 -0700</pubDate>
+      <pubDate>Fri, 17 Sep 2010 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils</guid>
       <description>&lt;p&gt;My experience using various kinds of writing utensils in school&amp;hellip;&lt;/p&gt;
 
@@ -8562,7 +8562,7 @@ comes in handy&lt;/li&gt;
     <item>
       <title>Comparing iPod Touch (2nd Gen) to iPhone 3GS</title>
       <link>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 17 Sep 2010 00:00:00 -0700</pubDate>
+      <pubDate>Fri, 17 Sep 2010 00:00:00 -0400</pubDate>
       <guid>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs</guid>
       <description>&lt;p&gt;I recently upgraded from an iPod Touch to an iPhone 3GS. I hate contracts, so I
 bought the 3GS off-contract from a seller on Craigslist. (And I timed my
