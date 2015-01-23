@@ -16,6 +16,7 @@ http://dafoster.net/projects/decomp4/
 http://dafoster.net/projects/handbrake-subtitle-support/
 http://dafoster.net/projects/incoming-game/
 http://dafoster.net/projects/
+http://dafoster.net/projects/media-queue/
 http://dafoster.net/projects/park-place/
 http://dafoster.net/projects/rdiscount/
 http://dafoster.net/projects/website/
@@ -23,6 +24,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2015/01/22/announcing-media-queue-1.0/
 http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance/
 http://dafoster.net/articles/2014/11/22/error-handling-styles/
 http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months/
