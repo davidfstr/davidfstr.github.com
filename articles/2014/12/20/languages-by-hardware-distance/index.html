@@ -339,7 +339,7 @@
     
     <p>Programming languages (and the ecosystems that surround them) are incredibly interesting. They can be sliced in many different ways based on syntactic similarity, type system similarity, suitedness for various problem domains, and many other attributes.</p>
 
-<p>Below I present an spectrum of various languages, arranged by <strong>distance from the underlying hardware</strong>:</p>
+<p>Below I present an spectrum of various languages, arranged by <strong>distance from the underlying hardware</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>:</p>
 
 <ul class="nav nav-tabs">
   <li class="active">
@@ -383,7 +383,7 @@
 <li><strong>&ldquo;PhD required below this line&rdquo;</strong>
 
 <ul>
-<li>I have observed generally two large groups of people that work with programming languages, the <strong>Practitioners</strong> and the <strong>Academics</strong>. Each group uses their own specialized jargon<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> and tends not to talk to each other that much.</li>
+<li>I have observed generally two large groups of people that work with programming languages, the <strong>Practitioners</strong> and the <strong>Academics</strong>. Each group uses their own specialized jargon<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and tends not to talk to each other that much.</li>
 <li>Languages inside the &ldquo;PhD required below this line&rdquo; area are generally used primarily by Academics, and therefore their documentation (often only in the form of research papers) is difficult to read by Practitioners.</li>
 <li>I currently group myself as a Practitioner who is trying to read Academic.</li>
 <li>Of course some so-called Academic languages are sometimes used in practice for commercial systems. The Java bytecode verifier, for example, is defined in Prolog.</li>
@@ -402,7 +402,7 @@
 
 <ul>
 <li>Most Declarative Languages are domain-specific. Arguably Prolog is general since it answers arbitrary questions from logic. And arguably SQL is general because most data stores (and every SQL database) is queryable with it.</li>
-<li>Other examples of declarative languages not listed here are VHDL and Verilog (used for hardware design), and ReceiptTally<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> (used for personal finance).</li>
+<li>Other examples of declarative languages not listed here are VHDL and Verilog (used for hardware design), and ReceiptTally<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> (used for personal finance).</li>
 </ul>
 </li>
 </ul>
@@ -430,9 +430,11 @@
 <hr/>
 <ol>
 <li id="fn:1">
-<p>Examples of Practitioner-jargon: &ldquo;inheritance&rdquo;, &ldquo;generics&rdquo;, &ldquo;dependency injection&rdquo;, &ldquo;covariance&rdquo;. Examples of Academic-jargon: &ldquo;monad&rdquo;, &ldquo;functor&rdquo;, &ldquo;reduce&rdquo;, &ldquo;dependent type&rdquo;, &ldquo;currying&rdquo;. More examples from this <a href="http://www.slideshare.net/ScottWlaschin/fp-patterns-buildstufflt/10">presentation on functional programming</a>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>When speaking of &ldquo;hardware distance&rdquo;, the hardware I am referring to is the common commodity hardware architectures such as x86 and ARM. It should be noted that there are also specialized architectures where Forth, Lisp, and Prolog <em>are</em> the assembly language. And some architectures like the Burroughs actually have typed memory and pointers, which eliminates a lot of the dangers of working with untyped assembly.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>ReceiptTally is a custom language of my own designed to describe household receipts. With this description it can be calculated who owes whom money for reimbursement purposes. I haven&rsquo;t bothered to make this project public at this time.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>Examples of Practitioner-jargon: &ldquo;inheritance&rdquo;, &ldquo;generics&rdquo;, &ldquo;dependency injection&rdquo;, &ldquo;covariance&rdquo;. Examples of Academic-jargon: &ldquo;monad&rdquo;, &ldquo;functor&rdquo;, &ldquo;reduce&rdquo;, &ldquo;dependent type&rdquo;, &ldquo;currying&rdquo;. More examples from this <a href="http://www.slideshare.net/ScottWlaschin/fp-patterns-buildstufflt/10">presentation on functional programming</a>.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>ReceiptTally is a custom language of my own designed to describe household receipts. With this description it can be calculated who owes whom money for reimbursement purposes. I haven&rsquo;t bothered to make this project public at this time.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 

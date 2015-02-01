@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-01-22T21:47:13-08:00</updated>
+ <updated>2015-02-01T14:00:22-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -57,7 +57,7 @@
    <link rel="alternate" href="http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Programming languages (and the ecosystems that surround them) are incredibly interesting. They can be sliced in many different ways based on syntactic similarity, type system similarity, suitedness for various problem domains, and many other attributes.&lt;/p&gt;
 
-&lt;p&gt;Below I present an spectrum of various languages, arranged by &lt;strong&gt;distance from the underlying hardware&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Below I present an spectrum of various languages, arranged by &lt;strong&gt;distance from the underlying hardware&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 
 &lt;ul class=&quot;nav nav-tabs&quot;&gt;
   &lt;li class=&quot;active&quot;&gt;
@@ -101,7 +101,7 @@
 &lt;li&gt;&lt;strong&gt;&amp;ldquo;PhD required below this line&amp;rdquo;&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;I have observed generally two large groups of people that work with programming languages, the &lt;strong&gt;Practitioners&lt;/strong&gt; and the &lt;strong&gt;Academics&lt;/strong&gt;. Each group uses their own specialized jargon&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and tends not to talk to each other that much.&lt;/li&gt;
+&lt;li&gt;I have observed generally two large groups of people that work with programming languages, the &lt;strong&gt;Practitioners&lt;/strong&gt; and the &lt;strong&gt;Academics&lt;/strong&gt;. Each group uses their own specialized jargon&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and tends not to talk to each other that much.&lt;/li&gt;
 &lt;li&gt;Languages inside the &amp;ldquo;PhD required below this line&amp;rdquo; area are generally used primarily by Academics, and therefore their documentation (often only in the form of research papers) is difficult to read by Practitioners.&lt;/li&gt;
 &lt;li&gt;I currently group myself as a Practitioner who is trying to read Academic.&lt;/li&gt;
 &lt;li&gt;Of course some so-called Academic languages are sometimes used in practice for commercial systems. The Java bytecode verifier, for example, is defined in Prolog.&lt;/li&gt;
@@ -120,7 +120,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;Most Declarative Languages are domain-specific. Arguably Prolog is general since it answers arbitrary questions from logic. And arguably SQL is general because most data stores (and every SQL database) is queryable with it.&lt;/li&gt;
-&lt;li&gt;Other examples of declarative languages not listed here are VHDL and Verilog (used for hardware design), and ReceiptTally&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; (used for personal finance).&lt;/li&gt;
+&lt;li&gt;Other examples of declarative languages not listed here are VHDL and Verilog (used for hardware design), and ReceiptTally&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; (used for personal finance).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -148,9 +148,11 @@
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;Examples of Practitioner-jargon: &amp;ldquo;inheritance&amp;rdquo;, &amp;ldquo;generics&amp;rdquo;, &amp;ldquo;dependency injection&amp;rdquo;, &amp;ldquo;covariance&amp;rdquo;. Examples of Academic-jargon: &amp;ldquo;monad&amp;rdquo;, &amp;ldquo;functor&amp;rdquo;, &amp;ldquo;reduce&amp;rdquo;, &amp;ldquo;dependent type&amp;rdquo;, &amp;ldquo;currying&amp;rdquo;. More examples from this &lt;a href=&quot;http://www.slideshare.net/ScottWlaschin/fp-patterns-buildstufflt/10&quot;&gt;presentation on functional programming&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;When speaking of &amp;ldquo;hardware distance&amp;rdquo;, the hardware I am referring to is the common commodity hardware architectures such as x86 and ARM. It should be noted that there are also specialized architectures where Forth, Lisp, and Prolog &lt;em&gt;are&lt;/em&gt; the assembly language. And some architectures like the Burroughs actually have typed memory and pointers, which eliminates a lot of the dangers of working with untyped assembly.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;ReceiptTally is a custom language of my own designed to describe household receipts. With this description it can be calculated who owes whom money for reimbursement purposes. I haven&amp;rsquo;t bothered to make this project public at this time.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Examples of Practitioner-jargon: &amp;ldquo;inheritance&amp;rdquo;, &amp;ldquo;generics&amp;rdquo;, &amp;ldquo;dependency injection&amp;rdquo;, &amp;ldquo;covariance&amp;rdquo;. Examples of Academic-jargon: &amp;ldquo;monad&amp;rdquo;, &amp;ldquo;functor&amp;rdquo;, &amp;ldquo;reduce&amp;rdquo;, &amp;ldquo;dependent type&amp;rdquo;, &amp;ldquo;currying&amp;rdquo;. More examples from this &lt;a href=&quot;http://www.slideshare.net/ScottWlaschin/fp-patterns-buildstufflt/10&quot;&gt;presentation on functional programming&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;ReceiptTally is a custom language of my own designed to describe household receipts. With this description it can be calculated who owes whom money for reimbursement purposes. I haven&amp;rsquo;t bothered to make this project public at this time.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
