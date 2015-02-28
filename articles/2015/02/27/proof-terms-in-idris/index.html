@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Proof terms in Idris | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+      <style>
+        .formula-box pre {
+    background-color: #ffffe0; /* light yellow */
+    
+    background-image: url("/assets/2015/star.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+.terminal-box pre {
+    background-color: #333333; /* chalkboard */
+    color: white;
+    
+    background-image: url("/assets/2015/terminal.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+      </style>
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>Proof terms in Idris</h1>
+    <div class="post-metadata">
+      Feb 27, 2015 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>36</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>Recently I&rsquo;ve been experimenting with the language <a href="http://www.idris-lang.org">Idris</a>, one of the rare <strong>dependently-typed</strong> programming languages.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> For example you can write a sorting function that is proven correct by the compiler at <em>compile time</em>:</p>
+
+<pre><code>sort : (inputList:Vect n e) -&gt; 
+       (outputList:Vect n e ** (IsSorted outputList) ** 
+                               (ElemsAreEq inputList outputList))
+</code></pre>
+
+<p>The preceding is a function that takes an input list (or &ldquo;vector&rdquo;) of elements and returns a tuple containing:</p>
+
+<ol>
+<li>an output list,</li>
+<li>a <strong>proof</strong> that the output list is sorted (<code>IsSorted</code>), and</li>
+<li>a <strong>proof</strong> that the input list and output list have the same elements (<code>ElemsAreEq</code>).</li>
+</ol>
+
+
+<p>Since the type signature is verified at compile time, any function implementing this signature is a provably correct sort function.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<p>The notion that a proof can be represented explicitly in a program is fascinating and a unique capability of dependently-typed languages.</p>
+
+<p>In this article I will focus specifically on what proof terms are, how to define them, and how to construct them.</p>
+
+<p>I assume that the reader has basic familiarity with Haskell-like syntax.</p>
+
+<!--
+To reach the widest audience possible I assume only that the reader has general programming experience, perhaps only in imperative languages with C-derived syntax. Basic familiarity with Haskell-like syntax is useful but not assumed. I will try to explain new syntax when it appears, particularly when it differs from C-style syntax.
+-->
+
+
+<h2>A simple built-in proof type: <code>Data.So</code></h2>
+
+<p>Proof types are tricky to grasp at first. Thus let&rsquo;s start by examining the simplest proof type in the Idris standard library<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>, the <code>So</code> type.</p>
+
+<p>Here is the definition of the <code>Data.So</code> type:</p>
+
+<pre><code>data So : Bool -&gt; Type where 
+    Oh : So True
+</code></pre>
+
+<!--
+Syntax notes:
+
+* Function-like things are declared with `funcName : argType1 -> argType2 -> returnType`.
+    * In this case `So` takes a `Bool` and defines a type.
+    * Thus `So` is a parameterized type, not unlike the parameterized types `List` and `IList` in Java and C# respectively, which are parameterized by their element type. So a `List<String>` or `IList<string>` is a list of strings. In Idris the same type would be written as `(List String)` (with a space) and declared as `List : e -> Type`, where `e` represented the element type of the list.
+* `So` is defined as a data type parameterized[^actually-indexed] by a boolean expression (of type `Bool`). You can create a type expression like `So (1 < 1)` or `So (1 > 2)`.
+* `So` has a single type constructor `Oh` which takes no parameters. It is an atomic thing.
+* You can only make an `Oh` when the boolean expression in the resultant `So (...)` type can be proven equal to `True` by the compiler at compile time.
+
+[^actually-indexed]: Type theory buffs will probably correct me by emphasizing that types can be *parameterized* by other types but are *indexed* by values. Again I think this distinction is immaterial to the practitioner and therefore will say that a type can be parameterized by either types or values.
+
+-->
+
+
+<p>The <code>So</code> type represents a proof that a particular boolean test has been performed and that it evaluated to <code>True</code>. For example it is possible to construct a proof value (<code>Oh</code>) of type <code>So (1 &lt; 2)</code> but it is not possible to construct a value of type <code>So (1 &gt; 2)</code>.</p>
+
+<!--
+`Oh`? `So`? These are rather strange names, no? I personally find this type easier to understand if I think of it as:
+
+```
+data IsTrue : Bool -> Type where 
+    ProvablyTrue : IsTrue True
+```
+-->
+
+
+<p>You can construct a value of <code>So (1 &lt; 2)</code> directly on the command-line:</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner
+Idris&gt; :module Data.So
+*So&gt; the (So (1 &lt; 2)) Oh
+Oh : So True
+</code></pre>
+</div>
+
+
+<p>The function <code>(the FooType fooValue)</code> tells the compiler that <code>fooValue</code> should be of type <code>FooType</code>, which is occasionally useful. In this case I am asserting to the compiler that <code>So (1 &lt; 2)</code> is so obvious that it should just try to construct the proof value <code>Oh</code> immediately.</p>
+
+<p>However you can&rsquo;t make a <code>So (1 &gt; 2)</code>:</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner
+Idris&gt; :module Data.So
+*So&gt; the (So (1 /= 1)) Oh
+(input):1:5:When elaborating argument x to function Prelude.Basics.the:
+        Can't unify
+                So True
+        with
+                So (fromInteger 1 &gt; fromInteger 2)
+
+        Specifically:
+                Can't unify
+                        True
+                with
+                        fromInteger 1 &gt; fromInteger 2
+</code></pre>
+</div>
+
+
+<p>Here the error message indicates that the compiler isn&rsquo;t convinced that <code>True == (1 &gt; 2)</code>, which is absolutely correct.</p>
+
+<p>In a real program the main way to construct a <code>So</code> is to use the <code>choose</code> function, whose definition is:</p>
+
+<pre><code>choose : (b : Bool) -&gt; Either (So b) (So (not b))
+choose True  = Left Oh
+choose False = Right Oh
+</code></pre>
+
+<p>You might have to stare at this definition for a while to understand how it works. I know it took me a while to grok it. Let me try to explain:</p>
+
+<p>The <code>choose</code> function is performing a pattern match on the <code>Bool</code> argument it receives. If it successfully pattern matches on <code>True</code>, the compiler itself understands that argument <code>b</code> is equivalent to <code>True</code>, so it permits the construction of the value <code>Oh</code> (of type <code>So b</code>) on the right-hand-side of the <code>choose True</code> definition. The <code>choose False</code> definition works via similar reasoning to construct a value <code>Oh</code> of type <code>So (not b)</code>, since the compiler can deduce that <code>not b</code> is <code>True</code> when <code>b</code> is <code>False</code>.</p>
+
+<h2>A simple derived proof type: <code>IsLte</code></h2>
+
+<p>What if we wanted to prove specifically that one element is less than or equal to another? We could write a proof type derived directly from <code>Data.So</code>.</p>
+
+<div class="formula-box"><pre><code>IsLte : Ord e =&gt; (x:e) -&gt; (y:e) -&gt; Type
+IsLte x y = So (x &lt;= y)
+</code></pre>
+</div>
+
+
+
+
+<!--
+Syntax notes:
+
+* `Ord e` is a type constraint on `e` which requires that elements of type `e` implement a comparison function, so that expressions like `x <= y` can work (where `x` and `y` are of type `e`).
+    * In Java the equivalent constaint is implemented by the interface `Comparable`, and in C# it is `IComparable`.
+-->
+
+
+<p>Here the <code>IsLte</code> type is defined directly in terms of the <code>So</code> proof type that was described previously. Note that it is necessary to add the <code>Ord e</code> type constraint so that the compiler will allow the use of <code>&lt;=</code> to compare <code>x</code> and <code>y</code> in <code>(x &lt;= y)</code>.</p>
+
+<p>Strictly speaking the definition of <code>IsLte</code> here doesn&rsquo;t create a new type, but rather a type alias to the underlying <code>So</code>. Therefore you must use the <code>Oh</code> proof value to actually make an <code>IsLte</code>:</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner IsLte.idr 
+*IsLte&gt; the (IsLte 1 2) Oh
+Oh : So True
+*IsLte&gt; the (IsLte 2 1) Oh
+(input):1:5:When elaborating argument x to function Prelude.Basics.the:
+        Can't unify
+                So True
+        with
+                IsLte (fromInteger 2) (fromInteger 1)
+
+        Specifically:
+                Can't unify
+                        True
+                with
+                        fromInteger 2 &lt;= fromInteger 1
+</code></pre>
+</div>
+
+
+<p>Now it&rsquo;s fine and all to create a <code>So</code> or <code>IsLte</code> directly on the command line. But how would you create one in an actual program?</p>
+
+<div class="formula-box"><pre><code>mkIsLte : Ord e =&gt; (x:e) -&gt; (y:e) -&gt; Maybe (IsLte x y)
+mkIsLte x y =
+    case (choose (x &lt;= y)) of 
+        Left proofXLteY =&gt;
+            Just proofXLteY
+        Right proofNotXLteY =&gt;
+            Nothing
+</code></pre>
+</div>
+
+
+
+
+<!--
+Syntax notes:
+
+* The `choose` function here is the same one mentioned before that operates on `So` types, which works here because an `IsLte` is actually a `So`.
+* The `case...of` statement is like a fancy switch statement: It does pattern matching to determine which branch to take.
+* Notice the use of the naming convention `proof...` for proof values. Having longish descriptive names for proof values really helps in more complex code that has a lot of proof values.
+-->
+
+
+<p>This function takes an <code>x</code> and a <code>y</code> at runtime and constructs a proof value of type <code>(IsLte x y)</code> if x &lt;= y. If x is not &lt;= y then it fails by returning a <code>Nothing</code>.</p>
+
+<p>On the Idris CLI, let&rsquo;s try to construct a valid proof that <code>(IsLte 1 2)</code>:</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner InsertionSort.idr
+*InsertionSort&gt; mkIsLte 1 2
+Just Oh : Maybe (So True)
+</code></pre>
+</div>
+
+
+<p>Nice. How about a proof that <code>(IsLte 2 1)</code>?</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner InsertionSort.idr
+*InsertionSort&gt; mkIsLte 2 1
+Nothing : Maybe (So False)
+</code></pre>
+</div>
+
+
+<p>Fails as expected.</p>
+
+<h2>A simple standalone proof type: <code>HeadIs</code></h2>
+
+<p>Let&rsquo;s implement our own simple proof type. How about a proof that a vector begins with a particular value?</p>
+
+<div class="formula-box"><pre><code>data HeadIs : Vect n e -&gt; e -&gt; Type where
+    MkHeadIs : HeadIs (x::xs) x
+</code></pre>
+</div>
+
+
+
+
+<!--
+Syntax notes:
+
+* `Vect n e` represents a list (or "vector") of length `n` containing elements of type `e`.
+* Regarding vectors:
+    * `Nil` is the empty vector. It can also be written as `[]` in some contexts.
+    * The operator `::` in `x::xs` takes an element `x` and prepends it to a vector `xs` returning a new vector `x::xs` with the prepended element.
+        * Most functional languages define **prepend** as the more basic operation than **append**, in contrast to most imperative languages.
+    * The first element of a vector is called the "head". The remainder is called the "tail".
+* Regarding naming conventions:
+    * `x`, `y`, and `z` will be used to refer to elements in vectors.
+    * `xs`, `ys`, and `zs` will be used to refer to vectors.
+    * `n` will be used to refer to the length of a vector.
+-->
+
+
+<p>A value of type <code>HeadIs xs y</code> represents a proof that a vector <code>xs</code> begins with (&ldquo;has the head&rdquo;) <code>y</code>.</p>
+
+<p>Based on the definition above, the compiler will only permit the construction of the atomic <code>MkHeadIs</code> proof value if it can destructure its first vector argument and see that its head matches the second argument.</p>
+
+<h2>A complex proof type: <code>IsSorted</code></h2>
+
+<p>How about we try to make a more complex proof type? How about a proof that a list of elements is sorted? Such a proof type would be useful in the <code>sort</code> function mentioned at the beginning of this article.</p>
+
+<p>Let&rsquo;s take a first stab at thinking about the initial signature of <code>IsSorted</code>. We want to be able to write <code>IsSorted xs</code>, so we need <code>IsSorted</code> to take a vector <code>xs</code> argument and return a type:</p>
+
+<pre><code>data IsSorted : (xs:Vect n e) -&gt; Type where
+    ...
+</code></pre>
+
+<p>Okay. Now, since proof terms work entirely by pattern matching on the arguments received, let&rsquo;s think about what cases exist for matching on the single <code>xs</code> vector argument:</p>
+
+<ul>
+<li><code>Nil</code> &ndash; Definitely sorted, since it&rsquo;s an empty vector. <strong>(Case 1)</strong></li>
+<li><code>x::xs</code> &ndash; Not enough information to determine whether sorted. Let&rsquo;s decompose <code>xs</code>:
+
+<ul>
+<li><code>x::Nil</code> &ndash; Definitely sorted, since it&rsquo;s a vector with only one element. <strong>(Case 2A)</strong></li>
+<li><code>x::(y::ys)</code> &ndash; Sorted if: <strong>(Case 2B)</strong>
+
+<ul>
+<li>(1) we can prove <code>(x &lt;= y)</code> and that</li>
+<li>(2) <code>(y::ys)</code> is sorted.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>So let&rsquo;s write out the preceding cases in code:</p>
+
+<pre><code>data IsSorted : (xs:Vect n e) -&gt; Type where
+    IsSortedZero :
+        ... -&gt;
+        IsSorted Nil
+    IsSortedOne  :
+        ... -&gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        ... -&gt;
+        IsSorted (x::(y::ys))
+</code></pre>
+
+<p>Straightforward. Now let&rsquo;s fill in the holes for the parameter types:</p>
+
+<pre><code>data IsSorted : (xs:Vect n e) -&gt; Type where
+    IsSortedZero :
+        IsSorted Nil
+    IsSortedOne  :
+        (x:e) -&gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        (x:e) -&gt; (y:e) -&gt; (ys:Vect n'' e) -&gt;     -- (n'' == (n - 2))
+        (IsLte x y) -&gt; IsSorted (y::ys) -&gt;
+        IsSorted (x::(y::ys))
+</code></pre>
+
+<ul>
+<li>The <code>IsSortedZero</code> case didn&rsquo;t require any parameters at all. Easy enough.</li>
+<li>The <code>IsSortedOne</code> case had only the variable <code>x</code> in its return type, so we just need to declare the parameter <code>(x:e)</code> so that it knew what <code>x</code> to use.</li>
+<li>The <code>IsSortedMany</code> case is a lot more interesting:
+
+<ul>
+<li>It needs the three <code>x</code>, <code>y</code>, and <code>ys</code> objects that appear in the return type <code>(x::(y::ys))</code> to be defined.</li>
+<li>It needs a proof that <code>x &lt;= y</code>. So let&rsquo;s use an <code>(IsLte x y)</code>.</li>
+<li>It needs a proof that <code>y::ys</code> is sorted, so let&rsquo;s recursively use the <code>IsSorted</code> proof type that we&rsquo;re in the middle of defining!
+
+<ul>
+<li>Yay recursively defined types. Just like recursively defined functions. And sometimes just as mind-bending.</li>
+<li>I believe Idris will only allow recursive definitions of types in this way because the compiler itself can determine that the <code>IsSorted (y::ys)</code> proof type is &ldquo;smaller than&rdquo; the <code>IsSorted (x::(y::ys))</code> proof type whose definition it feeds into.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Let&rsquo;s try to compile this:</p>
+
+<div class="terminal-box"><pre><code>$ idris -o Scratch Scratch.idr 
+Scratch.idr:17:18:When elaborating type of Main.IsSortedMany:
+Can't resolve type class Ord e
+</code></pre>
+</div>
+
+
+<p>Whoops. The <code>IsSortedMany</code> definition doesn&rsquo;t know what to fill in for the implicit <code>Ord e</code> parameter to the <code>IsLte</code> type. So let&rsquo;s add that parameter to <code>IsSortedMany</code>:</p>
+
+<pre><code>data IsSorted : (xs:Vect n e) -&gt; Type where
+    IsSortedZero :
+        IsSorted Nil
+    IsSortedOne  :
+        (x:e) -&gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        Ord e =&gt;
+        (x:e) -&gt; (y:e) -&gt; (ys:Vect n'' e) -&gt;    -- (n'' == (n - 2))
+        (IsLte x y) -&gt; IsSorted (y::ys) -&gt;
+        IsSorted (x::(y::ys))
+</code></pre>
+
+<p>Now this actually compiles and I could stop here. However I know based on painful experience<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> that we will run into type unification errors down the road if we don&rsquo;t additionally put the <code>Ord e</code> constraint on the <code>IsSorted</code> type itself. So let&rsquo;s just do that:</p>
+
+<div class="formula-box"><pre><code>data IsSorted : Ord e =&gt; (xs:Vect n e) -&gt; Type where
+    IsSortedZero :
+        Ord e =&gt;
+        IsSorted Nil
+    IsSortedOne  :
+        Ord e =&gt;
+        (x:e) -&gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        Ord e =&gt; 
+        (x:e) -&gt; (y:e) -&gt; (ys:Vect n'' e) -&gt;    -- (n'' == (n - 2))
+        (IsLte x y) -&gt; IsSorted (y::ys) -&gt;
+        IsSorted (x::(y::ys))
+</code></pre>
+</div>
+
+
+<p>Boom. Done.</p>
+
+<p>Now, similar to the <code>mkIsLte</code> function from before, let&rsquo;s create a <code>mkIsSorted</code> function that, given a list, checks whether it is sorted and returns an <code>IsSorted</code> sortedness proof if it is.</p>
+
+<div class="formula-box"><pre><code>mkIsSorted : Ord e =&gt; (xs:Vect n e) -&gt; Maybe (IsSorted xs)
+mkIsSorted Nil =
+    Just IsSortedZero
+mkIsSorted (x::Nil) =
+    Just (IsSortedOne x)
+mkIsSorted (x::(y::ys)) =
+    case (mkIsLte x y) of
+        Just proofXLteY =&gt;
+            case (mkIsSorted (y::ys)) of
+                Just proofYYsIsSorted =&gt;
+                    Just (IsSortedMany x y ys proofXLteY proofYYsIsSorted)
+                Nothing =&gt;
+                    Nothing
+        Nothing =&gt;
+            Nothing
+</code></pre>
+</div>
+
+
+<p>This implementation is interesting. Note how the proof values <code>IsSortedZero</code>, <code>IsSortedOne</code>, and <code>IsSortedMany</code> are constructed directly.</p>
+
+<p>Also notice in particular that to construct an <code>IsSortedMany</code> value that the subproof values <code>proofXLteY</code> and <code>proofYYsIsSorted</code> needed to be constructed first. And that the latter subproof required a recursive invocation of <code>mkIsSorted</code>. Lots of recursion in Idris.</p>
+
+<p>Let&rsquo;s try calling the function with a valid sorted list:</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner InsertionSort.idr
+*InsertionSort&gt; mkIsSorted [1,2,3]
+Just (IsSortedMany 1
+                   2
+                   [3]
+                   Oh
+                   (IsSortedMany 2
+                                 3
+                                 []
+                                 Oh
+                                 (IsSortedOne 3))) : Maybe (IsSorted [1, 2, 3])
+</code></pre>
+</div>
+
+
+<p>Nice. See how the proof term embeds the <code>(IsLte 1 2)</code> and <code>(IsLte 2 3)</code> values (both <code>Oh</code>) which represent the comparison checks made to determine whether the list was sorted. In this fashion a proof value effectively embeds an execution trace of the program that generated it. Neato.</p>
+
+<p>We can generalize this observation: The contents of a big proof value is a nested structure of smaller proof values that taken together are used to derive the big proof value. Here, an <code>IsSorted [1,2,3]</code> value contains both an <code>IsLte 1 2</code> and an <code>IsLte 2 3</code> value, which is enough to deduce that <code>[1,2,3]</code> is sorted.</p>
+
+<p>Now let&rsquo;s try calling <code>mkIsSorted</code> with a non-sorted list:</p>
+
+<div class="terminal-box"><pre><code>$ idris --nobanner InsertionSort.idr
+*InsertionSort&gt; mkIsSorted [3,2,1]
+Nothing : Maybe (IsSorted [3, 2, 1])
+</code></pre>
+</div>
+
+
+<p>As expected, we couldn&rsquo;t construct a proof that an unsorted list was actually sorted.</p>
+
+<h2>Conclusion</h2>
+
+<p>Hopefully you now have a better grasp of proof types and values, and also have some practice in constructing them.</p>
+
+<p>In an upcoming article I hope to demonstrate how proof types like <code>IsSorted</code> and <code>ElemsAreEq</code> can be used to create a provably correct implementation of <a href="https://en.wikipedia.org/wiki/Insertion_sort">insertion sort</a>. Stay tuned.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="http://wiki.portal.chalmers.se/agda/pmwiki.php">Agda</a> is another dependently typed language that I&rsquo;ve looked at. However I was <a href="/articles/2014/02/17/agda-second-impressions/">not impressed</a>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p><p>Actually to prove the correctness of the <code>sort</code> function you need to verify one more thing in addition to the function signature: You must verify that the definitions of the related proof types (in this case <code>IsSorted</code> and <code>ElemsAreEq</code>) correctly implement what their name implies.</p> <p>Usually the definitions of proof types are fairly compact so inspection isn&rsquo;t much of a burden. By contrast the correct <em>construction</em> of proof terms within an algorithm is considerably more complex. Happily the compiler checks your work ruthlessly within the algorithm itself, so you don&rsquo;t have to worry about messing up term construction.</p><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>The Idris community appears to prefer the term &ldquo;the standard library&rdquo; to refer specifically to the prelude part of the library code that ships with Idris and &ldquo;the library&rdquo; to refer to the non-prelude part. I think this distinction is unimportant and confusing so I will use the term &ldquo;standard library&rdquo; to refer to <em>all</em> library code that ships with Idris, which is consistent with terminology usage in other languages (Python, Java, C#, Perl, PHP, etc).<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>In my initial attempt to define <code>IsSorted</code> I incorrectly required only the subproof <code>IsSorted ys</code> and not <code>IsSorted (y::ys)</code> when proving <code>IsSorted x::(y::ys)</code>. But that restriction allows you to construct <code>IsSorted [9,10,1,2]</code> which is clearly bogus. Pay attention to how your proof types are defined.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>If you fail to add the <code>Ord e</code> constraint to the other type constructors, you will eventually run into errors like <code>Can't unify "So (&lt;=) {{constrarg1}} x y" with "So (&lt;=) {{constrarg}} x y"</code> where the compiler loses type information about the specific <code>Ord e</code> instance when trying to pull type information through the <code>IsSortedZero</code> or <code>IsSortedOne</code> type constructors during type unification. That probably didn&rsquo;t make much sense - especially the part about &ldquo;type unification&rdquo; - but you&rsquo;ll probably have to debug a similar issue at some point.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>36</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <!-- Begin Follow button -->
+  <iframe
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
+    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
+  <!-- End Follow button -->
+  <a class="subscribe" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2015/01/22/announcing-media-queue-1.0/" title="Announcing MediaQueue 1.0">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2015 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

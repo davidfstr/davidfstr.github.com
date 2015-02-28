@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-02-01T14:11:22-08:00</updated>
+ <updated>2015-02-27T20:22:26-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,452 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2015/02/27/proof-terms-in-idris</id>
+   <title>Proof terms in Idris</title>
+   <published>2015-02-27T00:00:00-08:00</published>
+   <updated>2015-02-27T00:00:00-08:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2015/02/27/proof-terms-in-idris/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Recently I&amp;rsquo;ve been experimenting with the language &lt;a href=&quot;http://www.idris-lang.org&quot;&gt;Idris&lt;/a&gt;, one of the rare &lt;strong&gt;dependently-typed&lt;/strong&gt; programming languages.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; For example you can write a sorting function that is proven correct by the compiler at &lt;em&gt;compile time&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sort : (inputList:Vect n e) -&amp;gt; 
+       (outputList:Vect n e ** (IsSorted outputList) ** 
+                               (ElemsAreEq inputList outputList))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The preceding is a function that takes an input list (or &amp;ldquo;vector&amp;rdquo;) of elements and returns a tuple containing:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;an output list,&lt;/li&gt;
+&lt;li&gt;a &lt;strong&gt;proof&lt;/strong&gt; that the output list is sorted (&lt;code&gt;IsSorted&lt;/code&gt;), and&lt;/li&gt;
+&lt;li&gt;a &lt;strong&gt;proof&lt;/strong&gt; that the input list and output list have the same elements (&lt;code&gt;ElemsAreEq&lt;/code&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Since the type signature is verified at compile time, any function implementing this signature is a provably correct sort function.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;The notion that a proof can be represented explicitly in a program is fascinating and a unique capability of dependently-typed languages.&lt;/p&gt;
+
+&lt;p&gt;In this article I will focus specifically on what proof terms are, how to define them, and how to construct them.&lt;/p&gt;
+
+&lt;p&gt;I assume that the reader has basic familiarity with Haskell-like syntax.&lt;/p&gt;
+
+&lt;!--
+To reach the widest audience possible I assume only that the reader has general programming experience, perhaps only in imperative languages with C-derived syntax. Basic familiarity with Haskell-like syntax is useful but not assumed. I will try to explain new syntax when it appears, particularly when it differs from C-style syntax.
+--&gt;
+
+
+&lt;h2&gt;A simple built-in proof type: &lt;code&gt;Data.So&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Proof types are tricky to grasp at first. Thus let&amp;rsquo;s start by examining the simplest proof type in the Idris standard library&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, the &lt;code&gt;So&lt;/code&gt; type.&lt;/p&gt;
+
+&lt;p&gt;Here is the definition of the &lt;code&gt;Data.So&lt;/code&gt; type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data So : Bool -&amp;gt; Type where 
+    Oh : So True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!--
+Syntax notes:
+
+* Function-like things are declared with `funcName : argType1 -&gt; argType2 -&gt; returnType`.
+    * In this case `So` takes a `Bool` and defines a type.
+    * Thus `So` is a parameterized type, not unlike the parameterized types `List` and `IList` in Java and C# respectively, which are parameterized by their element type. So a `List&lt;String&gt;` or `IList&lt;string&gt;` is a list of strings. In Idris the same type would be written as `(List String)` (with a space) and declared as `List : e -&gt; Type`, where `e` represented the element type of the list.
+* `So` is defined as a data type parameterized[^actually-indexed] by a boolean expression (of type `Bool`). You can create a type expression like `So (1 &lt; 1)` or `So (1 &gt; 2)`.
+* `So` has a single type constructor `Oh` which takes no parameters. It is an atomic thing.
+* You can only make an `Oh` when the boolean expression in the resultant `So (...)` type can be proven equal to `True` by the compiler at compile time.
+
+[^actually-indexed]: Type theory buffs will probably correct me by emphasizing that types can be *parameterized* by other types but are *indexed* by values. Again I think this distinction is immaterial to the practitioner and therefore will say that a type can be parameterized by either types or values.
+
+--&gt;
+
+
+&lt;p&gt;The &lt;code&gt;So&lt;/code&gt; type represents a proof that a particular boolean test has been performed and that it evaluated to &lt;code&gt;True&lt;/code&gt;. For example it is possible to construct a proof value (&lt;code&gt;Oh&lt;/code&gt;) of type &lt;code&gt;So (1 &amp;lt; 2)&lt;/code&gt; but it is not possible to construct a value of type &lt;code&gt;So (1 &amp;gt; 2)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;!--
+`Oh`? `So`? These are rather strange names, no? I personally find this type easier to understand if I think of it as:
+
+```
+data IsTrue : Bool -&gt; Type where 
+    ProvablyTrue : IsTrue True
+```
+--&gt;
+
+
+&lt;p&gt;You can construct a value of &lt;code&gt;So (1 &amp;lt; 2)&lt;/code&gt; directly on the command-line:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner
+Idris&amp;gt; :module Data.So
+*So&amp;gt; the (So (1 &amp;lt; 2)) Oh
+Oh : So True
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;The function &lt;code&gt;(the FooType fooValue)&lt;/code&gt; tells the compiler that &lt;code&gt;fooValue&lt;/code&gt; should be of type &lt;code&gt;FooType&lt;/code&gt;, which is occasionally useful. In this case I am asserting to the compiler that &lt;code&gt;So (1 &amp;lt; 2)&lt;/code&gt; is so obvious that it should just try to construct the proof value &lt;code&gt;Oh&lt;/code&gt; immediately.&lt;/p&gt;
+
+&lt;p&gt;However you can&amp;rsquo;t make a &lt;code&gt;So (1 &amp;gt; 2)&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner
+Idris&amp;gt; :module Data.So
+*So&amp;gt; the (So (1 /= 1)) Oh
+(input):1:5:When elaborating argument x to function Prelude.Basics.the:
+        Can&#39;t unify
+                So True
+        with
+                So (fromInteger 1 &amp;gt; fromInteger 2)
+
+        Specifically:
+                Can&#39;t unify
+                        True
+                with
+                        fromInteger 1 &amp;gt; fromInteger 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Here the error message indicates that the compiler isn&amp;rsquo;t convinced that &lt;code&gt;True == (1 &amp;gt; 2)&lt;/code&gt;, which is absolutely correct.&lt;/p&gt;
+
+&lt;p&gt;In a real program the main way to construct a &lt;code&gt;So&lt;/code&gt; is to use the &lt;code&gt;choose&lt;/code&gt; function, whose definition is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;choose : (b : Bool) -&amp;gt; Either (So b) (So (not b))
+choose True  = Left Oh
+choose False = Right Oh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You might have to stare at this definition for a while to understand how it works. I know it took me a while to grok it. Let me try to explain:&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;choose&lt;/code&gt; function is performing a pattern match on the &lt;code&gt;Bool&lt;/code&gt; argument it receives. If it successfully pattern matches on &lt;code&gt;True&lt;/code&gt;, the compiler itself understands that argument &lt;code&gt;b&lt;/code&gt; is equivalent to &lt;code&gt;True&lt;/code&gt;, so it permits the construction of the value &lt;code&gt;Oh&lt;/code&gt; (of type &lt;code&gt;So b&lt;/code&gt;) on the right-hand-side of the &lt;code&gt;choose True&lt;/code&gt; definition. The &lt;code&gt;choose False&lt;/code&gt; definition works via similar reasoning to construct a value &lt;code&gt;Oh&lt;/code&gt; of type &lt;code&gt;So (not b)&lt;/code&gt;, since the compiler can deduce that &lt;code&gt;not b&lt;/code&gt; is &lt;code&gt;True&lt;/code&gt; when &lt;code&gt;b&lt;/code&gt; is &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;A simple derived proof type: &lt;code&gt;IsLte&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;What if we wanted to prove specifically that one element is less than or equal to another? We could write a proof type derived directly from &lt;code&gt;Data.So&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;formula-box&quot;&gt;&lt;pre&gt;&lt;code&gt;IsLte : Ord e =&amp;gt; (x:e) -&amp;gt; (y:e) -&amp;gt; Type
+IsLte x y = So (x &amp;lt;= y)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;!--
+Syntax notes:
+
+* `Ord e` is a type constraint on `e` which requires that elements of type `e` implement a comparison function, so that expressions like `x &lt;= y` can work (where `x` and `y` are of type `e`).
+    * In Java the equivalent constaint is implemented by the interface `Comparable`, and in C# it is `IComparable`.
+--&gt;
+
+
+&lt;p&gt;Here the &lt;code&gt;IsLte&lt;/code&gt; type is defined directly in terms of the &lt;code&gt;So&lt;/code&gt; proof type that was described previously. Note that it is necessary to add the &lt;code&gt;Ord e&lt;/code&gt; type constraint so that the compiler will allow the use of &lt;code&gt;&amp;lt;=&lt;/code&gt; to compare &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; in &lt;code&gt;(x &amp;lt;= y)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Strictly speaking the definition of &lt;code&gt;IsLte&lt;/code&gt; here doesn&amp;rsquo;t create a new type, but rather a type alias to the underlying &lt;code&gt;So&lt;/code&gt;. Therefore you must use the &lt;code&gt;Oh&lt;/code&gt; proof value to actually make an &lt;code&gt;IsLte&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner IsLte.idr 
+*IsLte&amp;gt; the (IsLte 1 2) Oh
+Oh : So True
+*IsLte&amp;gt; the (IsLte 2 1) Oh
+(input):1:5:When elaborating argument x to function Prelude.Basics.the:
+        Can&#39;t unify
+                So True
+        with
+                IsLte (fromInteger 2) (fromInteger 1)
+
+        Specifically:
+                Can&#39;t unify
+                        True
+                with
+                        fromInteger 2 &amp;lt;= fromInteger 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Now it&amp;rsquo;s fine and all to create a &lt;code&gt;So&lt;/code&gt; or &lt;code&gt;IsLte&lt;/code&gt; directly on the command line. But how would you create one in an actual program?&lt;/p&gt;
+
+&lt;div class=&quot;formula-box&quot;&gt;&lt;pre&gt;&lt;code&gt;mkIsLte : Ord e =&amp;gt; (x:e) -&amp;gt; (y:e) -&amp;gt; Maybe (IsLte x y)
+mkIsLte x y =
+    case (choose (x &amp;lt;= y)) of 
+        Left proofXLteY =&amp;gt;
+            Just proofXLteY
+        Right proofNotXLteY =&amp;gt;
+            Nothing
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;!--
+Syntax notes:
+
+* The `choose` function here is the same one mentioned before that operates on `So` types, which works here because an `IsLte` is actually a `So`.
+* The `case...of` statement is like a fancy switch statement: It does pattern matching to determine which branch to take.
+* Notice the use of the naming convention `proof...` for proof values. Having longish descriptive names for proof values really helps in more complex code that has a lot of proof values.
+--&gt;
+
+
+&lt;p&gt;This function takes an &lt;code&gt;x&lt;/code&gt; and a &lt;code&gt;y&lt;/code&gt; at runtime and constructs a proof value of type &lt;code&gt;(IsLte x y)&lt;/code&gt; if x &amp;lt;= y. If x is not &amp;lt;= y then it fails by returning a &lt;code&gt;Nothing&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the Idris CLI, let&amp;rsquo;s try to construct a valid proof that &lt;code&gt;(IsLte 1 2)&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner InsertionSort.idr
+*InsertionSort&amp;gt; mkIsLte 1 2
+Just Oh : Maybe (So True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Nice. How about a proof that &lt;code&gt;(IsLte 2 1)&lt;/code&gt;?&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner InsertionSort.idr
+*InsertionSort&amp;gt; mkIsLte 2 1
+Nothing : Maybe (So False)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Fails as expected.&lt;/p&gt;
+
+&lt;h2&gt;A simple standalone proof type: &lt;code&gt;HeadIs&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s implement our own simple proof type. How about a proof that a vector begins with a particular value?&lt;/p&gt;
+
+&lt;div class=&quot;formula-box&quot;&gt;&lt;pre&gt;&lt;code&gt;data HeadIs : Vect n e -&amp;gt; e -&amp;gt; Type where
+    MkHeadIs : HeadIs (x::xs) x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;!--
+Syntax notes:
+
+* `Vect n e` represents a list (or &quot;vector&quot;) of length `n` containing elements of type `e`.
+* Regarding vectors:
+    * `Nil` is the empty vector. It can also be written as `[]` in some contexts.
+    * The operator `::` in `x::xs` takes an element `x` and prepends it to a vector `xs` returning a new vector `x::xs` with the prepended element.
+        * Most functional languages define **prepend** as the more basic operation than **append**, in contrast to most imperative languages.
+    * The first element of a vector is called the &quot;head&quot;. The remainder is called the &quot;tail&quot;.
+* Regarding naming conventions:
+    * `x`, `y`, and `z` will be used to refer to elements in vectors.
+    * `xs`, `ys`, and `zs` will be used to refer to vectors.
+    * `n` will be used to refer to the length of a vector.
+--&gt;
+
+
+&lt;p&gt;A value of type &lt;code&gt;HeadIs xs y&lt;/code&gt; represents a proof that a vector &lt;code&gt;xs&lt;/code&gt; begins with (&amp;ldquo;has the head&amp;rdquo;) &lt;code&gt;y&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Based on the definition above, the compiler will only permit the construction of the atomic &lt;code&gt;MkHeadIs&lt;/code&gt; proof value if it can destructure its first vector argument and see that its head matches the second argument.&lt;/p&gt;
+
+&lt;h2&gt;A complex proof type: &lt;code&gt;IsSorted&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;How about we try to make a more complex proof type? How about a proof that a list of elements is sorted? Such a proof type would be useful in the &lt;code&gt;sort&lt;/code&gt; function mentioned at the beginning of this article.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a first stab at thinking about the initial signature of &lt;code&gt;IsSorted&lt;/code&gt;. We want to be able to write &lt;code&gt;IsSorted xs&lt;/code&gt;, so we need &lt;code&gt;IsSorted&lt;/code&gt; to take a vector &lt;code&gt;xs&lt;/code&gt; argument and return a type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data IsSorted : (xs:Vect n e) -&amp;gt; Type where
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay. Now, since proof terms work entirely by pattern matching on the arguments received, let&amp;rsquo;s think about what cases exist for matching on the single &lt;code&gt;xs&lt;/code&gt; vector argument:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Nil&lt;/code&gt; &amp;ndash; Definitely sorted, since it&amp;rsquo;s an empty vector. &lt;strong&gt;(Case 1)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x::xs&lt;/code&gt; &amp;ndash; Not enough information to determine whether sorted. Let&amp;rsquo;s decompose &lt;code&gt;xs&lt;/code&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;x::Nil&lt;/code&gt; &amp;ndash; Definitely sorted, since it&amp;rsquo;s a vector with only one element. &lt;strong&gt;(Case 2A)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x::(y::ys)&lt;/code&gt; &amp;ndash; Sorted if: &lt;strong&gt;(Case 2B)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(1) we can prove &lt;code&gt;(x &amp;lt;= y)&lt;/code&gt; and that&lt;/li&gt;
+&lt;li&gt;(2) &lt;code&gt;(y::ys)&lt;/code&gt; is sorted.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;So let&amp;rsquo;s write out the preceding cases in code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data IsSorted : (xs:Vect n e) -&amp;gt; Type where
+    IsSortedZero :
+        ... -&amp;gt;
+        IsSorted Nil
+    IsSortedOne  :
+        ... -&amp;gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        ... -&amp;gt;
+        IsSorted (x::(y::ys))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Straightforward. Now let&amp;rsquo;s fill in the holes for the parameter types:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data IsSorted : (xs:Vect n e) -&amp;gt; Type where
+    IsSortedZero :
+        IsSorted Nil
+    IsSortedOne  :
+        (x:e) -&amp;gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n&#39;&#39; e) -&amp;gt;     -- (n&#39;&#39; == (n - 2))
+        (IsLte x y) -&amp;gt; IsSorted (y::ys) -&amp;gt;
+        IsSorted (x::(y::ys))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;IsSortedZero&lt;/code&gt; case didn&amp;rsquo;t require any parameters at all. Easy enough.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;IsSortedOne&lt;/code&gt; case had only the variable &lt;code&gt;x&lt;/code&gt; in its return type, so we just need to declare the parameter &lt;code&gt;(x:e)&lt;/code&gt; so that it knew what &lt;code&gt;x&lt;/code&gt; to use.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;IsSortedMany&lt;/code&gt; case is a lot more interesting:
+
+&lt;ul&gt;
+&lt;li&gt;It needs the three &lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;, and &lt;code&gt;ys&lt;/code&gt; objects that appear in the return type &lt;code&gt;(x::(y::ys))&lt;/code&gt; to be defined.&lt;/li&gt;
+&lt;li&gt;It needs a proof that &lt;code&gt;x &amp;lt;= y&lt;/code&gt;. So let&amp;rsquo;s use an &lt;code&gt;(IsLte x y)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;It needs a proof that &lt;code&gt;y::ys&lt;/code&gt; is sorted, so let&amp;rsquo;s recursively use the &lt;code&gt;IsSorted&lt;/code&gt; proof type that we&amp;rsquo;re in the middle of defining!
+
+&lt;ul&gt;
+&lt;li&gt;Yay recursively defined types. Just like recursively defined functions. And sometimes just as mind-bending.&lt;/li&gt;
+&lt;li&gt;I believe Idris will only allow recursive definitions of types in this way because the compiler itself can determine that the &lt;code&gt;IsSorted (y::ys)&lt;/code&gt; proof type is &amp;ldquo;smaller than&amp;rdquo; the &lt;code&gt;IsSorted (x::(y::ys))&lt;/code&gt; proof type whose definition it feeds into.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Let&amp;rsquo;s try to compile this:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris -o Scratch Scratch.idr 
+Scratch.idr:17:18:When elaborating type of Main.IsSortedMany:
+Can&#39;t resolve type class Ord e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Whoops. The &lt;code&gt;IsSortedMany&lt;/code&gt; definition doesn&amp;rsquo;t know what to fill in for the implicit &lt;code&gt;Ord e&lt;/code&gt; parameter to the &lt;code&gt;IsLte&lt;/code&gt; type. So let&amp;rsquo;s add that parameter to &lt;code&gt;IsSortedMany&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data IsSorted : (xs:Vect n e) -&amp;gt; Type where
+    IsSortedZero :
+        IsSorted Nil
+    IsSortedOne  :
+        (x:e) -&amp;gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        Ord e =&amp;gt;
+        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n&#39;&#39; e) -&amp;gt;    -- (n&#39;&#39; == (n - 2))
+        (IsLte x y) -&amp;gt; IsSorted (y::ys) -&amp;gt;
+        IsSorted (x::(y::ys))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now this actually compiles and I could stop here. However I know based on painful experience&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; that we will run into type unification errors down the road if we don&amp;rsquo;t additionally put the &lt;code&gt;Ord e&lt;/code&gt; constraint on the &lt;code&gt;IsSorted&lt;/code&gt; type itself. So let&amp;rsquo;s just do that:&lt;/p&gt;
+
+&lt;div class=&quot;formula-box&quot;&gt;&lt;pre&gt;&lt;code&gt;data IsSorted : Ord e =&amp;gt; (xs:Vect n e) -&amp;gt; Type where
+    IsSortedZero :
+        Ord e =&amp;gt;
+        IsSorted Nil
+    IsSortedOne  :
+        Ord e =&amp;gt;
+        (x:e) -&amp;gt;
+        IsSorted (x::Nil)
+    IsSortedMany :
+        Ord e =&amp;gt; 
+        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n&#39;&#39; e) -&amp;gt;    -- (n&#39;&#39; == (n - 2))
+        (IsLte x y) -&amp;gt; IsSorted (y::ys) -&amp;gt;
+        IsSorted (x::(y::ys))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Boom. Done.&lt;/p&gt;
+
+&lt;p&gt;Now, similar to the &lt;code&gt;mkIsLte&lt;/code&gt; function from before, let&amp;rsquo;s create a &lt;code&gt;mkIsSorted&lt;/code&gt; function that, given a list, checks whether it is sorted and returns an &lt;code&gt;IsSorted&lt;/code&gt; sortedness proof if it is.&lt;/p&gt;
+
+&lt;div class=&quot;formula-box&quot;&gt;&lt;pre&gt;&lt;code&gt;mkIsSorted : Ord e =&amp;gt; (xs:Vect n e) -&amp;gt; Maybe (IsSorted xs)
+mkIsSorted Nil =
+    Just IsSortedZero
+mkIsSorted (x::Nil) =
+    Just (IsSortedOne x)
+mkIsSorted (x::(y::ys)) =
+    case (mkIsLte x y) of
+        Just proofXLteY =&amp;gt;
+            case (mkIsSorted (y::ys)) of
+                Just proofYYsIsSorted =&amp;gt;
+                    Just (IsSortedMany x y ys proofXLteY proofYYsIsSorted)
+                Nothing =&amp;gt;
+                    Nothing
+        Nothing =&amp;gt;
+            Nothing
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This implementation is interesting. Note how the proof values &lt;code&gt;IsSortedZero&lt;/code&gt;, &lt;code&gt;IsSortedOne&lt;/code&gt;, and &lt;code&gt;IsSortedMany&lt;/code&gt; are constructed directly.&lt;/p&gt;
+
+&lt;p&gt;Also notice in particular that to construct an &lt;code&gt;IsSortedMany&lt;/code&gt; value that the subproof values &lt;code&gt;proofXLteY&lt;/code&gt; and &lt;code&gt;proofYYsIsSorted&lt;/code&gt; needed to be constructed first. And that the latter subproof required a recursive invocation of &lt;code&gt;mkIsSorted&lt;/code&gt;. Lots of recursion in Idris.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s try calling the function with a valid sorted list:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner InsertionSort.idr
+*InsertionSort&amp;gt; mkIsSorted [1,2,3]
+Just (IsSortedMany 1
+                   2
+                   [3]
+                   Oh
+                   (IsSortedMany 2
+                                 3
+                                 []
+                                 Oh
+                                 (IsSortedOne 3))) : Maybe (IsSorted [1, 2, 3])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Nice. See how the proof term embeds the &lt;code&gt;(IsLte 1 2)&lt;/code&gt; and &lt;code&gt;(IsLte 2 3)&lt;/code&gt; values (both &lt;code&gt;Oh&lt;/code&gt;) which represent the comparison checks made to determine whether the list was sorted. In this fashion a proof value effectively embeds an execution trace of the program that generated it. Neato.&lt;/p&gt;
+
+&lt;p&gt;We can generalize this observation: The contents of a big proof value is a nested structure of smaller proof values that taken together are used to derive the big proof value. Here, an &lt;code&gt;IsSorted [1,2,3]&lt;/code&gt; value contains both an &lt;code&gt;IsLte 1 2&lt;/code&gt; and an &lt;code&gt;IsLte 2 3&lt;/code&gt; value, which is enough to deduce that &lt;code&gt;[1,2,3]&lt;/code&gt; is sorted.&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s try calling &lt;code&gt;mkIsSorted&lt;/code&gt; with a non-sorted list:&lt;/p&gt;
+
+&lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris --nobanner InsertionSort.idr
+*InsertionSort&amp;gt; mkIsSorted [3,2,1]
+Nothing : Maybe (IsSorted [3, 2, 1])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;As expected, we couldn&amp;rsquo;t construct a proof that an unsorted list was actually sorted.&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Hopefully you now have a better grasp of proof types and values, and also have some practice in constructing them.&lt;/p&gt;
+
+&lt;p&gt;In an upcoming article I hope to demonstrate how proof types like &lt;code&gt;IsSorted&lt;/code&gt; and &lt;code&gt;ElemsAreEq&lt;/code&gt; can be used to create a provably correct implementation of &lt;a href=&quot;https://en.wikipedia.org/wiki/Insertion_sort&quot;&gt;insertion sort&lt;/a&gt;. Stay tuned.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php&quot;&gt;Agda&lt;/a&gt; is another dependently typed language that I&amp;rsquo;ve looked at. However I was &lt;a href=&quot;/articles/2014/02/17/agda-second-impressions/&quot;&gt;not impressed&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;p&gt;Actually to prove the correctness of the &lt;code&gt;sort&lt;/code&gt; function you need to verify one more thing in addition to the function signature: You must verify that the definitions of the related proof types (in this case &lt;code&gt;IsSorted&lt;/code&gt; and &lt;code&gt;ElemsAreEq&lt;/code&gt;) correctly implement what their name implies.&lt;/p&gt; &lt;p&gt;Usually the definitions of proof types are fairly compact so inspection isn&amp;rsquo;t much of a burden. By contrast the correct &lt;em&gt;construction&lt;/em&gt; of proof terms within an algorithm is considerably more complex. Happily the compiler checks your work ruthlessly within the algorithm itself, so you don&amp;rsquo;t have to worry about messing up term construction.&lt;/p&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;The Idris community appears to prefer the term &amp;ldquo;the standard library&amp;rdquo; to refer specifically to the prelude part of the library code that ships with Idris and &amp;ldquo;the library&amp;rdquo; to refer to the non-prelude part. I think this distinction is unimportant and confusing so I will use the term &amp;ldquo;standard library&amp;rdquo; to refer to &lt;em&gt;all&lt;/em&gt; library code that ships with Idris, which is consistent with terminology usage in other languages (Python, Java, C#, Perl, PHP, etc).&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;In my initial attempt to define &lt;code&gt;IsSorted&lt;/code&gt; I incorrectly required only the subproof &lt;code&gt;IsSorted ys&lt;/code&gt; and not &lt;code&gt;IsSorted (y::ys)&lt;/code&gt; when proving &lt;code&gt;IsSorted x::(y::ys)&lt;/code&gt;. But that restriction allows you to construct &lt;code&gt;IsSorted [9,10,1,2]&lt;/code&gt; which is clearly bogus. Pay attention to how your proof types are defined.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;If you fail to add the &lt;code&gt;Ord e&lt;/code&gt; constraint to the other type constructors, you will eventually run into errors like &lt;code&gt;Can&#39;t unify &quot;So (&amp;lt;=) {{constrarg1}} x y&quot; with &quot;So (&amp;lt;=) {{constrarg}} x y&quot;&lt;/code&gt; where the compiler loses type information about the specific &lt;code&gt;Ord e&lt;/code&gt; instance when trying to pull type information through the &lt;code&gt;IsSortedZero&lt;/code&gt; or &lt;code&gt;IsSortedOne&lt;/code&gt; type constructors during type unification. That probably didn&amp;rsquo;t make much sense - especially the part about &amp;ldquo;type unification&amp;rdquo; - but you&amp;rsquo;ll probably have to debug a similar issue at some point.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -7713,7 +8159,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;p&gt;Query systems for databases are a type of logic programming language.&lt;/p&gt;
 
 &lt;p&gt;A &amp;ldquo;query&amp;rdquo; (i.e. an expression in the language) is transformed into a
-&amp;ldquo;query plan&amp;rdquo; (i.e. a specific set of steps to follow) by a query planner. The implemented of these planners is quite complex.&lt;/p&gt;
+&amp;ldquo;query plan&amp;rdquo; (i.e. a specific set of steps to follow) by a query planner. The implementation of these planners is quite complex.&lt;/p&gt;
 
 &lt;p&gt;&lt;a id=&quot;conclusion&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
