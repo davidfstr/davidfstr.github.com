@@ -3,10 +3,16 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Sending email from command line scripts | DaFoster</title>
+    <title>Uhuru | DaFoster</title>
   
+  
+    
+    <meta name="description" content="A translation assistant for reading Japanese text quickly.
+">
   
     <meta name="author" content="David Foster">
+  
+    <meta http-equiv="refresh" content="0;URL='https://github.com/davidfstr/uhuru#uhuru'">
   
     
     <!-- Feeds -->
@@ -41,6 +47,17 @@
     <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
     
     
+    
+      <style>
+        .logo {
+  float: right;
+  background-color: #fafafa;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  margin-left: 10px; margin-bottom: 10px;
+}
+
+      </style>
     
     
 
@@ -237,6 +254,42 @@
               
                 
                 
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
                   
                 
               
@@ -264,44 +317,8 @@
                 
                 
               
-                
-                
               
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-                
-                
-              
-              
-              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              <li><a href="/projects/">Projects</a> <span class="divider">&gt;</span></li>
               
             
             
@@ -321,194 +338,211 @@
         <![endif]-->
         
         
-          <div class="row">
-  <div class="span9 content post">
-    <h1>Sending email from command line scripts</h1>
-    <div class="post-metadata">
-      Jul 27, 2013 &ndash; Filed under: 
-      <span class="tag_box inline">
-        
-         
-          <span><a href="/articles/topics/#Software">Software <sup>36</sup></a></span>
-         
-          <span><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></span>
-        
-      </span>
-      
-    </div>
+          
+            <div class="row">
+  <div class="span9 content">
+    <img class="logo" src="logo-128.png" alt="Logo for Uhuru"/>
     
-    <p>This weekend I open-sourced a script called <a href="https://github.com/davidfstr/notifymail">notifymail</a> which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.</p>
+    <h1>Uhuru</h1>
+    
+    
+      <em>Redirecting you to:</em><br />
+<a href="https://github.com/davidfstr/uhuru#uhuru">https://github.com/davidfstr/uhuru#uhuru</a>
 
-<p>It is very easy to configure <code>notifymail</code> for the first time:</p>
-
-<pre><code>$ pip install notifymail
-$ notifymail.py --setup
-SMTP Server Hostname: smtp.gmail.com
-SMTP Server Port [465]: 587
-SMTP Server Uses TLS (y/n) [n]: yes
-SMTP Username: robot@gmail.com
-SMTP Password: ********
-From Address [robot@gmail.com]: robot@gmail.com
-From Name (optional) []: notifymail
-To Address: admin@example.com
-
-Verifying connection to SMTP server... OK
-</code></pre>
-
-<p>Check your mail provider&rsquo;s documentation to get the SMTP settings mentioned above. For example I made an internet search for &ldquo;gmail SMTP settings&rdquo; to find <a href="https://support.google.com/mail/troubleshooter/1668960?hl=en#ts=1665119,1665162">Gmail&rsquo;s SMTP settings</a>:</p>
-
-<ul>
-<li><strong>Gmail SMTP Server:</strong> smtp.gmail.com</li>
-<li><strong>Gmail SMTP Port:</strong> 587 (for TLS)</li>
-<li><strong>Gmail SMTP Uses TLS?</strong> yes</li>
-</ul>
-
-
-<p>Once you have <code>notifymail</code> installed, you can send an email to yourself in a Python script with as little code as:</p>
-
-<pre><code>import notifymail
-notifymail.send('Subject', 'Hello World', from_name='greeting_script')
-</code></pre>
-
-<p>Or you can invoke <code>notifymail</code> from the command line:</p>
-
-<pre><code>$ echo "Hello World" | notifymail.py -s "Subject"
-</code></pre>
-
-<p>Full documentation is available on the <a href="https://github.com/davidfstr/notifymail#readme">notifymail project page</a>.</p>
-
-<h2>Hasn&rsquo;t this been done before?</h2>
-
-<p>I reinvented my own wheel to send email principally because of the poor documentation of other alternatives:</p>
-
-<ul>
-<li><p><code>mail</code> and <code>postfix</code> were so complicated I couldn&rsquo;t figure out how to set them up.</p></li>
-<li><p><code>ssmtp</code> didn&rsquo;t work after I tried to configure it and there was no good documentation to help me debug why it wasn&rsquo;t working.</p></li>
-</ul>
-
-
-<p>For reference, here&rsquo;s <a href="http://unix.stackexchange.com/questions/36982/can-i-set-up-system-mail-to-use-an-external-smtp-server">some information for setting up those alternatives</a>.</p>
-
-<h2>Fun things to do with <code>notifymail</code></h2>
-
-<ul>
-<li><p>I have a script called <code>heartbeat</code> that periodically attempts to connect to all of my servers via SSH. If it cannot connect to a server it sends me an email with <code>notifymail</code>. If it cannot access email it displays a sticky Growl notification locally.</p></li>
-<li><p>I have another script called <code>meetupfilter</code> that tracks incoming &ldquo;New Meetup Group&rdquo; emails from <a href="http://www.meetup.com/">Meetup</a>. It waits until all such announced groups have at least 3 events on their calendar before sending me a notification at my personal email with <code>notifymail</code>. That way I don&rsquo;t hear about Meetup groups that appear but then fizzle out immediately, which is a surprising number. I may open-source this script eventually if I <a href="/contact">hear there is interest</a>.</p></li>
-</ul>
-
-
+    
   </div>
   
   
   <div class="span3 block-bar">
     <div class="block">
-  <h3>Topics</h3>
+  <h3>Other Projects</h3>
   
-  <ul class="tag_box">
+  <ul class="tag_box" style="margin-bottom: .5em">
     
+      
     
       
+    
       
+    
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
       
         
           
         
-      
         
+        
+        
+        
+        <li id="burn-planner-project">
+          <a href="/projects/burn-planner/">Burn Planner</a>
+        </li>
       
-      
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>36</sup></a></li>
     
-      
-      
-      
-      
-        
-      
-        
-      
-      
-      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>9</sup></a></li>
-    
-      
-      
-      
-      
-        
       
         
           
         
+        
+        
+        
+        
+        <li id="crystal-web-archiver-project">
+          <a href="/projects/crystal-web-archiver/" class="external">Crystal Web Archiver</a>
+        </li>
       
-      
-      <li id="Productivity-topic" class="active"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
     
       
-      
-      
-      
         
-      
+          
         
+        
+        
+        
+        
+        <li id="decimal-binary-unit-converter-project">
+          <a href="/projects/decimal-binary-unit-converter/" class="external">Dec-Bin Unit Converter</a>
+        </li>
       
-      
-      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>4</sup></a></li>
     
       
-      
-      
-      
         
-      
+          
         
+        
+        
+        
+        
+        <li id="decomp4-project">
+          <a href="/projects/decomp4/" class="external">decomp4</a>
+        </li>
       
-      
-      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
     
       
+        
+          
+        
+        
+        
+        
+        
+        <li id="handbrake-subtitle-support-project">
+          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
+        </li>
       
-      
+    
       
         
+          
+        
+        
+        
+        
+        
+        <li id="incoming-game-project">
+          <a href="/projects/incoming-game/" class="external">Incoming (Game)</a>
+        </li>
+      
+    
+      
+    
       
         
+          
+        
+        
+        
+        
+        
+        <li id="media-queue-project">
+          <a href="/projects/media-queue/">MediaQueue</a>
+        </li>
       
+    
       
-      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+        
+          
+        
+        
+        
+        
+        
+        <li id="park-place-project">
+          <a href="/projects/park-place/">Park Place</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="rdiscount-project">
+          <a href="/projects/rdiscount/">RDiscount</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="uhuru-project" class="active">
+          <a href="/projects/uhuru/" class="external">Uhuru</a>
+        </li>
+      
+    
+      
+        
+          
+        
+        
+        
+        
+        
+        <li id="website-project">
+          <a href="/projects/website/">Website</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
     
   </ul>
-  <hr style="margin: .5em 0;"/>
-  <!-- Begin Follow button -->
-  <iframe
-    src="//platform.twitter.com/widgets/follow_button.html?screen_name=davidfstr&amp;size=l"
-    style="width:147px; height:28px; background-color: transparent; border: 0; overflow: hidden;"></iframe>
-  <!-- End Follow button -->
-  <a class="subscribe" href="feed://dafoster.net/atom.xml">
-    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14">Subscribe (RSS)
-  </a>
+  <p class="x-and-more-projects">And more at:</p>
+<ul>
+  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
+  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
+  <li><a href="/apps/">Web Apps</a></li>
+</ul>
 </div>
-
   </div>
   
-  
-  <div class="span12">
-    <div class="pagination pagination-centered">
-      <ul>
-      
-        <li class="prev"><a href="/articles/2013/07/13/error-handling/" title="Error Handling">&larr; Previous</a></li>
-      
-        <li><a href="/articles/">Index</a></li>
-      
-        <li class="next"><a href="/articles/2013/08/03/skills-i-learned-at-microsoft/" title="Skills I Learned at Microsoft">Next &rarr;</a></li>
-      
-      </ul>
-    </div>
-    
-    
-  </div>
 </div>
 
+          
         
       </div>
 
