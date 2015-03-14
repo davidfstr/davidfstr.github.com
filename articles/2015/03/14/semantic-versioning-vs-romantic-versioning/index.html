@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Skills I Learned at Microsoft | DaFoster</title>
+    <title>Semantic Versioning vs. Romantic Versioning | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -323,107 +323,156 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Skills I Learned at Microsoft</h1>
+    <h1>Semantic Versioning vs. Romantic Versioning</h1>
     <div class="post-metadata">
-      Aug 03, 2013 &ndash; Filed under: 
+      Mar 14, 2015 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Personal">Personal <sup>9</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>37</sup></a></span>
         
       </span>
       
     </div>
     
-    <h2>Social</h2>
+    <p>In recent years the larger software development community has started to pay more attention to version numbers.</p>
+
+<h2>Semantic Versioning</h2>
+
+<p>The Node community in particular has introduced specific guidelines for what it means when you increment various parts of a version number. Generally:</p>
 
 <ul>
-<li>How to manage managers.
+<li>A version number is a 3-part value <strong>X.Y.Z</strong> where <strong>X, Y</strong>, and <strong>Z</strong> are the <strong>major</strong>, <strong>minor</strong>, and <strong>patch</strong> components respectively.</li>
+<li>When making a new release that contains <strong>bug fixes only</strong>, you may increment the patch component.
 
 <ul>
-<li>Detailed time tracking.
-
-<ul>
-<li>I&rsquo;ve done this internally at every job I&rsquo;ve had,
-but only at Microsoft did I need to report on it externally.</li>
+<li><code>X.Y.Z -&gt; X.Y.(Z+1)</code></li>
 </ul>
 </li>
-<li>Managing expectations.</li>
-<li>The no-surprises principle.
+<li>When making a new release that contains <strong>new features</strong> (and possibly some bug fixes) but not breaking changes, you may increment the minor component (and reset the patch component to zero).
 
 <ul>
-<li><p>Bad news is okay (socially) if it is known in advance.</p></li>
+<li><code>X.Y.Z -&gt; X.(Y+1).0</code></li>
 </ul>
 </li>
-</ul>
-</li>
-<li>How an <a href="http://www.linkedin.com/in/rforsbach">A-grade SDET</a> (technical tester) thinks.
+<li>When making a new release that contains <strong>breaking changes</strong> (and possibly some new features or bug fixes), you may increment the major component (and reset both the minor and patch components to zero).
 
 <ul>
-<li><p>Techniques for making designs mure testable,
-especially in the presence of multi-threading.</p></li>
-</ul>
-</li>
-<li><p>How an <a href="http://www.linkedin.com/pub/candace-jackson/40/267/354">A-grade PM</a> (Program Manager) can manage politics for you.</p></li>
-<li><p>How to work around certain mediocre coworkers. (This is not common.)</p></li>
-<li>Don&rsquo;t use made up words until you&rsquo;ve looked them up first.
-
-<ul>
-<li>Counterintuitive. However your &ldquo;made up word&rdquo; may actually
-exist and it may not be a pleasant word.</li>
+<li><code>X.Y.Z -&gt; (X+1).0.0</code></li>
 </ul>
 </li>
 </ul>
 
 
-<h2>Productivity</h2>
+<p>This scheme for version numbering, called <strong><a href="http://semver.org">semantic versioning</a></strong> (or SemVer), is easy for automatic dependency management systems to understand, making it highly useful for communities that encourage liberal use of third-party libraries.</p>
+
+<h3>When to use Semantic Versioning</h3>
+
+<p>Use of semantic versioning is highly recommended for projects that are intended to be depended on and automatically upgraded, such as:</p>
 
 <ul>
-<li><p>How to aggressively filter my email inbox.</p></li>
-<li><p>The zero-inbox style of email management.</p></li>
-<li>Macro programming on Windows via AutoHotkey.
+<li><strong>libraries</strong> (ex: jQuery, Underscore, requests, libxml2).</li>
+</ul>
+
+
+<p>Semantic versioning is also useful for slower-moving projects that may require some manual upgrade steps, such as:</p>
 
 <ul>
-<li><a href="http://www.keyboardmaestro.com/">Keyboard Maestro</a> on the Mac is more capable and more polished,
-but AutoHotkey was the best thing I found for Windows.</li>
+<li><strong>frameworks</strong> (ex: Django, Ruby on Rails, Spring);</li>
+<li><strong>language platforms</strong> (Java, C#, Python, Ruby);</li>
+<li><strong>runtime platforms</strong> (ex: JVM, CLR, CPython, MRI); and</li>
+<li><strong>OS platforms</strong> (ex: OS X, Windows, Debian).</li>
+</ul>
+
+
+<p>Using semantic versioning makes it easy for high-level projects to regularly upgrade their lower-level dependencies, either automatically or manually.</p>
+
+<h2>Romantic Versioning</h2>
+
+<p>By contrast, I use the term <strong>romantic versioning</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> to refer to all other version numbering schemes that adhere to the following fuzzy guidelines:</p>
+
+<ul>
+<li>A version number is a multi-part value such as <strong>X</strong>, <strong>X.Y</strong>, or <strong>X.Y.Z</strong>; with numeric components.</li>
+<li>A <em>conceptually</em> major change bumps the first component of the value.</li>
+<li>A <em>conceptually</em> minor change or bug fix bumps a later component of the value.</li>
+</ul>
+
+
+<p>Romantic versioning is meant primarily for <em>humans</em> to understand, at the possible expense of easy understanding by a computer. This makes it suitable for marketing purposes (since marketing is directed at humans) but often not suitable for automated dependency management (which is performed by a computer).</p>
+
+<h3>When to use Romantic Versioning</h3>
+
+<p>As mentioned before, romantic versioning is mainly suitable for projects that are actively marketed and updated over time but not depended on by other projects, such as:</p>
+
+<ul>
+<li><strong>applications</strong> (Microsoft Word, Firefox, Spotify, Evernote).</li>
+</ul>
+
+
+<p>Some projects are not updated over time (such as many console games) and so have no version number at all.</p>
+
+<h2>Hybrid Romantic &amp; Semantic Versioning</h2>
+
+<p>There are many projects that maintain two different version numbers simultaneously: a romantic version for marketing purposes and a semantic version for developer purposes. For example:</p>
+
+<ul>
+<li>Java
+
+<ul>
+<li>Currently at &ldquo;product version&rdquo; <code>8.40</code> (&ldquo;Java SE 8u40&rdquo;), which is the romantic version; and &ldquo;developer version&rdquo; <code>1.8.40</code>, which is the semantic version.</li>
+</ul>
+</li>
+<li>Windows
+
+<ul>
+<li>At marketing version <code>7</code> (&ldquo;Windows 7&rdquo;), which is the romantic version; and at internal version <code>6.1</code>, which is the best approximation of its semantic version.</li>
 </ul>
 </li>
 </ul>
 
 
-<h2>Technical</h2>
+<p>There are also some libraries that advertise a romantic version as if it were a semantic version which causes <a href="https://github.com/jashkenas/underscore/issues/1805">lots of problems</a> when automated dependency management systems try to consume the library.</p>
+
+<h2>Final Observations</h2>
 
 <ul>
-<li>Microsoft-specific tooling:
+<li>Projects typically<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> have a <strong>romantic version</strong>, a <strong>semantic version</strong>, or both.</li>
+<li>Applications tend to have a <strong>romantic version</strong> only, since they are marketed to consumers rather than developers.</li>
+<li>Libraries tend to have a <strong>semantic version</strong> only, since they are used only by automated tooling and developers.</li>
+<li>Other types of projects like frameworks and platforms have more variation, often providing both a romantic and semantic version since they are often both marketed to consumers and used by developers.</li>
+</ul>
+
+
+<hr />
+
+<p>Enjoy this article? Follow my <a href="https://twitter.com/davidfstr">Twitter account</a> for notifications of new articles. 😃</p>
+
+<h3><em>Related Articles</em></h3>
 
 <ul>
-<li>Visual Studio</li>
-<li>TAEF (for testing)</li>
-<li>Octopus (for deployment of MSIs)</li>
-<li><p>WiX (for development of MSIs)</p></li>
+<li><a href="/articles/2013/01/29/unique-features-of-various-programming-languages/">Unique Features of Various Programming Languages</a>
+
+<ul>
+<li><em>Describes programming languages and their unique features.</em></li>
 </ul>
 </li>
-<li>Formalized code review via CodeFlow.
+<li><a href="/articles/2013/02/20/visual-guide-to-programming-language-properties/">Visual Guide to Programming Language Properties</a>
 
 <ul>
-<li><p>(Also did this at Google with Mondrian.)</p></li>
-</ul>
-</li>
-<li>Heap profiling to track down memory leaks.
-
-<ul>
-<li><p>Failing to unregister listeners can cause memory leaks,
-particularly if an object registers a listener
-on another longer-lived (or immortal) object.</p></li>
-</ul>
-</li>
-<li>How to write <em>detailed</em> technical specifications.
-
-<ul>
-<li>However the utility of such highly detailed specifications is limited.</li>
+<li><em>Visualizes how various programming language properties interact.</em></li>
 </ul>
 </li>
 </ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>I have seen other people use different terms to refer to <strong>romantic versioning</strong>. For example Dominic Tarr calls such versioning schemes <a href="http://sentimentalversioning.org">&ldquo;sentimental versioning&rdquo;</a>. However he mainly mocks such schemes, highlighting the negative aspects of romantic versioning as perceived by a developer without considering the positive aspects for marketing to consumers.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Projects that receive no updates are <strong>unversioned</strong>, with no version number, such as many console games. And a small number of projects use an <strong>esoteric versioning</strong> scheme, with version numbers that are hard to interpret by either human or computer. For example successive version numbers of <a href="https://en.wikipedia.org/wiki/TeX">TeX</a> are closer and closer approximations of π.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 
   </div>
@@ -441,20 +490,20 @@ on another longer-lived (or immortal) object.</p></li>
       
       
         
+          
+        
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>37</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>37</sup></a></li>
     
       
       
       
       
         
-          
-        
       
       
-      <li id="Personal-topic" class="active"><a href="/articles/topics/#Personal">Personal <sup>9</sup></a></li>
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>9</sup></a></li>
     
       
       
@@ -511,11 +560,11 @@ on another longer-lived (or immortal) object.</p></li>
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/07/27/sending-email-from-command-line-scripts/" title="Sending email from command line scripts">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2015/02/27/proof-terms-in-idris/" title="Proof terms in Idris">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/08/04/skills-i-am-learning-at-splunk/" title="Skills I'm Learning at Splunk">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
