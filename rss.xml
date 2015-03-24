@@ -6,14 +6,51 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 14 Mar 2015 15:03:02 -0700</pubDate>
-    <lastBuildDate>Sat, 14 Mar 2015 15:03:02 -0700</lastBuildDate>
+    <pubDate>Mon, 23 Mar 2015 21:35:51 -0700</pubDate>
+    <lastBuildDate>Mon, 23 Mar 2015 21:35:51 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Block Distracting Websites</title>
+      <link>http://dafoster.net/articles/2015/03/23/block-distracting-websites/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Mon, 23 Mar 2015 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2015/03/23/block-distracting-websites</guid>
+      <description>&lt;div style=&quot;float: right; margin-left: 1em;&quot;&gt;
+    &lt;img src=&quot;/assets/2015/distracting-websites.png&quot; /&gt;
+    &lt;div&gt;&lt;i&gt;Courtesy of &lt;a href=&quot;http://xkcd.com/1502/&quot;&gt;xkcd&lt;/a&gt;&lt;/i&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If you spend a lot of time on the computer like I do, there&amp;rsquo;s a good chance that there are some websites that you spend too much time on. Recently I&amp;rsquo;ve taken measures to outright block various distracting websites on my home computer.&lt;/p&gt;
+
+&lt;p&gt;On OS X and Linux you can block websites by adding entries like the following to the &lt;code&gt;/etc/hosts&lt;/code&gt; file. (On Windows, the hosts file lives at &lt;code&gt;C:\Windows\system32\Drivers\etc&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Block distracting websites
+127.0.0.1 news.ycombinator.com
+127.0.0.1 arstechnica.com
+127.0.0.1 slashdot.org
+#127.0.0.1 facebook.com
+#127.0.0.1 www.facebook.com
+#127.0.0.1 reddit.com
+#127.0.0.1 www.reddit.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On OS X, you would also need to running the following terminal command to refresh the hosts file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dscacheutil -flushcache
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After doing both of these, attempting to visit one of the websites listed in &lt;code&gt;/etc/hosts&lt;/code&gt; will display an error page.&lt;/p&gt;
+
+&lt;p&gt;Of course if you need to temporarily visit one of the blocked sites you can just go back to the hosts file and add a &lt;code&gt;#&lt;/code&gt; before the corresponding entry.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>

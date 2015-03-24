@@ -25,6 +25,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2015/03/23/block-distracting-websites/
 http://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning/
 http://dafoster.net/articles/2015/02/27/proof-terms-in-idris/
 http://dafoster.net/articles/2015/01/22/announcing-media-queue-1.0/
