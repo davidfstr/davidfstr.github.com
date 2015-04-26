@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Introducing p4status: A status command for Perforce | DaFoster</title>
+    <title>Optional Structural Static Typing in Python | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -323,9 +323,9 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Introducing p4status: A status command for Perforce</h1>
+    <h1>Optional Structural Static Typing in Python</h1>
     <div class="post-metadata">
-      Mar 16, 2013 &ndash; Filed under: 
+      Apr 26, 2015 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -335,96 +335,78 @@
       
     </div>
     
-    <p><strong>p4status</strong> works like <code>git status</code> (or <code>svn status</code>), but works in Perforce.</p>
+    <p>I&rsquo;m working on a new project to build a typechecking linter for Python, in the same vein as <a href="http://www.mypy-lang.org">mypy</a>. The big difference between mypy and what I&rsquo;m hoping to build is that my type system will be a <em>structural</em> type system rather than a <em>nominal</em> type system.</p>
 
-<p>It will list changelist files and locally modified files that haven&rsquo;t been added to any changelist (including unadded files) in a readable format.</p>
+<h2>Structural vs. Nominal Type Systems</h2>
 
-<div style="padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;">
-    <p style="font-weight: bold; color: #487858;">
-        Note
-    </p>
-    <p style="margin-bottom: 0em;">
-        The 2012 version of Perforce has an official
-        <b>p4 status</b> command. However this command is only available if 
-        your corporate Perforce server has been upgraded to 2012. If your 
-        company, like mine, has not upgraded their server, this script will 
-        make your life easier.
-    </p>
-</div>
+<p>Let&rsquo;s consider the following program:</p>
 
+<pre><code>interface Foo { public int length(); }
+interface Bar { public int length(); }
 
-<h3>Example</h3>
-
-<pre><code>[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
-# On changelist 154055
-# 
-# Changes to be committed in changelist default:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
-# 
-#       deleted:    server/apps/setupfx/splunkd/default/extract.conf
-# 
-# Changes to be committed in changelist 154076:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW.conf
-#       modified:   server/apps/setupfx/splunkd/default/inputs.conf
-# 
-# Changes not staged for commit:
-#   (use "p4 add/edit/delete &lt;file&gt;..." to update what will be committed)
-#   (use "p4 sync -f &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW2.conf
-# 
+Foo foo = ...
+Bar bar = foo;   // Will this work?
 </code></pre>
 
-<h3>Installation</h3>
+<p>In a structural type system (ex: Go, OCaml) the assignment would be allowed because both interfaces have exactly the same set of methods.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> If it looks like a duck then it <em>is</em> a duck.</p>
+
+<p>In a nominal type system (ex: Java, C#) the assignment would be rejected because there is no declared subtype relationship between the names <code>Foo</code> and <code>Bar</code>. The actual <em>structure</em> of the interfaces is completely ignored.</p>
+
+<h2>Why not Nominal Typing?</h2>
+
+<p>It generally requires explicit type annotations for all function parameters, and sometimes function return types too. I don&rsquo;t want to write <em>any</em> type annotations for the majority of programs that I write, and certainly not annotations for every single function.</p>
+
+<p>There is a serious risk that Python code written with a nominal type system in mind will start introducing large numbers of new abstract base classes for the <em>sole</em> purpose of making the typechecker happy. This is exactly the kind of pollution that I&rsquo;m trying to escape from when working in dynamic languages such as Python.</p>
+
+<h2>Why Structural Typing?</h2>
+
+<p>The philosophy behind structural typing meshes a lot better with the &ldquo;duck typing&rdquo; that you see in classic Python with no type annotations. If you try to invoke a method on an object and the object has a method with a matching name, the program will work. This is exactly the properly that a structural type system checks.</p>
 
 <ul>
-<li>Download to your local <code>bin</code> directory:
-<a href="https://github.com/davidfstr/dotfiles/blob/master/bin/p4status">https://github.com/davidfstr/dotfiles/blob/master/bin/p4status</a></li>
-<li>Mark as executable with <code>chmod a+x p4status</code></li>
+<li><p>Loosely defined protocols such as &ldquo;file-like objects&rdquo; continue to work.</p></li>
+<li><p>More complex protocols such as &ldquo;file-like objects that support fileno()&rdquo; (as needed by the <code>subprocess</code> module) also work without needing to introduce further abstract base classes.</p></li>
+<li><p>Lightweight JSON-based objects continue to work and benefit from type checking.</p></li>
 </ul>
 
 
-<h3>Usage</h3>
+<p>More importantly, structural type systems are much more amenable to global type inference, which can be used to eliminate the need for explicit type annotations. This would allow Python programs to still be type-checked without the need to specify type annotations in the usual case. Imagine if your programs <em>today</em>, without any type annotations, could suddenly become type checked with no additional effort from you, the programmer.</p>
+
+<h2>Challenges with Structural Typing</h2>
+
+<p>Of course structural typing isn&rsquo;t all good. It has one major sticking point: Structural type systems tend to generate huge verbose error messages that aren’t particularly actionable.</p>
+
+<p>This happens because the type checker only knows that two (complex) inferred types are incompatible. It doesn&rsquo;t know which of the two types is correct. And the error messages containing the derivation of the inferred types typically involves lots of locations in the code unrelated to where the actual error lies. Imagine the same level of verbosity as C++ template errors.</p>
+
+<h2>Mission: Difficult</h2>
+
+<p>So in summary the goal is to make a type checking linter for Python with a structural type system and global type inference which nevertheless presents comprehensible and actionable error messages in a majority of error scenarios.</p>
+
+<p>I see some original research in my near future.</p>
+
+<h2>References</h2>
 
 <ul>
-<li><code>cd</code> to the primary directory that you&rsquo;ll be working under.</li>
-<li>Run <code>p4status</code>.</li>
-</ul>
-
-
-<h3>Limitations</h3>
+<li><a href="https://www.youtube.com/watch?v=fDTt_uo0F-g">Uncovering the Unknown: Principles of Type Inference</a> (1h3m)
 
 <ul>
-<li><p>Only detects unstaged files under the directory in which the command is run. Therefore it is best to reserve a terminal window that is <code>cd</code>-ed to the correct place where this command can be run safely.</p></li>
-<li><p>This command is too slow to run from the root of very large branches.</p></li>
-</ul>
-
-
-<h3>Alternatives</h3>
-
-<ul>
-<li>Use the excellent Git-to-Perforce bridge, <a href="http://git-scm.com/docs/git-p4">git-p4</a>.
-
-<ul>
-<li>This allows you to work with your Perforce repository as if it were a Git repository. And you can use Git&rsquo;s very fast <code>git status</code> command.</li>
-</ul>
-</li>
-<li>Convince your Perforce server administrator to upgrade to the 2012 version. This may take some time, depending on the size of your company.</li>
-</ul>
-
-
-<h3><em>Related Projects</em></h3>
-
-<ul>
-<li><a href="https://github.com/davidfstr/dotfiles">dotfiles</a>
-
-<ul>
-<li><em>My command-line shortcuts, including several for working with Git, particularly in an OS X environment.</em></li>
+<li>Excellent presentation outlining the difference between nominal vs. structural subtyping, typing inference, and some pros/cons between both kinds of type systems.</li>
 </ul>
 </li>
+<li><a href="http://www.amazon.com/Types-Programming-Languages-Benjamin-Pierce/dp/0262162091/ref=sr_1_1?ie=UTF8&amp;qid=1430091478&amp;sr=8-1&amp;keywords=types+and+programming+languages">Types and Programming Languages</a> (645 pages)
+
+<ul>
+<li>Excellent broad overview of type systems and type theory. Leans toward covering type systems similar to those used in mainstream programming languages. Has only limited information about type reconstruction and type inference.</li>
 </ul>
+</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>To be more precise, the assignment would be allowed because <code>Foo</code> structure contains everything that <code>Bar</code> requires: the methods on <code>Bar</code> are a subset of the methods on <code>Foo</code>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 
   </div>
@@ -512,11 +494,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/03/10/killer-apps-for-software-platforms/" title="Killer apps for software platforms">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2015/03/23/block-distracting-websites/" title="Block Distracting Websites">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/" title="Migrating from BBEdit to Sublime Text">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

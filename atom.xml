@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-04-17T19:19:58-07:00</updated>
+ <updated>2015-04-26T16:56:29-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,92 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python</id>
+   <title>Optional Structural Static Typing in Python</title>
+   <published>2015-04-26T00:00:00-07:00</published>
+   <updated>2015-04-26T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I&amp;rsquo;m working on a new project to build a typechecking linter for Python, in the same vein as &lt;a href=&quot;http://www.mypy-lang.org&quot;&gt;mypy&lt;/a&gt;. The big difference between mypy and what I&amp;rsquo;m hoping to build is that my type system will be a &lt;em&gt;structural&lt;/em&gt; type system rather than a &lt;em&gt;nominal&lt;/em&gt; type system.&lt;/p&gt;
+
+&lt;h2&gt;Structural vs. Nominal Type Systems&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider the following program:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;interface Foo { public int length(); }
+interface Bar { public int length(); }
+
+Foo foo = ...
+Bar bar = foo;   // Will this work?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In a structural type system (ex: Go, OCaml) the assignment would be allowed because both interfaces have exactly the same set of methods.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; If it looks like a duck then it &lt;em&gt;is&lt;/em&gt; a duck.&lt;/p&gt;
+
+&lt;p&gt;In a nominal type system (ex: Java, C#) the assignment would be rejected because there is no declared subtype relationship between the names &lt;code&gt;Foo&lt;/code&gt; and &lt;code&gt;Bar&lt;/code&gt;. The actual &lt;em&gt;structure&lt;/em&gt; of the interfaces is completely ignored.&lt;/p&gt;
+
+&lt;h2&gt;Why not Nominal Typing?&lt;/h2&gt;
+
+&lt;p&gt;It generally requires explicit type annotations for all function parameters, and sometimes function return types too. I don&amp;rsquo;t want to write &lt;em&gt;any&lt;/em&gt; type annotations for the majority of programs that I write, and certainly not annotations for every single function.&lt;/p&gt;
+
+&lt;p&gt;There is a serious risk that Python code written with a nominal type system in mind will start introducing large numbers of new abstract base classes for the &lt;em&gt;sole&lt;/em&gt; purpose of making the typechecker happy. This is exactly the kind of pollution that I&amp;rsquo;m trying to escape from when working in dynamic languages such as Python.&lt;/p&gt;
+
+&lt;h2&gt;Why Structural Typing?&lt;/h2&gt;
+
+&lt;p&gt;The philosophy behind structural typing meshes a lot better with the &amp;ldquo;duck typing&amp;rdquo; that you see in classic Python with no type annotations. If you try to invoke a method on an object and the object has a method with a matching name, the program will work. This is exactly the properly that a structural type system checks.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Loosely defined protocols such as &amp;ldquo;file-like objects&amp;rdquo; continue to work.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;More complex protocols such as &amp;ldquo;file-like objects that support fileno()&amp;rdquo; (as needed by the &lt;code&gt;subprocess&lt;/code&gt; module) also work without needing to introduce further abstract base classes.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Lightweight JSON-based objects continue to work and benefit from type checking.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;More importantly, structural type systems are much more amenable to global type inference, which can be used to eliminate the need for explicit type annotations. This would allow Python programs to still be type-checked without the need to specify type annotations in the usual case. Imagine if your programs &lt;em&gt;today&lt;/em&gt;, without any type annotations, could suddenly become type checked with no additional effort from you, the programmer.&lt;/p&gt;
+
+&lt;h2&gt;Challenges with Structural Typing&lt;/h2&gt;
+
+&lt;p&gt;Of course structural typing isn&amp;rsquo;t all good. It has one major sticking point: Structural type systems tend to generate huge verbose error messages that aren’t particularly actionable.&lt;/p&gt;
+
+&lt;p&gt;This happens because the type checker only knows that two (complex) inferred types are incompatible. It doesn&amp;rsquo;t know which of the two types is correct. And the error messages containing the derivation of the inferred types typically involves lots of locations in the code unrelated to where the actual error lies. Imagine the same level of verbosity as C++ template errors.&lt;/p&gt;
+
+&lt;h2&gt;Mission: Difficult&lt;/h2&gt;
+
+&lt;p&gt;So in summary the goal is to make a type checking linter for Python with a structural type system and global type inference which nevertheless presents comprehensible and actionable error messages in a majority of error scenarios.&lt;/p&gt;
+
+&lt;p&gt;I see some original research in my near future.&lt;/p&gt;
+
+&lt;h2&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=fDTt_uo0F-g&quot;&gt;Uncovering the Unknown: Principles of Type Inference&lt;/a&gt; (1h3m)
+
+&lt;ul&gt;
+&lt;li&gt;Excellent presentation outlining the difference between nominal vs. structural subtyping, typing inference, and some pros/cons between both kinds of type systems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/Types-Programming-Languages-Benjamin-Pierce/dp/0262162091/ref=sr_1_1?ie=UTF8&amp;amp;qid=1430091478&amp;amp;sr=8-1&amp;amp;keywords=types+and+programming+languages&quot;&gt;Types and Programming Languages&lt;/a&gt; (645 pages)
+
+&lt;ul&gt;
+&lt;li&gt;Excellent broad overview of type systems and type theory. Leans toward covering type systems similar to those used in mainstream programming languages. Has only limited information about type reconstruction and type inference.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;To be more precise, the assignment would be allowed because &lt;code&gt;Foo&lt;/code&gt; structure contains everything that &lt;code&gt;Bar&lt;/code&gt; requires: the methods on &lt;code&gt;Bar&lt;/code&gt; are a subset of the methods on &lt;code&gt;Foo&lt;/code&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
