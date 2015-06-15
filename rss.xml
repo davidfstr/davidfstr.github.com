@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 14 Jun 2015 22:43:18 -0700</pubDate>
-    <lastBuildDate>Sun, 14 Jun 2015 22:43:18 -0700</lastBuildDate>
+    <pubDate>Sun, 14 Jun 2015 23:34:26 -0700</pubDate>
+    <lastBuildDate>Sun, 14 Jun 2015 23:34:26 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -7957,9 +7957,9 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt
     
     <item>
       <title>Learnings from SICP (and Lisp)</title>
-      <link>http://dafoster.net/articles/2013/02/02/learnings-from-sicp/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Sat, 02 Feb 2013 00:00:00 -0800</pubDate>
-      <guid>http://dafoster.net/articles/2013/02/02/learnings-from-sicp</guid>
+      <link>http://dafoster.net/articles/2013/02/01/learnings-from-sicp/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Fri, 01 Feb 2013 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2013/02/01/learnings-from-sicp</guid>
       <description>&lt;p&gt;&lt;img src=&quot;/assets/2013/sicp_cover.jpg&quot;
   alt=&quot;Cover of The Structure and Interpretation of Computer Programs&quot;
   style=&quot;float: right;&quot;
@@ -9243,189 +9243,6 @@ comes in handy&lt;/li&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-</description>
-    </item>
-    
-    
-    <item>
-      <title>Comparing iPod Touch (2nd Gen) to iPhone 3GS</title>
-      <link>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Fri, 17 Sep 2010 00:00:00 -0700</pubDate>
-      <guid>http://dafoster.net/articles/2010/09/17/comparing-ipod-touch-2nd-gen-iphone-3gs</guid>
-      <description>&lt;p&gt;I recently upgraded from an iPod Touch to an iPhone 3GS. I hate contracts, so I
-bought the 3GS off-contract from a seller on Craigslist. (And I timed my
-purchase to coincide with the release of the iPhone 4, so lots of people were
-dumping their own 3GS devices.)&lt;/p&gt;
-
-&lt;p&gt;I am routinely in WiFi hotspots: at home, enroute to work, and at work, so I
-usually put the iPhone 3GS in &amp;ldquo;Airplane Mode&amp;rdquo;, where the wireless radios are
-disabled, to conserve battery life. Therefore I effectively use my iPhone like
-a better iPod Touch most of the time.&lt;/p&gt;
-
-&lt;p&gt;From purely a specification point of view, the differences are:&lt;/p&gt;
-
-&lt;table border=&quot;1&quot;&gt;
-    &lt;thead style=&quot;background-color:#e0e0e0;&quot;&gt;
-        &lt;tr&gt;
-            &lt;th scope=&quot;col&quot;&gt;
-                &amp;nbsp;&lt;/th&gt;
-            &lt;th scope=&quot;col&quot;&gt;
-                iPod Touch (2nd Gen)&lt;/th&gt;
-            &lt;th scope=&quot;col&quot;&gt;
-                iPhone 3GS (3rd Gen)&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                internet access&lt;/td&gt;
-            &lt;td&gt;
-                only in WiFi hotspots&lt;/td&gt;
-            &lt;td&gt;
-                universal (except subway)*&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                geolocation&lt;/td&gt;
-            &lt;td&gt;
-                WiFi triangulation only, via SkyHook&lt;/td&gt;
-            &lt;td&gt;
-                GPS-enabled (very accurate)&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                external speaker quality&lt;/td&gt;
-            &lt;td&gt;
-                -&lt;/td&gt;
-            &lt;td&gt;
-                surprisingly better&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                CPU / responsiveness&lt;/td&gt;
-            &lt;td&gt;
-                -&lt;/td&gt;
-            &lt;td&gt;
-                much faster&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                battery life&lt;/td&gt;
-            &lt;td&gt;
-                - (approx 3 days)&lt;/td&gt;
-            &lt;td&gt;
-                less (approx 2 days)&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                vibrate capability&lt;/td&gt;
-            &lt;td&gt;
-                no&lt;/td&gt;
-            &lt;td&gt;
-                yes&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                built-in microphone&lt;/td&gt;
-            &lt;td&gt;
-                no&lt;/td&gt;
-            &lt;td&gt;
-                yes&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                heft&lt;/td&gt;
-            &lt;td&gt;
-                lighter and thinner&lt;/td&gt;
-            &lt;td&gt;
-                -&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;
-                headphone jack location&lt;/td&gt;
-            &lt;td&gt;
-                bottom-right&lt;/td&gt;
-            &lt;td&gt;
-                top-left&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-
-
-&lt;p&gt;In practical terms, this translates to:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;b&gt;I never get completely lost*&lt;/b&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The combination of GPS plus internet everywhere means that I always know
-where I am on the map.&lt;/li&gt;
-&lt;li&gt;I can also get instant directions from my current location to an
-arbitrary destination. I usually take public transit, but this works with
-cars as well.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The iPhone is a better boombox&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;I use both devices as portable external sound systems while I work.
-The better speaker quality of the iPhone is nice to have.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The iPhone user interface is more responsive&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&amp;hellip;thanks to the better CPU.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The iPhone needs to be recharged slightly more often&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&amp;hellip;thanks to the shorter battery life.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;I never miss calendar reminders anymore&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Calendar reminders (including work meeting reminders) are not only
-audible on the iPhone but also produce a noticeable vibration.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;I can use Shazam to identify random music I hear&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&amp;hellip;thanks to the built-in microphone.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;2012 Update:&lt;/strong&gt; This actually doesn&amp;rsquo;t work very well.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;I can make phone calls if I really want to&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The microphone makes it feasable. Not just for normal calls, but VoIP
-internet calls as well.&lt;/li&gt;
-&lt;li&gt;With a phone plan, you can make the normal calls as well.*&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;i&gt;* Requires phone plan, with associated subscription costs.&lt;/i&gt;&lt;/p&gt;
-
-&lt;h2&gt;The uneasy marriage with AT&amp;amp;T&lt;/h2&gt;
-
-&lt;p&gt;I hate expensive monthly fees. Here in the USA, the only officially
-supported carrier is AT&amp;amp;T, which charges at least $70/month. I don&amp;rsquo;t even use
-the voice plan, so I&amp;rsquo;m being overcharged rather significantly at the moment.&lt;/p&gt;
-
-&lt;p&gt;T-Mobile is another option for those willing to unlock their iPhones. They
-have less expensive plans, to the tune of $40/month, which I&amp;rsquo;m much in favor
-of. I intend to unlock my iPhone when I get some spare time in the next month
-or so. After all, it&amp;rsquo;s costing me $30/month to delay.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;2012 Update:&lt;/strong&gt; T-Mobile is rumored to be carrying the iPhone sometime in
-2013. I just hope it isn&amp;rsquo;t &amp;ldquo;too little, too late.&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;2012 Update:&lt;/strong&gt; I am still using the same iPhone 3GS today.&lt;/p&gt;
 </description>
     </item>
     
