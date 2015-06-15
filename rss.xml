@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 26 Apr 2015 16:56:29 -0700</pubDate>
-    <lastBuildDate>Sun, 26 Apr 2015 16:56:29 -0700</lastBuildDate>
+    <pubDate>Sun, 14 Jun 2015 22:43:18 -0700</pubDate>
+    <lastBuildDate>Sun, 14 Jun 2015 22:43:18 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2152,30 +2152,6 @@ _A_10 s → _B_11 s
 
 &lt;p&gt;In summary I expect EnChroma glasses to be useful in improving color discrimination for full-spectrum light sources such as sunlight, incandescent bulbs, and special full-spectrum &amp;ldquo;daylight&amp;rdquo; bulbs. However I do not expect any improvements in color discrimination for narrow-spectrum light sources such as flourescent bulbs, computer monitors, and backlit phone/tablet screens.&lt;/p&gt;
 
-&lt;h2&gt;Could I make an &amp;ldquo;EnChroma computer monitor&amp;rdquo;?&lt;/h2&gt;
-
-&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Objective:&lt;/strong&gt; Find a way to simulate the effect of Enchroma glasses when applied to a computer monitor.&lt;/p&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;I have seen a programs that filter colors on the screen to attain different effects:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://justgetflux.com/&quot;&gt;f.lux&lt;/a&gt;: Simulates daylight and dusk-light by altering ambient color temperature.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.colororacle.org/&quot;&gt;Color Oracle&lt;/a&gt;: Simulates colorblind vision for color-normative individuals.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Very accurate.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Could I make a filtering program like this that would alter onscreen colors in such a way that a colorblind individual could distinguish them more easily? This would be very useful to me since I am colorblind myself and would like to be able to distinguish colors more easily.&lt;/p&gt;
-
-&lt;p&gt;The principal difficulty I foresee is that my computer monitor is probably a narrow-spectrum light source. Indeed the manual for the DELL U2711 (my monitor) does not have any information about its spectral output. So I would need to measure it with a spectrometer or similar instrument.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately Amazon mainly has simple spectrometers that give spectral lines only, not their intensities or the full spectral graph. A spectrometer that can measure the full spectral power distribution currently costs a fair bit more. A few I&amp;rsquo;ve noticed:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.amazon.com/AIBC-LED-AI-MK350-Handheld-Spectrometer/dp/B0050DAD72/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;amp;linkCode=w01&amp;amp;linkId=&amp;amp;creativeASIN=B0050DAD72&quot;&gt;AIBC AI-MK350 Handheld Spectrometer&lt;/a&gt; ($2,000)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.crsltd.com/tools-for-vision-science/light-measurement-display-calibation/spectrocal-classic-spectroradiometer/&quot;&gt;SpectroCAL Classic Spectroradiometer&lt;/a&gt; (£6,000 ≈ $10,000)&lt;/li&gt;
-&lt;/ul&gt;
-
-
 &lt;h3&gt;Additional References&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -2190,8 +2166,6 @@ _A_10 s → _B_11 s
 &lt;p&gt;General Electric provides data about the display spectra for several of its bulbs: &lt;a href=&quot;http://www.gelighting.com/na/business_lighting/spectral_power_distribution_curves/&quot;&gt;http://www.gelighting.com/na/business_lighting/spectral_power_distribution_curves/&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;The discovery underlying EnChroma glasses is documented in this news report: &lt;a href=&quot;http://abclocal.go.com/kgo/story?section=news/health&amp;amp;id=8964511&quot;&gt;http://abclocal.go.com/kgo/story?section=news/health&amp;amp;id=8964511&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&quot;fn:3&quot;&gt;
-&lt;p&gt;Color Oracle uses research from: &lt;a href=&quot;http://vision.psychol.cam.ac.uk/jdmollon/papers/colourmaps.pdf&quot;&gt;Digital video colourmaps for checking the legibility of displays by dichromats&lt;/a&gt;&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -5427,34 +5401,12 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
       <link>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sun, 12 May 2013 00:00:00 -0700</pubDate>
       <guid>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful</guid>
-      <description>&lt;!--
-&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+      <description>&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
     &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
         Audience
     &lt;/p&gt;
     &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
-        I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function&#39;s signature requires. In academic-speak, this is called &quot;partial application of a function&quot;.
-    &lt;/p&gt;
-&lt;/div&gt;
---&gt;
-
-
-
-
-&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
-    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
-        Purpose
-    &lt;/p&gt;
-    &lt;p&gt;
-        This article is intended to convey my confusion and minor frustration
-        with trying to understand part of Haskell&#39;s syntax as I currently
-        learn Haskell.
-    &lt;/p&gt;
-    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
-        Since Haskell has many unfamilar concepts relative to other languages
-        I know well, I am likely to make some terminology mistakes here. I am
-        learning and welcome corrections. Please see the discussion on
-        &lt;a href=&quot;http://www.reddit.com/r/haskell/comments/1elklu/currying_considered_harmful/&quot;&gt;Reddit&lt;/a&gt;.
+        I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function&#39;s signature requires. This is called &quot;partial application of a function&quot;.
     &lt;/p&gt;
 &lt;/div&gt;
 
