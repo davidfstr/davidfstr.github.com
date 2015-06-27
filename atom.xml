@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-06-27T11:03:50-07:00</updated>
+ <updated>2015-06-27T12:06:15-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,22 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2015/06/27/unicode-101</id>
+   <title>Unicode 101</title>
+   <published>2015-06-27T00:00:00-07:00</published>
+   <updated>2015-06-27T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2015/06/27/unicode-101/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Handling international and Unicode text correctly in modern programming languages remains a poorly understood topic.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/articles/2015/06/27/unicode-101/&quot;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>
