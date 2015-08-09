@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Algorithms 101 for Software Applications | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>Algorithms 101 for Software Applications</h1>
+    <div class="post-metadata">
+      Aug 08, 2015 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>40</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>In general I feel that deep algorithm knowledge is overrated in the software industry. In the early 90&rsquo;s, one needed to know about common algorithms because you needed to actually <em>implement</em> them. Today in the 00&rsquo;s and 10&rsquo;s one mainly needs to know which algorithms are appropriate to <em>use</em>, since most common algorithms are already implemented in the standard library of modern programming languages. Therefore I would like to give a summary of the minimum that I think you, as a modern coder, actually need to know to do your job effectively.</p>
+
+<p>I assume that, like me, your typical domain area is writing applications: primarily rich web applications, desktop applications, and server-side tools. In this context the <em>most</em> advanced type of program you would be asked to write would be a compiler or other program transformation tool.</p>
+
+<p>If on the other hand you work in a low-level environments close to the hardware<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, are performing scientific calculations<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, or are regularly processing insanely large data sets<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>, you will need to know more about algorithms that what I cover here.</p>
+
+<h2>Collections</h2>
+
+<p>In general the main algorithmic work you&rsquo;ll be doing when writing programs will involve the use of <strong>collections</strong> included in your language&rsquo;s standard library. Collections hold values. The algorithms for manipulating these collections will also typically be included in the standard library.</p>
+
+<h3>Basic collections</h3>
+
+<p>The following kinds of <strong>collections</strong> are so common as to be fundamental. Practically all programs involve the efficient manipulation of data stored in these collections.</p>
+
+<ul>
+<li><strong>List</strong> - An ordered sequence of elements.</li>
+<li><strong>Set</strong> - An unordered set of elements, disallowing duplicates.</li>
+<li><strong>Map</strong> - A structure that associates keys with values.</li>
+</ul>
+
+
+<p>Sets and Maps in particular come in different flavors depending on what kind of ordering guarantee (if any) they provide:</p>
+
+<ul>
+<li><strong>Unordered Set/Map</strong>
+
+<ul>
+<li>Elements can be in any order.</li>
+</ul>
+</li>
+<li><strong>Stable Set/Map</strong>
+
+<ul>
+<li>Elements appear in the order that they were added.</li>
+</ul>
+</li>
+<li><strong>Sorted Set/Map</strong>
+
+<ul>
+<li>Elements are always sorted via either their natural ordering or
+a custom comparison function.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Other useful more-advanced collections exist such as Bidirectional Maps, Counted Bags, Partitioning Bags, and Priority Queues, but they will not be considered here.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></p>
+
+<h3>Basic operations</h3>
+
+<p>All collections support <strong>operations</strong> for adding elements, removing elements, and iterating over elements.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> However they do so at different speeds. It is important to choose the best kind of collection to use based on which operations your program will perform on it most frequently.</p>
+
+<p>Below are the operations that each collection type supports most efficiently, along with the operation&rsquo;s speed in Big-Oh notation<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup> when using the best<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup> implementation available:</p>
+
+<ul>
+<li>List
+
+<ul>
+<li>Append element to end - O(1)</li>
+<li>Get element at random index - O(1)</li>
+<li>Set element at random index to new element - O(1)</li>
+<li>Iterate over all elements - O(n)</li>
+<li>Contains a specific element? - O(n)! (consider using a Set instead)</li>
+<li>Remove first occurrence of an element - O(n)! (consider using a Bag instead)</li>
+<li>Remove all occurrences of an element - O(n)! (consider using a Set instead)</li>
+</ul>
+</li>
+<li>Set
+
+<ul>
+<li>Add element (if not already present) - O(1)†</li>
+<li>Remove element - O(1)*</li>
+<li>Contains a specific element? - O(1)†</li>
+<li>Iterate over all elements - O(n)</li>
+</ul>
+</li>
+<li>Map
+
+<ul>
+<li>Set value associated with key - O(1)†</li>
+<li>Get value associated with key - O(1)†</li>
+<li>Contains a specific key? - O(1)†</li>
+<li>Iterate over all key-value pairs - O(n)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>† = <em>Assumes using an Unordered or Stable implementation with a well-designed hash function. If using a Sorted implementation then performance degrades from O(1) to O(log(n)). If using a poor hash function then performance degrades from O(1) to as low as O(n).</em></p>
+
+<p>Common algorithms exist for performing these operations. As mentioned previously it is rare that you will need to code such collection-manipulating algorithms manually unless you are working in a constrained environment. Instead you just need to be a smart shopper when picking a collection implementation to use from your language&rsquo;s standard library.</p>
+
+<h3>Common collection implementations</h3>
+
+<p>Generally speaking the collections available in the standard library of a programming language will be include one or more of the following specific implementations, possibly using different names:</p>
+
+<ul>
+<li>List
+
+<ul>
+<li><strong>Array-Based List</strong> <span style="color: green;">(recommended)</span>
+
+<ul>
+<li>O(1) amortized<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup> append</li>
+<li>O(1) random get and set</li>
+<li>But O(n) insert, remove, and prepend</li>
+</ul>
+</li>
+<li><strong>Linked List</strong>
+
+<ul>
+<li>O(1) prepend</li>
+<li>O(1) append if tail pointer is tracked, otherwise O(n) append</li>
+<li>But O(n) random get, set, insert, and remove</li>
+<li>But causes memory fragmentation</li>
+</ul>
+</li>
+<li><strong>Array</strong>
+
+<ul>
+<li>O(1) random get and set</li>
+<li>But does not support resizing after construction</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Set
+
+<ul>
+<li><strong>Linked Hash Set</strong> <span style="color: green;">(recommended)</span> - <em>a stable set</em>
+
+<ul>
+<li>O(1) add, remove, and contains</li>
+<li>O(n) iteration in consistent (but not sorted) order</li>
+</ul>
+</li>
+<li><strong>Hash Set</strong> - <em>an unsorted set</em>
+
+<ul>
+<li>O(1) add, remove, and contains</li>
+<li>O(n) iteration, but in random order</li>
+</ul>
+</li>
+<li><strong>Tree Set</strong> - <em>a sorted set</em>
+
+<ul>
+<li>O(log(n)) add, remove, and contains</li>
+<li>O(n) iteration in sorted order</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Map
+
+<ul>
+<li><strong>Set-Based Map</strong> <span style="color: green;">(recommended)</span>
+
+<ul>
+<li>Uses an underlying set to hold the keys.</li>
+<li>O(1) get, set, and contains-key for stable and unsorted sets</li>
+<li>O(log(n)) get, set, and contains-key for sorted sets</li>
+<li>O(n) iteration and contains-value</li>
+</ul>
+</li>
+<li><strong>Association List</strong>
+
+<ul>
+<li>Is just a list of key-value pairs.</li>
+<li>O(n) iteration and contains-value</li>
+<li>But O(n) get, set, and contain-key</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Here is a table of implementations for various common programming languages:</p>
+
+<iframe src="/assets/2015/algorithms-101/Table.htm"
+  style="width: 100%; height: 21em; border: 0;" ></iframe>
+
+
+<h3>Sorting</h3>
+
+<p>The only advanced operation you commonly need to perform on a collection is to sort it.</p>
+
+<p>The following sorting algorithms are worth knowing about for actual use:</p>
+
+<ul>
+<li><strong>Insertion Sort</strong>
+
+<ul>
+<li>O(n<sup>2</sup>) average and worst case performance</li>
+<li>Usually faster in practice than other algorithms for <em>small</em> numbers of elements.</li>
+</ul>
+</li>
+<li><strong>Merge Sort</strong>
+
+<ul>
+<li>O(n&sdot;log(n)) average and worse case performance,
+optimal for a comparison-based sort.</li>
+<li>Can be done on disk rather than in RAM, for very large data sets.</li>
+</ul>
+</li>
+<li><strong>Quicksort</strong>
+
+<ul>
+<li>O(n&sdot;log(n)) average case performance</li>
+<li>But O(n<sup>2</sup>) worst case performance</li>
+<li>But is not a stable sort</li>
+</ul>
+</li>
+<li><strong>Heap Sort</strong>
+
+<ul>
+<li>O(n&sdot;log(n)) average and worse case performance,
+optimal for a comparison-based sort.</li>
+<li>But is not a stable sort</li>
+<li>But is complex to implement since it involves heaps.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>It&rsquo;s also worth knowing that there are even faster sort algorithms that are not based on comparisons. For example:</p>
+
+<ul>
+<li><strong>Radix Sort</strong>
+
+<ul>
+<li>O(w&sdot;n) average and worst case performance, where w is usually a constant</li>
+</ul>
+</li>
+</ul>
+
+
+<p>In interviews, knowing about and being able to implement merge sort, quicksort, and insertion sort has always been sufficient for me.</p>
+
+<p>Standard libraries vary in what specific sorting algorithms they offer:</p>
+
+<ul>
+<li>Python uses Timsort, a hybrid of Merge Sort and Insertion Sort.</li>
+<li>Java previously used either Merge Sort or Insertion Sort depending on the size of the input list but later switched to Timsort.</li>
+<li>Perl previously used Quicksort but later switched to Merge Sort.</li>
+<li>C++ does not mandate a particular algorithm but does specify that whatever algorithm provided will have worst case performance of O(n&sdot;log(n)) or better.</li>
+</ul>
+
+
+<h2>Trees</h2>
+
+<p>Beyond collections, it&rsquo;s useful to know how to both to implement tree data structures - particularly N-Ary Trees - how to traverse them, and how to manipulate them.</p>
+
+<p><strong>N-Ary Trees</strong> are made of <strong>Nodes</strong>, starting at a root node, where each node contains a list of children nodes. A node with no children is a leaf. A node can be related to another node as a child, parent, descendant, ancestor, or cousin. A node may or may not track who its parent is, depending on how it is implemented.</p>
+
+<p>Trees can be traversed in either <strong>Depth-First Order</strong> or <strong>Breadth-First Order</strong>. Most programs use Depth-First Order because it is easy to implement via recursion. Breadth First-Order traversal may be useful, however, in writing algorithms related to the shortest-path from the tree root.</p>
+
+<p>In interviews, I&rsquo;ve found useful the ability to improvise new tree-related algorithms. For example an algorithm to find the nearest common ancestor.</p>
+
+<h2>Graphs</h2>
+
+<p>It is rare that you will need to use graphs in real-world application development except for the most demanding kinds of applications, such as compilers and program transformation tools. Therefore I will only cover them briefly here.</p>
+
+<p>A <strong>Graph</strong> is made of <strong>Nodes</strong> (sometimes called &ldquo;vertices&rdquo;) and <strong>Edges</strong>. Edges connect pairs of nodes together. Beyond that:</p>
+
+<ul>
+<li><p>In a &ldquo;directed&rdquo; graph (or &ldquo;digraph&rdquo;), each edge has a head and tail. By contrast in an &ldquo;undirected&rdquo; graph, each edge is unoriented and just joins two nodes together.</p></li>
+<li><p>Some graphs are &ldquo;weighted&rdquo;, meaning that nodes and/or edges are annotated with numerical weights.</p></li>
+<li><p>Some graphs are &ldquo;multi-graphs&rdquo;, meaning that they explicitly allow multiple edges between the same pair of nodes.</p></li>
+</ul>
+
+
+<p>Graphs are useful for representing and manipulating <em>connected</em> structures, such as the intersections and roads on a map, the set of statements and related next-statements in source code, and the set of squares on a game board plus its neighbors.</p>
+
+<p>Algorithms for working with graphs are similar to those for working with trees but are more complicated, since each node in a graph can be typically be reached along multiple paths.</p>
+
+<p>Knowing how to traverse a graph in both Depth-First Order and Breadth-First Order without revisiting a node twice is extremely useful, both in practice and for interviews. For example how could you implement the paint bucket tool in a drawing program, coloring in a region of neighboring pixels without coloring in any pixel twice?</p>
+
+<h2>Odds and Ends</h2>
+
+<p>There are a few other miscellaneous concerns worth mentioning:</p>
+
+<ul>
+<li><p>Strings in many languages (Java, Python, JavaScript) are immutable. Therefore appending to a string takes O(n) time. By itself this is not a problem, however you need to be careful not to repeatedly append to a string inside a loop because then your runtime will be closer to O(n<sup>2</sup>). Instead, append the string parts to a temporary list and then join the list together afterwards using the appropriate standard library function. That will get you back to O(n) time.</p></li>
+<li><p>Implementing binary search in a list correctly is a lot harder than you think. The first couple of attempts in the academic literature actually had flawed algorithms.</p></li>
+<li><p>Algorithms involving array rearrangement and index manipulation are good to practice for interviews, since some interviewers ask for low-level tricky algorithms of this sort. For example the <a href="https://en.wikipedia.org/wiki/Dutch_national_flag_problem">Dutch National Flag</a> problem is a classic.</p></li>
+</ul>
+
+
+<div style="padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;">
+    <p style="font-weight: bold; color: #487858;">
+        Series
+    </p>
+    <p style="margin-bottom: 0em;">
+        This article is part of the <a href="/articles/2013/05/11/book-outline/">Programming for Perfectionists</a> series.
+    </p>
+</div>
+
+
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Low-level environments typically lack rich standard libraries. So you&rsquo;re back to implementing linked lists and friends by hand.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Scientific calculations involve lots of floats, which have a host of additional considerations to worry about. Chiefly float imprecision and numerical stability. The data sets involved are also typically very large.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Web services that have the popularity of Facebook, Amazon, Apple, Microsoft, or Google are dealing with unbelievable data volumes that merit using specialized algorithms. Other websites, although perhaps still popular, don&rsquo;t receive anywhere near the same level of traffic.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>Further, other useful more-advanced non-collection data structures exist such as Trees, Directed Graphs, and Undirected Graphs, but they also will not be covered here.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>The runtimes quoted here are for operations that are performed <em>in-place</em>, modifying the original collection value. If you require operations that efficiently return modified copies of the original collection, look into <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structures</a>, such as used by <a href="http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey">Rich Hickey</a> in the Clojure standard library.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>In Big-Oh notation, O(1) is a constant amount of time, O(log(n)) is time proportional to the order of magnitude of the collection&rsquo;s size, and O(n) is time proportional to the size of the collection. Other common runtimes include O(n&sdot;log(n)) and O(n<sup>2</sup>).<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<li id="fn:7">
+<p>Considerably worse performance can result if you use a poor implementation. For example if you attempt to <em>append</em> (not prepend) an element to a list in a functional language that uses the default singly-linked list implementation, it will take O(n) time rather than the usual O(1) amortized time.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<li id="fn:8">
+<p>O(1) amortized time means that <em>in aggregate</em> the per-operation time cost will average out to O(1). However individual operations may take O(1) in the average case or O(n) in the worst case.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>40</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+    <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+  </a>
+  <a class="subscribe subscribe-last" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2015/06/27/unicode-101/" title="Unicode 101">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2015 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

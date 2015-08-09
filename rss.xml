@@ -6,14 +6,345 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 27 Jun 2015 12:06:15 -0700</pubDate>
-    <lastBuildDate>Sat, 27 Jun 2015 12:06:15 -0700</lastBuildDate>
+    <pubDate>Sat, 08 Aug 2015 19:21:20 -0700</pubDate>
+    <lastBuildDate>Sat, 08 Aug 2015 19:21:20 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Algorithms 101 for Software Applications</title>
+      <link>http://dafoster.net/articles/2015/08/08/algorithms-101/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 08 Aug 2015 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2015/08/08/algorithms-101</guid>
+      <description>&lt;p&gt;In general I feel that deep algorithm knowledge is overrated in the software industry. In the early 90&amp;rsquo;s, one needed to know about common algorithms because you needed to actually &lt;em&gt;implement&lt;/em&gt; them. Today in the 00&amp;rsquo;s and 10&amp;rsquo;s one mainly needs to know which algorithms are appropriate to &lt;em&gt;use&lt;/em&gt;, since most common algorithms are already implemented in the standard library of modern programming languages. Therefore I would like to give a summary of the minimum that I think you, as a modern coder, actually need to know to do your job effectively.&lt;/p&gt;
+
+&lt;p&gt;I assume that, like me, your typical domain area is writing applications: primarily rich web applications, desktop applications, and server-side tools. In this context the &lt;em&gt;most&lt;/em&gt; advanced type of program you would be asked to write would be a compiler or other program transformation tool.&lt;/p&gt;
+
+&lt;p&gt;If on the other hand you work in a low-level environments close to the hardware&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, are performing scientific calculations&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, or are regularly processing insanely large data sets&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, you will need to know more about algorithms that what I cover here.&lt;/p&gt;
+
+&lt;h2&gt;Collections&lt;/h2&gt;
+
+&lt;p&gt;In general the main algorithmic work you&amp;rsquo;ll be doing when writing programs will involve the use of &lt;strong&gt;collections&lt;/strong&gt; included in your language&amp;rsquo;s standard library. Collections hold values. The algorithms for manipulating these collections will also typically be included in the standard library.&lt;/p&gt;
+
+&lt;h3&gt;Basic collections&lt;/h3&gt;
+
+&lt;p&gt;The following kinds of &lt;strong&gt;collections&lt;/strong&gt; are so common as to be fundamental. Practically all programs involve the efficient manipulation of data stored in these collections.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;List&lt;/strong&gt; - An ordered sequence of elements.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Set&lt;/strong&gt; - An unordered set of elements, disallowing duplicates.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Map&lt;/strong&gt; - A structure that associates keys with values.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Sets and Maps in particular come in different flavors depending on what kind of ordering guarantee (if any) they provide:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unordered Set/Map&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elements can be in any order.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stable Set/Map&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elements appear in the order that they were added.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sorted Set/Map&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elements are always sorted via either their natural ordering or
+a custom comparison function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Other useful more-advanced collections exist such as Bidirectional Maps, Counted Bags, Partitioning Bags, and Priority Queues, but they will not be considered here.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3&gt;Basic operations&lt;/h3&gt;
+
+&lt;p&gt;All collections support &lt;strong&gt;operations&lt;/strong&gt; for adding elements, removing elements, and iterating over elements.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; However they do so at different speeds. It is important to choose the best kind of collection to use based on which operations your program will perform on it most frequently.&lt;/p&gt;
+
+&lt;p&gt;Below are the operations that each collection type supports most efficiently, along with the operation&amp;rsquo;s speed in Big-Oh notation&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; when using the best&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; implementation available:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;List
+
+&lt;ul&gt;
+&lt;li&gt;Append element to end - O(1)&lt;/li&gt;
+&lt;li&gt;Get element at random index - O(1)&lt;/li&gt;
+&lt;li&gt;Set element at random index to new element - O(1)&lt;/li&gt;
+&lt;li&gt;Iterate over all elements - O(n)&lt;/li&gt;
+&lt;li&gt;Contains a specific element? - O(n)! (consider using a Set instead)&lt;/li&gt;
+&lt;li&gt;Remove first occurrence of an element - O(n)! (consider using a Bag instead)&lt;/li&gt;
+&lt;li&gt;Remove all occurrences of an element - O(n)! (consider using a Set instead)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Set
+
+&lt;ul&gt;
+&lt;li&gt;Add element (if not already present) - O(1)†&lt;/li&gt;
+&lt;li&gt;Remove element - O(1)*&lt;/li&gt;
+&lt;li&gt;Contains a specific element? - O(1)†&lt;/li&gt;
+&lt;li&gt;Iterate over all elements - O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Map
+
+&lt;ul&gt;
+&lt;li&gt;Set value associated with key - O(1)†&lt;/li&gt;
+&lt;li&gt;Get value associated with key - O(1)†&lt;/li&gt;
+&lt;li&gt;Contains a specific key? - O(1)†&lt;/li&gt;
+&lt;li&gt;Iterate over all key-value pairs - O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;† = &lt;em&gt;Assumes using an Unordered or Stable implementation with a well-designed hash function. If using a Sorted implementation then performance degrades from O(1) to O(log(n)). If using a poor hash function then performance degrades from O(1) to as low as O(n).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Common algorithms exist for performing these operations. As mentioned previously it is rare that you will need to code such collection-manipulating algorithms manually unless you are working in a constrained environment. Instead you just need to be a smart shopper when picking a collection implementation to use from your language&amp;rsquo;s standard library.&lt;/p&gt;
+
+&lt;h3&gt;Common collection implementations&lt;/h3&gt;
+
+&lt;p&gt;Generally speaking the collections available in the standard library of a programming language will be include one or more of the following specific implementations, possibly using different names:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;List
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Array-Based List&lt;/strong&gt; &lt;span style=&quot;color: green;&quot;&gt;(recommended)&lt;/span&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(1) amortized&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt; append&lt;/li&gt;
+&lt;li&gt;O(1) random get and set&lt;/li&gt;
+&lt;li&gt;But O(n) insert, remove, and prepend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linked List&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(1) prepend&lt;/li&gt;
+&lt;li&gt;O(1) append if tail pointer is tracked, otherwise O(n) append&lt;/li&gt;
+&lt;li&gt;But O(n) random get, set, insert, and remove&lt;/li&gt;
+&lt;li&gt;But causes memory fragmentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Array&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(1) random get and set&lt;/li&gt;
+&lt;li&gt;But does not support resizing after construction&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Set
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Linked Hash Set&lt;/strong&gt; &lt;span style=&quot;color: green;&quot;&gt;(recommended)&lt;/span&gt; - &lt;em&gt;a stable set&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(1) add, remove, and contains&lt;/li&gt;
+&lt;li&gt;O(n) iteration in consistent (but not sorted) order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hash Set&lt;/strong&gt; - &lt;em&gt;an unsorted set&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(1) add, remove, and contains&lt;/li&gt;
+&lt;li&gt;O(n) iteration, but in random order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tree Set&lt;/strong&gt; - &lt;em&gt;a sorted set&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(log(n)) add, remove, and contains&lt;/li&gt;
+&lt;li&gt;O(n) iteration in sorted order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Map
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Set-Based Map&lt;/strong&gt; &lt;span style=&quot;color: green;&quot;&gt;(recommended)&lt;/span&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uses an underlying set to hold the keys.&lt;/li&gt;
+&lt;li&gt;O(1) get, set, and contains-key for stable and unsorted sets&lt;/li&gt;
+&lt;li&gt;O(log(n)) get, set, and contains-key for sorted sets&lt;/li&gt;
+&lt;li&gt;O(n) iteration and contains-value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Association List&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Is just a list of key-value pairs.&lt;/li&gt;
+&lt;li&gt;O(n) iteration and contains-value&lt;/li&gt;
+&lt;li&gt;But O(n) get, set, and contain-key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Here is a table of implementations for various common programming languages:&lt;/p&gt;
+
+&lt;iframe src=&quot;/assets/2015/algorithms-101/Table.htm&quot;
+  style=&quot;width: 100%; height: 21em; border: 0;&quot; &gt;&lt;/iframe&gt;
+
+
+&lt;h3&gt;Sorting&lt;/h3&gt;
+
+&lt;p&gt;The only advanced operation you commonly need to perform on a collection is to sort it.&lt;/p&gt;
+
+&lt;p&gt;The following sorting algorithms are worth knowing about for actual use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Insertion Sort&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(n&lt;sup&gt;2&lt;/sup&gt;) average and worst case performance&lt;/li&gt;
+&lt;li&gt;Usually faster in practice than other algorithms for &lt;em&gt;small&lt;/em&gt; numbers of elements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Merge Sort&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(n&amp;sdot;log(n)) average and worse case performance,
+optimal for a comparison-based sort.&lt;/li&gt;
+&lt;li&gt;Can be done on disk rather than in RAM, for very large data sets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quicksort&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(n&amp;sdot;log(n)) average case performance&lt;/li&gt;
+&lt;li&gt;But O(n&lt;sup&gt;2&lt;/sup&gt;) worst case performance&lt;/li&gt;
+&lt;li&gt;But is not a stable sort&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Heap Sort&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(n&amp;sdot;log(n)) average and worse case performance,
+optimal for a comparison-based sort.&lt;/li&gt;
+&lt;li&gt;But is not a stable sort&lt;/li&gt;
+&lt;li&gt;But is complex to implement since it involves heaps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;It&amp;rsquo;s also worth knowing that there are even faster sort algorithms that are not based on comparisons. For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Radix Sort&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;O(w&amp;sdot;n) average and worst case performance, where w is usually a constant&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In interviews, knowing about and being able to implement merge sort, quicksort, and insertion sort has always been sufficient for me.&lt;/p&gt;
+
+&lt;p&gt;Standard libraries vary in what specific sorting algorithms they offer:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Python uses Timsort, a hybrid of Merge Sort and Insertion Sort.&lt;/li&gt;
+&lt;li&gt;Java previously used either Merge Sort or Insertion Sort depending on the size of the input list but later switched to Timsort.&lt;/li&gt;
+&lt;li&gt;Perl previously used Quicksort but later switched to Merge Sort.&lt;/li&gt;
+&lt;li&gt;C++ does not mandate a particular algorithm but does specify that whatever algorithm provided will have worst case performance of O(n&amp;sdot;log(n)) or better.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Trees&lt;/h2&gt;
+
+&lt;p&gt;Beyond collections, it&amp;rsquo;s useful to know how to both to implement tree data structures - particularly N-Ary Trees - how to traverse them, and how to manipulate them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;N-Ary Trees&lt;/strong&gt; are made of &lt;strong&gt;Nodes&lt;/strong&gt;, starting at a root node, where each node contains a list of children nodes. A node with no children is a leaf. A node can be related to another node as a child, parent, descendant, ancestor, or cousin. A node may or may not track who its parent is, depending on how it is implemented.&lt;/p&gt;
+
+&lt;p&gt;Trees can be traversed in either &lt;strong&gt;Depth-First Order&lt;/strong&gt; or &lt;strong&gt;Breadth-First Order&lt;/strong&gt;. Most programs use Depth-First Order because it is easy to implement via recursion. Breadth First-Order traversal may be useful, however, in writing algorithms related to the shortest-path from the tree root.&lt;/p&gt;
+
+&lt;p&gt;In interviews, I&amp;rsquo;ve found useful the ability to improvise new tree-related algorithms. For example an algorithm to find the nearest common ancestor.&lt;/p&gt;
+
+&lt;h2&gt;Graphs&lt;/h2&gt;
+
+&lt;p&gt;It is rare that you will need to use graphs in real-world application development except for the most demanding kinds of applications, such as compilers and program transformation tools. Therefore I will only cover them briefly here.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;Graph&lt;/strong&gt; is made of &lt;strong&gt;Nodes&lt;/strong&gt; (sometimes called &amp;ldquo;vertices&amp;rdquo;) and &lt;strong&gt;Edges&lt;/strong&gt;. Edges connect pairs of nodes together. Beyond that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;In a &amp;ldquo;directed&amp;rdquo; graph (or &amp;ldquo;digraph&amp;rdquo;), each edge has a head and tail. By contrast in an &amp;ldquo;undirected&amp;rdquo; graph, each edge is unoriented and just joins two nodes together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Some graphs are &amp;ldquo;weighted&amp;rdquo;, meaning that nodes and/or edges are annotated with numerical weights.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Some graphs are &amp;ldquo;multi-graphs&amp;rdquo;, meaning that they explicitly allow multiple edges between the same pair of nodes.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Graphs are useful for representing and manipulating &lt;em&gt;connected&lt;/em&gt; structures, such as the intersections and roads on a map, the set of statements and related next-statements in source code, and the set of squares on a game board plus its neighbors.&lt;/p&gt;
+
+&lt;p&gt;Algorithms for working with graphs are similar to those for working with trees but are more complicated, since each node in a graph can be typically be reached along multiple paths.&lt;/p&gt;
+
+&lt;p&gt;Knowing how to traverse a graph in both Depth-First Order and Breadth-First Order without revisiting a node twice is extremely useful, both in practice and for interviews. For example how could you implement the paint bucket tool in a drawing program, coloring in a region of neighboring pixels without coloring in any pixel twice?&lt;/p&gt;
+
+&lt;h2&gt;Odds and Ends&lt;/h2&gt;
+
+&lt;p&gt;There are a few other miscellaneous concerns worth mentioning:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Strings in many languages (Java, Python, JavaScript) are immutable. Therefore appending to a string takes O(n) time. By itself this is not a problem, however you need to be careful not to repeatedly append to a string inside a loop because then your runtime will be closer to O(n&lt;sup&gt;2&lt;/sup&gt;). Instead, append the string parts to a temporary list and then join the list together afterwards using the appropriate standard library function. That will get you back to O(n) time.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Implementing binary search in a list correctly is a lot harder than you think. The first couple of attempts in the academic literature actually had flawed algorithms.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Algorithms involving array rearrangement and index manipulation are good to practice for interviews, since some interviewers ask for low-level tricky algorithms of this sort. For example the &lt;a href=&quot;https://en.wikipedia.org/wiki/Dutch_national_flag_problem&quot;&gt;Dutch National Flag&lt;/a&gt; problem is a classic.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Series
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        This article is part of the &lt;a href=&quot;/articles/2013/05/11/book-outline/&quot;&gt;Programming for Perfectionists&lt;/a&gt; series.
+    &lt;/p&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Low-level environments typically lack rich standard libraries. So you&amp;rsquo;re back to implementing linked lists and friends by hand.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Scientific calculations involve lots of floats, which have a host of additional considerations to worry about. Chiefly float imprecision and numerical stability. The data sets involved are also typically very large.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Web services that have the popularity of Facebook, Amazon, Apple, Microsoft, or Google are dealing with unbelievable data volumes that merit using specialized algorithms. Other websites, although perhaps still popular, don&amp;rsquo;t receive anywhere near the same level of traffic.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;Further, other useful more-advanced non-collection data structures exist such as Trees, Directed Graphs, and Undirected Graphs, but they also will not be covered here.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;The runtimes quoted here are for operations that are performed &lt;em&gt;in-place&lt;/em&gt;, modifying the original collection value. If you require operations that efficiently return modified copies of the original collection, look into &lt;a href=&quot;https://en.wikipedia.org/wiki/Persistent_data_structure&quot;&gt;persistent data structures&lt;/a&gt;, such as used by &lt;a href=&quot;http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey&quot;&gt;Rich Hickey&lt;/a&gt; in the Clojure standard library.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;In Big-Oh notation, O(1) is a constant amount of time, O(log(n)) is time proportional to the order of magnitude of the collection&amp;rsquo;s size, and O(n) is time proportional to the size of the collection. Other common runtimes include O(n&amp;sdot;log(n)) and O(n&lt;sup&gt;2&lt;/sup&gt;).&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:7&quot;&gt;
+&lt;p&gt;Considerably worse performance can result if you use a poor implementation. For example if you attempt to &lt;em&gt;append&lt;/em&gt; (not prepend) an element to a list in a functional language that uses the default singly-linked list implementation, it will take O(n) time rather than the usual O(1) amortized time.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:8&quot;&gt;
+&lt;p&gt;O(1) amortized time means that &lt;em&gt;in aggregate&lt;/em&gt; the per-operation time cost will average out to O(1). However individual operations may take O(1) in the average case or O(n) in the worst case.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -855,6 +1186,18 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Series
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        This article is part of the &lt;a href=&quot;/articles/2013/05/11/book-outline/&quot;&gt;Programming for Perfectionists&lt;/a&gt; series.
+    &lt;/p&gt;
+&lt;/div&gt;
+
+
 
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
@@ -5761,7 +6104,7 @@ alpha(beta)(gamma, ...)
 &lt;p&gt;Collections are the backbone for representing compound data in any programming language. Specific implementations are covered in great detail in most any traditional CS textbook. However there are a number of more advanced collections which are useful for tough problems.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basic Collections&lt;/strong&gt;
+&lt;li&gt;&lt;a href=&quot;/2015/08/08/algorithms-101/&quot;&gt;&lt;strong&gt;Basic Collections&lt;/strong&gt;&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Arrays
@@ -6049,6 +6392,15 @@ which is more in line with general Python philosophy.&lt;/li&gt;
 
 
 &lt;p&gt;&lt;span style=&quot;font-variant: small-caps;&quot;&gt;AcadProg&lt;/span&gt;: This language tends to be used in academia, especially by programming language researchers. Thus it also gets various cutting-edge programming language features before mainstream languages.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Related Articles:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/01/29/unique-features-of-various-programming-languages/&quot;&gt;Unique Features of Various Programming Languages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/12/20/languages-by-hardware-distance/&quot;&gt;Spectrum of Languages by Hardware Distance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/02/20/visual-guide-to-programming-language-properties/&quot;&gt;Visual Guide to Programming Language Properties&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 
 &lt;p&gt;&lt;a id=&quot;programming-paradigms&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -6355,6 +6707,13 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
 &lt;h2&gt;Progress&lt;/h2&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2015-08-08&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Added a section on &lt;a href=&quot;/articles/2015/08/08/algorithms-101/&quot;&gt;Basic Collections&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Retroactively link some articles under &amp;ldquo;Comparing Programming Languages&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;2013-07-13&lt;/strong&gt;: Added the &lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt; chapter.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;2013-06-01&lt;/strong&gt;: Added the &lt;a href=&quot;/articles/2013/06/01/handling-text-correctly/&quot;&gt;Text&lt;/a&gt; chapter.&lt;/li&gt;
 &lt;/ul&gt;
@@ -8656,6 +9015,16 @@ Count me in!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+
+
+&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
+    &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
+        Series
+    &lt;/p&gt;
+    &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
+        This article is part of the &lt;a href=&quot;/articles/2013/05/11/book-outline/&quot;&gt;Programming for Perfectionists&lt;/a&gt; series.
+    &lt;/p&gt;
+&lt;/div&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
