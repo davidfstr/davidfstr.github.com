@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>State of the Union in Programming Languages (2015) | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+      <style>
+        /* Table layout */
+.post table {
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+}
+.post table tr th:first-child,
+.post table tr td:first-child {
+    width: 25%;
+}
+.post table tr th,
+.post table tr td {
+    width: 15%;
+}
+
+/* Table borders */
+.post table tr th:first-child {
+    border: none;
+}
+.post table tr th,
+.post table tr td {
+    border: 1px solid lightgray;
+}
+
+      </style>
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>State of the Union in Programming Languages (2015)</h1>
+    <div class="post-metadata">
+      Sep 13, 2015 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>41</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>Some programming languages are better at some tasks than others. Below I have presented my own assessment of how various languages stack up against each other for the following common classes of tasks:</p>
+
+<ul>
+<li><strong>Programmer-bound</strong>: Degree of expressive power. Magnitude of what you can implement with a small development staff. Affected by design simplicity, platform stability, and library availability.</li>
+<li><strong>I/O-bound</strong>: Suitedness for programs that spend most of their time performing I/O.</li>
+<li><strong>CPU-bound</strong>: Suitedness for programs that spend most of their time calculating.</li>
+</ul>
+
+
+<p>Additionally, some programming languages are on the rise or on the decline, for a wide variety of reasons. So I have also provided an assessment of:</p>
+
+<ul>
+<li><strong>Platform longevity</strong>: Degree to which the language is likely to attract and retain people and resources.</li>
+</ul>
+
+
+<p>The rating scale is:</p>
+
+<ul>
+<li><strong>Excellent</strong> (+2)</li>
+<li><strong>Good</strong> (+1)</li>
+<li><strong>Okay</strong> (0)</li>
+<li><strong>Poor</strong> (-1)</li>
+<li><strong>Fail</strong> (-2)</li>
+</ul>
+
+
+<h3>Application Domain / General Purpose</h3>
+
+<table>
+<thead>
+<tr>
+<th> &nbsp;                 </th>
+<th> Python        </th>
+<th> Java          </th>
+<th> C#            </th>
+<th> C             </th>
+<th> C++           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <strong>Programmer-bound</strong>   </td>
+<td> Excellent     </td>
+<td> Okay          </td>
+<td> Okay<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>    </td>
+<td> Poor          </td>
+<td> Okay<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>      </td>
+</tr>
+<tr>
+<td> <strong>I/O-bound</strong>          </td>
+<td> Good          </td>
+<td> Good          </td>
+<td> Good          </td>
+<td> Good          </td>
+<td> Good          </td>
+</tr>
+<tr>
+<td> <strong>CPU-bound</strong>          </td>
+<td> Poor          </td>
+<td> Good          </td>
+<td> Good          </td>
+<td> Excellent     </td>
+<td> Excellent     </td>
+</tr>
+<tr>
+<td> <strong>Platform longevity</strong> </td>
+<td> Good          </td>
+<td> Okay<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>      </td>
+<td> Excellent     </td>
+<td> Excellent<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> </td>
+<td> Good          </td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>Web Domain</h3>
+
+<table>
+<thead>
+<tr>
+<th> &nbsp;                 </th>
+<th> JavaScript<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></th>
+<th> PHP<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>       </th>
+<th> NodeJS        </th>
+<th> Ruby          </th>
+<th> Go            </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <strong>Programmer-bound</strong>   </td>
+<td> Okay<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup>      </td>
+<td> Okay<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup>      </td>
+<td> Poor          </td>
+<td> Good<sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup>     </td>
+<td> Okay          </td>
+</tr>
+<tr>
+<td> <strong>I/O-bound</strong>          </td>
+<td> ?             </td>
+<td> ?             </td>
+<td> Excellent     </td>
+<td> Good          </td>
+<td> Excellent     </td>
+</tr>
+<tr>
+<td> <strong>CPU-bound</strong>          </td>
+<td> Good<sup id="fnref:10"><a href="#fn:10" rel="footnote">10</a></sup>      </td>
+<td> ?             </td>
+<td> Good<sup id="fnref:11"><a href="#fn:11" rel="footnote">11</a></sup>      </td>
+<td> Poor          </td>
+<td> Excellent     </td>
+</tr>
+<tr>
+<td> <strong>Platform longevity</strong> </td>
+<td> Excellent<sup id="fnref:12"><a href="#fn:12" rel="footnote">12</a></sup> </td>
+<td> Good<sup id="fnref:13"><a href="#fn:13" rel="footnote">13</a></sup>     </td>
+<td> Good<sup id="fnref:14"><a href="#fn:14" rel="footnote">14</a></sup>      </td>
+<td> Good<sup id="fnref:15"><a href="#fn:15" rel="footnote">15</a></sup>     </td>
+<td> Okay          </td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>Other Domains</h3>
+
+<table>
+<thead>
+<tr>
+<th> &nbsp;                 </th>
+<th> Objective-C   </th>
+<th> Haskell       </th>
+<th> Perl          </th>
+<th> Fortran       </th>
+<th> Lua           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <strong>Domain</strong>             </td>
+<td> OS X, iOS     </td>
+<td> Academia      </td>
+<td> SysAdmin      </td>
+<td> Computation   </td>
+<td> Game Mods     </td>
+</tr>
+<tr>
+<td> <strong>Programmer-bound</strong>   </td>
+<td> Good<sup id="fnref:16"><a href="#fn:16" rel="footnote">16</a></sup>     </td>
+<td> Okay<sup id="fnref:17"><a href="#fn:17" rel="footnote">17</a></sup>     </td>
+<td> Good<sup id="fnref:18"><a href="#fn:18" rel="footnote">18</a></sup>     </td>
+<td> ?             </td>
+<td> Good          </td>
+</tr>
+<tr>
+<td> <strong>I/O-bound</strong>          </td>
+<td> Good          </td>
+<td> Poor<sup id="fnref:19"><a href="#fn:19" rel="footnote">19</a></sup>     </td>
+<td> Good?         </td>
+<td> ?             </td>
+<td> Good          </td>
+</tr>
+<tr>
+<td> <strong>CPU-bound</strong>          </td>
+<td> Excellent     </td>
+<td> Good          </td>
+<td> Poor?         </td>
+<td> Excellent     </td>
+<td> Good          </td>
+</tr>
+<tr>
+<td> <strong>Platform longevity</strong> </td>
+<td> Good          </td>
+<td> Good<sup id="fnref:20"><a href="#fn:20" rel="footnote">20</a></sup>     </td>
+<td> Poor<sup id="fnref:21"><a href="#fn:21" rel="footnote">21</a></sup>     </td>
+<td> Good          </td>
+<td> Okay          </td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>Other Worthy-of-Consideration Languages</h3>
+
+<ul>
+<li>Clojure - a dialect of Lisp</li>
+<li>OCaml</li>
+<li>Standard ML</li>
+<li>Ada</li>
+<li>Rust</li>
+<li>Idris</li>
+<li>Forth</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Normally Good, but still leans verbose, similar to Java.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Normally Poor, based on the language design, but has a good standard library and massive corporate support for tooling.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Normally Good, but Oracle is a poor steward for the language.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>Cemented as the just-above-assembly language of all CPUs.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>Specifically JavaScript used on the frontend in a web browser.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>Is actually a Web Framework masquerading as a Programming Language.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<li id="fn:7">
+<p>Normally Poor, but has a huge number of external libraries and massive corporate support for tooling around inefficiencies in the language.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<li id="fn:8">
+<p>Normally Poor, but has easiest deployment model of any web framework.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
+<li id="fn:9">
+<p>Normally Excellent, due to massive community support, but degraded by platform instability and lack of language specification, which retards tooling development.<a href="#fnref:9" rev="footnote">&#8617;</a></p></li>
+<li id="fn:10">
+<p>Normally Poor, but has highly performant VMs due to massive corporate support.<a href="#fnref:10" rev="footnote">&#8617;</a></p></li>
+<li id="fn:11">
+<p>Normally Poor, but has highly performant VMs due to massive corporate support.<a href="#fnref:11" rev="footnote">&#8617;</a></p></li>
+<li id="fn:12">
+<p>Cemented as the assembly language of the web browser.<a href="#fnref:12" rev="footnote">&#8617;</a></p></li>
+<li id="fn:13">
+<p>Normally Okay, but being propped up by cheap web hosting providers and an army of amateurs.<a href="#fnref:13" rev="footnote">&#8617;</a></p></li>
+<li id="fn:14">
+<p>Drafts off of JavaScript&rsquo;s popularity.<a href="#fnref:14" rev="footnote">&#8617;</a></p></li>
+<li id="fn:15">
+<p>Normally Okay, but being propped up by startups.<a href="#fnref:15" rev="footnote">&#8617;</a></p></li>
+<li id="fn:16">
+<p>Normally Okay, but has a top-class standard library.<a href="#fnref:16" rev="footnote">&#8617;</a></p></li>
+<li id="fn:17">
+<p>Normally Good, but degraded by impenetrable documentation and pervasive speculative generality.<a href="#fnref:17" rev="footnote">&#8617;</a></p></li>
+<li id="fn:18">
+<p>Normally Excellent, but degraded by excessive redundant syntax.<a href="#fnref:18" rev="footnote">&#8617;</a></p></li>
+<li id="fn:19">
+<p>Normally Good, but degraded by making I/O difficult to perform.<a href="#fnref:19" rev="footnote">&#8617;</a></p></li>
+<li id="fn:20">
+<p>Normally Okay, but is being propped up by academia.<a href="#fnref:20" rev="footnote">&#8617;</a></p></li>
+<li id="fn:21">
+<p>Normally Fail, but lives on as a preinstalled scripting language for Linux.<a href="#fnref:21" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>41</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>3</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+    <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+  </a>
+  <a class="subscribe subscribe-last" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2015/08/08/algorithms-101/" title="Algorithms 101 for Software Applications">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2015 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

@@ -6,14 +6,268 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Thu, 10 Sep 2015 08:34:31 -0700</pubDate>
-    <lastBuildDate>Thu, 10 Sep 2015 08:34:31 -0700</lastBuildDate>
+    <pubDate>Tue, 15 Sep 2015 20:28:23 -0700</pubDate>
+    <lastBuildDate>Tue, 15 Sep 2015 20:28:23 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>State of the Union in Programming Languages (2015)</title>
+      <link>http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 13 Sep 2015 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages</guid>
+      <description>&lt;p&gt;Some programming languages are better at some tasks than others. Below I have presented my own assessment of how various languages stack up against each other for the following common classes of tasks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Programmer-bound&lt;/strong&gt;: Degree of expressive power. Magnitude of what you can implement with a small development staff. Affected by design simplicity, platform stability, and library availability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I/O-bound&lt;/strong&gt;: Suitedness for programs that spend most of their time performing I/O.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CPU-bound&lt;/strong&gt;: Suitedness for programs that spend most of their time calculating.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Additionally, some programming languages are on the rise or on the decline, for a wide variety of reasons. So I have also provided an assessment of:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Platform longevity&lt;/strong&gt;: Degree to which the language is likely to attract and retain people and resources.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The rating scale is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Excellent&lt;/strong&gt; (+2)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Good&lt;/strong&gt; (+1)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Okay&lt;/strong&gt; (0)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Poor&lt;/strong&gt; (-1)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fail&lt;/strong&gt; (-2)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Application Domain / General Purpose&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt; &amp;nbsp;                 &lt;/th&gt;
+&lt;th&gt; Python        &lt;/th&gt;
+&lt;th&gt; Java          &lt;/th&gt;
+&lt;th&gt; C#            &lt;/th&gt;
+&lt;th&gt; C             &lt;/th&gt;
+&lt;th&gt; C++           &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Programmer-bound&lt;/strong&gt;   &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;td&gt; Okay          &lt;/td&gt;
+&lt;td&gt; Okay&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;    &lt;/td&gt;
+&lt;td&gt; Poor          &lt;/td&gt;
+&lt;td&gt; Okay&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;I/O-bound&lt;/strong&gt;          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;CPU-bound&lt;/strong&gt;          &lt;/td&gt;
+&lt;td&gt; Poor          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Platform longevity&lt;/strong&gt; &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Okay&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;td&gt; Excellent&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;h3&gt;Web Domain&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt; &amp;nbsp;                 &lt;/th&gt;
+&lt;th&gt; JavaScript&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/th&gt;
+&lt;th&gt; PHP&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;       &lt;/th&gt;
+&lt;th&gt; NodeJS        &lt;/th&gt;
+&lt;th&gt; Ruby          &lt;/th&gt;
+&lt;th&gt; Go            &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Programmer-bound&lt;/strong&gt;   &lt;/td&gt;
+&lt;td&gt; Okay&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;td&gt; Okay&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;td&gt; Poor          &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; rel=&quot;footnote&quot;&gt;9&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Okay          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;I/O-bound&lt;/strong&gt;          &lt;/td&gt;
+&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;CPU-bound&lt;/strong&gt;          &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; rel=&quot;footnote&quot;&gt;10&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;11&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;td&gt; Poor          &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Platform longevity&lt;/strong&gt; &lt;/td&gt;
+&lt;td&gt; Excellent&lt;sup id=&quot;fnref:12&quot;&gt;&lt;a href=&quot;#fn:12&quot; rel=&quot;footnote&quot;&gt;12&lt;/a&gt;&lt;/sup&gt; &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:13&quot;&gt;&lt;a href=&quot;#fn:13&quot; rel=&quot;footnote&quot;&gt;13&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:14&quot;&gt;&lt;a href=&quot;#fn:14&quot; rel=&quot;footnote&quot;&gt;14&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:15&quot;&gt;&lt;a href=&quot;#fn:15&quot; rel=&quot;footnote&quot;&gt;15&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Okay          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;h3&gt;Other Domains&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt; &amp;nbsp;                 &lt;/th&gt;
+&lt;th&gt; Objective-C   &lt;/th&gt;
+&lt;th&gt; Haskell       &lt;/th&gt;
+&lt;th&gt; Perl          &lt;/th&gt;
+&lt;th&gt; Fortran       &lt;/th&gt;
+&lt;th&gt; Lua           &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Domain&lt;/strong&gt;             &lt;/td&gt;
+&lt;td&gt; OS X, iOS     &lt;/td&gt;
+&lt;td&gt; Academia      &lt;/td&gt;
+&lt;td&gt; SysAdmin      &lt;/td&gt;
+&lt;td&gt; Computation   &lt;/td&gt;
+&lt;td&gt; Game Mods     &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Programmer-bound&lt;/strong&gt;   &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:16&quot;&gt;&lt;a href=&quot;#fn:16&quot; rel=&quot;footnote&quot;&gt;16&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Okay&lt;sup id=&quot;fnref:17&quot;&gt;&lt;a href=&quot;#fn:17&quot; rel=&quot;footnote&quot;&gt;17&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:18&quot;&gt;&lt;a href=&quot;#fn:18&quot; rel=&quot;footnote&quot;&gt;18&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;I/O-bound&lt;/strong&gt;          &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Poor&lt;sup id=&quot;fnref:19&quot;&gt;&lt;a href=&quot;#fn:19&quot; rel=&quot;footnote&quot;&gt;19&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Good?         &lt;/td&gt;
+&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;CPU-bound&lt;/strong&gt;          &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Poor?         &lt;/td&gt;
+&lt;td&gt; Excellent     &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; &lt;strong&gt;Platform longevity&lt;/strong&gt; &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Good&lt;sup id=&quot;fnref:20&quot;&gt;&lt;a href=&quot;#fn:20&quot; rel=&quot;footnote&quot;&gt;20&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Poor&lt;sup id=&quot;fnref:21&quot;&gt;&lt;a href=&quot;#fn:21&quot; rel=&quot;footnote&quot;&gt;21&lt;/a&gt;&lt;/sup&gt;     &lt;/td&gt;
+&lt;td&gt; Good          &lt;/td&gt;
+&lt;td&gt; Okay          &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;h3&gt;Other Worthy-of-Consideration Languages&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clojure - a dialect of Lisp&lt;/li&gt;
+&lt;li&gt;OCaml&lt;/li&gt;
+&lt;li&gt;Standard ML&lt;/li&gt;
+&lt;li&gt;Ada&lt;/li&gt;
+&lt;li&gt;Rust&lt;/li&gt;
+&lt;li&gt;Idris&lt;/li&gt;
+&lt;li&gt;Forth&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Normally Good, but still leans verbose, similar to Java.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Normally Poor, based on the language design, but has a good standard library and massive corporate support for tooling.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;Normally Good, but Oracle is a poor steward for the language.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;Cemented as the just-above-assembly language of all CPUs.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;Specifically JavaScript used on the frontend in a web browser.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;Is actually a Web Framework masquerading as a Programming Language.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:7&quot;&gt;
+&lt;p&gt;Normally Poor, but has a huge number of external libraries and massive corporate support for tooling around inefficiencies in the language.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:8&quot;&gt;
+&lt;p&gt;Normally Poor, but has easiest deployment model of any web framework.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:9&quot;&gt;
+&lt;p&gt;Normally Excellent, due to massive community support, but degraded by platform instability and lack of language specification, which retards tooling development.&lt;a href=&quot;#fnref:9&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:10&quot;&gt;
+&lt;p&gt;Normally Poor, but has highly performant VMs due to massive corporate support.&lt;a href=&quot;#fnref:10&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:11&quot;&gt;
+&lt;p&gt;Normally Poor, but has highly performant VMs due to massive corporate support.&lt;a href=&quot;#fnref:11&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:12&quot;&gt;
+&lt;p&gt;Cemented as the assembly language of the web browser.&lt;a href=&quot;#fnref:12&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:13&quot;&gt;
+&lt;p&gt;Normally Okay, but being propped up by cheap web hosting providers and an army of amateurs.&lt;a href=&quot;#fnref:13&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:14&quot;&gt;
+&lt;p&gt;Drafts off of JavaScript&amp;rsquo;s popularity.&lt;a href=&quot;#fnref:14&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:15&quot;&gt;
+&lt;p&gt;Normally Okay, but being propped up by startups.&lt;a href=&quot;#fnref:15&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:16&quot;&gt;
+&lt;p&gt;Normally Okay, but has a top-class standard library.&lt;a href=&quot;#fnref:16&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:17&quot;&gt;
+&lt;p&gt;Normally Good, but degraded by impenetrable documentation and pervasive speculative generality.&lt;a href=&quot;#fnref:17&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:18&quot;&gt;
+&lt;p&gt;Normally Excellent, but degraded by excessive redundant syntax.&lt;a href=&quot;#fnref:18&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:19&quot;&gt;
+&lt;p&gt;Normally Good, but degraded by making I/O difficult to perform.&lt;a href=&quot;#fnref:19&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:20&quot;&gt;
+&lt;p&gt;Normally Okay, but is being propped up by academia.&lt;a href=&quot;#fnref:20&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:21&quot;&gt;
+&lt;p&gt;Normally Fail, but lives on as a preinstalled scripting language for Linux.&lt;a href=&quot;#fnref:21&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>

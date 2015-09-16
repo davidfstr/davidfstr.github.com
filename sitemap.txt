@@ -24,6 +24,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages/
 http://dafoster.net/articles/2015/08/08/algorithms-101/
 http://dafoster.net/articles/2015/06/27/unicode-101/
 http://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python/
