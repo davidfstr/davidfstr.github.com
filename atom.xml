@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-09-19T13:45:22-07:00</updated>
+ <updated>2015-09-19T13:54:45-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -42,13 +42,17 @@
 
 &lt;p&gt;The rating scale is:&lt;/p&gt;
 
-&lt;ul&gt;
+&lt;div class=&quot;sotu-colorize&quot;&gt;
+    &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Excellent&lt;/strong&gt; (+2)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Good&lt;/strong&gt; (+1)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Okay&lt;/strong&gt; (0)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Poor&lt;/strong&gt; (-1)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Fail&lt;/strong&gt; (-2)&lt;/li&gt;
 &lt;/ul&gt;
+
+
+&lt;/div&gt;
 
 
 &lt;h3&gt;Application Domain / General Purpose&lt;/h3&gt;

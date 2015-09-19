@@ -92,11 +92,11 @@
 }
 
 /* Span styling */
-.footnotes li p span.sotu-cell-excellent,
-.footnotes li p span.sotu-cell-good,
-.footnotes li p span.sotu-cell-okay,
-.footnotes li p span.sotu-cell-poor,
-.footnotes li p span.sotu-cell-fail {
+span.sotu-cell-excellent,
+span.sotu-cell-good,
+span.sotu-cell-okay,
+span.sotu-cell-poor,
+span.sotu-cell-fail {
     padding: .15em .2em;
 }
 
@@ -406,13 +406,17 @@
 
 <p>The rating scale is:</p>
 
-<ul>
+<div class="sotu-colorize">
+    <ul>
 <li><strong>Excellent</strong> (+2)</li>
 <li><strong>Good</strong> (+1)</li>
 <li><strong>Okay</strong> (0)</li>
 <li><strong>Poor</strong> (-1)</li>
 <li><strong>Fail</strong> (-2)</li>
 </ul>
+
+
+</div>
 
 
 <h3>Application Domain / General Purpose</h3>
@@ -777,17 +781,21 @@
     });
     
     // Add .sotu-cell-* classes to footnotes
-    $('.footnotes li p').each(function(_, pEl) {
-        pEl = $(pEl);
-        
-        var pHtml = pEl.html();
-        pHtml = pHtml.replace(/Excellent/g, '<span class="sotu-cell-excellent">Excellent</span>');
-        pHtml = pHtml.replace(/Good/g, '<span class="sotu-cell-good">Good</span>');
-        pHtml = pHtml.replace(/Okay/g, '<span class="sotu-cell-okay">Okay</span>');
-        pHtml = pHtml.replace(/Poor/g, '<span class="sotu-cell-poor">Poor</span>');
-        pHtml = pHtml.replace(/Fail/g, '<span class="sotu-cell-fail">Fail</span>');
-        pEl.html(pHtml);
-    });
+    function colorizeTextIn(containerEl) {
+        containerEl.each(function(_, pEl) {
+            pEl = $(pEl);
+            
+            var pHtml = pEl.html();
+            pHtml = pHtml.replace(/Excellent/g, '<span class="sotu-cell-excellent">Excellent</span>');
+            pHtml = pHtml.replace(/Good/g, '<span class="sotu-cell-good">Good</span>');
+            pHtml = pHtml.replace(/Okay/g, '<span class="sotu-cell-okay">Okay</span>');
+            pHtml = pHtml.replace(/Poor/g, '<span class="sotu-cell-poor">Poor</span>');
+            pHtml = pHtml.replace(/Fail/g, '<span class="sotu-cell-fail">Fail</span>');
+            pEl.html(pHtml);
+        });
+    }
+    colorizeTextIn($('.footnotes li p'));
+    colorizeTextIn($('.sotu-colorize'));
 });
 
     </script>
