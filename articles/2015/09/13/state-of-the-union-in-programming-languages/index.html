@@ -68,6 +68,38 @@
     border: 1px solid lightgray;
 }
 
+/* Cell colors */
+.post .sotu-cell-excellent {
+    background-color: green;
+    color: white;
+}
+.post .sotu-cell-good {
+    background-color: lightgreen;
+}
+.post .sotu-cell-okay {
+    background-color: lightgray;
+}
+.post .sotu-cell-poor {
+    background-color: gray;
+    color: white;
+}
+.post .sotu-cell-fail {
+    background-color: #333; /* dark gray */
+    color: white;
+}
+.post .sotu-cell-other {
+    background-color: cyan;
+}
+
+/* Span styling */
+.footnotes li p span.sotu-cell-excellent,
+.footnotes li p span.sotu-cell-good,
+.footnotes li p span.sotu-cell-okay,
+.footnotes li p span.sotu-cell-poor,
+.footnotes li p span.sotu-cell-fail {
+    padding: .15em .2em;
+}
+
       </style>
     
 
@@ -81,6 +113,8 @@
   -->
     
     <!-- Le scripts -->
+  
+    <script src="/assets/js/jquery-1.8.3.min.js"></script>
   
   
   
@@ -455,8 +489,8 @@
 </tr>
 <tr>
 <td> <strong>I/O-bound</strong>          </td>
-<td> ?             </td>
-<td> ?             </td>
+<td> Okay?         </td>
+<td> Okay?         </td>
 <td> Excellent     </td>
 <td> Good          </td>
 <td> Excellent     </td>
@@ -464,7 +498,7 @@
 <tr>
 <td> <strong>CPU-bound</strong>          </td>
 <td> Good<sup id="fnref:10"><a href="#fn:10" rel="footnote">10</a></sup>      </td>
-<td> ?             </td>
+<td> Okay?         </td>
 <td> Good<sup id="fnref:11"><a href="#fn:11" rel="footnote">11</a></sup>      </td>
 <td> Poor          </td>
 <td> Excellent     </td>
@@ -710,6 +744,53 @@
     
   
   
+  
+    <script>
+      $(function() {
+    // Add .sotu-cell-* classes to table cells
+    $('table tr').each(function(_, trEl) {
+        trEl = $(trEl);
+        
+        var firstCellInTr = true;
+        $('td', trEl).each(function(_, cellEl) {
+            cellEl = $(cellEl);
+            
+            var cellText = cellEl.text();
+            if (cellText.indexOf('Excellent') !== -1) {
+                cellEl.addClass('sotu-cell-excellent');
+            } else if (cellText.indexOf('Good') !== -1) {
+                cellEl.addClass('sotu-cell-good');
+            } else if (cellText.indexOf('Okay') !== -1) {
+                cellEl.addClass('sotu-cell-okay');
+            } else if (cellText.indexOf('Poor') !== -1) {
+                cellEl.addClass('sotu-cell-poor');
+            } else if (cellText.indexOf('Fail') !== -1) {
+                cellEl.addClass('sotu-cell-fail');
+            } else {
+                if (!firstCellInTr) {
+                    cellEl.addClass('sotu-cell-other');
+                }
+            }
+            
+            firstCellInTr = false;
+        });
+    });
+    
+    // Add .sotu-cell-* classes to footnotes
+    $('.footnotes li p').each(function(_, pEl) {
+        pEl = $(pEl);
+        
+        var pHtml = pEl.html();
+        pHtml = pHtml.replace(/Excellent/g, '<span class="sotu-cell-excellent">Excellent</span>');
+        pHtml = pHtml.replace(/Good/g, '<span class="sotu-cell-good">Good</span>');
+        pHtml = pHtml.replace(/Okay/g, '<span class="sotu-cell-okay">Okay</span>');
+        pHtml = pHtml.replace(/Poor/g, '<span class="sotu-cell-poor">Poor</span>');
+        pHtml = pHtml.replace(/Fail/g, '<span class="sotu-cell-fail">Fail</span>');
+        pEl.html(pHtml);
+    });
+});
+
+    </script>
   
     
   

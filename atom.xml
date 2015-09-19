@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-09-19T12:26:19-07:00</updated>
+ <updated>2015-09-19T13:45:22-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -125,8 +125,8 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt; &lt;strong&gt;I/O-bound&lt;/strong&gt;          &lt;/td&gt;
-&lt;td&gt; ?             &lt;/td&gt;
-&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Okay?         &lt;/td&gt;
+&lt;td&gt; Okay?         &lt;/td&gt;
 &lt;td&gt; Excellent     &lt;/td&gt;
 &lt;td&gt; Good          &lt;/td&gt;
 &lt;td&gt; Excellent     &lt;/td&gt;
@@ -134,7 +134,7 @@
 &lt;tr&gt;
 &lt;td&gt; &lt;strong&gt;CPU-bound&lt;/strong&gt;          &lt;/td&gt;
 &lt;td&gt; Good&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; rel=&quot;footnote&quot;&gt;10&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
-&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Okay?         &lt;/td&gt;
 &lt;td&gt; Good&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;11&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
 &lt;td&gt; Poor          &lt;/td&gt;
 &lt;td&gt; Excellent     &lt;/td&gt;

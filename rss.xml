@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 19 Sep 2015 12:26:19 -0700</pubDate>
-    <lastBuildDate>Sat, 19 Sep 2015 12:26:19 -0700</lastBuildDate>
+    <pubDate>Sat, 19 Sep 2015 13:45:22 -0700</pubDate>
+    <lastBuildDate>Sat, 19 Sep 2015 13:45:22 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -122,8 +122,8 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt; &lt;strong&gt;I/O-bound&lt;/strong&gt;          &lt;/td&gt;
-&lt;td&gt; ?             &lt;/td&gt;
-&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Okay?         &lt;/td&gt;
+&lt;td&gt; Okay?         &lt;/td&gt;
 &lt;td&gt; Excellent     &lt;/td&gt;
 &lt;td&gt; Good          &lt;/td&gt;
 &lt;td&gt; Excellent     &lt;/td&gt;
@@ -131,7 +131,7 @@
 &lt;tr&gt;
 &lt;td&gt; &lt;strong&gt;CPU-bound&lt;/strong&gt;          &lt;/td&gt;
 &lt;td&gt; Good&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; rel=&quot;footnote&quot;&gt;10&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
-&lt;td&gt; ?             &lt;/td&gt;
+&lt;td&gt; Okay?         &lt;/td&gt;
 &lt;td&gt; Good&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;11&lt;/a&gt;&lt;/sup&gt;      &lt;/td&gt;
 &lt;td&gt; Poor          &lt;/td&gt;
 &lt;td&gt; Excellent     &lt;/td&gt;
