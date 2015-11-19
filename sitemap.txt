@@ -11,12 +11,9 @@ http://dafoster.net/
 http://dafoster.net/projects/burn-planner/donate/
 http://dafoster.net/projects/burn-planner/
 http://dafoster.net/projects/crystal-web-archiver/
-http://dafoster.net/projects/decimal-binary-unit-converter/
-http://dafoster.net/projects/decomp4/
 http://dafoster.net/projects/handbrake-subtitle-support/
 http://dafoster.net/projects/incoming-game/
 http://dafoster.net/projects/
-http://dafoster.net/projects/media-queue/
 http://dafoster.net/projects/rdiscount/
 http://dafoster.net/projects/uhuru/
 http://dafoster.net/projects/website/
