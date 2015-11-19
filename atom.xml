@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2015-11-18T18:40:52-08:00</updated>
+ <updated>2015-11-18T20:21:27-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -1350,37 +1350,6 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 &lt;/ol&gt;
 &lt;/div&gt;
 
-</content>
- </entry>
- 
- 
- <entry>
-   <id>http://dafoster.net/articles/2015/01/22/announcing-media-queue-1.0</id>
-   <title>Announcing MediaQueue 1.0</title>
-   <published>2015-01-22T00:00:00-08:00</published>
-   <updated>2015-01-22T00:00:00-08:00</updated>
-   
-     <category term="Productivity"/>
-   
-     <category term="Software"/>
-   
-   <link rel="alternate" href="http://dafoster.net/articles/2015/01/22/announcing-media-queue-1.0/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;/projects/media-queue/&quot;&gt;MediaQueue&lt;/a&gt; allows you to write down media that you want to watch - movies, TV series, books, etc. - and helps you to quickly locate the media for streaming, download, pickup, or purchase.&lt;/p&gt;
-
-&lt;p&gt;Supported media sources include:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Netflix - Stream source for everything&lt;/li&gt;
-&lt;li&gt;KissAnime - Stream source for Anime (&lt;code&gt;A&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;The Pirate Bay - Download source for everything&lt;/li&gt;
-&lt;li&gt;BakaBT - Download source for Anime (&lt;code&gt;A&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Seattle Public Library - Pickup source for everything&lt;/li&gt;
-&lt;li&gt;Barnes &amp;amp; Noble - Pickup source for Books (&lt;code&gt;B&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Amazon - Buy source for everything&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Check it out on the &lt;a href=&quot;/projects/media-queue/&quot;&gt;project page&lt;/a&gt;!&lt;/p&gt;
 </content>
  </entry>
  

@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 18 Nov 2015 18:40:52 -0800</pubDate>
-    <lastBuildDate>Wed, 18 Nov 2015 18:40:52 -0800</lastBuildDate>
+    <pubDate>Wed, 18 Nov 2015 20:21:27 -0800</pubDate>
+    <lastBuildDate>Wed, 18 Nov 2015 20:21:27 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -1323,31 +1323,6 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 &lt;/ol&gt;
 &lt;/div&gt;
 
-</description>
-    </item>
-    
-    
-    <item>
-      <title>Announcing MediaQueue 1.0</title>
-      <link>http://dafoster.net/articles/2015/01/22/announcing-media-queue-1.0/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
-      <pubDate>Thu, 22 Jan 2015 00:00:00 -0800</pubDate>
-      <guid>http://dafoster.net/articles/2015/01/22/announcing-media-queue-1.0</guid>
-      <description>&lt;p&gt;&lt;a href=&quot;/projects/media-queue/&quot;&gt;MediaQueue&lt;/a&gt; allows you to write down media that you want to watch - movies, TV series, books, etc. - and helps you to quickly locate the media for streaming, download, pickup, or purchase.&lt;/p&gt;
-
-&lt;p&gt;Supported media sources include:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Netflix - Stream source for everything&lt;/li&gt;
-&lt;li&gt;KissAnime - Stream source for Anime (&lt;code&gt;A&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;The Pirate Bay - Download source for everything&lt;/li&gt;
-&lt;li&gt;BakaBT - Download source for Anime (&lt;code&gt;A&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Seattle Public Library - Pickup source for everything&lt;/li&gt;
-&lt;li&gt;Barnes &amp;amp; Noble - Pickup source for Books (&lt;code&gt;B&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Amazon - Buy source for everything&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Check it out on the &lt;a href=&quot;/projects/media-queue/&quot;&gt;project page&lt;/a&gt;!&lt;/p&gt;
 </description>
     </item>
     
