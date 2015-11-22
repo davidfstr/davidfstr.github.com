@@ -1,7 +1,6 @@
 
 http://dafoster.net/404.html
 http://dafoster.net/about/
-http://dafoster.net/about/resume/
 http://dafoster.net/apps/
 http://dafoster.net/articles/
 http://dafoster.net/articles/topics/
