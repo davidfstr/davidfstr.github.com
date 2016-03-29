@@ -9,12 +9,12 @@ http://dafoster.net/contact/
 http://dafoster.net/
 http://dafoster.net/projects/burn-planner/donate/
 http://dafoster.net/projects/burn-planner/
-http://dafoster.net/projects/crystal-web-archiver/
 http://dafoster.net/projects/handbrake-subtitle-support/
 http://dafoster.net/projects/incoming-game/
 http://dafoster.net/projects/
 http://dafoster.net/projects/rdiscount/
 http://dafoster.net/projects/uhuru/
+http://dafoster.net/projects/webcrystal/
 http://dafoster.net/projects/website/
 http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
