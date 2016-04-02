@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Beautiful Code: SQLite | DaFoster</title>
+    <title>Roles on Software Teams | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -283,220 +283,217 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Beautiful Code: SQLite</h1>
+    <h1>Roles on Software Teams</h1>
     <div class="post-metadata">
-      Apr 07, 2013 &ndash; Filed under: 
+      Apr 02, 2016 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
           <span><a href="/articles/topics/#Software">Software <sup>41</sup></a></span>
+         
+          <span><a href="/articles/topics/#Business">Business <sup>4</sup></a></span>
         
       </span>
       
     </div>
     
-    <p>It has been said that you can learn a lot from reading other people&rsquo;s high-quality software. So I gave it a try this weekend by reading the SQLite source.</p>
+    <p>I currently work at a software startup and wear a lot of hats. Here are some of the hats I wear and some of the hats I interact with.</p>
 
-<p>SQLite is a lightweight embedded database that does not require a standalone server. It is designed to be reliable, highly portable, and require minimal administration.</p>
+<h3>Product Manager</h3>
 
-<p>SQLite has some of the <a href="https://www.sqlite.org/testing.html">most rigorous testing methodology</a> I have seen in an open source project. Thus its true defect count is likely to be extremely low, making it high quality.</p>
-
-<p>Such a high quality product probably contains useful patterns and techniques, some of which I could reuse in my own programs. So I decided to dive into the SQLite source and see what gems I could pull out. Here are my notes:</p>
-
-<h2>Architecture &amp; Design</h2>
-
-<p>I started by reading the high-level design documentation. SQLite has exceptionally good documentation of this type.</p>
+<p>A product manager envisions new things to create.</p>
 
 <ul>
-<li><p><a href="http://www.sqlite.org/docs.html">Documentation Index</a> - <em>Root of all documentation.</em></p></li>
-<li><p><a href="http://www.sqlite.org/arch.html">Architecture Documentation</a> - <em>Excellent overview of the architecture.</em></p></li>
-<li><p>Query Planner Documentation - <em>Describes how prepared statements are executed.</em></p>
+<li>Is either a <strong>stakeholder proxy</strong> or a <strong>direct stakeholder</strong>:
 
 <ul>
-<li><a href="http://www.sqlite.org/vdbe.html">The Virtual Database Engine</a></li>
-<li><a href="http://www.sqlite.org/opcode.html">Virtual Machine Opcodes</a></li>
+<li><strong>Stakeholder Proxy</strong>: Represents the desires of external stakeholders, such as customers. This is an outbound role.</li>
+<li><strong>Direct Stakeholder</strong>: Represents the desires of internal stakeholders, such as the engineering team. This is an inbound role.</li>
+</ul>
+</li>
+<li>Has an <strong>area of focus</strong>.</li>
+<li>Discovers or envisions <strong>new items</strong> (within the stakeholder&rsquo;s area of focus).</li>
+<li><strong>Prioritizes</strong> items (within the stakeholder&rsquo;s area of focus).</li>
+<li>Talks with the relevant Project Manager to get items scheduled.</li>
+<li><strong>Advocates</strong> for one&rsquo;s items and area of focus.</li>
+</ul>
+
+
+<h3>Project Manager</h3>
+
+<p>A project manager schedules things to be created.</p>
+
+<ul>
+<li>Knows what all the <strong>items</strong> in the backlog are.
+
+<ul>
+<li><strong>Story</strong>: A particular small outcome that is meaningful.</li>
+<li><strong>Epic</strong>: A large outcome. Associated with a collection of Stories.
+
+<ul>
+<li><strong>Specifying Epic</strong>: Generates new Stories.</li>
+<li><strong>Characterizing Epic</strong>: Groups together existing Stories.</li>
+</ul>
+</li>
+<li><strong>Area of Focus</strong>: Typically a product. Sometimes a special initiative.</li>
+</ul>
+</li>
+<li>Knows, for each area of focus or important stakeholder, the <strong>relative priority</strong> of items.
+
+<ul>
+<li>Talks with Product Managers to obtain relative priorities.</li>
+</ul>
+</li>
+<li>Decides on the <strong>absolute priority</strong> of items, balancing different areas of focus and stakeholders.</li>
+<li><strong>Costs</strong> items (indirectly).
+
+<ul>
+<li>Talks with Engineers to obtain costs.</li>
+<li>Negotiates with Engineers and Product Managers to obtain valuable features with reasonable time cost in a timely manner.</li>
+</ul>
+</li>
+<li><strong>Schedules</strong> items to releases and <strong>assigns</strong> items to Engineers.</li>
+<li><strong>Monitors progress</strong> of items, looking for slippage.</li>
+</ul>
+
+
+<h3>Engineer</h3>
+
+<p>An engineer directly creates new things.</p>
+
+<ul>
+<li><strong>Breaks down</strong> items to smaller items.
+
+<ul>
+<li>More commonly, breaks down a Story to Tasks (or &ldquo;workitems&rdquo;).</li>
+<li>Less commonly, reclassifies a Story as an Epic and breaks the Epic down to Stories.</li>
+</ul>
+</li>
+<li><strong>Costs</strong> items (directly).
+
+<ul>
+<li>Negotiates with Project Manager and/or Product Managers, perhaps splitting Stories or Epics across releases, to obtain valuable features and parts of features in a timely manner.</li>
+</ul>
+</li>
+<li>Completes stories by <strong>implementing</strong> the associated Tasks.</li>
+<li>Is sufficiently <strong>skilled</strong> to do any Task required for the completion of Stories they are assigned.</li>
+<li>Is familar enough with the business domain to be able to <strong>recognize and challenge specification errors</strong>.</li>
+</ul>
+
+
+<p>There are several kinds of engineers, which vary based on skillset:</p>
+
+<h4>Software Engineer (Full-Stack)</h4>
+
+<ul>
+<li>Skilled in:
+
+<ul>
+<li>Frontend application logic. UI implementation.</li>
+<li>Backend application logic. Abstraction design.</li>
+<li>Data(base) schema design.</li>
+<li>Data(base) administration and operations.</li>
+</ul>
+</li>
+<li>Produces:
+
+<ul>
+<li>Software. Code commits.</li>
 </ul>
 </li>
 </ul>
 
 
-<h3>Internal Tools of Note</h3>
-
-<h4><a href="http://www.fossil-scm.org/index.html/doc/trunk/www/index.wiki">Fossil</a></h4>
-
-<p>Distributed version control system used by SQLite. I&rsquo;ve never heard of this. Beyond version control also provides bug tracking, a wiki, and a blog.</p>
-
-<h4><a href="http://www.sqlite.org/src/doc/trunk/doc/lemon.html">Lemon</a></h4>
-
-<p>A custom parser generator used by SQLite. Alternative to the old bison/yacc combination which has some improvements:</p>
+<h4>UX Engineer</h4>
 
 <ul>
-<li>Syntax that is less error-prone.</li>
-<li>Fast. Reentrant. Thread-safe.</li>
-<li>Easier to write parsers that avoid leaking memory upon error conditions.
+<li>Skilled in:
 
 <ul>
-<li>Important since SQLite is serious about handling out of memory conditions.</li>
+<li>Interaction design and usability.</li>
+<li>Graphic design. UI design.</li>
+</ul>
+</li>
+<li>May also be skilled in:
+
+<ul>
+<li>UI implementation.</li>
+</ul>
+</li>
+<li>Produces:
+
+<ul>
+<li>UI wireframes, both high-fidelity and low-fidelity.</li>
+<li>Use cases. Scenarios. Interaction designs. Given-When-Then specifications.</li>
 </ul>
 </li>
 </ul>
 
 
-<h4><a href="http://www.sqlite.org/vfs.html">VFS</a></h4>
+<h4>Content Engineer</h4>
 
-<p>OS abstraction layer. Despite the acronym (Virtual Filesystem), it is more than just filesystem manipulation routines.</p>
+<p>Produces content for the business domain. Skills vary depending on what the domain is.</p>
 
-<h2>Implementation Notes</h2>
-
-<h3>table.c (sqlite3_get_table)</h3>
+<p>For example:</p>
 
 <ul>
-<li><p>This is the main entry point into the SQLite API.
-It executes a SQL statement and returns the result.</p></li>
-<li><p>First impression is that most methods have a lot of malloc-failed handling. And indeed if you read the testing procedures, they involve causing random malloc errors throughout the code, so there has to be handling for such errors.</p></li>
-<li><p>Hungarion notation is used as well. Ick. But at least it is consistent.</p>
-
-<ul>
-<li>z = string</li>
-<li>a = array</li>
-<li>p = object pointer</li>
-<li>n = int</li>
-<li>x = function pointer</li>
-</ul>
-</li>
-<li><p><code>/* Assume 32-bit assignment is atomic */</code></p>
-
-<ul>
-<li>Interesting that such a property would be <em>consciously</em> relied on.</li>
-</ul>
-</li>
+<li><strong>Curriculum Engineer</strong> - Designs and writes curriculum to teach kids.</li>
+<li><strong>Writer</strong> - Plans and writes long-form compositions such as technical documentation, manuals, blog posts, or books.</li>
 </ul>
 
 
-<h3>legacy.c (sqlite3_exec)</h3>
+<h3>Operator</h3>
+
+<p>An operator completes tasks within a predetermined framework. An operator does not generally create new things outside that framework. Although this may sound limiting, many types of operators are highly skilled.</p>
+
+<p>Software teams don&rsquo;t typically have many operators since they primarily focus on creating new things. Therefore most work that could be performed by a dedicated operator is usually performed by an engineer instead.</p>
+
+<p>Examples of operators inside software teams, when full-stack engineers are not available:</p>
 
 <ul>
-<li><p>This is the legacy entry point into the SQLite API.
-It still exists and is actually used internally by the currently
-recommended API entry point (<code>sqlite3_get_table</code>).</p></li>
-<li><p>There are some odd syntactic conventions.</p>
+<li>Database Administrator
 
 <ul>
-<li>Multi-line comments use double-stars to prefix middle lines.</li>
-<li>No space before closing <code>{</code>.</li>
-<li>Spaces inside outer parentheses for most statements
-(<code>if</code>, <code>while</code>, <code>assert</code>) but not all (<code>for</code>).</li>
-</ul>
-</li>
-<li><p>It appears that functions that begin with <code>sqlite3_</code> are public,
-whereas functions starting with <code>sqlite3</code> (no underscore) are private.</p></li>
-</ul>
-
-
-<h3>vdbeapi.c (sqlite3_step)</h3>
-
-<ul>
-<li><p>This function executes one or more instructions from the instruction list
-inside of a prepared SQL statement. The instruction is executed inside
-of the SQLite virtual database engine (VDBE), which is a virtual machine.</p>
-
-<ul>
-<li>It has a lot of support code for EXPLAIN and profiling callbacks.</li>
-<li>The meat of instruction execution is done by <code>sqlite3VdbeExec</code>.</li>
-</ul>
-</li>
-<li><p>Contains own mutex implementation. (<code>sqlite3_mutex_enter</code>)</p></li>
-<li><p>Deals with a somewhat crazy circumstance: If the database schema changes
-in the middle of executing a (prepared) SQL statement, the statement is
-reprepared and rerun automatically.</p></li>
-<li><p>Generally there is good commenting for weird and backward-compatibility
-behaviors.</p></li>
-<li><p>Practically every function can fail. They all return an integer error code.</p>
-
-<ul>
-<li>Some functions that operate on an in-out data structure will
-additionally store an error code (and message) in that structure.</li>
+<li>Assists engineers in database schema design.</li>
+<li>Assists engineers in optimizing database queries.</li>
+<li>Ensures database server is provisioned with sufficient CPU, RAM, IOPs, and Disk for typical load.</li>
+<li>Monitors database server for load changes, spikes, and other abnormalities.</li>
 </ul>
 </li>
 </ul>
 
 
-<h3>vdbe.c (sqlite3VdbeExec)</h3>
+<p>Examples of operators outside software teams:</p>
 
 <ul>
-<li>This function executes as many instructions as possible from a prepared
-SQL statement. It contains the monsterous switch statement that
-enumerates every possible opcode that can be executed.
-
-<ul>
-<li>Related reference documentation: <a href="http://www.sqlite.org/opcode.html">Virtual Machine Opcodes</a></li>
-<li>Related guide documentation: <a href="http://www.sqlite.org/vdbe.html">The Virtual Database Engine</a></li>
-</ul>
-</li>
+<li>Teachers</li>
+<li>Doctors. Dentists.</li>
+<li>Lawyers</li>
+<li>Accountants</li>
+<li>Drivers: Bus, taxi, etc</li>
+<li>Servers (i.e. waiters and waitresses)</li>
 </ul>
 
 
-<h3>Future</h3>
+<h3>Salesperson</h3>
 
-<ul>
-<li>If I were to continue reading into the implementation,
-I think the opcodes that manipulate B-trees would likely be
-the most interesting ones to look at.</li>
-</ul>
+<p>A salesperson finds specific prospects, introduces them to products created by engineering, and converts them to customers.</p>
 
+<p>Sales activity helps to acquire customers.</p>
 
-<h2>Summary</h2>
+<h3>Marketer</h3>
 
-<p>This is a very high-quality C library.</p>
+<p>A marketer creates marketing content that creates general awareness for products and product categories among a target audience that contains prospects.</p>
 
-<ul>
-<li>Internal commenting is good.</li>
-<li>Consistent syntax is used, despite being a bit odd IMHO.</li>
-<li>The guide-level documentation is wonderful.</li>
-<li>Error handling is air-tight and enforced by crazy amounts of test code.</li>
-<li>The architecture provides good separation of roles and is easy to understand.</li>
-<li>Once again, the documentation is excellent.</li>
-</ul>
+<p>Awareness in the target audience makes it easier for sales to convert individual prospects from the audience to customers.</p>
 
+<p>Marketing activity helps to acquire customers.</p>
 
-<p>And its design requirements show through in the implementation:</p>
+<h3>Support-person</h3>
 
-<p><strong>Reliable</strong></p>
+<p>A support person assists customers (and sometimes prospects) with operating products.</p>
 
-<ul>
-<li>There is more than 1000 times as much test code as there is product code.</li>
-<li>100% branch coverage. That&rsquo;s insanely good.</li>
-<li>Very crazy error classes such as out of memory errors, crashes, integer overflow are all considered and tested for.
-
-<ul>
-<li>Malloc checks are prevalent and handled.</li>
-<li>Transactions, journaling, and related testing deal with crashes.</li>
-</ul>
-</li>
-</ul>
-
-
-<p><strong>Portable</strong></p>
-
-<ul>
-<li>The chosen language is C, which is highly portable when written in the appropriate style.</li>
-<li>The so-called VFS layer provides an OS abstraction. Thus porting to an OS mainly just involves writing a new implementation of this abstraction.</li>
-<li>All C files are combined into one giant C file before being sent to the compiler, which provides for better compile-time optimizations for dumber C compilers, which may occur on embedded systems.</li>
-<li>The database format does not depend on endianness or native data type sizes, making it suitable for cross-platform use.</li>
-<li>Very low memory configurations are available, making SQLite suitable for use on embedded devices such as cellphones.</li>
-<li>The code is in the public domain, which removes any licensing barriers.</li>
-</ul>
-
-
-<p><strong>Simple</strong></p>
-
-<ul>
-<li>SQLite is embedded into the program that uses it, requiring no separate server. And no administration for such a server.</li>
-<li>Minimal schema is imposed by SQLite, distinguishing only between integers, reals, text, and blobs at a low level. And even so, a column&rsquo;s type is advisory only - you can store a value of any type in any column (except an <code>INTEGER PRIMARY KEY</code> column).</li>
-</ul>
-
-
-<p>Of course being simple sacrifices certain other properties such as high concurrency and the ability to perform fine-grained access control (which requires administrability).</p>
+<p>Support activity helps to retain customers.</p>
 
   </div>
   
@@ -516,12 +513,16 @@ the most interesting ones to look at.</li>
           
         
       
+        
+      
       
       <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>41</sup></a></li>
     
       
       
       
+      
+        
       
         
       
@@ -534,6 +535,8 @@ the most interesting ones to look at.</li>
       
         
       
+        
+      
       
       <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>8</sup></a></li>
     
@@ -543,12 +546,18 @@ the most interesting ones to look at.</li>
       
         
       
+        
+          
+        
       
-      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
+      
+      <li id="Business-topic" class="active"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
     
       
       
       
+      
+        
       
         
       
@@ -558,6 +567,8 @@ the most interesting ones to look at.</li>
       
       
       
+      
+        
       
         
       
@@ -581,11 +592,11 @@ the most interesting ones to look at.</li>
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/" title="Migrating from BBEdit to Sublime Text">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2015/09/13/state-of-the-union-in-programming-languages/" title="State of the Union in Programming Languages (2015)">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/04/09/making-an-existing-python-program-unicode-aware/" title="Making an Existing Python Program Unicode Aware">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

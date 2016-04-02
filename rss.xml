@@ -6,14 +6,220 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 29 Mar 2016 16:45:57 -0700</pubDate>
-    <lastBuildDate>Tue, 29 Mar 2016 16:45:57 -0700</lastBuildDate>
+    <pubDate>Sat, 02 Apr 2016 12:14:29 -0700</pubDate>
+    <lastBuildDate>Sat, 02 Apr 2016 12:14:29 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Roles on Software Teams</title>
+      <link>http://dafoster.net/articles/2016/04/02/roles-on-software-teams/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 02 Apr 2016 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2016/04/02/roles-on-software-teams</guid>
+      <description>&lt;p&gt;I currently work at a software startup and wear a lot of hats. Here are some of the hats I wear and some of the hats I interact with.&lt;/p&gt;
+
+&lt;h3&gt;Product Manager&lt;/h3&gt;
+
+&lt;p&gt;A product manager envisions new things to create.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Is either a &lt;strong&gt;stakeholder proxy&lt;/strong&gt; or a &lt;strong&gt;direct stakeholder&lt;/strong&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stakeholder Proxy&lt;/strong&gt;: Represents the desires of external stakeholders, such as customers. This is an outbound role.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direct Stakeholder&lt;/strong&gt;: Represents the desires of internal stakeholders, such as the engineering team. This is an inbound role.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Has an &lt;strong&gt;area of focus&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Discovers or envisions &lt;strong&gt;new items&lt;/strong&gt; (within the stakeholder&amp;rsquo;s area of focus).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prioritizes&lt;/strong&gt; items (within the stakeholder&amp;rsquo;s area of focus).&lt;/li&gt;
+&lt;li&gt;Talks with the relevant Project Manager to get items scheduled.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advocates&lt;/strong&gt; for one&amp;rsquo;s items and area of focus.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Project Manager&lt;/h3&gt;
+
+&lt;p&gt;A project manager schedules things to be created.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Knows what all the &lt;strong&gt;items&lt;/strong&gt; in the backlog are.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Story&lt;/strong&gt;: A particular small outcome that is meaningful.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Epic&lt;/strong&gt;: A large outcome. Associated with a collection of Stories.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Specifying Epic&lt;/strong&gt;: Generates new Stories.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Characterizing Epic&lt;/strong&gt;: Groups together existing Stories.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Area of Focus&lt;/strong&gt;: Typically a product. Sometimes a special initiative.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Knows, for each area of focus or important stakeholder, the &lt;strong&gt;relative priority&lt;/strong&gt; of items.
+
+&lt;ul&gt;
+&lt;li&gt;Talks with Product Managers to obtain relative priorities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Decides on the &lt;strong&gt;absolute priority&lt;/strong&gt; of items, balancing different areas of focus and stakeholders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Costs&lt;/strong&gt; items (indirectly).
+
+&lt;ul&gt;
+&lt;li&gt;Talks with Engineers to obtain costs.&lt;/li&gt;
+&lt;li&gt;Negotiates with Engineers and Product Managers to obtain valuable features with reasonable time cost in a timely manner.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Schedules&lt;/strong&gt; items to releases and &lt;strong&gt;assigns&lt;/strong&gt; items to Engineers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitors progress&lt;/strong&gt; of items, looking for slippage.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Engineer&lt;/h3&gt;
+
+&lt;p&gt;An engineer directly creates new things.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Breaks down&lt;/strong&gt; items to smaller items.
+
+&lt;ul&gt;
+&lt;li&gt;More commonly, breaks down a Story to Tasks (or &amp;ldquo;workitems&amp;rdquo;).&lt;/li&gt;
+&lt;li&gt;Less commonly, reclassifies a Story as an Epic and breaks the Epic down to Stories.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Costs&lt;/strong&gt; items (directly).
+
+&lt;ul&gt;
+&lt;li&gt;Negotiates with Project Manager and/or Product Managers, perhaps splitting Stories or Epics across releases, to obtain valuable features and parts of features in a timely manner.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Completes stories by &lt;strong&gt;implementing&lt;/strong&gt; the associated Tasks.&lt;/li&gt;
+&lt;li&gt;Is sufficiently &lt;strong&gt;skilled&lt;/strong&gt; to do any Task required for the completion of Stories they are assigned.&lt;/li&gt;
+&lt;li&gt;Is familar enough with the business domain to be able to &lt;strong&gt;recognize and challenge specification errors&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There are several kinds of engineers, which vary based on skillset:&lt;/p&gt;
+
+&lt;h4&gt;Software Engineer (Full-Stack)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Skilled in:
+
+&lt;ul&gt;
+&lt;li&gt;Frontend application logic. UI implementation.&lt;/li&gt;
+&lt;li&gt;Backend application logic. Abstraction design.&lt;/li&gt;
+&lt;li&gt;Data(base) schema design.&lt;/li&gt;
+&lt;li&gt;Data(base) administration and operations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Produces:
+
+&lt;ul&gt;
+&lt;li&gt;Software. Code commits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;UX Engineer&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Skilled in:
+
+&lt;ul&gt;
+&lt;li&gt;Interaction design and usability.&lt;/li&gt;
+&lt;li&gt;Graphic design. UI design.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;May also be skilled in:
+
+&lt;ul&gt;
+&lt;li&gt;UI implementation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Produces:
+
+&lt;ul&gt;
+&lt;li&gt;UI wireframes, both high-fidelity and low-fidelity.&lt;/li&gt;
+&lt;li&gt;Use cases. Scenarios. Interaction designs. Given-When-Then specifications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Content Engineer&lt;/h4&gt;
+
+&lt;p&gt;Produces content for the business domain. Skills vary depending on what the domain is.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Curriculum Engineer&lt;/strong&gt; - Designs and writes curriculum to teach kids.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Writer&lt;/strong&gt; - Plans and writes long-form compositions such as technical documentation, manuals, blog posts, or books.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Operator&lt;/h3&gt;
+
+&lt;p&gt;An operator completes tasks within a predetermined framework. An operator does not generally create new things outside that framework. Although this may sound limiting, many types of operators are highly skilled.&lt;/p&gt;
+
+&lt;p&gt;Software teams don&amp;rsquo;t typically have many operators since they primarily focus on creating new things. Therefore most work that could be performed by a dedicated operator is usually performed by an engineer instead.&lt;/p&gt;
+
+&lt;p&gt;Examples of operators inside software teams, when full-stack engineers are not available:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Database Administrator
+
+&lt;ul&gt;
+&lt;li&gt;Assists engineers in database schema design.&lt;/li&gt;
+&lt;li&gt;Assists engineers in optimizing database queries.&lt;/li&gt;
+&lt;li&gt;Ensures database server is provisioned with sufficient CPU, RAM, IOPs, and Disk for typical load.&lt;/li&gt;
+&lt;li&gt;Monitors database server for load changes, spikes, and other abnormalities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Examples of operators outside software teams:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Teachers&lt;/li&gt;
+&lt;li&gt;Doctors. Dentists.&lt;/li&gt;
+&lt;li&gt;Lawyers&lt;/li&gt;
+&lt;li&gt;Accountants&lt;/li&gt;
+&lt;li&gt;Drivers: Bus, taxi, etc&lt;/li&gt;
+&lt;li&gt;Servers (i.e. waiters and waitresses)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Salesperson&lt;/h3&gt;
+
+&lt;p&gt;A salesperson finds specific prospects, introduces them to products created by engineering, and converts them to customers.&lt;/p&gt;
+
+&lt;p&gt;Sales activity helps to acquire customers.&lt;/p&gt;
+
+&lt;h3&gt;Marketer&lt;/h3&gt;
+
+&lt;p&gt;A marketer creates marketing content that creates general awareness for products and product categories among a target audience that contains prospects.&lt;/p&gt;
+
+&lt;p&gt;Awareness in the target audience makes it easier for sales to convert individual prospects from the audience to customers.&lt;/p&gt;
+
+&lt;p&gt;Marketing activity helps to acquire customers.&lt;/p&gt;
+
+&lt;h3&gt;Support-person&lt;/h3&gt;
+
+&lt;p&gt;A support person assists customers (and sometimes prospects) with operating products.&lt;/p&gt;
+
+&lt;p&gt;Support activity helps to retain customers.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>
