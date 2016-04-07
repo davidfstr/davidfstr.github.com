@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2016-04-02T12:14:29-07:00</updated>
+ <updated>2016-04-06T23:10:32-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -171,37 +171,35 @@
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Operator&lt;/h3&gt;
-
-&lt;p&gt;An operator completes tasks within a predetermined framework. An operator does not generally create new things outside that framework. Although this may sound limiting, many types of operators are highly skilled.&lt;/p&gt;
-
-&lt;p&gt;Software teams don&amp;rsquo;t typically have many operators since they primarily focus on creating new things. Therefore most work that could be performed by a dedicated operator is usually performed by an engineer instead.&lt;/p&gt;
-
-&lt;p&gt;Examples of operators inside software teams, when full-stack engineers are not available:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Database Administrator
-
-&lt;ul&gt;
-&lt;li&gt;Assists engineers in database schema design.&lt;/li&gt;
-&lt;li&gt;Assists engineers in optimizing database queries.&lt;/li&gt;
-&lt;li&gt;Ensures database server is provisioned with sufficient CPU, RAM, IOPs, and Disk for typical load.&lt;/li&gt;
-&lt;li&gt;Monitors database server for load changes, spikes, and other abnormalities.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;!-- This section is not very well thought out, mostly irrelevant to software, and is distracting from the main points. Omit. --&gt;
 
 
-&lt;p&gt;Examples of operators outside software teams:&lt;/p&gt;
+&lt;!--
 
-&lt;ul&gt;
-&lt;li&gt;Teachers&lt;/li&gt;
-&lt;li&gt;Doctors. Dentists.&lt;/li&gt;
-&lt;li&gt;Lawyers&lt;/li&gt;
-&lt;li&gt;Accountants&lt;/li&gt;
-&lt;li&gt;Drivers: Bus, taxi, etc&lt;/li&gt;
-&lt;li&gt;Servers (i.e. waiters and waitresses)&lt;/li&gt;
-&lt;/ul&gt;
+### Operator
+
+An operator completes tasks within a predetermined framework. An operator does not generally create new things outside that framework. Although this may sound limiting, many types of operators are highly skilled.
+
+Software teams don&#39;t typically have many operators since they primarily focus on creating new things. Therefore most work that could be performed by a dedicated operator is usually performed by an engineer instead.
+
+Examples of operators inside software teams, when full-stack engineers are not available:
+
+* Database Administrator
+    - Assists engineers in database schema design.
+    - Assists engineers in optimizing database queries.
+    - Ensures database server is provisioned with sufficient CPU, RAM, IOPs, and Disk for typical load.
+    - Monitors database server for load changes, spikes, and other abnormalities.
+
+Examples of operators outside software teams:
+
+* Teachers
+* Doctors. Dentists.
+* Lawyers
+* Accountants
+* Drivers: Bus, taxi, etc
+* Servers (i.e. waiters and waitresses)
+
+--&gt;
 
 
 &lt;h3&gt;Salesperson&lt;/h3&gt;
