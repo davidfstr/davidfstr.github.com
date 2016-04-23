@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2016-04-06T23:10:32-07:00</updated>
+ <updated>2016-04-22T22:08:12-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,364 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder</id>
+   <title>Notes on &amp;ldquo;The Clean Coder&amp;rdquo;</title>
+   <published>2016-04-22T00:00:00-07:00</published>
+   <updated>2016-04-22T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I recently picked up a copy of &lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=as_li_ss_tl?ie=UTF8&amp;amp;keywords=the%20clean%20coder&amp;amp;qid=1461339725&amp;amp;ref_=sr_1_1&amp;amp;sr=8-1&amp;amp;linkCode=ll1&amp;amp;tag=dafo07-20&amp;amp;linkId=11da6a52e5ac10bdef1499cb5b5fab88&quot;&gt;The Clean Coder&lt;/a&gt;: An excellent book about the non-technical aspects of being a senior software engineer.&lt;/p&gt;
+
+&lt;p&gt;Below are my notes taken while reading the book.&lt;/p&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;xvi.&lt;/div&gt;
+
+
+&lt;p&gt;Management sometimes doesn&amp;rsquo;t view software engineers as professionals in the same way, for example, they treat lawyers as professionals.&lt;/p&gt;
+
+&lt;p&gt;In this situation management is likely to babysit the engineers, micromanage them, and be more prone to asking them to sacrifice their personal lives for the current project.&lt;/p&gt;
+
+&lt;p&gt;As an engineer this situation is undesirable. This book intends to show you how to present yourself and interact as a &lt;em&gt;professional&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;xxii.&lt;/div&gt;
+
+
+&lt;p&gt;Specifically:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What is a software professional?&lt;/li&gt;
+&lt;li&gt;How does a professional behave?&lt;/li&gt;
+&lt;li&gt;How does a professional deal with conflict, tight schedules, and unreasonable managers?&lt;/li&gt;
+&lt;li&gt;When, and how, should a professional say &amp;ldquo;no&amp;rdquo;?&lt;/li&gt;
+&lt;li&gt;How does a professional deal with pressure?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Values&lt;/h2&gt;
+
+&lt;h3&gt;Responsible&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;10.&lt;/div&gt;
+
+
+&lt;p&gt;&amp;ldquo;Upon reflection I realized that shipping without testing the routine had been irresponsible. The reason I neglected the test was so I could say I had shipped on time. It was about me saving face. I had not been concerned about the customer, nor about my employer. I had only been concerned about my own reputation.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;I should have taken responsibility early and told Tom that the tests weren&amp;rsquo;t complete and that I was not prepared to ship the software on time. That would have been hard, and Tom would have been upset. But no customers would have lost data, and no service managers would have called.&amp;rdquo;&lt;/p&gt;
+
+&lt;h3&gt;Accountable&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;12.&lt;/div&gt;
+
+
+&lt;p&gt;It is the lot of a professional to be accountable for errors even though errors are virtually certain. Practice apologizing.&lt;/p&gt;
+
+&lt;p&gt;Apologies are necessary but insufficient. As you mature, your error rate should rapidly decrease toward the asymptote of zero.&lt;/p&gt;
+
+&lt;h3&gt;Bugs that Escape&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;12.&lt;/div&gt;
+
+
+&lt;p&gt;QA should find nothing.&lt;/p&gt;
+
+&lt;p&gt;If a bug reaches QA, figure out why those bugs managed to escape your notice and do something to prevent it from happening again.&lt;/p&gt;
+
+&lt;p&gt;Every time QA, or worse a &lt;em&gt;user&lt;/em&gt;, finds a problem, you should be surprised, chagrined, and determined to prevent it from happening again.&lt;/p&gt;
+
+&lt;h3&gt;Strive for Quality&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;13.&lt;/div&gt;
+
+
+&lt;p&gt;100% line coverage is a minimum bar of quality, in the opinion of Robert C. Martin.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;15.&lt;/div&gt;
+
+
+&lt;p&gt;Merciless refactoring: Every time you look at a module you make small, lightweight changes to it to improve its structure.&lt;/p&gt;
+
+&lt;h3&gt;Learning &amp;amp; Teaching&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;16.&lt;/div&gt;
+
+
+&lt;p&gt;Train yourself outside of work. For your career.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Buy books.&lt;/li&gt;
+&lt;li&gt;Goto conferences.&lt;/li&gt;
+&lt;li&gt;Spend time each week practicing.&lt;/li&gt;
+&lt;li&gt;Know the history of computer science. Many gems are there.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;20.&lt;/div&gt;
+
+
+&lt;p&gt;Train your juniors! The best way to learn is to teach.&lt;/p&gt;
+
+&lt;h3&gt;Know Your Business Domain&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;21.&lt;/div&gt;
+
+
+&lt;p&gt;Know your business domain well enough to be able to recognize and challenge specification errors.&lt;/p&gt;
+
+&lt;h2&gt;Estimates &amp;amp; Saying No&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;25.&lt;/div&gt;
+
+
+&lt;p&gt;Stick to your guns RE schedule estimates. Professionals speak truth to power. Professionals have the courage to say no to their managers.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;26-28. 30.&lt;/div&gt;
+
+
+&lt;p&gt;Negotiate!&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;30.&lt;/div&gt;
+
+
+&lt;p&gt;Being a &lt;em&gt;team player&lt;/em&gt; means player your position as well as you possibly can, and helping out your teammates when they get into a jam.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;32-36.&lt;/div&gt;
+
+
+&lt;p&gt;There is no &amp;ldquo;trying&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;If you are not holding back some energy in reserve, if you don&amp;rsquo;t have a new plan, if you aren&amp;rsquo;t going to change your behavior, and if you are reasonably confident in your original estimate, then promising to try is fundamentally dishonest. You are &lt;em&gt;lying&lt;/em&gt;. And you are probably doing it to save face and to avoid a confrontation.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;34.&lt;/div&gt;
+
+
+&lt;p&gt;(Passive aggression is when you let someone else hang themselves through inaction on your part.)&lt;/p&gt;
+
+&lt;h2&gt;How and When to Code&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;58.&lt;/div&gt;
+
+
+&lt;p&gt;Confidence and error-sense is the key to mastery.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;59.&lt;/div&gt;
+
+
+&lt;p&gt;Write code to reveal intent.&lt;/p&gt;
+
+&lt;p&gt;Worrying? Tired? Don&amp;rsquo;t code!&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;62-64.&lt;/div&gt;
+
+
+&lt;p&gt;The author avoids the flow zone. I find it useful for routine code, and less useful for novel code.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;63.&lt;/div&gt;
+
+
+&lt;p&gt;Music can be a plus or minus when writing code. It only works well for me when I&amp;rsquo;m writing routine code (and not novel code).&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;63.&lt;/div&gt;
+
+
+&lt;p&gt;Interruptions happen. Try not to be rude.&lt;/p&gt;
+
+&lt;p&gt;Refinding your place after an interruption can be tricky. I personally find having an active card useful, as I can just review the card and the checklist on it that I was working through.&lt;/p&gt;
+
+&lt;h2&gt;Automated Tests&lt;/h2&gt;
+
+&lt;h3&gt;Acceptance Tests&lt;/h3&gt;
+
+&lt;p&gt;Acceptance tests are a special kind of automated test that specifically test the &lt;em&gt;stakeholder-desired&lt;/em&gt; behaviors of a feature. Once the acceptance tests pass, the feature is &amp;ldquo;done&amp;rdquo; from the perspective of the stakeholders. This is extremely powerful.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;100.&lt;/div&gt;
+
+
+&lt;p&gt;Acceptance tests should be written as a collaboration of the stakeholders and the programmers.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;109.&lt;/div&gt;
+
+
+&lt;p&gt;Unit tests and acceptance tests (which are not the same thing) are documents first and tests second. Their primary purpose is to formally document the design, structure, and behavior of the system. The fact that they automatically verify the design, structure, and behavior that they specify is wildly useful, but the specification is the true purpose.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;110.&lt;/div&gt;
+
+
+&lt;p&gt;Make sure that all your unit tests and acceptance tests are run several times per day in a &lt;em&gt;continuous integration&lt;/em&gt; system.&lt;/p&gt;
+
+&lt;p&gt;It is very important to keep the CI tests running at all times. A broken build in the CI system should be viewed as an emergency, a &amp;ldquo;stop the presses&amp;rdquo; event.&lt;/p&gt;
+
+&lt;h3&gt;Other kinds of automated tests&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;114.&lt;/div&gt;
+
+
+&lt;p&gt;Automated tests can act to:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Specify&lt;/em&gt; the desired behavior or properties of a component.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Characterize&lt;/em&gt; the current behavior of a component. Useful to detect unexpected changes. Unlike a specifying test, a characterizing test does not worry as much whether the behavior being tested is actually the intended behavior.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;116-117.&lt;/div&gt;
+
+
+&lt;p&gt;Automated tests can be classified based on the size of the things they put under test:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unit tests - Test individual functions or classes.&lt;/li&gt;
+&lt;li&gt;Component tests - Test individual components or features.&lt;/li&gt;
+&lt;li&gt;Integration tests - Test how multiple components or features interact.&lt;/li&gt;
+&lt;li&gt;System tests - Test the entire system. Throughput and performance tests are commonly of this variety.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Time Management&lt;/h2&gt;
+
+&lt;h3&gt;Meetings&lt;/h3&gt;
+
+&lt;p&gt;There are two truths about meetings:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Meetings are necessary.&lt;/li&gt;
+&lt;li&gt;Meetings are huge time wasters.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Be very careful about which meetings you attend and which you politely refuse.&lt;/p&gt;
+
+&lt;p&gt;One of the most important duties of your manager is to keep you out of meetings.&lt;/p&gt;
+
+&lt;p&gt;Have an agenda and a goal: If you are asked to go to a meeting, make sure you know what discussions are on the table, how much time is allotted for them, and what goal is to be achieved. If you can&amp;rsquo;t get a clear answer on these things, then politely decline to attend.&lt;/p&gt;
+
+&lt;h3&gt;Focus: A scarce resource&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;127-128.&lt;/div&gt;
+
+
+&lt;p&gt;Focus is a scarce resource, rather like manna.&lt;/p&gt;
+
+&lt;p&gt;It is wise to manage one&amp;rsquo;s time to take advantage of when focus-manna is available. Focus-manna is a decaying resource so it often needs to be used when it is available.&lt;/p&gt;
+
+&lt;p&gt;Sleep is paramount to recharge focus.&lt;/p&gt;
+
+&lt;p&gt;Power naps also work well for me personally.&lt;/p&gt;
+
+&lt;h3&gt;Blind alleys&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;131.&lt;/div&gt;
+
+
+&lt;p&gt;The Rule of Holes: When you are in one, stop digging.&lt;/p&gt;
+
+&lt;h3&gt;Messes&lt;/h3&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;132.&lt;/div&gt;
+
+
+&lt;p&gt;Messes slow you down but don&amp;rsquo;t stop you. Messes are worse than blind alleys because you can always see the way forward, and it always looks shorter than the way back (but it isn&amp;rsquo;t).&lt;/p&gt;
+
+&lt;h2&gt;Estimates&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;138.&lt;/div&gt;
+
+
+&lt;p&gt;Businesses like to view estimates as commitments. Developers like to view estimates as guesses.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A commitment is something you must achieve.&lt;/li&gt;
+&lt;li&gt;An estimate is a guess. No commitment is implied.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Commitment is about certainty. Other people are going to make plans based on your commitments.&lt;/p&gt;
+
+&lt;p&gt;An estimate is not number, despite it often being presented as such. Rather, it is a &lt;em&gt;distribution&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;141.&lt;/div&gt;
+
+
+&lt;p&gt;There is a system of estimation called &amp;ldquo;PERT&amp;rdquo; or &amp;ldquo;trivariate analysis&amp;rdquo;. You give an estimate as a combination of {Optimistic Estimate, Nominal Estimate, Pessimistic Estimate}, which creates a beta distribution. These distributions can be added together to determine the combined time distribution for performing a &lt;em&gt;series&lt;/em&gt; of tasks.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;141.&lt;/div&gt;
+
+
+&lt;p&gt;Estimating tasks with a group of team-members is more accurate than estimating by oneself. There are many techniques for this. Probably the most famous is &amp;ldquo;planning poker&amp;rdquo;. There is also &amp;ldquo;affinity estimation&amp;rdquo; and &amp;ldquo;flying fingers&amp;rdquo;.&lt;/p&gt;
+
+&lt;h2&gt;Pressure&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;153.&lt;/div&gt;
+
+
+&lt;p&gt;You know what you believe by observing yourself in a crisis.&lt;/p&gt;
+
+&lt;p&gt;If in a crisis you follow your disciplines, then you truly believe in those disciplines. On the other hand, if you change your behavior in a crisis, then you don&amp;rsquo;t truly believe in your normal behavior.&lt;/p&gt;
+
+&lt;p&gt;Choose disciplines that you feel comfortable following in a crisis. Then follow them all the time.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;154.&lt;/div&gt;
+
+
+&lt;p&gt;Avoid creating surprises. Nothing makes people more angry and less rational than surprises.&lt;/p&gt;
+
+&lt;h2&gt;Teams&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;168.&lt;/div&gt;
+
+
+&lt;p&gt;When assigning work to folks, there&amp;rsquo;s no such thing as half a person. You cannot sensibly tell a programmer to devote half their time to project A and half their time to project B.&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;169.&lt;/div&gt;
+
+
+&lt;p&gt;For a 12-person team, here&amp;rsquo;s a suggested team composition:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;7 devs&lt;/li&gt;
+&lt;li&gt;2 testers &amp;ndash; Who write acceptance tests, focusing on correctness, failure, boundary cases.&lt;/li&gt;
+&lt;li&gt;2 analysts &amp;ndash; Who write acceptance tests, focusing on business value and the happy path.&lt;/li&gt;
+&lt;li&gt;1 project manager&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;171.&lt;/div&gt;
+
+
+&lt;p&gt;It&amp;rsquo;s reasonable to assign multiple projects to a single team. Particularly if the team has gelled.&lt;/p&gt;
+
+&lt;p&gt;On the other hand assigning multiple projects to a single person is not a great idea.&lt;/p&gt;
+
+&lt;h2&gt;Mentoring, Apprenticeship, and Craftsmanship&lt;/h2&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;182.&lt;/div&gt;
+
+
+&lt;p&gt;Software apprenticeship: A very interesting idea. Consider the following levels of proficiency:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Master&lt;/li&gt;
+&lt;li&gt;Journeymen&lt;/li&gt;
+&lt;li&gt;Apprentice / Intern&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;(See the descriptions in the book.)&lt;/p&gt;
+
+&lt;div class=&quot;notcc-page-location&quot;&gt;184.&lt;/div&gt;
+
+
+&lt;p&gt;A &lt;em&gt;craftsman&lt;/em&gt; is someone who works quickly, but without rushing, who provides reasonable estimates and meets commitments. A craftsman knows when to say no, but tries hard to say yes. A craftsman is a professional.&lt;/p&gt;
+
+&lt;p&gt;School can teach the theory of computer programming. But school does not, and cannot teach the discipline, practice, and skill of being a craftsman.&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>

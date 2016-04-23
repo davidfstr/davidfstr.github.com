@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Notes on &ldquo;The Clean Coder&rdquo; | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+      <style>
+        .notcc-page-location {
+    color: lightgray;
+    margin-bottom: .7em;
+    speak: none;
+}
+
+      </style>
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>Notes on &ldquo;The Clean Coder&rdquo;</h1>
+    <div class="post-metadata">
+      Apr 22, 2016 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>42</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>I recently picked up a copy of <a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=as_li_ss_tl?ie=UTF8&amp;keywords=the%20clean%20coder&amp;qid=1461339725&amp;ref_=sr_1_1&amp;sr=8-1&amp;linkCode=ll1&amp;tag=dafo07-20&amp;linkId=11da6a52e5ac10bdef1499cb5b5fab88">The Clean Coder</a>: An excellent book about the non-technical aspects of being a senior software engineer.</p>
+
+<p>Below are my notes taken while reading the book.</p>
+
+<h2>Introduction</h2>
+
+<div class="notcc-page-location">xvi.</div>
+
+
+<p>Management sometimes doesn&rsquo;t view software engineers as professionals in the same way, for example, they treat lawyers as professionals.</p>
+
+<p>In this situation management is likely to babysit the engineers, micromanage them, and be more prone to asking them to sacrifice their personal lives for the current project.</p>
+
+<p>As an engineer this situation is undesirable. This book intends to show you how to present yourself and interact as a <em>professional</em>.</p>
+
+<div class="notcc-page-location">xxii.</div>
+
+
+<p>Specifically:</p>
+
+<ul>
+<li>What is a software professional?</li>
+<li>How does a professional behave?</li>
+<li>How does a professional deal with conflict, tight schedules, and unreasonable managers?</li>
+<li>When, and how, should a professional say &ldquo;no&rdquo;?</li>
+<li>How does a professional deal with pressure?</li>
+</ul>
+
+
+<h2>Values</h2>
+
+<h3>Responsible</h3>
+
+<div class="notcc-page-location">10.</div>
+
+
+<p>&ldquo;Upon reflection I realized that shipping without testing the routine had been irresponsible. The reason I neglected the test was so I could say I had shipped on time. It was about me saving face. I had not been concerned about the customer, nor about my employer. I had only been concerned about my own reputation.&rdquo;</p>
+
+<p>&ldquo;I should have taken responsibility early and told Tom that the tests weren&rsquo;t complete and that I was not prepared to ship the software on time. That would have been hard, and Tom would have been upset. But no customers would have lost data, and no service managers would have called.&rdquo;</p>
+
+<h3>Accountable</h3>
+
+<div class="notcc-page-location">12.</div>
+
+
+<p>It is the lot of a professional to be accountable for errors even though errors are virtually certain. Practice apologizing.</p>
+
+<p>Apologies are necessary but insufficient. As you mature, your error rate should rapidly decrease toward the asymptote of zero.</p>
+
+<h3>Bugs that Escape</h3>
+
+<div class="notcc-page-location">12.</div>
+
+
+<p>QA should find nothing.</p>
+
+<p>If a bug reaches QA, figure out why those bugs managed to escape your notice and do something to prevent it from happening again.</p>
+
+<p>Every time QA, or worse a <em>user</em>, finds a problem, you should be surprised, chagrined, and determined to prevent it from happening again.</p>
+
+<h3>Strive for Quality</h3>
+
+<div class="notcc-page-location">13.</div>
+
+
+<p>100% line coverage is a minimum bar of quality, in the opinion of Robert C. Martin.</p>
+
+<div class="notcc-page-location">15.</div>
+
+
+<p>Merciless refactoring: Every time you look at a module you make small, lightweight changes to it to improve its structure.</p>
+
+<h3>Learning &amp; Teaching</h3>
+
+<div class="notcc-page-location">16.</div>
+
+
+<p>Train yourself outside of work. For your career.</p>
+
+<ul>
+<li>Buy books.</li>
+<li>Goto conferences.</li>
+<li>Spend time each week practicing.</li>
+<li>Know the history of computer science. Many gems are there.</li>
+</ul>
+
+
+<div class="notcc-page-location">20.</div>
+
+
+<p>Train your juniors! The best way to learn is to teach.</p>
+
+<h3>Know Your Business Domain</h3>
+
+<div class="notcc-page-location">21.</div>
+
+
+<p>Know your business domain well enough to be able to recognize and challenge specification errors.</p>
+
+<h2>Estimates &amp; Saying No</h2>
+
+<div class="notcc-page-location">25.</div>
+
+
+<p>Stick to your guns RE schedule estimates. Professionals speak truth to power. Professionals have the courage to say no to their managers.</p>
+
+<div class="notcc-page-location">26-28. 30.</div>
+
+
+<p>Negotiate!</p>
+
+<div class="notcc-page-location">30.</div>
+
+
+<p>Being a <em>team player</em> means player your position as well as you possibly can, and helping out your teammates when they get into a jam.</p>
+
+<div class="notcc-page-location">32-36.</div>
+
+
+<p>There is no &ldquo;trying&rdquo;.</p>
+
+<p>If you are not holding back some energy in reserve, if you don&rsquo;t have a new plan, if you aren&rsquo;t going to change your behavior, and if you are reasonably confident in your original estimate, then promising to try is fundamentally dishonest. You are <em>lying</em>. And you are probably doing it to save face and to avoid a confrontation.</p>
+
+<div class="notcc-page-location">34.</div>
+
+
+<p>(Passive aggression is when you let someone else hang themselves through inaction on your part.)</p>
+
+<h2>How and When to Code</h2>
+
+<div class="notcc-page-location">58.</div>
+
+
+<p>Confidence and error-sense is the key to mastery.</p>
+
+<div class="notcc-page-location">59.</div>
+
+
+<p>Write code to reveal intent.</p>
+
+<p>Worrying? Tired? Don&rsquo;t code!</p>
+
+<div class="notcc-page-location">62-64.</div>
+
+
+<p>The author avoids the flow zone. I find it useful for routine code, and less useful for novel code.</p>
+
+<div class="notcc-page-location">63.</div>
+
+
+<p>Music can be a plus or minus when writing code. It only works well for me when I&rsquo;m writing routine code (and not novel code).</p>
+
+<div class="notcc-page-location">63.</div>
+
+
+<p>Interruptions happen. Try not to be rude.</p>
+
+<p>Refinding your place after an interruption can be tricky. I personally find having an active card useful, as I can just review the card and the checklist on it that I was working through.</p>
+
+<h2>Automated Tests</h2>
+
+<h3>Acceptance Tests</h3>
+
+<p>Acceptance tests are a special kind of automated test that specifically test the <em>stakeholder-desired</em> behaviors of a feature. Once the acceptance tests pass, the feature is &ldquo;done&rdquo; from the perspective of the stakeholders. This is extremely powerful.</p>
+
+<div class="notcc-page-location">100.</div>
+
+
+<p>Acceptance tests should be written as a collaboration of the stakeholders and the programmers.</p>
+
+<div class="notcc-page-location">109.</div>
+
+
+<p>Unit tests and acceptance tests (which are not the same thing) are documents first and tests second. Their primary purpose is to formally document the design, structure, and behavior of the system. The fact that they automatically verify the design, structure, and behavior that they specify is wildly useful, but the specification is the true purpose.</p>
+
+<div class="notcc-page-location">110.</div>
+
+
+<p>Make sure that all your unit tests and acceptance tests are run several times per day in a <em>continuous integration</em> system.</p>
+
+<p>It is very important to keep the CI tests running at all times. A broken build in the CI system should be viewed as an emergency, a &ldquo;stop the presses&rdquo; event.</p>
+
+<h3>Other kinds of automated tests</h3>
+
+<div class="notcc-page-location">114.</div>
+
+
+<p>Automated tests can act to:</p>
+
+<ol>
+<li><em>Specify</em> the desired behavior or properties of a component.</li>
+<li><em>Characterize</em> the current behavior of a component. Useful to detect unexpected changes. Unlike a specifying test, a characterizing test does not worry as much whether the behavior being tested is actually the intended behavior.</li>
+</ol>
+
+
+<div class="notcc-page-location">116-117.</div>
+
+
+<p>Automated tests can be classified based on the size of the things they put under test:</p>
+
+<ul>
+<li>Unit tests - Test individual functions or classes.</li>
+<li>Component tests - Test individual components or features.</li>
+<li>Integration tests - Test how multiple components or features interact.</li>
+<li>System tests - Test the entire system. Throughput and performance tests are commonly of this variety.</li>
+</ul>
+
+
+<h2>Time Management</h2>
+
+<h3>Meetings</h3>
+
+<p>There are two truths about meetings:</p>
+
+<ol>
+<li>Meetings are necessary.</li>
+<li>Meetings are huge time wasters.</li>
+</ol>
+
+
+<p>Be very careful about which meetings you attend and which you politely refuse.</p>
+
+<p>One of the most important duties of your manager is to keep you out of meetings.</p>
+
+<p>Have an agenda and a goal: If you are asked to go to a meeting, make sure you know what discussions are on the table, how much time is allotted for them, and what goal is to be achieved. If you can&rsquo;t get a clear answer on these things, then politely decline to attend.</p>
+
+<h3>Focus: A scarce resource</h3>
+
+<div class="notcc-page-location">127-128.</div>
+
+
+<p>Focus is a scarce resource, rather like manna.</p>
+
+<p>It is wise to manage one&rsquo;s time to take advantage of when focus-manna is available. Focus-manna is a decaying resource so it often needs to be used when it is available.</p>
+
+<p>Sleep is paramount to recharge focus.</p>
+
+<p>Power naps also work well for me personally.</p>
+
+<h3>Blind alleys</h3>
+
+<div class="notcc-page-location">131.</div>
+
+
+<p>The Rule of Holes: When you are in one, stop digging.</p>
+
+<h3>Messes</h3>
+
+<div class="notcc-page-location">132.</div>
+
+
+<p>Messes slow you down but don&rsquo;t stop you. Messes are worse than blind alleys because you can always see the way forward, and it always looks shorter than the way back (but it isn&rsquo;t).</p>
+
+<h2>Estimates</h2>
+
+<div class="notcc-page-location">138.</div>
+
+
+<p>Businesses like to view estimates as commitments. Developers like to view estimates as guesses.</p>
+
+<ul>
+<li>A commitment is something you must achieve.</li>
+<li>An estimate is a guess. No commitment is implied.</li>
+</ul>
+
+
+<p>Commitment is about certainty. Other people are going to make plans based on your commitments.</p>
+
+<p>An estimate is not number, despite it often being presented as such. Rather, it is a <em>distribution</em>.</p>
+
+<div class="notcc-page-location">141.</div>
+
+
+<p>There is a system of estimation called &ldquo;PERT&rdquo; or &ldquo;trivariate analysis&rdquo;. You give an estimate as a combination of {Optimistic Estimate, Nominal Estimate, Pessimistic Estimate}, which creates a beta distribution. These distributions can be added together to determine the combined time distribution for performing a <em>series</em> of tasks.</p>
+
+<div class="notcc-page-location">141.</div>
+
+
+<p>Estimating tasks with a group of team-members is more accurate than estimating by oneself. There are many techniques for this. Probably the most famous is &ldquo;planning poker&rdquo;. There is also &ldquo;affinity estimation&rdquo; and &ldquo;flying fingers&rdquo;.</p>
+
+<h2>Pressure</h2>
+
+<div class="notcc-page-location">153.</div>
+
+
+<p>You know what you believe by observing yourself in a crisis.</p>
+
+<p>If in a crisis you follow your disciplines, then you truly believe in those disciplines. On the other hand, if you change your behavior in a crisis, then you don&rsquo;t truly believe in your normal behavior.</p>
+
+<p>Choose disciplines that you feel comfortable following in a crisis. Then follow them all the time.</p>
+
+<div class="notcc-page-location">154.</div>
+
+
+<p>Avoid creating surprises. Nothing makes people more angry and less rational than surprises.</p>
+
+<h2>Teams</h2>
+
+<div class="notcc-page-location">168.</div>
+
+
+<p>When assigning work to folks, there&rsquo;s no such thing as half a person. You cannot sensibly tell a programmer to devote half their time to project A and half their time to project B.</p>
+
+<div class="notcc-page-location">169.</div>
+
+
+<p>For a 12-person team, here&rsquo;s a suggested team composition:</p>
+
+<ul>
+<li>7 devs</li>
+<li>2 testers &ndash; Who write acceptance tests, focusing on correctness, failure, boundary cases.</li>
+<li>2 analysts &ndash; Who write acceptance tests, focusing on business value and the happy path.</li>
+<li>1 project manager</li>
+</ul>
+
+
+<div class="notcc-page-location">171.</div>
+
+
+<p>It&rsquo;s reasonable to assign multiple projects to a single team. Particularly if the team has gelled.</p>
+
+<p>On the other hand assigning multiple projects to a single person is not a great idea.</p>
+
+<h2>Mentoring, Apprenticeship, and Craftsmanship</h2>
+
+<div class="notcc-page-location">182.</div>
+
+
+<p>Software apprenticeship: A very interesting idea. Consider the following levels of proficiency:</p>
+
+<ul>
+<li>Master</li>
+<li>Journeymen</li>
+<li>Apprentice / Intern</li>
+</ul>
+
+
+<p>(See the descriptions in the book.)</p>
+
+<div class="notcc-page-location">184.</div>
+
+
+<p>A <em>craftsman</em> is someone who works quickly, but without rushing, who provides reasonable estimates and meets commitments. A craftsman knows when to say no, but tries hard to say yes. A craftsman is a professional.</p>
+
+<p>School can teach the theory of computer programming. But school does not, and cannot teach the discipline, practice, and skill of being a craftsman.</p>
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>42</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+    <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+  </a>
+  <a class="subscribe subscribe-last" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2016/04/02/roles-on-software-teams/" title="Roles on Software Teams">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2016 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
