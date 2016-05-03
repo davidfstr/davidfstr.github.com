@@ -20,6 +20,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats/
 http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder/
 http://dafoster.net/articles/2016/04/02/roles-on-software-teams/
 http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages/

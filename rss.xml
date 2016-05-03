@@ -6,14 +6,147 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 22 Apr 2016 22:08:12 -0700</pubDate>
-    <lastBuildDate>Fri, 22 Apr 2016 22:08:12 -0700</lastBuildDate>
+    <pubDate>Mon, 02 May 2016 20:56:46 -0700</pubDate>
+    <lastBuildDate>Mon, 02 May 2016 20:56:46 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>A Programmer&#39;s Guide to Practical Hats</title>
+      <link>http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Mon, 02 May 2016 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats</guid>
+      <description>&lt;p&gt;Why wear a hat?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;protect against cold air&lt;/li&gt;
+&lt;li&gt;protect against cold wind&lt;/li&gt;
+&lt;li&gt;protect against sun&lt;/li&gt;
+&lt;li&gt;be easy to spot or recognize&lt;/li&gt;
+&lt;li&gt;look cool; look distinctive&lt;/li&gt;
+&lt;li&gt;declare social identity to others; attract folks with similar identity&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;When to especially wear a hat?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;extreme weather
+
+&lt;ul&gt;
+&lt;li&gt;very cold or windy&lt;/li&gt;
+&lt;li&gt;very sunny&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;long exposure to weather
+
+&lt;ul&gt;
+&lt;li&gt;going boating&lt;/li&gt;
+&lt;li&gt;going hiking for &gt; 2 hours&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;weak or missing natural protections
+
+&lt;ul&gt;
+&lt;li&gt;reduced or no hair&lt;/li&gt;
+&lt;li&gt;sensitive skin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;if you want to appear older or more mature, as these kinds of people are more likely to know how to use, afford, and store hats&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There are a &lt;em&gt;huge&lt;/em&gt; number of hat types. Here are a few kinds I work with commonly:&lt;/p&gt;
+
+&lt;h3&gt;&amp;ldquo;Paperboy&amp;rdquo; / &amp;ldquo;taxi driver&amp;rdquo; &lt;small&gt;(One-piece cap.)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2016/hats/paperboy.jpg&quot; width=&quot;99&quot; height=&quot;144&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;General purpose for cold weather and mildly sunny days, for men.&lt;/li&gt;
+&lt;li&gt;Compact: Folds. Pocketable.&lt;/li&gt;
+&lt;li&gt;Medium insulation and wind resistance.&lt;/li&gt;
+&lt;li&gt;Light sun resistance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- My usage is uncommon
+### &quot;Aviator cap&quot;
+
+- General purpose for cold and windy weather, for men.
+- High wind resistance.
+- Compact: Folds. Pocketable.
+- Medium insulation and wind resistance.
+- Unstylish during sunny weather.
+--&gt;
+
+
+&lt;h3&gt;Beanie&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2016/hats/beanie.jpg&quot; width=&quot;94&quot; height=&quot;69&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;General purpose for cold weather, mostly for men.&lt;/li&gt;
+&lt;li&gt;High insulation.&lt;/li&gt;
+&lt;li&gt;Medium to low wind resistance.&lt;/li&gt;
+&lt;li&gt;Compact: Folds. Pocketable.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&amp;ldquo;Fisherman&amp;rsquo;s cap&amp;rdquo; &lt;small&gt;(Medium brim.)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2016/hats/fisherman.jpg&quot; width=&quot;99&quot; height=&quot;144&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Good for sunny days, for men and women.&lt;/li&gt;
+&lt;li&gt;Medium sun resistance.&lt;/li&gt;
+&lt;li&gt;Compact: Folds. Pocketable.&lt;/li&gt;
+&lt;li&gt;Medium insulation and wind resistance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&amp;ldquo;Explorer&amp;rsquo;s hat&amp;rdquo; &lt;small&gt;(Wide brim.)&lt;/small&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2016/hats/explorer.jpg&quot; width=&quot;114&quot; height=&quot;144&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Excellent for sunny days, for men.&lt;/li&gt;
+&lt;li&gt;High sun resistance.&lt;/li&gt;
+&lt;li&gt;Medium insulation and wind resistance.&lt;/li&gt;
+&lt;li&gt;Stylish.&lt;/li&gt;
+&lt;li&gt;Not (usually) compact: Unpocketable.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- My usage is uncommon
+### &quot;Lady&#39;s picnic hat&quot; &lt;small&gt;(Wide brim.)&lt;/small&gt;
+
+- Excellent for sunny days, for women.
+- High sun resistance.
+- Low insulation and wind resistance.
+- Stylish.
+- Not (usually) compact: Unpocketable.
+--&gt;
+
+
+&lt;h3&gt;Baseball cap&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/2016/hats/baseball.jpg&quot; width=&quot;118&quot; height=&quot;144&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Good for sunny days, for men and women.&lt;/li&gt;
+&lt;li&gt;Medium sun resistance.&lt;/li&gt;
+&lt;li&gt;Medium insulation and wind resistance.&lt;/li&gt;
+&lt;li&gt;Stylish if you want an informal look.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>
