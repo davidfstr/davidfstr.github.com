@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2016-05-16T19:59:56-07:00</updated>
+ <updated>2016-05-17T20:30:08-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,129 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling</id>
+   <title>Abandonment vs. Unchecked Exceptions for Error Handling</title>
+   <published>2016-05-17T00:00:00-07:00</published>
+   <updated>2016-05-17T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Read a very interesting article about &lt;a href=&quot;http://joeduffyblog.com/2016/02/07/the-error-model/&quot;&gt;error handling in Midori&lt;/a&gt; recently, and it got me thinking about errors again. I&amp;rsquo;ve thought about errors a lot in the past, as you can see in my old &lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt; article from 2013.&lt;/p&gt;
+
+&lt;p&gt;Midori mentions a few mechanisms for handling errors:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;error codes&lt;/strong&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;unchecked exceptions&lt;/strong&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;checked exceptions&lt;/strong&gt;, and&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abandonment&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Midori has chosen to run with&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;abandonment&lt;/em&gt; for bugs, and&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;checked exceptions&lt;/em&gt; for most regular errors,&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;error codes&lt;/em&gt; for other regular errors.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;These seem to be reasonable choices given the special constraints of a language intended for systems, namely:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;correctness&lt;/strong&gt; is more important than convenience,&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;constant-time performance&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; is important,&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;However I work mostly in application domains rather than system domains, so I wouldn&amp;rsquo;t make these same choices. In particular &lt;em&gt;abandonment&lt;/em&gt; really gets under my skin.&lt;/p&gt;
+
+&lt;h3&gt;Abandonment&lt;/h3&gt;
+
+&lt;p&gt;Abandonment in Midori is used for bugs and serious errors where there is no expectation that the error condition can be handled sensibly. Abandonment tears down the entire process.&lt;/p&gt;
+
+&lt;p&gt;I have a few problems with this approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Abandonment assumes that the &lt;em&gt;process&lt;/em&gt; is the primary isolation boundary.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In a web server, for example, a single &lt;em&gt;request&lt;/em&gt; being handled would be a more appropriate boundary. It would be better to abort only the current request rather than bring down the entire web server.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Abandonment provides no opportunity for its error condition to be handled in an alternative fashion.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For example, code that intentionally allocates large blocks of memory on a regular basis may in fact be prepared to handle out of memory conditions, which would normally trigger abandonment.&lt;/p&gt;
+
+&lt;p&gt;Granted, you can often support this scenario by bifurcating the API, providing one allocate-memory function that returns an explicit error code on failure and a different allocate-memory function that abandons on failure.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;But there is one big advantage to using abandonment:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Better constant-time performance.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-time performance of all functions in the language.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Unchecked Exceptions&lt;/h3&gt;
+
+&lt;p&gt;In most modern programming languages intended for applications (as opposed to systems), &lt;em&gt;unchecked exceptions&lt;/em&gt; are used for reporting bugs. They have the following advantages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Unchecked exceptions fail fast, terminating the process by default.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is no different than abandonment so far, however&amp;hellip;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Unchecked exceptions &lt;em&gt;can&lt;/em&gt; be caught by a higher level error handler&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;This additional flexibily is useful for web servers, parsers, and other applications that expect to encounter errors but don&amp;rsquo;t want to crash entirely in the presence of errors.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;But:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Unchecked exceptions degrade constant-time performance.&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;However this typically doesn&amp;rsquo;t matter in application domains. Only &lt;em&gt;algorithmic performance&lt;/em&gt; matters.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;I think abandonment is a reasonable approach for systems languages but I still prefer unchecked exceptions myself for application languages. I prefer the additional flexibility you get with unchecked exceptions and don&amp;rsquo;t mind the performance difference.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/11/22/error-handling-styles/&quot;&gt;Error handling styles in programming&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Summarizes the most prominent strategies for handling runtime errors.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;As used in this article, &lt;strong&gt;constant-time performance&lt;/strong&gt; refers to being sensitive to high constant factors in program time costs. This is in contrast to &lt;strong&gt;algorithmic performance&lt;/strong&gt; which cares primarily about avoiding, for example, an O(n&lt;sup&gt;2&lt;/sup&gt;) algorithm where an O(n) algorithm would suffice.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -992,9 +1115,9 @@ Examples of operators outside software teams:
      <category term="Software"/>
    
    <link rel="alternate" href="http://dafoster.net/articles/2015/08/08/algorithms-101/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;In general I feel that deep algorithm knowledge is overrated in the software industry. In the early 90&amp;rsquo;s, one needed to know about common algorithms because you needed to actually &lt;em&gt;implement&lt;/em&gt; them. Today in the 00&amp;rsquo;s and 10&amp;rsquo;s one mainly needs to know which algorithms are appropriate to &lt;em&gt;use&lt;/em&gt;, since most common algorithms are already implemented in the standard library of modern programming languages. Therefore I would like to give a summary of the minimum that I think you, as a modern coder, actually need to know to do your job effectively.&lt;/p&gt;
+   <content type="html">&lt;p&gt;In general I feel that deep algorithm knowledge is overrated in the software industry. In the early 90&amp;rsquo;s, one needed to know about common algorithms because you needed to actually &lt;em&gt;implement&lt;/em&gt; them. Today in the 00&amp;rsquo;s and 10&amp;rsquo;s one mainly needs to know which algorithms are appropriate to &lt;em&gt;use&lt;/em&gt;, since most common algorithms are already implemented in the standard library of modern programming languages. Therefore I would like to give a summary of the minimum that I think modern coders actually need to know to do their job effectively.&lt;/p&gt;
 
-&lt;p&gt;I assume that, like me, your typical domain area is writing applications: primarily rich web applications, desktop applications, and server-side tools. In this context the &lt;em&gt;most&lt;/em&gt; advanced type of program you would be asked to write would be a compiler or other program transformation tool.&lt;/p&gt;
+&lt;p&gt;All advice in this article is directly towards those who write &lt;em&gt;applications&lt;/em&gt;: primarily rich web applications, desktop applications, and server-side tools. In this context the &lt;em&gt;most&lt;/em&gt; advanced type of program you would be asked to write would be a compiler or other program transformation tool.&lt;/p&gt;
 
 &lt;p&gt;If on the other hand you work in a low-level environments close to the hardware&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, are performing scientific calculations&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, or are regularly processing insanely large data sets&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, you will need to know more about algorithms that what I cover here.&lt;/p&gt;
 
@@ -2260,7 +2383,13 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 &lt;li&gt;&lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;More comprehensively discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;More comprehensively discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/&quot;&gt;Abandonment vs. Unchecked Exceptions for Error Handling&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes abandonment, an uncommon error-handling style.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -4521,7 +4650,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
 &lt;li&gt;Processing has a built-in graphics. But it&amp;rsquo;s not designed for composability at all, meaning that you can&amp;rsquo;t mix and match parts from different programs. Its function naming is also haphazard and inconsistent.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;My game &lt;a href=&quot;/prism/projects/dungeons/&quot;&gt;Dungeons&lt;/a&gt; was the most advanced program I wrote in HyperCard. Other kids at National Computer Camp would line up at my computer who wanted to play it - a very humbling experience.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;My game &lt;a href=&quot;/prism/projects/dungeons/&quot;&gt;Dungeons&lt;/a&gt; was the most advanced program I wrote in HyperCard. Other kids at National Computer Camp would line up at my computer who wanted to play it. I was very proud.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;BASIC, Pascal&lt;/strong&gt; &amp;ndash; Instructional Setting
@@ -5996,7 +6125,13 @@ public class AmbiguousNameException extends FetchException { ... }
 &lt;li&gt;&lt;a href=&quot;/articles/2014/11/22/error-handling-styles/&quot;&gt;Error handling styles in programming&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Summarizes the most prominent strategies for handling runtime errors.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Summarizes the most prominent strategies for handling runtime errors.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/&quot;&gt;Abandonment vs. Unchecked Exceptions for Error Handling&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Describes abandonment, an uncommon error-handling style.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

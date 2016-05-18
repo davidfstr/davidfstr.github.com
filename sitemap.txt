@@ -9,6 +9,7 @@ http://dafoster.net/contact/
 http://dafoster.net/
 http://dafoster.net/projects/burn-planner/donate/
 http://dafoster.net/projects/burn-planner/
+http://dafoster.net/projects/crystal-web-archiver/
 http://dafoster.net/projects/handbrake-subtitle-support/
 http://dafoster.net/projects/incoming-game/
 http://dafoster.net/projects/
@@ -20,6 +21,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/
 http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats/
 http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder/
 http://dafoster.net/articles/2016/04/02/roles-on-software-teams/

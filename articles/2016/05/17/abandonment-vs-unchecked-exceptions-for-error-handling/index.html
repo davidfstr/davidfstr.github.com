@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Shame on the NSA | DaFoster</title>
+    <title>Abandonment vs. Unchecked Exceptions for Error Handling | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -291,62 +291,125 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Shame on the NSA</h1>
+    <h1>Abandonment vs. Unchecked Exceptions for Error Handling</h1>
     <div class="post-metadata">
-      Oct 21, 2013 &ndash; Filed under: 
+      May 17, 2016 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>43</sup></a></span>
         
       </span>
       
     </div>
     
-    <p>I work in the data analysis industry and am appalled that the kinds of tools I am building are being abused by the government to spy on ordinary citizens without public oversight.</p>
+    <p>Read a very interesting article about <a href="http://joeduffyblog.com/2016/02/07/the-error-model/">error handling in Midori</a> recently, and it got me thinking about errors again. I&rsquo;ve thought about errors a lot in the past, as you can see in my old <a href="/articles/2013/07/13/error-handling/">Error Handling</a> article from 2013.</p>
 
-<p>This power is too easily used to harass and detain individuals who express an opinion disagreeing with those in power, such as the multiple extrajudicial actions taken against Edward Snowden and others for blowing the whistle on unethical government action.</p>
-
-<p>To summarize <strong>current NSA capabilities</strong> that have been revealed:</p>
-
-<ol>
-<li><p>The NSA can tap the email and phone of arbitrary persons solely on the authority of an analyst, without a warrant. Including US citizens.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p></li>
-<li><p>Online texting and voice-over-IP services (i.e. online telephone) can also be tapped. Including Skype, the largest provider.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p></li>
-<li><p>The NSA can store the communications of US citizens for 5 years without a warrant.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p></li>
-<li><p>The NSA is tapping into not just the communications of individuals or particular corporations, but also into the internet backbone itself. This covers ALL non-encrypted internet communications passing through the US.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></p></li>
-<li><p>As for encrypted communications, the NSA has been deliberately attempting to insert backdoors and weaknesses into the standard encryption mechanisms used to conduct trusted communications on the internet.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></p></li>
-<li><p>But often there is no need to break encryption: The most popular online service providers are compelled to provide data directly from their servers to the NSA under the PRISM program. As of late 2012 this affects services provided by Microsoft, Yahoo, Google, Facebook, PalTalk, YouTube, Skype, AOL, and Apple.<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></p></li>
-</ol>
-
-
-<p>This behavior is wildly in violation of the 4th Amendment, which is intended to protect Americans against unreasonable search and seizures. I don’t care if there is a lower law such as the Patriot Act which supposedly authorizes these actions. I am sure that was never the intent of Congress.</p>
-
-<p>I think the best starting point to counter these encroachments is to directly <strong>fight back against the most egregious violations</strong>. In particular I find the lack of any court oversight over individual NSA analysts to be especially distressing.</p>
-
-<p>If you&rsquo;d like to join me in this first battle, please <strong><a href="http://bit.ly/nsatap">sign my petition</a></strong> to stop NSA analysts from being able to wiretap people without oversight and <strong>share it with others</strong>:</p>
+<p>Midori mentions a few mechanisms for handling errors:</p>
 
 <ul>
-<li><a href="http://bit.ly/nsatap">Stop NSA analysts from wiretapping people without due process</a><br/>
-<u><a href="http://bit.ly/nsatap">http://bit.ly/nsatap</a></u></li>
+<li><strong>error codes</strong>,</li>
+<li><strong>unchecked exceptions</strong>,</li>
+<li><strong>checked exceptions</strong>, and</li>
+<li><strong>abandonment</strong>.</li>
 </ul>
 
 
-<p>I expect this will be a long war. <!-- But worth fighting for. --></p>
+<p>Midori has chosen to run with</p>
+
+<ol>
+<li><em>abandonment</em> for bugs, and</li>
+<li><em>checked exceptions</em> for most regular errors,</li>
+<li><em>error codes</em> for other regular errors.</li>
+</ol>
+
+
+<p>These seem to be reasonable choices given the special constraints of a language intended for systems, namely:</p>
+
+<ul>
+<li><strong>correctness</strong> is more important than convenience,</li>
+<li><strong>constant-time performance</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is important,</li>
+</ul>
+
+
+<p>However I work mostly in application domains rather than system domains, so I wouldn&rsquo;t make these same choices. In particular <em>abandonment</em> really gets under my skin.</p>
+
+<h3>Abandonment</h3>
+
+<p>Abandonment in Midori is used for bugs and serious errors where there is no expectation that the error condition can be handled sensibly. Abandonment tears down the entire process.</p>
+
+<p>I have a few problems with this approach:</p>
+
+<ol>
+<li><p><strong>Abandonment assumes that the <em>process</em> is the primary isolation boundary.</strong></p>
+
+<p>In a web server, for example, a single <em>request</em> being handled would be a more appropriate boundary. It would be better to abort only the current request rather than bring down the entire web server.</p></li>
+<li><p><strong>Abandonment provides no opportunity for its error condition to be handled in an alternative fashion.</strong></p>
+
+<p>For example, code that intentionally allocates large blocks of memory on a regular basis may in fact be prepared to handle out of memory conditions, which would normally trigger abandonment.</p>
+
+<p>Granted, you can often support this scenario by bifurcating the API, providing one allocate-memory function that returns an explicit error code on failure and a different allocate-memory function that abandons on failure.</p></li>
+</ol>
+
+
+<p>But there is one big advantage to using abandonment:</p>
+
+<ul>
+<li><p><strong>Better constant-time performance.</strong></p>
+
+<p>Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-time performance of all functions in the language.</p></li>
+</ul>
+
+
+<h3>Unchecked Exceptions</h3>
+
+<p>In most modern programming languages intended for applications (as opposed to systems), <em>unchecked exceptions</em> are used for reporting bugs. They have the following advantages:</p>
+
+<ul>
+<li><p><strong>Unchecked exceptions fail fast, terminating the process by default.</strong></p>
+
+<p>This is no different than abandonment so far, however&hellip;</p></li>
+<li><p><strong>Unchecked exceptions <em>can</em> be caught by a higher level error handler</strong>.</p>
+
+<p>This additional flexibily is useful for web servers, parsers, and other applications that expect to encounter errors but don&rsquo;t want to crash entirely in the presence of errors.</p></li>
+</ul>
+
+
+<p>But:</p>
+
+<ul>
+<li><p><strong>Unchecked exceptions degrade constant-time performance.</strong>.</p>
+
+<p>However this typically doesn&rsquo;t matter in application domains. Only <em>algorithmic performance</em> matters.</p></li>
+</ul>
+
+
+<h3>Conclusion</h3>
+
+<p>I think abandonment is a reasonable approach for systems languages but I still prefer unchecked exceptions myself for application languages. I prefer the additional flexibility you get with unchecked exceptions and don&rsquo;t mind the performance difference.</p>
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="/articles/2013/07/13/error-handling/">Error Handling</a>
+
+<ul>
+<li><p><em>Discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.</em></p></li>
+</ul>
+</li>
+<li><a href="/articles/2014/11/22/error-handling-styles/">Error handling styles in programming</a>
+
+<ul>
+<li><em>Summarizes the most prominent strategies for handling runtime errors.</em></li>
+</ul>
+</li>
+</ul>
+
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
-<p><a href="http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/">http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p><a href="http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/">http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/</a><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-<li id="fn:3">
-<p><a href="http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant">http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant</a><a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
-<li id="fn:4">
-<p><a href="http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/">http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/</a><a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
-<li id="fn:5">
-<p><a href="https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html">https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html</a><a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
-<li id="fn:6">
-<p><a href="http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg">http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg</a><a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<p>As used in this article, <strong>constant-time performance</strong> refers to being sensitive to high constant factors in program time costs. This is in contrast to <strong>algorithmic performance</strong> which cares primarily about avoiding, for example, an O(n<sup>2</sup>) algorithm where an O(n) algorithm would suffice.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
@@ -366,9 +429,11 @@
       
       
         
+          
+        
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>43</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>43</sup></a></li>
     
       
       
@@ -411,11 +476,9 @@
       
       
         
-          
-        
       
       
-      <li id="Politics-topic" class="active"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
     
   </ul>
   <hr style="margin: .5em 0;"/>
@@ -434,11 +497,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods/" title="WA Initiative 522: GMO Food Labeling">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2016/05/02/a-programmers-guide-to-practical-hats/" title="A Programmer's Guide to Practical Hats">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/" title="Scrivener: An IDE for thinkers, creators, and writers">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
