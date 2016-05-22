@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>About | DaFoster</title>
+    <title>Glue in Functional Programming Languages | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -55,10 +55,6 @@
     
     <!-- Le scripts -->
   
-    <script src="/assets/js/jquery-1.8.3.min.js"></script>
-  
-  
-    <script src="/assets/js/jquery.ba-hashchange.min.js"></script>
   
   
   
@@ -205,6 +201,77 @@
               <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
               
             
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
             
             
           </ul>
@@ -223,173 +290,76 @@
         
         
           <div class="row">
-  <div class="span9">
-    <h1>About</h1>
+  <div class="span9 content post">
+    <h1>Glue in Functional Programming Languages</h1>
+    <div class="post-metadata">
+      May 21, 2016 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>44</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p><a href="http://www.cse.chalmers.se/~rjmh/Papers/whyfp.html">Why Functional Programming Matters</a> is a famous paper on the merits of functional programming&nbsp;(FP). It argues that FP has two big special tools for <em>glueing</em> programs together:</p>
+
+<ol>
+<li><p><strong>Higher-order functions can be easily composed</strong> with other functions to create powerful composite functions.</p></li>
+<li><p><strong>Lazy evaluation</strong> allows efficient processing of streams and large data structures.</p></li>
+</ol>
 
 
-<p>My name is <strong>David Foster</strong> and I enjoy developing software for fun and profit.</p>
+<h3>Higher-Order Functions, meet List Comprehensions</h3>
 
-<p>I am currently the CTO at <a href="http://www.techsmartkids.com">TechSmartKids</a>,
-helping to bring world-class computer science education to K-12 students.</p>
+<p>I would like to note that Python — a modern imperative language that also supports functional and object-oriented paradigms — has not only higher order functions but something even better: <strong>list&nbsp;comprehensions</strong>.</p>
 
-<h2 id="biography">Biography</h2>
+<p>List comprehensions allow very succinct composition of user functions with the most important higher-order functions: <code>map</code>, and <code>filter</code>.</p>
 
-
-<p>I initially discovered computers when I was 4 and starting programming them at 6.
-Since then, programming has been one of my most enduring passions.
-Witness my large number of <a href="/projects/">personal projects</a>.</p>
-
-<p>Beyond that I enjoy:</p>
+<p>Compare the following paired examples, showing a list comprehension first, followed by a composition of <code>map</code> and <code>filter</code>:</p>
 
 <ul>
-<li>reading;</li>
-<li>learning about languages (both spoken and programming);</li>
-<li>teaching;</li>
-<li>kayaking, visiting gardens; and</li>
-<li>watching the occasional anime series.</li>
+<li><p><code>[n * 2 for n in nums]</code><br/>
+<code>nums.map(lambda n: n * 2)</code></p></li>
+<li><p><code>[n for n in nums if n % 2 == 0]</code><br/>
+<code>nums.filter(lambda n: n % 2 == 0)</code></p></li>
+<li><p><code>[item.name for item in items if item is not None]</code><br/>
+<code>items.filter(lambda item: item is not None).map(lambda item: item.name)</code></p></li>
 </ul>
 
 
-<h2 id="contact">Contact</h2>
+<p>I would argue that in all of these cases the list comprehension is both (1) easier to understand and (2)&nbsp;more succinct.</p>
+
+<h3>Lazy Evaluation, meet Generators and Coroutines</h3>
+
+<p>Lazy evaluation can certainly be very expressive for processing large data structures, compared with greedy evaluation. However I would like to note the following:</p>
+
+<ul>
+<li><p>Lazy evaluation <strong>significantly complicates using a traditional step-by-step debugger tool to step through a program</strong>:<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> the current instruction pointer constantly warps up and down the call stack, which can be very confusing.</p></li>
+<li><p>Lazy evaluation <strong>interacts poorly with error handling, I/O, and other side effects</strong>.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<p>This limits lazy evaluation&rsquo;s advantages in processing large data structures to only those structures which are <em>in-memory</em> or <em>procedurally generated</em> rather than the (IMHO more-common) structures that reside <em>on disk</em> or must be fetched <em>over the network</em> - which must be read with I/O and may be malformed, thus requiring error handling.</p></li>
+<li><p>Pervasive use of lazy evaluation introduces unnecessary context switching overhead that <strong>degrades the constant-time performance of algorithms</strong> for which greedy evaluation would be acceptable. This makes pervasive lazy evaluation unsuitable for certain domains, such as systems domains.</p></li>
+</ul>
 
 
-<p>Email <strong>david</strong> at this domain (dafoster.net).</p>
+<p>Instead of <em>pervasive</em> lazy evaluation, I find it sufficient to have lazy evaluation <em>on demand</em> in the form of Python&rsquo;s <strong>generators</strong>, <strong>generator comprehensions</strong>, and <strong>coroutines</strong> when needed.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Presumably this is why Haskell does not ship with a traditional debugger. (Or at least I am not able to locate documentation for one.)<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Presumably this is one reason why Haskell does not allow unconstrained side effects, although there are many other reasons for having such constraints.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 
   </div>
   
-  <div class="span3 block-bar">
-    <div class="block">
-  <h3>Projects</h3>
   
-  <ul class="tag_box" style="margin-bottom: .5em">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="burn-planner-project">
-          <a href="/projects/burn-planner/">Burn Planner</a>
-        </li>
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="handbrake-subtitle-support-project">
-          <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="incoming-game-project">
-          <a href="/projects/incoming-game/" class="external">Incoming (Game)</a>
-        </li>
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="rdiscount-project">
-          <a href="/projects/rdiscount/">RDiscount</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="uhuru-project">
-          <a href="/projects/uhuru/" class="external">Uhuru</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="webcrystal-project">
-          <a href="/projects/webcrystal/" class="external">webcrystal</a>
-        </li>
-      
-    
-      
-        
-          
-        
-        
-        
-        
-        
-        <li id="website-project">
-          <a href="/projects/website/">Website</a>
-        </li>
-      
-    
-      
-    
-      
-    
-      
-    
-  </ul>
-  <p class="x-and-more-projects">And more at:</p>
-<ul>
-  <li><a href="https://github.com/davidfstr?tab=repositories" class="external">GitHub</a></li>
-  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
-  <li><a href="/apps/">Web Apps</a></li>
-</ul>
-</div>
+  <div class="span3 block-bar">
     <div class="block">
   <h3>Topics</h3>
   
@@ -400,12 +370,18 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
       
       
       
+        
+          
+        
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>44</sup></a></li>
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>44</sup></a></li>
     
       
       
       
+      
+        
       
       
       <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
@@ -414,12 +390,16 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
       
       
       
+        
+      
       
       <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>8</sup></a></li>
     
       
       
       
+      
+        
       
       
       <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>5</sup></a></li>
@@ -428,12 +408,16 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
       
       
       
+        
+      
       
       <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
     
       
       
       
+      
+        
       
       
       <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
@@ -449,6 +433,23 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
 </div>
 
   </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/" title="Abandonment vs. Unchecked Exceptions for Error Handling">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
 </div>
 
         
@@ -462,17 +463,6 @@ Witness my large number of <a href="/projects/">personal projects</a>.</p>
 
     </div>
     
-  
-    <script>
-      $(window).hashchange(function() {
-        // Highlight heading corresponding to current anchor (if specified)
-        if (location.hash) {
-          $('h2').removeClass('active');
-          $(location.hash).addClass('active');
-        }
-      });
-      $(window).hashchange();
-    </script>
   
   
   
