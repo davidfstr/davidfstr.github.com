@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2016-06-12T11:59:01-07:00</updated>
+ <updated>2016-08-21T21:48:37-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,43 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook</id>
+   <title>How to upload from OS X Photos to Facebook (2016)</title>
+   <published>2016-08-21T00:00:00-07:00</published>
+   <updated>2016-08-21T00:00:00-07:00</updated>
+   
+     <category term="Productivity"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;The OS X Photos program has a built-in Share button that can post selected photos directly to Facebook. However it has the following limitations:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Photos are not uploaded in high quality.&lt;/li&gt;
+&lt;li&gt;Photos are not uploaded in the correct order. Neither the order of selection nor the order the photos were taken is used exactly.&lt;/li&gt;
+&lt;li&gt;Photos cannot be uploaded to a new album, only an existing one.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Therefore I recommend the following procedure to upload photos from OS X Photos to Facebook:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In OS X Photos, &lt;strong&gt;select all photos&lt;/strong&gt; that you want to upload by holding Command and clicking each photo.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;From the menubar, choose: &lt;strong&gt;File &gt; Export &gt; Export N photos&amp;hellip;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the Facebook web interface, choose &lt;strong&gt;&amp;ldquo;Create Album&amp;rdquo;&lt;/strong&gt;, selecting all the photo files that you exported in the previous step.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure the &lt;strong&gt;&amp;ldquo;High Quality&amp;rdquo; checkbox&lt;/strong&gt; is checked.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Done.&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>

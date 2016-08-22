@@ -6,14 +6,47 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 12 Jun 2016 11:59:01 -0700</pubDate>
-    <lastBuildDate>Sun, 12 Jun 2016 11:59:01 -0700</lastBuildDate>
+    <pubDate>Sun, 21 Aug 2016 21:48:37 -0700</pubDate>
+    <lastBuildDate>Sun, 21 Aug 2016 21:48:37 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>How to upload from OS X Photos to Facebook (2016)</title>
+      <link>http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook</guid>
+      <description>&lt;p&gt;The OS X Photos program has a built-in Share button that can post selected photos directly to Facebook. However it has the following limitations:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Photos are not uploaded in high quality.&lt;/li&gt;
+&lt;li&gt;Photos are not uploaded in the correct order. Neither the order of selection nor the order the photos were taken is used exactly.&lt;/li&gt;
+&lt;li&gt;Photos cannot be uploaded to a new album, only an existing one.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Therefore I recommend the following procedure to upload photos from OS X Photos to Facebook:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In OS X Photos, &lt;strong&gt;select all photos&lt;/strong&gt; that you want to upload by holding Command and clicking each photo.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;From the menubar, choose: &lt;strong&gt;File &gt; Export &gt; Export N photos&amp;hellip;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the Facebook web interface, choose &lt;strong&gt;&amp;ldquo;Create Album&amp;rdquo;&lt;/strong&gt;, selecting all the photo files that you exported in the previous step.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure the &lt;strong&gt;&amp;ldquo;High Quality&amp;rdquo; checkbox&lt;/strong&gt; is checked.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Done.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>

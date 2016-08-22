@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Glue in Functional Programming Languages | DaFoster</title>
+    <title>How to upload from OS X Photos to Facebook (2016) | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -291,70 +291,42 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Glue in Functional Programming Languages</h1>
+    <h1>How to upload from OS X Photos to Facebook (2016)</h1>
     <div class="post-metadata">
-      May 21, 2016 &ndash; Filed under: 
+      Aug 21, 2016 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>44</sup></a></span>
+          <span><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></span>
         
       </span>
       
     </div>
     
-    <p><a href="http://www.cse.chalmers.se/~rjmh/Papers/whyfp.html">Why Functional Programming Matters</a> is a famous paper on the merits of functional programming&nbsp;(FP). It argues that FP has two big special tools for <em>glueing</em> programs together:</p>
-
-<ol>
-<li><p><strong>Higher-order functions can be easily composed</strong> with other functions to create powerful composite functions.</p></li>
-<li><p><strong>Lazy evaluation</strong> allows efficient processing of streams and large data structures.</p></li>
-</ol>
-
-
-<h3>Higher-Order Functions, meet List Comprehensions</h3>
-
-<p>I would like to note that Python — a modern imperative language that also supports functional and object-oriented paradigms — has not only higher order functions but something even better: <strong>list&nbsp;comprehensions</strong>.</p>
-
-<p>List comprehensions allow very succinct composition of user functions with the most important higher-order functions: <code>map</code>, and <code>filter</code>.</p>
-
-<p>Compare the following paired examples, showing a list comprehension first, followed by a composition of <code>map</code> and <code>filter</code>:</p>
+    <p>The OS X Photos program has a built-in Share button that can post selected photos directly to Facebook. However it has the following limitations:</p>
 
 <ul>
-<li><p><code>[n * 2 for n in nums]</code><br/>
-<code>nums.map(lambda n: n * 2)</code></p></li>
-<li><p><code>[n for n in nums if n % 2 == 0]</code><br/>
-<code>nums.filter(lambda n: n % 2 == 0)</code></p></li>
-<li><p><code>[item.name for item in items if item is not None]</code><br/>
-<code>items.filter(lambda item: item is not None).map(lambda item: item.name)</code></p></li>
+<li>Photos are not uploaded in high quality.</li>
+<li>Photos are not uploaded in the correct order. Neither the order of selection nor the order the photos were taken is used exactly.</li>
+<li>Photos cannot be uploaded to a new album, only an existing one.</li>
 </ul>
 
 
-<p>I would argue that in all of these cases the list comprehension is both (1) easier to understand and (2)&nbsp;more succinct.</p>
+<p>Therefore I recommend the following procedure to upload photos from OS X Photos to Facebook:</p>
 
-<h3>Lazy Evaluation, meet Generators and Coroutines</h3>
-
-<p>Lazy evaluation can certainly be very expressive for processing large data structures, compared with greedy evaluation. However I would like to note the following:</p>
+<ol>
+<li><p>In OS X Photos, <strong>select all photos</strong> that you want to upload by holding Command and clicking each photo.</p></li>
+<li><p>From the menubar, choose: <strong>File > Export > Export N photos&hellip;</strong></p></li>
+<li><p>In the Facebook web interface, choose <strong>&ldquo;Create Album&rdquo;</strong>, selecting all the photo files that you exported in the previous step.</p>
 
 <ul>
-<li><p>Lazy evaluation <strong>significantly complicates using a traditional step-by-step debugger tool to step through a program</strong>:<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> the current instruction pointer constantly warps up and down the call stack, which can be very confusing.</p></li>
-<li><p>Lazy evaluation <strong>interacts poorly with error handling, I/O, and other side effects</strong>.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
-
-<p>This limits lazy evaluation&rsquo;s advantages in processing large data structures to only those structures which are <em>in-memory</em> or <em>procedurally generated</em> rather than the (IMHO more-common) structures that reside <em>on disk</em> or must be fetched <em>over the network</em> - which must be read with I/O and may be malformed, thus requiring error handling.</p></li>
-<li><p>Pervasive use of lazy evaluation introduces unnecessary context switching overhead that <strong>degrades the constant-time performance of algorithms</strong> for which greedy evaluation would be acceptable. This makes pervasive lazy evaluation unsuitable for certain domains, such as systems domains.</p></li>
+<li>Ensure the <strong>&ldquo;High Quality&rdquo; checkbox</strong> is checked.</li>
 </ul>
-
-
-<p>Instead of <em>pervasive</em> lazy evaluation, I find it sufficient to have lazy evaluation <em>on demand</em> in the form of Python&rsquo;s <strong>generators</strong>, <strong>generator comprehensions</strong>, and <strong>coroutines</strong> when needed.</p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>Presumably this is why Haskell does not ship with a traditional debugger. (Or at least I am not able to locate documentation for one.)<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>Presumably this is one reason why Haskell does not allow unconstrained side effects, although there are many other reasons for having such constraints.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</li>
 </ol>
-</div>
 
+
+<p>Done.</p>
 
   </div>
   
@@ -371,20 +343,20 @@
       
       
         
-          
-        
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>44</sup></a></li>
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>44</sup></a></li>
     
       
       
       
       
         
+          
+        
       
       
-      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+      <li id="Productivity-topic" class="active"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
     
       
       
@@ -439,11 +411,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/" title="Abandonment vs. Unchecked Exceptions for Error Handling">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2016/05/21/glue-in-functional-programming-languages/" title="Glue in Functional Programming Languages">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/" title="How to upload from OS X Photos to Facebook (2016)">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
