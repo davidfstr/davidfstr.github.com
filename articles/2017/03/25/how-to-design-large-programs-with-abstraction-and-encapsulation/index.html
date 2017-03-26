@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>How to Design Large Programs with Abstraction and Encapsulation | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>How to Design Large Programs with Abstraction and Encapsulation</h1>
+    <div class="post-metadata">
+      Mar 25, 2017 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>45</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>I spend a lot of time as a professional coder working on very large programs, attempting to grow them while also keeping them from collapsing under their own weight. This is hard.</p>
+
+<h2>Abstraction and Encapsulation</h2>
+
+<h3>The Challenge</h3>
+
+<p>A large program has a lot of behavior to specify. The number of lines of code is roughly proportional to the complexity of the behavior specified.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p><img src="/assets/2017/abstraction-and-encapsulation/1-lines.png" alt="Lines" /></p>
+
+<p>However a coder, being only human, can only hold a fixed amount of <strong>concepts</strong> in their head at once.</p>
+
+<h3>Chunking</h3>
+
+<p>The number of concepts can be reduced by <strong>chunking</strong> them into larger concepts that are less numerous. For example a bundle of <em>lines</em> can be chunked into a single <em>function</em> or a <em>method</em>.</p>
+
+<p><img src="/assets/2017/abstraction-and-encapsulation/2-functions.png" alt="Functions" /></p>
+
+<p>Chunking allows you to reduce the total number of concepts that you need to keep in your head at once.</p>
+
+<p>There are many kind of chunks. The kinds I normally think about are:</p>
+
+<ul>
+<li>Lines</li>
+<li>Paragraphs</li>
+<li>Functions, Methods<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
+<li>Classes</li>
+<li>Modules<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></li>
+<li>Packages<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></li>
+<li>Assemblies, Libraries</li>
+<li>Binaries</li>
+<li>Services</li>
+</ul>
+
+
+<h3>Abstractions</h3>
+
+<p>A larger unit that is created by bundling smaller units is called an <strong>abstraction</strong>. An abstraction typically has:</p>
+
+<ol>
+<li>a name</li>
+<li>a public surface area, and</li>
+<li>a private interior.</li>
+</ol>
+
+
+<p>For a <em>function</em> unit, it has a function name, some number of <em>parameters</em> and a <em>return value</em> which serves as the public surface area, and a body of code lines which serve as the private interior.</p>
+
+<p><img src="/assets/2017/abstraction-and-encapsulation/3-func_anatomy.png" alt="Anatomy of a Function" /></p>
+
+<h3>Encapsulation</h3>
+
+<p>An abstraction reduces global complexity by hiding (or <strong>encapsulating</strong>) its large private interior, exposing only the smaller public surface area to the rest of the system. One only needs to understand the smaller public surface area when using the function and not the details of the private interior.</p>
+
+<p>A well-designed abstraction thus strives to <strong>minimize its public surface area</strong> while maximizing its private interior. Such an abstraction takes up only small mental space relative to its interior complexity.</p>
+
+<p>As an example of minimizing public surface area, let&rsquo;s consider the example of a larger kind of unit, a <em>class</em>:</p>
+
+<p><img src="/assets/2017/abstraction-and-encapsulation/4-class_anatomy.png" alt="Anatomy of a Class" /></p>
+
+<p>By extension of the principle above, <strong>everything should be private by default</strong>; only those methods that need to be public (because they are used externally) should be made public.</p>
+
+<p>If a method on a class is declared public when it is only used internally, you can perform a <strong>Refactor Privatize</strong> to make it private.</p>
+
+<p>The same principle applies yet again to <em>modules</em>, a larger kind of unit:</p>
+
+<p><img src="/assets/2017/abstraction-and-encapsulation/5-module_anatomy.png" alt="Anatomy of a Module" /></p>
+
+<p>Again, everything should be private by default.</p>
+
+<h2>Names Matter</h2>
+
+<p>It is worth noting that <strong>a name by itself serves as an kind of abstraction</strong>. A good function name can tell you what the function does without you needing to crack it open and read its implementation. A good class name tells you what it represents, what it is responsible for, what it is, and what it is not.</p>
+
+<p>If you have to look behind a name to figure out what something does, the name needs to be improved via a <strong>Refactor Rename</strong>. Refactor Rename is probably the most common refactoring I apply out of all the kinds of refactorings I use.</p>
+
+<p>For simple names, <strong>coding conventions</strong> related to names often can tell you a lot. For example:</p>
+
+<ul>
+<li>Methods:
+
+<ul>
+<li><code>setFoo</code> - Sets the &ldquo;foo&rdquo; property on a class. Take a single value as a parameter and returns nothing.</li>
+<li><code>getFoo</code> - Gets the &ldquo;foo&rdquo; property on a class. Takes no parameters and returns the value.</li>
+<li><code>initFoo</code>, <code>setupFoo</code> - Designed to be called once.</li>
+<li><code>updateFoo</code> - Designed to be called multiple times.</li>
+</ul>
+</li>
+<li>Variables
+
+<ul>
+<li><code>curFoo</code> - The current element when iterating over a collection of foos.</li>
+<li><code>i</code>, <code>j</code>, <code>k</code> - An uninteresting loop counter.</li>
+<li><code>e</code>, <code>f</code> - An uninteresting exception or event.</li>
+<li><code>minFoo</code>, <code>maxFoo</code> - A minimum or maximum permissive value for foo, inclusive.</li>
+<li><code>limFoo</code> - A maximum permissive value for foo, exclusive.</li>
+<li><code>fooIndex</code> - A 0-based position of something.</li>
+<li><code>fooOrdinal</code> - A 1-based position of something.</li>
+<li><code>LOUD_CASE</code> - A constant.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2><em>To Be Continued</em></h2>
+
+<p>I&rsquo;ve got many other techniquies for designing large programs. In the next few articles I hope to share some of these with you.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>I lied: When you think about it program complexity tends to grow with the <em>square</em> of its size rather than linearly because all pieces of the program can depend on the other pieces and these dependencies contribute to the program complexity.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>A method is kind of function that is attached to a class.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>A module contains functions, classes, and variables, among other things.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>A package is a module that contains submodules.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>45</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>5</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+    <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+  </a>
+  <a class="subscribe subscribe-last" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/" title="How to upload from OS X Photos to Facebook (2016)">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2017 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

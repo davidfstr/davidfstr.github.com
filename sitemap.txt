@@ -21,6 +21,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/
 http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/
 http://dafoster.net/articles/2016/05/21/glue-in-functional-programming-languages/
 http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/

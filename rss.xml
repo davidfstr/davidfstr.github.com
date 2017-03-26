@@ -6,14 +6,144 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 21 Aug 2016 21:48:37 -0700</pubDate>
-    <lastBuildDate>Sun, 21 Aug 2016 21:48:37 -0700</lastBuildDate>
+    <pubDate>Sat, 25 Mar 2017 20:28:30 -0700</pubDate>
+    <lastBuildDate>Sat, 25 Mar 2017 20:28:30 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>How to Design Large Programs with Abstraction and Encapsulation</title>
+      <link>http://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 25 Mar 2017 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation</guid>
+      <description>&lt;p&gt;I spend a lot of time as a professional coder working on very large programs, attempting to grow them while also keeping them from collapsing under their own weight. This is hard.&lt;/p&gt;
+
+&lt;h2&gt;Abstraction and Encapsulation&lt;/h2&gt;
+
+&lt;h3&gt;The Challenge&lt;/h3&gt;
+
+&lt;p&gt;A large program has a lot of behavior to specify. The number of lines of code is roughly proportional to the complexity of the behavior specified.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/1-lines.png&quot; alt=&quot;Lines&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;However a coder, being only human, can only hold a fixed amount of &lt;strong&gt;concepts&lt;/strong&gt; in their head at once.&lt;/p&gt;
+
+&lt;h3&gt;Chunking&lt;/h3&gt;
+
+&lt;p&gt;The number of concepts can be reduced by &lt;strong&gt;chunking&lt;/strong&gt; them into larger concepts that are less numerous. For example a bundle of &lt;em&gt;lines&lt;/em&gt; can be chunked into a single &lt;em&gt;function&lt;/em&gt; or a &lt;em&gt;method&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.png&quot; alt=&quot;Functions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Chunking allows you to reduce the total number of concepts that you need to keep in your head at once.&lt;/p&gt;
+
+&lt;p&gt;There are many kind of chunks. The kinds I normally think about are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lines&lt;/li&gt;
+&lt;li&gt;Paragraphs&lt;/li&gt;
+&lt;li&gt;Functions, Methods&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Classes&lt;/li&gt;
+&lt;li&gt;Modules&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Packages&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Assemblies, Libraries&lt;/li&gt;
+&lt;li&gt;Binaries&lt;/li&gt;
+&lt;li&gt;Services&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Abstractions&lt;/h3&gt;
+
+&lt;p&gt;A larger unit that is created by bundling smaller units is called an &lt;strong&gt;abstraction&lt;/strong&gt;. An abstraction typically has:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;a name&lt;/li&gt;
+&lt;li&gt;a public surface area, and&lt;/li&gt;
+&lt;li&gt;a private interior.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;For a &lt;em&gt;function&lt;/em&gt; unit, it has a function name, some number of &lt;em&gt;parameters&lt;/em&gt; and a &lt;em&gt;return value&lt;/em&gt; which serves as the public surface area, and a body of code lines which serve as the private interior.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/3-func_anatomy.png&quot; alt=&quot;Anatomy of a Function&quot; /&gt;&lt;/p&gt;
+
+&lt;h3&gt;Encapsulation&lt;/h3&gt;
+
+&lt;p&gt;An abstraction reduces global complexity by hiding (or &lt;strong&gt;encapsulating&lt;/strong&gt;) its large private interior, exposing only the smaller public surface area to the rest of the system. One only needs to understand the smaller public surface area when using the function and not the details of the private interior.&lt;/p&gt;
+
+&lt;p&gt;A well-designed abstraction thus strives to &lt;strong&gt;minimize its public surface area&lt;/strong&gt; while maximizing its private interior. Such an abstraction takes up only small mental space relative to its interior complexity.&lt;/p&gt;
+
+&lt;p&gt;As an example of minimizing public surface area, let&amp;rsquo;s consider the example of a larger kind of unit, a &lt;em&gt;class&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/4-class_anatomy.png&quot; alt=&quot;Anatomy of a Class&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By extension of the principle above, &lt;strong&gt;everything should be private by default&lt;/strong&gt;; only those methods that need to be public (because they are used externally) should be made public.&lt;/p&gt;
+
+&lt;p&gt;If a method on a class is declared public when it is only used internally, you can perform a &lt;strong&gt;Refactor Privatize&lt;/strong&gt; to make it private.&lt;/p&gt;
+
+&lt;p&gt;The same principle applies yet again to &lt;em&gt;modules&lt;/em&gt;, a larger kind of unit:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/5-module_anatomy.png&quot; alt=&quot;Anatomy of a Module&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, everything should be private by default.&lt;/p&gt;
+
+&lt;h2&gt;Names Matter&lt;/h2&gt;
+
+&lt;p&gt;It is worth noting that &lt;strong&gt;a name by itself serves as an kind of abstraction&lt;/strong&gt;. A good function name can tell you what the function does without you needing to crack it open and read its implementation. A good class name tells you what it represents, what it is responsible for, what it is, and what it is not.&lt;/p&gt;
+
+&lt;p&gt;If you have to look behind a name to figure out what something does, the name needs to be improved via a &lt;strong&gt;Refactor Rename&lt;/strong&gt;. Refactor Rename is probably the most common refactoring I apply out of all the kinds of refactorings I use.&lt;/p&gt;
+
+&lt;p&gt;For simple names, &lt;strong&gt;coding conventions&lt;/strong&gt; related to names often can tell you a lot. For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Methods:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;setFoo&lt;/code&gt; - Sets the &amp;ldquo;foo&amp;rdquo; property on a class. Take a single value as a parameter and returns nothing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;getFoo&lt;/code&gt; - Gets the &amp;ldquo;foo&amp;rdquo; property on a class. Takes no parameters and returns the value.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;initFoo&lt;/code&gt;, &lt;code&gt;setupFoo&lt;/code&gt; - Designed to be called once.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;updateFoo&lt;/code&gt; - Designed to be called multiple times.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Variables
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;curFoo&lt;/code&gt; - The current element when iterating over a collection of foos.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt;, &lt;code&gt;j&lt;/code&gt;, &lt;code&gt;k&lt;/code&gt; - An uninteresting loop counter.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;e&lt;/code&gt;, &lt;code&gt;f&lt;/code&gt; - An uninteresting exception or event.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minFoo&lt;/code&gt;, &lt;code&gt;maxFoo&lt;/code&gt; - A minimum or maximum permissive value for foo, inclusive.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;limFoo&lt;/code&gt; - A maximum permissive value for foo, exclusive.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fooIndex&lt;/code&gt; - A 0-based position of something.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fooOrdinal&lt;/code&gt; - A 1-based position of something.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LOUD_CASE&lt;/code&gt; - A constant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;&lt;em&gt;To Be Continued&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve got many other techniquies for designing large programs. In the next few articles I hope to share some of these with you.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;I lied: When you think about it program complexity tends to grow with the &lt;em&gt;square&lt;/em&gt; of its size rather than linearly because all pieces of the program can depend on the other pieces and these dependencies contribute to the program complexity.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;A method is kind of function that is attached to a class.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;A module contains functions, classes, and variables, among other things.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;A package is a module that contains submodules.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
