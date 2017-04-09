@@ -297,7 +297,7 @@
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>45</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>46</sup></a></span>
         
       </span>
       
@@ -309,7 +309,7 @@
 
 <h3>The Challenge</h3>
 
-<p>A large program has a lot of behavior to specify. The number of lines of code is roughly proportional to the complexity of the behavior specified.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<p>A large program has a lot of behavior to specify. The complexity of the behavior specified by a program is roughly proportional to its size.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <p><img src="/assets/2017/abstraction-and-encapsulation/1-lines.png" alt="Lines" /></p>
 
@@ -373,6 +373,16 @@
 
 <p>Again, everything should be private by default.</p>
 
+<h3>Combining Encapsulated Abstractions</h3>
+
+<p>Encapsulated abstractions really shine in reducing program complexity when you combine them together.</p>
+
+<p>Without abstractions everything can depend on everything else which creates a potential combinatorial explosion of complexity. By contrast <em>with</em> abstractions, the local complexity is bounded much more tightly.</p>
+
+<p><img src="/assets/2017/abstraction-and-encapsulation/complexity_comparison.png" alt="Complexity with and without abstractions" /></p>
+
+<blockquote><p>Within an abstraction the maximum local complexity is proportional to the size of that particular abstraction&rsquo;s private interior plus the size of the public surface areas of all other abstractions.</p></blockquote>
+
 <h2>Names Matter</h2>
 
 <p>It is worth noting that <strong>a name by itself serves as an kind of abstraction</strong>. A good function name can tell you what the function does without you needing to crack it open and read its implementation. A good class name tells you what it represents, what it is responsible for, what it is, and what it is not.</p>
@@ -414,7 +424,7 @@
 <hr/>
 <ol>
 <li id="fn:1">
-<p>I lied: When you think about it program complexity tends to grow with the <em>square</em> of its size rather than linearly because all pieces of the program can depend on the other pieces and these dependencies contribute to the program complexity.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>I&rsquo;m intentionally oversimplifying: Program complexity actually tends to grow with the <em>square</em> of its size rather than linearly because all pieces of the program can depend on the other pieces and these dependencies contribute to the program complexity.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
 <p>A method is kind of function that is attached to a class.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
@@ -444,7 +454,7 @@
         
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>45</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>46</sup></a></li>
     
       
       
@@ -512,7 +522,7 @@
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next disabled"><a>Next &rarr;</a>
+        <li class="next"><a href="/articles/2017/04/09/the-trouble-with-global-variables/" title="The Trouble with Global Variables">Next &rarr;</a></li>
       
       </ul>
     </div>

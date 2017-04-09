@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>The Trouble with Global Variables | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>The Trouble with Global Variables</h1>
+    <div class="post-metadata">
+      Apr 09, 2017 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>46</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>You&rsquo;ve probably heard that global variables are bad. Today I want to explain <em>why</em> they are problematic, with examples, and give some design alternatives where you might be tempted to use a global variable.</p>
+
+<h2>What is a global?</h2>
+
+<p>A global is a variable from the environment that a function can directly read or write without going through a function parameter.</p>
+
+<p>For example, here is a <code>warn</code> function that adds a warning message to a global warnings list.</p>
+
+<pre><code>warnings = []
+
+def warn(message):
+    warnings.append(message)
+</code></pre>
+
+<h2>When is it tempting to use a global?</h2>
+
+<p>Globals are tempting to use when there are a large number of related functions that need to read or write a common piece of information.</p>
+
+<p>For example consider a parser that has a root <code>parse_calendar_file</code> function that calls a tree of subordinate functions to parse data from a YAML document into domain objects. Any of these subordinate functions may emit warnings.</p>
+
+<p><img src="/assets/2017/the-trouble-with-global-variables/parse_calendar_file.png" alt="" /></p>
+
+<h2>Why are globals problematic?</h2>
+
+<p>Globals create hidden dependencies that are difficult to discover and easy to propagate.</p>
+
+<h3>Globals are hidden</h3>
+
+<blockquote><p>Globals act as a kind of <em>hidden</em> parameter or return value of any function that uses them, which callers may be unaware of. Such global-dependent functions are fragile and easy to misuse.</p></blockquote>
+
+<p>A function that reads a global expects it to be in a particular state before the function is called. If it is not in the correct state, the function will misbehave. And yet you don&rsquo;t see the global mentioned in the function&rsquo;s parameter list.</p>
+
+<p>A function that writes a global relies on the global to return information to the caller or an ancestor of the caller. And yet you don&rsquo;t see the global mentioned in the function&rsquo;s return value.</p>
+
+<p>In fact to see whether a function depends on a global you <em>must</em> crack it open and examine its implementation. This breaks encapsulation, requiring you to inspect the function&rsquo;s private implementation and not just its public interface to discern how to use it properly. Thus functions that manipulate globals are easy to misuse.</p>
+
+<h3>Globals are viral</h3>
+
+<blockquote><p>Globals silently infect both direct <em>and</em> indirect callers such that they have a dependency on the global, which new callers may be unaware of. Globals create spooky action at a distance.</p></blockquote>
+
+<p>In the parsing example above consider what would happen if you were to invoke a subordinate parsing function like <code>parse_bell_schedule</code> directly, without going through the root function that initializes the <code>warnings</code> global. Since the call tree of the subordinate function eventually reaches <code>warn</code>, which expects <code>warnings</code> to be initialized, calling the subordinate function directly will crash!</p>
+
+<p><img src="/assets/2017/the-trouble-with-global-variables/write_crashes.png" alt="" /></p>
+
+<p>It is not possible to read only the implementation of the subordinate function <code>parse_bell_schedule</code> to discern that it depends on the <code>warnings</code> global: you have to read the implementation of <em>every</em> function that it calls, directly or indirectly, to see whether it uses the global! This is a massive encapsulation violation of the entire call tree that leads to the global! Every function in the call tree becomes easy to misuse.</p>
+
+<h3>Globals are thread-hostile</h3>
+
+<blockquote><p>Functions that depend on mutable globals directly or indirectly cannot be used safely in a multi-threaded program. Attempting to do so will create race conditions, garbage output, and crashes.</p></blockquote>
+
+<p>Consider what would happen if you had two threads that independently and simultaneously called the root function <code>parse_calendar_file</code>.</p>
+
+<p>Say thread A gets halfway through parsing when B just starts parsing. Thread B will clobber thread A&rsquo;s version of the <code>warnings</code> global when it starts parsing. As thread A and B continue parsing, warnings from <em>both</em> threads will be mixed together into a nonsensical mishmash. After the first-finishing thread  destroys the global, the other thread may crash when it tries to doubly destroy the global. Either way both threads will either return bogus warnings or crash outright.</p>
+
+<p>To make multi-threaded usage of <code>warnings</code> safe, it is necessary for there to be a separate version of <code>warnings</code> owned by each call tree or thread. Globals by definition are global in scope and are not themselves divisible into separate versions per call tree or thread.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<h2>What can I use instead of a global?</h2>
+
+<p>Considering that the big issue with globals is that they are <em>invisible</em> and, well, <em>globally</em> scoped, let&rsquo;s consider alternatives that are actually <em>visible</em> and <em>more-tightly</em> scoped.</p>
+
+<h3>Explicit Parameters</h3>
+
+<p>One way to eliminate a global variable is to just pass its value around as an explicit parameter.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<p>This approach provides no encapsulation around the shared variable and doesn&rsquo;t allow you to easily add additional shared variables to the same function group. This approach is thus suited to when you explicitly don&rsquo;t want encapsulation, don&rsquo;t anticipate adding new shared variables, and don&rsquo;t want to change the variable itself, such as when you&rsquo;re passing a Whole Object around.</p>
+
+<p>For our parsing example, we&rsquo;ll create a <code>warnings</code> parameter on all parsing functions:</p>
+
+<p><img src="/assets/2017/the-trouble-with-global-variables/explicit_parameters.png" alt="" /></p>
+
+<p>Our parsing example really wants some encapsulation around the shared <code>warnings</code> variable and is likely to want more shared variables later (like <code>errors</code>) so the explicit parameter approach is not appropriate here.</p>
+
+<h3>Context Objects</h3>
+
+<p>A Context Object bundles together a bunch of variables that are shared among a set of related functions as fields. The related functions then take the Context Object as an explicit parameter.</p>
+
+<p>For our parsing example, we&rsquo;ll create a <code>WarningsContext</code> class which is then passed around among all parsing functions:</p>
+
+<p><img src="/assets/2017/the-trouble-with-global-variables/context_object.png" alt="" /></p>
+
+<p>It now becomes explicit as to which functions depend on the ability to issue warnings, at the cost of adding noise to the function signatures.</p>
+
+<p>In our parsing example if a new caller was introduced that wanted to call the subordinate <code>parse_bell_schedule</code> function directly it would now be obvious that the caller would need to create and initialize a <code>WarningsContext</code> object first and pass it to the subordinate function. No more crashes. Nice.</p>
+
+<p>Also notice that <code>WarningsContext</code> is sufficiently encapsulated to be usable by not just the calendar file parser code but also <em>reusable</em> by other code that wishes to generate warnings. Cool.</p>
+
+<p>If there is a desire to add another variable that the parsing functions all depend on (like <code>errors</code>), it is easy to add it to the <code>WarningsContext</code> class which is already being passed around everywhere, and then rename the class to something more specific like <code>CalendarParsingContext</code>. However if you are using a very specific context name you probably want a Method Object instead&hellip;</p>
+
+<h3>Method Objects</h3>
+
+<p>A Method Object is like a Context Object but is even more cohesive: it bundles together not only the shared variables but the functions themselves into a single class. This new class is instantiated internally by the root function and lives only for the duration of the original function call.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+
+<p>For our parsing example we&rsquo;ll create a <code>CalendarFileParser</code> class:</p>
+
+<p><img src="/assets/2017/the-trouble-with-global-variables/method_object.png" alt="" /></p>
+
+<p>A Method Object is especially useful when there are <em>many</em> variables that are used by the same set of cohesive functions and these variables are tightly bound to the functions themselves.</p>
+
+<p>If we wanted to add an <code>errors</code> variable to the parsing functions here in addition to <code>warnings</code>, we&rsquo;d just declare it as another field on <code>CalendarFileParser</code>. Easy.</p>
+
+<h2>Ende</h2>
+
+<p>Hopefully this discussion has been useful in explaining why global variables are to be avoided and what design techniques can be used instead.</p>
+
+<p>I anticipate the next few articles will continue on the theme of considerations and techniques when designing <em>large</em> software systems. Stay tuned.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>You can get around the natural thread-hostility of a global variable by wrapping its value in a <strong>thread local</strong>. A thread local is a little-known special kind of Cell object that stores an independent value depending on which thread it is accessed from. In Python see <code>threading.local</code>. In Java see <code>java.lang.ThreadLocal</code>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>If you need to <em>modify</em> the base of a shared variable when it is being passed around as an explicit parameter then you must <em>also</em> pass back the altered variable through the return value. However this gets unwieldly very fast. In such cases you probably want to either wrap the shared variable in a Cell so that you don&rsquo;t have to modify the variable itself or use a Context Object. If you truly must use explicit parameters and return values, such as in a functional language that disallows direct mutation of values, consider using the Monad pattern to reduce syntactic overhead.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>A Method Object gets its name from the fact that it exposes only a single public method and all of the other private methods and fields exist to serve that method.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>46</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>5</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+    <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+  </a>
+  <a class="subscribe subscribe-last" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/" title="How to Design Large Programs with Abstraction and Encapsulation">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2017 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

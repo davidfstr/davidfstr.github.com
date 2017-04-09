@@ -6,14 +6,140 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 25 Mar 2017 20:28:30 -0700</pubDate>
-    <lastBuildDate>Sat, 25 Mar 2017 20:28:30 -0700</lastBuildDate>
+    <pubDate>Sun, 09 Apr 2017 11:48:24 -0700</pubDate>
+    <lastBuildDate>Sun, 09 Apr 2017 11:48:24 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>The Trouble with Global Variables</title>
+      <link>http://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 09 Apr 2017 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables</guid>
+      <description>&lt;p&gt;You&amp;rsquo;ve probably heard that global variables are bad. Today I want to explain &lt;em&gt;why&lt;/em&gt; they are problematic, with examples, and give some design alternatives where you might be tempted to use a global variable.&lt;/p&gt;
+
+&lt;h2&gt;What is a global?&lt;/h2&gt;
+
+&lt;p&gt;A global is a variable from the environment that a function can directly read or write without going through a function parameter.&lt;/p&gt;
+
+&lt;p&gt;For example, here is a &lt;code&gt;warn&lt;/code&gt; function that adds a warning message to a global warnings list.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;warnings = []
+
+def warn(message):
+    warnings.append(message)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;When is it tempting to use a global?&lt;/h2&gt;
+
+&lt;p&gt;Globals are tempting to use when there are a large number of related functions that need to read or write a common piece of information.&lt;/p&gt;
+
+&lt;p&gt;For example consider a parser that has a root &lt;code&gt;parse_calendar_file&lt;/code&gt; function that calls a tree of subordinate functions to parse data from a YAML document into domain objects. Any of these subordinate functions may emit warnings.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/parse_calendar_file.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Why are globals problematic?&lt;/h2&gt;
+
+&lt;p&gt;Globals create hidden dependencies that are difficult to discover and easy to propagate.&lt;/p&gt;
+
+&lt;h3&gt;Globals are hidden&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Globals act as a kind of &lt;em&gt;hidden&lt;/em&gt; parameter or return value of any function that uses them, which callers may be unaware of. Such global-dependent functions are fragile and easy to misuse.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;A function that reads a global expects it to be in a particular state before the function is called. If it is not in the correct state, the function will misbehave. And yet you don&amp;rsquo;t see the global mentioned in the function&amp;rsquo;s parameter list.&lt;/p&gt;
+
+&lt;p&gt;A function that writes a global relies on the global to return information to the caller or an ancestor of the caller. And yet you don&amp;rsquo;t see the global mentioned in the function&amp;rsquo;s return value.&lt;/p&gt;
+
+&lt;p&gt;In fact to see whether a function depends on a global you &lt;em&gt;must&lt;/em&gt; crack it open and examine its implementation. This breaks encapsulation, requiring you to inspect the function&amp;rsquo;s private implementation and not just its public interface to discern how to use it properly. Thus functions that manipulate globals are easy to misuse.&lt;/p&gt;
+
+&lt;h3&gt;Globals are viral&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Globals silently infect both direct &lt;em&gt;and&lt;/em&gt; indirect callers such that they have a dependency on the global, which new callers may be unaware of. Globals create spooky action at a distance.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;In the parsing example above consider what would happen if you were to invoke a subordinate parsing function like &lt;code&gt;parse_bell_schedule&lt;/code&gt; directly, without going through the root function that initializes the &lt;code&gt;warnings&lt;/code&gt; global. Since the call tree of the subordinate function eventually reaches &lt;code&gt;warn&lt;/code&gt;, which expects &lt;code&gt;warnings&lt;/code&gt; to be initialized, calling the subordinate function directly will crash!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/write_crashes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It is not possible to read only the implementation of the subordinate function &lt;code&gt;parse_bell_schedule&lt;/code&gt; to discern that it depends on the &lt;code&gt;warnings&lt;/code&gt; global: you have to read the implementation of &lt;em&gt;every&lt;/em&gt; function that it calls, directly or indirectly, to see whether it uses the global! This is a massive encapsulation violation of the entire call tree that leads to the global! Every function in the call tree becomes easy to misuse.&lt;/p&gt;
+
+&lt;h3&gt;Globals are thread-hostile&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Functions that depend on mutable globals directly or indirectly cannot be used safely in a multi-threaded program. Attempting to do so will create race conditions, garbage output, and crashes.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Consider what would happen if you had two threads that independently and simultaneously called the root function &lt;code&gt;parse_calendar_file&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Say thread A gets halfway through parsing when B just starts parsing. Thread B will clobber thread A&amp;rsquo;s version of the &lt;code&gt;warnings&lt;/code&gt; global when it starts parsing. As thread A and B continue parsing, warnings from &lt;em&gt;both&lt;/em&gt; threads will be mixed together into a nonsensical mishmash. After the first-finishing thread  destroys the global, the other thread may crash when it tries to doubly destroy the global. Either way both threads will either return bogus warnings or crash outright.&lt;/p&gt;
+
+&lt;p&gt;To make multi-threaded usage of &lt;code&gt;warnings&lt;/code&gt; safe, it is necessary for there to be a separate version of &lt;code&gt;warnings&lt;/code&gt; owned by each call tree or thread. Globals by definition are global in scope and are not themselves divisible into separate versions per call tree or thread.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2&gt;What can I use instead of a global?&lt;/h2&gt;
+
+&lt;p&gt;Considering that the big issue with globals is that they are &lt;em&gt;invisible&lt;/em&gt; and, well, &lt;em&gt;globally&lt;/em&gt; scoped, let&amp;rsquo;s consider alternatives that are actually &lt;em&gt;visible&lt;/em&gt; and &lt;em&gt;more-tightly&lt;/em&gt; scoped.&lt;/p&gt;
+
+&lt;h3&gt;Explicit Parameters&lt;/h3&gt;
+
+&lt;p&gt;One way to eliminate a global variable is to just pass its value around as an explicit parameter.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;This approach provides no encapsulation around the shared variable and doesn&amp;rsquo;t allow you to easily add additional shared variables to the same function group. This approach is thus suited to when you explicitly don&amp;rsquo;t want encapsulation, don&amp;rsquo;t anticipate adding new shared variables, and don&amp;rsquo;t want to change the variable itself, such as when you&amp;rsquo;re passing a Whole Object around.&lt;/p&gt;
+
+&lt;p&gt;For our parsing example, we&amp;rsquo;ll create a &lt;code&gt;warnings&lt;/code&gt; parameter on all parsing functions:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/explicit_parameters.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our parsing example really wants some encapsulation around the shared &lt;code&gt;warnings&lt;/code&gt; variable and is likely to want more shared variables later (like &lt;code&gt;errors&lt;/code&gt;) so the explicit parameter approach is not appropriate here.&lt;/p&gt;
+
+&lt;h3&gt;Context Objects&lt;/h3&gt;
+
+&lt;p&gt;A Context Object bundles together a bunch of variables that are shared among a set of related functions as fields. The related functions then take the Context Object as an explicit parameter.&lt;/p&gt;
+
+&lt;p&gt;For our parsing example, we&amp;rsquo;ll create a &lt;code&gt;WarningsContext&lt;/code&gt; class which is then passed around among all parsing functions:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/context_object.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It now becomes explicit as to which functions depend on the ability to issue warnings, at the cost of adding noise to the function signatures.&lt;/p&gt;
+
+&lt;p&gt;In our parsing example if a new caller was introduced that wanted to call the subordinate &lt;code&gt;parse_bell_schedule&lt;/code&gt; function directly it would now be obvious that the caller would need to create and initialize a &lt;code&gt;WarningsContext&lt;/code&gt; object first and pass it to the subordinate function. No more crashes. Nice.&lt;/p&gt;
+
+&lt;p&gt;Also notice that &lt;code&gt;WarningsContext&lt;/code&gt; is sufficiently encapsulated to be usable by not just the calendar file parser code but also &lt;em&gt;reusable&lt;/em&gt; by other code that wishes to generate warnings. Cool.&lt;/p&gt;
+
+&lt;p&gt;If there is a desire to add another variable that the parsing functions all depend on (like &lt;code&gt;errors&lt;/code&gt;), it is easy to add it to the &lt;code&gt;WarningsContext&lt;/code&gt; class which is already being passed around everywhere, and then rename the class to something more specific like &lt;code&gt;CalendarParsingContext&lt;/code&gt;. However if you are using a very specific context name you probably want a Method Object instead&amp;hellip;&lt;/p&gt;
+
+&lt;h3&gt;Method Objects&lt;/h3&gt;
+
+&lt;p&gt;A Method Object is like a Context Object but is even more cohesive: it bundles together not only the shared variables but the functions themselves into a single class. This new class is instantiated internally by the root function and lives only for the duration of the original function call.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;For our parsing example we&amp;rsquo;ll create a &lt;code&gt;CalendarFileParser&lt;/code&gt; class:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/method_object.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A Method Object is especially useful when there are &lt;em&gt;many&lt;/em&gt; variables that are used by the same set of cohesive functions and these variables are tightly bound to the functions themselves.&lt;/p&gt;
+
+&lt;p&gt;If we wanted to add an &lt;code&gt;errors&lt;/code&gt; variable to the parsing functions here in addition to &lt;code&gt;warnings&lt;/code&gt;, we&amp;rsquo;d just declare it as another field on &lt;code&gt;CalendarFileParser&lt;/code&gt;. Easy.&lt;/p&gt;
+
+&lt;h2&gt;Ende&lt;/h2&gt;
+
+&lt;p&gt;Hopefully this discussion has been useful in explaining why global variables are to be avoided and what design techniques can be used instead.&lt;/p&gt;
+
+&lt;p&gt;I anticipate the next few articles will continue on the theme of considerations and techniques when designing &lt;em&gt;large&lt;/em&gt; software systems. Stay tuned.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;You can get around the natural thread-hostility of a global variable by wrapping its value in a &lt;strong&gt;thread local&lt;/strong&gt;. A thread local is a little-known special kind of Cell object that stores an independent value depending on which thread it is accessed from. In Python see &lt;code&gt;threading.local&lt;/code&gt;. In Java see &lt;code&gt;java.lang.ThreadLocal&lt;/code&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;If you need to &lt;em&gt;modify&lt;/em&gt; the base of a shared variable when it is being passed around as an explicit parameter then you must &lt;em&gt;also&lt;/em&gt; pass back the altered variable through the return value. However this gets unwieldly very fast. In such cases you probably want to either wrap the shared variable in a Cell so that you don&amp;rsquo;t have to modify the variable itself or use a Context Object. If you truly must use explicit parameters and return values, such as in a functional language that disallows direct mutation of values, consider using the Monad pattern to reduce syntactic overhead.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;A Method Object gets its name from the fact that it exposes only a single public method and all of the other private methods and fields exist to serve that method.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -27,7 +153,7 @@
 
 &lt;h3&gt;The Challenge&lt;/h3&gt;
 
-&lt;p&gt;A large program has a lot of behavior to specify. The number of lines of code is roughly proportional to the complexity of the behavior specified.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;A large program has a lot of behavior to specify. The complexity of the behavior specified by a program is roughly proportional to its size.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/1-lines.png&quot; alt=&quot;Lines&quot; /&gt;&lt;/p&gt;
 
@@ -91,6 +217,16 @@
 
 &lt;p&gt;Again, everything should be private by default.&lt;/p&gt;
 
+&lt;h3&gt;Combining Encapsulated Abstractions&lt;/h3&gt;
+
+&lt;p&gt;Encapsulated abstractions really shine in reducing program complexity when you combine them together.&lt;/p&gt;
+
+&lt;p&gt;Without abstractions everything can depend on everything else which creates a potential combinatorial explosion of complexity. By contrast &lt;em&gt;with&lt;/em&gt; abstractions, the local complexity is bounded much more tightly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/complexity_comparison.png&quot; alt=&quot;Complexity with and without abstractions&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Within an abstraction the maximum local complexity is proportional to the size of that particular abstraction&amp;rsquo;s private interior plus the size of the public surface areas of all other abstractions.&lt;/p&gt;&lt;/blockquote&gt;
+
 &lt;h2&gt;Names Matter&lt;/h2&gt;
 
 &lt;p&gt;It is worth noting that &lt;strong&gt;a name by itself serves as an kind of abstraction&lt;/strong&gt;. A good function name can tell you what the function does without you needing to crack it open and read its implementation. A good class name tells you what it represents, what it is responsible for, what it is, and what it is not.&lt;/p&gt;
@@ -132,7 +268,7 @@
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;I lied: When you think about it program complexity tends to grow with the &lt;em&gt;square&lt;/em&gt; of its size rather than linearly because all pieces of the program can depend on the other pieces and these dependencies contribute to the program complexity.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;I&amp;rsquo;m intentionally oversimplifying: Program complexity actually tends to grow with the &lt;em&gt;square&lt;/em&gt; of its size rather than linearly because all pieces of the program can depend on the other pieces and these dependencies contribute to the program complexity.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;A method is kind of function that is attached to a class.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
