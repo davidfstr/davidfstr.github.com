@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Sending email from command line scripts | DaFoster</title>
+    <title>How to learn to cook: My journey | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -291,79 +291,109 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Sending email from command line scripts</h1>
+    <h1>How to learn to cook: My journey</h1>
     <div class="post-metadata">
-      Jul 27, 2013 &ndash; Filed under: 
+      Dec 09, 2017 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Software">Software <sup>46</sup></a></span>
-         
-          <span><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></span>
+          <span><a href="/articles/topics/#Cooking">Cooking <sup>1</sup></a></span>
         
       </span>
       
     </div>
     
-    <p>This weekend I open-sourced a script called <a href="https://github.com/davidfstr/notifymail">notifymail</a> which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.</p>
+    <p>This year I spent a lot of time teaching myself to cook more complicated dishes from cookbooks, doing meal planning, and learning related skills. In this article I&rsquo;d like to share my system for learning to cook better.</p>
 
-<p>It is very easy to configure <code>notifymail</code> for the first time:</p>
+<h3>Commit to becoming skilled at cooking</h3>
 
-<pre><code>$ pip install notifymail
-$ notifymail.py --setup
-SMTP Server Hostname: smtp.gmail.com
-SMTP Server Port [465]: 587
-SMTP Server Uses TLS (y/n) [n]: yes
-SMTP Username: robot@gmail.com
-SMTP Password: ********
-From Address [robot@gmail.com]: robot@gmail.com
-From Name (optional) []: notifymail
-To Address: admin@example.com
+<p>This is all in your head: Decide that you really want to get better at cooking.</p>
 
-Verifying connection to SMTP server... OK
-</code></pre>
+<p>Get excited. Imagine your favorite tasty dish from a restaurant - eggs benedict in my case - and imagine how neat it would be if you could cook it yourself.</p>
 
-<p>Check your mail provider&rsquo;s documentation to get the SMTP settings mentioned above. For example I made an internet search for &ldquo;gmail SMTP settings&rdquo; to find <a href="https://support.google.com/mail/troubleshooter/1668960?hl=en#ts=1665119,1665162">Gmail&rsquo;s SMTP settings</a>:</p>
+<p>Commit. Tell your friends that you&rsquo;re practicing cooking and to expect pictures of cooked dishes on social media. You wouldn&rsquo;t want to disappoint them.</p>
+
+<h3>Reserve time each week for cooking</h3>
+
+<p>Practice makes perfect: The best way to learn cooking - or really any skill - is to <em>practice</em> on a regular basis.</p>
+
+<p>In my case I decided to cook at least one &ldquo;advanced&rdquo; (i.e. cookbook-based) dish per week on a consistent day. To do that I blocked out a few evenings:</p>
 
 <ul>
-<li><strong>Gmail SMTP Server:</strong> smtp.gmail.com</li>
-<li><strong>Gmail SMTP Port:</strong> 587 (for TLS)</li>
-<li><strong>Gmail SMTP Uses TLS?</strong> yes</li>
+<li><strong>Meal Planning Day</strong> (Sunday) - Decide what dish to cook this week. Write down ingredients.</li>
+<li><strong>Grocery Day</strong> (Monday) - Buy ingredients.</li>
+<li><strong>Cooking Day</strong> (Tuesday) - Assemble ingredients.</li>
 </ul>
 
 
-<p>Once you have <code>notifymail</code> installed, you can send an email to yourself in a Python script with as little code as:</p>
+<h3>Select and buy a good cookbook</h3>
 
-<pre><code>import notifymail
-notifymail.send('Subject', 'Hello World', from_name='greeting_script')
-</code></pre>
-
-<p>Or you can invoke <code>notifymail</code> from the command line:</p>
-
-<pre><code>$ echo "Hello World" | notifymail.py -s "Subject"
-</code></pre>
-
-<p>Full documentation is available on the <a href="https://github.com/davidfstr/notifymail#readme">notifymail project page</a>.</p>
-
-<h2>Hasn&rsquo;t this been done before?</h2>
-
-<p>I reinvented my own wheel to send email principally because of the poor documentation of other alternatives:</p>
+<p>To provide a set of cooking goals - that is, dishes to cook - a cookbook is useful. When selecting a cookbook I looked for a few things:</p>
 
 <ul>
-<li><p><code>mail</code> and <code>postfix</code> were so complicated I couldn&rsquo;t figure out how to set them up.</p></li>
-<li><p><code>ssmtp</code> didn&rsquo;t work after I tried to configure it and there was no good documentation to help me debug why it wasn&rsquo;t working.</p></li>
+<li><p>Targeted at new cooks.</p></li>
+<li><p>Compatible with my diet.</p>
+
+<p>In my case I don&rsquo;t like cooking meat, so vegetarian and vegan cookbooks are good choices.</p></li>
+<li><p>Has <em>pictures</em> of finished dishes.</p>
+
+<p>Tasty-looking pictures of the goal are inspiring.</p></li>
+<li><p>Uses similar ingredients across multiple dishes. Avoids exotic ingredients.</p>
+
+<p>With a small number of commonly-used ingredients you learn about those ingredients more quickly than if you had a large number.</p>
+
+<p>It also becomes less necessary to buy additional ingredients for every single recipe, since you&rsquo;ll probably have left-over ingredients from other dishes you&rsquo;ve cooked from the same book.</p></li>
 </ul>
 
 
-<p>For reference, here&rsquo;s <a href="http://unix.stackexchange.com/questions/36982/can-i-set-up-system-mail-to-use-an-external-smtp-server">some information for setting up those alternatives</a>.</p>
+<p>In my particular case I selected <a href="https://www.amazon.com/Thug-Kitchen-Official-Cookbook-Like-ebook/dp/B00JVVQQ1G/">Thug Kitchen</a> - which I prefer to call Swearing Simple Vegan - as my cookbook. It&rsquo;s directed at new cooks, is vegan, uses common ingredients, and is hilarious.</p>
 
-<h2>Fun things to do with <code>notifymail</code></h2>
+<h3>Work the cooking pipeline</h3>
+
+<p>Practice. Practice. Practice.</p>
+
+<h4>Meal Planning Day (15-45 minutes)</h4>
 
 <ul>
-<li><p>I have a script called <code>heartbeat</code> that periodically attempts to connect to all of my servers via SSH. If it cannot connect to a server it sends me an email with <code>notifymail</code>. If it cannot access email it displays a sticky Growl notification locally.</p></li>
-<li><p>I have another script called <code>meetupfilter</code> that tracks incoming &ldquo;New Meetup Group&rdquo; emails from <a href="http://www.meetup.com/">Meetup</a>. It waits until all such announced groups have at least 3 events on their calendar before sending me a notification at my personal email with <code>notifymail</code>. That way I don&rsquo;t hear about Meetup groups that appear but then fizzle out immediately, which is a surprising number. I may open-source this script eventually if I <a href="/contact">hear there is interest</a>.</p></li>
+<li><p>Browse recipes in your cookbook. Mark ones you&rsquo;d like to cook sometime with a sticky note.</p>
+
+<p>I also occasionally looked up recipes online as well.</p></li>
+<li><p>Decide on 1-2 recipes to cook <em>this week</em> from your marked potential recipes.</p></li>
+<li><p>Record ingredients which you need but don&rsquo;t have in stock on a shopping list. Also record any missing cooking gadgets to purchase.</p></li>
 </ul>
 
+
+<h4>Grocery Day (1 hour)</h4>
+
+<ul>
+<li><p>Go to grocery store.</p></li>
+<li><p>Buy ingredients from your shopping list.</p></li>
+<li><p>Go home. Unpack ingredients.</p></li>
+</ul>
+
+
+<p>Tip: You can eliminate the first 2 steps by buying groceries online.</p>
+
+<h4>Cooking Day (3 hours)</h4>
+
+<ul>
+<li><p>Read through the recipe again. Annotate important items like cooking times.</p></li>
+<li><p>Arrange all ingredients on the counter.</p></li>
+<li><p>Follow the recipe instructions. Look for patterns and remember them.</p></li>
+<li><p>Eat delicious food.</p></li>
+<li><p>Photo the meal to record progress. Share on social media.</p></li>
+<li><p>Package leftovers for future lunches and dinners.</p></li>
+<li><p>Wash the dishes.</p></li>
+</ul>
+
+
+<h3>That&rsquo;s it!</h3>
+
+<p>After practicing for 2-3 months I became confident that I could cook most recipes from the same style of cookbook without it feeling difficult.</p>
+
+<p>I also learned a lot of little tips and tricks along the way to streamline the cooking process. I&rsquo;m planning to write another article in the near future about the most important tips I&rsquo;ve learned so far.</p>
+
+<p>Happy cooking!</p>
 
   </div>
   
@@ -380,13 +410,9 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
       
       
         
-          
-        
-      
-        
       
       
-      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>46</sup></a></li>
+      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>46</sup></a></li>
     
       
       
@@ -394,18 +420,12 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
       
         
       
-        
-          
-        
       
-      
-      <li id="Productivity-topic" class="active"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
     
       
       
       
-      
-        
       
         
       
@@ -418,16 +438,12 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
       
         
       
-        
-      
       
       <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>5</sup></a></li>
     
       
       
       
-      
-        
       
         
       
@@ -440,8 +456,6 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
       
         
       
-        
-      
       
       <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
     
@@ -450,11 +464,11 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
       
       
         
-      
+          
         
       
       
-      <li id="Cooking-topic"><a href="/articles/topics/#Cooking">Cooking <sup>1</sup></a></li>
+      <li id="Cooking-topic" class="active"><a href="/articles/topics/#Cooking">Cooking <sup>1</sup></a></li>
     
   </ul>
   <hr style="margin: .5em 0;"/>
@@ -473,11 +487,11 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2013/07/13/error-handling/" title="Error Handling">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2017/04/09/the-trouble-with-global-variables/" title="The Trouble with Global Variables">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/08/03/skills-i-learned-at-microsoft/" title="Skills I Learned at Microsoft">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
