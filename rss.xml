@@ -6,14 +6,47 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 09 Dec 2017 18:00:18 -0800</pubDate>
-    <lastBuildDate>Sat, 09 Dec 2017 18:00:18 -0800</lastBuildDate>
+    <pubDate>Mon, 18 Dec 2017 21:02:45 -0800</pubDate>
+    <lastBuildDate>Mon, 18 Dec 2017 21:02:45 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>How to annotate a new recipe</title>
+      <link>http://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe</guid>
+      <description>&lt;p&gt;When trying a new recipe for the first time I annotate it to highlight certain important parts. An annotated recipe is easier to follow when cooking. And the process of annotating a recipe forces me to actually read the recipe.&lt;/p&gt;
+
+&lt;p&gt;Here is a recipe that I&amp;rsquo;ve already annotated:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2017/how-to-annotate-a-new-recipe/recipe.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3&gt;In the ingredients list&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Underline implicit preparation steps&lt;/strong&gt; like &amp;ldquo;chopped&amp;rdquo;, &amp;ldquo;minced&amp;rdquo;, &amp;ldquo;defrosted&amp;rdquo;. Mark their ordering with ①, ②, ③, etc. With such implicit steps marked you&amp;rsquo;ll remember to do them even though they may not be in the main recipe steps.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Put a [ bracket around ingredient clusters&lt;/strong&gt; that are added or used at the same time.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mark fresh or uncommon ingredients with ●&lt;/strong&gt; that I&amp;rsquo;ll definitely need to buy. &lt;strong&gt;Mark pantry ingredients that eventually expire with ○&lt;/strong&gt; since I might need to buy them. All other items are pantry ingredients which never expire and don&amp;rsquo;t usually need to be worried about.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Draw a ▭ rectange around key ingredients&lt;/strong&gt;. These give the primary flavor and should only be substituted with extra care.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mark any substitutions with ≈&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;In the recipe steps&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Mark any &lt;strong&gt;cooking times&lt;/strong&gt; like &amp;ldquo;12 to 15 minutes&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mark any words that imply the use of &lt;strong&gt;non-standard equipment&lt;/strong&gt; like &amp;ldquo;sift&amp;rdquo; or &amp;ldquo;poach&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>
