@@ -21,6 +21,7 @@ http://dafoster.net/projects/website-2/
 http://dafoster.net/rss.xml
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature/
 http://dafoster.net/articles/2017/12/21/power-in-relationships/
 http://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe/
 http://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey/

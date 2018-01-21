@@ -6,14 +6,123 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Thu, 04 Jan 2018 21:13:32 -0800</pubDate>
-    <lastBuildDate>Thu, 04 Jan 2018 21:13:32 -0800</lastBuildDate>
+    <pubDate>Sat, 20 Jan 2018 23:51:17 -0800</pubDate>
+    <lastBuildDate>Sat, 20 Jan 2018 23:51:17 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>How to implement a large software feature</title>
+      <link>http://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 20 Jan 2018 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature</guid>
+      <description>&lt;p&gt;I just started implementing my first big new software feature since the start of the New Year. I thought I&amp;rsquo;d outline my process since I don&amp;rsquo;t think I&amp;rsquo;ve written it down before.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s begin: A feature request comes in. In my case:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Dynamic Calendar for Teachers:&lt;/strong&gt; Extend our existing Plan page, which shows a calendar of daily activities, such that classroom teachers (our customers) can move activities around on the calendar without engaging our support team over live chat.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;I&amp;rsquo;m working in a large existing codebase and this feature needs to be integrated with existing code. This is a common situation.&lt;/p&gt;
+
+&lt;h3&gt;1. Review the current behavior&lt;/h3&gt;
+
+&lt;p&gt;We already have a &lt;strong&gt;Dynamic Calendar for Staff&lt;/strong&gt; feature implemented that our support staff can use to rearrange calendars. It just hasn&amp;rsquo;t been released directly to teachers because there a few rough edges that need to be polished off first.&lt;/p&gt;
+
+&lt;p&gt;Therefore this new feature is primarily a UI change, publicizing existing functionality, along with some backend adjustments to the functionality to make it bulletproof.&lt;/p&gt;
+
+&lt;p&gt;I annotate a screenshot of the current Dynamic Calendar dropdown that staff can use to manipulate days on the calendar:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/how-to-implement-a-large-software-feature/before.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3&gt;2. Design the new behavior. Write out the delta between the old and new behaviors.&lt;/h3&gt;
+
+&lt;p&gt;I mock up proposed new UI. In this case I just use a text file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;--------------------
+Add empty day / Add teaching day...
+Remove empty day
+-------------------- ▲ teacher sees
+Go to admin page ❏
+Add empty day (without relayout)
+Remove empty day (without relayout)
+Relayout
+-------------------- ▲ staff sees
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In other cases I actually create a visual mockup using a diagram on paper or a graphics program.&lt;/p&gt;
+
+&lt;p&gt;I also write up a summary of behavioral changes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;* Remove teacher actions (because deprecated):
+    - Set as non-teaching day
+* Add teacher actions:
+    - Add teaching day...
+        - Needs to prompt for start/end times.
+            &amp;gt; Suggest specific options based on existing schedule.
+            &amp;gt; Allow full customization as well.
+* Publicize and change actions:
+    - Add empty day
+        - May now perform a relayout. Is slow. Can fail.
+        - Adds day at the current day rather than after it.
+    - Remove empty day
+        - May now perform a relayout. Is slow. Can fail.
+        - Continues to require day to be empty of skipped objects too.
+          Teacher can now see skipped objects and move them elsewhere
+          before removing an otherwise empty day.
+* Remove staff actions (because deprecated):
+    - Domino step
+    - Domino cascade
+* Add staff actions:
+    - Add empty day (without relayout)
+    - Remove empty day (without relayout)
+    - Relayout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These behavior changes also imply the addition of some new popups, which I also mock up in another text file.&lt;/p&gt;
+
+&lt;p&gt;With the new behavior now clearly written out, it&amp;rsquo;s time to review it with a member of the User Experience team. They approve the proposed design with some changes.&lt;/p&gt;
+
+&lt;p&gt;I also review the new behavior with the member of the Engineering team most familar with the affected subsystems. In this example that person is myself, so there is no further action.&lt;/p&gt;
+
+&lt;h3&gt;3. Write out engineering tasks that perform the deltas&lt;/h3&gt;
+
+&lt;p&gt;For this example, here’s a simplified version of the tasks I write out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ ] Rip out all DC actions that involve a domino or other magic. #EasyWin
+[ ] Merge &quot;can manage&quot; and &quot;can admin&quot; permissions to just &quot;can admin&quot;.
+=== Familiar with DC logic. Prior system complexity minimized. [1]
+[ ] Add &quot;Relayout&quot; action that redirects to the existing &quot;Recreate class calendar suffix&quot; page
+[ ] Retitle:
+    - Add empty day -&amp;gt; Add empty day (without relayout)
+    - Remove empty day -&amp;gt; Remove empty day (without relayout)
+[ ] Alter &quot;Add empty day&quot; to add *at* the specified day rather than *after*
+=== Staff-facing actions are ready for release [1]
+[ ] Add &quot;newdc&quot; feature flag
+[ ] Implement new DCD action: Add empty day, behind &quot;newdc&quot; flag
+    - ... (details elided)
+[ ] Implement new DCD action: Remove empty day, behind &quot;newdc&quot; flag
+    - ... (details elided)
+=== Teacher-facing actions are ready for release. [3]
+[ ] Announce the DC feature to teachers
+    - ... (details elided)
+[ ] Remove &quot;newdc&quot; feature flag
+=== Released. [1]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I may review the engineering tasks with another member of the Engineering team if I uncover any additional details that merit review.&lt;/p&gt;
+
+&lt;p&gt;I update the estimated time for the feature on the Project Management calendar. If the new time estimate has significantly increased then I contact Project Management to see whether any external deadlines are impacted and to negotiate if they are.&lt;/p&gt;
+
+&lt;h3&gt;4. Perform the engineering tasks&lt;/h3&gt;
+
+&lt;p&gt;This is the easy part: Develop, test, merge, repeat.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>

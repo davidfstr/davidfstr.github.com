@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Impact of Anime on my Programming Experience | DaFoster</title>
+    <title>How to implement a large software feature | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -291,51 +291,118 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Impact of Anime on my Programming Experience</h1>
+    <h1>How to implement a large software feature</h1>
     <div class="post-metadata">
-      Sep 18, 2010 &ndash; Filed under: 
+      Jan 20, 2018 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>47</sup></a></span>
         
       </span>
       
     </div>
     
-    <p>It occurs to me that anime has been an important driver for improving my programming abilities.</p>
+    <p>I just started implementing my first big new software feature since the start of the New Year. I thought I&rsquo;d outline my process since I don&rsquo;t think I&rsquo;ve written it down before.</p>
 
-<p>For example:</p>
+<p>Let&rsquo;s begin: A feature request comes in. In my case:</p>
 
-<ul>
-<li>I did my own <a href="/prism/projects/kiss/">implementation of the Kisekae Set System</a> (KiSS),
-a digital paper doll system which often featured anime characters.
+<blockquote><p><strong>Dynamic Calendar for Teachers:</strong> Extend our existing Plan page, which shows a calendar of daily activities, such that classroom teachers (our customers) can move activities around on the calendar without engaging our support team over live chat.</p></blockquote>
 
-<ul>
-<li>My very first exposure to anime was to the characters of Wedding Peach,
-via an included doll file with the French KiSS viewer by John Stiles.</li>
-<li>Taught me how to write directly to graphics buffers, in both C and
-later Java.</li>
-</ul>
-</li>
-<li>I initially picked up Java when I was writing <strong>RealMediaFixer</strong>,
-a repairer of RealMedia video files. CodeWarrior&rsquo;s implementation of the
-C++ iostream classes had a broken buffered stream implementation,
-so I switched to Java to use its rock solid BufferedOutputStream
-implementation.
+<p>I&rsquo;m working in a large existing codebase and this feature needs to be integrated with existing code. This is a common situation.</p>
 
-<ul>
-<li>Initial use was to repair <a href="http://www.themanime.org/viewreview.php?id=396">Ranma</a> episodes that I downloaded over HTTP,
-on dialup!</li>
-</ul>
-</li>
-<li>I implemented <a href="/prism/projects/hotline/">my own client and server for the Hotline protocol</a>,
-through which I got most of my anime prior to the introduction of
-BitTorrent.</li>
-<li>Today I am <a href="/projects/handbrake-subtitle-support/">enhancing support for transcoding soft subtitles in HandBrake</a>
-so that I can watch new anime on the bus.</li>
-</ul>
+<h3>1. Review the current behavior</h3>
 
+<p>We already have a <strong>Dynamic Calendar for Staff</strong> feature implemented that our support staff can use to rearrange calendars. It just hasn&rsquo;t been released directly to teachers because there a few rough edges that need to be polished off first.</p>
+
+<p>Therefore this new feature is primarily a UI change, publicizing existing functionality, along with some backend adjustments to the functionality to make it bulletproof.</p>
+
+<p>I annotate a screenshot of the current Dynamic Calendar dropdown that staff can use to manipulate days on the calendar:</p>
+
+<p><img src="/assets/2018/how-to-implement-a-large-software-feature/before.png" alt="" /></p>
+
+<h3>2. Design the new behavior. Write out the delta between the old and new behaviors.</h3>
+
+<p>I mock up proposed new UI. In this case I just use a text file:</p>
+
+<pre><code>--------------------
+Add empty day / Add teaching day...
+Remove empty day
+-------------------- ▲ teacher sees
+Go to admin page ❏
+Add empty day (without relayout)
+Remove empty day (without relayout)
+Relayout
+-------------------- ▲ staff sees
+</code></pre>
+
+<p>In other cases I actually create a visual mockup using a diagram on paper or a graphics program.</p>
+
+<p>I also write up a summary of behavioral changes:</p>
+
+<pre><code>* Remove teacher actions (because deprecated):
+    - Set as non-teaching day
+* Add teacher actions:
+    - Add teaching day...
+        - Needs to prompt for start/end times.
+            &gt; Suggest specific options based on existing schedule.
+            &gt; Allow full customization as well.
+* Publicize and change actions:
+    - Add empty day
+        - May now perform a relayout. Is slow. Can fail.
+        - Adds day at the current day rather than after it.
+    - Remove empty day
+        - May now perform a relayout. Is slow. Can fail.
+        - Continues to require day to be empty of skipped objects too.
+          Teacher can now see skipped objects and move them elsewhere
+          before removing an otherwise empty day.
+* Remove staff actions (because deprecated):
+    - Domino step
+    - Domino cascade
+* Add staff actions:
+    - Add empty day (without relayout)
+    - Remove empty day (without relayout)
+    - Relayout
+</code></pre>
+
+<p>These behavior changes also imply the addition of some new popups, which I also mock up in another text file.</p>
+
+<p>With the new behavior now clearly written out, it&rsquo;s time to review it with a member of the User Experience team. They approve the proposed design with some changes.</p>
+
+<p>I also review the new behavior with the member of the Engineering team most familar with the affected subsystems. In this example that person is myself, so there is no further action.</p>
+
+<h3>3. Write out engineering tasks that perform the deltas</h3>
+
+<p>For this example, here’s a simplified version of the tasks I write out:</p>
+
+<pre><code>[ ] Rip out all DC actions that involve a domino or other magic. #EasyWin
+[ ] Merge "can manage" and "can admin" permissions to just "can admin".
+=== Familiar with DC logic. Prior system complexity minimized. [1]
+[ ] Add "Relayout" action that redirects to the existing "Recreate class calendar suffix" page
+[ ] Retitle:
+    - Add empty day -&gt; Add empty day (without relayout)
+    - Remove empty day -&gt; Remove empty day (without relayout)
+[ ] Alter "Add empty day" to add *at* the specified day rather than *after*
+=== Staff-facing actions are ready for release [1]
+[ ] Add "newdc" feature flag
+[ ] Implement new DCD action: Add empty day, behind "newdc" flag
+    - ... (details elided)
+[ ] Implement new DCD action: Remove empty day, behind "newdc" flag
+    - ... (details elided)
+=== Teacher-facing actions are ready for release. [3]
+[ ] Announce the DC feature to teachers
+    - ... (details elided)
+[ ] Remove "newdc" feature flag
+=== Released. [1]
+</code></pre>
+
+<p>I may review the engineering tasks with another member of the Engineering team if I uncover any additional details that merit review.</p>
+
+<p>I update the estimated time for the feature on the Project Management calendar. If the new time estimate has significantly increased then I contact Project Management to see whether any external deadlines are impacted and to negotiate if they are.</p>
+
+<h3>4. Perform the engineering tasks</h3>
+
+<p>This is the easy part: Develop, test, merge, repeat.</p>
 
   </div>
   
@@ -352,9 +419,11 @@ so that I can watch new anime on the bus.</li>
       
       
         
+          
+        
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>47</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>47</sup></a></li>
     
       
       
@@ -370,11 +439,9 @@ so that I can watch new anime on the bus.</li>
       
       
         
-          
-        
       
       
-      <li id="Personal-topic" class="active"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
     
       
       
@@ -429,11 +496,11 @@ so that I can watch new anime on the bus.</li>
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2010/09/17/comparing-writing-utensils/" title="Comparing Writing Utensils">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2017/12/21/power-in-relationships/" title="Power in Relationships">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2010/11/13/retrospect-vs-time-machine/" title="Retrospect vs. Time Machine">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
