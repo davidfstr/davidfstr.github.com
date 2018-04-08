@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 07 Apr 2018 23:24:37 -0700</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 23:24:37 -0700</lastBuildDate>
+    <pubDate>Sat, 07 Apr 2018 23:28:51 -0700</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 23:28:51 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -61,7 +61,7 @@
 &lt;li id=&quot;fn:1&quot;&gt;
 &lt;p&gt;Soundness means that a type system never misjudges the runtime type of a value. In practice this means that (1) the type system defines a static type for &lt;em&gt;all&lt;/em&gt; variables and expressions and (2) type casts that override the type system are &lt;em&gt;not&lt;/em&gt; permitted.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;&lt;p&gt;I use the term &lt;b&gt;algorithmic-performance&lt;/b&gt; to refer to the Big-Oh average case and worst case CPU performance of a particular program. I use the term &lt;b&gt;constant-time performance&lt;/b&gt; to refer to differences in program CPU performance due to differences in constant factors only.&lt;/p&gt;&lt;p&gt;For example in comparing an implementation of merge sort on integers written in a statically-typed language such as C to an implementation written in a dynamically-typed language such as Python, they will be will be equivalently fast in terms of Big-Oh notation (so they have the same algorithmic performance) but the C version will be faster in terms of constant-time performance due to having no runtime type checks.&lt;/p&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;p&gt;I use the term &lt;b&gt;algorithmic performance&lt;/b&gt; to refer to the Big-Oh average case and worst case CPU performance of a particular program. I use the term &lt;b&gt;constant-time performance&lt;/b&gt; to refer to differences in program CPU performance due to differences in constant factors only.&lt;/p&gt;&lt;p&gt;For example in comparing an implementation of merge sort on integers written in a statically-typed language such as C to an implementation written in a dynamically-typed language such as Python, they will be equivalently fast in terms of Big-Oh notation (so they have the same algorithmic performance) but the C version will be faster in terms of constant-time performance due to having no runtime type checks.&lt;/p&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
