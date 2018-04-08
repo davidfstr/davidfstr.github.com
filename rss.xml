@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 07 Apr 2018 21:11:33 -0700</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 21:11:33 -0700</lastBuildDate>
+    <pubDate>Sat, 07 Apr 2018 23:24:37 -0700</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 23:24:37 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -26,7 +26,7 @@
 &lt;p&gt;However as a software practitioner I definitely find unsound type systems to still be quite useful. The principal benefits that I get out of a type system include:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Elimination of many common types of errors&lt;/strong&gt;, in particular:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Identification of many common types of errors&lt;/strong&gt;, in particular:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;misspelled names of functions and variables,&lt;/li&gt;

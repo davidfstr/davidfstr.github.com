@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2018-04-07T21:11:33-07:00</updated>
+ <updated>2018-04-07T23:24:37-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -29,7 +29,7 @@
 &lt;p&gt;However as a software practitioner I definitely find unsound type systems to still be quite useful. The principal benefits that I get out of a type system include:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Elimination of many common types of errors&lt;/strong&gt;, in particular:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Identification of many common types of errors&lt;/strong&gt;, in particular:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;misspelled names of functions and variables,&lt;/li&gt;
