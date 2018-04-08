@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Reading Japanese text from images | DaFoster</title>
+    <title>Unsound type systems are still useful | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -42,19 +42,6 @@
     
     
     
-    
-      <style>
-        
-.bad { background-color: pink; }
-.good { background-color: MediumSeaGreen; }
-
-/* Make kanji big so that they are legible */
-.kanji { font-size: 28px; }
-
-/* Extra spacing between bulleted list items to separate large kanji characters */
-.post ul li { line-height: 36px; }
-
-      </style>
     
 
     <!-- Le fav and touch icons -->
@@ -304,132 +291,59 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Reading Japanese text from images</h1>
+    <h1>Unsound type systems are still useful</h1>
     <div class="post-metadata">
-      May 10, 2014 &ndash; Filed under: 
+      Apr 07, 2018 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
-          <span><a href="/articles/topics/#Offtopic">Offtopic <sup>6</sup></a></span>
+          <span><a href="/articles/topics/#Software">Software <sup>48</sup></a></span>
         
       </span>
       
     </div>
     
-    <p>I&rsquo;ve been intensively studying Japanese recently<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and something I have to do quite a lot is look up Japanese words that I see in images. Particularly words that involve a lot of kanji characters.</p>
+    <p>The conventional wisdom in the academic community <a href="https://frenchy64.github.io/2018/04/07/unsoundness-in-untyped-types.html">appears to be</a> that a type system is not useful if it cannot be proven to be <em>sound</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 
-<p>Last evening I hacked together a program that allows me to select arbitrary Japanese from an image on my screen, performs optical character recognition (OCR) on it, and outputs it as regular Unicode text. This regular text can then be looked up in an online Japanese-English dictionary, such as the excellent <a href="http://jisho.org/">jisho.org</a>.</p>
-
-<p>Let&rsquo;s take the following sentence:</p>
-
-<p><img src="/assets/2014/kanji.png" alt="Japanese sentence with lots of kanji" /></p>
-
-<p>The first word in that sentence already has 4 kanji characters, which would normally take a long time to look up individually.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
-
-<p>With my program, I can take a screenshot of this sentence as it appears on my screen and the program will immediately output the following text:</p>
+<p>However as a software practitioner I definitely find unsound type systems to still be quite useful. The principal benefits that I get out of a type system include:</p>
 
 <ul>
-<li><p class="kanji">痴話喧嘩は<span class="bad">維</span>続中か</p></li>
+<li><p><strong>Elimination of many common types of errors</strong>, in particular:</p>
+
+<ul>
+<li>misspelled names of functions and variables,</li>
+<li>missing import statements,</li>
+<li>null-pointer dereference errors,</li>
+<li>type mismatch errors, and</li>
+<li><p>inexhaustive case handling of type codes and algebraic data types.<p></li>
+</ul>
+</li>
+<li><p><strong>API documentation that is machine-checked</strong> for consistency and correctness that cannot silently get outdated.</p></li>
 </ul>
 
 
-<p>Then I can lookup the words as usual from jisho.org&rsquo;s <a href="http://jisho.org/words/">Words</a> search:</p>
+<p>Common unsound type systems such as <a href="https://www.infoworld.com/article/3066749/application-development/mypy-improves-static-type-checking-for-big-python-apps.html">mypy</a> and <a href="http://www.typescriptlang.org/">TypeScript</a> typically provide all of these benefits.</p>
+
+<p>A <em>sound</em> type system can additionally provide a few additional benefits that I don&rsquo;t miss much in practice:</p>
 
 <ul>
-<li><span class="kanji">痴話喧嘩</span> = lover&rsquo;s quarrel</li>
-<li><span class="kanji"><span class="bad">維</span>続</span> = ?</li>
-<li><span class="kanji">中</span> = inside; in (a space or building)</li>
+<li><p><strong><i>All</i> runtime types will be consistent with the static types assigned by the type system.</strong></p>
+
+<p>This property permits the <strong>elimination of most or all runtime type checks</strong>, which can improve the constant-time performance of programs by a factor of 100 - 1,000x. I don&rsquo;t miss this type of performance reduction because the programs I write - typically web applications - are usually I/O-bound rather than CPU-bound. Therefore I care far more about the <em>algorithmic</em> performance of programs I write rather than the <em>constant-time</em> performance.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p></li>
+<li><p><strong>It is safe to fully &ldquo;lean on the type system&rdquo;</strong> to locate and fix consistency errors when performing common refactorings such as renames, moves, and function signature changes.</p>
+
+<p>In absence of a sound type system it becomes necessary to lean on <em>tests</em> instead of the type system to locate and fix consistency errors.</p></li>
 </ul>
 
 
-<p>Character recognition still isn&rsquo;t perfect, as demonstrated by the character marked in <span class="bad">pink</span> above, which wasn&rsquo;t decoded correctly.</p>
-
-<p>Nevertheless even having a partially correct character is useful, as I can still use jisho.org&rsquo;s <a href="http://jisho.org/kanji/">Kanji</a> search to break it down into its component radicals:</p>
-
-<ul>
-<li><span class="kanji"><span class="bad">維</span> = <span class="good">小</span> + <span class="good">幺</span> + <span class="good">糸</span> + <span class="bad">隹</span></span></li>
-</ul>
-
-
-<p>And then use a few of the <em>correct</em> radicals in the <a href="http://jisho.org/kanji/radicals/">Kanji by Radicals</a> search to quickly find the correct character:</p>
-
-<ul>
-<li><span class="kanji"><span class="good">継</span> = <span class="good">小</span> + <span class="good">幺</span> + <span class="good">糸</span> + ｜ + 米</span></li>
-</ul>
-
-
-<p>And so the original word can now be looked up correctly:</p>
-
-<ul>
-<li><span class="kanji"><span class="good">継</span>続</span> = continuation</li>
-</ul>
-
-
-<h2>How it Works</h2>
-
-<p>The program operates by waiting for you to take a screenshot using Command-Shift-4 (on the Mac), observing the new screenshot appearing on the desktop, and feeding it to the <a href="https://code.google.com/p/nhocr/">nhocr</a> tool, which reads the Japanese text inside the screenshot and prints it.</p>
-
-<h2>Source Code</h2>
-
-<pre><code>#!/usr/bin/env python
-# 
-# nhocr_desktop.py
-#
-# Waits for screenshots to appear on the desktop,
-# scans them for Japanese text using OCR,
-# and prints out the text that was decoded from the image.
-# 
-# This script is useful for rapidly converting on-screen Japanese
-# text to actual text that can be looked up.
-#
-# Prerequisites:
-#   * nhocr
-#   * ImageMagick
-#   * Python 2.7 - maybe 2.6 okay too
-#   * watchdog
-# 
-# @author David Foster
-# 
-
-import os.path
-import subprocess
-import time
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-
-class ScreenshotFileCreationEventHandler(FileSystemEventHandler):
-    def on_created(self, event):
-        if not event.is_directory:
-            if 'Screen Shot' in os.path.basename(event.src_path):
-                # Convert screenshot to PPM format with ImageMagick
-                subprocess.check_call([
-                    'convert', event.src_path, '/tmp/line.ppm'])
-
-                line = subprocess.check_output([
-                    'nhocr', '-line', '/tmp/line.ppm', '-o', '-'])
-                print line.decode('utf-8'),
-
-event_handler = ScreenshotFileCreationEventHandler()
-
-observer = Observer()
-observer.schedule(event_handler, '/Users/me/Desktop', recursive=False)
-observer.start()
-
-print 'Waiting for screenshots on the desktop to analyze...'
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    observer.stop()
-observer.join()
-</code></pre>
+<p>In short, I get a lot of mileage out of unsound type systems, so I would encourage those who research and implement type systems to still consider type systems that are unsound as worthy of study, such as the Gradual Typing family of type systems.</p>
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
-<p>All this studying is one reason I haven&rsquo;t posted in a while.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>Soundness means that a type system never misjudges the runtime type of a value. In practice this means that (1) the type system defines a static type for <em>all</em> variables and expressions and (2) type casts that override the type system are <em>not</em> permitted.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>Individual kanji can be looked up by their component radicals at jisho.org&rsquo;s <a href="http://jisho.org/kanji/radicals/">Kanji by Radicals</a> search. Unfortunately it can take a few minutes to lookup each character.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p><p>I use the term <b>algorithmic-performance</b> to refer to the Big-Oh average case and worst case CPU performance of a particular program. I use the term <b>constant-time performance</b> to refer to differences in program CPU performance due to differences in constant factors only.</p><p>For example in comparing an implementation of merge sort on integers written in a statically-typed language such as C to an implementation written in a dynamically-typed language such as Python, they will be will be equivalently fast in terms of Big-Oh notation (so they have the same algorithmic performance) but the C version will be faster in terms of constant-time performance due to having no runtime type checks.</p><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
@@ -449,9 +363,11 @@ observer.join()
       
       
         
+          
+        
       
       
-      <li id="Software-topic"><a href="/articles/topics/#Software">Software <sup>48</sup></a></li>
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>48</sup></a></li>
     
       
       
@@ -476,11 +392,9 @@ observer.join()
       
       
         
-          
-        
       
       
-      <li id="Offtopic-topic" class="active"><a href="/articles/topics/#Offtopic">Offtopic <sup>6</sup></a></li>
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>6</sup></a></li>
     
       
       
@@ -526,11 +440,11 @@ observer.join()
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2014/02/17/agda-second-impressions/" title="Agda: Second Impressions">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2018/01/20/how-to-implement-a-large-software-feature/" title="How to implement a large software feature">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store/" title="Submitting a Python App to the Mac App Store">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

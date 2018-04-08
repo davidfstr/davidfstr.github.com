@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2018-01-22T23:19:16-08:00</updated>
+ <updated>2018-04-07T21:11:33-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,63 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful</id>
+   <title>Unsound type systems are still useful</title>
+   <published>2018-04-07T00:00:00-07:00</published>
+   <updated>2018-04-07T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;The conventional wisdom in the academic community &lt;a href=&quot;https://frenchy64.github.io/2018/04/07/unsoundness-in-untyped-types.html&quot;&gt;appears to be&lt;/a&gt; that a type system is not useful if it cannot be proven to be &lt;em&gt;sound&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;However as a software practitioner I definitely find unsound type systems to still be quite useful. The principal benefits that I get out of a type system include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Elimination of many common types of errors&lt;/strong&gt;, in particular:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;misspelled names of functions and variables,&lt;/li&gt;
+&lt;li&gt;missing import statements,&lt;/li&gt;
+&lt;li&gt;null-pointer dereference errors,&lt;/li&gt;
+&lt;li&gt;type mismatch errors, and&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;inexhaustive case handling of type codes and algebraic data types.&lt;p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;API documentation that is machine-checked&lt;/strong&gt; for consistency and correctness that cannot silently get outdated.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Common unsound type systems such as &lt;a href=&quot;https://www.infoworld.com/article/3066749/application-development/mypy-improves-static-type-checking-for-big-python-apps.html&quot;&gt;mypy&lt;/a&gt; and &lt;a href=&quot;http://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt; typically provide all of these benefits.&lt;/p&gt;
+
+&lt;p&gt;A &lt;em&gt;sound&lt;/em&gt; type system can additionally provide a few additional benefits that I don&amp;rsquo;t miss much in practice:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;i&gt;All&lt;/i&gt; runtime types will be consistent with the static types assigned by the type system.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This property permits the &lt;strong&gt;elimination of most or all runtime type checks&lt;/strong&gt;, which can improve the constant-time performance of programs by a factor of 100 - 1,000x. I don&amp;rsquo;t miss this type of performance reduction because the programs I write - typically web applications - are usually I/O-bound rather than CPU-bound. Therefore I care far more about the &lt;em&gt;algorithmic&lt;/em&gt; performance of programs I write rather than the &lt;em&gt;constant-time&lt;/em&gt; performance.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;It is safe to fully &amp;ldquo;lean on the type system&amp;rdquo;&lt;/strong&gt; to locate and fix consistency errors when performing common refactorings such as renames, moves, and function signature changes.&lt;/p&gt;
+
+&lt;p&gt;In absence of a sound type system it becomes necessary to lean on &lt;em&gt;tests&lt;/em&gt; instead of the type system to locate and fix consistency errors.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In short, I get a lot of mileage out of unsound type systems, so I would encourage those who research and implement type systems to still consider type systems that are unsound as worthy of study, such as the Gradual Typing family of type systems.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Soundness means that a type system never misjudges the runtime type of a value. In practice this means that (1) the type system defines a static type for &lt;em&gt;all&lt;/em&gt; variables and expressions and (2) type casts that override the type system are &lt;em&gt;not&lt;/em&gt; permitted.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;p&gt;I use the term &lt;b&gt;algorithmic-performance&lt;/b&gt; to refer to the Big-Oh average case and worst case CPU performance of a particular program. I use the term &lt;b&gt;constant-time performance&lt;/b&gt; to refer to differences in program CPU performance due to differences in constant factors only.&lt;/p&gt;&lt;p&gt;For example in comparing an implementation of merge sort on integers written in a statically-typed language such as C to an implementation written in a dynamically-typed language such as Python, they will be will be equivalently fast in terms of Big-Oh notation (so they have the same algorithmic performance) but the C version will be faster in terms of constant-time performance due to having no runtime type checks.&lt;/p&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
