@@ -328,7 +328,7 @@
 
 <ul>
 <li><strong>correctness</strong> is more important than convenience,</li>
-<li><strong>constant-time performance</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is important,</li>
+<li><strong>constant-factor performance</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is important,</li>
 </ul>
 
 
@@ -355,9 +355,9 @@
 <p>But there is one big advantage to using abandonment:</p>
 
 <ul>
-<li><p><strong>Better constant-time performance.</strong></p>
+<li><p><strong>Better constant-factor performance.</strong></p>
 
-<p>Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-time performance of all functions in the language.</p></li>
+<p>Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-factor performance of all functions in the language.</p></li>
 </ul>
 
 
@@ -378,7 +378,7 @@
 <p>But:</p>
 
 <ul>
-<li><p><strong>Unchecked exceptions degrade constant-time performance.</strong>.</p>
+<li><p><strong>Unchecked exceptions degrade constant-factor performance.</strong>.</p>
 
 <p>However this typically doesn&rsquo;t matter in application domains. Only <em>algorithmic performance</em> matters.</p></li>
 </ul>
@@ -409,7 +409,7 @@
 <hr/>
 <ol>
 <li id="fn:1">
-<p>As used in this article, <strong>constant-time performance</strong> refers to being sensitive to high constant factors in program time costs. This is in contrast to <strong>algorithmic performance</strong> which cares primarily about avoiding, for example, an O(n<sup>2</sup>) algorithm where an O(n) algorithm would suffice.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>As used in this article, <strong>constant-factor performance</strong> refers to being sensitive to high constant factors in program time costs. This is in contrast to <strong>algorithmic performance</strong> which cares primarily about avoiding, for example, an O(n<sup>2</sup>) algorithm where an O(n) algorithm would suffice.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 

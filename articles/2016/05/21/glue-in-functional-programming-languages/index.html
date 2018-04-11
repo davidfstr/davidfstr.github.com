@@ -340,7 +340,7 @@
 <li><p>Lazy evaluation <strong>interacts poorly with error handling, I/O, and other side effects</strong>.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
 
 <p>This limits lazy evaluation&rsquo;s advantages in processing large data structures to only those structures which are <em>in-memory</em> or <em>procedurally generated</em> rather than the (IMHO more-common) structures that reside <em>on disk</em> or must be fetched <em>over the network</em> - which must be read with I/O and may be malformed, thus requiring error handling.</p></li>
-<li><p>Pervasive use of lazy evaluation introduces unnecessary context switching overhead that <strong>degrades the constant-time performance of algorithms</strong> for which greedy evaluation would be acceptable. This makes pervasive lazy evaluation unsuitable for certain domains, such as systems domains.</p></li>
+<li><p>Pervasive use of lazy evaluation introduces unnecessary context switching overhead that <strong>degrades the constant-factor performance of algorithms</strong> for which greedy evaluation would be acceptable. This makes pervasive lazy evaluation unsuitable for certain domains, such as systems domains.</p></li>
 </ul>
 
 

@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2018-04-07T23:28:51-07:00</updated>
+ <updated>2018-04-10T18:56:30-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -50,7 +50,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;i&gt;All&lt;/i&gt; runtime types will be consistent with the static types assigned by the type system.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;This property permits the &lt;strong&gt;elimination of most or all runtime type checks&lt;/strong&gt;, which can improve the constant-time performance of programs by a factor of 100 - 1,000x. I don&amp;rsquo;t miss this type of performance reduction because the programs I write - typically web applications - are usually I/O-bound rather than CPU-bound. Therefore I care far more about the &lt;em&gt;algorithmic&lt;/em&gt; performance of programs I write rather than the &lt;em&gt;constant-time&lt;/em&gt; performance.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;This property permits the &lt;strong&gt;elimination of most or all runtime type checks&lt;/strong&gt;, which can improve the constant-factor performance of programs by a factor of 100 - 1,000x. I don&amp;rsquo;t miss this type of performance reduction because the programs I write - typically web applications - are usually I/O-bound rather than CPU-bound. Therefore I care far more about the &lt;em&gt;algorithmic&lt;/em&gt; performance of programs I write rather than the &lt;em&gt;constant-factor&lt;/em&gt; performance.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;It is safe to fully &amp;ldquo;lean on the type system&amp;rdquo;&lt;/strong&gt; to locate and fix consistency errors when performing common refactorings such as renames, moves, and function signature changes.&lt;/p&gt;
 
 &lt;p&gt;In absence of a sound type system it becomes necessary to lean on &lt;em&gt;tests&lt;/em&gt; instead of the type system to locate and fix consistency errors.&lt;/p&gt;&lt;/li&gt;
@@ -64,7 +64,7 @@
 &lt;li id=&quot;fn:1&quot;&gt;
 &lt;p&gt;Soundness means that a type system never misjudges the runtime type of a value. In practice this means that (1) the type system defines a static type for &lt;em&gt;all&lt;/em&gt; variables and expressions and (2) type casts that override the type system are &lt;em&gt;not&lt;/em&gt; permitted.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;&lt;p&gt;I use the term &lt;b&gt;algorithmic performance&lt;/b&gt; to refer to the Big-Oh average case and worst case CPU performance of a particular program. I use the term &lt;b&gt;constant-time performance&lt;/b&gt; to refer to differences in program CPU performance due to differences in constant factors only.&lt;/p&gt;&lt;p&gt;For example in comparing an implementation of merge sort on integers written in a statically-typed language such as C to an implementation written in a dynamically-typed language such as Python, they will be equivalently fast in terms of Big-Oh notation (so they have the same algorithmic performance) but the C version will be faster in terms of constant-time performance due to having no runtime type checks.&lt;/p&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;p&gt;I use the term &lt;b&gt;algorithmic performance&lt;/b&gt; to refer to the Big-Oh average case and worst case CPU performance of a particular program. I use the term &lt;b&gt;constant-factor performance&lt;/b&gt; to refer to differences in program CPU performance due to differences in constant factors only.&lt;/p&gt;&lt;p&gt;For example in comparing an implementation of merge sort on integers written in a statically-typed language such as C to an implementation written in a dynamically-typed language such as Python, they will be equivalently fast in terms of Big-Oh notation (so they have the same algorithmic performance) but the C version will be faster in terms of constant-factor performance due to having no runtime type checks.&lt;/p&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -713,7 +713,7 @@ def warn(message):
 &lt;li&gt;&lt;p&gt;Lazy evaluation &lt;strong&gt;interacts poorly with error handling, I/O, and other side effects&lt;/strong&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;This limits lazy evaluation&amp;rsquo;s advantages in processing large data structures to only those structures which are &lt;em&gt;in-memory&lt;/em&gt; or &lt;em&gt;procedurally generated&lt;/em&gt; rather than the (IMHO more-common) structures that reside &lt;em&gt;on disk&lt;/em&gt; or must be fetched &lt;em&gt;over the network&lt;/em&gt; - which must be read with I/O and may be malformed, thus requiring error handling.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Pervasive use of lazy evaluation introduces unnecessary context switching overhead that &lt;strong&gt;degrades the constant-time performance of algorithms&lt;/strong&gt; for which greedy evaluation would be acceptable. This makes pervasive lazy evaluation unsuitable for certain domains, such as systems domains.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pervasive use of lazy evaluation introduces unnecessary context switching overhead that &lt;strong&gt;degrades the constant-factor performance of algorithms&lt;/strong&gt; for which greedy evaluation would be acceptable. This makes pervasive lazy evaluation unsuitable for certain domains, such as systems domains.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -766,7 +766,7 @@ def warn(message):
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;correctness&lt;/strong&gt; is more important than convenience,&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;constant-time performance&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; is important,&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;constant-factor performance&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; is important,&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -793,9 +793,9 @@ def warn(message):
 &lt;p&gt;But there is one big advantage to using abandonment:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Better constant-time performance.&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Better constant-factor performance.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-time performance of all functions in the language.&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-factor performance of all functions in the language.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -816,7 +816,7 @@ def warn(message):
 &lt;p&gt;But:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Unchecked exceptions degrade constant-time performance.&lt;/strong&gt;.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Unchecked exceptions degrade constant-factor performance.&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;However this typically doesn&amp;rsquo;t matter in application domains. Only &lt;em&gt;algorithmic performance&lt;/em&gt; matters.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -847,7 +847,7 @@ def warn(message):
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;As used in this article, &lt;strong&gt;constant-time performance&lt;/strong&gt; refers to being sensitive to high constant factors in program time costs. This is in contrast to &lt;strong&gt;algorithmic performance&lt;/strong&gt; which cares primarily about avoiding, for example, an O(n&lt;sup&gt;2&lt;/sup&gt;) algorithm where an O(n) algorithm would suffice.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;As used in this article, &lt;strong&gt;constant-factor performance&lt;/strong&gt; refers to being sensitive to high constant factors in program time costs. This is in contrast to &lt;strong&gt;algorithmic performance&lt;/strong&gt; which cares primarily about avoiding, for example, an O(n&lt;sup&gt;2&lt;/sup&gt;) algorithm where an O(n) algorithm would suffice.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
