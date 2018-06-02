@@ -6,14 +6,419 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 10 Apr 2018 18:56:30 -0700</pubDate>
-    <lastBuildDate>Tue, 10 Apr 2018 18:56:30 -0700</lastBuildDate>
+    <pubDate>Sat, 02 Jun 2018 07:45:15 -0700</pubDate>
+    <lastBuildDate>Sat, 02 Jun 2018 07:45:15 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Performance Testing</title>
+      <link>http://dafoster.net/articles/2018/06/02/performance-testing/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2018/06/02/performance-testing</guid>
+      <description>&lt;p&gt;In this article I will describe the theory of &lt;strong&gt;performance testing&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and how we conduct such testing in practice at my company TechSmart, in the context of rich web applications and web services.&lt;/p&gt;
+
+&lt;p&gt;By the end of this article you should understand how we define performance testing and perhaps get some ideas for implementing or customizing your own tools for performance-testing your own web service.&lt;/p&gt;
+
+&lt;h2&gt;Theory&lt;/h2&gt;
+
+&lt;p&gt;Performance testing of a web service typically involves verifying non-functional requirements such as whether it is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Responsive&lt;/strong&gt; - responds quickly to requests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resilient&lt;/strong&gt; - handles a large number of requests; avoids crashing outright; rejects or queues requests as needed if too many in progress at once&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fault-Tolerant&lt;/strong&gt; - whether the service self-heals if it crashes&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Performance testing aims to answer the following kinds of questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How responsive is the service under a particular amount of load?&lt;br/&gt;
+(See &lt;a href=&quot;#pt-run&quot;&gt;§ &amp;ldquo;perftest run&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;li&gt;What is the maximum load that the service can handle?&lt;br/&gt;
+(See &lt;a href=&quot;#pt-maxload&quot;&gt;§ &amp;ldquo;perftest maxload&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;li&gt;How responsive is the service under its maximum load?&lt;/li&gt;
+&lt;li&gt;What is the bottleneck that is saturated when the service is at its maximum load?&lt;br/&gt;
+(See &lt;a href=&quot;#bottleneck-isolation&quot;&gt;§ &amp;ldquo;Bottleneck isolation&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;li&gt;How does the service behave when stressed beyond its maximum load?&lt;br/&gt;
+(See &lt;a href=&quot;#overload-behavior&quot;&gt;§ &amp;ldquo;Overload behavior&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The core of performance testing is &lt;strong&gt;load generation&lt;/strong&gt;. You write a program that generates a specified amount of load on your target web service and measure what happens when various amounts of load are applied.&lt;/p&gt;
+
+&lt;p&gt;There are many load generation tools that exist:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;One of the oldest load generation tools is &lt;a href=&quot;https://jmeter.apache.org/&quot;&gt;JMeter&lt;/a&gt;, which uses a GUI to define simulation programs in an XML-based file format. JMeter uses a separate OS thread for each concurrent HTTP connection which severely limits the number of concurrent HTTP connections it can host on a single box.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;At my company TechSmart we use &lt;a href=&quot;http://gatling.io&quot;&gt;Gatling&lt;/a&gt; as our load generation tool. Compared with JMeter, Gatling is far more efficient at generating load because it uses multiplexed async I/O on a single OS thread to handle all HTTP connections. Also, Gatling simulations are written in an actual programming language (Scala) rather than XML, so you can write your simulations with more resilient abstractions and do more-advanced customizations.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Gatling Concepts&lt;/h2&gt;
+
+&lt;h3&gt;Scenarios and simulations&lt;/h3&gt;
+
+&lt;p&gt;A &lt;strong&gt;scenario&lt;/strong&gt; describes a pattern of HTTP requests that a single user makes against a web service. For example in the &lt;code&gt;ViewCodePage&lt;/code&gt; scenario a user performs the {&lt;code&gt;LoginPage.loginWithoutRedirect&lt;/code&gt;, &lt;code&gt;CodePage.view&lt;/code&gt;} subscenarios which consist of individual HTTP requests.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;simulation&lt;/strong&gt; describes an aggregate pattern of HTTP requests that &lt;em&gt;multiple&lt;/em&gt; users make against a web service. For example the &lt;code&gt;ViewCodePage(X, Y)&lt;/code&gt; simulation simulates X users arriving over Y seconds that each perform the actions described in the &lt;code&gt;ViewCodePage&lt;/code&gt; scenario.&lt;/p&gt;
+
+&lt;p&gt;At TechSmart we have written several simulations that exercise each of the major pages on our platform website.&lt;/p&gt;
+
+&lt;h3&gt;Simulation parameters&lt;/h3&gt;
+
+&lt;p&gt;Most simulations written at TechSmart vary their behavior based on &lt;em&gt;parameters&lt;/em&gt; that are passed in as environment variables. Simulations read these environment variables upon initialization using code like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class LoginAsStudent extends Simulation {
+    val X = sys.env.getOrElse(&quot;X&quot;, &quot;__missing__&quot;).toInt
+    val Y = sys.env.getOrElse(&quot;Y&quot;, &quot;__missing__&quot;).toInt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thus the set of parameters that a particular simulation expects can be deduced by reading the top of the simulation&amp;rsquo;s source code.&lt;/p&gt;
+
+&lt;p&gt;Most simulations at TechSmart support X and Y parameters to inject X users over Y seconds during the simulation.&lt;/p&gt;
+
+&lt;h2&gt;Load generation&lt;/h2&gt;
+
+&lt;h3&gt;The &amp;ldquo;gatling&amp;rdquo; management command&lt;/h3&gt;
+
+&lt;p&gt;The &amp;ldquo;gatling&amp;rdquo; management command is a low-level command we&amp;rsquo;ve implemented at TechSmart that invokes the Gatling tool, sets up various required paths automatically, and runs a Gatling simulation script.&lt;/p&gt;
+
+&lt;p&gt;A typical invocation of the &amp;ldquo;gatling&amp;rdquo; management command looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 pm gatling --simulation tskplatform.LoginAsStudent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;pm&lt;/code&gt; command above is an alias for &lt;code&gt;python3 manage.py&lt;/code&gt; which is the Django task runner.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;This invocation is equivalent to the more-verbose:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 $GATLING_HOME/bin/gatling.sh --simulation tskplatform.LoginAsStudent --simulations-folder $PERFORMANCE_HOME/simulations --data-folder $PERFORMANCE_HOME/data --bodies-folder $PERFORMANCE_HOME/bodies
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Gatling tool emits lots of output in the console while it is running and eventually generates an HTML report with detailed statistics about what HTTP requests were made during the simulation, response times for individual and aggregated requests, and other information.&lt;/p&gt;
+
+&lt;!-- TODO: Include an image of a typical Gatling report --&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;pt-run&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;The &amp;ldquo;perftest run&amp;rdquo; management command&lt;/h3&gt;
+
+&lt;p&gt;Typically the most important information in the Gatling HTML report generated by running a simulation is the &lt;strong&gt;maximum response time&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; for a particular type of HTTP request that was made during the simulation. &lt;!-- For example the `ViewCodePage(X, Y)` simulation makes many HTTP requests of type {`view_login`, `submit_login`, and `view_code`} but we only care about the maximum response time of the `view_code` requests. --&gt;&lt;/p&gt;
+
+&lt;p&gt;Consequently we&amp;rsquo;ve created a &amp;ldquo;perftest run&amp;rdquo; management command that behaves similarly to the &amp;ldquo;gatling&amp;rdquo; command but automatically presents the maximum response time for the most important request type&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; after running the simulation.&lt;/p&gt;
+
+&lt;p&gt;With the &amp;ldquo;perftest run&amp;rdquo; management command, we can easily answer the question:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How responsive is the service under a particular amount of load?
+
+&lt;ul&gt;
+&lt;li&gt;When R requests/second are made continuously, for some R = X/Y:
+
+&lt;ul&gt;
+&lt;li&gt;What is the maximum response time?&lt;/li&gt;
+&lt;li&gt;What does the response time distribution look like?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Here is an example of running a simple simulation, using &amp;ldquo;perftest setup&amp;rdquo; to create test data and then using &amp;ldquo;perftest run&amp;rdquo; to get the maximum response time for a particular amount of load:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm perftest setup students 8
+Deleting test students...
+Creating 8 test student(s)...
+
+$ pm perftest setup calendars 1
+Deleting test calendars...
+Creating 1 test calendar(s)...
+Associating 8 user(s) with 1 calendar(s)...
+
+$ pm perftest run LoginAsStudent 4 1
+Running simulation with 4 user(s) over 1 second(s)...
+When 4 user(s) over 1 second(s), max response time for request &#39;submit_login&#39; is 393 ms.
+  Report: /Users/me/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497049484195/index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(We also have a &amp;ldquo;perftest teardown&amp;rdquo; command that deletes all test data created by &amp;ldquo;perftest setup&amp;rdquo;.)&lt;/p&gt;
+
+&lt;h3&gt;Targeting remote environments&lt;/h3&gt;
+
+&lt;p&gt;Our simulations are written by default to target the website running on the developer&amp;rsquo;s local machine (127.0.0.1). For real testing you&amp;rsquo;ll want to run tests on a remote version of the website such as the one on a dedicated perf environment (perf.example.com).&lt;/p&gt;
+
+&lt;p&gt;For example, to run a command on our performance environment we would first setup the environment with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm on perf perftest setup students 8
+$ pm on perf perftest setup calendars 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &amp;ldquo;on&amp;rdquo; management command runs some other command in the context of a particular remote environment.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;And then we&amp;rsquo;d run the performance test by typing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm on perf perftest run LoginAsStudent 4 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &amp;ldquo;on&amp;rdquo; command sets the &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; environment variable (among other things) and the &amp;ldquo;perftest run&amp;rdquo; subcommand passes that environment variable to the underlying Gatling simulation. The &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; variable specifies the base URL that all HTTP requests are prefixed with. For example the above command is equivalent to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ # (Change environment to &quot;perf&quot;, defaulting to its database tier, cache tier, etc)
+$ X=4 Y=1 GATLING_BASE_URL=http://perf.example.com pm gatling --simulation tskplatform.LoginAsStudent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All simulations support the &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; parameter to change the base URL because they all use a common Gatling HTTP Protocol object that defines its base URL from &lt;code&gt;GATLING_BASE_URL&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class LoginAsStudent extends Simulation {
+    ...
+    val httpProtocol = Common.httpProtocol
+    ...
+}
+
+object Common {
+    private val baseUrl = sys.env.getOrElse(
+        &quot;GATLING_BASE_URL&quot;, &quot;http://127.0.0.1:8000&quot;)
+
+    val httpProtocol = http
+        .baseURL(baseUrl)
+        ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Stress testing&lt;/h2&gt;
+
+&lt;p&gt;&lt;a name=&quot;pt-maxload&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;The &amp;ldquo;perftest maxload&amp;rdquo; management command&lt;/h3&gt;
+
+&lt;p&gt;The &amp;ldquo;perftest maxload&amp;rdquo; management command can be used to automatically perform &amp;ldquo;perftest run&amp;rdquo; several times to determine the maximum number of users (X) over a given period of time (Y) such that the maximum response time for the HTTP request of interest is less than a particular threshold (1,200 ms by default).&lt;/p&gt;
+
+&lt;p&gt;With the &amp;ldquo;perftest maxload&amp;rdquo; management command, we can answer the questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What is the maximum load that the service can handle?
+
+&lt;ul&gt;
+&lt;li&gt;What is the maximum requests/second that can be made before the requests start backing up and response times go hockeystick?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How responsive is the service under its maximum load?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;An example invocation of &amp;ldquo;perftest maxload&amp;rdquo; looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm perftest maxload LoginAsStudent --preserve-calendars
+Determining baseline response time...
+
+Deleting test students...
+Creating 1 test student(s)...
+Associating 1 user(s) with 1 calendar(s)...
+Running simulation with 1 user(s) over 5 second(s)...
+When 1 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 138 ms.
+  Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567171908/index.html
+
+Seeking shaft of hockeystick...
+
+Deleting test students...
+Creating 2 test student(s)...
+Associating 2 user(s) with 1 calendar(s)...
+Running simulation with 2 user(s) over 5 second(s)...
+When 2 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 124 ms.
+  Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567182571/index.html
+
+(... ditto for 4 users over 5 seconds ... OK ...)
+(... ditto for 8 users over 5 seconds ... OK ...)
+(... ditto for 16 users over 5 seconds ... OK ...)
+(... ditto for 32 users over 5 seconds ... OK ...)
+(... ditto for 64 users over 5 seconds ... OK ...)
+(... ditto for 128 users over 5 seconds ... FAIL ...)
+
+Seeking knee of hockeystick... About 6 step(s) or 1:41.
+
+Deleting test students...
+Creating 96 test student(s)...
+Associating 96 user(s) with 1 calendar(s)...
+Running simulation with 96 user(s) over 5 second(s)...
+When 96 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 3754 ms.
+  Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567312703/index.html
+
+(... ditto several times, performing a binary search ...)
+
+num_users,response_time,num_seconds
+1,138,5
+2,124,5
+4,120,5
+8,157,5
+16,123,5
+32,182,5
+64,920,5
+128,6844,5
+96,3754,5
+80,2407,5
+72,1449,5
+68,1227,5
+66,1232,5
+65,939,5
+
+Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response time of 939 ms.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice how &amp;ldquo;maxload&amp;rdquo; used a binary search to automatically find the maximum load that the service could handle before the maximum response times went out of bounds. Neat.&lt;/p&gt;
+
+&lt;p&gt;Also notice that &amp;ldquo;maxload&amp;rdquo; outputs a CSV of every sample taken. This CSV is useful to graph as a scatterplot to see graphically how the response time varies depending on the number of users. We generate these scatterplot graphs often enough that we&amp;rsquo;ll probably extend &amp;ldquo;maxload&amp;rdquo; in the future to just generate a scatterplot image automatically.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;bottleneck-isolation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Bottleneck isolation&lt;/h3&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve determined the maximum load that your service can support, you can ask yourself whether that load is good enough, based on the level of traffic that you forecast your site will receive in the near future.&lt;/p&gt;
+
+&lt;p&gt;Should the maximum load not be good enough, you&amp;rsquo;ll want to isolate the &lt;strong&gt;bottleneck&lt;/strong&gt; in the system that is constraining the maximum load. Then you can focus on optimizing that bottleneck so that the maximum load increases to be good enough. Note that if you optimize a bottleneck in one area sufficiently, you may find that the bottleneck moves to a different location.&lt;/p&gt;
+
+&lt;p&gt;For a web service, the most common bottlenecks in our experience are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CPU
+
+&lt;ul&gt;
+&lt;li&gt;Is the CPU usage 100% on some box?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Network
+
+&lt;ul&gt;
+&lt;li&gt;Are the number of synchronous database requests made by the application tier to the database tier very high (i.e. more than a dozen or so)?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Memory
+
+&lt;ul&gt;
+&lt;li&gt;Is there no available memory remaining on some box?&lt;/li&gt;
+&lt;li&gt;Is there paging activity on some box?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;IOPS
+
+&lt;ul&gt;
+&lt;li&gt;Are the IOPS the maximum for the storage type on some box?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;To isolate the bottleneck, use &amp;ldquo;perftest run&amp;rdquo; to start generating a load on the service equivalent to the maximum load  it can handle (as measured previously by &amp;ldquo;perftest maxload&amp;rdquo;) for a long time interval, say 10 minutes. While that load is being generated, use monitoring tools to look at the usage of CPU, Memory, IOPS, and other resources on each box in the system to look for saturation. When you find the saturated resource, that&amp;rsquo;s the bottleneck.&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve located the bottleneck, there are usually a few ways to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not enough frontend workers
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: All frontend Gunicon workers busy 100% of the time, yet not 100% of the CPU utilized&lt;/li&gt;
+&lt;li&gt;Fix: Reconfigure Gunicorn to increase the worker count to (2*N + 1), where N is the number of CPU cores.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Too many database requests
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: Frontends busy waiting on the network for dozens of synchronous database queries to complete for a single page load&lt;/li&gt;
+&lt;li&gt;Fix: Optimize frontend logic to reduce the number of database queries per page load to less than a dozen. Use automated tests to clamp the database query count so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Not enough frontend CPU
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: 100% CPU on each box in the frontend cluster.&lt;/li&gt;
+&lt;li&gt;Fix: Increase frontend cluster size from 2 up to 5 boxes. At this point the bottleneck moves elsewhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And here are some bottlenecks that our performance testing has identified we will hit under much higher loads than what we currently experience:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not enough database CPU
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: 100% CPU on the single master database server&lt;/li&gt;
+&lt;li&gt;Potential fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Cache more aggressively, so that requests are diverted from the database tier to the cache tier.&lt;/li&gt;
+&lt;li&gt;Scale reads. Create read replicas of the database.&lt;/li&gt;
+&lt;li&gt;Scale writes. Shard the database to multiple database masters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Not enough database IOPS
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: IOPS is maximum for the database storage type (i.e. Magnetic or SSD).&lt;/li&gt;
+&lt;li&gt;Potential fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Shrink database contents with compression to reduce persisted data volume.&lt;/li&gt;
+&lt;li&gt;Increase RAM on database servers so that the database contents fit into memory, making IOPS irrelevent.&lt;/li&gt;
+&lt;li&gt;Switch database storage type from Magnetic to SSD to increase the maximum IOPS.&lt;/li&gt;
+&lt;li&gt;Scale reads. Create read replicas of the database.&lt;/li&gt;
+&lt;li&gt;Scale writes. Shard the database to multiple database masters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;overload-behavior&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Overload behavior&lt;/h3&gt;
+
+&lt;p&gt;It is useful to determine what happens when your service is subjected to greater than its maximum load. In particular:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Does it reject requests loudly?&lt;/li&gt;
+&lt;li&gt;Does it drop requests silently?&lt;/li&gt;
+&lt;li&gt;Does it crash?&lt;/li&gt;
+&lt;li&gt;If it crashes, does it automatically restart?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;You should decide what desired behavior you want your system to exhibit when receiving a temporary over-maximum load (i.e. a spike) or a sustained over-maximum load (i.e. a flood). Then verify whether the actual behavior matches the desired behavior.&lt;/p&gt;
+
+&lt;p&gt;If your service is generally written with infinitely-flexible buffers, it&amp;rsquo;s likely that receiving sustained over-maximum load will causes requests to queue up until memory is exhausted, and the out-of-memory condition will cause the service to crash.&lt;/p&gt;
+
+&lt;p&gt;On the other hand if your service is generally written with fixed-size buffers, it&amp;rsquo;s likely that receiving any over-maximum load will cause requests to be rejected or dropped.&lt;/p&gt;
+
+&lt;h2&gt;End&lt;/h2&gt;
+
+&lt;p&gt;Hopefully this article has provided some insight into concepts around performance testing and given you some ideas about how to implement or improve tooling to perform performance testing.&lt;/p&gt;
+
+&lt;p&gt;If you have any improvements or other comments on the contents of this article &lt;a href=&quot;/contact&quot;&gt;I&amp;rsquo;d love to hear from you&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;For the purposes of this article I define performance testing to include &lt;strong&gt;load testing&lt;/strong&gt; and &lt;strong&gt;stress testing&lt;/strong&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Many other performance testing tools focus not on the &lt;strong&gt;maximum&lt;/strong&gt; response time but rather on other measures such as the &lt;strong&gt;99th percentile&lt;/strong&gt; response time or the &lt;strong&gt;mean&lt;/strong&gt; response time, which are &lt;a href=&quot;https://www.youtube.com/watch?v=lJ8ydIuPFeU&amp;amp;index=58&amp;amp;list=PL171F10EAED410118&quot;&gt;inappropriate to use&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;The most important request type for a particular simulation is determined by inspecting the source code for a simulation file and looking for a line like &lt;code&gt;val PROFILED_REQUEST_NAME = &quot;view_code&quot;&lt;/code&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
