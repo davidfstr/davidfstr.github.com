@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 25 Jun 2018 21:25:54 -0700</pubDate>
-    <lastBuildDate>Mon, 25 Jun 2018 21:25:54 -0700</lastBuildDate>
+    <pubDate>Sun, 08 Jul 2018 12:47:44 -0700</pubDate>
+    <lastBuildDate>Sun, 08 Jul 2018 12:47:44 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -485,7 +485,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;li id=&quot;fn:1&quot;&gt;
 &lt;p&gt;For the purposes of this article I define performance testing to include &lt;strong&gt;load testing&lt;/strong&gt; and &lt;strong&gt;stress testing&lt;/strong&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;Many other performance testing tools focus not on the &lt;strong&gt;maximum&lt;/strong&gt; response time but rather on other measures such as the &lt;strong&gt;99th percentile&lt;/strong&gt; response time or the &lt;strong&gt;mean&lt;/strong&gt; response time, which are &lt;a href=&quot;https://www.youtube.com/watch?v=lJ8ydIuPFeU&amp;amp;index=58&amp;amp;list=PL171F10EAED410118&quot;&gt;inappropriate to use&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Many other performance testing tools focus not on the &lt;strong&gt;maximum&lt;/strong&gt; response time but rather on other measures such as the &lt;strong&gt;99th percentile&lt;/strong&gt; response time or the &lt;strong&gt;mean&lt;/strong&gt; response time, which are &lt;a href=&quot;https://www.youtube.com/watch?v=lJ8ydIuPFeU&quot;&gt;inappropriate to use&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
 &lt;p&gt;The most important request type for a particular simulation is determined by inspecting the source code for a simulation file and looking for a line like &lt;code&gt;val PROFILED_REQUEST_NAME = &quot;view_code&quot;&lt;/code&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
