@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>The Flat Module Pattern in JavaScript | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+  
+  
+  
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">DaFoster</a>
+          <ul class="nav">
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="breadcrumb-bar">
+          <ul class="breadcrumb">
+            
+            
+            
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/">Home</a> <span class="divider">&gt;</span></li>
+              
+            
+              
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+              
+              <li><a href="/articles/">Articles</a> <span class="divider">&gt;</span></li>
+              
+            
+            
+            
+          </ul>
+        </div>
+        
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="span9 content post">
+    <h1>The Flat Module Pattern in JavaScript</h1>
+    <div class="post-metadata">
+      Sep 23, 2018 &ndash; Filed under: 
+      <span class="tag_box inline">
+        
+         
+          <span><a href="/articles/topics/#Software">Software <sup>50</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>There are several patterns for structuring modules in JavaScript. The most common ones I see talked about is the original <a href="http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html">JavaScript Module Pattern</a>, <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailamd">AMD Modules</a>, <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailcommonjs">CommonJS Modules</a>, and the emerging <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailharmony">Harmony Modules</a>.</p>
+
+<p>The large JavaScript application that I work on at work - an in-browser IDE - does not presently use any of these well-known patterns but instead uses what I&rsquo;m going to call the <strong>Flat Module Pattern</strong>.</p>
+
+<h2>The Flat Module Pattern</h2>
+
+<p>Here&rsquo;s what the Flat Module Pattern looks like, for an excerpt of a real module called <code>save.js</code>:</p>
+
+<pre><code>/*public*/ function setupSave() {
+    if (isMainOrStandaloneWindow()) {
+        setupSaveToken();
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Autosave
+
+var DELAY_AFTER_TYPING_STOPS_TO_AUTOSAVE = 2000;
+
+/*public*/ function autosave(fileInfo) {
+    ...
+}
+
+// -----------------------------------------------------------------------------
+// Save Token
+
+function setupSaveToken() {
+    ...
+}
+
+/*public*/ function isUnsafeToSave() {
+    ...
+}
+
+// -----------------------------------------------------------------------------
+</code></pre>
+
+<p>Notice that:</p>
+
+<ul>
+<li>Only function and constant declarations exist at the top-level. No other executable code may run at the top-level.</li>
+<li>Public functions are marked with the keyword-comment <code>/*public*/</code>. A module should not attempt to reference a non-public method in a different module.</li>
+<li>Modules do not import each other or declare cross-module dependencies explicitly.</li>
+</ul>
+
+
+<p>Consequences of this pattern:</p>
+
+<ul>
+<li>Modules can be <code>&lt;script&gt;</code>-included in any order, since there are no side-effects of including a module.</li>
+<li>All functions are dumped into the global namespace.
+
+<ul>
+<li>In practice this is not a problem since well-named application functions have distinct names from other application functions, and libraries don&rsquo;t generally dump functions directly into the global namespace.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>All such modules on a particular page are directly included by the HTML page:</p>
+
+<pre><code>{% compress js %}
+    &lt;!-- Library --&gt;
+    &lt;script src="{% static 'tsk_platform/student_survey.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/util/dialog.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/util/markdown.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/util/slider.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/util/url.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/util/websocket.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/vendor/jquery.min.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'tsk_platform/vendor/mdl/material.min.js' %}"&gt;&lt;/script&gt;
+
+    &lt;!-- Page-Specific --&gt;
+    &lt;script src="{% static 'ide/code/__init__.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/__init__.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/assignment/__init__.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/assignment/code_comprehension.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/assignment/code_writing.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/code_instructions.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/project.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/panels/slides.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/run/__init__.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/run/engine/java.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/run/engine/python.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/run/run_window.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/__init__.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/editor/blocks.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/editor/font.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/editor/image.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/editor/scene.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/editor/sound.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/editor/text.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'ide/code/tabs/save.js' %}"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        setupCodePage();
+    &lt;/script&gt;
+{% endcompress %}
+</code></pre>
+
+<p>In considering how modules may reference members of each other:</p>
+
+<ul>
+<li>Page-specific modules may freely reference members from each other and from library modules.</li>
+<li>Most library modules are self-contained and do not reference members from anybody, although some library modules may reference members from other library modules.</li>
+</ul>
+
+
+<p>The Flat Module Pattern is incredibly simple to follow, with almost no boilerplate. It is also easy to concatenate and minify.</p>
+
+<p>My team has been using this pattern successfully over the last 4 years or so with a codebase that is now approximately 55,000 lines of JavaScript. I&rsquo;m pretty happy with it.</p>
+
+<h2>The Encapsulated Flat Module Pattern</h2>
+
+<p>The one major drawback of the above Flat Module Pattern is that public functions are advisory-only since they are just marked with <code>/*public*/</code> comments. It is still possible (and easy) to accidentally improperly reference a non-public function from outside the module it is declared in.</p>
+
+<p>So here&rsquo;s an enhanced variation I call the <strong>Encapsulated Flat Module Pattern</strong> that doesn&rsquo;t have that problem:</p>
+
+<pre><code>(function() {
+    function public(func) { window[func.name] = func; }
+
+    public(function setupSave() {
+        if (isMainOrStandaloneWindow()) {
+            setupSaveToken();
+        }
+    });
+
+    // -----------------------------------------------------------------------------
+    // Autosave
+
+    var DELAY_AFTER_TYPING_STOPS_TO_AUTOSAVE = 2000;
+
+    public(function autosave(fileInfo) {
+        ...
+    });
+
+    // -----------------------------------------------------------------------------
+    // Save Token
+
+    function setupSaveToken() {
+        ...
+    }
+
+    public(function isUnsafeToSave() {
+        ...
+    });
+
+    // -----------------------------------------------------------------------------
+})();
+</code></pre>
+
+<p>Notice that each <code>/*public*/</code> advisory comment has been replaced with a call to a special <code>public(...)</code> function that actually exports the provided function. Any function that is not marked as public is truly private and not available for reference by other modules.</p>
+
+<p>Benefits of this pattern:</p>
+
+<ul>
+<li>Public functions are easy to distinguish from private functions at their definition site.</li>
+<li>Public functions and private functions can be freely interleaved. In particular there is no need to group public functions in the module together.</li>
+<li>Public and private functions in the same module can call each other naturally and with the same syntax. In particular public functions do not have a special calling convention.</li>
+<li>No function names are duplicated by the boilerplate. In particular there&rsquo;s no need to repeat function names in a public exports list, as is common with other JavaScript module patterns.</li>
+<li>It is easy to convert a function from private to public or visa-versa. In particular no references need to be updated since public and private functions are referenced the same way.</li>
+</ul>
+
+
+<h2>Conclusions</h2>
+
+<p>I&rsquo;ve found these JavaScript module patterns to be very useful in structuring JavaScript application code I&rsquo;ve written over the last few years.</p>
+
+<p>I think these patterns would work well in any large JavaScript application that avoids class inheritance<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> and has reasonable non-colliding public function names.</p>
+
+<p>I do <em>not</em> think these patterns would be a good idea for JavaScript <em>libraries</em> that need to avoid polluting the global namespace. For such libraries, falling back on the <a href="https://github.com/umdjs/umd">Universal Module Definition</a> pattern seems more prudent.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Supporting class inheritance requires serializing the order of top-level definitions since the definition of a subclass depends of the definition of its superclass, and therefore subclasses must be declared <em>after</em> its related superclass. The module patterns in this article do not serialize top-level definition order and therefore cannot reliably support subclasses being declared in a different module than its superclass.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  
+  <div class="span3 block-bar">
+    <div class="block">
+  <h3>Topics</h3>
+  
+  <ul class="tag_box">
+    
+    
+      
+      
+      
+      
+        
+          
+        
+      
+      
+      <li id="Software-topic" class="active"><a href="/articles/topics/#Software">Software <sup>50</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Productivity-topic"><a href="/articles/topics/#Productivity">Productivity <sup>9</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Personal-topic"><a href="/articles/topics/#Personal">Personal <sup>8</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Offtopic-topic"><a href="/articles/topics/#Offtopic">Offtopic <sup>5</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Business-topic"><a href="/articles/topics/#Business">Business <sup>4</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Cooking-topic"><a href="/articles/topics/#Cooking">Cooking <sup>2</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Politics-topic"><a href="/articles/topics/#Politics">Politics <sup>2</sup></a></li>
+    
+      
+      
+      
+      
+        
+      
+      
+      <li id="Relationships-topic"><a href="/articles/topics/#Relationships">Relationships <sup>2</sup></a></li>
+    
+  </ul>
+  <hr style="margin: .5em 0;"/>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+    <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+  </a>
+  <a class="subscribe subscribe-last" href="feed://dafoster.net/atom.xml">
+    <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+  </a>
+</div>
+
+  </div>
+  
+  
+  <div class="span12">
+    <div class="pagination pagination-centered">
+      <ul>
+      
+        <li class="prev"><a href="/articles/2018/06/24/responding-to-angry-confrontations/" title="Responding to angry confrontations">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2018 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

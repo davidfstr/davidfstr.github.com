@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2018-07-08T12:47:44-07:00</updated>
+ <updated>2018-09-23T19:47:43-07:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,197 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript</id>
+   <title>The Flat Module Pattern in JavaScript</title>
+   <published>2018-09-23T00:00:00-07:00</published>
+   <updated>2018-09-23T00:00:00-07:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;There are several patterns for structuring modules in JavaScript. The most common ones I see talked about is the original &lt;a href=&quot;http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html&quot;&gt;JavaScript Module Pattern&lt;/a&gt;, &lt;a href=&quot;https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailamd&quot;&gt;AMD Modules&lt;/a&gt;, &lt;a href=&quot;https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailcommonjs&quot;&gt;CommonJS Modules&lt;/a&gt;, and the emerging &lt;a href=&quot;https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailharmony&quot;&gt;Harmony Modules&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The large JavaScript application that I work on at work - an in-browser IDE - does not presently use any of these well-known patterns but instead uses what I&amp;rsquo;m going to call the &lt;strong&gt;Flat Module Pattern&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;The Flat Module Pattern&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what the Flat Module Pattern looks like, for an excerpt of a real module called &lt;code&gt;save.js&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/*public*/ function setupSave() {
+    if (isMainOrStandaloneWindow()) {
+        setupSaveToken();
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Autosave
+
+var DELAY_AFTER_TYPING_STOPS_TO_AUTOSAVE = 2000;
+
+/*public*/ function autosave(fileInfo) {
+    ...
+}
+
+// -----------------------------------------------------------------------------
+// Save Token
+
+function setupSaveToken() {
+    ...
+}
+
+/*public*/ function isUnsafeToSave() {
+    ...
+}
+
+// -----------------------------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Only function and constant declarations exist at the top-level. No other executable code may run at the top-level.&lt;/li&gt;
+&lt;li&gt;Public functions are marked with the keyword-comment &lt;code&gt;/*public*/&lt;/code&gt;. A module should not attempt to reference a non-public method in a different module.&lt;/li&gt;
+&lt;li&gt;Modules do not import each other or declare cross-module dependencies explicitly.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Consequences of this pattern:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Modules can be &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-included in any order, since there are no side-effects of including a module.&lt;/li&gt;
+&lt;li&gt;All functions are dumped into the global namespace.
+
+&lt;ul&gt;
+&lt;li&gt;In practice this is not a problem since well-named application functions have distinct names from other application functions, and libraries don&amp;rsquo;t generally dump functions directly into the global namespace.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;All such modules on a particular page are directly included by the HTML page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{% compress js %}
+    &amp;lt;!-- Library --&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/student_survey.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/dialog.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/markdown.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/slider.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/url.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/websocket.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/vendor/jquery.min.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;tsk_platform/vendor/mdl/material.min.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+    &amp;lt;!-- Page-Specific --&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/assignment/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/assignment/code_comprehension.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/assignment/code_writing.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/code_instructions.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/project.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/slides.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/run/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/run/engine/java.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/run/engine/python.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/run/run_window.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/blocks.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/font.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/image.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/scene.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/sound.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/text.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/save.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script&amp;gt;
+        setupCodePage();
+    &amp;lt;/script&amp;gt;
+{% endcompress %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In considering how modules may reference members of each other:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Page-specific modules may freely reference members from each other and from library modules.&lt;/li&gt;
+&lt;li&gt;Most library modules are self-contained and do not reference members from anybody, although some library modules may reference members from other library modules.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The Flat Module Pattern is incredibly simple to follow, with almost no boilerplate. It is also easy to concatenate and minify.&lt;/p&gt;
+
+&lt;p&gt;My team has been using this pattern successfully over the last 4 years or so with a codebase that is now approximately 55,000 lines of JavaScript. I&amp;rsquo;m pretty happy with it.&lt;/p&gt;
+
+&lt;h2&gt;The Encapsulated Flat Module Pattern&lt;/h2&gt;
+
+&lt;p&gt;The one major drawback of the above Flat Module Pattern is that public functions are advisory-only since they are just marked with &lt;code&gt;/*public*/&lt;/code&gt; comments. It is still possible (and easy) to accidentally improperly reference a non-public function from outside the module it is declared in.&lt;/p&gt;
+
+&lt;p&gt;So here&amp;rsquo;s an enhanced variation I call the &lt;strong&gt;Encapsulated Flat Module Pattern&lt;/strong&gt; that doesn&amp;rsquo;t have that problem:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(function() {
+    function public(func) { window[func.name] = func; }
+
+    public(function setupSave() {
+        if (isMainOrStandaloneWindow()) {
+            setupSaveToken();
+        }
+    });
+
+    // -----------------------------------------------------------------------------
+    // Autosave
+
+    var DELAY_AFTER_TYPING_STOPS_TO_AUTOSAVE = 2000;
+
+    public(function autosave(fileInfo) {
+        ...
+    });
+
+    // -----------------------------------------------------------------------------
+    // Save Token
+
+    function setupSaveToken() {
+        ...
+    }
+
+    public(function isUnsafeToSave() {
+        ...
+    });
+
+    // -----------------------------------------------------------------------------
+})();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that each &lt;code&gt;/*public*/&lt;/code&gt; advisory comment has been replaced with a call to a special &lt;code&gt;public(...)&lt;/code&gt; function that actually exports the provided function. Any function that is not marked as public is truly private and not available for reference by other modules.&lt;/p&gt;
+
+&lt;p&gt;Benefits of this pattern:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Public functions are easy to distinguish from private functions at their definition site.&lt;/li&gt;
+&lt;li&gt;Public functions and private functions can be freely interleaved. In particular there is no need to group public functions in the module together.&lt;/li&gt;
+&lt;li&gt;Public and private functions in the same module can call each other naturally and with the same syntax. In particular public functions do not have a special calling convention.&lt;/li&gt;
+&lt;li&gt;No function names are duplicated by the boilerplate. In particular there&amp;rsquo;s no need to repeat function names in a public exports list, as is common with other JavaScript module patterns.&lt;/li&gt;
+&lt;li&gt;It is easy to convert a function from private to public or visa-versa. In particular no references need to be updated since public and private functions are referenced the same way.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve found these JavaScript module patterns to be very useful in structuring JavaScript application code I&amp;rsquo;ve written over the last few years.&lt;/p&gt;
+
+&lt;p&gt;I think these patterns would work well in any large JavaScript application that avoids class inheritance&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and has reasonable non-colliding public function names.&lt;/p&gt;
+
+&lt;p&gt;I do &lt;em&gt;not&lt;/em&gt; think these patterns would be a good idea for JavaScript &lt;em&gt;libraries&lt;/em&gt; that need to avoid polluting the global namespace. For such libraries, falling back on the &lt;a href=&quot;https://github.com/umdjs/umd&quot;&gt;Universal Module Definition&lt;/a&gt; pattern seems more prudent.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Supporting class inheritance requires serializing the order of top-level definitions since the definition of a subclass depends of the definition of its superclass, and therefore subclasses must be declared &lt;em&gt;after&lt;/em&gt; its related superclass. The module patterns in this article do not serialize top-level definition order and therefore cannot reliably support subclasses being declared in a different module than its superclass.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
