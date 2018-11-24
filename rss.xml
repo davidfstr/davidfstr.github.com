@@ -6,8 +6,8 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 24 Nov 2018 10:09:03 -0800</pubDate>
-    <lastBuildDate>Sat, 24 Nov 2018 10:09:03 -0800</lastBuildDate>
+    <pubDate>Sat, 24 Nov 2018 10:10:29 -0800</pubDate>
+    <lastBuildDate>Sat, 24 Nov 2018 10:10:29 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -18,9 +18,9 @@
     
     <item>
       <title>Why isn&#39;t the external link symbol in Unicode?</title>
-      <link>http://dafoster.net/articles/2018/11/24/why-isn%27t-the-external-link-symbol-in-unicode/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <link>http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Sat, 24 Nov 2018 00:00:00 -0800</pubDate>
-      <guid>http://dafoster.net/articles/2018/11/24/why-isn't-the-external-link-symbol-in-unicode</guid>
+      <guid>http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode</guid>
       <description>&lt;p&gt;I have frequently wanted to use the external link symbol ( &lt;img src=&quot;/assets/2018/external_link.png&quot; alt=&quot;external link&quot; /&gt; ) in text that I&amp;rsquo;m writing, without having to resort to including an image. Normally the solution there would be to find the graphical symbol in Unicode and figure out how to type it.&lt;/p&gt;
 
 &lt;p&gt;Apparently at least one &lt;a href=&quot;https://www.unicode.org/L2/L2006/06268-ext-link.pdf&quot;&gt;proposal&lt;/a&gt; for the external link symbol was submitted to the Unicode Consortium as far back as August 2006. It was reviewed at a meeting on November 2006 and it was decided to post a &lt;a href=&quot;https://www.unicode.org/L2/L2006/06324.htm#109-C26&quot;&gt;public review&lt;/a&gt;.&lt;/p&gt;

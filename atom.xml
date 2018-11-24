@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2018-11-24T10:09:03-08:00</updated>
+ <updated>2018-11-24T10:10:29-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -16,14 +16,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/11/24/why-isn't-the-external-link-symbol-in-unicode</id>
+   <id>http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode</id>
    <title>Why isn&#39;t the external link symbol in Unicode?</title>
    <published>2018-11-24T00:00:00-08:00</published>
    <updated>2018-11-24T00:00:00-08:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/11/24/why-isn%27t-the-external-link-symbol-in-unicode/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I have frequently wanted to use the external link symbol ( &lt;img src=&quot;/assets/2018/external_link.png&quot; alt=&quot;external link&quot; /&gt; ) in text that I&amp;rsquo;m writing, without having to resort to including an image. Normally the solution there would be to find the graphical symbol in Unicode and figure out how to type it.&lt;/p&gt;
 
 &lt;p&gt;Apparently at least one &lt;a href=&quot;https://www.unicode.org/L2/L2006/06268-ext-link.pdf&quot;&gt;proposal&lt;/a&gt; for the external link symbol was submitted to the Unicode Consortium as far back as August 2006. It was reviewed at a meeting on November 2006 and it was decided to post a &lt;a href=&quot;https://www.unicode.org/L2/L2006/06324.htm#109-C26&quot;&gt;public review&lt;/a&gt;.&lt;/p&gt;
