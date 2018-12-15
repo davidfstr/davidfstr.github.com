@@ -6,14 +6,125 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 24 Nov 2018 10:10:29 -0800</pubDate>
-    <lastBuildDate>Sat, 24 Nov 2018 10:10:29 -0800</lastBuildDate>
+    <pubDate>Sat, 15 Dec 2018 14:42:02 -0800</pubDate>
+    <lastBuildDate>Sat, 15 Dec 2018 14:42:02 -0800</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Timecharts</title>
+      <link>http://dafoster.net/articles/2018/12/15/timecharts/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 -0800</pubDate>
+      <guid>http://dafoster.net/articles/2018/12/15/timecharts</guid>
+      <description>&lt;h2&gt;What is a timechart? Why are they useful?&lt;/h2&gt;
+
+&lt;p&gt;A timechart is an organizational device of my own invention that helps you track what you are working on from minute-to-minute during the day. It provides &lt;strong&gt;time-awareness&lt;/strong&gt;, the sense of time passing. It keeps you &lt;strong&gt;on task&lt;/strong&gt;, as any distracting activities show up immediately on the chart. For someone like myself, who is easily distracted and often goes down tangents and rabbit holes, a timechart can be very useful for getting things done.&lt;/p&gt;
+
+&lt;p&gt;A timechart looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/timecharts/TimechartFilled.jpeg&quot; alt=&quot;A filled timechart&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It shows activities that you do throughout the day as you are doing them.&lt;/p&gt;
+
+&lt;p&gt;I have been using timecharts to manage my time at various points over the last two decades. They are not appropriate for use all the time but in certain situations can be very helpful for being productive.&lt;/p&gt;
+
+&lt;h2&gt;When is a timechart useful to use?&lt;/h2&gt;
+
+&lt;p&gt;A timechart is useful if you have &lt;strong&gt;a large block of unstructured time&lt;/strong&gt;, such as a weekend day, where you want to get some productive work done.&lt;/p&gt;
+
+&lt;p&gt;A timechart is useful if you have &lt;strong&gt;lots of 15+ minute tasks&lt;/strong&gt; that you want to get done but you are worried about getting distracted.&lt;/p&gt;
+
+&lt;h2&gt;When is a timechart NOT useful to use?&lt;/h2&gt;
+
+&lt;p&gt;A timechart is NOT useful for &lt;strong&gt;brainstorming or exploratory work&lt;/strong&gt; that inherently involves switching between lots of different topics. Timecharts make context switches and digressions more expensive, so are a poor fit when you &lt;em&gt;want&lt;/em&gt; to move fluidly from topic to topic or idea to idea.&lt;/p&gt;
+
+&lt;p&gt;A timechart is also not very useful if you have &lt;strong&gt;exactly one task that you know you must be doing&lt;/strong&gt; and are already highly motivated to do whatever it takes to get that task done.&lt;/p&gt;
+
+&lt;p&gt;A timechart is also not as useful if you have &lt;strong&gt;less than 2 hours of free time to manage&lt;/strong&gt;, as the overhead of creating and updating the timechart in the first place will tend to outweigh the benefit.&lt;/p&gt;
+
+&lt;h2&gt;How do I create a timechart?&lt;/h2&gt;
+
+&lt;p&gt;I typically create a timechart at the start of a weekend day or just after returning from work on a weekday.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First, you will need a &lt;strong&gt;pen&lt;/strong&gt; or a &lt;strong&gt;mechanical pencil&lt;/strong&gt; (preferably both) and a &lt;strong&gt;3x5&quot; notecard&lt;/strong&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;I keep these with me at all times whereever I go in my pocket for quick access. I also have backup supplies in my backpack and daypack when I am out and about.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Write the &lt;strong&gt;date&lt;/strong&gt; in the corner, with your pen.&lt;/li&gt;
+&lt;li&gt;Draw the &lt;strong&gt;circle&lt;/strong&gt;, with your pen.&lt;/li&gt;
+&lt;li&gt;Decide on what &lt;strong&gt;range of hours&lt;/strong&gt; to put on the chart.
+
+&lt;ul&gt;
+&lt;li&gt;4-hour and 8-hour ranges are easiest to draw by hand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Draw the &lt;strong&gt;spokes&lt;/strong&gt; of the chart, lightly with your pencil.&lt;/li&gt;
+&lt;li&gt;Add the &lt;strong&gt;hour numbers&lt;/strong&gt; at the end of the spokes.&lt;/li&gt;
+&lt;li&gt;Optionally, add &lt;strong&gt;15-minute tick marks&lt;/strong&gt; between the spokes, with your pencil.
+
+&lt;ul&gt;
+&lt;li&gt;Prefilling the tick marks provides a consistent sense of scale when you use timecharts with varying hour ranges across multiple days.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Write down any &lt;strong&gt;preexisting commitments&lt;/strong&gt; from your calendar (if any) as wedges inside the circle, in pencil.&lt;/li&gt;
+&lt;li&gt;Write out your &lt;strong&gt;top 2-4 tasks&lt;/strong&gt; that you want to consider for today at the bottom of the card. (Do this from memory or from a more-structured system.)&lt;/li&gt;
+&lt;li&gt;Optionally, decide on a few &lt;strong&gt;specific tasks&lt;/strong&gt; to definitely try to accomplish. Estimate how long each task will take (in multiples of 15-minutes) and write a wedge for each task in the circle when you expect you can do it, with your pencil.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;A just-created timechart will look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/timecharts/TimechartNew.jpeg&quot; alt=&quot;An newly-created timechart&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice that in general the known-fixed activities are written in pen and the proposed activities are written in pencil. As the day progresses, the proposed activities in pencil will be overwritten by the actual activities in pen.&lt;/p&gt;
+
+&lt;p&gt;When stationary at a desk, I keep the timechart notecard out and beside me for easy updaing. When out and about, I keep the timechart notecard in my pocket for quick access.&lt;/p&gt;
+
+&lt;h2&gt;How do I update a timechart during the day?&lt;/h2&gt;
+
+&lt;p&gt;Whenever you feel yourself &lt;strong&gt;beginning a task&lt;/strong&gt; during the day:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Write down the &lt;strong&gt;start end&lt;/strong&gt; of the new wedge, which also is the tail end of the last wedge.&lt;/li&gt;
+&lt;li&gt;Optionally, write down the &lt;strong&gt;task name&lt;/strong&gt; in the new wedge.&lt;/li&gt;
+&lt;li&gt;Write down the task name in the last wedge, if not already done.
+
+&lt;ul&gt;
+&lt;li&gt;Were you distracting yourself? Write &amp;ldquo;~&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Were you doing something small that is cumbersome to write out? Consider writing &amp;ldquo;&amp;hellip;&amp;rdquo; instead of a long description.&lt;/li&gt;
+&lt;li&gt;Were you doing something you don&amp;rsquo;t remember? Write &amp;ldquo;?&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Whenever you feel yourself &lt;strong&gt;finishing a task&lt;/strong&gt; during the day:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Write down the &lt;strong&gt;tail end&lt;/strong&gt; of the last wedge.&lt;/li&gt;
+&lt;li&gt;Write down the &lt;strong&gt;task name&lt;/strong&gt; in the last wedge, if not already done.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I frequently find that I do NOT immediately begin a new productive task directly after a previous task; I often take a break or deliberately distract myself for a few minutes between tasks.&lt;/p&gt;
+
+&lt;p&gt;Late in the day I frequently become tired of working on tasks and stop updating the timechart entirely. This is okay. It is neither possible nor desirable to be productive all the time. We all need unstructured breaks.&lt;/p&gt;
+
+&lt;h2&gt;What do I do with a timechart after it is filled out?&lt;/h2&gt;
+
+&lt;p&gt;I usually &lt;strong&gt;discard&lt;/strong&gt; timecharts from previous days.&lt;/p&gt;
+
+&lt;p&gt;If you are feeling aggressive about tracking your time usage on a weekly scale, you can compile &lt;strong&gt;weekly activity summaries&lt;/strong&gt; based on timechart data that summarizes what you have been spending your time on. Such weekly activity summaries can provide visceral graphical evidence that either you have or have NOT been working toward your weekly and monthly goals, assuming you have been tracking such goals. These days I usually feel that the effort for regularly compiling weekly summaries outweighs the benefits provided by them so I do not compile them anymore.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>
@@ -40,6 +151,11 @@
 &lt;p&gt;Its main rationale appears to be that the external link icon is not an element of plain text. I would agree that is the case. However I would like to point out that emoji and other similar useful symbols are not plain text either yet they have been accepted and continue to be accepted.&lt;/p&gt;
 
 &lt;p&gt;I wonder if the external link symbol would be accepted as an emoji? I don&amp;rsquo;t have enough energy right now to pursue that myself.&lt;/p&gt;
+
+&lt;!-- Also of interest: The rationale for rejecting the external link symbol discouraged another person from even submitting the feed symbol for consideration: https://jameshfisher.com/2017/09/29/unicode-is-only-for-plaintext.html --&gt;
+
+
+
 </description>
     </item>
     
