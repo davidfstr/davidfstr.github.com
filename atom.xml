@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2018-12-15T14:42:02-08:00</updated>
+ <updated>2019-01-06T10:13:23-08:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,92 @@
  <icon>http://dafoster.net/favicon.ico</icon>
  <logo>http://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>http://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner</id>
+   <title>Dependent Types: Impressions of a software practitioner</title>
+   <published>2019-01-06T00:00:00-08:00</published>
+   <updated>2019-01-06T00:00:00-08:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="http://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/2019/the-little-typer.jpg&quot; width=&quot;200px&quot; style=&quot;float: right; margin-left: 20px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dependent types are a feature of certain programming language type systems that are unusually powerful, expressive, and precise, compared with other kinds of types. Dependently-typed programming languages such as Coq, Agda, and Idris appear occasionally in academia but not at all in mainstream languages used by software practitioners.&lt;/p&gt;
+
+&lt;p&gt;I have been curious about dependent types for some time because of their potential for writing programs that are more correct and have fewer bugs. If you look at my &lt;a href=&quot;/articles/2014/12/20/languages-by-hardware-distance/&quot;&gt;hierarchy of programming languages&lt;/a&gt; you&amp;rsquo;ll notice dependently typed languages way at the bottom beyond even the &amp;ldquo;high-typed languages&amp;rdquo;. I even wrote &lt;a href=&quot;https://github.com/davidfstr/idris-insertion-sort&quot;&gt;a provably-correct implementation of insertion sort&lt;/a&gt; in Idris a few years ago.&lt;/p&gt;
+
+&lt;p&gt;Recently my interest in dependent types was rekindled by the release of a new book, &lt;a href=&quot;https://www.amazon.com/Little-Typer-MIT-Press/dp/0262536439/&quot;&gt;The Little Typer&lt;/a&gt;, that aims to be an accessible introduction to dependently typed programming. I just finished reading that book. Below are my impressions of the applicability of dependent types to a software practitioner such as myself.&lt;/p&gt;
+
+&lt;h2&gt;What is a dependent type anyway?&lt;/h2&gt;
+
+&lt;p&gt;A &lt;strong&gt;type&lt;/strong&gt; describes the shape of a particular value or the shape of a variable that holds values. Being able to talk about the shape of something in a programming language is useful because most kind of operations always want to be given things of the same shape.&lt;/p&gt;
+
+&lt;p&gt;There are &lt;strong&gt;simple types&lt;/strong&gt; like &lt;code&gt;Integer&lt;/code&gt;, &lt;code&gt;String&lt;/code&gt;, and &lt;code&gt;List&lt;/code&gt; in all typed languages.&lt;/p&gt;
+
+&lt;p&gt;There are &lt;strong&gt;generic types&lt;/strong&gt; like &lt;code&gt;List of Integer&lt;/code&gt; and &lt;code&gt;Map of String to Integer&lt;/code&gt; that are defined in terms of other &lt;em&gt;types&lt;/em&gt;. Generic types are extremely useful for describing collection values (i.e. lists, sets, maps, etc), which are pervasive in programming.&lt;/p&gt;
+
+&lt;p&gt;Then there are &lt;strong&gt;dependent types&lt;/strong&gt; like &lt;code&gt;List of Integer of length 5&lt;/code&gt; or &lt;code&gt;IsSorted [1,2,3]&lt;/code&gt; that are defined in terms of &lt;em&gt;values&lt;/em&gt;.  Since values are more precise things than types, a dependent type (defined with a value as a parameter) is a more precise shape than a simple unparameterized type or a generic type (defined with a type as a parameter).&lt;/p&gt;
+
+&lt;h2&gt;What are dependent types useful for?&lt;/h2&gt;
+
+&lt;h3&gt;More precise types in general&lt;/h3&gt;
+
+&lt;p&gt;Since dependent types allow defining more precise shapes than other kinds of types, and because type systems can be used by a type checker to verify the consistency of a program, dependent types allow defining functions in a program with more precise input and output restrictions that are automatically checked for correctness by the type checker. Such automatic checking is powerful for providing confidence that the program is correct (i.e. self-consistent).&lt;/p&gt;
+
+&lt;p&gt;With dependent types, you can define a known-length collection type such as &lt;code&gt;List of Integer of length 5&lt;/code&gt;. This is clearly more precise than &lt;code&gt;List of Integer&lt;/code&gt; or &lt;code&gt;List&lt;/code&gt;. However I don&amp;rsquo;t think this additional precision is generally &lt;em&gt;useful&lt;/em&gt;: very few functions in my programs care about how long their lists are at compile type. At most some functions would prefer to disallow empty lists.&lt;/p&gt;
+
+&lt;p&gt;With the known-length collection type mentioned above, you can further define a function &lt;code&gt;first&lt;/code&gt; that takes a &lt;em&gt;non-empty&lt;/em&gt; list of values (that the type checker can verify as definitely non-empty) and can guarantee that it will return an output value without having any kind of error. In most languages the best you can do is define such a function that takes any list that will fail at runtime if it is given an empty list. With dependent types you can flag such uses at compile time.&lt;/p&gt;
+
+&lt;h3&gt;Proofs; Propositions as types&lt;/h3&gt;
+
+&lt;p&gt;Dependent types allow you to construct &lt;a href=&quot;/articles/2015/02/27/proof-terms-in-idris/&quot;&gt;&lt;strong&gt;proof types&lt;/strong&gt;&lt;/a&gt; such as &lt;code&gt;(IsPositive 5)&lt;/code&gt; and their associated proof values. The ability to write arbitrary logical statements as types in a dependently typed programming language is sometimes called &amp;ldquo;propositions as types&amp;rdquo;. This capability is particularly useful for human mathematicians, theorem provers, and academics.&lt;/p&gt;
+
+&lt;p&gt;It can be useful to use proof types to write functions that not only compute something useful but also return a proof that they calculated the &lt;em&gt;correct&lt;/em&gt; value. For example it is possible to write &lt;a href=&quot;https://github.com/davidfstr/idris-insertion-sort&quot;&gt;a sorting function that is proven correct&lt;/a&gt; in that it returns not only an output sorted list but also a proof that the output list is sorted and also a proof that the output list has the same elements as the input list. That&amp;rsquo;s pretty cool. Unfortunately these proof values can be devilishly difficult to construct and manipulate.&lt;/p&gt;
+
+&lt;h3&gt;That&amp;rsquo;s it?&lt;/h3&gt;
+
+&lt;p&gt;These are all the applications I&amp;rsquo;ve been able to discover for dependent types so far. In particular I haven&amp;rsquo;t been able to find any specific &amp;ldquo;killer application&amp;rdquo; of dependent types to any common problem that I see as a software practitioner.&lt;/p&gt;
+
+&lt;h2&gt;What costs arise from using dependent types?&lt;/h2&gt;
+
+&lt;h3&gt;Complexity&lt;/h3&gt;
+
+&lt;p&gt;You must learn, remember, and understand several new kinds of language constructs to manipulate dependent types. In particular in addition to regular function application (λ) you must also learn about how to construct and manipulate dependent pairs using Π and Σ. This creates a &lt;strong&gt;steeper initial learning curve&lt;/strong&gt; and &lt;strong&gt;constant mental overhead&lt;/strong&gt; while writing dependently-typed programs.&lt;/p&gt;
+
+&lt;h3&gt;Verbosity&lt;/h3&gt;
+
+&lt;p&gt;Dependent types have additional parameters that need to be passed between functions, transformed inside functions, and output by functions. Thus any function manipulating a dependently typed value will require &lt;strong&gt;a lot more code&lt;/strong&gt; to manipulate these additional parameters than an equivalent function using simpler-typed values will not.&lt;/p&gt;
+
+&lt;p&gt;More code takes longer to write, provides more opportunities for introducing bugs, and is more time-consuming to maintain.&lt;/p&gt;
+
+&lt;h3&gt;Lack of encapsulation&lt;/h3&gt;
+
+&lt;p&gt;Using dependent types frequently seems to involve &lt;strong&gt;pattern matching on the low-level structure of values&lt;/strong&gt;. For example it is common for a function manipulating the natural number type (&lt;code&gt;Nat&lt;/code&gt;) to pattern-match on the specific value constructors of &lt;code&gt;Nat&lt;/code&gt;, revealing that it is implementated as a &lt;code&gt;0&lt;/code&gt; base value wrapped inside some number of &lt;code&gt;add1&lt;/code&gt;s, similar to a linked list.&lt;/p&gt;
+
+&lt;p&gt;If you wanted to change the natural number type to instead be implemented using a more-efficient list of bits, you wouldn&amp;rsquo;t be able to do so without breaking every function using the original definition of natural numbers.&lt;/p&gt;
+
+&lt;h3&gt;Restrictions on loops and recursion&lt;/h3&gt;
+
+&lt;p&gt;Several dependently-typed languages I&amp;rsquo;ve encountered so far (at least Pie and Agda) disallow function definitions that cannot be proven by the compiler to always terminate, presumably to guard against the type checker going into an infinite loop if presented with a problematic program. In particular this means &lt;strong&gt;no generalized loops&lt;/strong&gt; and &lt;strong&gt;no generalized recursion&lt;/strong&gt; are allowed. These language constructs are extremely useful and it is frequently a pain to work around their absence.&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;There are no killer apps of dependent types that I can identify for software practitioners, and dependent types have significant costs. Thus in general I feel the costs of using dependent types outweigh the benefits for practical software applications outside the domain of theorem-proving.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2015/02/27/proof-terms-in-idris/&quot;&gt;Proof terms in Idris&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/02/17/agda-second-impressions/&quot;&gt;Agda: Second Impressions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2014/01/24/agda-notes-and-evaluation/&quot;&gt;Agda: First Impressions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2018/04/07/unsound-type-systems-are-still-useful/&quot;&gt;Unsound type systems are still useful&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  
  <entry>

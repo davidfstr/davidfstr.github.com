@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Abandonment vs. Unchecked Exceptions for Error Handling | DaFoster</title>
+    <title>Dependent Types: Impressions of a software practitioner | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -291,9 +291,9 @@
         
           <div class="row">
   <div class="span9 content post">
-    <h1>Abandonment vs. Unchecked Exceptions for Error Handling</h1>
+    <h1>Dependent Types: Impressions of a software practitioner</h1>
     <div class="post-metadata">
-      May 17, 2016 &ndash; Filed under: 
+      Jan 06, 2019 &ndash; Filed under: 
       <span class="tag_box inline">
         
          
@@ -303,115 +303,78 @@
       
     </div>
     
-    <p>Read a very interesting article about <a href="http://joeduffyblog.com/2016/02/07/the-error-model/">error handling in Midori</a> recently, and it got me thinking about errors again. I&rsquo;ve thought about errors a lot in the past, as you can see in my old <a href="/articles/2013/07/13/error-handling/">Error Handling</a> article from 2013.</p>
+    <p><img src="/assets/2019/the-little-typer.jpg" width="200px" style="float: right; margin-left: 20px;" /></p>
 
-<p>Midori mentions a few mechanisms for handling errors:</p>
+<p>Dependent types are a feature of certain programming language type systems that are unusually powerful, expressive, and precise, compared with other kinds of types. Dependently-typed programming languages such as Coq, Agda, and Idris appear occasionally in academia but not at all in mainstream languages used by software practitioners.</p>
 
-<ul>
-<li><strong>error codes</strong>,</li>
-<li><strong>unchecked exceptions</strong>,</li>
-<li><strong>checked exceptions</strong>, and</li>
-<li><strong>abandonment</strong>.</li>
-</ul>
+<p>I have been curious about dependent types for some time because of their potential for writing programs that are more correct and have fewer bugs. If you look at my <a href="/articles/2014/12/20/languages-by-hardware-distance/">hierarchy of programming languages</a> you&rsquo;ll notice dependently typed languages way at the bottom beyond even the &ldquo;high-typed languages&rdquo;. I even wrote <a href="https://github.com/davidfstr/idris-insertion-sort">a provably-correct implementation of insertion sort</a> in Idris a few years ago.</p>
 
+<p>Recently my interest in dependent types was rekindled by the release of a new book, <a href="https://www.amazon.com/Little-Typer-MIT-Press/dp/0262536439/">The Little Typer</a>, that aims to be an accessible introduction to dependently typed programming. I just finished reading that book. Below are my impressions of the applicability of dependent types to a software practitioner such as myself.</p>
 
-<p>Midori has chosen to run with</p>
+<h2>What is a dependent type anyway?</h2>
 
-<ol>
-<li><em>abandonment</em> for bugs, and</li>
-<li><em>checked exceptions</em> for most regular errors,</li>
-<li><em>error codes</em> for other regular errors.</li>
-</ol>
+<p>A <strong>type</strong> describes the shape of a particular value or the shape of a variable that holds values. Being able to talk about the shape of something in a programming language is useful because most kind of operations always want to be given things of the same shape.</p>
 
+<p>There are <strong>simple types</strong> like <code>Integer</code>, <code>String</code>, and <code>List</code> in all typed languages.</p>
 
-<p>These seem to be reasonable choices given the special constraints of a language intended for systems, namely:</p>
+<p>There are <strong>generic types</strong> like <code>List of Integer</code> and <code>Map of String to Integer</code> that are defined in terms of other <em>types</em>. Generic types are extremely useful for describing collection values (i.e. lists, sets, maps, etc), which are pervasive in programming.</p>
 
-<ul>
-<li><strong>correctness</strong> is more important than convenience,</li>
-<li><strong>constant-factor performance</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is important,</li>
-</ul>
+<p>Then there are <strong>dependent types</strong> like <code>List of Integer of length 5</code> or <code>IsSorted [1,2,3]</code> that are defined in terms of <em>values</em>.  Since values are more precise things than types, a dependent type (defined with a value as a parameter) is a more precise shape than a simple unparameterized type or a generic type (defined with a type as a parameter).</p>
 
+<h2>What are dependent types useful for?</h2>
 
-<p>However I work mostly in application domains rather than system domains, so I wouldn&rsquo;t make these same choices. In particular <em>abandonment</em> really gets under my skin.</p>
+<h3>More precise types in general</h3>
 
-<h3>Abandonment</h3>
+<p>Since dependent types allow defining more precise shapes than other kinds of types, and because type systems can be used by a type checker to verify the consistency of a program, dependent types allow defining functions in a program with more precise input and output restrictions that are automatically checked for correctness by the type checker. Such automatic checking is powerful for providing confidence that the program is correct (i.e. self-consistent).</p>
 
-<p>Abandonment in Midori is used for bugs and serious errors where there is no expectation that the error condition can be handled sensibly. Abandonment tears down the entire process.</p>
+<p>With dependent types, you can define a known-length collection type such as <code>List of Integer of length 5</code>. This is clearly more precise than <code>List of Integer</code> or <code>List</code>. However I don&rsquo;t think this additional precision is generally <em>useful</em>: very few functions in my programs care about how long their lists are at compile type. At most some functions would prefer to disallow empty lists.</p>
 
-<p>I have a few problems with this approach:</p>
+<p>With the known-length collection type mentioned above, you can further define a function <code>first</code> that takes a <em>non-empty</em> list of values (that the type checker can verify as definitely non-empty) and can guarantee that it will return an output value without having any kind of error. In most languages the best you can do is define such a function that takes any list that will fail at runtime if it is given an empty list. With dependent types you can flag such uses at compile time.</p>
 
-<ol>
-<li><p><strong>Abandonment assumes that the <em>process</em> is the primary isolation boundary.</strong></p>
+<h3>Proofs; Propositions as types</h3>
 
-<p>In a web server, for example, a single <em>request</em> being handled would be a more appropriate boundary. It would be better to abort only the current request rather than bring down the entire web server.</p></li>
-<li><p><strong>Abandonment provides no opportunity for its error condition to be handled in an alternative fashion.</strong></p>
+<p>Dependent types allow you to construct <a href="/articles/2015/02/27/proof-terms-in-idris/"><strong>proof types</strong></a> such as <code>(IsPositive 5)</code> and their associated proof values. The ability to write arbitrary logical statements as types in a dependently typed programming language is sometimes called &ldquo;propositions as types&rdquo;. This capability is particularly useful for human mathematicians, theorem provers, and academics.</p>
 
-<p>For example, code that intentionally allocates large blocks of memory on a regular basis may in fact be prepared to handle out of memory conditions, which would normally trigger abandonment.</p>
+<p>It can be useful to use proof types to write functions that not only compute something useful but also return a proof that they calculated the <em>correct</em> value. For example it is possible to write <a href="https://github.com/davidfstr/idris-insertion-sort">a sorting function that is proven correct</a> in that it returns not only an output sorted list but also a proof that the output list is sorted and also a proof that the output list has the same elements as the input list. That&rsquo;s pretty cool. Unfortunately these proof values can be devilishly difficult to construct and manipulate.</p>
 
-<p>Granted, you can often support this scenario by bifurcating the API, providing one allocate-memory function that returns an explicit error code on failure and a different allocate-memory function that abandons on failure.</p></li>
-</ol>
+<h3>That&rsquo;s it?</h3>
 
+<p>These are all the applications I&rsquo;ve been able to discover for dependent types so far. In particular I haven&rsquo;t been able to find any specific &ldquo;killer application&rdquo; of dependent types to any common problem that I see as a software practitioner.</p>
 
-<p>But there is one big advantage to using abandonment:</p>
+<h2>What costs arise from using dependent types?</h2>
 
-<ul>
-<li><p><strong>Better constant-factor performance.</strong></p>
+<h3>Complexity</h3>
 
-<p>Using abandonment in place of unchecked exceptions means that there is no need to pepper functions everywhere with the low-level code needed to propagate unchecked exceptions. Such code globally degrades constant-factor performance of all functions in the language.</p></li>
-</ul>
+<p>You must learn, remember, and understand several new kinds of language constructs to manipulate dependent types. In particular in addition to regular function application (λ) you must also learn about how to construct and manipulate dependent pairs using Π and Σ. This creates a <strong>steeper initial learning curve</strong> and <strong>constant mental overhead</strong> while writing dependently-typed programs.</p>
 
+<h3>Verbosity</h3>
 
-<h3>Unchecked Exceptions</h3>
+<p>Dependent types have additional parameters that need to be passed between functions, transformed inside functions, and output by functions. Thus any function manipulating a dependently typed value will require <strong>a lot more code</strong> to manipulate these additional parameters than an equivalent function using simpler-typed values will not.</p>
 
-<p>In most modern programming languages intended for applications (as opposed to systems), <em>unchecked exceptions</em> are used for reporting bugs. They have the following advantages:</p>
+<p>More code takes longer to write, provides more opportunities for introducing bugs, and is more time-consuming to maintain.</p>
 
-<ul>
-<li><p><strong>Unchecked exceptions fail fast, terminating the process by default.</strong></p>
+<h3>Lack of encapsulation</h3>
 
-<p>This is no different than abandonment so far, however&hellip;</p></li>
-<li><p><strong>Unchecked exceptions <em>can</em> be caught by a higher level error handler</strong>.</p>
+<p>Using dependent types frequently seems to involve <strong>pattern matching on the low-level structure of values</strong>. For example it is common for a function manipulating the natural number type (<code>Nat</code>) to pattern-match on the specific value constructors of <code>Nat</code>, revealing that it is implementated as a <code>0</code> base value wrapped inside some number of <code>add1</code>s, similar to a linked list.</p>
 
-<p>This additional flexibily is useful for web servers, parsers, and other applications that expect to encounter errors but don&rsquo;t want to crash entirely in the presence of errors.</p></li>
-</ul>
+<p>If you wanted to change the natural number type to instead be implemented using a more-efficient list of bits, you wouldn&rsquo;t be able to do so without breaking every function using the original definition of natural numbers.</p>
 
+<h3>Restrictions on loops and recursion</h3>
 
-<p>But:</p>
+<p>Several dependently-typed languages I&rsquo;ve encountered so far (at least Pie and Agda) disallow function definitions that cannot be proven by the compiler to always terminate, presumably to guard against the type checker going into an infinite loop if presented with a problematic program. In particular this means <strong>no generalized loops</strong> and <strong>no generalized recursion</strong> are allowed. These language constructs are extremely useful and it is frequently a pain to work around their absence.</p>
 
-<ul>
-<li><p><strong>Unchecked exceptions degrade constant-factor performance.</strong>.</p>
+<h2>Conclusion</h2>
 
-<p>However this typically doesn&rsquo;t matter in application domains. Only <em>algorithmic performance</em> matters.</p></li>
-</ul>
-
-
-<h3>Conclusion</h3>
-
-<p>I think abandonment is a reasonable approach for systems languages but I still prefer unchecked exceptions myself for application languages. I prefer the additional flexibility you get with unchecked exceptions and don&rsquo;t mind the performance difference.</p>
+<p>There are no killer apps of dependent types that I can identify for software practitioners, and dependent types have significant costs. Thus in general I feel the costs of using dependent types outweigh the benefits for practical software applications outside the domain of theorem-proving.</p>
 
 <h3><em>Related Articles</em></h3>
 
 <ul>
-<li><a href="/articles/2013/07/13/error-handling/">Error Handling</a>
-
-<ul>
-<li><p><em>Discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.</em></p></li>
+<li><a href="/articles/2015/02/27/proof-terms-in-idris/">Proof terms in Idris</a></li>
+<li><a href="/articles/2014/02/17/agda-second-impressions/">Agda: Second Impressions</a></li>
+<li><a href="/articles/2014/01/24/agda-notes-and-evaluation/">Agda: First Impressions</a></li>
+<li><a href="/articles/2018/04/07/unsound-type-systems-are-still-useful/">Unsound type systems are still useful</a></li>
 </ul>
-</li>
-<li><a href="/articles/2014/11/22/error-handling-styles/">Error handling styles in programming</a>
-
-<ul>
-<li><em>Summarizes the most prominent strategies for handling runtime errors.</em></li>
-</ul>
-</li>
-</ul>
-
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>As used in this article, <strong>constant-factor performance</strong> refers to being sensitive to high constant factors in program time costs. This is in contrast to <strong>algorithmic performance</strong> which cares primarily about avoiding, for example, an O(n<sup>2</sup>) algorithm where an O(n) algorithm would suffice.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
 
 
   </div>
@@ -515,11 +478,11 @@
     <div class="pagination pagination-centered">
       <ul>
       
-        <li class="prev"><a href="/articles/2016/05/02/a-programmers-guide-to-practical-hats/" title="A Programmer's Guide to Practical Hats">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2018/12/15/timecharts/" title="Timecharts">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2016/05/21/glue-in-functional-programming-languages/" title="Glue in Functional Programming Languages">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
