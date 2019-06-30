@@ -6,14 +6,50 @@
     <atom:link href="http://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 29 Apr 2019 21:54:51 -0700</pubDate>
-    <lastBuildDate>Mon, 29 Apr 2019 21:54:51 -0700</lastBuildDate>
+    <pubDate>Sun, 30 Jun 2019 12:27:38 -0700</pubDate>
+    <lastBuildDate>Sun, 30 Jun 2019 12:27:38 -0700</lastBuildDate>
     <image>
       <url>http://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>http://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>OS Abstractions are Failing Us</title>
+      <link>http://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Thu, 27 Jun 2019 00:00:00 -0700</pubDate>
+      <guid>http://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us</guid>
+      <description>&lt;p&gt;In recent years I&amp;rsquo;ve increasingly noticed software being written that cannot get the performance it needs unless it bypasses usual operating system services.&lt;/p&gt;
+
+&lt;h2&gt;Concurrency&lt;/h2&gt;
+
+&lt;p&gt;For example let&amp;rsquo;s consider a program that wants to do many tasks at the same time. Traditionally you would either create multiple &lt;strong&gt;threads&lt;/strong&gt; or multiple &lt;strong&gt;processes&lt;/strong&gt; for each parallel line of execution. But threads and processes have a lot of overhead - in particular they take up a lot of memory - so it&amp;rsquo;s unwise to have more than a few hundred of them. So if you have a web service handling hundreds or thousands of connections per second, you cannot effectively serve all those requests on one machine using a thread or process per connection.&lt;/p&gt;
+
+&lt;p&gt;So some developers turn to writing their web servers with asynchronous I/O and &lt;strong&gt;green threads&lt;/strong&gt; so that they can multiplex multiple concurrent tasks onto a single OS thread. You can run millions of these green threads concurrently per machine on modern hardware. That&amp;rsquo;s pretty slick, at least until one of those green threads starts hogging the CPU or accidentally performs a blocking operation. Such a misbehaving green thread will block all other green threads from running, since they use cooperative multitasking and cannot be preempted.&lt;/p&gt;
+
+&lt;p&gt;Other developers turn to &lt;strong&gt;microthreads&lt;/strong&gt; in languages like Go, Erlang, or Elixir&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. These environments have an in-process scheduler that multiplexes microthreads onto a single OS thread. Again you can run millions of microthreads concurrently on modern hardware. Happily microthreads &lt;em&gt;can&lt;/em&gt; be preempted by the scheduler and so a misbehaving microthread won&amp;rsquo;t interfere with other microthreads, although it may cause your server to burn CPU wastefully.&lt;/p&gt;
+
+&lt;h2&gt;Disk I/O throughput&lt;/h2&gt;
+
+&lt;p&gt;These days our disks are solid-state drives with access times similar to RAM rather than the slower rotating magnetic platters of earlier years. Yet my understanding is that the common filesystem and socket abstractions require per-operation overhead comparable to the time spent actually performing the I/O. Yikes. Research seems to be underway considering ways to bypass various OS abstractions to get faster results.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2&gt;Exciting times&lt;/h2&gt;
+
+&lt;p&gt;It&amp;rsquo;s neat to be working in computing at the time when some of the fundamental abstractions are being called into question. When practitioners are receptive to change there&amp;rsquo;s an opportunity to contribute new ideas and actually have them tried and used.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/JvBT4XBdoUE?t=358&quot;&gt;The Soul of Erlang and Elixir - Saša Jurić&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://penberg.org/parakernel-hotos19.pdf&quot;&gt;I/O Is Faster Than the CPU – Let&amp;rsquo;s Partition Resources and Eliminate (Most) OS Abstractions&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
