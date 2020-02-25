@@ -21,6 +21,7 @@ http://dafoster.net/404.html
 http://dafoster.net/apps/
 http://dafoster.net/sitemap.txt
 
+http://dafoster.net/articles/2020/02/02/power-naps/
 http://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us/
 http://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/
 http://dafoster.net/articles/2018/12/15/timecharts/
