@@ -2,28 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>DaFoster</title>
- <link href="http://dafoster.net/"/>
- <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-10T04:43:09+00:00</updated>
- <id>http://dafoster.net/</id>
+ <link href="https://dafoster.net/"/>
+ <link href="https://dafoster.net/atom.xml" rel="self"/>
+ <updated>2021-01-10T05:08:37+00:00</updated>
+ <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
    
  </author>
- <icon>http://dafoster.net/favicon.ico</icon>
- <logo>http://dafoster.net/favicon.ico</logo>
+ <icon>https://dafoster.net/favicon.ico</icon>
+ <logo>https://dafoster.net/favicon.ico</logo>
 
  
  
  <entry>
-   <id>http://dafoster.net/articles/2020/02/02/power-naps</id>
+   <id>https://dafoster.net/articles/2020/02/02/power-naps</id>
    <title>Power Naps</title>
    <published>2020-02-02T00:00:00+00:00</published>
    <updated>2020-02-02T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2020/02/02/power-naps/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2020/02/02/power-naps/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;For difficult problems&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; I have used naps at home and work to recharge quickly or to temporarily alter my information processing mode&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;When to power nap:&lt;/p&gt;
@@ -64,14 +64,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2020/01/18/stress</id>
+   <id>https://dafoster.net/articles/2020/01/18/stress</id>
    <title>Stress</title>
    <published>2020-01-18T00:00:00+00:00</published>
    <updated>2020-01-18T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2020/01/18/stress/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2020/01/18/stress/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;What is stress exactly?&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Stress is an abnormal alertness (and high rate of bodily energy drain) that is felt by an individual to be required in order to respond to the demands placed on them from their environment.&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -132,14 +132,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us</id>
+   <id>https://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us</id>
    <title>OS Abstractions are Failing Us</title>
    <published>2019-06-27T00:00:00+00:00</published>
    <updated>2019-06-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;In recent years I&amp;rsquo;ve increasingly noticed software being written that cannot get the performance it needs unless it bypasses usual operating system services.&lt;/p&gt;
 
 &lt;h2&gt;Concurrency&lt;/h2&gt;
@@ -172,14 +172,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner</id>
+   <id>https://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner</id>
    <title>Dependent Types: Impressions of a software practitioner</title>
    <published>2019-01-06T00:00:00+00:00</published>
    <updated>2019-01-06T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/2019/the-little-typer.jpg&quot; width=&quot;200px&quot; style=&quot;float: right; margin-left: 20px;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Dependent types are a feature of certain programming language type systems that are unusually powerful, expressive, and precise, compared with other kinds of types. Dependently-typed programming languages such as Coq, Agda, and Idris appear occasionally in academia but not at all in mainstream languages used by software practitioners.&lt;/p&gt;
@@ -258,14 +258,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/12/15/timecharts</id>
+   <id>https://dafoster.net/articles/2018/12/15/timecharts</id>
    <title>Timecharts</title>
    <published>2018-12-15T00:00:00+00:00</published>
    <updated>2018-12-15T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/12/15/timecharts/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2018/12/15/timecharts/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;What is a timechart? Why are they useful?&lt;/h2&gt;
 
 &lt;p&gt;A timechart is an organizational device of my own invention that helps you track what you are working on from minute-to-minute during the day. It provides &lt;strong&gt;time-awareness&lt;/strong&gt;, the sense of time passing. It keeps you &lt;strong&gt;on task&lt;/strong&gt;, as any distracting activities show up immediately on the chart. For someone like myself, who is easily distracted and often goes down tangents and rabbit holes, a timechart can be very useful for getting things done.&lt;/p&gt;
@@ -373,14 +373,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode</id>
+   <id>https://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode</id>
    <title>Why isn&#39;t the external link symbol in Unicode?</title>
    <published>2018-11-24T00:00:00+00:00</published>
    <updated>2018-11-24T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I have frequently wanted to use the external link symbol ( &lt;img src=&quot;/assets/2018/external_link.png&quot; alt=&quot;external link&quot; /&gt; ) in text that I&amp;rsquo;m writing, without having to resort to including an image. Normally the solution there would be to find the graphical symbol in Unicode and figure out how to type it.&lt;/p&gt;
 
 &lt;p&gt;Apparently at least one &lt;a href=&quot;https://www.unicode.org/L2/L2006/06268-ext-link.pdf&quot;&gt;proposal&lt;/a&gt; for the external link symbol was submitted to the Unicode Consortium as far back as August 2006. It was reviewed at a meeting on November 2006 and it was decided to post a &lt;a href=&quot;https://www.unicode.org/L2/L2006/06324.htm#109-C26&quot;&gt;public review&lt;/a&gt;.&lt;/p&gt;
@@ -410,14 +410,14 @@
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript</id>
+   <id>https://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript</id>
    <title>The Flat Module Pattern in JavaScript</title>
    <published>2018-09-23T00:00:00+00:00</published>
    <updated>2018-09-23T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;There are several patterns for structuring modules in JavaScript. The most common ones I see talked about is the original &lt;a href=&quot;http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html&quot;&gt;JavaScript Module Pattern&lt;/a&gt;, &lt;a href=&quot;https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailamd&quot;&gt;AMD Modules&lt;/a&gt;, &lt;a href=&quot;https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailcommonjs&quot;&gt;CommonJS Modules&lt;/a&gt;, and the emerging &lt;a href=&quot;https://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailharmony&quot;&gt;Harmony Modules&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The large JavaScript application that I work on at work - an in-browser IDE - does not presently use any of these well-known patterns but instead uses what I&amp;rsquo;m going to call the &lt;strong&gt;Flat Module Pattern&lt;/strong&gt;.&lt;/p&gt;
@@ -601,14 +601,14 @@ function setupSaveToken() {
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/06/02/performance-testing</id>
+   <id>https://dafoster.net/articles/2018/06/02/performance-testing</id>
    <title>Performance Testing</title>
    <published>2018-06-02T00:00:00+00:00</published>
    <updated>2018-06-02T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/06/02/performance-testing/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2018/06/02/performance-testing/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;In this article I will describe the theory of &lt;strong&gt;performance testing&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and how we conduct such testing in practice at my company TechSmart, in the context of rich web applications and web services.&lt;/p&gt;
 
 &lt;p&gt;By the end of this article you should understand how we define performance testing and perhaps get some ideas for implementing or customizing your own tools for performance-testing your own web service.&lt;/p&gt;
@@ -1010,14 +1010,14 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful</id>
+   <id>https://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful</id>
    <title>Unsound type systems are still useful</title>
    <published>2018-04-07T00:00:00+00:00</published>
    <updated>2018-04-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;The conventional wisdom in the academic community &lt;a href=&quot;https://frenchy64.github.io/2018/04/07/unsoundness-in-untyped-types.html&quot;&gt;appears to be&lt;/a&gt; that a type system is not useful if it cannot be proven to be &lt;em&gt;sound&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;However as a software practitioner I definitely find unsound type systems to still be quite useful. The principal benefits that I get out of a type system include:&lt;/p&gt;
@@ -1067,14 +1067,14 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
  
  
  <entry>
-   <id>http://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature</id>
+   <id>https://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature</id>
    <title>How to implement a large software feature</title>
    <published>2018-01-20T00:00:00+00:00</published>
    <updated>2018-01-20T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I just started implementing my first big new software feature since the start of the New Year. I thought I&amp;rsquo;d outline my process since I don&amp;rsquo;t think I&amp;rsquo;ve written it down before.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s begin: A feature request comes in. In my case:&lt;/p&gt;
@@ -1180,14 +1180,14 @@ Relayout
  
  
  <entry>
-   <id>http://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe</id>
+   <id>https://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe</id>
    <title>How to annotate a new recipe</title>
    <published>2017-12-18T00:00:00+00:00</published>
    <updated>2017-12-18T00:00:00+00:00</updated>
    
      <category term="Cooking"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;When trying a new recipe for the first time I annotate it to highlight certain important parts. An annotated recipe is easier to follow when cooking. And the process of annotating a recipe forces me to actually read the recipe.&lt;/p&gt;
 
 &lt;p&gt;Here is a recipe that I&amp;rsquo;ve already annotated:&lt;/p&gt;
@@ -1217,14 +1217,14 @@ Relayout
  
  
  <entry>
-   <id>http://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey</id>
+   <id>https://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey</id>
    <title>Learning to cook better: My journey</title>
    <published>2017-12-09T00:00:00+00:00</published>
    <updated>2017-12-09T00:00:00+00:00</updated>
    
      <category term="Cooking"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This year I spent a lot of time teaching myself to cook more complicated dishes from cookbooks, doing meal planning, and learning related skills. In this article I&amp;rsquo;d like to share my system for learning to cook better.&lt;/p&gt;
 
 &lt;h3&gt;Commit to becoming skilled at cooking&lt;/h3&gt;
@@ -1321,14 +1321,14 @@ Relayout
  
  
  <entry>
-   <id>http://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables</id>
+   <id>https://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables</id>
    <title>The Trouble with Global Variables</title>
    <published>2017-04-09T00:00:00+00:00</published>
    <updated>2017-04-09T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;You&amp;rsquo;ve probably heard that global variables are bad. Today I want to explain &lt;em&gt;why&lt;/em&gt; they are problematic, with examples, and give some design alternatives where you might be tempted to use a global variable.&lt;/p&gt;
 
 &lt;h2&gt;What is a global?&lt;/h2&gt;
@@ -1451,14 +1451,14 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation</id>
+   <id>https://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation</id>
    <title>How to Design Large Programs with Abstraction and Encapsulation</title>
    <published>2017-03-25T00:00:00+00:00</published>
    <updated>2017-03-25T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I spend a lot of time as a professional coder working on very large programs, attempting to grow them while also keeping them from collapsing under their own weight. This is hard.&lt;/p&gt;
 
 &lt;h2&gt;Abstraction and Encapsulation&lt;/h2&gt;
@@ -1595,14 +1595,14 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook</id>
+   <id>https://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook</id>
    <title>How to upload from OS X Photos to Facebook (2016)</title>
    <published>2016-08-21T00:00:00+00:00</published>
    <updated>2016-08-21T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;The OS X Photos program has a built-in Share button that can post selected photos directly to Facebook. However it has the following limitations:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1632,14 +1632,14 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2016/05/21/glue-in-functional-programming-languages</id>
+   <id>https://dafoster.net/articles/2016/05/21/glue-in-functional-programming-languages</id>
    <title>Glue in Functional Programming Languages</title>
    <published>2016-05-21T00:00:00+00:00</published>
    <updated>2016-05-21T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2016/05/21/glue-in-functional-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2016/05/21/glue-in-functional-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.cse.chalmers.se/~rjmh/Papers/whyfp.html&quot;&gt;Why Functional Programming Matters&lt;/a&gt; is a famous paper on the merits of functional programming&amp;nbsp;(FP). It argues that FP has two big special tools for &lt;em&gt;glueing&lt;/em&gt; programs together:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -1697,14 +1697,14 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling</id>
+   <id>https://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling</id>
    <title>Abandonment vs. Unchecked Exceptions for Error Handling</title>
    <published>2016-05-17T00:00:00+00:00</published>
    <updated>2016-05-17T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Read a very interesting article about &lt;a href=&quot;http://joeduffyblog.com/2016/02/07/the-error-model/&quot;&gt;error handling in Midori&lt;/a&gt; recently, and it got me thinking about errors again. I&amp;rsquo;ve thought about errors a lot in the past, as you can see in my old &lt;a href=&quot;/articles/2013/07/13/error-handling/&quot;&gt;Error Handling&lt;/a&gt; article from 2013.&lt;/p&gt;
 
 &lt;p&gt;Midori mentions a few mechanisms for handling errors:&lt;/p&gt;
@@ -1820,14 +1820,14 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats</id>
+   <id>https://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats</id>
    <title>A Programmer&#39;s Guide to Practical Hats</title>
    <published>2016-05-02T00:00:00+00:00</published>
    <updated>2016-05-02T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Why wear a hat?&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1957,14 +1957,14 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder</id>
+   <id>https://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder</id>
    <title>Notes on &amp;ldquo;The Clean Coder&amp;rdquo;</title>
    <published>2016-04-22T00:00:00+00:00</published>
    <updated>2016-04-22T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I recently picked up a copy of &lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=as_li_ss_tl?ie=UTF8&amp;amp;keywords=the%20clean%20coder&amp;amp;qid=1461339725&amp;amp;ref_=sr_1_1&amp;amp;sr=8-1&amp;amp;linkCode=ll1&amp;amp;tag=dafo07-20&amp;amp;linkId=11da6a52e5ac10bdef1499cb5b5fab88&quot;&gt;The Clean Coder&lt;/a&gt;: An excellent book about the non-technical aspects of being a senior software engineer.&lt;/p&gt;
 
 &lt;p&gt;Below are my notes taken while reading the book.&lt;/p&gt;
@@ -2315,7 +2315,7 @@ def warn(message):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2016/04/02/roles-on-software-teams</id>
+   <id>https://dafoster.net/articles/2016/04/02/roles-on-software-teams</id>
    <title>Roles on Software Teams</title>
    <published>2016-04-02T00:00:00+00:00</published>
    <updated>2016-04-02T00:00:00+00:00</updated>
@@ -2324,7 +2324,7 @@ def warn(message):
    
      <category term="Business"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2016/04/02/roles-on-software-teams/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2016/04/02/roles-on-software-teams/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I currently work at a software startup and wear a lot of hats. Here are some of the hats I wear and some of the hats I interact with.&lt;/p&gt;
 
 &lt;h3&gt;Product Manager&lt;/h3&gt;
@@ -2525,14 +2525,14 @@ Examples of operators outside software teams:
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages</id>
+   <id>https://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages</id>
    <title>State of the Union in Programming Languages (2015)</title>
    <published>2015-09-13T00:00:00+00:00</published>
    <updated>2015-09-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Some programming languages are better at some tasks than others. Below I have presented my own assessment of how various languages stack up against each other for the following common classes of tasks:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -2788,14 +2788,14 @@ Examples of operators outside software teams:
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/08/08/algorithms-101</id>
+   <id>https://dafoster.net/articles/2015/08/08/algorithms-101</id>
    <title>Algorithms 101 for Software Applications</title>
    <published>2015-08-08T00:00:00+00:00</published>
    <updated>2015-08-08T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/08/08/algorithms-101/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/08/08/algorithms-101/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;In general I feel that deep algorithm knowledge is overrated in the software industry. In the early 90&amp;rsquo;s, one needed to know about common algorithms because you needed to actually &lt;em&gt;implement&lt;/em&gt; them. Today in the 00&amp;rsquo;s and 10&amp;rsquo;s one mainly needs to know which algorithms are appropriate to &lt;em&gt;use&lt;/em&gt;, since most common algorithms are already implemented in the standard library of modern programming languages. Therefore I would like to give a summary of the minimum that I think modern coders actually need to know to do their job effectively.&lt;/p&gt;
 
 &lt;p&gt;All advice in this article is directly towards those who write &lt;em&gt;applications&lt;/em&gt;: primarily rich web applications, desktop applications, and server-side tools. In this context the &lt;em&gt;most&lt;/em&gt; advanced type of program you would be asked to write would be a compiler or other program transformation tool.&lt;/p&gt;
@@ -3123,14 +3123,14 @@ optimal for a comparison-based sort.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/06/27/unicode-101</id>
+   <id>https://dafoster.net/articles/2015/06/27/unicode-101</id>
    <title>Unicode 101</title>
    <published>2015-06-27T00:00:00+00:00</published>
    <updated>2015-06-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/06/27/unicode-101/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/06/27/unicode-101/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Handling international and Unicode text correctly in modern programming languages remains a poorly understood topic.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/articles/2015/06/27/unicode-101/&quot;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
@@ -3139,14 +3139,14 @@ optimal for a comparison-based sort.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python</id>
+   <id>https://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python</id>
    <title>Optional Structural Static Typing in Python</title>
    <published>2015-04-26T00:00:00+00:00</published>
    <updated>2015-04-26T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I&amp;rsquo;m working on a new project to build a typechecking linter for Python, in the same vein as &lt;a href=&quot;http://www.mypy-lang.org&quot;&gt;mypy&lt;/a&gt;. The big difference between mypy and what I&amp;rsquo;m hoping to build is that my type system will be a &lt;em&gt;structural&lt;/em&gt; type system rather than a &lt;em&gt;nominal&lt;/em&gt; type system.&lt;/p&gt;
 
 &lt;h2&gt;Structural vs. Nominal Type Systems&lt;/h2&gt;
@@ -3225,14 +3225,14 @@ Bar bar = foo;   // Will this work?
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/03/23/block-distracting-websites</id>
+   <id>https://dafoster.net/articles/2015/03/23/block-distracting-websites</id>
    <title>Block Distracting Websites</title>
    <published>2015-03-23T00:00:00+00:00</published>
    <updated>2015-03-23T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/03/23/block-distracting-websites/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/03/23/block-distracting-websites/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;div style=&quot;float: right; margin-left: 1em;&quot;&gt;
     &lt;img src=&quot;/assets/2015/distracting-websites.png&quot; /&gt;
     &lt;div&gt;&lt;i&gt;Courtesy of &lt;a href=&quot;http://xkcd.com/1502/&quot;&gt;xkcd&lt;/a&gt;&lt;/i&gt;&lt;/div&gt;
@@ -3266,14 +3266,14 @@ Bar bar = foo;   // Will this work?
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning</id>
+   <id>https://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning</id>
    <title>Semantic Versioning vs. Romantic Versioning</title>
    <published>2015-03-14T00:00:00+00:00</published>
    <updated>2015-03-14T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;In recent years the larger software development community has started to pay more attention to version numbers.&lt;/p&gt;
 
 &lt;h2&gt;Semantic Versioning&lt;/h2&gt;
@@ -3418,14 +3418,14 @@ Bar bar = foo;   // Will this work?
  
  
  <entry>
-   <id>http://dafoster.net/articles/2015/02/27/proof-terms-in-idris</id>
+   <id>https://dafoster.net/articles/2015/02/27/proof-terms-in-idris</id>
    <title>Proof terms in Idris</title>
    <published>2015-02-27T00:00:00+00:00</published>
    <updated>2015-02-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2015/02/27/proof-terms-in-idris/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2015/02/27/proof-terms-in-idris/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Recently I&amp;rsquo;ve been experimenting with the language &lt;a href=&quot;http://www.idris-lang.org&quot;&gt;Idris&lt;/a&gt;, one of the rare &lt;strong&gt;dependently-typed&lt;/strong&gt; programming languages.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; For example you can write a sorting function that is proven correct by the compiler at &lt;em&gt;compile time&lt;/em&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sort : (inputList:Vect n e) -&amp;gt; 
@@ -3864,14 +3864,14 @@ Nothing : Maybe (IsSorted [3, 2, 1])
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance</id>
+   <id>https://dafoster.net/articles/2014/12/20/languages-by-hardware-distance</id>
    <title>Spectrum of Languages by Hardware&amp;nbsp;Distance</title>
    <published>2014-12-20T00:00:00+00:00</published>
    <updated>2014-12-20T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/12/20/languages-by-hardware-distance/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Programming languages (and the ecosystems that surround them) are incredibly interesting. They can be sliced in many different ways based on syntactic similarity, type system similarity, suitedness for various problem domains, and many other attributes.&lt;/p&gt;
 
 &lt;p&gt;Below I present an spectrum of various languages, arranged by &lt;strong&gt;distance from the underlying hardware&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
@@ -3990,14 +3990,14 @@ Nothing : Maybe (IsSorted [3, 2, 1])
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/11/22/error-handling-styles</id>
+   <id>https://dafoster.net/articles/2014/11/22/error-handling-styles</id>
    <title>Error handling styles in programming</title>
    <published>2014-11-22T00:00:00+00:00</published>
    <updated>2014-11-22T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/11/22/error-handling-styles/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/11/22/error-handling-styles/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;There are many ways that programs can handle errors at runtime. The excellent book &lt;a href=&quot;https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;amp;linkCode=w01&amp;amp;linkId=7FSPMMHJB3KVNUKV&amp;amp;creativeASIN=1482227371&quot;&gt;Exercises in Programming Style&lt;/a&gt; proposes an interesting categorization of common error handling patterns. Fascinatingly, the programming language that you work in often actively encourages one particular error handling pattern over another.&lt;/p&gt;
 
 &lt;h2&gt;Reinterpret and Continue &lt;small&gt;(Constructivist)&lt;/small&gt;&lt;/h2&gt;
@@ -4080,7 +4080,7 @@ Nothing : Maybe (IsSorted [3, 2, 1])
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months</id>
+   <id>https://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months</id>
    <title>Learning Japanese - the first 6 months</title>
    <published>2014-11-08T00:00:00+00:00</published>
    <updated>2014-11-08T00:00:00+00:00</updated>
@@ -4089,7 +4089,7 @@ Nothing : Maybe (IsSorted [3, 2, 1])
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;So I haven&amp;rsquo;t written any posts for a long time. Mainly this is because I&amp;rsquo;ve been studying Japanese and preparing to go to Japan for a two week trip, which I have now returned from.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;Almost all of my Japanese study has been self-study, outside of a classroom, which I&amp;rsquo;ve found to be a much faster method for the self-motivated student. But this requires you to locate your own resources, setup your own practice schedules, etc. I&amp;rsquo;d like to describe what my own path for learning Japanese has looked like so far, in the hope that I can smooth the path for other self-motivated readers who are learning Japanese or another Asian language.&lt;/p&gt;
@@ -4278,14 +4278,14 @@ Another good source for basic grammar and vocabulary is &lt;a href=&quot;http://
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store</id>
+   <id>https://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store</id>
    <title>Submitting a Python App to the Mac App Store</title>
    <published>2014-06-24T00:00:00+00:00</published>
    <updated>2014-06-24T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Recently I needed to submit a Python app to the Mac App Store. Since there seemed to be no good documentation online for doing this, I had to figure it out myself. Here&amp;rsquo;s what I learned:&lt;/p&gt;
 
 &lt;h2&gt;Building a Python app for the Mac App Store&lt;/h2&gt;
@@ -4446,14 +4446,14 @@ setup(
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly</id>
+   <id>https://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly</id>
    <title>Reading Japanese text from images</title>
    <published>2014-05-10T00:00:00+00:00</published>
    <updated>2014-05-10T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I&amp;rsquo;ve been intensively studying Japanese recently&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, and something I have to do quite a lot is look up Japanese words that I see in images. Particularly words that involve a lot of kanji characters.&lt;/p&gt;
 
 &lt;p&gt;Last evening I hacked together a program that allows me to select arbitrary Japanese from an image on my screen, performs optical character recognition (OCR) on it, and outputs it as regular Unicode text. This regular text can then be looked up in an online Japanese-English dictionary, such as the excellent &lt;a href=&quot;http://jisho.org/&quot;&gt;jisho.org&lt;/a&gt;.&lt;/p&gt;
@@ -4576,14 +4576,14 @@ observer.join()
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/02/17/agda-second-impressions</id>
+   <id>https://dafoster.net/articles/2014/02/17/agda-second-impressions</id>
    <title>Agda: Second Impressions</title>
    <published>2014-02-17T00:00:00+00:00</published>
    <updated>2014-02-17T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/02/17/agda-second-impressions/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/02/17/agda-second-impressions/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;These are my second impressions of the Agda programming language after writing (or trying to write) a few simple Agda programs.&lt;/p&gt;
 
 &lt;p&gt;If you only want the highlights, just read the &lt;a href=&quot;#executive-summary&quot;&gt;Executive Summary&lt;/a&gt;. If you also want to see supporting material and notes, continue reading further.&lt;/p&gt;
@@ -5255,7 +5255,7 @@ _A_10 s → _B_11 s
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/02/02/what-is-color</id>
+   <id>https://dafoster.net/articles/2014/02/02/what-is-color</id>
    <title>What is Color?</title>
    <published>2014-02-02T00:00:00+00:00</published>
    <updated>2014-02-02T00:00:00+00:00</updated>
@@ -5264,7 +5264,7 @@ _A_10 s → _B_11 s
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/02/02/what-is-color/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/02/02/what-is-color/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Color is a perceived property of light that enters the eye.&lt;/p&gt;
 
 &lt;p&gt;Understanding color requires understanding of light, the inputs used by people to detect light (i.e. tristimulous cone responses), and the mental process used to synthesize these inputs into a perceived color.&lt;/p&gt;
@@ -5337,14 +5337,14 @@ _A_10 s → _B_11 s
  
  
  <entry>
-   <id>http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation</id>
+   <id>https://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation</id>
    <title>Agda: First Impressions</title>
    <published>2014-01-24T00:00:00+00:00</published>
    <updated>2014-01-24T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;These are my first impressions of the Agda programming language after researching it in some depth but before writing any actual Agda programs.&lt;/p&gt;
 
 &lt;p&gt;If you only want the highlights, just read the &lt;a href=&quot;#executive-summary&quot;&gt;Executive Summary&lt;/a&gt;. If you also want to see supporting material and notes, continue reading further.&lt;/p&gt;
@@ -5598,14 +5598,14 @@ pages fell off the internet a while ago.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account</id>
+   <id>https://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account</id>
    <title>How to move notes from an iPhone to an email account</title>
    <published>2013-11-25T00:00:00+00:00</published>
    <updated>2013-11-25T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;If you have notes in the &amp;ldquo;On My Phone&amp;rdquo; or &amp;ldquo;On My Mac&amp;rdquo; accounts but want to move them to an email account instead, this article provides instructions for moving the notes. It&amp;rsquo;s surprisingly tricky.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2013/notes-accounts-on-iphone.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -5648,14 +5648,14 @@ pages fell off the internet a while ago.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/11/12/impressions-of-haskell</id>
+   <id>https://dafoster.net/articles/2013/11/12/impressions-of-haskell</id>
    <title>Impressions of Haskell</title>
    <published>2013-11-12T00:00:00+00:00</published>
    <updated>2013-11-12T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/11/12/impressions-of-haskell/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/11/12/impressions-of-haskell/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I finally found an online tutorial for Haskell that involves writing a &lt;em&gt;non-trivial&lt;/em&gt; program:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -5796,14 +5796,14 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers</id>
+   <id>https://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers</id>
    <title>Scrivener: An IDE for thinkers, creators, and writers</title>
    <published>2013-10-27T00:00:00+00:00</published>
    <updated>2013-10-27T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Today I invested a few hours into learning &lt;a href=&quot;http://www.literatureandlatte.com/&quot;&gt;Scrivener&lt;/a&gt;, a tool created for the purpose of writing long-form texts such as books, screenplays, etc. However it wasn&amp;rsquo;t the word processing capabilities of Scrivener that caught my eye but rather its system for &lt;strong&gt;organizing&lt;/strong&gt; the fragments, research materials, and other documents that support the act of creating something new.&lt;/p&gt;
 
 &lt;p&gt;I have been looking for a way to organize the disparate source material I&amp;rsquo;ve been collecting on a few large project areas. For example I&amp;rsquo;ve been investigating ways for make more interactive software development tools since being inspired by &lt;a href=&quot;http://worrydream.com/&quot;&gt;Bret Victor&lt;/a&gt;&amp;rsquo;s work.&lt;/p&gt;
@@ -5876,14 +5876,14 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/10/21/shame-on-the-nsa</id>
+   <id>https://dafoster.net/articles/2013/10/21/shame-on-the-nsa</id>
    <title>Shame on the NSA</title>
    <published>2013-10-21T00:00:00+00:00</published>
    <updated>2013-10-21T00:00:00+00:00</updated>
    
      <category term="Politics"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/10/21/shame-on-the-nsa/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/10/21/shame-on-the-nsa/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I work in the data analysis industry and am appalled that the kinds of tools I am building are being abused by the government to spy on ordinary citizens without public oversight.&lt;/p&gt;
 
 &lt;p&gt;This power is too easily used to harass and detain individuals who express an opinion disagreeing with those in power, such as the multiple extrajudicial actions taken against Edward Snowden and others for blowing the whistle on unethical government action.&lt;/p&gt;
@@ -5936,14 +5936,14 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods</id>
+   <id>https://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods</id>
    <title>WA Initiative 522: GMO Food Labeling</title>
    <published>2013-10-04T00:00:00+00:00</published>
    <updated>2013-10-04T00:00:00+00:00</updated>
    
      <category term="Politics"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This Washington state initiative requires foods that are themselves GMO to be labeled as such. Exempt are foods containing 0.9% or less of potentially GMO ingredients.&lt;/p&gt;
 
 &lt;p&gt;The system for enforcing these restrictions requires farmers to track the origin of ingredients more carefully. It also requires farmers to have special labeling requirements for WA that differ from the rest of the United States.&lt;/p&gt;
@@ -5989,14 +5989,14 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights</id>
+   <id>https://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights</id>
    <title>Strange Loop 2013 Highlights</title>
    <published>2013-09-30T00:00:00+00:00</published>
    <updated>2013-09-30T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This year I attended &lt;a href=&quot;https://thestrangeloop.com/&quot;&gt;Strange Loop&lt;/a&gt;, a conference on emerging tools, languages, and trends in software. I found the following sessions to be most interesting.&lt;/p&gt;
 
 &lt;p&gt;Session videos are available for attendees now, and for the general public closer to March 2014.&lt;/p&gt;
@@ -6269,7 +6269,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/09/04/regular-expressions</id>
+   <id>https://dafoster.net/articles/2013/09/04/regular-expressions</id>
    <title>Regular Expressions</title>
    <published>2013-09-04T00:00:00+00:00</published>
    <updated>2013-09-04T00:00:00+00:00</updated>
@@ -6278,7 +6278,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/09/04/regular-expressions/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/09/04/regular-expressions/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Regular expressions are a concise way to search and transform strings using patterns. They are available in numerous text editors and programming languages.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/articles/2013/09/04/regular-expressions/&quot;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
@@ -6287,7 +6287,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages</id>
+   <id>https://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages</id>
    <title>How I learn new programming languages</title>
    <published>2013-08-25T00:00:00+00:00</published>
    <updated>2013-08-25T00:00:00+00:00</updated>
@@ -6296,7 +6296,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I don&amp;rsquo;t learn new programming languages very often. It simply requires an enormous amount of time to properly understand the local philosophy, community, tools, and ecosystem. But every so often I see a glimmer in an unfamilar language that merits me picking it up.&lt;/p&gt;
 
 &lt;p&gt;Very recently I decided to learn Clojure to fulfill my future needs for a high-power language&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Before embarking on this journey, I thought it would be valuable to reflect on how I&amp;rsquo;ve learned other languages in the past and why I learned them.&lt;/p&gt;
@@ -6497,14 +6497,14 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/08/19/interactive-computing</id>
+   <id>https://dafoster.net/articles/2013/08/19/interactive-computing</id>
    <title>Interactive Computing</title>
    <published>2013-08-19T00:00:00+00:00</published>
    <updated>2013-08-19T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/08/19/interactive-computing/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/08/19/interactive-computing/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I spent a considerable amount of time yesterday going through the work of &lt;a href=&quot;http://worrydream.com/&quot;&gt;Bret Victor&lt;/a&gt;, who appears to be on a personal mission to bring interactive computing to mainstream developers. The tools he&amp;rsquo;s prototyping and building are just incredible.&lt;/p&gt;
 
 &lt;p&gt;What the heck do I mean by &lt;em&gt;interactive computing&lt;/em&gt; you ask? This is perhaps best demonstrated by examples from Bret&amp;rsquo;s portfolio:&lt;/p&gt;
@@ -6548,14 +6548,14 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program</id>
+   <id>https://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program</id>
    <title>Fixing a function at runtime without restarting the program</title>
    <published>2013-08-13T00:00:00+00:00</published>
    <updated>2013-08-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This weekend I spent some time writing programs that scrape the contents of various websites to extract information. One challenge when doing this is that webpages are a mess and the functions I wrote to parse the webpages would frequently crash due to some kind of unexpected input. So I decided I wanted a way to fix these functions at runtime without needing to restart the entire program.&lt;/p&gt;
 
 &lt;p&gt;So after hacking around with the Python debugger and employing some magic, I created a new function decorator called &lt;code&gt;@retriable&lt;/code&gt;. This decorator drops into the debugger if a decorated function raises an exception, allowing you to inspect what caused the crash. Then you could fix the function in the source file and exit the debugger. Afterwards the function would be reloaded and called again with the same input as before, all without interrupting the overall program.&lt;/p&gt;
@@ -6720,14 +6720,14 @@ def retriable(func):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk</id>
+   <id>https://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk</id>
    <title>Skills I&#39;m Learning at Splunk</title>
    <published>2013-08-04T00:00:00+00:00</published>
    <updated>2013-08-04T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;Technical &amp;amp; Tools&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -6829,14 +6829,14 @@ ex-mathematician ex-physicist turned programmer.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft</id>
+   <id>https://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft</id>
    <title>Skills I Learned at Microsoft</title>
    <published>2013-08-03T00:00:00+00:00</published>
    <updated>2013-08-03T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;Social&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -6932,7 +6932,7 @@ on another longer-lived (or immortal) object.&lt;/p&gt;&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts</id>
+   <id>https://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts</id>
    <title>Sending email from command line scripts</title>
    <published>2013-07-27T00:00:00+00:00</published>
    <updated>2013-07-27T00:00:00+00:00</updated>
@@ -6941,7 +6941,7 @@ on another longer-lived (or immortal) object.&lt;/p&gt;&lt;/li&gt;
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This weekend I open-sourced a script called &lt;a href=&quot;https://github.com/davidfstr/notifymail&quot;&gt;notifymail&lt;/a&gt; which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.&lt;/p&gt;
 
 &lt;p&gt;It is very easy to configure &lt;code&gt;notifymail&lt;/code&gt; for the first time:&lt;/p&gt;
@@ -7006,14 +7006,14 @@ notifymail.send(&#39;Subject&#39;, &#39;Hello World&#39;, from_name=&#39;greetin
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/07/13/error-handling</id>
+   <id>https://dafoster.net/articles/2013/07/13/error-handling</id>
    <title>Error Handling</title>
    <published>2013-07-13T00:00:00+00:00</published>
    <updated>2013-07-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/07/13/error-handling/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/07/13/error-handling/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Most of the time programs operate happily inside their &lt;em&gt;main scenario&lt;/em&gt;. Occasionally they need to cope with unusual circumstances, such as being no longer able to read data from the network because the user has turned off their WiFi. The process by which a program responds to an error is called &lt;em&gt;error handling&lt;/em&gt;.&lt;/p&gt;
 
 &lt;!--
@@ -7854,14 +7854,14 @@ public class AmbiguousNameException extends FetchException { ... }
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/06/01/handling-text-correctly</id>
+   <id>https://dafoster.net/articles/2013/06/01/handling-text-correctly</id>
    <title>Handling Text Correctly</title>
    <published>2013-06-01T00:00:00+00:00</published>
    <updated>2013-06-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/06/01/handling-text-correctly/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/06/01/handling-text-correctly/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;A remarkable number of programs do not handle text in a reasonable fashion, which causes those programs to break when confronted with non-English characters and symbols. Even the standard libraries of most programming languages are not immune.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;This chapter describes the foundation of how text handling works in software and gives examples of common pitfalls when working with text in real code. Upon completion you should be able to evaluate your favorite programming environment&amp;rsquo;s built-in support for handling text and be able to write programs that handle text correctly and consistently across operating systems.&lt;/p&gt;
@@ -8562,14 +8562,14 @@ with open(file_path, &#39;rb&#39;) as stream:
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released</id>
+   <id>https://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released</id>
    <title>RDiscount 2.1.6 released</title>
    <published>2013-05-28T00:00:00+00:00</published>
    <updated>2013-05-28T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;There are several new features in &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; 2.1.6. My favorite is fenced code blocks.&lt;/p&gt;
 
 &lt;p&gt;Update to the latest version with:&lt;/p&gt;
@@ -8640,14 +8640,14 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful</id>
+   <id>https://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful</id>
    <title>Implicit Partial Application Considered Harmful</title>
    <published>2013-05-12T00:00:00+00:00</published>
    <updated>2013-05-12T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
     &lt;p style=&quot;font-weight: bold; color: #487858;&quot;&gt;
         Audience
@@ -8833,14 +8833,14 @@ alpha(beta)(gamma, ...)
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/05/11/book-outline</id>
+   <id>https://dafoster.net/articles/2013/05/11/book-outline</id>
    <title>Programming for Perfectionists (P4P): A Book Outline</title>
    <published>2013-05-11T00:00:00+00:00</published>
    <updated>2013-05-11T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/05/11/book-outline/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/05/11/book-outline/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I&amp;rsquo;ve read a lot of programming books. Many focus on teaching a particular language or tool, or are for teaching beginner developers the ropes. Precious few are designed to bring intermediate developers up to an advanced level. It&amp;rsquo;s time to change that.&lt;/p&gt;
 
 &lt;p&gt;Here is an outline of a book I would like to write. I will probably try writing some of these sections and chapters as future article posts. When that happens, each section below will be replaced with a link to the associated article.&lt;/p&gt;
@@ -9627,14 +9627,14 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac</id>
+   <id>https://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac</id>
    <title>Avoid feeling like a port on the Mac</title>
    <published>2013-05-07T00:00:00+00:00</published>
    <updated>2013-05-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Mac users get rather annoyed when using programs that feel like they&amp;rsquo;re just a port from another OS (usually Windows).&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s are a few important points for making your Mac app feel like a native app:&lt;/p&gt;
@@ -9711,14 +9711,14 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software</id>
+   <id>https://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software</id>
    <title>Copyrights and Licenses for Software</title>
    <published>2013-04-30T00:00:00+00:00</published>
    <updated>2013-04-30T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;This is a quick overview of copyrights and licenses for software developers who may not know their rights under United States law. I cannot speak for international copyright law.&lt;/p&gt;
 
 &lt;div style=&quot;padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;&quot;&gt;
@@ -9976,14 +9976,14 @@ this license unless specified otherwise.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet</id>
+   <id>https://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet</id>
    <title>Exploring Onionland: The Tor .onion Darknet</title>
    <published>2013-04-21T00:00:00+00:00</published>
    <updated>2013-04-21T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Today I decided to explore the realm of Tor Hidden Services, which can be identified via URLs that appear to be on an &lt;code&gt;.onion&lt;/code&gt; top-level domain.&lt;/p&gt;
 
 &lt;p&gt;The first hurdle is getting to your first site, since all domains have gibberish-looking names:&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
@@ -10109,14 +10109,14 @@ this license unless specified otherwise.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware</id>
+   <id>https://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware</id>
    <title>Making an Existing Python Program Unicode Aware</title>
    <published>2013-04-09T00:00:00+00:00</published>
    <updated>2013-04-09T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Last week I decided to update one of my larger Python 2.7 projects to support Unicode fully
 and to run under Python 3.&lt;/p&gt;
 
@@ -10303,14 +10303,14 @@ if not isinstance(now_string, unicode):
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/04/07/beautiful-code-sqlite</id>
+   <id>https://dafoster.net/articles/2013/04/07/beautiful-code-sqlite</id>
    <title>Beautiful Code: SQLite</title>
    <published>2013-04-07T00:00:00+00:00</published>
    <updated>2013-04-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/04/07/beautiful-code-sqlite/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/04/07/beautiful-code-sqlite/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;It has been said that you can learn a lot from reading other people&amp;rsquo;s high-quality software. So I gave it a try this weekend by reading the SQLite source.&lt;/p&gt;
 
 &lt;p&gt;SQLite is a lightweight embedded database that does not require a standalone server. It is designed to be reliable, highly portable, and require minimal administration.&lt;/p&gt;
@@ -10518,7 +10518,7 @@ the most interesting ones to look at.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</id>
+   <id>https://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</id>
    <title>Migrating from BBEdit to Sublime Text</title>
    <published>2013-03-22T00:00:00+00:00</published>
    <updated>2013-03-22T00:00:00+00:00</updated>
@@ -10527,7 +10527,7 @@ the most interesting ones to look at.&lt;/li&gt;
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I&amp;rsquo;ve been using &lt;a href=&quot;http://www.barebones.com/products/bbedit/index.html&quot;&gt;BBEdit&lt;/a&gt; as my primary text editor on the Mac for over 10 years. It is an extremely capable and mature editor with just about all the bells and whistles you can imagine. However the use of Sublime Text has been spreading throughout my workplace at Splunk&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so I decided I&amp;rsquo;d give it a try.&lt;/p&gt;
 
 &lt;p&gt;My initial impression was &amp;ldquo;BBEdit can do everything that Sublime can, what&amp;rsquo;s the deal?&amp;rdquo; But after using Sublime full-time for about a week, I&amp;rsquo;m starting to come around to it.&lt;/p&gt;
@@ -10686,14 +10686,14 @@ the most interesting ones to look at.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</id>
+   <id>https://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</id>
    <title>Introducing p4status: A status command for Perforce</title>
    <published>2013-03-16T00:00:00+00:00</published>
    <updated>2013-03-16T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;strong&gt;p4status&lt;/strong&gt; works like &lt;code&gt;git status&lt;/code&gt; (or &lt;code&gt;svn status&lt;/code&gt;), but works in Perforce.&lt;/p&gt;
 
 &lt;p&gt;It will list changelist files and locally modified files that haven&amp;rsquo;t been added to any changelist (including unadded files) in a readable format.&lt;/p&gt;
@@ -10790,7 +10790,7 @@ the most interesting ones to look at.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</id>
+   <id>https://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</id>
    <title>Killer apps for software platforms</title>
    <published>2013-03-10T00:00:00+00:00</published>
    <updated>2013-03-10T00:00:00+00:00</updated>
@@ -10799,7 +10799,7 @@ the most interesting ones to look at.&lt;/li&gt;
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;A &lt;em&gt;killer app&lt;/em&gt; is any product that is so desirable that it fuels the sale/adoption of a larger technology that the product depends on.&lt;/p&gt;
 
 &lt;p&gt;The gaming industry has been aware of the power of killer apps for a while, and often seeks to create launch titles for their new gaming systems that are killer apps. Microsoft, for example, deliberately created the first Halo game at same time as their Xbox console. And Nintendo has repeatedly introduced new Mario titles with its new consoles.&lt;/p&gt;
@@ -10880,14 +10880,14 @@ the most interesting ones to look at.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/03/01/notes-on-racket</id>
+   <id>https://dafoster.net/articles/2013/03/01/notes-on-racket</id>
    <title>Notes on Racket (PLT-Scheme)</title>
    <published>2013-03-01T00:00:00+00:00</published>
    <updated>2013-03-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/03/01/notes-on-racket/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/03/01/notes-on-racket/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Generally &lt;a href=&quot;http://racket-lang.org&quot;&gt;Racket&lt;/a&gt; appears to be a very usable dialect of Lisp/Scheme.&lt;/p&gt;
 
 &lt;p&gt;Racket is particularly well suited for those who want to develop their own programming language (including those not based on S-expressions), given that the creators of Racket are programming language researchers. For example, a number of Racket subsets have been created to assist students who are learning Racket/Scheme via the &lt;a href=&quot;http://htdp.org&quot;&gt;How to Design Programs&lt;/a&gt; book.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; The Arc language by Paul Graham is also implemented in the Racket environment.&lt;/p&gt;
@@ -10978,14 +10978,14 @@ the most interesting ones to look at.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/02/25/notes-on-prolog</id>
+   <id>https://dafoster.net/articles/2013/02/25/notes-on-prolog</id>
    <title>Notes on Prolog</title>
    <published>2013-02-25T00:00:00+00:00</published>
    <updated>2013-02-25T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/25/notes-on-prolog/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/02/25/notes-on-prolog/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;What is Prolog?&lt;/h2&gt;
 
 &lt;p&gt;Prolog is a declarative programming language that, given a list of axioms and a list of implication rules, can deduce the truth (or falsehood) of a logical statement.&lt;/p&gt;
@@ -11183,14 +11183,14 @@ printfile(Filename, Text) :-
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties</id>
+   <id>https://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties</id>
    <title>Visual Guide to Programming Language Properties</title>
    <published>2013-02-20T00:00:00+00:00</published>
    <updated>2013-02-20T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;Here&amp;rsquo;s an interactive chart showing high-level properties of various programming languages.&lt;br/&gt;
 You can filter the chart to only show the properties that your favorite language supports.&lt;/p&gt;
 
@@ -11200,14 +11200,14 @@ You can filter the chart to only show the properties that your favorite language
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released</id>
+   <id>https://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released</id>
    <title>RDiscount 2.0.7 released</title>
    <published>2013-02-02T00:00:00+00:00</published>
    <updated>2013-02-02T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;It has been just over two years since &lt;a href=&quot;/projects/rdiscount/&quot;&gt;RDiscount&lt;/a&gt; 1.6.8 (the previous version) was posted.&lt;br/&gt;
 As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt;/p&gt;
 
@@ -11275,14 +11275,14 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/02/01/learnings-from-sicp</id>
+   <id>https://dafoster.net/articles/2013/02/01/learnings-from-sicp</id>
    <title>Learnings from SICP (and Lisp)</title>
    <published>2013-02-01T00:00:00+00:00</published>
    <updated>2013-02-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/02/01/learnings-from-sicp/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/02/01/learnings-from-sicp/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/2013/sicp_cover.jpg&quot;
   alt=&quot;Cover of The Structure and Interpretation of Computer Programs&quot;
   style=&quot;float: right;&quot;
@@ -11577,14 +11577,14 @@ from a set of initial set of declarative statements.&lt;/p&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages</id>
+   <id>https://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages</id>
    <title>Unique Features of Various Programming Languages</title>
    <published>2013-01-29T00:00:00+00:00</published>
    <updated>2013-01-29T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;blockquote&gt;
   A language that doesn&#39;t affect the way you think about programming, is not worth knowing.&lt;br/&gt;
   &lt;br/&gt;
@@ -12017,7 +12017,7 @@ Count me in!&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</id>
+   <id>https://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</id>
    <title>Things I Wish I Knew Before Working in Industry</title>
    <published>2013-01-15T00:00:00+00:00</published>
    <updated>2013-01-15T00:00:00+00:00</updated>
@@ -12026,7 +12026,7 @@ Count me in!&lt;/li&gt;
    
      <category term="Business"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
 Tech about things he wished he knew before working in the the software
 industry. I have found his advice to be very useful at various points during
@@ -12251,7 +12251,7 @@ Stable environments offer little opportunity.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</id>
+   <id>https://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</id>
    <title>Programming is Fun. But What Matters is Solving a Real Problem.</title>
    <published>2013-01-08T00:00:00+00:00</published>
    <updated>2013-01-08T00:00:00+00:00</updated>
@@ -12262,7 +12262,7 @@ Stable environments offer little opportunity.&lt;/li&gt;
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;I love programming. It tickles me when I stumble across a new programming language that lets me express concepts in a more clear and direct fashion. I love the cleanness and order that results after a good round of refactoring&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I enjoy the challenge of hacking away at a fiddly problem and testing all the cases to get a correct and bulletproof solution.&lt;/p&gt;
 
 &lt;p&gt;However I have realized programming is merely an activity. It is a &lt;em&gt;means&lt;/em&gt;, not an &lt;em&gt;end&lt;/em&gt;. My work is not inherently valuable because I have created a piece of software. Rather it is because I have created software &lt;em&gt;that solves somebody&amp;rsquo;s problem&lt;/em&gt;.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
@@ -12289,14 +12289,14 @@ Stable environments offer little opportunity.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll</id>
+   <id>https://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll</id>
    <title>This website is now powered by Jekyll</title>
    <published>2012-12-21T00:00:00+00:00</published>
    <updated>2012-12-21T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;And this is my first post using the new system. Articles are a lot easier to
 write, so I will be posting more frequently.&lt;/p&gt;
 
@@ -12320,7 +12320,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
  
  
  <entry>
-   <id>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal</id>
+   <id>https://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal</id>
    <title>Why I no longer use Drupal</title>
    <published>2012-12-16T00:00:00+00:00</published>
    <updated>2012-12-16T00:00:00+00:00</updated>
@@ -12329,7 +12329,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;em&gt;&lt;b&gt;TLDR:&lt;/b&gt; Drupal is overly complex for a personal blog. It is hard to maintain. Simple static site generators are easier to work with in the long term.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;My portfolio website was written during college using hand-coded HTML and used server-side includes to bring in common navigation.&lt;/p&gt;
@@ -12387,14 +12387,14 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
  
  
  <entry>
-   <id>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</id>
+   <id>https://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</id>
    <title>Retrospect vs. Time Machine</title>
    <published>2010-11-13T00:00:00+00:00</published>
    <updated>2010-11-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;h2&gt;The old Retrospect 6.0&lt;/h2&gt;
 
 &lt;p&gt;In the past I have used Retrospect 6.0 to backup my Macs, since it was one of
@@ -12464,14 +12464,14 @@ the most, when your hard drive is likely to fail.&lt;/p&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience</id>
+   <id>https://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience</id>
    <title>Impact of Anime on my Programming Experience</title>
    <published>2010-09-18T00:00:00+00:00</published>
    <updated>2010-09-18T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;It occurs to me that anime has been an important driver for improving my programming abilities.&lt;/p&gt;
 
 &lt;p&gt;For example:&lt;/p&gt;
@@ -12510,14 +12510,14 @@ so that I can watch new anime on the bus.&lt;/li&gt;
  
  
  <entry>
-   <id>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils</id>
+   <id>https://dafoster.net/articles/2010/09/17/comparing-writing-utensils</id>
    <title>Comparing Writing Utensils</title>
    <published>2010-09-17T00:00:00+00:00</published>
    <updated>2010-09-17T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
-   <link rel="alternate" href="http://dafoster.net/articles/2010/09/17/comparing-writing-utensils/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2010/09/17/comparing-writing-utensils/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;My experience using various kinds of writing utensils in school&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;i&gt;&amp;gt; = &amp;ldquo;is better than&amp;rdquo;&lt;/i&gt;&lt;/p&gt;
