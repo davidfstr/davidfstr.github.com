@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="http://dafoster.net/"/>
  <link href="http://dafoster.net/atom.xml" rel="self"/>
- <updated>2020-02-24T22:05:39-08:00</updated>
+ <updated>2021-01-10T04:39:14+00:00</updated>
  <id>http://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -18,8 +18,8 @@
  <entry>
    <id>http://dafoster.net/articles/2020/02/02/power-naps</id>
    <title>Power Naps</title>
-   <published>2020-02-02T00:00:00-08:00</published>
-   <updated>2020-02-02T00:00:00-08:00</updated>
+   <published>2020-02-02T00:00:00+00:00</published>
+   <updated>2020-02-02T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -66,8 +66,8 @@
  <entry>
    <id>http://dafoster.net/articles/2020/01/18/stress</id>
    <title>Stress</title>
-   <published>2020-01-18T00:00:00-08:00</published>
-   <updated>2020-01-18T00:00:00-08:00</updated>
+   <published>2020-01-18T00:00:00+00:00</published>
+   <updated>2020-01-18T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -134,8 +134,8 @@
  <entry>
    <id>http://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us</id>
    <title>OS Abstractions are Failing Us</title>
-   <published>2019-06-27T00:00:00-07:00</published>
-   <updated>2019-06-27T00:00:00-07:00</updated>
+   <published>2019-06-27T00:00:00+00:00</published>
+   <updated>2019-06-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -174,8 +174,8 @@
  <entry>
    <id>http://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner</id>
    <title>Dependent Types: Impressions of a software practitioner</title>
-   <published>2019-01-06T00:00:00-08:00</published>
-   <updated>2019-01-06T00:00:00-08:00</updated>
+   <published>2019-01-06T00:00:00+00:00</published>
+   <updated>2019-01-06T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -260,8 +260,8 @@
  <entry>
    <id>http://dafoster.net/articles/2018/12/15/timecharts</id>
    <title>Timecharts</title>
-   <published>2018-12-15T00:00:00-08:00</published>
-   <updated>2018-12-15T00:00:00-08:00</updated>
+   <published>2018-12-15T00:00:00+00:00</published>
+   <updated>2018-12-15T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -375,8 +375,8 @@
  <entry>
    <id>http://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode</id>
    <title>Why isn&#39;t the external link symbol in Unicode?</title>
-   <published>2018-11-24T00:00:00-08:00</published>
-   <updated>2018-11-24T00:00:00-08:00</updated>
+   <published>2018-11-24T00:00:00+00:00</published>
+   <updated>2018-11-24T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -412,8 +412,8 @@
  <entry>
    <id>http://dafoster.net/articles/2018/09/23/the-flat-module-pattern-in-javascript</id>
    <title>The Flat Module Pattern in JavaScript</title>
-   <published>2018-09-23T00:00:00-07:00</published>
-   <updated>2018-09-23T00:00:00-07:00</updated>
+   <published>2018-09-23T00:00:00+00:00</published>
+   <updated>2018-09-23T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -603,8 +603,8 @@ function setupSaveToken() {
  <entry>
    <id>http://dafoster.net/articles/2018/06/02/performance-testing</id>
    <title>Performance Testing</title>
-   <published>2018-06-02T00:00:00-07:00</published>
-   <updated>2018-06-02T00:00:00-07:00</updated>
+   <published>2018-06-02T00:00:00+00:00</published>
+   <updated>2018-06-02T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1012,8 +1012,8 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
  <entry>
    <id>http://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful</id>
    <title>Unsound type systems are still useful</title>
-   <published>2018-04-07T00:00:00-07:00</published>
-   <updated>2018-04-07T00:00:00-07:00</updated>
+   <published>2018-04-07T00:00:00+00:00</published>
+   <updated>2018-04-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1069,8 +1069,8 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
  <entry>
    <id>http://dafoster.net/articles/2018/01/20/how-to-implement-a-large-software-feature</id>
    <title>How to implement a large software feature</title>
-   <published>2018-01-20T00:00:00-08:00</published>
-   <updated>2018-01-20T00:00:00-08:00</updated>
+   <published>2018-01-20T00:00:00+00:00</published>
+   <updated>2018-01-20T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1182,8 +1182,8 @@ Relayout
  <entry>
    <id>http://dafoster.net/articles/2017/12/18/how-to-annotate-a-new-recipe</id>
    <title>How to annotate a new recipe</title>
-   <published>2017-12-18T00:00:00-08:00</published>
-   <updated>2017-12-18T00:00:00-08:00</updated>
+   <published>2017-12-18T00:00:00+00:00</published>
+   <updated>2017-12-18T00:00:00+00:00</updated>
    
      <category term="Cooking"/>
    
@@ -1219,8 +1219,8 @@ Relayout
  <entry>
    <id>http://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey</id>
    <title>Learning to cook better: My journey</title>
-   <published>2017-12-09T00:00:00-08:00</published>
-   <updated>2017-12-09T00:00:00-08:00</updated>
+   <published>2017-12-09T00:00:00+00:00</published>
+   <updated>2017-12-09T00:00:00+00:00</updated>
    
      <category term="Cooking"/>
    
@@ -1323,8 +1323,8 @@ Relayout
  <entry>
    <id>http://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables</id>
    <title>The Trouble with Global Variables</title>
-   <published>2017-04-09T00:00:00-07:00</published>
-   <updated>2017-04-09T00:00:00-07:00</updated>
+   <published>2017-04-09T00:00:00+00:00</published>
+   <updated>2017-04-09T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1453,8 +1453,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation</id>
    <title>How to Design Large Programs with Abstraction and Encapsulation</title>
-   <published>2017-03-25T00:00:00-07:00</published>
-   <updated>2017-03-25T00:00:00-07:00</updated>
+   <published>2017-03-25T00:00:00+00:00</published>
+   <updated>2017-03-25T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1597,8 +1597,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2016/08/21/how-to-upload-from-os-x-photos-to-facebook</id>
    <title>How to upload from OS X Photos to Facebook (2016)</title>
-   <published>2016-08-21T00:00:00-07:00</published>
-   <updated>2016-08-21T00:00:00-07:00</updated>
+   <published>2016-08-21T00:00:00+00:00</published>
+   <updated>2016-08-21T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -1634,8 +1634,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2016/05/21/glue-in-functional-programming-languages</id>
    <title>Glue in Functional Programming Languages</title>
-   <published>2016-05-21T00:00:00-07:00</published>
-   <updated>2016-05-21T00:00:00-07:00</updated>
+   <published>2016-05-21T00:00:00+00:00</published>
+   <updated>2016-05-21T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1699,8 +1699,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling</id>
    <title>Abandonment vs. Unchecked Exceptions for Error Handling</title>
-   <published>2016-05-17T00:00:00-07:00</published>
-   <updated>2016-05-17T00:00:00-07:00</updated>
+   <published>2016-05-17T00:00:00+00:00</published>
+   <updated>2016-05-17T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -1822,8 +1822,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2016/05/02/a-programmers-guide-to-practical-hats</id>
    <title>A Programmer&#39;s Guide to Practical Hats</title>
-   <published>2016-05-02T00:00:00-07:00</published>
-   <updated>2016-05-02T00:00:00-07:00</updated>
+   <published>2016-05-02T00:00:00+00:00</published>
+   <updated>2016-05-02T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
@@ -1959,8 +1959,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2016/04/22/notes-on-the-clean-coder</id>
    <title>Notes on &amp;ldquo;The Clean Coder&amp;rdquo;</title>
-   <published>2016-04-22T00:00:00-07:00</published>
-   <updated>2016-04-22T00:00:00-07:00</updated>
+   <published>2016-04-22T00:00:00+00:00</published>
+   <updated>2016-04-22T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -2317,8 +2317,8 @@ def warn(message):
  <entry>
    <id>http://dafoster.net/articles/2016/04/02/roles-on-software-teams</id>
    <title>Roles on Software Teams</title>
-   <published>2016-04-02T00:00:00-07:00</published>
-   <updated>2016-04-02T00:00:00-07:00</updated>
+   <published>2016-04-02T00:00:00+00:00</published>
+   <updated>2016-04-02T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -2527,8 +2527,8 @@ Examples of operators outside software teams:
  <entry>
    <id>http://dafoster.net/articles/2015/09/13/state-of-the-union-in-programming-languages</id>
    <title>State of the Union in Programming Languages (2015)</title>
-   <published>2015-09-13T00:00:00-07:00</published>
-   <updated>2015-09-13T00:00:00-07:00</updated>
+   <published>2015-09-13T00:00:00+00:00</published>
+   <updated>2015-09-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -2790,8 +2790,8 @@ Examples of operators outside software teams:
  <entry>
    <id>http://dafoster.net/articles/2015/08/08/algorithms-101</id>
    <title>Algorithms 101 for Software Applications</title>
-   <published>2015-08-08T00:00:00-07:00</published>
-   <updated>2015-08-08T00:00:00-07:00</updated>
+   <published>2015-08-08T00:00:00+00:00</published>
+   <updated>2015-08-08T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -3125,8 +3125,8 @@ optimal for a comparison-based sort.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2015/06/27/unicode-101</id>
    <title>Unicode 101</title>
-   <published>2015-06-27T00:00:00-07:00</published>
-   <updated>2015-06-27T00:00:00-07:00</updated>
+   <published>2015-06-27T00:00:00+00:00</published>
+   <updated>2015-06-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -3141,8 +3141,8 @@ optimal for a comparison-based sort.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python</id>
    <title>Optional Structural Static Typing in Python</title>
-   <published>2015-04-26T00:00:00-07:00</published>
-   <updated>2015-04-26T00:00:00-07:00</updated>
+   <published>2015-04-26T00:00:00+00:00</published>
+   <updated>2015-04-26T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -3227,8 +3227,8 @@ Bar bar = foo;   // Will this work?
  <entry>
    <id>http://dafoster.net/articles/2015/03/23/block-distracting-websites</id>
    <title>Block Distracting Websites</title>
-   <published>2015-03-23T00:00:00-07:00</published>
-   <updated>2015-03-23T00:00:00-07:00</updated>
+   <published>2015-03-23T00:00:00+00:00</published>
+   <updated>2015-03-23T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -3268,8 +3268,8 @@ Bar bar = foo;   // Will this work?
  <entry>
    <id>http://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning</id>
    <title>Semantic Versioning vs. Romantic Versioning</title>
-   <published>2015-03-14T00:00:00-07:00</published>
-   <updated>2015-03-14T00:00:00-07:00</updated>
+   <published>2015-03-14T00:00:00+00:00</published>
+   <updated>2015-03-14T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -3420,8 +3420,8 @@ Bar bar = foo;   // Will this work?
  <entry>
    <id>http://dafoster.net/articles/2015/02/27/proof-terms-in-idris</id>
    <title>Proof terms in Idris</title>
-   <published>2015-02-27T00:00:00-08:00</published>
-   <updated>2015-02-27T00:00:00-08:00</updated>
+   <published>2015-02-27T00:00:00+00:00</published>
+   <updated>2015-02-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -3866,8 +3866,8 @@ Nothing : Maybe (IsSorted [3, 2, 1])
  <entry>
    <id>http://dafoster.net/articles/2014/12/20/languages-by-hardware-distance</id>
    <title>Spectrum of Languages by Hardware&amp;nbsp;Distance</title>
-   <published>2014-12-20T00:00:00-08:00</published>
-   <updated>2014-12-20T00:00:00-08:00</updated>
+   <published>2014-12-20T00:00:00+00:00</published>
+   <updated>2014-12-20T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -3992,8 +3992,8 @@ Nothing : Maybe (IsSorted [3, 2, 1])
  <entry>
    <id>http://dafoster.net/articles/2014/11/22/error-handling-styles</id>
    <title>Error handling styles in programming</title>
-   <published>2014-11-22T00:00:00-08:00</published>
-   <updated>2014-11-22T00:00:00-08:00</updated>
+   <published>2014-11-22T00:00:00+00:00</published>
+   <updated>2014-11-22T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -4082,8 +4082,8 @@ Nothing : Maybe (IsSorted [3, 2, 1])
  <entry>
    <id>http://dafoster.net/articles/2014/11/08/learning-japanese-the-first-6-months</id>
    <title>Learning Japanese - the first 6 months</title>
-   <published>2014-11-08T00:00:00-08:00</published>
-   <updated>2014-11-08T00:00:00-08:00</updated>
+   <published>2014-11-08T00:00:00+00:00</published>
+   <updated>2014-11-08T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
@@ -4280,8 +4280,8 @@ Another good source for basic grammar and vocabulary is &lt;a href=&quot;http://
  <entry>
    <id>http://dafoster.net/articles/2014/06/24/submitting-a-python-app-to-the-mac-app-store</id>
    <title>Submitting a Python App to the Mac App Store</title>
-   <published>2014-06-24T00:00:00-07:00</published>
-   <updated>2014-06-24T00:00:00-07:00</updated>
+   <published>2014-06-24T00:00:00+00:00</published>
+   <updated>2014-06-24T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -4448,8 +4448,8 @@ setup(
  <entry>
    <id>http://dafoster.net/articles/2014/05/10/reading-japanese-text-from-images-quickly</id>
    <title>Reading Japanese text from images</title>
-   <published>2014-05-10T00:00:00-07:00</published>
-   <updated>2014-05-10T00:00:00-07:00</updated>
+   <published>2014-05-10T00:00:00+00:00</published>
+   <updated>2014-05-10T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
@@ -4578,8 +4578,8 @@ observer.join()
  <entry>
    <id>http://dafoster.net/articles/2014/02/17/agda-second-impressions</id>
    <title>Agda: Second Impressions</title>
-   <published>2014-02-17T00:00:00-08:00</published>
-   <updated>2014-02-17T00:00:00-08:00</updated>
+   <published>2014-02-17T00:00:00+00:00</published>
+   <updated>2014-02-17T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -5257,8 +5257,8 @@ _A_10 s → _B_11 s
  <entry>
    <id>http://dafoster.net/articles/2014/02/02/what-is-color</id>
    <title>What is Color?</title>
-   <published>2014-02-02T00:00:00-08:00</published>
-   <updated>2014-02-02T00:00:00-08:00</updated>
+   <published>2014-02-02T00:00:00+00:00</published>
+   <updated>2014-02-02T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
@@ -5339,8 +5339,8 @@ _A_10 s → _B_11 s
  <entry>
    <id>http://dafoster.net/articles/2014/01/24/agda-notes-and-evaluation</id>
    <title>Agda: First Impressions</title>
-   <published>2014-01-24T00:00:00-08:00</published>
-   <updated>2014-01-24T00:00:00-08:00</updated>
+   <published>2014-01-24T00:00:00+00:00</published>
+   <updated>2014-01-24T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -5600,8 +5600,8 @@ pages fell off the internet a while ago.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/11/25/how-to-move-notes-from-an-iphone-to-an-email-account</id>
    <title>How to move notes from an iPhone to an email account</title>
-   <published>2013-11-25T00:00:00-08:00</published>
-   <updated>2013-11-25T00:00:00-08:00</updated>
+   <published>2013-11-25T00:00:00+00:00</published>
+   <updated>2013-11-25T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -5650,8 +5650,8 @@ pages fell off the internet a while ago.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/11/12/impressions-of-haskell</id>
    <title>Impressions of Haskell</title>
-   <published>2013-11-12T00:00:00-08:00</published>
-   <updated>2013-11-12T00:00:00-08:00</updated>
+   <published>2013-11-12T00:00:00+00:00</published>
+   <updated>2013-11-12T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -5798,8 +5798,8 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  <entry>
    <id>http://dafoster.net/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers</id>
    <title>Scrivener: An IDE for thinkers, creators, and writers</title>
-   <published>2013-10-27T00:00:00-07:00</published>
-   <updated>2013-10-27T00:00:00-07:00</updated>
+   <published>2013-10-27T00:00:00+00:00</published>
+   <updated>2013-10-27T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -5878,8 +5878,8 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  <entry>
    <id>http://dafoster.net/articles/2013/10/21/shame-on-the-nsa</id>
    <title>Shame on the NSA</title>
-   <published>2013-10-21T00:00:00-07:00</published>
-   <updated>2013-10-21T00:00:00-07:00</updated>
+   <published>2013-10-21T00:00:00+00:00</published>
+   <updated>2013-10-21T00:00:00+00:00</updated>
    
      <category term="Politics"/>
    
@@ -5938,8 +5938,8 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  <entry>
    <id>http://dafoster.net/articles/2013/10/04/washington-initiative-522-labeling-of-gmo-foods</id>
    <title>WA Initiative 522: GMO Food Labeling</title>
-   <published>2013-10-04T00:00:00-07:00</published>
-   <updated>2013-10-04T00:00:00-07:00</updated>
+   <published>2013-10-04T00:00:00+00:00</published>
+   <updated>2013-10-04T00:00:00+00:00</updated>
    
      <category term="Politics"/>
    
@@ -5991,8 +5991,8 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  <entry>
    <id>http://dafoster.net/articles/2013/09/30/strange-loop-2013-highlights</id>
    <title>Strange Loop 2013 Highlights</title>
-   <published>2013-09-30T00:00:00-07:00</published>
-   <updated>2013-09-30T00:00:00-07:00</updated>
+   <published>2013-09-30T00:00:00+00:00</published>
+   <updated>2013-09-30T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -6271,8 +6271,8 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  <entry>
    <id>http://dafoster.net/articles/2013/09/04/regular-expressions</id>
    <title>Regular Expressions</title>
-   <published>2013-09-04T00:00:00-07:00</published>
-   <updated>2013-09-04T00:00:00-07:00</updated>
+   <published>2013-09-04T00:00:00+00:00</published>
+   <updated>2013-09-04T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -6289,8 +6289,8 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
  <entry>
    <id>http://dafoster.net/articles/2013/08/25/how-i-learn-new-programming-languages</id>
    <title>How I learn new programming languages</title>
-   <published>2013-08-25T00:00:00-07:00</published>
-   <updated>2013-08-25T00:00:00-07:00</updated>
+   <published>2013-08-25T00:00:00+00:00</published>
+   <updated>2013-08-25T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
@@ -6499,8 +6499,8 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/08/19/interactive-computing</id>
    <title>Interactive Computing</title>
-   <published>2013-08-19T00:00:00-07:00</published>
-   <updated>2013-08-19T00:00:00-07:00</updated>
+   <published>2013-08-19T00:00:00+00:00</published>
+   <updated>2013-08-19T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -6550,8 +6550,8 @@ I did no major projects in these languages.&lt;/p&gt;&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/08/13/fixing-a-function-at-runtime-without-restarting-the-program</id>
    <title>Fixing a function at runtime without restarting the program</title>
-   <published>2013-08-13T00:00:00-07:00</published>
-   <updated>2013-08-13T00:00:00-07:00</updated>
+   <published>2013-08-13T00:00:00+00:00</published>
+   <updated>2013-08-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -6722,8 +6722,8 @@ def retriable(func):
  <entry>
    <id>http://dafoster.net/articles/2013/08/04/skills-i-am-learning-at-splunk</id>
    <title>Skills I&#39;m Learning at Splunk</title>
-   <published>2013-08-04T00:00:00-07:00</published>
-   <updated>2013-08-04T00:00:00-07:00</updated>
+   <published>2013-08-04T00:00:00+00:00</published>
+   <updated>2013-08-04T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
@@ -6831,8 +6831,8 @@ ex-mathematician ex-physicist turned programmer.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/08/03/skills-i-learned-at-microsoft</id>
    <title>Skills I Learned at Microsoft</title>
-   <published>2013-08-03T00:00:00-07:00</published>
-   <updated>2013-08-03T00:00:00-07:00</updated>
+   <published>2013-08-03T00:00:00+00:00</published>
+   <updated>2013-08-03T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
@@ -6934,8 +6934,8 @@ on another longer-lived (or immortal) object.&lt;/p&gt;&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts</id>
    <title>Sending email from command line scripts</title>
-   <published>2013-07-27T00:00:00-07:00</published>
-   <updated>2013-07-27T00:00:00-07:00</updated>
+   <published>2013-07-27T00:00:00+00:00</published>
+   <updated>2013-07-27T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -7008,8 +7008,8 @@ notifymail.send(&#39;Subject&#39;, &#39;Hello World&#39;, from_name=&#39;greetin
  <entry>
    <id>http://dafoster.net/articles/2013/07/13/error-handling</id>
    <title>Error Handling</title>
-   <published>2013-07-13T00:00:00-07:00</published>
-   <updated>2013-07-13T00:00:00-07:00</updated>
+   <published>2013-07-13T00:00:00+00:00</published>
+   <updated>2013-07-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -7856,8 +7856,8 @@ public class AmbiguousNameException extends FetchException { ... }
  <entry>
    <id>http://dafoster.net/articles/2013/06/01/handling-text-correctly</id>
    <title>Handling Text Correctly</title>
-   <published>2013-06-01T00:00:00-07:00</published>
-   <updated>2013-06-01T00:00:00-07:00</updated>
+   <published>2013-06-01T00:00:00+00:00</published>
+   <updated>2013-06-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -8564,8 +8564,8 @@ with open(file_path, &#39;rb&#39;) as stream:
  <entry>
    <id>http://dafoster.net/articles/2013/05/28/rdiscount-2.1.6-released</id>
    <title>RDiscount 2.1.6 released</title>
-   <published>2013-05-28T00:00:00-07:00</published>
-   <updated>2013-05-28T00:00:00-07:00</updated>
+   <published>2013-05-28T00:00:00+00:00</published>
+   <updated>2013-05-28T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -8642,8 +8642,8 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/05/12/implicit-partial-application-and-currying-considered-harmful</id>
    <title>Implicit Partial Application Considered Harmful</title>
-   <published>2013-05-12T00:00:00-07:00</published>
-   <updated>2013-05-12T00:00:00-07:00</updated>
+   <published>2013-05-12T00:00:00+00:00</published>
+   <updated>2013-05-12T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -8835,8 +8835,8 @@ alpha(beta)(gamma, ...)
  <entry>
    <id>http://dafoster.net/articles/2013/05/11/book-outline</id>
    <title>Programming for Perfectionists (P4P): A Book Outline</title>
-   <published>2013-05-11T00:00:00-07:00</published>
-   <updated>2013-05-11T00:00:00-07:00</updated>
+   <published>2013-05-11T00:00:00+00:00</published>
+   <updated>2013-05-11T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -9629,8 +9629,8 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac</id>
    <title>Avoid feeling like a port on the Mac</title>
-   <published>2013-05-07T00:00:00-07:00</published>
-   <updated>2013-05-07T00:00:00-07:00</updated>
+   <published>2013-05-07T00:00:00+00:00</published>
+   <updated>2013-05-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -9713,8 +9713,8 @@ You&amp;rsquo;ll save a ton of time.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/04/30/copyrights-and-licenses-for-software</id>
    <title>Copyrights and Licenses for Software</title>
-   <published>2013-04-30T00:00:00-07:00</published>
-   <updated>2013-04-30T00:00:00-07:00</updated>
+   <published>2013-04-30T00:00:00+00:00</published>
+   <updated>2013-04-30T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -9978,8 +9978,8 @@ this license unless specified otherwise.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet</id>
    <title>Exploring Onionland: The Tor .onion Darknet</title>
-   <published>2013-04-21T00:00:00-07:00</published>
-   <updated>2013-04-21T00:00:00-07:00</updated>
+   <published>2013-04-21T00:00:00+00:00</published>
+   <updated>2013-04-21T00:00:00+00:00</updated>
    
      <category term="Offtopic"/>
    
@@ -10111,8 +10111,8 @@ this license unless specified otherwise.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/04/09/making-an-existing-python-program-unicode-aware</id>
    <title>Making an Existing Python Program Unicode Aware</title>
-   <published>2013-04-09T00:00:00-07:00</published>
-   <updated>2013-04-09T00:00:00-07:00</updated>
+   <published>2013-04-09T00:00:00+00:00</published>
+   <updated>2013-04-09T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -10305,8 +10305,8 @@ if not isinstance(now_string, unicode):
  <entry>
    <id>http://dafoster.net/articles/2013/04/07/beautiful-code-sqlite</id>
    <title>Beautiful Code: SQLite</title>
-   <published>2013-04-07T00:00:00-07:00</published>
-   <updated>2013-04-07T00:00:00-07:00</updated>
+   <published>2013-04-07T00:00:00+00:00</published>
+   <updated>2013-04-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -10520,8 +10520,8 @@ the most interesting ones to look at.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</id>
    <title>Migrating from BBEdit to Sublime Text</title>
-   <published>2013-03-22T00:00:00-07:00</published>
-   <updated>2013-03-22T00:00:00-07:00</updated>
+   <published>2013-03-22T00:00:00+00:00</published>
+   <updated>2013-03-22T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -10688,8 +10688,8 @@ the most interesting ones to look at.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce</id>
    <title>Introducing p4status: A status command for Perforce</title>
-   <published>2013-03-16T00:00:00-07:00</published>
-   <updated>2013-03-16T00:00:00-07:00</updated>
+   <published>2013-03-16T00:00:00+00:00</published>
+   <updated>2013-03-16T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -10792,8 +10792,8 @@ the most interesting ones to look at.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/03/10/killer-apps-for-software-platforms</id>
    <title>Killer apps for software platforms</title>
-   <published>2013-03-10T00:00:00-08:00</published>
-   <updated>2013-03-10T00:00:00-08:00</updated>
+   <published>2013-03-10T00:00:00+00:00</published>
+   <updated>2013-03-10T00:00:00+00:00</updated>
    
      <category term="Business"/>
    
@@ -10882,8 +10882,8 @@ the most interesting ones to look at.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/03/01/notes-on-racket</id>
    <title>Notes on Racket (PLT-Scheme)</title>
-   <published>2013-03-01T00:00:00-08:00</published>
-   <updated>2013-03-01T00:00:00-08:00</updated>
+   <published>2013-03-01T00:00:00+00:00</published>
+   <updated>2013-03-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -10980,8 +10980,8 @@ the most interesting ones to look at.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/02/25/notes-on-prolog</id>
    <title>Notes on Prolog</title>
-   <published>2013-02-25T00:00:00-08:00</published>
-   <updated>2013-02-25T00:00:00-08:00</updated>
+   <published>2013-02-25T00:00:00+00:00</published>
+   <updated>2013-02-25T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -11185,8 +11185,8 @@ printfile(Filename, Text) :-
  <entry>
    <id>http://dafoster.net/articles/2013/02/20/visual-guide-to-programming-language-properties</id>
    <title>Visual Guide to Programming Language Properties</title>
-   <published>2013-02-20T00:00:00-08:00</published>
-   <updated>2013-02-20T00:00:00-08:00</updated>
+   <published>2013-02-20T00:00:00+00:00</published>
+   <updated>2013-02-20T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -11202,8 +11202,8 @@ You can filter the chart to only show the properties that your favorite language
  <entry>
    <id>http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released</id>
    <title>RDiscount 2.0.7 released</title>
-   <published>2013-02-02T00:00:00-08:00</published>
-   <updated>2013-02-02T00:00:00-08:00</updated>
+   <published>2013-02-02T00:00:00+00:00</published>
+   <updated>2013-02-02T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -11277,8 +11277,8 @@ As the new maintainer, I intend to provide updates a bit more frequently. :-)&lt
  <entry>
    <id>http://dafoster.net/articles/2013/02/01/learnings-from-sicp</id>
    <title>Learnings from SICP (and Lisp)</title>
-   <published>2013-02-01T00:00:00-08:00</published>
-   <updated>2013-02-01T00:00:00-08:00</updated>
+   <published>2013-02-01T00:00:00+00:00</published>
+   <updated>2013-02-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -11579,8 +11579,8 @@ from a set of initial set of declarative statements.&lt;/p&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages</id>
    <title>Unique Features of Various Programming Languages</title>
-   <published>2013-01-29T00:00:00-08:00</published>
-   <updated>2013-01-29T00:00:00-08:00</updated>
+   <published>2013-01-29T00:00:00+00:00</published>
+   <updated>2013-01-29T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -12019,8 +12019,8 @@ Count me in!&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</id>
    <title>Things I Wish I Knew Before Working in Industry</title>
-   <published>2013-01-15T00:00:00-08:00</published>
-   <updated>2013-01-15T00:00:00-08:00</updated>
+   <published>2013-01-15T00:00:00+00:00</published>
+   <updated>2013-01-15T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -12253,8 +12253,8 @@ Stable environments offer little opportunity.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem</id>
    <title>Programming is Fun. But What Matters is Solving a Real Problem.</title>
-   <published>2013-01-08T00:00:00-08:00</published>
-   <updated>2013-01-08T00:00:00-08:00</updated>
+   <published>2013-01-08T00:00:00+00:00</published>
+   <updated>2013-01-08T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -12291,8 +12291,8 @@ Stable environments offer little opportunity.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2012/12/21/this-website-is-now-powered-by-jekyll</id>
    <title>This website is now powered by Jekyll</title>
-   <published>2012-12-21T00:00:00-08:00</published>
-   <updated>2012-12-21T00:00:00-08:00</updated>
+   <published>2012-12-21T00:00:00+00:00</published>
+   <updated>2012-12-21T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
@@ -12322,8 +12322,8 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
  <entry>
    <id>http://dafoster.net/articles/2012/12/16/why-i-no-longer-use-drupal</id>
    <title>Why I no longer use Drupal</title>
-   <published>2012-12-16T00:00:00-08:00</published>
-   <updated>2012-12-16T00:00:00-08:00</updated>
+   <published>2012-12-16T00:00:00+00:00</published>
+   <updated>2012-12-16T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -12389,8 +12389,8 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
  <entry>
    <id>http://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</id>
    <title>Retrospect vs. Time Machine</title>
-   <published>2010-11-13T00:00:00-08:00</published>
-   <updated>2010-11-13T00:00:00-08:00</updated>
+   <published>2010-11-13T00:00:00+00:00</published>
+   <updated>2010-11-13T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -12466,8 +12466,8 @@ the most, when your hard drive is likely to fail.&lt;/p&gt;
  <entry>
    <id>http://dafoster.net/articles/2010/09/18/impact-anime-my-programming-experience</id>
    <title>Impact of Anime on my Programming Experience</title>
-   <published>2010-09-18T00:00:00-07:00</published>
-   <updated>2010-09-18T00:00:00-07:00</updated>
+   <published>2010-09-18T00:00:00+00:00</published>
+   <updated>2010-09-18T00:00:00+00:00</updated>
    
      <category term="Personal"/>
    
@@ -12512,8 +12512,8 @@ so that I can watch new anime on the bus.&lt;/li&gt;
  <entry>
    <id>http://dafoster.net/articles/2010/09/17/comparing-writing-utensils</id>
    <title>Comparing Writing Utensils</title>
-   <published>2010-09-17T00:00:00-07:00</published>
-   <updated>2010-09-17T00:00:00-07:00</updated>
+   <published>2010-09-17T00:00:00+00:00</published>
+   <updated>2010-09-17T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
