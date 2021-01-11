@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-10T05:29:43+00:00</updated>
+ <updated>2021-01-11T03:02:38+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -2867,7 +2867,7 @@ a custom comparison function.&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Add element (if not already present) - O(1)†&lt;/li&gt;
-&lt;li&gt;Remove element - O(1)*&lt;/li&gt;
+&lt;li&gt;Remove element - O(1)†&lt;/li&gt;
 &lt;li&gt;Contains a specific element? - O(1)†&lt;/li&gt;
 &lt;li&gt;Iterate over all elements - O(n)&lt;/li&gt;
 &lt;/ul&gt;

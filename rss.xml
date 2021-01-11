@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 10 Jan 2021 05:29:43 +0000</pubDate>
-    <lastBuildDate>Sun, 10 Jan 2021 05:29:43 +0000</lastBuildDate>
+    <pubDate>Mon, 11 Jan 2021 03:02:38 +0000</pubDate>
+    <lastBuildDate>Mon, 11 Jan 2021 03:02:38 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2778,7 +2778,7 @@ a custom comparison function.&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Add element (if not already present) - O(1)†&lt;/li&gt;
-&lt;li&gt;Remove element - O(1)*&lt;/li&gt;
+&lt;li&gt;Remove element - O(1)†&lt;/li&gt;
 &lt;li&gt;Contains a specific element? - O(1)†&lt;/li&gt;
 &lt;li&gt;Iterate over all elements - O(n)&lt;/li&gt;
 &lt;/ul&gt;
