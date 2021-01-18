@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>TypedDict | Structured Dicts for Python | DaFoster</title>
+  
+  
+    
+    <meta name="description" content="Python typechecker support for recognizing structured dictionaries with specific named keys mapped to specific value types. Ubiquitous in JSON.
+">
+  
+    <meta name="author" content="David Foster">
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/style-print.css" rel="stylesheet" type="text/css" media="print">
+    
+    
+    
+      <style>
+        .logo {
+  float: right;
+  background-color: #fafafa;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  margin-left: 10px; margin-bottom: 10px;
+}
+
+      </style>
+    
+    
+
+    <!-- Le fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Le scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-9 content">
+    <img class="logo" src="logo.svg" alt="Logo for TypedDict"/>
+    
+    <h1>TypedDict <small>&ndash; Structured Dicts for Python</small></h1>
+    
+    
+      <p>A TypedDict is a new kind of type recognized by Python typecheckers such as <a href="http://mypy-lang.org/">mypy</a>.
+It describes a structured dictionary/map with an expected set of
+named string keys mapped to values of particular expected types.</p>
+
+<p>Such structures are ubiquitous when exchanging JSON data,
+which is common for Python web applications to do.</p>
+
+<p>For example, a web API for fetching TV show ratings may return a JSON response that looks like:</p>
+
+<pre><code class="python">{
+    "title": "Queen's Gambit",
+    "stars": 5
+}
+</code></pre>
+
+<p>That API probably always returns responses in a particular generic shape:</p>
+
+<pre><code>{
+    "title": &lt;some str&gt;,
+    "stars": &lt;some int&gt;
+}
+</code></pre>
+
+<p>and that shape can be described by a <code>TypedDict</code> definition:</p>
+
+<pre><code class="python">from typing import TypedDict
+
+class MediaRating(TypedDict):
+    title: str
+    stars: int
+</code></pre>
+
+<p>With that TypedDict definition in place, you can take any JSON value received from
+that API and use it directly in Python, without any additional conversions
+or additional parsing<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>:</p>
+
+<pre><code class="python">import requests
+from typing import cast
+
+response_json = requests.get(
+    'https://media-api.example.com/rating',
+    data=dict(search="Queen's Gambit")
+).json
+media_rating = cast(MediaRating, response_json)  # free; always succeeds; trusts endpoint
+
+print(f'Title: {media_rating['title']}')
+print(f'Stars: {media_rating['stars']}')
+</code></pre>
+
+<p>And if you try to access a part of the API response that isn&rsquo;t defined in the
+TypedDict definition, your typechecker will helpfully tell you that you made
+a mistake:</p>
+
+<pre><code class="python">print(f'Stars: {media_rating['sars']}')  # error: TypedDict "MediaRating" has no key 'sars'
+</code></pre>
+
+<p>Having your program automatically checked for inconsistencies like this by
+typecheckers is especially helpful to quickly detect the introduction of bugs
+in large Python projects maintained by multiple people over a long period of time.</p>
+
+<h2>Installation</h2>
+
+<p>TypedDict is included in the Python standard library as of Python 3.8, so all
+you need to do is import it from the <code>typing</code> module:</p>
+
+<pre><code class="python">from typing import TypedDict
+</code></pre>
+
+<p>If you are using an earlier version of Python, install the <code>typing_extensions</code>
+module using pip (via: <code>pip install typing_extensions</code>), and then you can
+import it from there:</p>
+
+<pre><code class="python">from typing_extensions import TypedDict
+</code></pre>
+
+<h2>Usage</h2>
+
+<p>See the <a href="https://mypy.readthedocs.io/en/stable/more_types.html#typeddict">mypy documentation for TypedDict</a>, or the <a href="https://www.python.org/dev/peps/pep-0589/">PEP for TypedDict</a>.</p>
+
+<h2>History</h2>
+
+<p><a href="/about/">I</a> was initially motivated to create TypedDict because I wanted better
+typechecking support for describing and manipulating some very large structured
+dictionaries in the code managing the <a href="/projects/techsmart-platform/">TechSmart Platform</a>&rsquo;s curriculum import
+process<!-- ...specifically calendar_file.py -->.</p>
+
+<p>In Sep 2016 I started designing (and <a href="https://github.com/python/typing/issues/28#issuecomment-249992739">naming</a>) what would become TypedDict on the
+<a href="https://github.com/python/typing/issues/28">typing issue tracker</a> and implementing on the <a href="https://github.com/python/mypy/issues/985">mypy issue tracker</a>.
+Big kudos especially to <a href="https://github.com/gvanrossum">Guido van Rossom</a>,
+<a href="https://github.com/JukkaL">Jukka Lehtosalo</a>, and
+<a href="https://github.com/ilevkivskyi">Ivan Levkivskyi</a> for providing design and
+and implementation feedback.</p>
+
+<p>Later, others in the mypy community continued to extend TypedDict, notably
+adding <a href="https://github.com/python/typing/issues/28#issuecomment-254243330">class-based syntax</a> and <a href="https://github.com/python/mypy/issues/2632">total=False</a> support.</p>
+
+<p>Finally in Mar 2019 Jukka wrote up TypedDict as an official <a href="https://www.python.org/dev/peps/pep-0589/">PEP</a> for it to be
+standardized and added to the standard <code>typing</code> module in Python 3.8.</p>
+
+<h2>Learnings</h2>
+
+<p>This project is the first where I had detailed collaboration with others in
+<em>design</em> while working in open source.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>If you want to be <em>sure</em> that a JSON-like value is actually in the format you&rsquo;re expecting you might consider using <a href="/projects/trycast/"><code>trycast(...)</code></a> to actually check the value&rsquo;s shape at runtime rather than trusting a regular <code>cast(...)</code>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+    
+  </div>
+  
+  
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2021 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
