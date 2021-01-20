@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 20 Jan 2021 14:17:06 +0000</pubDate>
-    <lastBuildDate>Wed, 20 Jan 2021 14:17:06 +0000</lastBuildDate>
+    <pubDate>Wed, 20 Jan 2021 14:18:10 +0000</pubDate>
+    <lastBuildDate>Wed, 20 Jan 2021 14:18:10 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -424,7 +424,7 @@ and move it to some permanent location outside your Downloads folder.
 &lt;!-- Also of interest: The rationale for rejecting the external link symbol discouraged another person from even submitting the feed symbol for consideration: https://jameshfisher.com/2017/09/29/unicode-is-only-for-plaintext.html --&gt;
 
 
-&lt;p&gt;&lt;strong&gt;2021 Update:&lt;/strong&gt; These days I use ⎋ symbol to approximate the external link
+&lt;p&gt;&lt;strong&gt;2021 Update:&lt;/strong&gt; These days I use the ⎋ symbol to approximate the external link
 symbol in my own informal writing.&lt;/p&gt;
 </description>
     </item>
