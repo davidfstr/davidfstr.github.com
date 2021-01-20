@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 20 Jan 2021 15:26:07 +0000</pubDate>
-    <lastBuildDate>Wed, 20 Jan 2021 15:26:07 +0000</lastBuildDate>
+    <pubDate>Wed, 20 Jan 2021 15:49:50 +0000</pubDate>
+    <lastBuildDate>Wed, 20 Jan 2021 15:49:50 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -55,6 +55,13 @@ and move it to some permanent location outside your Downloads folder.
 &lt;li&gt;All done! 🎉&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;h3&gt;Other options&lt;/h3&gt;
+
+&lt;p&gt;Other browser extensions for suspending tabs exist, as mentioned in the
+&lt;a href=&quot;https://news.ycombinator.com/item?id=25846504&quot;&gt;Hacker New discussion&lt;/a&gt; for this article. However I have not conducted my own
+security review on any of those other extensions
+(whereas I &lt;em&gt;have&lt;/em&gt; reviewed The Great Suspender 7.1.6), so buyer beware.&lt;/p&gt;
 </description>
     </item>
     
