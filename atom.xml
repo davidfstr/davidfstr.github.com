@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-20T15:49:50+00:00</updated>
+ <updated>2021-01-20T15:57:11+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -67,8 +67,7 @@ and move it to some permanent location outside your Downloads folder.
 
 &lt;p&gt;Other browser extensions for suspending tabs exist, as mentioned in the
 &lt;a href=&quot;https://news.ycombinator.com/item?id=25846504&quot;&gt;Hacker New discussion&lt;/a&gt; for this article. However I have not conducted my own
-security review on any of those other extensions
-(whereas I &lt;em&gt;have&lt;/em&gt; reviewed The Great Suspender 7.1.6), so buyer beware.&lt;/p&gt;
+security review on any of those other extensions, so buyer beware.&lt;/p&gt;
 </content>
  </entry>
  
