@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-20T14:18:10+00:00</updated>
+ <updated>2021-01-20T15:12:14+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -41,7 +41,7 @@ track all of your browsing activity across all sites. Yikes.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Disable analytics tracking by opening the extension options for
-The Great Suspender and unchecking
+The Great Suspender and checking the box
 &amp;ldquo;Automatic deactivation of any kind of tracking&amp;rdquo;.&lt;/li&gt;
 &lt;li&gt;Pray that the shady developer doesn&amp;rsquo;t issue a malicious update to The Great Suspender later.
 (There&amp;rsquo;s no sensible way to disable updates of an individual extension.)&lt;/li&gt;
