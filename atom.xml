@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-20T16:27:31+00:00</updated>
+ <updated>2021-01-20T19:50:40+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -62,6 +62,10 @@ and move it to some permanent location outside your Downloads folder.
 &lt;li&gt;All done! 🎉&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;strong&gt;Caveat:&lt;/strong&gt; My understanding is that installing an unpacked extension in this way
+will cause Chrome to &lt;a href=&quot;https://news.ycombinator.com/item?id=25847171&quot;&gt;issue a new kind of security prompt&lt;/a&gt; every time it is
+launched, which you&amp;rsquo;ll have to ignore. 😕&lt;/p&gt;
 
 &lt;h3&gt;Other options&lt;/h3&gt;
 
