@@ -520,13 +520,10 @@
 	"buffers":
 	[
 		{
-			"contents": "---\nlayout: home_page\ntitle: About\ngroup: navigation\nbreadcrumbs: [/]\nlinkable_headings: true\n\n---\n<h1>{{ page.title }}</h1>\n\nMy name is **David Foster** and I enjoy developing software for fun and profit,\nwith the aim of making a positive difference in the world.\n\nI co-founded [TechSmart],\nwhich seeks to bring world-class computer science education to K-12 students.\nI specifically own the [TechSmart Platform] website.\n\n[TechSmart]: https://www.techsmart.codes\n[TechSmart Platform]: https://www.techsmart.codes/platform/\n\nMy open source contributions that are probably the most well-known include\nmaintaining the Ruby port of the Discount Markdown implementation ([RDiscount]),\nextensions to type checking in Python & mypy (especially the naming, design,\nand [initial implementation of TypedDict]), and\n[SSA subtitle support in HandBrake].\n\n[RDiscount]: /projects/rdiscount/\n[initial implementation of TypedDict]: about:blank\n[SSA subtitle support in HandBrake]: /projects/handbrake-subtitle-support/\n\n<h2 id=\"biography\">Biography</h2>\n\nI initially discovered computers when I was 4 and starting programming them at 6.\nSince then, programming has been one of my most enduring passions.\nWitness my large number of [personal projects](/projects/).\n\nBeyond that I enjoy:\n\n* reading;\n* learning about languages (both spoken and programming);\n* teaching;\n* kayaking, visiting gardens; and\n* watching the occasional anime series.\n\n<h2 id=\"contact\">Contact</h2>\n\nEmail **david** at this domain (dafoster.net).\n",
 			"file": "about/index.md",
-			"file_size": 1288,
-			"file_write_time": 132553976853081331,
 			"settings":
 			{
-				"buffer_size": 1507,
+				"buffer_size": 1556,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -535,26 +532,69 @@
 			"file": "projects/typeddict/index.md",
 			"settings":
 			{
-				"buffer_size": 922,
+				"buffer_size": 4986,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 1262 files for \"logo-128\" (case sensitive)\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_layouts/project.html:\n   16  <div class=\"row\">\n   17    <div class=\"{% if page.full_width != true %}col-md-9{% else %}col-md-12{% endif %} content\">\n   18:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for {{ page.title }}\"/>\n   19      \n   20      <h1>{{ page.title }}{% if page.subtitle %} <small>&ndash; {{ page.subtitle }}</small>{% endif %}</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/index.html:\n  193        \n  194        <div class=\"project\">\n  195:         <a href=\"/projects/handbrake-subtitle-support/\"><img src=\"/projects/handbrake-subtitle-support/logo-128.png\" alt=\"Logo for HandBrake Subtitles\" /></a>\n  196          <div>\n  197            <h2><a href=\"/projects/handbrake-subtitle-support/\">HandBrake Subtitles</a>\n  ...\n  219        \n  220        <div class=\"project\">\n  221:         <a href=\"/projects/rdiscount/\"><img src=\"/projects/rdiscount/logo-128.png\" alt=\"Logo for RDiscount\" /></a>\n  222          <div>\n  223            <h2><a href=\"/projects/rdiscount/\">RDiscount</a>\n  ...\n  241        \n  242        <div class=\"project\">\n  243:         <a href=\"/projects/uhuru/\"><img src=\"/projects/uhuru/logo-128.png\" alt=\"Logo for Uhuru\" /></a>\n  244          <div>\n  245            <h2><a href=\"/projects/uhuru/\" class=\"external\">Uhuru</a>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/burn-planner/index.html:\n  168            <div class=\"row\">\n  169    <div class=\"col-md-9 content\">\n  170:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Burn Planner\"/>\n  171      \n  172      <h1>Burn Planner</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/handbrake-subtitle-support/index.html:\n  175            <div class=\"row\">\n  176    <div class=\"col-md-9 content\">\n  177:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for HandBrake Subtitles\"/>\n  178      \n  179      <h1>HandBrake Subtitles</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/incoming-game/index.html:\n  171              <div class=\"row\">\n  172    <div class=\"col-md-9 content\">\n  173:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Incoming (Game)\"/>\n  174      \n  175      <h1>Incoming (Game)</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/index.html:\n  171            \n  172            <div class=\"project\">\n  173:             <a href=\"/projects/webcrystal/\"><img src=\"/projects/webcrystal/logo-128.png\" alt=\"Logo for webcrystal\" /></a>\n  174              <div>\n  175                <div class=\"date\">Feb 2016</div>\n  ...\n  193            \n  194            <div class=\"project\">\n  195:             <a href=\"/projects/uhuru/\"><img src=\"/projects/uhuru/logo-128.png\" alt=\"Logo for Uhuru\" /></a>\n  196              <div>\n  197                <div class=\"date\">Jan 2015</div>\n  ...\n  217            \n  218            <div class=\"project\">\n  219:             <a href=\"/projects/incoming-game/\"><img src=\"/projects/incoming-game/logo-128.png\" alt=\"Logo for Incoming (Game)\" /></a>\n  220              <div>\n  221                <div class=\"date\">Jan 2014</div>\n  ...\n  239            \n  240            <div class=\"project\">\n  241:             <a href=\"/projects/rdiscount/\"><img src=\"/projects/rdiscount/logo-128.png\" alt=\"Logo for RDiscount\" /></a>\n  242              <div>\n  243                <div class=\"date\">Jan 2013</div>\n  ...\n  263            \n  264            <div class=\"project\">\n  265:             <a href=\"/projects/website/\"><img src=\"/projects/website/logo-128.png\" alt=\"Logo for Website\" /></a>\n  266              <div>\n  267                <div class=\"date\">Dec 2012</div>\n  ...\n  285            \n  286            <div class=\"project\">\n  287:             <a href=\"/projects/burn-planner/\"><img src=\"/projects/burn-planner/logo-128.png\" alt=\"Logo for Burn Planner\" /></a>\n  288              <div>\n  289                <div class=\"date\">Nov 2010</div>\n  ...\n  307            \n  308            <div class=\"project\">\n  309:             <a href=\"/projects/handbrake-subtitle-support/\"><img src=\"/projects/handbrake-subtitle-support/logo-128.png\" alt=\"Logo for HandBrake Subtitles\" /></a>\n  310              <div>\n  311                <div class=\"date\">Feb 2010</div>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/rdiscount/index.html:\n  168            <div class=\"row\">\n  169    <div class=\"col-md-9 content\">\n  170:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for RDiscount\"/>\n  171      \n  172      <h1>RDiscount <small>&ndash; Markdown for Ruby</small></h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/uhuru/index.html:\n  171              <div class=\"row\">\n  172    <div class=\"col-md-9 content\">\n  173:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Uhuru\"/>\n  174      \n  175      <h1>Uhuru</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/webcrystal/index.html:\n  171              <div class=\"row\">\n  172    <div class=\"col-md-9 content\">\n  173:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for webcrystal\"/>\n  174      \n  175      <h1>webcrystal</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_production/projects/website/index.html:\n  170            <div class=\"row\">\n  171    <div class=\"col-md-9 content\">\n  172:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Website\"/>\n  173      \n  174      <h1>Website</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/index.html:\n  187        \n  188        <div class=\"project\">\n  189:         <a href=\"/projects/handbrake-subtitle-support/\"><img src=\"/projects/handbrake-subtitle-support/logo-128.png\" alt=\"Logo for HandBrake Subtitles\" /></a>\n  190          <div>\n  191            <h2><a href=\"/projects/handbrake-subtitle-support/\">HandBrake Subtitles</a>\n  ...\n  213        \n  214        <div class=\"project\">\n  215:         <a href=\"/projects/rdiscount/\"><img src=\"/projects/rdiscount/logo-128.png\" alt=\"Logo for RDiscount\" /></a>\n  216          <div>\n  217            <h2><a href=\"/projects/rdiscount/\">RDiscount</a>\n  ...\n  237        \n  238        <div class=\"project\">\n  239:         <a href=\"/projects/uhuru/\"><img src=\"/projects/uhuru/logo-128.png\" alt=\"Logo for Uhuru\" /></a>\n  240          <div>\n  241            <h2><a href=\"/projects/uhuru/\" class=\"external\">Uhuru</a>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/burn-planner/index.html:\n  162            <div class=\"row\">\n  163    <div class=\"col-md-9 content\">\n  164:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Burn Planner\"/>\n  165      \n  166      <h1>Burn Planner</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/handbrake-subtitle-support/index.html:\n  169            <div class=\"row\">\n  170    <div class=\"col-md-9 content\">\n  171:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for HandBrake Subtitles\"/>\n  172      \n  173      <h1>HandBrake Subtitles</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/incoming-game/index.html:\n  165              <div class=\"row\">\n  166    <div class=\"col-md-9 content\">\n  167:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Incoming (Game)\"/>\n  168      \n  169      <h1>Incoming (Game)</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/index.html:\n  165            \n  166            <div class=\"project\">\n  167:             <a href=\"/projects/typeddict/\"><img src=\"/projects/typeddict/logo-128.png\" alt=\"Logo for TypedDict\" /></a>\n  168              <div>\n  169                <div class=\"date\">Sep 2016</div>\n  ...\n  187            \n  188            <div class=\"project\">\n  189:             <a href=\"/projects/webcrystal/\"><img src=\"/projects/webcrystal/logo-128.png\" alt=\"Logo for webcrystal\" /></a>\n  190              <div>\n  191                <div class=\"date\">Feb 2016</div>\n  ...\n  209            \n  210            <div class=\"project\">\n  211:             <a href=\"/projects/uhuru/\"><img src=\"/projects/uhuru/logo-128.png\" alt=\"Logo for Uhuru\" /></a>\n  212              <div>\n  213                <div class=\"date\">Jan 2015</div>\n  ...\n  233            \n  234            <div class=\"project\">\n  235:             <a href=\"/projects/incoming-game/\"><img src=\"/projects/incoming-game/logo-128.png\" alt=\"Logo for Incoming (Game)\" /></a>\n  236              <div>\n  237                <div class=\"date\">Jan 2014</div>\n  ...\n  255            \n  256            <div class=\"project\">\n  257:             <a href=\"/projects/rdiscount/\"><img src=\"/projects/rdiscount/logo-128.png\" alt=\"Logo for RDiscount\" /></a>\n  258              <div>\n  259                <div class=\"date\">Jan 2013</div>\n  ...\n  279            \n  280            <div class=\"project\">\n  281:             <a href=\"/projects/website/\"><img src=\"/projects/website/logo-128.png\" alt=\"Logo for Website\" /></a>\n  282              <div>\n  283                <div class=\"date\">Dec 2012</div>\n  ...\n  301            \n  302            <div class=\"project\">\n  303:             <a href=\"/projects/burn-planner/\"><img src=\"/projects/burn-planner/logo-128.png\" alt=\"Logo for Burn Planner\" /></a>\n  304              <div>\n  305                <div class=\"date\">Nov 2010</div>\n  ...\n  323            \n  324            <div class=\"project\">\n  325:             <a href=\"/projects/handbrake-subtitle-support/\"><img src=\"/projects/handbrake-subtitle-support/logo-128.png\" alt=\"Logo for HandBrake Subtitles\" /></a>\n  326              <div>\n  327                <div class=\"date\">Feb 2010</div>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/rdiscount/index.html:\n  162            <div class=\"row\">\n  163    <div class=\"col-md-9 content\">\n  164:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for RDiscount\"/>\n  165      \n  166      <h1>RDiscount <small>&ndash; Markdown for Ruby</small></h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/typeddict/index.html:\n  165              <div class=\"row\">\n  166    <div class=\"col-md-9 content\">\n  167:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for TypedDict\"/>\n  168      \n  169      <h1>TypedDict</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/uhuru/index.html:\n  165              <div class=\"row\">\n  166    <div class=\"col-md-9 content\">\n  167:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Uhuru\"/>\n  168      \n  169      <h1>Uhuru</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/webcrystal/index.html:\n  165              <div class=\"row\">\n  166    <div class=\"col-md-9 content\">\n  167:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for webcrystal\"/>\n  168      \n  169      <h1>webcrystal</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_site/projects/website/index.html:\n  164            <div class=\"row\">\n  165    <div class=\"col-md-9 content\">\n  166:     <img class=\"logo\" src=\"logo-128.png\" alt=\"Logo for Website\"/>\n  167      \n  168      <h1>Website</h1>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/index.md:\n   25        \n   26        <div class=\"project\">\n   27:         <a href=\"{{ project_url }}\"><img src=\"{{ project_url }}logo-128.png\" alt=\"Logo for {{ project_title }}\" /></a>\n   28          <div>\n   29            <h2><a href=\"{{ project_url }}\"{% if project_is_redirect %} class=\"external\"{% endif %}>{{ project_title }}</a>\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/index.html:\n   24            \n   25            <div class=\"project\">\n   26:             <a href=\"{{ project_url }}\"><img src=\"{{ project_url }}logo-128.png\" alt=\"Logo for {{ project_title }}\" /></a>\n   27              <div>\n   28                <div class=\"date\">{{ project_date | date: \"%b %Y\" }}</div>\n\n39 matches across 22 files\n",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 11885,
+				"buffer_size": 2214,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Rakefile",
+			"settings":
+			{
+				"buffer_size": 3500,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 567 files for \"Python/mypy\" (case sensitive)\n\n/Users/davidf/Projects/dafoster.net/dafoster.net/Code/about/index.md:\n   22  \n   23  * maintaining [RDiscount], Ruby bindings to the Discount Markdown implementation;\n   24: * [TypedDict's initial implementation] and other typechecking extensions in Python/mypy;\n   25  * [SSA subtitle support in HandBrake]; and\n   26  * enhancements to [Django].\n\n1 match in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 423,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
-			"file": "projects/incoming-game/index.md",
+			"file": "projects/trycast/index.md",
 			"settings":
 			{
-				"buffer_size": 328,
+				"buffer_size": 496,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "projects/techsmart-platform/index.md",
+			"settings":
+			{
+				"buffer_size": 472,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "projects/rdiscount/index.md",
+			"settings":
+			{
+				"buffer_size": 3501,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "#    A TypedDict is a structured dictionary/map with an expected set of \n#    named string keys mapped to values of particular expected types.\n#    Such structures are ubiquitous when exchanging JSON data.",
+			"settings":
+			{
+				"buffer_size": 205,
 				"line_ending": "Unix"
 			}
 		}
@@ -570,6 +610,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"liquid",
+				"Set Syntax: Liquid Markdown"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"ini",
 				"Set Syntax: INI"
@@ -625,10 +673,6 @@
 			[
 				"css for",
 				"Format CSS: Expanded"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"javas",
@@ -809,13 +853,21 @@
 	"expanded_folders":
 	[
 		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code",
-		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/about",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_layouts",
 		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects",
-		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/incoming-game",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/crystal-web-archiver",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/rdiscount",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/techsmart-platform",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/trycast",
 		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/typeddict"
 	],
 	"file_history":
 	[
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/project.sublime-project",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/projects/index.html",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/_layouts/project.html",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/index.md",
+		"/Users/davidf/Projects/dafoster.net/dafoster.net/Code/.gitignore",
 		"/Users/davidf/Projects/trycast/.git/hooks/pre-commit",
 		"/Users/davidf/.dotfiles/git_hooks/pre-commit.working-hours.sh",
 		"/Users/davidf/.dotfiles/git_hooks/pre-commit.multiple.sh",
@@ -938,22 +990,21 @@
 		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/in_school/static/in_school/util/ts_code_editor.js",
 		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/ide/static/ide/code/panels/assignment/__init__.js",
 		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/planner/static/planner/plan/dialogs/lesson_activity_video_dialogs.js",
-		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/planner/migrations/0064_lessonobject_name_help_text.py",
-		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/planner/views/teacher_uploaded_videos.py",
-		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/student_portal/util/debug.py",
-		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/planner/tests/test_admin.py",
-		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/planner/tests/test_plan_day_view.py",
-		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/ide/skylark/convert_py_to_sky.py"
+		"/Users/davidf/Documents/TechSmartKids/Repositories/tsk-local/git/tsk-website/planner/migrations/0064_lessonobject_name_help_text.py"
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 42.0
 	},
 	"find_in_files":
 	{
 		"height": 110.0,
 		"where_history":
 		[
+			"/Users/davidf/Projects/dafoster.net/dafoster.net/Code,-_production/**,-_site/**,-*.sublime-workspace",
+			"/Users/davidf/Projects/dafoster.net/dafoster.net/Code,-_production/**,-_site/**,*.sublime-workspace",
+			"/Users/davidf/Projects/dafoster.net/dafoster.net/Code,-_production/**,-_site/**",
+			"/Users/davidf/Projects/dafoster.net/dafoster.net/Code,-_production/**",
 			"/Users/davidf/Projects/dafoster.net/dafoster.net/Code"
 		]
 	},
@@ -962,6 +1013,15 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"jeky",
+			"deploy",
+			"Python/mypy",
+			"^\\[\\^",
+			"web API",
+			"or more precisely: Lite",
+			"typing/issues/28",
+			"mypy/issues/985",
+			"0589",
 			"logo-128"
 		],
 		"highlight": true,
@@ -980,7 +1040,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -989,15 +1049,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1507,
+						"buffer_size": 1556,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								916,
-								916
+								393,
+								393
 							]
 						],
 						"settings":
@@ -1005,10 +1065,10 @@
 							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 136.0,
+						"translation.y": 126.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1017,15 +1077,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 922,
+						"buffer_size": 4986,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								83,
-								83
+								1843,
+								1843
 							]
 						],
 						"settings":
@@ -1034,18 +1094,76 @@
 							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 983.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2030,
+								2019
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1001.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
+					"file": "Rakefile",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11885,
+						"buffer_size": 3500,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1257,
+								1257
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 676.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 423,
 						"regions":
 						{
 							"match":
@@ -1054,160 +1172,8 @@
 								"regions":
 								[
 									[
-										292,
-										300
-									],
-									[
-										703,
-										711
-									],
-									[
-										1004,
-										1012
-									],
-									[
-										1260,
-										1268
-									],
-									[
-										1608,
-										1616
-									],
-									[
-										1921,
-										1929
-									],
-									[
-										2237,
-										2245
-									],
-									[
-										2559,
-										2567
-									],
-									[
-										2820,
-										2828
-									],
-									[
-										3092,
-										3100
-									],
-									[
-										3366,
-										3374
-									],
-									[
-										3630,
-										3638
-									],
-									[
-										3902,
-										3910
-									],
-									[
-										4207,
-										4215
-									],
-									[
-										4549,
-										4557
-									],
-									[
-										4878,
-										4886
-									],
-									[
-										5163,
-										5171
-									],
-									[
-										5453,
-										5461
-									],
-									[
-										5764,
-										5772
-									],
-									[
-										6065,
-										6073
-									],
-									[
-										6321,
-										6329
-									],
-									[
-										6663,
-										6671
-									],
-									[
-										6970,
-										6978
-									],
-									[
-										7280,
-										7288
-									],
-									[
-										7594,
-										7602
-									],
-									[
-										7864,
-										7872
-									],
-									[
-										8125,
-										8133
-									],
-									[
-										8397,
-										8405
-									],
-									[
-										8671,
-										8679
-									],
-									[
-										8935,
-										8943
-									],
-									[
-										9207,
-										9215
-									],
-									[
-										9512,
-										9520
-									],
-									[
-										9848,
-										9856
-									],
-									[
-										10175,
-										10183
-									],
-									[
-										10457,
-										10465
-									],
-									[
-										10736,
-										10744
-									],
-									[
-										11020,
-										11028
-									],
-									[
-										11283,
-										11291
-									],
-									[
-										11696,
-										11704
+										306,
+										317
 									]
 								],
 								"scope": ""
@@ -1216,8 +1182,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								311,
+								311
 							]
 						],
 						"settings":
@@ -1236,24 +1202,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "projects/incoming-game/index.md",
-					"semi_transient": true,
+					"buffer": 5,
+					"file": "projects/trycast/index.md",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 328,
+						"buffer_size": 496,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								208,
-								188
+								263,
+								263
 							]
 						],
 						"settings":
@@ -1264,7 +1230,92 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "projects/techsmart-platform/index.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 472,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								358,
+								358
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "projects/rdiscount/index.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3501,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								36
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								205,
+								5
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1334,6 +1385,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"RAkefi",
+				"Rakefile"
+			],
+			[
+				"README",
+				"README.md"
+			],
+			[
+				"about",
+				"about/index.md"
+			],
 			[
 				"makefi",
 				"Makefile"
@@ -1833,18 +1896,6 @@
 			[
 				"settings_d",
 				"student_portal/settings_local_docker.py"
-			],
-			[
-				"repair",
-				"tools/management/commands/repair_s3.py"
-			],
-			[
-				"audit",
-				"tools/management/commands/audit_permissions.py"
-			],
-			[
-				"code/init",
-				"ide/static/ide/code/__init__.js"
 			]
 		],
 		"width": 0.0
