@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 23 Jan 2021 19:46:40 +0000</pubDate>
-    <lastBuildDate>Sat, 23 Jan 2021 19:46:40 +0000</lastBuildDate>
+    <pubDate>Sat, 23 Jan 2021 20:05:21 +0000</pubDate>
+    <lastBuildDate>Sat, 23 Jan 2021 20:05:21 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -71,6 +71,24 @@ launched, which you&amp;rsquo;ll have to ignore. 😕&lt;/p&gt;
 &lt;p&gt;Other browser extensions for suspending tabs exist, as mentioned in the
 &lt;a href=&quot;https://news.ycombinator.com/item?id=25846504&quot;&gt;Hacker New discussion&lt;/a&gt; for this article. However I have not conducted my own
 security review on any of those other extensions, so buyer beware.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Productivity&quot;&gt;Productivity&lt;sup&gt;13&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2015/03/23/block-distracting-websites/&quot;&gt;Block Distracting Websites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/07/27/sending-email-from-command-line-scripts/&quot;&gt;Sending email from command line scripts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2013/10/27/scrivener-an-ide-for-thinkers-creators-and-writers/&quot;&gt;Scrivener: An IDE for thinkers, creators, and writers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;54&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 </description>
     </item>
     
