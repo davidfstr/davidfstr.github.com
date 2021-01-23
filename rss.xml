@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 20 Jan 2021 19:50:40 +0000</pubDate>
-    <lastBuildDate>Wed, 20 Jan 2021 19:50:40 +0000</lastBuildDate>
+    <pubDate>Sat, 23 Jan 2021 19:46:40 +0000</pubDate>
+    <lastBuildDate>Sat, 23 Jan 2021 19:46:40 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -45,7 +45,13 @@ The Great Suspender and checking the box
 
 &lt;ul&gt;
 &lt;li&gt;Close as many unneeded tabs as you can.&lt;/li&gt;
-&lt;li&gt;Unsuspend all remaining tabs. ⏳&lt;/li&gt;
+&lt;li&gt;Unsuspend all remaining tabs. ⏳
+
+&lt;ul&gt;
+&lt;li&gt;⚠️ Any tabs that you forget to unsuspend will be lost
+when uninstalling The Great Suspender in the next step.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Uninstall The Great Suspender.&lt;/li&gt;
 &lt;li&gt;Download the &lt;a href=&quot;https://github.com/greatsuspender/thegreatsuspender/releases/tag/v7.1.6&quot;&gt;latest good version&lt;/a&gt; of The Great Suspender (7.1.6) from GitHub,
 and move it to some permanent location outside your Downloads folder.
