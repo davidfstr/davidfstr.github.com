@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-23T20:05:21+00:00</updated>
+ <updated>2021-01-23T20:34:58+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -3319,8 +3319,8 @@ Bar bar = foo;   // Will this work?
      <category term="Productivity"/>
    
    <link rel="alternate" href="https://dafoster.net/articles/2015/03/23/block-distracting-websites/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;div style=&quot;float: right; margin-left: 1em;&quot;&gt;
-    &lt;img src=&quot;/assets/2015/distracting-websites.png&quot; /&gt;
+   <content type="html">&lt;div class=&quot;img-box-right&quot;&gt;
+    &lt;img class=&quot;img-225&quot; alt=&quot;Comic: Person on left: &#39;I just watched you open Google News and then close it without reading it &lt;em&gt;five times in a row&lt;/em&gt;.&#39; Person on right: &#39;The fact that I spend most of my time so stupidly only makes it &lt;em&gt;more&lt;/em&gt; important not to waste any here.&#39;&quot; src=&quot;/assets/2015/distracting-websites.png&quot; /&gt;
     &lt;div&gt;&lt;i&gt;Courtesy of &lt;a href=&quot;http://xkcd.com/1502/&quot;&gt;xkcd&lt;/a&gt;&lt;/i&gt;&lt;/div&gt;
 &lt;/div&gt;
 
