@@ -4,6 +4,8 @@ https://dafoster.net/about/
 https://dafoster.net/apps/
 https://dafoster.net/articles/
 https://dafoster.net/articles/topics/
+https://dafoster.net/assets/bootswatch-readable-3.4.1/bootstrap.css
+https://dafoster.net/assets/bootswatch-readable-3.4.1/bootstrap.min.css
 https://dafoster.net/atom.xml
 https://dafoster.net/contact/
 https://dafoster.net/
