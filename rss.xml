@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 24 Jan 2021 17:04:08 +0000</pubDate>
-    <lastBuildDate>Sun, 24 Jan 2021 17:04:08 +0000</lastBuildDate>
+    <pubDate>Mon, 25 Jan 2021 14:59:11 +0000</pubDate>
+    <lastBuildDate>Mon, 25 Jan 2021 14:59:11 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -62,9 +62,11 @@ and move it to some permanent location outside your Downloads folder.
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;strong&gt;Caveat:&lt;/strong&gt; My understanding is that installing an unpacked extension in this way
+&lt;p&gt;&lt;s&gt;&lt;strong&gt;Caveat:&lt;/strong&gt; My understanding is that installing an unpacked extension in this way
 will cause Chrome to &lt;a href=&quot;https://news.ycombinator.com/item?id=25847171&quot;&gt;issue a new kind of security prompt&lt;/a&gt; every time it is
-launched, which you&amp;rsquo;ll have to ignore. 😕&lt;/p&gt;
+launched, which you&amp;rsquo;ll have to ignore. 😕&lt;/s&gt;
+I see no security prompt for using an unpacked extension at least on
+macOS 10.14 Mojave with Chrome 88 and Developer Mode left on.&lt;/p&gt;
 
 &lt;h3&gt;Other options&lt;/h3&gt;
 
