@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Python's type checking renaissance | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+  
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dafoster.net/articles/2021/01/26/python%27s-type-checking-renaissance/"
+      },
+      "headline": "Python's type checking renaissance",
+      
+      "datePublished": "2021-01-26T00:00:00+00:00",
+      "dateModified": "2021-01-26T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "David Foster",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "David Foster",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      }
+    }
+    </script>
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+
+    <!-- Fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1>Python's type checking renaissance</h1>
+    <div class="post-metadata">
+      
+        Jan 26, 2021
+       &ndash; Filed under: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span><a href="/articles/topics/#Software">Software<sup>55</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>You may have heard that from TypeScript has been taking the web development space by storm in the <a href="https://2018.stateofjs.com/javascript-flavors/typescript/">last</a> <a href="https://2019.stateofjs.com/javascript-flavors/typescript/">few</a> <a href="https://2020.stateofjs.com/en-US/technologies/javascript-flavors/">years</a>, bringing to it static types. I believe the same thing is starting to happen in the world of Python, where type checkers like <a href="http://mypy-lang.org/">mypy</a>,  <a href="https://pyre-check.org/">Pyre</a>, and <a href="https://github.com/Microsoft/pyright">Pyright</a> are increasingly used, at least where Python is used by companies to write large systems.</p>
+
+<p>For the last several releases of Python, there have been an increasing number of type checking features added to each release by various PEPs:</p>
+
+<div class="accordion" id="python-releases" style="margin-bottom: 1em;">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#python-releases" href="#collapseOne">
+        <span class="expand-symbol"></span>Python releases, and related type checking features
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <ul>
+<li>Python 3.5 <small>(Released Sep 2015)</small>
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0484/">Type Hints (PEP 484)</a> - The original introduction of type checking type annotations into the Python language.</li>
+</ul>
+</li>
+<li>Python 3.6 <small>(Released Dec 2016)</small>
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0526/">Syntax for variable annotations (PEP 526)</a></li>
+</ul>
+</li>
+<li>Python 3.7 <small>(Released Jun 2018)</small>
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations">Deferred Evaluation of Annotations (PEP 563)</a> - Most type checking annotations no longer need to be in runtime context.</li>
+<li>New kinds of types:
+
+<ul>
+<li><a href="/projects/typeddict/">TypedDict is available in mypy_extensions</a> - Typed dictionaries have specific named keys mapped to specific value types. Such dictionaries are ubiquitous in JSON.</li>
+<li><a href="https://www.python.org/dev/peps/pep-0557/#rationale">Data Classes (PEP 557)</a> - Data classes are analogous to typed dictionaries.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Python 3.8 <small>(Released Oct 2019)</small>
+
+<ul>
+<li>New kinds of types:
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0589/">TypedDict is standardized (PEP 589)</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0586/">Literal types are standardized (PEP 586)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Python 3.9 <small>(Released Oct 2020)</small>
+
+<ul>
+<li>Fewer imports from the <code>typing</code> module are needed:
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0585/">Type Hinting Generics In Standard Collections (PEP 585)</a> - Can use <code>list[T]</code>, <code>dict[K, V]</code>, etc in place of <code>List[T]</code> and <code>Dict[K, V]</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Python 3.10 <small>(Pending release Oct 2021)</small>
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations">Deferred Evaluation of Annotations, without <code>__future__</code> (PEP 563)</a></li>
+<li>Fewer imports from the <code>typing</code> module are needed:
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0604/">Union types are shortened to <code>X | Y</code> (PEP 604)</a></li>
+<li>(?) <a href="https://www.python.org/dev/peps/pep-0645/">Optional types shortened to <code>X?</code> (PEP 645)</a></li>
+</ul>
+</li>
+<li>New kinds of types:
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0612/">Parameter Specification Variables: <code>ParamSpec</code> (PEP 612)</a></li>
+<li>(?) <a href="https://www.python.org/dev/peps/pep-0647/">User-Defined Type Guards: <code>TypeGuard</code> (PEP 647)</a></li>
+<li>(?) Type Hint for Typing Special Forms and Regular Types: <code>TypeForm</code> &ndash; in development</li>
+</ul>
+</li>
+<li>New syntax useful for types:
+
+<ul>
+<li>(?) <a href="https://www.python.org/dev/peps/pep-0637/">Support for indexing with keyword arguments (PEP 637)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p>The traffic on <a href="https://mail.python.org/archives/list/typing-sig@python.org/">typing-sig</a>, the mailing list where most major new typing features are proposed and designed, has also been seeing increasing traffic year over year.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p>I personally have found type checking to be very useful when working on large Python applications<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. It helps me find numerous small errors that are introduced during regular development<!-- such as import errors-->. Sure, most of these errors would be caught by the automated tests that I write for each new feature anyway<!-- TODO: footnote+link to TDD or similar practice? -->, but the type checker can find a whole bunch of errors all at once without even running the program, which decreases cycle times when adding new features:</p>
+
+<p>Without type checking I tend to:</p>
+
+<ul>
+<li>Write a bunch of new code.</li>
+<li><strong>Repeat 4-6 times, in rapid succession:</strong>
+
+<ul>
+<li>Run program to manually test.</li>
+<li>Find basic error (like a missing import).</li>
+<li>Fix basic error.</li>
+</ul>
+</li>
+<li>Debug/fix deeper errors in the new code.</li>
+</ul>
+
+
+<p>But <em>with</em> type checking I can:</p>
+
+<ul>
+<li>Write a bunch of new code.</li>
+<li><strong>Run the type checker. Get a report of 4-6 basic errors. Fix basic errors immediately.</strong></li>
+<li>Debug/fix deeper errors in the new code.</li>
+</ul>
+
+
+<p>I appreciate this increased productivity that type checking gives me when working on large programs. And I hope that more Python users try type checking for themselves, especially as Python gains an increasing number of related features in recent releases. It&rsquo;s an exciting time to be a Python developer!</p>
+
+<h2><em>Related Articles</em></h2>
+
+<ul>
+<li><a href="/articles/2018/04/07/unsound-type-systems-are-still-useful/">Unsound type systems are still useful</a></li>
+<li><a href="/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/">Dependent Types: Impressions of a software practitioner</a></li>
+</ul>
+
+
+<h2><em>Related Projects</em></h2>
+
+<ul>
+<li><a href="/projects/typeddict/">TypedDict</a> - Python typechecker support for recognizing structured dictionaries with specific named keys mapped to specific value types.</li>
+<li><a href="/projects/trycast/">trycast</a> — Parses JSON-like values whose shape is defined by typed dictionaries (TypedDicts) and other standard Python type hints.</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Increasing traffic on <a href="https://mail.python.org/archives/list/typing-sig@python.org/">typing-sig</a> is reflected in an increasing number of discussions year-over-year. In 2019 there were 63 discussions. In 2020 there were 113 discussions (79% increase). And 2021 is just beginning.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>I personally use type checking in <a href="/projects/techsmart-platform/">a large Django web application</a> that I work on.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+  <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+</a>
+<a class="subscribe subscribe-last" href="https://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" style="padding-right: 2px;" />Subscribe (RSS)
+</a>
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2021/01/20/i-no-longer-trust-the-great-suspender/" title="I no longer trust The Great Suspender">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2021 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    <script>
+      // Rotate triangle symbol when accordian toggled
+$('.accordion-toggle .expand-symbol').text('▸ ');
+$('.accordion-toggle').click(function() {
+    var accordianBodySelector = $(this).attr('href');
+    var isCollapsed = $(accordianBodySelector).attr('class').indexOf("in") !== -1;
+    
+    if (isCollapsed) {
+        $('.expand-symbol', this).text('▸ ');
+    } else {
+        $('.expand-symbol', this).text('▾ ');
+    }
+});
+
+    </script>
+  
+    
+  
+    
+  
+  </body>
+</html>

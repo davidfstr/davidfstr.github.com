@@ -6,14 +6,178 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 26 Jan 2021 04:00:06 +0000</pubDate>
-    <lastBuildDate>Tue, 26 Jan 2021 04:00:06 +0000</lastBuildDate>
+    <pubDate>Tue, 26 Jan 2021 15:07:52 +0000</pubDate>
+    <lastBuildDate>Tue, 26 Jan 2021 15:07:52 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Python&#39;s type checking renaissance</title>
+      <link>https://dafoster.net/articles/2021/01/26/python%27s-type-checking-renaissance/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2021/01/26/python's-type-checking-renaissance</guid>
+      <description>&lt;p&gt;You may have heard that from TypeScript has been taking the web development space by storm in the &lt;a href=&quot;https://2018.stateofjs.com/javascript-flavors/typescript/&quot;&gt;last&lt;/a&gt; &lt;a href=&quot;https://2019.stateofjs.com/javascript-flavors/typescript/&quot;&gt;few&lt;/a&gt; &lt;a href=&quot;https://2020.stateofjs.com/en-US/technologies/javascript-flavors/&quot;&gt;years&lt;/a&gt;, bringing to it static types. I believe the same thing is starting to happen in the world of Python, where type checkers like &lt;a href=&quot;http://mypy-lang.org/&quot;&gt;mypy&lt;/a&gt;,  &lt;a href=&quot;https://pyre-check.org/&quot;&gt;Pyre&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Microsoft/pyright&quot;&gt;Pyright&lt;/a&gt; are increasingly used, at least where Python is used by companies to write large systems.&lt;/p&gt;
+
+&lt;p&gt;For the last several releases of Python, there have been an increasing number of type checking features added to each release by various PEPs:&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot; id=&quot;python-releases&quot; style=&quot;margin-bottom: 1em;&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#python-releases&quot; href=&quot;#collapseOne&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;Python releases, and related type checking features
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;collapseOne&quot; class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+        &lt;ul&gt;
+&lt;li&gt;Python 3.5 &lt;small&gt;(Released Sep 2015)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0484/&quot;&gt;Type Hints (PEP 484)&lt;/a&gt; - The original introduction of type checking type annotations into the Python language.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.6 &lt;small&gt;(Released Dec 2016)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0526/&quot;&gt;Syntax for variable annotations (PEP 526)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.7 &lt;small&gt;(Released Jun 2018)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations&quot;&gt;Deferred Evaluation of Annotations (PEP 563)&lt;/a&gt; - Most type checking annotations no longer need to be in runtime context.&lt;/li&gt;
+&lt;li&gt;New kinds of types:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/typeddict/&quot;&gt;TypedDict is available in mypy_extensions&lt;/a&gt; - Typed dictionaries have specific named keys mapped to specific value types. Such dictionaries are ubiquitous in JSON.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0557/#rationale&quot;&gt;Data Classes (PEP 557)&lt;/a&gt; - Data classes are analogous to typed dictionaries.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.8 &lt;small&gt;(Released Oct 2019)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New kinds of types:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0589/&quot;&gt;TypedDict is standardized (PEP 589)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0586/&quot;&gt;Literal types are standardized (PEP 586)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.9 &lt;small&gt;(Released Oct 2020)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fewer imports from the &lt;code&gt;typing&lt;/code&gt; module are needed:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0585/&quot;&gt;Type Hinting Generics In Standard Collections (PEP 585)&lt;/a&gt; - Can use &lt;code&gt;list[T]&lt;/code&gt;, &lt;code&gt;dict[K, V]&lt;/code&gt;, etc in place of &lt;code&gt;List[T]&lt;/code&gt; and &lt;code&gt;Dict[K, V]&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.10 &lt;small&gt;(Pending release Oct 2021)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations&quot;&gt;Deferred Evaluation of Annotations, without &lt;code&gt;__future__&lt;/code&gt; (PEP 563)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fewer imports from the &lt;code&gt;typing&lt;/code&gt; module are needed:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0604/&quot;&gt;Union types are shortened to &lt;code&gt;X | Y&lt;/code&gt; (PEP 604)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;(?) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New kinds of types:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0612/&quot;&gt;Parameter Specification Variables: &lt;code&gt;ParamSpec&lt;/code&gt; (PEP 612)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;(?) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0647/&quot;&gt;User-Defined Type Guards: &lt;code&gt;TypeGuard&lt;/code&gt; (PEP 647)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;(?) Type Hint for Typing Special Forms and Regular Types: &lt;code&gt;TypeForm&lt;/code&gt; &amp;ndash; in development&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New syntax useful for types:
+
+&lt;ul&gt;
+&lt;li&gt;(?) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0637/&quot;&gt;Support for indexing with keyword arguments (PEP 637)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;The traffic on &lt;a href=&quot;https://mail.python.org/archives/list/typing-sig@python.org/&quot;&gt;typing-sig&lt;/a&gt;, the mailing list where most major new typing features are proposed and designed, has also been seeing increasing traffic year over year.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;I personally have found type checking to be very useful when working on large Python applications&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. It helps me find numerous small errors that are introduced during regular development&lt;!-- such as import errors--&gt;. Sure, most of these errors would be caught by the automated tests that I write for each new feature anyway&lt;!-- TODO: footnote+link to TDD or similar practice? --&gt;, but the type checker can find a whole bunch of errors all at once without even running the program, which decreases cycle times when adding new features:&lt;/p&gt;
+
+&lt;p&gt;Without type checking I tend to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Write a bunch of new code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Repeat 4-6 times, in rapid succession:&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run program to manually test.&lt;/li&gt;
+&lt;li&gt;Find basic error (like a missing import).&lt;/li&gt;
+&lt;li&gt;Fix basic error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Debug/fix deeper errors in the new code.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;But &lt;em&gt;with&lt;/em&gt; type checking I can:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Write a bunch of new code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Run the type checker. Get a report of 4-6 basic errors. Fix basic errors immediately.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Debug/fix deeper errors in the new code.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I appreciate this increased productivity that type checking gives me when working on large programs. And I hope that more Python users try type checking for themselves, especially as Python gains an increasing number of related features in recent releases. It&amp;rsquo;s an exciting time to be a Python developer!&lt;/p&gt;
+
+&lt;h2&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2018/04/07/unsound-type-systems-are-still-useful/&quot;&gt;Unsound type systems are still useful&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/&quot;&gt;Dependent Types: Impressions of a software practitioner&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;&lt;em&gt;Related Projects&lt;/em&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/typeddict/&quot;&gt;TypedDict&lt;/a&gt; - Python typechecker support for recognizing structured dictionaries with specific named keys mapped to specific value types.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/trycast/&quot;&gt;trycast&lt;/a&gt; — Parses JSON-like values whose shape is defined by typed dictionaries (TypedDicts) and other standard Python type hints.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;Increasing traffic on &lt;a href=&quot;https://mail.python.org/archives/list/typing-sig@python.org/&quot;&gt;typing-sig&lt;/a&gt; is reflected in an increasing number of discussions year-over-year. In 2019 there were 63 discussions. In 2020 there were 113 discussions (79% increase). And 2021 is just beginning.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;I personally use type checking in &lt;a href=&quot;/projects/techsmart-platform/&quot;&gt;a large Django web application&lt;/a&gt; that I work on.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -86,7 +250,7 @@ security review on any of those other extensions, so buyer beware.&lt;/p&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;54&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;55&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt;&lt;/li&gt;
@@ -249,7 +413,7 @@ security review on any of those other extensions, so buyer beware.&lt;/p&gt;
       <pubDate>Sun, 06 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://dafoster.net/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner</guid>
-      <description>&lt;p&gt;&lt;img src=&quot;/assets/2019/the-little-typer.jpg&quot; width=&quot;200px&quot; style=&quot;float: right; margin-left: 20px;&quot; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Book: The Little Typer&quot; src=&quot;/assets/2019/the-little-typer.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Dependent types are a feature of certain programming language type systems that are unusually powerful, expressive, and precise, compared with other kinds of types. Dependently-typed programming languages such as Coq, Agda, and Idris appear occasionally in academia but not at all in mainstream languages used by software practitioners.&lt;/p&gt;
 

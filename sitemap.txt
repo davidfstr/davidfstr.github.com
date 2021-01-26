@@ -25,6 +25,7 @@ https://dafoster.net/projects/website-2/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2021/01/26/python%27s-type-checking-renaissance/
 https://dafoster.net/articles/2021/01/20/i-no-longer-trust-the-great-suspender/
 https://dafoster.net/articles/2020/02/02/power-naps/
 https://dafoster.net/articles/2020/01/18/stress/
