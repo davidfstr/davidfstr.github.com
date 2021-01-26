@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 26 Jan 2021 15:07:52 +0000</pubDate>
-    <lastBuildDate>Tue, 26 Jan 2021 15:07:52 +0000</lastBuildDate>
+    <pubDate>Tue, 26 Jan 2021 15:09:35 +0000</pubDate>
+    <lastBuildDate>Tue, 26 Jan 2021 15:09:35 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -22,7 +22,7 @@
       <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://dafoster.net/articles/2021/01/26/python's-type-checking-renaissance</guid>
-      <description>&lt;p&gt;You may have heard that from TypeScript has been taking the web development space by storm in the &lt;a href=&quot;https://2018.stateofjs.com/javascript-flavors/typescript/&quot;&gt;last&lt;/a&gt; &lt;a href=&quot;https://2019.stateofjs.com/javascript-flavors/typescript/&quot;&gt;few&lt;/a&gt; &lt;a href=&quot;https://2020.stateofjs.com/en-US/technologies/javascript-flavors/&quot;&gt;years&lt;/a&gt;, bringing to it static types. I believe the same thing is starting to happen in the world of Python, where type checkers like &lt;a href=&quot;http://mypy-lang.org/&quot;&gt;mypy&lt;/a&gt;,  &lt;a href=&quot;https://pyre-check.org/&quot;&gt;Pyre&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Microsoft/pyright&quot;&gt;Pyright&lt;/a&gt; are increasingly used, at least where Python is used by companies to write large systems.&lt;/p&gt;
+      <description>&lt;p&gt;You may have heard that TypeScript has been taking the web development space by storm in the &lt;a href=&quot;https://2018.stateofjs.com/javascript-flavors/typescript/&quot;&gt;last&lt;/a&gt; &lt;a href=&quot;https://2019.stateofjs.com/javascript-flavors/typescript/&quot;&gt;few&lt;/a&gt; &lt;a href=&quot;https://2020.stateofjs.com/en-US/technologies/javascript-flavors/&quot;&gt;years&lt;/a&gt;, bringing to it static types. I believe the same thing is starting to happen in the world of Python, where type checkers like &lt;a href=&quot;http://mypy-lang.org/&quot;&gt;mypy&lt;/a&gt;,  &lt;a href=&quot;https://pyre-check.org/&quot;&gt;Pyre&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Microsoft/pyright&quot;&gt;Pyright&lt;/a&gt; are increasingly used, at least where Python is used by companies to write large systems.&lt;/p&gt;
 
 &lt;p&gt;For the last several releases of Python, there have been an increasing number of type checking features added to each release by various PEPs:&lt;/p&gt;
 
