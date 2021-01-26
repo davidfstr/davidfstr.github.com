@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-01-25T15:02:20+00:00</updated>
+ <updated>2021-01-26T03:18:27+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -3316,7 +3316,7 @@ Bar bar = foo;   // Will this work?
    <id>https://dafoster.net/articles/2015/03/23/block-distracting-websites</id>
    <title>Block Distracting Websites</title>
    <published>2015-03-23T00:00:00+00:00</published>
-   <updated>2015-03-23T00:00:00+00:00</updated>
+   <updated>2021-01-25T00:00:00+00:00</updated>
    
      <category term="Productivity"/>
    
@@ -3351,6 +3351,36 @@ Bar bar = foo;   // Will this work?
 &lt;p&gt;After doing both of these, attempting to visit one of the websites listed in &lt;code&gt;/etc/hosts&lt;/code&gt; will display an error page.&lt;/p&gt;
 
 &lt;p&gt;Of course if you need to temporarily visit one of the blocked sites you can just go back to the hosts file and add a &lt;code&gt;#&lt;/code&gt; before the corresponding entry.&lt;/p&gt;
+
+&lt;h2&gt;2021 Update&lt;/h2&gt;
+
+&lt;p&gt;I still use the above &lt;code&gt;/etcs/hosts&lt;/code&gt; technique (from 2013) to block
+distracting websites on my Mac laptop.&lt;/p&gt;
+
+&lt;p&gt;On the iPhone I use the built-in &lt;strong&gt;&lt;a href=&quot;https://support.apple.com/en-us/HT208982&quot;&gt;Screen Time&lt;/a&gt;&lt;/strong&gt; feature to block myself from
+distracting websites:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Open the Settings app and navigate to [Screen Time &gt; Content &amp;amp; Privacy
+Restrictions &gt; Content Restrictions &gt; Web Content].&lt;/li&gt;
+&lt;li&gt;Alter the restriction type from the default &amp;ldquo;Unrestricted Access&amp;rdquo; to
+&amp;ldquo;Limit Adult Websites&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Then scroll down to the &amp;ldquo;Never Allow&amp;rdquo; section and add any distracting websites
+you&amp;rsquo;d like to block by default. For example I have &lt;code&gt;news.ycombinator.com&lt;/code&gt;
+there. 🙂&lt;/li&gt;
+&lt;li&gt;Then whenever you want to actually access a distracting website intentionally
+(as opposed to when you reflexively auto-type such a website), you can just
+temporarily go back to [Settings &gt; Screen Time &gt; Content &amp;amp; Privacy
+Restrictions] and just flip the &amp;ldquo;Content &amp;amp; Privacy Restrictions&amp;rdquo; switch
+off temporarily.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;On macOS 10.15 Catalina and later there is a similar built-in &amp;ldquo;Screen Time&amp;rdquo;
+feature that appears to be usable in the same way as the &amp;ldquo;Screen Time&amp;rdquo; feature
+on iPhone. However since I&amp;rsquo;ve elected to limit my Macs to upgrade to a max of
+macOS 10.14, I still preferentially use the older &lt;code&gt;/etc/hosts&lt;/code&gt; trick described
+earlier in this article.&lt;/p&gt;
 </content>
  </entry>
  
@@ -7947,7 +7977,7 @@ public class AmbiguousNameException extends FetchException { ... }
    <id>https://dafoster.net/articles/2013/06/01/handling-text-correctly</id>
    <title>Handling Text Correctly</title>
    <published>2013-06-01T00:00:00+00:00</published>
-   <updated>2013-06-01T00:00:00+00:00</updated>
+   <updated>2014-01-01T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -10611,7 +10641,7 @@ the most interesting ones to look at.&lt;/li&gt;
    <id>https://dafoster.net/articles/2013/03/22/migrating-from-bbedit-to-sublime-text</id>
    <title>Migrating from BBEdit to Sublime Text</title>
    <published>2013-03-22T00:00:00+00:00</published>
-   <updated>2013-03-22T00:00:00+00:00</updated>
+   <updated>2013-05-07T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -11670,7 +11700,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
    <id>https://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages</id>
    <title>Unique Features of Various Programming Languages</title>
    <published>2013-01-29T00:00:00+00:00</published>
-   <updated>2013-01-29T00:00:00+00:00</updated>
+   <updated>2013-02-18T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
@@ -12480,7 +12510,7 @@ For more details see my post &lt;a href=&quot;/articles/2012/12/16/why-i-no-long
    <id>https://dafoster.net/articles/2010/11/13/retrospect-vs-time-machine</id>
    <title>Retrospect vs. Time Machine</title>
    <published>2010-11-13T00:00:00+00:00</published>
-   <updated>2010-11-13T00:00:00+00:00</updated>
+   <updated>2012-12-21T00:00:00+00:00</updated>
    
      <category term="Software"/>
    

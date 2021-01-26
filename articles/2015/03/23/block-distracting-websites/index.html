@@ -165,7 +165,9 @@
   <div class="col-md-12 content post">
     <h1>Block Distracting Websites</h1>
     <div class="post-metadata">
-      Mar 23, 2015 &ndash; Filed under: 
+      
+        <span title="Published Mar 23, 2015" style="cursor: help;">Updated Jan 25, 2021</span>
+       &ndash; Filed under: 
       <span class="tag_box tag_box--inline">
         
         
@@ -205,6 +207,36 @@
 <p>After doing both of these, attempting to visit one of the websites listed in <code>/etc/hosts</code> will display an error page.</p>
 
 <p>Of course if you need to temporarily visit one of the blocked sites you can just go back to the hosts file and add a <code>#</code> before the corresponding entry.</p>
+
+<h2>2021 Update</h2>
+
+<p>I still use the above <code>/etcs/hosts</code> technique (from 2013) to block
+distracting websites on my Mac laptop.</p>
+
+<p>On the iPhone I use the built-in <strong><a href="https://support.apple.com/en-us/HT208982">Screen Time</a></strong> feature to block myself from
+distracting websites:</p>
+
+<ul>
+<li>Open the Settings app and navigate to [Screen Time > Content &amp; Privacy
+Restrictions > Content Restrictions > Web Content].</li>
+<li>Alter the restriction type from the default &ldquo;Unrestricted Access&rdquo; to
+&ldquo;Limit Adult Websites&rdquo;.</li>
+<li>Then scroll down to the &ldquo;Never Allow&rdquo; section and add any distracting websites
+you&rsquo;d like to block by default. For example I have <code>news.ycombinator.com</code>
+there. 🙂</li>
+<li>Then whenever you want to actually access a distracting website intentionally
+(as opposed to when you reflexively auto-type such a website), you can just
+temporarily go back to [Settings > Screen Time > Content &amp; Privacy
+Restrictions] and just flip the &ldquo;Content &amp; Privacy Restrictions&rdquo; switch
+off temporarily.</li>
+</ul>
+
+
+<p>On macOS 10.15 Catalina and later there is a similar built-in &ldquo;Screen Time&rdquo;
+feature that appears to be usable in the same way as the &ldquo;Screen Time&rdquo; feature
+on iPhone. However since I&rsquo;ve elected to limit my Macs to upgrade to a max of
+macOS 10.14, I still preferentially use the older <code>/etc/hosts</code> trick described
+earlier in this article.</p>
 
   </div>
   
