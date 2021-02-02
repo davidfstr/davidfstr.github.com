@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Avoid feeling like a port on the Mac | DaFoster</title>
+    <title>Tests as Policy Automation | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -16,12 +16,12 @@
       "@type": "BlogPosting",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://dafoster.net/articles/2013/05/07/avoid-feeling-like-a-port-on-the-mac/"
+        "@id": "https://dafoster.net/articles/2021/02/02/tests-as-policy-automation/"
       },
-      "headline": "Avoid feeling like a port on the Mac",
+      "headline": "Tests as Policy Automation",
       
-      "datePublished": "2013-05-07T00:00:00+00:00",
-      "dateModified": "2013-05-07T00:00:00+00:00",
+      "datePublished": "2021-02-02T00:00:00+00:00",
+      "dateModified": "2021-02-02T00:00:00+00:00",
       "author": {
         "@type": "Person",
         "name": "David Foster",
@@ -198,10 +198,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1>Avoid feeling like a port on the Mac</h1>
+    <h1>Tests as Policy Automation</h1>
     <div class="post-metadata">
       
-        May 07, 2013
+        Feb 02, 2021
        &ndash; Filed under: 
       <span class="tag_box tag_box--inline">
         
@@ -212,77 +212,90 @@
       
     </div>
     
-    <p>Mac users get rather annoyed when using programs that feel like they&rsquo;re just a port from another OS (usually Windows).</p>
+    <p>Automated tests are usually used for testing functional requirements of your product code. But they can <em>also</em> be used to enforce other policies and coding practices as well.</p>
 
-<p>Here&rsquo;s are a few important points for making your Mac app feel like a native app:</p>
+<p>If writing a web application it&rsquo;s likely you already have a rule like &ldquo;all automated tests must pass before any new version of the web application can be deployed to customers on the production environment&rdquo;. In that case any new policies you want to enforce regularly can be added to your standard automated test suite and they will necessarily have to be satisfied on every deployment!</p>
+
+<p>Here are some example of special policies I&rsquo;ve enforced from the automated test suite of <a href="/projects/techsmart-platform/">a large web application I work on</a> (which uses <a href="https://www.djangoproject.com/">Django</a>, Python+<a href="http://mypy-lang.org/index.html">mypy</a>, and JavaScript+TypeScript as core technologies):</p>
 
 <ul>
-<li><p>The user should never have to refresh local information that an application is viewing. Refresh should happen automatically when needed.</p>
+<li>Ensure the typechecker reports no errors
 
 <ul>
-<li><p><em>Exception:</em> Web browsers. (The HTTP protocol provides no means to detect whether a web page requires refresh while it is being viewed.)</p></li>
-<li><p><em>Common violation:</em> Wait for an application to close, without auto-refreshing the application list. [<em>violated by Adobe Flash Updater</em>]</p></li>
-<li><p><em>Common violation:</em> Wait for disk to be inserted, without auto-refreshing the disk list.</p></li>
+<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>python</code></li>
+<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>typed_<wbr/>javascript</code></li>
 </ul>
 </li>
-<li><p>When altering settings, change take effect <em>immediately</em>. If these settings are presented in a dialog, the changes can be reverted by pressing Cancel.</p>
+<li>Ban unsafe coding patterns by inspecting source code
 
 <ul>
-<li><p><em>Common violation:</em> Settings dialogs that have an &ldquo;Apply&rdquo; button in addition to &ldquo;OK&rdquo; and &ldquo;Cancel&rdquo;.</p></li>
+<li><code>test_<wbr/>no_<wbr/>new_<wbr/>fragile_<wbr/>test_<wbr/>suites</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
+<li><code>test_<wbr/>ensure_<wbr/>all_<wbr/>directories_<wbr/>containing_<wbr/>py_<wbr/>files_<wbr/>have_<wbr/>init_<wbr/>file</code><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
 </ul>
 </li>
-<li><p>When dialogs are used to present information, the buttons in the dialog should have titles that are useful and easy to interpret. The default action should be presented as the right-most button.</p>
+<li>Ensure hard-coded debug modes are turned off
 
 <ul>
-<li><p><em>Example:</em> The Log Out action presents a dialog asking the user to confirm whether they want to log out, with buttons &ldquo;Cancel&rdquo; and &ldquo;Log Out&rdquo;.</p></li>
-<li><p><em>Common violation:</em> Any dialog with &ldquo;Yes&rdquo;, &ldquo;No&rdquo;, and &ldquo;Cancel&rdquo; buttons.</p></li>
+<li><code>test_<wbr/>the_<wbr/>debug_<wbr/>toolbar_<wbr/>is_<wbr/>disabled</code></li>
+<li><code>test_<wbr/>that_<wbr/>compress_<wbr/>is_<wbr/>enabled</code></li>
 </ul>
 </li>
-<li><p>Don&rsquo;t ask the user any information that can be detected automatically with high confidence.</p>
+<li>Ensure test-only environmental settings are correctly configured
 
 <ul>
-<li><p><em>Common violation:</em> Asking the user what language to use. [<em>Some installers</em>]</p></li>
-<li><p><em>Common violation:</em> Web pages for downloading software that prompt the user to select 32-bit vs. 64-bit architecture or an OS version.</p></li>
+<li><code>test_<wbr/>that_<wbr/>tests_<wbr/>do_<wbr/>not_<wbr/>send_<wbr/>real_<wbr/>emails</code></li>
 </ul>
 </li>
-<li><p>Aesthetics are important. If you make an ugly app, it probably won&rsquo;t be used.</p></li>
-<li><p>Drag &amp; drop should be supported whenever it seems like it should make sense.</p></li>
-</ul>
-
-
-<p>And now for some nitpicks related to command key shortcuts:</p>
+<li>Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
 
 <ul>
-<li><p>Common command key shortcuts must be supported and not modified:</p>
+<li><code>test_<wbr/>all_<wbr/>django_<wbr/>add_<wbr/>and_<wbr/>edit_<wbr/>admin_<wbr/>pages_<wbr/>render</code></li>
+<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>satisfies_<wbr/>all_<wbr/>block_<wbr/>standards</code>
 
 <ul>
-<li><p>Command-Shift-Z = Redo [<em>violated by all Microsoft programs</em>]</p></li>
-<li><p>Command-Left/Right = Move to beginning and end of line [<em>violated by all Microsoft programs</em>]</p></li>
-<li><p>Command-F = Find [<em>violated by Microsoft Outlook</em>]</p></li>
-<li><p>Command-P = Print [<em>violated by Sublime Text</em>]</p></li>
+<li><code>test_<wbr/>c_<wbr/>blocks_<wbr/>for_<wbr/>python_<wbr/>blocks_<wbr/>must_<wbr/>use_<wbr/>consistent_<wbr/>indent_<wbr/>width</code></li>
+<li><code>test_<wbr/>every_<wbr/>field_<wbr/>id_<wbr/>must_<wbr/>use_<wbr/>underscore_<wbr/>case</code></li>
+<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>whose_<wbr/>codegen_<wbr/>always_<wbr/>references_<wbr/>x_<wbr/>library_<wbr/>must_<wbr/>import_<wbr/>x_<wbr/>library</code></li>
+<li>&hellip; (9 more)</li>
 </ul>
 </li>
-<li><p>All command key shortcuts must include the command key. That is neither Control nor Option (Alt) can be the primary modifier for a shortcut sequence.</p></li>
-<li><p>Do not make shortcuts with the function keys (F1 - F15). They are hard to remember.</p></li>
-<li><p>All command key shortcuts must be tied to a menu item.</p>
-
-<ul>
-<li><p><em>Example:</em> Command-Option-Escape (Force Quit), which is analogous to Control-Alt-Delete on Windows, can actually be found in the Apple menu.</p></li>
-<li><p><em>Exception:</em> Command-Shift-3 and Command-Shift-4 are legacy shortcuts that take screenshots.</p></li>
 </ul>
 </li>
-<li><p>There is no such thing as the Apple key. You probably meant the Command key.</p></li>
-<li><p>There is no such thing as the Backspace key. You probably meant the Delete key - which is not to be confused with the Forward Delete key, which most Windows users just call Delete.</p></li>
-<li><p>Not all users have a right mouse button. In that case, you must instruct the user to Control-click instead of right-click.</p>
+<li>Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
 
 <ul>
-<li><em>Exemplar:</em> The game Black and White detects whether the primary mouse is a single-button or a multi-button mouse and provides different instructions (and mouse graphics) for each case.</li>
+<li><code>test_<wbr/>max_<wbr/>redirect_<wbr/>count_<wbr/>is_<wbr/>5</code></li>
 </ul>
 </li>
 </ul>
 
 
-<p>For all other issues, including other philosphical concerns to consider, read and follow the OS X <a href="https://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html">Human Interface Guidelines</a>&nbsp;(HIG). This is one of the best descriptions of the &ldquo;Zen of the Mac&rdquo;. Every Mac developer should reread this every few years.</p>
+<p>Hopefully these examples give you some ideas of some special policies you might enforce in your own automated test suite. Happy coding!</p>
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="https://sirupsen.com/shitlists/" class="external">Shitlist Driven Development</a> - Gives techniques for how to effectively apply automated policy changes of the type discussed in this article at <em>large</em> scale.</li>
+</ul>
+
+
+<!-- * [Performance Testing](/articles/2018/06/02/performance-testing/) -->
+
+
+<ul>
+<li><a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">Database clamps: Deterministic performance tests for database-dependent code</a> - <em>Next week&rsquo;s article</em> 🙂</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>In this context a &ldquo;fragile test suite&rdquo; corresponds to a subclass of Django&rsquo;s <code>StaticLiveServerTestCase</code> or <code>TestCase</code> whose <code>setUpClass</code> method fails to use a <code>try-finally</code> to invoke <code>super().tearDownClass()</code> explicitly if something goes wrong partway through the test suite setup. This fragile-detection metatest walks through all test suite classes and uses Python&rsquo;s <code>inspect.getsourcelines</code> to read the source code of all test classes to look for the absense of the proper kind of try-finally.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>It is important for any directory containing Python source files (<code>*.py</code>) to contain an <code>__init__.py</code> file so that the directory is marked properly as a Python package and is recognized correctly by Python typecheckers like mypy.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 
   </div>
   
@@ -307,11 +320,11 @@
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2013/04/30/copyrights-and-licenses-for-software/" title="Copyrights and Licenses for Software">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2021/01/26/python%27s-type-checking-renaissance/" title="Python's type checking renaissance">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/05/11/book-outline/" title="Programming for Perfectionists (P4P): A Book Outline">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

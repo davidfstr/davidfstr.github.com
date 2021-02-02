@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-01T07:02:41+00:00</updated>
+ <updated>2021-02-02T16:03:54+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,103 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/02/02/tests-as-policy-automation</id>
+   <title>Tests as Policy Automation</title>
+   <published>2021-02-02T00:00:00+00:00</published>
+   <updated>2021-02-02T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/02/02/tests-as-policy-automation/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Automated tests are usually used for testing functional requirements of your product code. But they can &lt;em&gt;also&lt;/em&gt; be used to enforce other policies and coding practices as well.&lt;/p&gt;
+
+&lt;p&gt;If writing a web application it&amp;rsquo;s likely you already have a rule like &amp;ldquo;all automated tests must pass before any new version of the web application can be deployed to customers on the production environment&amp;rdquo;. In that case any new policies you want to enforce regularly can be added to your standard automated test suite and they will necessarily have to be satisfied on every deployment!&lt;/p&gt;
+
+&lt;p&gt;Here are some example of special policies I&amp;rsquo;ve enforced from the automated test suite of &lt;a href=&quot;/projects/techsmart-platform/&quot;&gt;a large web application I work on&lt;/a&gt; (which uses &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt;, Python+&lt;a href=&quot;http://mypy-lang.org/index.html&quot;&gt;mypy&lt;/a&gt;, and JavaScript+TypeScript as core technologies):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure the typechecker reports no errors
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;type_&lt;wbr/&gt;checker_&lt;wbr/&gt;reports_&lt;wbr/&gt;no_&lt;wbr/&gt;errors_&lt;wbr/&gt;in_&lt;wbr/&gt;python&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;type_&lt;wbr/&gt;checker_&lt;wbr/&gt;reports_&lt;wbr/&gt;no_&lt;wbr/&gt;errors_&lt;wbr/&gt;in_&lt;wbr/&gt;typed_&lt;wbr/&gt;javascript&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ban unsafe coding patterns by inspecting source code
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;no_&lt;wbr/&gt;new_&lt;wbr/&gt;fragile_&lt;wbr/&gt;test_&lt;wbr/&gt;suites&lt;/code&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;ensure_&lt;wbr/&gt;all_&lt;wbr/&gt;directories_&lt;wbr/&gt;containing_&lt;wbr/&gt;py_&lt;wbr/&gt;files_&lt;wbr/&gt;have_&lt;wbr/&gt;init_&lt;wbr/&gt;file&lt;/code&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ensure hard-coded debug modes are turned off
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;the_&lt;wbr/&gt;debug_&lt;wbr/&gt;toolbar_&lt;wbr/&gt;is_&lt;wbr/&gt;disabled&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;that_&lt;wbr/&gt;compress_&lt;wbr/&gt;is_&lt;wbr/&gt;enabled&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ensure test-only environmental settings are correctly configured
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;that_&lt;wbr/&gt;tests_&lt;wbr/&gt;do_&lt;wbr/&gt;not_&lt;wbr/&gt;send_&lt;wbr/&gt;real_&lt;wbr/&gt;emails&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;all_&lt;wbr/&gt;django_&lt;wbr/&gt;add_&lt;wbr/&gt;and_&lt;wbr/&gt;edit_&lt;wbr/&gt;admin_&lt;wbr/&gt;pages_&lt;wbr/&gt;render&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;block_&lt;wbr/&gt;type_&lt;wbr/&gt;satisfies_&lt;wbr/&gt;all_&lt;wbr/&gt;block_&lt;wbr/&gt;standards&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;c_&lt;wbr/&gt;blocks_&lt;wbr/&gt;for_&lt;wbr/&gt;python_&lt;wbr/&gt;blocks_&lt;wbr/&gt;must_&lt;wbr/&gt;use_&lt;wbr/&gt;consistent_&lt;wbr/&gt;indent_&lt;wbr/&gt;width&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;field_&lt;wbr/&gt;id_&lt;wbr/&gt;must_&lt;wbr/&gt;use_&lt;wbr/&gt;underscore_&lt;wbr/&gt;case&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;block_&lt;wbr/&gt;type_&lt;wbr/&gt;whose_&lt;wbr/&gt;codegen_&lt;wbr/&gt;always_&lt;wbr/&gt;references_&lt;wbr/&gt;x_&lt;wbr/&gt;library_&lt;wbr/&gt;must_&lt;wbr/&gt;import_&lt;wbr/&gt;x_&lt;wbr/&gt;library&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&amp;hellip; (9 more)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;max_&lt;wbr/&gt;redirect_&lt;wbr/&gt;count_&lt;wbr/&gt;is_&lt;wbr/&gt;5&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Hopefully these examples give you some ideas of some special policies you might enforce in your own automated test suite. Happy coding!&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://sirupsen.com/shitlists/&quot; class=&quot;external&quot;&gt;Shitlist Driven Development&lt;/a&gt; - Gives techniques for how to effectively apply automated policy changes of the type discussed in this article at &lt;em&gt;large&lt;/em&gt; scale.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- * [Performance Testing](/articles/2018/06/02/performance-testing/) --&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps: Deterministic performance tests for database-dependent code&lt;/a&gt; - &lt;em&gt;Next week&amp;rsquo;s article&lt;/em&gt; 🙂&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;In this context a &amp;ldquo;fragile test suite&amp;rdquo; corresponds to a subclass of Django&amp;rsquo;s &lt;code&gt;StaticLiveServerTestCase&lt;/code&gt; or &lt;code&gt;TestCase&lt;/code&gt; whose &lt;code&gt;setUpClass&lt;/code&gt; method fails to use a &lt;code&gt;try-finally&lt;/code&gt; to invoke &lt;code&gt;super().tearDownClass()&lt;/code&gt; explicitly if something goes wrong partway through the test suite setup. This fragile-detection metatest walks through all test suite classes and uses Python&amp;rsquo;s &lt;code&gt;inspect.getsourcelines&lt;/code&gt; to read the source code of all test classes to look for the absense of the proper kind of try-finally.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;It is important for any directory containing Python source files (&lt;code&gt;*.py&lt;/code&gt;) to contain an &lt;code&gt;__init__.py&lt;/code&gt; file so that the directory is marked properly as a Python package and is recognized correctly by Python typecheckers like mypy.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -266,7 +363,7 @@ security review on any of those other extensions, so buyer beware.&lt;/p&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;55&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;56&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt;&lt;/li&gt;
