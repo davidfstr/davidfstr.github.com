@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Thu, 04 Feb 2021 13:54:58 +0000</pubDate>
-    <lastBuildDate>Thu, 04 Feb 2021 13:54:58 +0000</lastBuildDate>
+    <pubDate>Thu, 04 Feb 2021 14:07:32 +0000</pubDate>
+    <lastBuildDate>Thu, 04 Feb 2021 14:07:32 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -6267,17 +6267,17 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/&quot;&gt;http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href=&quot;http://news.cnet.com/8301-13578_3-57589495-38/nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/ &quot;&gt;http:/&lt;wbr/&gt;/&lt;wbr/&gt;news.cnet.com/&lt;wbr/&gt;8301-13578_3-57589495-38/&lt;wbr/&gt;nsa-spying-flap-extends-to-contents-of-u.s-phone-calls/&lt;wbr/&gt; &lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/&quot;&gt;http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href=&quot;http://arstechnica.com/tech-policy/2013/07/nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/ &quot;&gt;http:/&lt;wbr/&gt;/&lt;wbr/&gt;arstechnica.com/&lt;wbr/&gt;tech-policy/&lt;wbr/&gt;2013/&lt;wbr/&gt;07/&lt;wbr/&gt;nsa-taps-skype-chats-newly-published-snowden-leaks-confirm/&lt;wbr/&gt; &lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant&quot;&gt;http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant&lt;/a&gt;&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.theguardian.com/world/2013/jun/20/fisa-court-nsa-without-warrant &quot;&gt;http:/&lt;wbr/&gt;/&lt;wbr/&gt;www.theguardian.com/&lt;wbr/&gt;world/&lt;wbr/&gt;2013/&lt;wbr/&gt;jun/&lt;wbr/&gt;20/&lt;wbr/&gt;fisa-court-nsa-without-warrant &lt;/a&gt;&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:4&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/&quot;&gt;http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/&lt;/a&gt;&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.wired.com/threatlevel/2013/08/nsa-tapping-internet/ &quot;&gt;http:/&lt;wbr/&gt;/&lt;wbr/&gt;www.wired.com/&lt;wbr/&gt;threatlevel/&lt;wbr/&gt;2013/&lt;wbr/&gt;08/&lt;wbr/&gt;nsa-tapping-internet/&lt;wbr/&gt; &lt;/a&gt;&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:5&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html&quot;&gt;https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html&lt;/a&gt;&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html &quot;&gt;https:/&lt;wbr/&gt;/&lt;wbr/&gt;www.schneier.com/&lt;wbr/&gt;blog/&lt;wbr/&gt;archives/&lt;wbr/&gt;2013/&lt;wbr/&gt;09/&lt;wbr/&gt;the_nsa_is_brea.html &lt;/a&gt;&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:6&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg&quot;&gt;http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg&lt;/a&gt;&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href=&quot;http://img.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/images/prism-slide-5.jpg &quot;&gt;http:/&lt;wbr/&gt;/&lt;wbr/&gt;img.washingtonpost.com/&lt;wbr/&gt;wp-srv/&lt;wbr/&gt;special/&lt;wbr/&gt;politics/&lt;wbr/&gt;prism-collection-documents/&lt;wbr/&gt;images/&lt;wbr/&gt;prism-slide-5.jpg &lt;/a&gt;&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
