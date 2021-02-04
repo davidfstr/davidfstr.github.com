@@ -6,14 +6,103 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 02 Feb 2021 16:03:54 +0000</pubDate>
-    <lastBuildDate>Tue, 02 Feb 2021 16:03:54 +0000</lastBuildDate>
+    <pubDate>Thu, 04 Feb 2021 13:54:58 +0000</pubDate>
+    <lastBuildDate>Thu, 04 Feb 2021 13:54:58 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Privacy Sandbox: Google&#39;s answer to privacy-conscious advertising</title>
+      <link>https://dafoster.net/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising</guid>
+      <description>&lt;p&gt;Google is working on a new technology called &lt;a href=&quot;https://blog.google/products/ads-commerce/2021-01-privacy-sandbox/&quot;&gt;Privacy Sandbox&lt;/a&gt; to replace the
+need for advertisers to track individuals with third party cookies. This is
+interesting to me for a couple of reasons:&lt;/p&gt;
+
+&lt;p&gt;Google is an advertising company, so they definitely want the ability to
+continue being able to classify users into cohorts based on their behavior in
+order to deliver targeted ads to them.&lt;/p&gt;
+
+&lt;p&gt;But they are &lt;em&gt;also&lt;/em&gt; a browser company (as the makers of Chrome), and there
+appears to be enormous public (and increasingly competitive) pressure on
+browser vendors to provide stronger privacy protections by default in browsers.
+Apple for example has rolled out various&lt;!-- TODO: footnote --&gt; privacy measures in its
+very popular mobile browser Safari&lt;!-- TODO: footnote --&gt;. I speculate that Google is
+concerned that if they &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; find a way to better protect user privacy
+(while still preserving the ability to provide targeted advertisements)
+that an increasingly privacy-conscious public might eventually reach a
+tipping point where folks might start abandoning Chrome en masse for a
+competitor browser that is viewed as more privacy-conscious.&lt;/p&gt;
+
+&lt;p&gt;So Google has twin incentives: to support tracking users to put them into
+cohorts that can be addressed with targeted advertising, and to do this kind
+of tracking in a &lt;em&gt;privacy-conscious&lt;/em&gt; way. Hence I assume these incentives are
+how Privacy Sandbox has come to be.&lt;/p&gt;
+
+&lt;p&gt;So how does Privacy Sandbox work exactly? Similar to current advertising
+practice, there still exists an algorithm which is fed a user&amp;rsquo;s browsing
+history and that algorithm is used to put the user into an advertising cohort.
+However the interesting change with Privacy Sandbox is that this algorithm
+is run &lt;em&gt;locally&lt;/em&gt; within the user&amp;rsquo;s browser, and never actually needs to
+transmit the user&amp;rsquo;s browsing history over the internet. Instead only a code
+for the identified cohort is transmitted, and a remote ad server can use that
+cohort directly.&lt;/p&gt;
+
+&lt;p&gt;On one hand I like that this scheme implies that third party advertisers aren&amp;rsquo;t
+constructing a detailed dossier of my browsing history themselves.&lt;/p&gt;
+
+&lt;p&gt;On the other hand I believe the transmitted cohort code could inadvertently
+reveal that I&amp;rsquo;m a member of one or more protected classes, which could cause
+online companies I interact with to treat me in ways that I don&amp;rsquo;t like or seek
+to predate me. Google has identified this as a risk and seeks to mitigate it
+by doing things like recognizing certain &lt;a href=&quot;https://support.google.com/adspolicy/answer/143465?hl=en&quot;&gt;protected classes&lt;/a&gt; and removing
+features from any identified cohort that put it to close to a protected class.&lt;/p&gt;
+
+&lt;p&gt;Now a number of advertising companies who like their tried-and-true methods of
+third party tracking are worried about Google closing the door on traditional
+third party tracking in favor of Privacy Sandbox and are now
+&lt;a href=&quot;https://digiday.com/media/why-googles-approach-to-replacing-the-cookie-is-drawing-antitrust-scrutiny/&quot;&gt;pursuing anti-trust actions&lt;/a&gt; against Google regarding impending removal of
+support for third party cookies (which is a core technology for enabling
+third party tracking).&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m personally optimistic about the promise of Privacy Sandbox and removing
+the ability of browsers to broadcast my browsing history to third parties.
+If it can meet its stated goals, enabling businesses that rely on internet
+advertising to stay afloat while making the mechanism of advertising &lt;em&gt;also&lt;/em&gt; be
+privacy-conscious, then I&amp;rsquo;m all for it.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Media&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.thesocialdilemma.com/&quot;&gt;The Social Dilemma (2020)&lt;/a&gt; -
+An excellent docudrama on the kinds of tracking that social networking
+advertising companies are conducting on their users. Very concerning.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;/articles/2013/10/21/shame-on-the-nsa/&quot;&gt;Shame on the NSA&lt;/a&gt; - Back in 2013
+I was particularly vexed with the kind of privacy-invasive tracking that
+Edward Snowden revealed the NSA to be conducting on all US citizens,
+and almost certainly still is.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/&quot;&gt;Exploring Onionland: The Tor .onion Darknet&lt;/a&gt; - Tor
+is a technology that provides strong anonymization when browsing the internet.
+It also gives access to Tor Hidden Services (&lt;code&gt;.onion&lt;/code&gt; domains) which is like a
+parallel version of the internet. Here I describe my brief adventures in
+exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -6160,13 +6249,18 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
 
 &lt;p&gt;I think the best starting point to counter these encroachments is to directly &lt;strong&gt;fight back against the most egregious violations&lt;/strong&gt;. In particular I find the lack of any court oversight over individual NSA analysts to be especially distressing.&lt;/p&gt;
 
-&lt;p&gt;If you&amp;rsquo;d like to join me in this first battle, please &lt;strong&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;sign my petition&lt;/a&gt;&lt;/strong&gt; to stop NSA analysts from being able to wiretap people without oversight and &lt;strong&gt;share it with others&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;s&gt;If you&amp;rsquo;d like to join me in this first battle, please &lt;strong&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;sign my petition&lt;/a&gt;&lt;/strong&gt; to stop NSA analysts from being able to wiretap people without oversight and &lt;strong&gt;share it with others&lt;/strong&gt;:&lt;/s&gt;
+&lt;em&gt;This petition is long over.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;s&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;Stop NSA analysts from wiretapping people without due process&lt;/a&gt;&lt;br/&gt;
 &lt;u&gt;&lt;a href=&quot;http://bit.ly/nsatap&quot;&gt;http://bit.ly/nsatap&lt;/a&gt;&lt;/u&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;&lt;/s&gt;&lt;/p&gt;
 
 &lt;p&gt;I expect this will be a long war. &lt;!-- But worth fighting for. --&gt;&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Tests as Policy Automation | DaFoster</title>
+    <title>Privacy Sandbox: Google's answer to privacy-conscious advertising | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -16,12 +16,12 @@
       "@type": "BlogPosting",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://dafoster.net/articles/2021/02/02/tests-as-policy-automation/"
+        "@id": "https://dafoster.net/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising/"
       },
-      "headline": "Tests as Policy Automation",
+      "headline": "Privacy Sandbox: Google's answer to privacy-conscious advertising",
       
-      "datePublished": "2021-02-02T00:00:00+00:00",
-      "dateModified": "2021-02-02T00:00:00+00:00",
+      "datePublished": "2021-02-04T00:00:00+00:00",
+      "dateModified": "2021-02-04T00:00:00+00:00",
       "author": {
         "@type": "Person",
         "name": "David Foster",
@@ -198,103 +198,98 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1>Tests as Policy Automation</h1>
+    <h1>Privacy Sandbox: Google's answer to privacy-conscious advertising</h1>
     <div class="post-metadata">
       
-        Feb 02, 2021
+        Feb 04, 2021
        &ndash; Filed under: 
       <span class="tag_box tag_box--inline">
         
         
-          <span><a href="/articles/topics/#Software">Software<sup>56</sup></a></span>
+          <span><a href="/articles/topics/#Privacy">Privacy<sup>3</sup></a></span>
         
       </span>
       
     </div>
     
-    <p>Automated tests are usually used for testing functional requirements of your product code. But they can <em>also</em> be used to enforce other policies and coding practices as well.</p>
+    <p>Google is working on a new technology called <a href="https://blog.google/products/ads-commerce/2021-01-privacy-sandbox/">Privacy Sandbox</a> to replace the
+need for advertisers to track individuals with third party cookies. This is
+interesting to me for a couple of reasons:</p>
 
-<p>If writing a web application it&rsquo;s likely you already have a rule like &ldquo;all automated tests must pass before any new version of the web application can be deployed to customers on the production environment&rdquo;. In that case any new policies you want to enforce regularly can be added to your standard automated test suite and they will necessarily have to be satisfied on every deployment!</p>
+<p>Google is an advertising company, so they definitely want the ability to
+continue being able to classify users into cohorts based on their behavior in
+order to deliver targeted ads to them.</p>
 
-<p>Here are some example of special policies I&rsquo;ve enforced from the automated test suite of <a href="/projects/techsmart-platform/">a large web application I work on</a> (which uses <a href="https://www.djangoproject.com/">Django</a>, Python+<a href="http://mypy-lang.org/index.html">mypy</a>, and JavaScript+TypeScript as core technologies):</p>
+<p>But they are <em>also</em> a browser company (as the makers of Chrome), and there
+appears to be enormous public (and increasingly competitive) pressure on
+browser vendors to provide stronger privacy protections by default in browsers.
+Apple for example has rolled out various<!-- TODO: footnote --> privacy measures in its
+very popular mobile browser Safari<!-- TODO: footnote -->. I speculate that Google is
+concerned that if they <em>don&rsquo;t</em> find a way to better protect user privacy
+(while still preserving the ability to provide targeted advertisements)
+that an increasingly privacy-conscious public might eventually reach a
+tipping point where folks might start abandoning Chrome en masse for a
+competitor browser that is viewed as more privacy-conscious.</p>
+
+<p>So Google has twin incentives: to support tracking users to put them into
+cohorts that can be addressed with targeted advertising, and to do this kind
+of tracking in a <em>privacy-conscious</em> way. Hence I assume these incentives are
+how Privacy Sandbox has come to be.</p>
+
+<p>So how does Privacy Sandbox work exactly? Similar to current advertising
+practice, there still exists an algorithm which is fed a user&rsquo;s browsing
+history and that algorithm is used to put the user into an advertising cohort.
+However the interesting change with Privacy Sandbox is that this algorithm
+is run <em>locally</em> within the user&rsquo;s browser, and never actually needs to
+transmit the user&rsquo;s browsing history over the internet. Instead only a code
+for the identified cohort is transmitted, and a remote ad server can use that
+cohort directly.</p>
+
+<p>On one hand I like that this scheme implies that third party advertisers aren&rsquo;t
+constructing a detailed dossier of my browsing history themselves.</p>
+
+<p>On the other hand I believe the transmitted cohort code could inadvertently
+reveal that I&rsquo;m a member of one or more protected classes, which could cause
+online companies I interact with to treat me in ways that I don&rsquo;t like or seek
+to predate me. Google has identified this as a risk and seeks to mitigate it
+by doing things like recognizing certain <a href="https://support.google.com/adspolicy/answer/143465?hl=en">protected classes</a> and removing
+features from any identified cohort that put it to close to a protected class.</p>
+
+<p>Now a number of advertising companies who like their tried-and-true methods of
+third party tracking are worried about Google closing the door on traditional
+third party tracking in favor of Privacy Sandbox and are now
+<a href="https://digiday.com/media/why-googles-approach-to-replacing-the-cookie-is-drawing-antitrust-scrutiny/">pursuing anti-trust actions</a> against Google regarding impending removal of
+support for third party cookies (which is a core technology for enabling
+third party tracking).</p>
+
+<p>I&rsquo;m personally optimistic about the promise of Privacy Sandbox and removing
+the ability of browsers to broadcast my browsing history to third parties.
+If it can meet its stated goals, enabling businesses that rely on internet
+advertising to stay afloat while making the mechanism of advertising <em>also</em> be
+privacy-conscious, then I&rsquo;m all for it.</p>
+
+<h3><em>Related Media</em></h3>
 
 <ul>
-<li>Ensure the typechecker reports no errors
-
-<ul>
-<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>python</code></li>
-<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>typed_<wbr/>javascript</code></li>
-</ul>
-</li>
-<li>Ban unsafe coding patterns by inspecting source code
-
-<ul>
-<li><code>test_<wbr/>no_<wbr/>new_<wbr/>fragile_<wbr/>test_<wbr/>suites</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
-<li><code>test_<wbr/>ensure_<wbr/>all_<wbr/>directories_<wbr/>containing_<wbr/>py_<wbr/>files_<wbr/>have_<wbr/>init_<wbr/>file</code><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
-</ul>
-</li>
-<li>Ensure hard-coded debug modes are turned off
-
-<ul>
-<li><code>test_<wbr/>the_<wbr/>debug_<wbr/>toolbar_<wbr/>is_<wbr/>disabled</code></li>
-<li><code>test_<wbr/>that_<wbr/>compress_<wbr/>is_<wbr/>enabled</code></li>
-</ul>
-</li>
-<li>Ensure test-only environmental settings are correctly configured
-
-<ul>
-<li><code>test_<wbr/>that_<wbr/>tests_<wbr/>do_<wbr/>not_<wbr/>send_<wbr/>real_<wbr/>emails</code></li>
-</ul>
-</li>
-<li>Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
-
-<ul>
-<li><code>test_<wbr/>all_<wbr/>django_<wbr/>add_<wbr/>and_<wbr/>edit_<wbr/>admin_<wbr/>pages_<wbr/>render</code></li>
-<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>satisfies_<wbr/>all_<wbr/>block_<wbr/>standards</code>
-
-<ul>
-<li><code>test_<wbr/>c_<wbr/>blocks_<wbr/>for_<wbr/>python_<wbr/>blocks_<wbr/>must_<wbr/>use_<wbr/>consistent_<wbr/>indent_<wbr/>width</code></li>
-<li><code>test_<wbr/>every_<wbr/>field_<wbr/>id_<wbr/>must_<wbr/>use_<wbr/>underscore_<wbr/>case</code></li>
-<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>whose_<wbr/>codegen_<wbr/>always_<wbr/>references_<wbr/>x_<wbr/>library_<wbr/>must_<wbr/>import_<wbr/>x_<wbr/>library</code></li>
-<li>&hellip; (9 more)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
-
-<ul>
-<li><code>test_<wbr/>max_<wbr/>redirect_<wbr/>count_<wbr/>is_<wbr/>5</code></li>
-</ul>
-</li>
+<li><a href="https://www.thesocialdilemma.com/">The Social Dilemma (2020)</a> -
+An excellent docudrama on the kinds of tracking that social networking
+advertising companies are conducting on their users. Very concerning.</li>
 </ul>
 
-
-<p>Hopefully these examples give you some ideas of some special policies you might enforce in your own automated test suite. Happy coding!</p>
 
 <h3><em>Related Articles</em></h3>
 
 <ul>
-<li><a href="https://sirupsen.com/shitlists/" class="external">Shitlist Driven Development</a> - Gives techniques for how to effectively apply automated policy changes of the type discussed in this article at <em>large</em> scale.</li>
+<li><p><a href="/articles/2013/10/21/shame-on-the-nsa/">Shame on the NSA</a> - Back in 2013
+I was particularly vexed with the kind of privacy-invasive tracking that
+Edward Snowden revealed the NSA to be conducting on all US citizens,
+and almost certainly still is.</p></li>
+<li><p><a href="/articles/2013/04/21/exploring-onionland-the-tor-onion-darknet/">Exploring Onionland: The Tor .onion Darknet</a> - Tor
+is a technology that provides strong anonymization when browsing the internet.
+It also gives access to Tor Hidden Services (<code>.onion</code> domains) which is like a
+parallel version of the internet. Here I describe my brief adventures in
+exploring Tor Hidden Services.</p></li>
 </ul>
-
-
-<!-- * [Performance Testing](/articles/2018/06/02/performance-testing/) -->
-
-
-<ul>
-<li><a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">Database clamps: Deterministic performance tests for database-dependent code</a> - <em>Next week&rsquo;s article</em> 🙂</li>
-</ul>
-
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>In this context a &ldquo;fragile test suite&rdquo; corresponds to a subclass of Django&rsquo;s <code>StaticLiveServerTestCase</code> or <code>TestCase</code> whose <code>setUpClass</code> method fails to use a <code>try-finally</code> to invoke <code>super().tearDownClass()</code> explicitly if something goes wrong partway through the test suite setup. This fragile-detection metatest walks through all test suite classes and uses Python&rsquo;s <code>inspect.getsourcelines</code> to read the source code of all test classes to look for the absense of the proper kind of try-finally.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>It is important for any directory containing Python source files (<code>*.py</code>) to contain an <code>__init__.py</code> file so that the directory is marked properly as a Python package and is recognized correctly by Python typecheckers like mypy.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
 
 
   </div>
@@ -320,11 +315,11 @@
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2021/01/26/python%27s-type-checking-renaissance/" title="Python's type checking renaissance">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2021/02/02/tests-as-policy-automation/" title="Tests as Policy Automation">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising/" title="Privacy Sandbox: Google's answer to privacy-conscious advertising">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
