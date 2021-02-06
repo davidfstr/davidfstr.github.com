@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 06 Feb 2021 19:36:18 +0000</pubDate>
-    <lastBuildDate>Sat, 06 Feb 2021 19:36:18 +0000</lastBuildDate>
+    <pubDate>Sat, 06 Feb 2021 22:59:39 +0000</pubDate>
+    <lastBuildDate>Sat, 06 Feb 2021 22:59:39 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -1890,7 +1890,9 @@ def warn(message):
 
 &lt;p&gt;The number of concepts can be reduced by &lt;strong&gt;chunking&lt;/strong&gt; them into larger concepts that are less numerous. For example a bundle of &lt;em&gt;lines&lt;/em&gt; can be chunked into a single &lt;em&gt;function&lt;/em&gt; or a &lt;em&gt;method&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.png&quot; alt=&quot;Functions&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.png&quot;&gt;
+    &lt;img alt=&quot;Functions&quot; src=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.png&quot; style=&quot;max-width: 100%&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Chunking allows you to reduce the total number of concepts that you need to keep in your head at once.&lt;/p&gt;
 
@@ -1950,7 +1952,9 @@ def warn(message):
 
 &lt;p&gt;Without abstractions everything can depend on everything else which creates a potential combinatorial explosion of complexity. By contrast &lt;em&gt;with&lt;/em&gt; abstractions, the local complexity is bounded much more tightly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/complexity_comparison.png&quot; alt=&quot;Complexity with and without abstractions&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2017/abstraction-and-encapsulation/complexity_comparison.png&quot;&gt;
+    &lt;img alt=&quot;Complexity with and without abstractions&quot; src=&quot;/assets/2017/abstraction-and-encapsulation/complexity_comparison.png&quot; style=&quot;max-width: 100%&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;p&gt;Within an abstraction the maximum local complexity is proportional to the size of that particular abstraction&amp;rsquo;s private interior plus the size of the public surface areas of all other abstractions.&lt;/p&gt;&lt;/blockquote&gt;
 
