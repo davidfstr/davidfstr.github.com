@@ -176,6 +176,8 @@
             
               
             
+              
+            
             
           </ul>
         </div>
@@ -222,22 +224,22 @@
 <li>Ensure the typechecker reports no errors
 
 <ul>
-<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>python</code></li>
-<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>typed_<wbr/>javascript</code></li>
+<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>python</code> <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
+<li><code>test_<wbr/>type_<wbr/>checker_<wbr/>reports_<wbr/>no_<wbr/>errors_<wbr/>in_<wbr/>typed_<wbr/>javascript</code> <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
 </ul>
 </li>
 <li>Ban unsafe coding patterns by inspecting source code
 
 <ul>
-<li><code>test_<wbr/>no_<wbr/>new_<wbr/>fragile_<wbr/>test_<wbr/>suites</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
-<li><code>test_<wbr/>ensure_<wbr/>all_<wbr/>directories_<wbr/>containing_<wbr/>py_<wbr/>files_<wbr/>have_<wbr/>init_<wbr/>file</code><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
+<li><code>test_<wbr/>no_<wbr/>new_<wbr/>fragile_<wbr/>test_<wbr/>suites</code><sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></li>
+<li><code>test_<wbr/>ensure_<wbr/>all_<wbr/>directories_<wbr/>containing_<wbr/>py_<wbr/>files_<wbr/>have_<wbr/>init_<wbr/>file</code><sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></li>
 </ul>
 </li>
 <li>Ensure hard-coded debug modes are turned off
 
 <ul>
-<li><code>test_<wbr/>the_<wbr/>debug_<wbr/>toolbar_<wbr/>is_<wbr/>disabled</code></li>
-<li><code>test_<wbr/>that_<wbr/>compress_<wbr/>is_<wbr/>enabled</code></li>
+<li><code>test_<wbr/>the_<wbr/>debug_<wbr/>toolbar_<wbr/>is_<wbr/>disabled</code> <sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
+<li><code>test_<wbr/>that_<wbr/>compress_<wbr/>is_<wbr/>enabled</code> <sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></li>
 </ul>
 </li>
 <li>Ensure test-only environmental settings are correctly configured
@@ -249,8 +251,8 @@
 <li>Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
 
 <ul>
-<li><code>test_<wbr/>all_<wbr/>django_<wbr/>add_<wbr/>and_<wbr/>edit_<wbr/>admin_<wbr/>pages_<wbr/>render</code></li>
-<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>satisfies_<wbr/>all_<wbr/>block_<wbr/>standards</code>
+<li><code>test_<wbr/>all_<wbr/>django_<wbr/>add_<wbr/>and_<wbr/>edit_<wbr/>admin_<wbr/>pages_<wbr/>render</code> 👈 <strong>especially useful and powerful</strong></li>
+<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>satisfies_<wbr/>all_<wbr/>block_<wbr/>standards</code> <sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup>
 
 <ul>
 <li><code>test_<wbr/>c_<wbr/>blocks_<wbr/>for_<wbr/>python_<wbr/>blocks_<wbr/>must_<wbr/>use_<wbr/>consistent_<wbr/>indent_<wbr/>width</code></li>
@@ -264,7 +266,7 @@
 <li>Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
 
 <ul>
-<li><code>test_<wbr/>max_<wbr/>redirect_<wbr/>count_<wbr/>is_<wbr/>5</code></li>
+<li><code>test_<wbr/>max_<wbr/>redirect_<wbr/>count_<wbr/>is_<wbr/>5</code> <sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup></li>
 </ul>
 </li>
 </ul>
@@ -290,9 +292,21 @@
 <hr/>
 <ol>
 <li id="fn:1">
-<p>In this context a &ldquo;fragile test suite&rdquo; corresponds to a subclass of Django&rsquo;s <code>StaticLiveServerTestCase</code> or <code>TestCase</code> whose <code>setUpClass</code> method fails to use a <code>try-finally</code> to invoke <code>super().tearDownClass()</code> explicitly if something goes wrong partway through the test suite setup. This fragile-detection metatest walks through all test suite classes and uses Python&rsquo;s <code>inspect.getsourcelines</code> to read the source code of all test classes to look for the absense of the proper kind of try-finally.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>TechSmart&rsquo;s backend Python and Django code is typechecked using the <a href="http://mypy-lang.org/">mypy</a> type checker.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>It is important for any directory containing Python source files (<code>*.py</code>) to contain an <code>__init__.py</code> file so that the directory is marked properly as a Python package and is recognized correctly by Python typecheckers like mypy.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>TechSmart&rsquo;s frontend JavaScript code is typechecked using the <a href="https://www.typescriptlang.org/">TypeScript</a> compiler, <code>tsc</code>.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>In this context a &ldquo;fragile test suite&rdquo; corresponds to a subclass of Django&rsquo;s <code>StaticLiveServerTestCase</code> or <code>TestCase</code> whose <code>setUpClass</code> method fails to use a <code>try-finally</code> to invoke <code>super().tearDownClass()</code> explicitly if something goes wrong partway through the test suite setup. This fragile-detection metatest walks through all test suite classes and uses Python&rsquo;s <code>inspect.getsourcelines</code> to read the source code of all test classes to look for the absense of the proper kind of try-finally.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>It is important for any directory containing Python source files (<code>*.py</code>) to contain an <code>__init__.py</code> file so that the directory is marked properly as a Python package and is recognized correctly by Python typecheckers like mypy.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>The <a href="https://github.com/jazzband/django-debug-toolbar#readme">Django Debug Toolbar</a> is an amazingly useful tool to profile the database queries that your Django-rendered page is making.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>TechSmart&rsquo;s frontend JavaScript code is concatentated and minified using the excellent <a href="https://pypi.org/project/django-compressor/">Django Compressor</a> app. At some point we may migrate instead to using <a href="https://www.snowpack.dev/">Snowpack</a>, a lightweight module bundler.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+<li id="fn:7">
+<p>The &ldquo;blocks&rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual <a href="/projects/skylark/">Skylark language</a>.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<li id="fn:8">
+<p>The TechSmart Platform contains an API-compatible reimplementation of the popular <a href="https://pypi.org/project/requests/">Requests</a> HTTP client library so that students can write programs that access the internet, in a controlled fashion.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
