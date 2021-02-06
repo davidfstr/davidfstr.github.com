@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-06T19:27:23+00:00</updated>
+ <updated>2021-02-06T19:33:26+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -215,7 +215,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:7&quot;&gt;
 &lt;p&gt;The &amp;ldquo;blocks&amp;rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual &lt;a href=&quot;/projects/skylark/&quot;&gt;Skylark language&lt;/a&gt;.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:8&quot;&gt;
-&lt;p&gt;The TechSmart Platform contains an API-compatible reimplementation of the popular &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;Requests&lt;/a&gt; HTTP client library so that students can write programs that access the internet, in a controlled fashion.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;The Python IDE &lt;!-- TODO: Make non-redirecting DPython project page --&gt; in the TechSmart Platform contains an API-compatible reimplementation of the popular &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;Requests&lt;/a&gt; HTTP client library so that students can write programs that access the internet, in a controlled fashion.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
