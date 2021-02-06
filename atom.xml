@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-06T19:33:26+00:00</updated>
+ <updated>2021-02-06T19:36:18+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -160,8 +160,8 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;all_&lt;wbr/&gt;django_&lt;wbr/&gt;add_&lt;wbr/&gt;and_&lt;wbr/&gt;edit_&lt;wbr/&gt;admin_&lt;wbr/&gt;pages_&lt;wbr/&gt;render&lt;/code&gt; 👈 &lt;strong&gt;especially useful and powerful&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;block_&lt;wbr/&gt;type_&lt;wbr/&gt;satisfies_&lt;wbr/&gt;all_&lt;wbr/&gt;block_&lt;wbr/&gt;standards&lt;/code&gt; &lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;all_&lt;wbr/&gt;django_&lt;wbr/&gt;add_&lt;wbr/&gt;and_&lt;wbr/&gt;edit_&lt;wbr/&gt;admin_&lt;wbr/&gt;pages_&lt;wbr/&gt;render&lt;/code&gt; &lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; 👈 &lt;strong&gt;especially useful and powerful&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;block_&lt;wbr/&gt;type_&lt;wbr/&gt;satisfies_&lt;wbr/&gt;all_&lt;wbr/&gt;block_&lt;wbr/&gt;standards&lt;/code&gt; &lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;c_&lt;wbr/&gt;blocks_&lt;wbr/&gt;for_&lt;wbr/&gt;python_&lt;wbr/&gt;blocks_&lt;wbr/&gt;must_&lt;wbr/&gt;use_&lt;wbr/&gt;consistent_&lt;wbr/&gt;indent_&lt;wbr/&gt;width&lt;/code&gt;&lt;/li&gt;
@@ -175,7 +175,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;max_&lt;wbr/&gt;redirect_&lt;wbr/&gt;count_&lt;wbr/&gt;is_&lt;wbr/&gt;5&lt;/code&gt; &lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;max_&lt;wbr/&gt;redirect_&lt;wbr/&gt;count_&lt;wbr/&gt;is_&lt;wbr/&gt;5&lt;/code&gt; &lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; rel=&quot;footnote&quot;&gt;9&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -213,9 +213,11 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:6&quot;&gt;
 &lt;p&gt;TechSmart&amp;rsquo;s frontend JavaScript code is concatentated and minified using the excellent &lt;a href=&quot;https://pypi.org/project/django-compressor/&quot;&gt;Django Compressor&lt;/a&gt; app. At some point we may migrate instead to using &lt;a href=&quot;https://www.snowpack.dev/&quot;&gt;Snowpack&lt;/a&gt;, a lightweight module bundler.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:7&quot;&gt;
-&lt;p&gt;The &amp;ldquo;blocks&amp;rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual &lt;a href=&quot;/projects/skylark/&quot;&gt;Skylark language&lt;/a&gt;.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;The &amp;ldquo;all Django Add and Edit pages must render&amp;rdquo; metatest automatically discovers all Django models and related pages that exist in Django&amp;rsquo;s admin site. Then it tries to navigate to each such admin page and ensures that it renders completely. This metatest has caught cases where some of our more complex custom admin pages broke due to a code change elsewhere.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:8&quot;&gt;
-&lt;p&gt;The Python IDE &lt;!-- TODO: Make non-redirecting DPython project page --&gt; in the TechSmart Platform contains an API-compatible reimplementation of the popular &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;Requests&lt;/a&gt; HTTP client library so that students can write programs that access the internet, in a controlled fashion.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;The &amp;ldquo;blocks&amp;rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual &lt;a href=&quot;/projects/skylark/&quot;&gt;Skylark language&lt;/a&gt;.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:9&quot;&gt;
+&lt;p&gt;The Python IDE &lt;!-- TODO: Make non-redirecting DPython project page --&gt; in the TechSmart Platform contains an API-compatible reimplementation of the popular &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;Requests&lt;/a&gt; HTTP client library so that students can write programs that access the internet, in a controlled fashion.&lt;a href=&quot;#fnref:9&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 

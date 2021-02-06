@@ -251,8 +251,8 @@
 <li>Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
 
 <ul>
-<li><code>test_<wbr/>all_<wbr/>django_<wbr/>add_<wbr/>and_<wbr/>edit_<wbr/>admin_<wbr/>pages_<wbr/>render</code> 👈 <strong>especially useful and powerful</strong></li>
-<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>satisfies_<wbr/>all_<wbr/>block_<wbr/>standards</code> <sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup>
+<li><code>test_<wbr/>all_<wbr/>django_<wbr/>add_<wbr/>and_<wbr/>edit_<wbr/>admin_<wbr/>pages_<wbr/>render</code> <sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup> 👈 <strong>especially useful and powerful</strong></li>
+<li><code>test_<wbr/>every_<wbr/>block_<wbr/>type_<wbr/>satisfies_<wbr/>all_<wbr/>block_<wbr/>standards</code> <sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup>
 
 <ul>
 <li><code>test_<wbr/>c_<wbr/>blocks_<wbr/>for_<wbr/>python_<wbr/>blocks_<wbr/>must_<wbr/>use_<wbr/>consistent_<wbr/>indent_<wbr/>width</code></li>
@@ -266,7 +266,7 @@
 <li>Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
 
 <ul>
-<li><code>test_<wbr/>max_<wbr/>redirect_<wbr/>count_<wbr/>is_<wbr/>5</code> <sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup></li>
+<li><code>test_<wbr/>max_<wbr/>redirect_<wbr/>count_<wbr/>is_<wbr/>5</code> <sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup></li>
 </ul>
 </li>
 </ul>
@@ -304,9 +304,11 @@
 <li id="fn:6">
 <p>TechSmart&rsquo;s frontend JavaScript code is concatentated and minified using the excellent <a href="https://pypi.org/project/django-compressor/">Django Compressor</a> app. At some point we may migrate instead to using <a href="https://www.snowpack.dev/">Snowpack</a>, a lightweight module bundler.<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
 <li id="fn:7">
-<p>The &ldquo;blocks&rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual <a href="/projects/skylark/">Skylark language</a>.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
+<p>The &ldquo;all Django Add and Edit pages must render&rdquo; metatest automatically discovers all Django models and related pages that exist in Django&rsquo;s admin site. Then it tries to navigate to each such admin page and ensures that it renders completely. This metatest has caught cases where some of our more complex custom admin pages broke due to a code change elsewhere.<a href="#fnref:7" rev="footnote">&#8617;</a></p></li>
 <li id="fn:8">
-<p>The Python IDE <!-- TODO: Make non-redirecting DPython project page --> in the TechSmart Platform contains an API-compatible reimplementation of the popular <a href="https://pypi.org/project/requests/">Requests</a> HTTP client library so that students can write programs that access the internet, in a controlled fashion.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
+<p>The &ldquo;blocks&rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual <a href="/projects/skylark/">Skylark language</a>.<a href="#fnref:8" rev="footnote">&#8617;</a></p></li>
+<li id="fn:9">
+<p>The Python IDE <!-- TODO: Make non-redirecting DPython project page --> in the TechSmart Platform contains an API-compatible reimplementation of the popular <a href="https://pypi.org/project/requests/">Requests</a> HTTP client library so that students can write programs that access the internet, in a controlled fashion.<a href="#fnref:9" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
