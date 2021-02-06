@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 06 Feb 2021 23:03:57 +0000</pubDate>
-    <lastBuildDate>Sat, 06 Feb 2021 23:03:57 +0000</lastBuildDate>
+    <pubDate>Sat, 06 Feb 2021 23:50:42 +0000</pubDate>
+    <lastBuildDate>Sat, 06 Feb 2021 23:50:42 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -4298,8 +4298,12 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 
 
 &lt;div class=&quot;tab-content&quot; id=&quot;spectrum-diagram&quot;&gt;
-  &lt;img class=&quot;tab-pane active&quot; id=&quot;diagram-tldr&quot; src=&quot;/assets/2014/hardware-distance/tldr-125perc-72dpi.png&quot; /&gt;
-  &lt;img class=&quot;tab-pane&quot;        id=&quot;diagram-full&quot; src=&quot;/assets/2014/hardware-distance/full-100perc-72dpi.png&quot; /&gt;
+  &lt;a class=&quot;tab-pane active&quot; id=&quot;diagram-tldr&quot; href=&quot;/assets/2014/hardware-distance/tldr-125perc-72dpi.png&quot;&gt;
+    &lt;img src=&quot;/assets/2014/hardware-distance/tldr-125perc-72dpi.png&quot; style=&quot;max-width: 100%;&quot; /&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;tab-pane&quot;        id=&quot;diagram-full&quot; href=&quot;/assets/2014/hardware-distance/full-100perc-72dpi.png&quot;&gt;
+    &lt;img src=&quot;/assets/2014/hardware-distance/full-100perc-72dpi.png&quot; style=&quot;max-width: 100%;&quot; /&gt;
+  &lt;/a&gt;
 &lt;/div&gt;
 
 

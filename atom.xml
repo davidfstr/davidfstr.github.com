@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-06T23:03:57+00:00</updated>
+ <updated>2021-02-06T23:50:42+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -4399,8 +4399,12 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 
 
 &lt;div class=&quot;tab-content&quot; id=&quot;spectrum-diagram&quot;&gt;
-  &lt;img class=&quot;tab-pane active&quot; id=&quot;diagram-tldr&quot; src=&quot;/assets/2014/hardware-distance/tldr-125perc-72dpi.png&quot; /&gt;
-  &lt;img class=&quot;tab-pane&quot;        id=&quot;diagram-full&quot; src=&quot;/assets/2014/hardware-distance/full-100perc-72dpi.png&quot; /&gt;
+  &lt;a class=&quot;tab-pane active&quot; id=&quot;diagram-tldr&quot; href=&quot;/assets/2014/hardware-distance/tldr-125perc-72dpi.png&quot;&gt;
+    &lt;img src=&quot;/assets/2014/hardware-distance/tldr-125perc-72dpi.png&quot; style=&quot;max-width: 100%;&quot; /&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;tab-pane&quot;        id=&quot;diagram-full&quot; href=&quot;/assets/2014/hardware-distance/full-100perc-72dpi.png&quot;&gt;
+    &lt;img src=&quot;/assets/2014/hardware-distance/full-100perc-72dpi.png&quot; style=&quot;max-width: 100%;&quot; /&gt;
+  &lt;/a&gt;
 &lt;/div&gt;
 
 
