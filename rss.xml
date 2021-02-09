@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 09 Feb 2021 16:33:39 +0000</pubDate>
-    <lastBuildDate>Tue, 09 Feb 2021 16:33:39 +0000</lastBuildDate>
+    <pubDate>Tue, 09 Feb 2021 16:37:57 +0000</pubDate>
+    <lastBuildDate>Tue, 09 Feb 2021 16:37:57 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -269,7 +269,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps: Deterministic performance tests for database-dependent code&lt;/a&gt; - Shows how to use clamp the database performance of server-side rendering using automated tests.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps: Deterministic performance tests for database-dependent code&lt;/a&gt; - Shows how to clamp the database performance of server-side rendering using automated tests.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
