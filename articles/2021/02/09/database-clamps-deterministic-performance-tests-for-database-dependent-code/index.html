@@ -10,6 +10,38 @@
   
   
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/"
+      },
+      "headline": "Database clamps: Deterministic performance tests for database-dependent code",
+      
+      "datePublished": "2021-02-09T00:00:00+00:00",
+      "dateModified": "2021-02-09T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "David Foster",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "David Foster",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      }
+    }
+    </script>
+  
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Feeds -->
@@ -93,8 +125,6 @@
               
             
               
-            
-              
                 <li><a href="/articles/">Articles</a></li>
               
             
@@ -166,12 +196,100 @@
         <![endif]-->
         
         
-          <h1>Database clamps</h1>
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1>Database clamps: Deterministic performance tests for database-dependent code</h1>
+    <div class="post-metadata">
+      
+        Feb 09, 2021
+       &ndash; Filed under: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span><a href="/articles/topics/#Django">Django<sup>3</sup></a></span>
+        
+          <span><a href="/articles/topics/#Software">Software<sup>57</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    <p>If you&rsquo;ve got a moderate-sized <a href="https://www.djangoproject.com/">Django</a> web application then you&rsquo;re probably already writing automated tests to make sure none of its pages break unexpectedly when you&rsquo;re making changes to them. That is, you&rsquo;re testing page <em>functionality</em>.</p>
+
+<p>However another way that pages can break is that they take too long to display, or otherwise don&rsquo;t have enough <em>performance</em>. The very first Django application I deployed to customers got crushed with only <em>12</em> concurrent users! How embarassing! 🤭 I hadn&rsquo;t even bothered to do basic performance testing before that initial deployment because I didn&rsquo;t think it was <em>possible</em> for such a small number of expected users to bring down my site. I now know better and require that any new web page have <strong>automated performance tests</strong> before being deployed to customers.</p>
+
+<p>There are many kinds of performance tests, but right now I&rsquo;d like to focus on automated <em>database</em> performance tests, or what I like to call <strong>database clamps</strong>:</p>
+
+<h3>What are they?</h3>
+
+<p>A database clamp measures the number of database queries issued when a web page is being rendered server-side. For example:</p>
+
+<pre><code>from django.test import TestCase
+
+class TodoListPageTests(TestCase):
+    ...
+
+    def test_todo_list_mdp(self):  # mdp = maintains database performance
+        self.client.login(username='user', password='password')
+        with self.assertNumQueries(3):  # &lt;-- DATABASE CLAMP
+            response = self.client.get(reverse('todo:list'))
+            self.assertEqual(200, response.status_code)
+</code></pre>
+
+<p>Here, <a href="https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries">assertNumQueries</a> is used to clamp the number of database queries issued when the <code>todo:list</code> page is rendered server-side. If any changes are made to the the page that increases (or otherwise changes) the number of database queries issued, then the test will detect the change and fail.</p>
+
+<h3>Why are they useful?</h3>
+
+<p>Database clamps are particularly useful for web applications because <strong>server-side rendering time is typically dominated by database query time</strong>. If you get your database access patterns under control then it&rsquo;s likely the remaining server-side rendering time will be negligible.</p>
+
+<p>Also, unlike most <a href="/articles/2018/06/02/performance-testing/">other kinds of performance tests</a>, database clamps are fully <em>deterministic</em> and always give consistent results no matter how fast the machine the test is being run on. Very useful!</p>
+
+<h3>Conclusion</h3>
+
+<p>Avoid the embarassment of your site falling over when only a handful of customers try to use it. Use database clamps!</p>
+
+<h3>Appendix: Better database clamps</h3>
+
+<p>A database clamp which uses Django&rsquo;s <a href="https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries">assertNumQueries</a> function will fail not just when the number of database queries <em>increases</em> (which is usually a problem) but will also fail when the number of queries <em>decreases</em> (which is usually okay, and even desirable).</p>
+
+<p>In <a href="/projects/techsmart-platform">my own Django web application</a> I use a custom version of <code>assertNumQueries</code> that still fails if the number of queries <em>increases</em> but only issues a warning (via <code>warnings.warn(...)</code>) if the number of queries <em>decreases</em>:</p>
+
+<pre><code>$ python3 manage.py test gradebook
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.758s
+
+OK
+
+Warnings:
+gradebook/tests/test_gradebook.py:425: UserWarning: 14 database queries executed, no more than 15 expected. Consider reducing the expected query count to match.
+</code></pre>
+
+<p>In addition, my version of <code>assertNumQueries</code> expects to be called from an automated test method whose name contains the word <code>mdp</code> (&ldquo;maintains database performance&rdquo;) and warns if it is being called from a test lacking that acronym. This restriction allows my engineering team to easily search for and run exactly those tests which use database clamps when making large scale changes that may break many database clamps at once:</p>
+
+<pre><code>$ python3 manage.py test $(python3 manage.py list_tests mdp -s)
+System check identified no issues (0 silenced).
+..............s..s..................................................
+----------------------------------------------------------------------
+Ran X tests in Ys
+
+OK (skipped=Z)
+</code></pre>
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="/articles/2018/06/02/performance-testing/">Performance Testing</a> - Details a few of the big guns of performance testing.</li>
+<li><a href="/articles/2021/02/02/tests-as-policy-automation/">Tests as Policy Automation</a> - Has more ideas for creatively using automated tests to enforce additional (non-functional) properties in your backend web application.</li>
+</ul>
 
 
-<p><em>This article will be published on Tues 2/9/2021.</em></p>
-
-<div class="block">
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
   <a class="subscribe" href="https://twitter.com/davidfstr">
   <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
 </a>
@@ -184,7 +302,24 @@
 
 </div>
 
-
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising/" title="Privacy Sandbox: Google's answer to privacy-conscious advertising">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
 
         
       </div>

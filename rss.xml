@@ -6,14 +6,94 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 07 Feb 2021 06:23:21 +0000</pubDate>
-    <lastBuildDate>Sun, 07 Feb 2021 06:23:21 +0000</lastBuildDate>
+    <pubDate>Tue, 09 Feb 2021 16:33:39 +0000</pubDate>
+    <lastBuildDate>Tue, 09 Feb 2021 16:33:39 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Database clamps: Deterministic performance tests for database-dependent code</title>
+      <link>https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;ve got a moderate-sized &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; web application then you&amp;rsquo;re probably already writing automated tests to make sure none of its pages break unexpectedly when you&amp;rsquo;re making changes to them. That is, you&amp;rsquo;re testing page &lt;em&gt;functionality&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;However another way that pages can break is that they take too long to display, or otherwise don&amp;rsquo;t have enough &lt;em&gt;performance&lt;/em&gt;. The very first Django application I deployed to customers got crushed with only &lt;em&gt;12&lt;/em&gt; concurrent users! How embarassing! 🤭 I hadn&amp;rsquo;t even bothered to do basic performance testing before that initial deployment because I didn&amp;rsquo;t think it was &lt;em&gt;possible&lt;/em&gt; for such a small number of expected users to bring down my site. I now know better and require that any new web page have &lt;strong&gt;automated performance tests&lt;/strong&gt; before being deployed to customers.&lt;/p&gt;
+
+&lt;p&gt;There are many kinds of performance tests, but right now I&amp;rsquo;d like to focus on automated &lt;em&gt;database&lt;/em&gt; performance tests, or what I like to call &lt;strong&gt;database clamps&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;h3&gt;What are they?&lt;/h3&gt;
+
+&lt;p&gt;A database clamp measures the number of database queries issued when a web page is being rendered server-side. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from django.test import TestCase
+
+class TodoListPageTests(TestCase):
+    ...
+
+    def test_todo_list_mdp(self):  # mdp = maintains database performance
+        self.client.login(username=&#39;user&#39;, password=&#39;password&#39;)
+        with self.assertNumQueries(3):  # &amp;lt;-- DATABASE CLAMP
+            response = self.client.get(reverse(&#39;todo:list&#39;))
+            self.assertEqual(200, response.status_code)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, &lt;a href=&quot;https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries&quot;&gt;assertNumQueries&lt;/a&gt; is used to clamp the number of database queries issued when the &lt;code&gt;todo:list&lt;/code&gt; page is rendered server-side. If any changes are made to the the page that increases (or otherwise changes) the number of database queries issued, then the test will detect the change and fail.&lt;/p&gt;
+
+&lt;h3&gt;Why are they useful?&lt;/h3&gt;
+
+&lt;p&gt;Database clamps are particularly useful for web applications because &lt;strong&gt;server-side rendering time is typically dominated by database query time&lt;/strong&gt;. If you get your database access patterns under control then it&amp;rsquo;s likely the remaining server-side rendering time will be negligible.&lt;/p&gt;
+
+&lt;p&gt;Also, unlike most &lt;a href=&quot;/articles/2018/06/02/performance-testing/&quot;&gt;other kinds of performance tests&lt;/a&gt;, database clamps are fully &lt;em&gt;deterministic&lt;/em&gt; and always give consistent results no matter how fast the machine the test is being run on. Very useful!&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Avoid the embarassment of your site falling over when only a handful of customers try to use it. Use database clamps!&lt;/p&gt;
+
+&lt;h3&gt;Appendix: Better database clamps&lt;/h3&gt;
+
+&lt;p&gt;A database clamp which uses Django&amp;rsquo;s &lt;a href=&quot;https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries&quot;&gt;assertNumQueries&lt;/a&gt; function will fail not just when the number of database queries &lt;em&gt;increases&lt;/em&gt; (which is usually a problem) but will also fail when the number of queries &lt;em&gt;decreases&lt;/em&gt; (which is usually okay, and even desirable).&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&quot;/projects/techsmart-platform&quot;&gt;my own Django web application&lt;/a&gt; I use a custom version of &lt;code&gt;assertNumQueries&lt;/code&gt; that still fails if the number of queries &lt;em&gt;increases&lt;/em&gt; but only issues a warning (via &lt;code&gt;warnings.warn(...)&lt;/code&gt;) if the number of queries &lt;em&gt;decreases&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python3 manage.py test gradebook
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.758s
+
+OK
+
+Warnings:
+gradebook/tests/test_gradebook.py:425: UserWarning: 14 database queries executed, no more than 15 expected. Consider reducing the expected query count to match.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In addition, my version of &lt;code&gt;assertNumQueries&lt;/code&gt; expects to be called from an automated test method whose name contains the word &lt;code&gt;mdp&lt;/code&gt; (&amp;ldquo;maintains database performance&amp;rdquo;) and warns if it is being called from a test lacking that acronym. This restriction allows my engineering team to easily search for and run exactly those tests which use database clamps when making large scale changes that may break many database clamps at once:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python3 manage.py test $(python3 manage.py list_tests mdp -s)
+System check identified no issues (0 silenced).
+..............s..s..................................................
+----------------------------------------------------------------------
+Ran X tests in Ys
+
+OK (skipped=Z)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2018/06/02/performance-testing/&quot;&gt;Performance Testing&lt;/a&gt; - Details a few of the big guns of performance testing.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has more ideas for creatively using automated tests to enforce additional (non-functional) properties in your backend web application.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -189,7 +269,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps: Deterministic performance tests for database-dependent code&lt;/a&gt; - &lt;em&gt;Next week&amp;rsquo;s article&lt;/em&gt; 🙂&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps: Deterministic performance tests for database-dependent code&lt;/a&gt; - Shows how to use clamp the database performance of server-side rendering using automated tests.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
@@ -457,7 +537,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 &lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
 
-&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;56&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;57&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt;&lt;/li&gt;

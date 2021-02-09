@@ -1,7 +1,6 @@
 
 https://dafoster.net/about/
 https://dafoster.net/apps/
-https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/
 https://dafoster.net/articles/
 https://dafoster.net/articles/topics/
 https://dafoster.net/assets/bootswatch-readable-3.4.1/bootstrap.css
@@ -27,6 +26,7 @@ https://dafoster.net/projects/website-2/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/
 https://dafoster.net/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising/
 https://dafoster.net/articles/2021/02/02/tests-as-policy-automation/
 https://dafoster.net/articles/2021/01/26/python%27s-type-checking-renaissance/
