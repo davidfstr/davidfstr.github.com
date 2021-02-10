@@ -252,7 +252,7 @@ class TodoListPageTests(TestCase):
 
 <p>A database clamp which uses Django&rsquo;s <a href="https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries">assertNumQueries</a> function will fail not just when the number of database queries <em>increases</em> (which is usually a problem) but will also fail when the number of queries <em>decreases</em> (which is usually okay, and even desirable).</p>
 
-<p>In <a href="/projects/techsmart-platform">my own Django web application</a> I use a custom version of <code>assertNumQueries</code> that still fails if the number of queries <em>increases</em> but only issues a warning (via <code>warnings.warn(...)</code>) if the number of queries <em>decreases</em>:</p>
+<p>In my own Django web application I use a custom version of <code>assertNumQueries</code> that still fails if the number of queries <em>increases</em> but only issues a warning (via <code>warnings.warn(...)</code>) if the number of queries <em>decreases</em>:</p>
 
 <pre><code>$ python3 manage.py test gradebook
 System check identified no issues (0 silenced).
