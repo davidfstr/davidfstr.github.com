@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-10T03:06:04+00:00</updated>
+ <updated>2021-02-17T06:22:30+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,495 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide</id>
+   <title>Building web apps with Vue and Django - The Ultimate Guide</title>
+   <published>2021-02-16T00:00:00+00:00</published>
+   <updated>2021-02-16T00:00:00+00:00</updated>
+   
+     <category term="Django"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">
+
+&lt;div class=&quot;toc toc-floating&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1-server-or-2-servers&quot;&gt;1 server or 2 servers?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#1-server-approach&quot;&gt;1-server approach&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#bundling-strategy&quot;&gt;Bundling strategies&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#concatenated-bundling&quot;&gt;Concatenated Bundling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#import-traced-bundling&quot;&gt;Import-Traced Bundling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#transpiled-bundling&quot;&gt;Transpiled Bundling&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#render-baseline-html-with-django&quot;&gt;Render baseline HTML with Django&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enhance-baseline-html-with-vue&quot;&gt;Enhance baseline HTML with Vue&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#2-server-approach&quot;&gt;2-server approach&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;https://vuejs.org/v2/guide/&quot;&gt;Vue&lt;/a&gt; and &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; are both fantastic for building modern web apps - bringing declarative functional reactive programming to the frontend, and an integrated web app platform, ecosystem, and battle-hardened ORM to the backend. However they can be somewhat tricky to use &lt;em&gt;together&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here I&amp;rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&amp;rsquo;ve been building web apps with Django for ~6 years and with Vue for ~3 years, and in particular I&amp;rsquo;ve extensively tested the &lt;a href=&quot;#1-server-approach&quot;&gt;1&amp;#8209;server&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach described below in production.&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;1-server-or-2-servers&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;1 server or 2 servers?&lt;/h1&gt;
+
+&lt;p&gt;The first question to consider when planning to use Django and Vue together is whether to use a single server that serves both backend endpoints and frontend assets, or to use two different servers, one to host the frontend and a separate &amp;ldquo;API server&amp;rdquo; to host the backend.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: 1-server vs 2-server setup&quot; src=&quot;/assets/2021/vue-and-django/1-server-vs-2-server.svg&quot; style=&quot;max-width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Factors in favor of a 1-server setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Operational maintenance costs&lt;/strong&gt; are significantly simplified with only a single server to deploy, monitor, and manage.&lt;/li&gt;
+&lt;li&gt;Relegating Django&amp;rsquo;s role to only that of an API server - in the 2-server setup - will complicate or even prevent you from using any &lt;strong&gt;Django features or third-party apps that rely on server-side rendering by Django&lt;/strong&gt;, such as its famous built-in administration interface. Instead you&amp;rsquo;ll be doing most of your server-side rendering with some JavaScript framework that is Node-compatible. And Node-based server-side rendering is generally rather complex to setup.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Factors in favor of a 2-server setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want to use the latest and greatest version of JavaScript, with transpilation and module bundling, the 2-server setup has &lt;strong&gt;great community documentation for setting up a frontend server and build pipeline that supports all of these new JavaScript features&lt;/strong&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;However most of those features can &lt;em&gt;still&lt;/em&gt; be obtained in a single-server setup with some effort, as described later in this article.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If your organization already has &lt;strong&gt;separate frontend and backend teams&lt;/strong&gt;, it may be easier to have 2 servers - one managed by the frontend team, and one managed by the backend team - to allow each team to focus on each server separately (and satisfy Conway&amp;rsquo;s Law &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; 🙂).&lt;/li&gt;
+&lt;li&gt;If your organization already has a &lt;strong&gt;separate operations team&lt;/strong&gt; that has the capacity to manage the additional server implied by a 2-server setup, then the additional operational overhead may be acceptable.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;At my company we went with the single server option because our engineering team is small (&amp;lt; 5 engineers) - so we care a lot about minimizing operational overhead - and composed of full-stack generalists who are familar with both backend and frontend technologies - so we have engineers that can work anywhere in the stack but aggressively prefer &lt;em&gt;simple&lt;/em&gt; architechures that don&amp;rsquo;t require extreme specialization in multiple domains.&lt;/p&gt;
+
+&lt;p&gt;In the next section I&amp;rsquo;ll drill down into the 1-server approach, but you can also skip to the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server approach&lt;/a&gt; if that&amp;rsquo;s what you&amp;rsquo;re leaning toward.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;1-server-approach&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;1-server approach&lt;/h1&gt;
+
+&lt;p&gt;When using a single server, you&amp;rsquo;ll need to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;pick an asset &lt;a href=&quot;#bundling-strategy&quot;&gt;bundling strategy&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#render-baseline-html-with-django&quot;&gt;render SEO-friendly HTML server-side&lt;/a&gt; with critical navigation and content available immediately on page load, and&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enhance-baseline-html-with-vue&quot;&gt;enhance that HTML client-side with Vue after page load&lt;/a&gt; with additional dynamic content.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;bundling-strategy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Bundling strategies&lt;/h2&gt;
+
+&lt;p&gt;When using a single integrated Django server to not only host your backend but also serve your frontend, you&amp;rsquo;ll need to decide how you want to bundle your JavaScript assets on the frontend together. &lt;strong&gt;Bundling of some kind is necessary for a production deployment&lt;/strong&gt; that is fast enough to be mobile-friendly and usable by distant international customers who may not have fast network connectivity to your server.&lt;/p&gt;
+
+&lt;p&gt;There are multiple bundling techniques that can be used with Django, with various pros and cons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#concatenated-bundling&quot;&gt;Concatenated Bundling&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#import-traced-bundling&quot;&gt;Import-Traced Bundling&lt;/a&gt;, and&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#transpiled-bundling&quot;&gt;Transpiled Bundling&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;concatenated-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Concatenated Bundling&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Concatenated Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/concatenated.svg&quot; class=&quot;bundling-diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is by far the easiest bundling technique to use with Django and is a good technique to start with.&lt;/p&gt;
+
+&lt;p&gt;With concatenated bundling, you write JavaScript files that consist entirely of top-level function definitions and other non-executable code. Your HTML template served by Django contains &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-includes of every JavaScript file that the current page requires, directly or transitively. And after all JavaScript files are included the HTML page uses an inline &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; to call the root JavaScript function which sets up the rest of the page:&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- todo/templates/todo/todo.html --&amp;gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
+{% compress js %}
+    &amp;lt;script src=&quot;{% static &#39;todo/todo.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;todo/todo/list.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;todo/todo/item.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script&amp;gt;
+        setupTodoPage();
+    &amp;lt;/script&amp;gt;
+{% endcompress %}
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;{% compress js %}&lt;/code&gt; tag above assumes that you are using the excellent &lt;a href=&quot;https://django-compressor.readthedocs.io/en/stable/&quot;&gt;Django Compressor&lt;/a&gt; library which integrates well with Django as your concatenating bundler.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Pros of concatenated bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Very easy to setup.&lt;/strong&gt; Leverages excellent documentation from the Django Compressor library.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero bundle build times during development.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Fastest bundle build times during deployment, compared with other approaches.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Cons of concatenated bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You must manage your JS dependencies in HTML manually:
+
+&lt;ul&gt;
+&lt;li&gt;Whenever adding a new JS module you must remember to add it to the HTML for the appropriate page(s).&lt;/li&gt;
+&lt;li&gt;If you alter an existing JS module to depend on a new JS module, you must find all page HTMLs that include the first module and update them to include the second module if needed.&lt;/li&gt;
+&lt;li&gt;If you want to avoid managing JS dependencies manually, consider &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&amp;rsquo;t supported by your customers&#39; browsers then you&amp;rsquo;re out of luck. If you need transpilation consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
+&lt;li&gt;It is awkward to define a class in a JavaScript module that inherits from a base class in a different module, because that &lt;em&gt;requires&lt;/em&gt; &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-including the base class&amp;rsquo;s module first, breaking the usual rule that &amp;ldquo;the order that JS files are imported should not matter&amp;rdquo;. (However if you just limit inheritance to be within a single module or avoid it entirely, then this restriction doesn&amp;rsquo;t matter in practice.)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Note that choosing concatenated bundling does &lt;em&gt;not&lt;/em&gt; prevent you from using TypeScript-based type checking in your JS files, which I &lt;em&gt;do&lt;/em&gt; recommend for long-lived projects. In short, you can put a special &lt;code&gt;// @ts-check&lt;/code&gt; comment at the top of a JS file to &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html&quot;&gt;enable type-checking of JS with the TypeScript compiler&lt;/a&gt; (&lt;code&gt;tsc&lt;/code&gt;). &lt;!-- Using TypeScript to type-check JS files doesn&#39;t seem like a very-well known technique, so I plan to write a future article about it. --&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;import-traced-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Import-Traced Bundling&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Import-Traced Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot; class=&quot;bundling-diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With the advent of the &lt;a href=&quot;https://www.snowpack.dev/&quot;&gt;Snowpack&lt;/a&gt; bundler we can get all the benefits of the &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.&lt;/p&gt;
+
+&lt;p&gt;With import-traced bundling, you write a root JavaScript file for each page that uses regular &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import&quot;&gt;JavaScript import statements&lt;/a&gt; to bring in related modules. Your HTML template then only needs to include the root JavaScript file:&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- todo/templates/todo/todo.html --&amp;gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
+&amp;lt;!-- js --&amp;gt;
+    &amp;lt;script type=&quot;module&quot;&amp;gt;
+        import { setupTodoPage } from &quot;{% static &#39;todo/todo.js&#39; %}&quot;;
+        setupTodoPage();
+    &amp;lt;/script&amp;gt;
+&amp;lt;!-- endjs --&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;The root JavaScript file might look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// static/todo/todo.js
+import { defineTodoList } from &quot;./todo/list.js&quot;;
+
+export function setupTodoPage() {
+    defineTodoList();
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;And that root JS file can include other modules like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// static/todo/list.js
+import { defineTodoItem } from &quot;./item.js&quot;;
+
+export function defineTodoList() {
+    defineTodoItem();
+    
+    Vue.component(&#39;todo-list&#39;, {
+        props: {
+            ...
+        },
+        template: `
+            ...
+        `,
+        methods: {
+            ...
+        }
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Some key differences between import-traced bundling and concatenated bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The HTML page only needs to include the root JS file for the page and not any of its indirect JS dependencies.&lt;/li&gt;
+&lt;li&gt;JS modules must use &lt;code&gt;import&lt;/code&gt; to declare other JS modules that they depend on, and &lt;code&gt;export&lt;/code&gt; any functions that they want to be importable by other modules.&lt;/li&gt;
+&lt;li&gt;JS files for &lt;em&gt;all&lt;/em&gt; Django apps in the Django project should be put in a common &lt;code&gt;static&lt;/code&gt; directory rather than using per-app &lt;code&gt;static&lt;/code&gt; directories. Having a common directory for all JS files will make it easier to configure Snowpack to build combined JS bundles for production deployments.&lt;/li&gt;
+&lt;li&gt;There is no longer a need to use Django Compressor.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For a production deployment, you&amp;rsquo;ll need to alter your deployment script to run Snowpack on the root &lt;code&gt;static&lt;/code&gt; directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.&lt;/p&gt;
+
+&lt;p&gt;Pros of import-traced bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Easy to setup for development.&lt;/strong&gt; (Trickier to setup for deployment.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero bundle build times during development.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Fast bundle build times during deployment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JS dependencies are automatically managed&lt;/strong&gt; through regular &lt;code&gt;import&lt;/code&gt; statements in JS.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Cons of import-traced bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaScript files are not transpiled at &lt;em&gt;development time&lt;/em&gt; (although they &lt;em&gt;are&lt;/em&gt; at deployment time), so if you want to use the most bleeding-edge JavaScript features that aren&amp;rsquo;t even supported by your development browser then you&amp;rsquo;re out of luck. If you need transpilation during development consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
+&lt;li&gt;Requires that your development browsers &lt;a href=&quot;https://caniuse.com/mdn-javascript_statements_import&quot;&gt;support JavaScript import&lt;/a&gt; and JS modules in general.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;transpiled-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Transpiled Bundling&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Transpiled Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot; class=&quot;bundling-diagram bundling-diagram-wide&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want the latest and greatest JavaScript features that haven&amp;rsquo;t made it even to your latest &lt;em&gt;development&lt;/em&gt; browser (ex: the latest Chrome or Firefox) then you&amp;rsquo;ll need to pay the cost of needing to transpile during development time:&lt;/p&gt;
+
+&lt;p&gt;The transpiled bundling approach generally uses the same kind of HTML, JS, and filesystem structure as the &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; approach but you have additional flexibility depending on the particular set of bundler and transpiler tools you select.&lt;/p&gt;
+
+&lt;p&gt;Common choices for transpiler tools as of early 2021 are &lt;a href=&quot;https://webpack.js.org/&quot;&gt;Webpack&lt;/a&gt;, &lt;a href=&quot;https://babeljs.io/&quot;&gt;Babel&lt;/a&gt;, and &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&amp;rsquo;s &lt;a href=&quot;https://youtu.be/E613X3RBegI?t=1203&quot;&gt;thoughts on the transpiled bundling approach at PyCon 2019&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pros of transpiled bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Latest bleeding-edge JavaScript features are available.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JS dependencies are automatically managed.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can also manage dependencies automatically with the simpler &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; approach.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Cons of transpiled bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Moderate-to-slow bundle build times during development.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can eliminate build times during development entirely using either the &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; or &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approaches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Slow bundle build times during deployment, assuming you enable aggressive optimizations.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;render-baseline-html-with-django&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Render baseline HTML with Django&lt;/h2&gt;
+
+&lt;p&gt;Now that you&amp;rsquo;ve picked a &lt;a href=&quot;#bundling-strategy&quot;&gt;bundling approach&lt;/a&gt;, we can move on to rendering our first page with Django and Vue.&lt;/p&gt;
+
+&lt;p&gt;When a browser (or search engine crawler) first requests a page from your site, it will only be able to immediately render the initial HTML served by Django. In particular, browsers will take some time to start running any JavaScript on your HTML page, so it&amp;rsquo;s important that the initial HTML served by Django contains your most important page content.&lt;/p&gt;
+
+&lt;p&gt;For example if we were building the product page of an online store, we&amp;rsquo;d want to ensure the initial HTML rendered by Django immediately contained things like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the site logo and top navigation links,&lt;/li&gt;
+&lt;li&gt;the product image,&lt;/li&gt;
+&lt;li&gt;the product description,&lt;/li&gt;
+&lt;li&gt;placeholders for other less-important panels that are okay to load later in JavaScript, with appropriate animated spinner icons or other loading indicators.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- (TODO: Diagram: Example product page after initial page load) --&gt;
+
+
+&lt;p&gt;So the HTML rendered by Django might look something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- store/templates/store/product.html --&amp;gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;!-- Top navigation --&amp;gt;
+    &amp;lt;nav class=&quot;navbar navbar-inverse&quot;&amp;gt;
+        &amp;lt;div class=&quot;container-fluid&quot;&amp;gt;
+            &amp;lt;div class=&quot;navbar-header&quot;&amp;gt;
+                &amp;lt;!-- Site logo --&amp;gt;
+                &amp;lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&amp;gt;Acme Store&amp;lt;/a&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;div class=&quot;navbar-collapse collapse&quot;&amp;gt;
+                &amp;lt;!-- Top navigation links --&amp;gt;
+                &amp;lt;ul class=&quot;nav navbar-nav&quot;&amp;gt;
+                    &amp;lt;li&amp;gt;&amp;lt;a href=&quot;/computer-systems/&quot;&amp;gt;Computer Systems&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                    &amp;lt;li&amp;gt;&amp;lt;a href=&quot;/components/&quot;&amp;gt;Components&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                    &amp;lt;li&amp;gt;&amp;lt;a href=&quot;/electronics/&quot;&amp;gt;Electronics&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                    ...
+                &amp;lt;/ul&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/nav&amp;gt;
+    
+    &amp;lt;!-- Main content --&amp;gt;
+    &amp;lt;div class=&quot;container&quot;&amp;gt;
+        &amp;lt;div class=&quot;content-container&quot;&amp;gt;
+            &amp;lt;!-- Primary panel --&amp;gt;
+            &amp;lt;img alt=&quot;Product image&quot; href=&quot;{{ product.image_url }}&quot; style=&quot;float: left;&quot; /&amp;gt;
+            &amp;lt;h1&amp;gt;{{ product.title }}&amp;lt;/h1&amp;gt;
+            &amp;lt;div&amp;gt;
+                {{ product.description }}
+            &amp;lt;/div&amp;gt;
+            
+            &amp;lt;!-- Secondary panel; a placeholder filled out by JS later --&amp;gt;
+            &amp;lt;div id=&quot;recommendations-panel&quot;&amp;gt;
+                &amp;lt;h2&amp;gt;Recommended for You&amp;lt;/h2&amp;gt;
+                &amp;lt;img
+                    v-if=&quot;loading&quot; 
+                    alt=&quot;Loading spinner&quot;
+                    src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+                &amp;lt;template
+                    v-else
+                    v-cloak&amp;gt;
+                    ...
+                &amp;lt;/template&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+
+{{ recommendations_panel_data|json_script:&quot;recommendations-panel-data&quot; }}
+
+{% compress js %}
+    &amp;lt;script src=&quot;{% static &#39;store/product.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;store/product/recommendations.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script&amp;gt;
+        setupProductPage();
+    &amp;lt;/script&amp;gt;
+{% endcompress %}
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Notice that most of the page is initially rendered server-side with Django&amp;rsquo;s built-in templating system and &lt;em&gt;not&lt;/em&gt; with Vue. This server-side rendered content loads fast and can be appropriately indexed by search engines for better SEO.&lt;/p&gt;
+
+&lt;p&gt;However certain less-important panels like the Recommendations panel don&amp;rsquo;t need to be loaded immediately and will be given life by Vue later after the page&amp;rsquo;s JavaScript starts running. Let&amp;rsquo;s consider how that works:&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;enhance-baseline-html-with-vue&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Enhance baseline HTML with Vue&lt;/h2&gt;
+
+&lt;p&gt;When the browser (or search engine) first loads the Recommendations panel it will initially see just a loading spinner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&quot;recommendations-panel&quot;&amp;gt;
+    &amp;lt;h2&amp;gt;Recommended for You&amp;lt;/h2&amp;gt;
+    &amp;lt;img
+        v-if=&quot;loading&quot; 
+        alt=&quot;Loading spinner&quot;
+        src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+    &amp;lt;template
+        v-else
+        v-cloak&amp;gt;
+        ...
+    &amp;lt;/template&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;v-cloak&lt;/code&gt; directive is associated with the CSS rule &lt;code&gt;[v-cloak] { display: none; }&lt;/code&gt; so nothing marked by that directive will be displayed initially.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Later when the page&amp;rsquo;s JavaScript starts running, it will call &lt;code&gt;setupProductPage()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// store/product.js
+/*public*/ function setupProductPage() {
+    setupRecommendationsPanel();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which will call &lt;code&gt;setupRecommendationsPanel()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// store/product/recommendations.js
+/*public*/ function setupRecommendationsPanel() {
+    new Vue({
+        el: &#39;#recommendations-panel&#39;,
+        data: function() {
+            return document.querySelector(&#39;#recommendations-panel-data&#39;).innerText;
+        },
+        computed: {
+            loading: function() {
+                ...
+            },
+            ...
+        },
+        methods: {
+            ...
+        }
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which will use Vue to render the interior of the panel, perhaps after performing an Ajax request back to a Django endpoint to fetch more data.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Notice that some data for the panel can be prepopulated in HTML via the &lt;code&gt;{{ ...|json_script:&quot;...&quot; }}&lt;/code&gt; template tag by Django and then fetched later via &lt;code&gt;document.querySelector(...).innerText&lt;/code&gt; in JavaScript.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Done! Skip to the &lt;a href=&quot;#conclusion&quot;&gt;conclusion&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;2-server-approach&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;2-server approach&lt;/h1&gt;
+
+&lt;p&gt;When using a separate frontend server for Vue and a separate backend server for Django, you&amp;rsquo;ll need to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;setup &lt;a href=&quot;https://v3.vuejs.org/guide/installation.html#installation&quot;&gt;a standalone Vue server&lt;/a&gt; and &lt;a href=&quot;https://www.djangoproject.com/start/&quot;&gt;a standalone Django server&lt;/a&gt; using official documentation from each project,&lt;/li&gt;
+&lt;li&gt;alter the frontend Vue server to &lt;a href=&quot;https://ssr.vuejs.org/#why-ssr&quot;&gt;support server-side rendering or prerendering&lt;/a&gt; using official documentation,&lt;/li&gt;
+&lt;li&gt;create some pages in Vue, some endpoints in Django (perhaps using the &lt;a href=&quot;https://www.django-rest-framework.org/&quot;&gt;Django REST Framework&lt;/a&gt;), and have those pages access those routes using plain old &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch&quot;&gt;window.fetch()&lt;/a&gt;&amp;nbsp;(or something shinier like &lt;a href=&quot;https://github.com/axios/axios#readme&quot;&gt;Axios&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;conclusion&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Hopefully this guide has been useful in helping you setup Vue inside your new or existing Django web app. Happy coding!&lt;/p&gt;
+
+&lt;h2&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps&lt;/a&gt; - Writing deterministic performance tests for database-dependent code in Django&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has ideas for creatively using automated tests to enforce various (non-functional) properties in your Django web app.&lt;/li&gt;
+&lt;li&gt;Other &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Django&quot;&gt;Django&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt; articles&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;&lt;em&gt;Related Projects&lt;/em&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/techsmart-platform&quot;&gt;TechSmart Platform&lt;/a&gt; - Large web app that I work on that uses Django and Vue. (Sorry it’s closed-source!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Conway%27s_law&quot;&gt;Conway&amp;rsquo;s Law&lt;/a&gt;: The technical architecture of a system tends to mirror the organizational and communication structure of the people that build it. So if you have 2 teams building a compiler, they&amp;rsquo;re likely to build a 2-pass compiler. Similarly if you have a frontend and a backend team, they&amp;rsquo;re likely to build separate frontend and backend servers if left to themselves.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;At the time of writing it takes 2.1 seconds for me to bundle 100,650 lines (5,304 KiB) of JS and 17,617 lines (699 KiB) of CSS using Django Compressor&amp;rsquo;s default settings which uses &lt;a href=&quot;http://opensource.perlig.de/rjsmin/&quot;&gt;rJSMin&lt;/a&gt; to minify JS (via &lt;a href=&quot;https://stackoverflow.com/a/1732454/604063&quot;&gt;regex&lt;/a&gt; no less!).&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -568,7 +1057,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 &lt;/ul&gt;
 
 
-&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;57&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;58&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt;&lt;/li&gt;

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Building web apps with Vue and Django - The Ultimate Guide | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+  
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/"
+      },
+      "headline": "Building web apps with Vue and Django - The Ultimate Guide",
+      
+      "datePublished": "2021-02-16T00:00:00+00:00",
+      "dateModified": "2021-02-16T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "David Foster",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "David Foster",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      }
+    }
+    </script>
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+      <style>
+        /* Override blockquote to use same font size as body text */
+blockquote { font-size: 16px !important; }
+
+.toc-floating {
+    float: right;
+    margin-left: 1em;
+}
+@media (max-width: 650px) {
+    .toc-floating {
+        display: none;
+    }
+}
+
+.bundling-diagram {
+    max-width: 100%;
+    float: right;
+    margin-left: 5px;
+}
+@media (max-width: 850px) {
+    .bundling-diagram-wide {
+        float: none;
+    }
+}
+
+      </style>
+    
+
+    <!-- Fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1>Building web apps with Vue and Django - The Ultimate Guide</h1>
+    <div class="post-metadata">
+      
+        Feb 16, 2021
+       &ndash; Filed under: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span><a href="/articles/topics/#Django">Django<sup>4</sup></a></span>
+        
+          <span><a href="/articles/topics/#Software">Software<sup>58</sup></a></span>
+        
+      </span>
+      
+    </div>
+    
+    
+
+<div class="toc toc-floating">
+  <ul>
+<li><a href="#1-server-or-2-servers">1 server or 2 servers?</a></li>
+<li><a href="#1-server-approach">1-server approach</a>
+
+<ul>
+<li><a href="#bundling-strategy">Bundling strategies</a>
+
+<ul>
+<li><a href="#concatenated-bundling">Concatenated Bundling</a></li>
+<li><a href="#import-traced-bundling">Import-Traced Bundling</a></li>
+<li><a href="#transpiled-bundling">Transpiled Bundling</a></li>
+</ul>
+</li>
+<li><a href="#render-baseline-html-with-django">Render baseline HTML with Django</a></li>
+<li><a href="#enhance-baseline-html-with-vue">Enhance baseline HTML with Vue</a></li>
+</ul>
+</li>
+<li><a href="#2-server-approach">2-server approach</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+
+</div>
+
+
+<p><a href="https://vuejs.org/v2/guide/">Vue</a> and <a href="https://www.djangoproject.com/">Django</a> are both fantastic for building modern web apps - bringing declarative functional reactive programming to the frontend, and an integrated web app platform, ecosystem, and battle-hardened ORM to the backend. However they can be somewhat tricky to use <em>together</em>.</p>
+
+<p>Here I&rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&rsquo;ve been building web apps with Django for ~6 years and with Vue for ~3 years, and in particular I&rsquo;ve extensively tested the <a href="#1-server-approach">1&#8209;server</a>&nbsp;<a href="#concatenated-bundling">concatenated bundling</a> approach described below in production.<br clear="both" /></p>
+
+<p><a name="1-server-or-2-servers"></a></p>
+
+<h1>1 server or 2 servers?</h1>
+
+<p>The first question to consider when planning to use Django and Vue together is whether to use a single server that serves both backend endpoints and frontend assets, or to use two different servers, one to host the frontend and a separate &ldquo;API server&rdquo; to host the backend.</p>
+
+<p><img alt="Diagram: 1-server vs 2-server setup" src="/assets/2021/vue-and-django/1-server-vs-2-server.svg" style="max-width: 100%;" /></p>
+
+<p>Factors in favor of a 1-server setup:</p>
+
+<ul>
+<li><strong>Operational maintenance costs</strong> are significantly simplified with only a single server to deploy, monitor, and manage.</li>
+<li>Relegating Django&rsquo;s role to only that of an API server - in the 2-server setup - will complicate or even prevent you from using any <strong>Django features or third-party apps that rely on server-side rendering by Django</strong>, such as its famous built-in administration interface. Instead you&rsquo;ll be doing most of your server-side rendering with some JavaScript framework that is Node-compatible. And Node-based server-side rendering is generally rather complex to setup.</li>
+</ul>
+
+
+<p>Factors in favor of a 2-server setup:</p>
+
+<ul>
+<li>If you want to use the latest and greatest version of JavaScript, with transpilation and module bundling, the 2-server setup has <strong>great community documentation for setting up a frontend server and build pipeline that supports all of these new JavaScript features</strong>.
+
+<ul>
+<li>However most of those features can <em>still</em> be obtained in a single-server setup with some effort, as described later in this article.</li>
+</ul>
+</li>
+<li>If your organization already has <strong>separate frontend and backend teams</strong>, it may be easier to have 2 servers - one managed by the frontend team, and one managed by the backend team - to allow each team to focus on each server separately (and satisfy Conway&rsquo;s Law <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> 🙂).</li>
+<li>If your organization already has a <strong>separate operations team</strong> that has the capacity to manage the additional server implied by a 2-server setup, then the additional operational overhead may be acceptable.</li>
+</ul>
+
+
+<p>At my company we went with the single server option because our engineering team is small (&lt; 5 engineers) - so we care a lot about minimizing operational overhead - and composed of full-stack generalists who are familar with both backend and frontend technologies - so we have engineers that can work anywhere in the stack but aggressively prefer <em>simple</em> architechures that don&rsquo;t require extreme specialization in multiple domains.</p>
+
+<p>In the next section I&rsquo;ll drill down into the 1-server approach, but you can also skip to the <a href="#2-server-approach">2-server approach</a> if that&rsquo;s what you&rsquo;re leaning toward.</p>
+
+<p><a name="1-server-approach"></a></p>
+
+<h1>1-server approach</h1>
+
+<p>When using a single server, you&rsquo;ll need to:</p>
+
+<ul>
+<li>pick an asset <a href="#bundling-strategy">bundling strategy</a>,</li>
+<li><a href="#render-baseline-html-with-django">render SEO-friendly HTML server-side</a> with critical navigation and content available immediately on page load, and</li>
+<li><a href="#enhance-baseline-html-with-vue">enhance that HTML client-side with Vue after page load</a> with additional dynamic content.</li>
+</ul>
+
+
+<p><a name="bundling-strategy"></a></p>
+
+<h2>Bundling strategies</h2>
+
+<p>When using a single integrated Django server to not only host your backend but also serve your frontend, you&rsquo;ll need to decide how you want to bundle your JavaScript assets on the frontend together. <strong>Bundling of some kind is necessary for a production deployment</strong> that is fast enough to be mobile-friendly and usable by distant international customers who may not have fast network connectivity to your server.</p>
+
+<p>There are multiple bundling techniques that can be used with Django, with various pros and cons:</p>
+
+<ul>
+<li><a href="#concatenated-bundling">Concatenated Bundling</a>,</li>
+<li><a href="#import-traced-bundling">Import-Traced Bundling</a>, and</li>
+<li><a href="#transpiled-bundling">Transpiled Bundling</a>.</li>
+</ul>
+
+
+<p><a name="concatenated-bundling"></a></p>
+
+<h3>Concatenated Bundling</h3>
+
+<p><img alt="Diagram: Concatenated Bundling Strategy" src="/assets/2021/vue-and-django/bundling-strategies/concatenated.svg" class="bundling-diagram" /></p>
+
+<p>This is by far the easiest bundling technique to use with Django and is a good technique to start with.</p>
+
+<p>With concatenated bundling, you write JavaScript files that consist entirely of top-level function definitions and other non-executable code. Your HTML template served by Django contains <code>&lt;script&gt;</code>-includes of every JavaScript file that the current page requires, directly or transitively. And after all JavaScript files are included the HTML page uses an inline <code>&lt;script&gt;</code> to call the root JavaScript function which sets up the rest of the page:<br clear="both" /></p>
+
+<pre><code>&lt;!-- todo/templates/todo/todo.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;...&lt;/head&gt;
+&lt;body&gt;...&lt;/body&gt;
+{% compress js %}
+    &lt;script src="{% static 'todo/todo.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'todo/todo/list.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'todo/todo/item.js' %}"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        setupTodoPage();
+    &lt;/script&gt;
+{% endcompress %}
+&lt;/html&gt;
+</code></pre>
+
+
+<blockquote><p>Note: The <code>{% compress js %}</code> tag above assumes that you are using the excellent <a href="https://django-compressor.readthedocs.io/en/stable/">Django Compressor</a> library which integrates well with Django as your concatenating bundler.</p></blockquote>
+
+<p>Pros of concatenated bundling:</p>
+
+<ul>
+<li><strong>Very easy to setup.</strong> Leverages excellent documentation from the Django Compressor library.</li>
+<li><strong>Zero bundle build times during development.</strong></li>
+<li>Fastest bundle build times during deployment, compared with other approaches.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
+</ul>
+
+
+<p>Cons of concatenated bundling:</p>
+
+<ul>
+<li>You must manage your JS dependencies in HTML manually:
+
+<ul>
+<li>Whenever adding a new JS module you must remember to add it to the HTML for the appropriate page(s).</li>
+<li>If you alter an existing JS module to depend on a new JS module, you must find all page HTMLs that include the first module and update them to include the second module if needed.</li>
+<li>If you want to avoid managing JS dependencies manually, consider <a href="#import-traced-bundling">import-traced bundling</a> instead.</li>
+</ul>
+</li>
+<li>JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&rsquo;t supported by your customers' browsers then you&rsquo;re out of luck. If you need transpilation consider the <a href="#transpiled-bundling">transpiled</a> or the <a href="#2-server-approach">2-server</a> approaches instead.</li>
+<li>It is awkward to define a class in a JavaScript module that inherits from a base class in a different module, because that <em>requires</em> <code>&lt;script&gt;</code>-including the base class&rsquo;s module first, breaking the usual rule that &ldquo;the order that JS files are imported should not matter&rdquo;. (However if you just limit inheritance to be within a single module or avoid it entirely, then this restriction doesn&rsquo;t matter in practice.)</li>
+</ul>
+
+
+<p>Note that choosing concatenated bundling does <em>not</em> prevent you from using TypeScript-based type checking in your JS files, which I <em>do</em> recommend for long-lived projects. In short, you can put a special <code>// @ts-check</code> comment at the top of a JS file to <a href="https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html">enable type-checking of JS with the TypeScript compiler</a> (<code>tsc</code>). <!-- Using TypeScript to type-check JS files doesn't seem like a very-well known technique, so I plan to write a future article about it. --></p>
+
+<p><a name="import-traced-bundling"></a></p>
+
+<h3>Import-Traced Bundling</h3>
+
+<p><img alt="Diagram: Import-Traced Bundling Strategy" src="/assets/2021/vue-and-django/bundling-strategies/import-traced.svg" class="bundling-diagram" /></p>
+
+<p>With the advent of the <a href="https://www.snowpack.dev/">Snowpack</a> bundler we can get all the benefits of the <a href="#concatenated-bundling">concatenated bundling</a> approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.</p>
+
+<p>With import-traced bundling, you write a root JavaScript file for each page that uses regular <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">JavaScript import statements</a> to bring in related modules. Your HTML template then only needs to include the root JavaScript file:<br clear="both" /></p>
+
+<pre><code>&lt;!-- todo/templates/todo/todo.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;...&lt;/head&gt;
+&lt;body&gt;...&lt;/body&gt;
+&lt;!-- js --&gt;
+    &lt;script type="module"&gt;
+        import { setupTodoPage } from "{% static 'todo/todo.js' %}";
+        setupTodoPage();
+    &lt;/script&gt;
+&lt;!-- endjs --&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+<p>The root JavaScript file might look like:</p>
+
+<pre><code>// static/todo/todo.js
+import { defineTodoList } from "./todo/list.js";
+
+export function setupTodoPage() {
+    defineTodoList();
+    ...
+}
+</code></pre>
+
+
+<p>And that root JS file can include other modules like:</p>
+
+<pre><code>// static/todo/list.js
+import { defineTodoItem } from "./item.js";
+
+export function defineTodoList() {
+    defineTodoItem();
+    
+    Vue.component('todo-list', {
+        props: {
+            ...
+        },
+        template: `
+            ...
+        `,
+        methods: {
+            ...
+        }
+    });
+}
+</code></pre>
+
+
+<p>Some key differences between import-traced bundling and concatenated bundling:</p>
+
+<ul>
+<li>The HTML page only needs to include the root JS file for the page and not any of its indirect JS dependencies.</li>
+<li>JS modules must use <code>import</code> to declare other JS modules that they depend on, and <code>export</code> any functions that they want to be importable by other modules.</li>
+<li>JS files for <em>all</em> Django apps in the Django project should be put in a common <code>static</code> directory rather than using per-app <code>static</code> directories. Having a common directory for all JS files will make it easier to configure Snowpack to build combined JS bundles for production deployments.</li>
+<li>There is no longer a need to use Django Compressor.</li>
+</ul>
+
+
+<p>For a production deployment, you&rsquo;ll need to alter your deployment script to run Snowpack on the root <code>static</code> directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.</p>
+
+<p>Pros of import-traced bundling:</p>
+
+<ul>
+<li><strong>Easy to setup for development.</strong> (Trickier to setup for deployment.)</li>
+<li><strong>Zero bundle build times during development.</strong></li>
+<li>Fast bundle build times during deployment.</li>
+<li><strong>JS dependencies are automatically managed</strong> through regular <code>import</code> statements in JS.</li>
+</ul>
+
+
+<p>Cons of import-traced bundling:</p>
+
+<ul>
+<li>JavaScript files are not transpiled at <em>development time</em> (although they <em>are</em> at deployment time), so if you want to use the most bleeding-edge JavaScript features that aren&rsquo;t even supported by your development browser then you&rsquo;re out of luck. If you need transpilation during development consider the <a href="#transpiled-bundling">transpiled</a> or the <a href="#2-server-approach">2-server</a> approaches instead.</li>
+<li>Requires that your development browsers <a href="https://caniuse.com/mdn-javascript_statements_import">support JavaScript import</a> and JS modules in general.</li>
+</ul>
+
+
+<p><a name="transpiled-bundling"></a></p>
+
+<h3>Transpiled Bundling</h3>
+
+<p><img alt="Diagram: Transpiled Bundling Strategy" src="/assets/2021/vue-and-django/bundling-strategies/transpiled.svg" class="bundling-diagram bundling-diagram-wide" /></p>
+
+<p>If you want the latest and greatest JavaScript features that haven&rsquo;t made it even to your latest <em>development</em> browser (ex: the latest Chrome or Firefox) then you&rsquo;ll need to pay the cost of needing to transpile during development time:</p>
+
+<p>The transpiled bundling approach generally uses the same kind of HTML, JS, and filesystem structure as the <a href="#import-traced-bundling">import-traced bundling</a> approach but you have additional flexibility depending on the particular set of bundler and transpiler tools you select.</p>
+
+<p>Common choices for transpiler tools as of early 2021 are <a href="https://webpack.js.org/">Webpack</a>, <a href="https://babeljs.io/">Babel</a>, and <a href="https://www.typescriptlang.org/">TypeScript</a>.</p>
+
+<p>For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&rsquo;s <a href="https://youtu.be/E613X3RBegI?t=1203">thoughts on the transpiled bundling approach at PyCon 2019</a>.</p>
+
+<p>Pros of transpiled bundling:</p>
+
+<ul>
+<li><strong>Latest bleeding-edge JavaScript features are available.</strong></li>
+<li><strong>JS dependencies are automatically managed.</strong>
+
+<ul>
+<li>You can also manage dependencies automatically with the simpler <a href="#import-traced-bundling">import-traced bundling</a> approach.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Cons of transpiled bundling:</p>
+
+<ul>
+<li><strong>Moderate-to-slow bundle build times during development.</strong>
+
+<ul>
+<li>You can eliminate build times during development entirely using either the <a href="#import-traced-bundling">import-traced bundling</a> or <a href="#concatenated-bundling">concatenated bundling</a> approaches.</li>
+</ul>
+</li>
+<li>Slow bundle build times during deployment, assuming you enable aggressive optimizations.</li>
+</ul>
+
+
+<p><a name="render-baseline-html-with-django"></a></p>
+
+<h2>Render baseline HTML with Django</h2>
+
+<p>Now that you&rsquo;ve picked a <a href="#bundling-strategy">bundling approach</a>, we can move on to rendering our first page with Django and Vue.</p>
+
+<p>When a browser (or search engine crawler) first requests a page from your site, it will only be able to immediately render the initial HTML served by Django. In particular, browsers will take some time to start running any JavaScript on your HTML page, so it&rsquo;s important that the initial HTML served by Django contains your most important page content.</p>
+
+<p>For example if we were building the product page of an online store, we&rsquo;d want to ensure the initial HTML rendered by Django immediately contained things like:</p>
+
+<ul>
+<li>the site logo and top navigation links,</li>
+<li>the product image,</li>
+<li>the product description,</li>
+<li>placeholders for other less-important panels that are okay to load later in JavaScript, with appropriate animated spinner icons or other loading indicators.</li>
+</ul>
+
+
+<!-- (TODO: Diagram: Example product page after initial page load) -->
+
+
+<p>So the HTML rendered by Django might look something like:</p>
+
+<pre><code>&lt;!-- store/templates/store/product.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;...&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Top navigation --&gt;
+    &lt;nav class="navbar navbar-inverse"&gt;
+        &lt;div class="container-fluid"&gt;
+            &lt;div class="navbar-header"&gt;
+                &lt;!-- Site logo --&gt;
+                &lt;a class="navbar-brand" href="/"&gt;Acme Store&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="navbar-collapse collapse"&gt;
+                &lt;!-- Top navigation links --&gt;
+                &lt;ul class="nav navbar-nav"&gt;
+                    &lt;li&gt;&lt;a href="/computer-systems/"&gt;Computer Systems&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/components/"&gt;Components&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/electronics/"&gt;Electronics&lt;/a&gt;&lt;/li&gt;
+                    ...
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+    
+    &lt;!-- Main content --&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="content-container"&gt;
+            &lt;!-- Primary panel --&gt;
+            &lt;img alt="Product image" href="{{ product.image_url }}" style="float: left;" /&gt;
+            &lt;h1&gt;{{ product.title }}&lt;/h1&gt;
+            &lt;div&gt;
+                {{ product.description }}
+            &lt;/div&gt;
+            
+            &lt;!-- Secondary panel; a placeholder filled out by JS later --&gt;
+            &lt;div id="recommendations-panel"&gt;
+                &lt;h2&gt;Recommended for You&lt;/h2&gt;
+                &lt;img
+                    v-if="loading" 
+                    alt="Loading spinner"
+                    src="{% static 'store/loading-spinner.gif' %}" /&gt;
+                &lt;template
+                    v-else
+                    v-cloak&gt;
+                    ...
+                &lt;/template&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+{{ recommendations_panel_data|json_script:"recommendations-panel-data" }}
+
+{% compress js %}
+    &lt;script src="{% static 'store/product.js' %}"&gt;&lt;/script&gt;
+    &lt;script src="{% static 'store/product/recommendations.js' %}"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        setupProductPage();
+    &lt;/script&gt;
+{% endcompress %}
+&lt;/html&gt;
+</code></pre>
+
+
+<p>Notice that most of the page is initially rendered server-side with Django&rsquo;s built-in templating system and <em>not</em> with Vue. This server-side rendered content loads fast and can be appropriately indexed by search engines for better SEO.</p>
+
+<p>However certain less-important panels like the Recommendations panel don&rsquo;t need to be loaded immediately and will be given life by Vue later after the page&rsquo;s JavaScript starts running. Let&rsquo;s consider how that works:</p>
+
+<p><a name="enhance-baseline-html-with-vue"></a></p>
+
+<h2>Enhance baseline HTML with Vue</h2>
+
+<p>When the browser (or search engine) first loads the Recommendations panel it will initially see just a loading spinner:</p>
+
+<pre><code>&lt;div id="recommendations-panel"&gt;
+    &lt;h2&gt;Recommended for You&lt;/h2&gt;
+    &lt;img
+        v-if="loading" 
+        alt="Loading spinner"
+        src="{% static 'store/loading-spinner.gif' %}" /&gt;
+    &lt;template
+        v-else
+        v-cloak&gt;
+        ...
+    &lt;/template&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<blockquote><p>Note: The <code>v-cloak</code> directive is associated with the CSS rule <code>[v-cloak] { display: none; }</code> so nothing marked by that directive will be displayed initially.</p></blockquote>
+
+<p>Later when the page&rsquo;s JavaScript starts running, it will call <code>setupProductPage()</code>:</p>
+
+<pre><code>// store/product.js
+/*public*/ function setupProductPage() {
+    setupRecommendationsPanel();
+}
+</code></pre>
+
+<p>which will call <code>setupRecommendationsPanel()</code>:</p>
+
+<pre><code>// store/product/recommendations.js
+/*public*/ function setupRecommendationsPanel() {
+    new Vue({
+        el: '#recommendations-panel',
+        data: function() {
+            return document.querySelector('#recommendations-panel-data').innerText;
+        },
+        computed: {
+            loading: function() {
+                ...
+            },
+            ...
+        },
+        methods: {
+            ...
+        }
+    });
+}
+</code></pre>
+
+<p>which will use Vue to render the interior of the panel, perhaps after performing an Ajax request back to a Django endpoint to fetch more data.</p>
+
+<blockquote><p>Notice that some data for the panel can be prepopulated in HTML via the <code>{{ ...|json_script:"..." }}</code> template tag by Django and then fetched later via <code>document.querySelector(...).innerText</code> in JavaScript.</p></blockquote>
+
+<p>Done! Skip to the <a href="#conclusion">conclusion</a>.</p>
+
+<p><a name="2-server-approach"></a></p>
+
+<h1>2-server approach</h1>
+
+<p>When using a separate frontend server for Vue and a separate backend server for Django, you&rsquo;ll need to:</p>
+
+<ul>
+<li>setup <a href="https://v3.vuejs.org/guide/installation.html#installation">a standalone Vue server</a> and <a href="https://www.djangoproject.com/start/">a standalone Django server</a> using official documentation from each project,</li>
+<li>alter the frontend Vue server to <a href="https://ssr.vuejs.org/#why-ssr">support server-side rendering or prerendering</a> using official documentation,</li>
+<li>create some pages in Vue, some endpoints in Django (perhaps using the <a href="https://www.django-rest-framework.org/">Django REST Framework</a>), and have those pages access those routes using plain old <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">window.fetch()</a>&nbsp;(or something shinier like <a href="https://github.com/axios/axios#readme">Axios</a>).</li>
+</ul>
+
+
+<p><a name="conclusion"></a></p>
+
+<h1>Conclusion</h1>
+
+<p>Hopefully this guide has been useful in helping you setup Vue inside your new or existing Django web app. Happy coding!</p>
+
+<h2><em>Related Articles</em></h2>
+
+<ul>
+<li><a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">Database clamps</a> - Writing deterministic performance tests for database-dependent code in Django</li>
+<li><a href="/articles/2021/02/02/tests-as-policy-automation/">Tests as Policy Automation</a> - Has ideas for creatively using automated tests to enforce various (non-functional) properties in your Django web app.</li>
+<li>Other <span class="tag_box tag_box--inline"><span><a href="/articles/topics/#Django">Django<sup>4</sup></a></span></span> articles</li>
+</ul>
+
+
+<h2><em>Related Projects</em></h2>
+
+<ul>
+<li><a href="/projects/techsmart-platform">TechSmart Platform</a> - Large web app that I work on that uses Django and Vue. (Sorry it’s closed-source!)</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway&rsquo;s Law</a>: The technical architecture of a system tends to mirror the organizational and communication structure of the people that build it. So if you have 2 teams building a compiler, they&rsquo;re likely to build a 2-pass compiler. Similarly if you have a frontend and a backend team, they&rsquo;re likely to build separate frontend and backend servers if left to themselves.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>At the time of writing it takes 2.1 seconds for me to bundle 100,650 lines (5,304 KiB) of JS and 17,617 lines (699 KiB) of CSS using Django Compressor&rsquo;s default settings which uses <a href="http://opensource.perlig.de/rjsmin/">rJSMin</a> to minify JS (via <a href="https://stackoverflow.com/a/1732454/604063">regex</a> no less!).<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+  <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+</a>
+<a class="subscribe" href="https://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" />Subscribe (RSS)
+</a>
+<span class="subscribe subscribe-last subscribe__frequency">
+  <i>Updated articles every Tuesday!</i>
+</span>
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/" title="Database clamps: Deterministic performance tests for database-dependent code">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2021 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>

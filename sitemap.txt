@@ -26,6 +26,7 @@ https://dafoster.net/projects/website-2/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/
 https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/
 https://dafoster.net/articles/2021/02/04/privacy-sandbox-googles-answer-to-privacy-conscious-advertising/
 https://dafoster.net/articles/2021/02/02/tests-as-policy-automation/
