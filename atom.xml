@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-17T06:22:30+00:00</updated>
+ <updated>2021-02-17T06:36:05+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -64,7 +64,9 @@
 
 &lt;p&gt;The first question to consider when planning to use Django and Vue together is whether to use a single server that serves both backend endpoints and frontend assets, or to use two different servers, one to host the frontend and a separate &amp;ldquo;API server&amp;rdquo; to host the backend.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: 1-server vs 2-server setup&quot; src=&quot;/assets/2021/vue-and-django/1-server-vs-2-server.svg&quot; style=&quot;max-width: 100%;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/1-server-vs-2-server.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: 1-server vs 2-server setup&quot; src=&quot;/assets/2021/vue-and-django/1-server-vs-2-server.svg&quot; style=&quot;max-width: 100%;&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Factors in favor of a 1-server setup:&lt;/p&gt;
 
@@ -124,7 +126,9 @@
 
 &lt;h3&gt;Concatenated Bundling&lt;/h3&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Concatenated Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/concatenated.svg&quot; class=&quot;bundling-diagram&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/bundling-strategies/concatenated.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: Concatenated Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/concatenated.svg&quot; class=&quot;bundling-diagram&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;This is by far the easiest bundling technique to use with Django and is a good technique to start with.&lt;/p&gt;
 
@@ -180,7 +184,9 @@
 
 &lt;h3&gt;Import-Traced Bundling&lt;/h3&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Import-Traced Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot; class=&quot;bundling-diagram&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: Import-Traced Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot; class=&quot;bundling-diagram&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;With the advent of the &lt;a href=&quot;https://www.snowpack.dev/&quot;&gt;Snowpack&lt;/a&gt; bundler we can get all the benefits of the &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.&lt;/p&gt;
 
@@ -270,7 +276,9 @@ export function defineTodoList() {
 
 &lt;h3&gt;Transpiled Bundling&lt;/h3&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Transpiled Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot; class=&quot;bundling-diagram bundling-diagram-wide&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: Transpiled Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot; class=&quot;bundling-diagram bundling-diagram-wide&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;If you want the latest and greatest JavaScript features that haven&amp;rsquo;t made it even to your latest &lt;em&gt;development&lt;/em&gt; browser (ex: the latest Chrome or Firefox) then you&amp;rsquo;ll need to pay the cost of needing to transpile during development time:&lt;/p&gt;
 
