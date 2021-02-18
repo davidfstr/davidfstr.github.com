@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-02-17T06:36:05+00:00</updated>
+ <updated>2021-02-18T18:31:09+00:00</updated>
  <id>https://dafoster.net/</id>
  <author>
    <name>David Foster</name>
@@ -90,7 +90,7 @@
 &lt;/ul&gt;
 
 
-&lt;p&gt;At my company we went with the single server option because our engineering team is small (&amp;lt; 5 engineers) - so we care a lot about minimizing operational overhead - and composed of full-stack generalists who are familar with both backend and frontend technologies - so we have engineers that can work anywhere in the stack but aggressively prefer &lt;em&gt;simple&lt;/em&gt; architechures that don&amp;rsquo;t require extreme specialization in multiple domains.&lt;/p&gt;
+&lt;p&gt;At my company we went with the single server option because our engineering team is small (&amp;lt; 5 engineers) - so we care a lot about minimizing operational overhead - and is composed of full-stack generalists who are familar with both backend and frontend technologies - so we have engineers that can work anywhere in the stack but aggressively prefer &lt;em&gt;simple&lt;/em&gt; architechures that don&amp;rsquo;t require extreme specialization in multiple domains.&lt;/p&gt;
 
 &lt;p&gt;In the next section I&amp;rsquo;ll drill down into the 1-server approach, but you can also skip to the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server approach&lt;/a&gt; if that&amp;rsquo;s what you&amp;rsquo;re leaning toward.&lt;/p&gt;
 
