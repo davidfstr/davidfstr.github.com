@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 23 Feb 2021 04:37:54 +0000</pubDate>
-    <lastBuildDate>Tue, 23 Feb 2021 04:37:54 +0000</lastBuildDate>
+    <pubDate>Tue, 23 Feb 2021 06:06:16 +0000</pubDate>
+    <lastBuildDate>Tue, 23 Feb 2021 06:06:16 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2095,7 +2095,9 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 
 &lt;p&gt;I annotate a screenshot of the current Dynamic Calendar dropdown that staff can use to manipulate days on the calendar:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2018/how-to-implement-a-large-software-feature/before.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2018/how-to-implement-a-large-software-feature/before.png&quot;&gt;
+    &lt;img alt=&quot;High-fidelity UX mockup: Weekly calendar with open dropdown menu, that is divided into 3 sections.&quot; src=&quot;/assets/2018/how-to-implement-a-large-software-feature/before.png&quot; style=&quot;max-width: 100%;&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;2. Design the new behavior. Write out the delta between the old and new behaviors.&lt;/h3&gt;
 
