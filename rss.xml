@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 23 Feb 2021 20:01:15 +0000</pubDate>
-    <lastBuildDate>Tue, 23 Feb 2021 20:01:15 +0000</lastBuildDate>
+    <pubDate>Thu, 25 Feb 2021 14:35:30 +0000</pubDate>
+    <lastBuildDate>Thu, 25 Feb 2021 14:35:30 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -12886,18 +12886,18 @@ Count me in!&lt;/li&gt;
       <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
       
       <guid>https://dafoster.net/articles/2013/01/15/things-i-wish-i-knew-before-working-in-industry</guid>
-      <description>&lt;p&gt;In April 2008, a representative from IBM gave a presentation at Georgia
-Tech about things he wished he knew before working in the the software
-industry. I have found his advice to be very useful at various points during
-my career. Sadly I have lost the presenter&amp;rsquo;s name.&lt;/p&gt;
+      <description>&lt;p&gt;A representative from IBM came to visit me in college several years
+ago&lt;!-- in April 2008 --&gt; when I was a student and talked about several things
+he wished he knew before working in the software industry.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+I&amp;rsquo;ve found his advice to be very useful at various points during my career.
+And would like to share it again with you now, in outline form:&lt;/p&gt;
 
-&lt;p&gt;Here is my outline of his presentation, updated for 2021.
-&lt;strong&gt;Emphasized&lt;/strong&gt; points are ones I&amp;rsquo;ve found to be particularly useful.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;Note: &lt;strong&gt;Bolded&lt;/strong&gt; points I&amp;rsquo;ve found to be especially useful.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;h3&gt;Technology&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Future: integration&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Future: integration&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Needed: ease-of-use &amp;amp; less complexity&lt;/li&gt;
 &lt;li&gt;Do &lt;em&gt;not&lt;/em&gt; reinvent wheels!
 
@@ -12913,8 +12913,8 @@ my career. Sadly I have lost the presenter&amp;rsquo;s name.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Learn to learn&lt;/li&gt;
 &lt;li&gt;Don&amp;rsquo;t need to take a class to learn something&lt;/li&gt;
-&lt;li&gt;Learn a little about a lot of things&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-&lt;li&gt;Read news highlights from worthwhile sources&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Learn a little about a lot of things&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Read news highlights from worthwhile sources&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -12949,7 +12949,7 @@ If you can&amp;rsquo;t get someone to adopt your solution, what&amp;rsquo;s the 
 &lt;ul&gt;
 &lt;li&gt;It&amp;rsquo;s not &lt;em&gt;what&lt;/em&gt; you know.&lt;br/&gt;
 It&amp;rsquo;s not &lt;em&gt;who&lt;/em&gt; you know.&lt;br/&gt;
-&lt;strong&gt;It&amp;rsquo;s &lt;em&gt;who&lt;/em&gt; knows &lt;em&gt;what&lt;/em&gt; you know.&lt;/strong&gt;&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;strong&gt;It&amp;rsquo;s &lt;em&gt;who&lt;/em&gt; knows &lt;em&gt;what&lt;/em&gt; you know.&lt;/strong&gt;&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Doing more of the same is not enough.
 
 &lt;ul&gt;
@@ -13057,14 +13057,14 @@ It&amp;rsquo;s not &lt;em&gt;who&lt;/em&gt; you know.&lt;br/&gt;
 &lt;li&gt;Take a look at the annual reports for your company.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Get &lt;em&gt;internships&lt;/em&gt;, even if with competitors, maybe even delaying graduation.&lt;/strong&gt;&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;
+&lt;li&gt;&lt;strong&gt;Get &lt;em&gt;internships&lt;/em&gt;, even if with competitors, maybe even delaying graduation.&lt;/strong&gt;&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;
 
 &lt;ul&gt;
 &lt;li&gt;It gives experience.&lt;/li&gt;
 &lt;li&gt;Increases employment opportunities.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Start looking and prepare much earlier.&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Start looking and prepare much earlier.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -13072,7 +13072,7 @@ It&amp;rsquo;s not &lt;em&gt;who&lt;/em&gt; you know.&lt;br/&gt;
 
 &lt;ul&gt;
 &lt;li&gt;If you want to make a difference, look for chaos.&lt;br/&gt;
-Stable environments offer little opportunity.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+Stable environments offer little opportunity.&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Good employees &lt;em&gt;deal&lt;/em&gt; with challenges instead of pouting. &lt;em&gt;Adapt&lt;/em&gt;.&lt;/li&gt;
 &lt;li&gt;Stay above the commodity line (with regard to skill set and type of work done).&lt;/li&gt;
 &lt;/ul&gt;
@@ -13120,19 +13120,21 @@ Stable environments offer little opportunity.&lt;sup id=&quot;fnref:7&quot;&gt;&
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;Apple has always been smart about creating integrated products and experiences. In 2020 Apple announced the M1, an ARM system-on-chip (SOC) with &lt;em&gt;incredible&lt;/em&gt; performance. &lt;a href=&quot;https://singhkays.com/blog/apple-silicon-m1-black-magic/&quot;&gt;The internet exploded.&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Sadly I have lost the name of the presenter from IBM who gave this talk originally.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;I lean toward having a breadth of knowledge or being a generalist. But it&amp;rsquo;s also to have a deep specialization in one or two areas too. &lt;a href=&quot;https://alexkondov.com/the-t-shaped-engineer/&quot;&gt;The T-Shaped Engineer&lt;/a&gt; gives more insight into the tradeoffs of having generalist vs. specialist skills.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Apple has always been smart about creating integrated products and experiences. In 2020 Apple announced the M1, an ARM system-on-chip (SOC) with &lt;em&gt;incredible&lt;/em&gt; performance. &lt;a href=&quot;https://singhkays.com/blog/apple-silicon-m1-black-magic/&quot;&gt;The internet exploded.&lt;/a&gt;&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
-&lt;p&gt;For news of general interest to technologists I like &lt;a href=&quot;https://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt;. There&amp;rsquo;s also frequently a &lt;a href=&quot;https://www.reddit.com/&quot;&gt;subreddit&lt;/a&gt; for most topics. For example I&amp;rsquo;ve been liking &lt;a href=&quot;https://www.reddit.com/r/django/&quot;&gt;r/django&lt;/a&gt; recently for Django-related information.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;I lean toward having a breadth of knowledge or being a generalist. But it&amp;rsquo;s also to have a deep specialization in one or two areas too. &lt;a href=&quot;https://alexkondov.com/the-t-shaped-engineer/&quot;&gt;The T-Shaped Engineer&lt;/a&gt; gives more insight into the tradeoffs of having generalist vs. specialist skills.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:4&quot;&gt;
-&lt;p&gt;It&amp;rsquo;s not enough to be doing awesome things regularly. If you want that activity to pay off in increasing your luck, you&amp;rsquo;ll also need to find ways to let folks know what you&amp;rsquo;re up to, especially those with similar values and mission-alignment. Doing both will increase your &lt;a href=&quot;https://www.codusoperandi.com/posts/increasing-your-luck-surface-area&quot;&gt;luck surface area&lt;/a&gt; and opportunities will come your way more often. Luck is where preparation meets opportunity, but you can actually increase opportunities!&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;For news of general interest to technologists I like &lt;a href=&quot;https://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt;. There&amp;rsquo;s also frequently a &lt;a href=&quot;https://www.reddit.com/&quot;&gt;subreddit&lt;/a&gt; for most topics. For example I&amp;rsquo;ve been liking &lt;a href=&quot;https://www.reddit.com/r/django/&quot;&gt;r/django&lt;/a&gt; recently for Django-related information.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:5&quot;&gt;
-&lt;p&gt;While in college I interned at several smallish companies (plus Google) and I can attest that my experiences there, in environments of different sizes, helped me learn what kind of work environment I was most interested in aiming for.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;It&amp;rsquo;s not enough to be doing awesome things regularly. If you want that activity to pay off in increasing your luck, you&amp;rsquo;ll also need to find ways to let folks know what you&amp;rsquo;re up to, especially those with similar values and mission-alignment. Doing both will increase your &lt;a href=&quot;https://www.codusoperandi.com/posts/increasing-your-luck-surface-area&quot;&gt;luck surface area&lt;/a&gt; and opportunities will come your way more often. Luck is where preparation meets opportunity, but you can actually increase opportunities!&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:6&quot;&gt;
-&lt;p&gt;One of the most valuable classes I took in college assigned me the task of creating an online portfolo website. Although the &lt;a href=&quot;/prism/projects/&quot;&gt;initial version&lt;/a&gt; of that (and this) site was a bit rough, later editions were quite helpful in landing positions. In particular it helped get the attention of my cofounder at &lt;a href=&quot;https://www.techsmart.codes/&quot;&gt;TechSmart&lt;/a&gt;. ✨&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;While in college I interned at several smallish companies (plus Google) and I can attest that my experiences there, in environments of different sizes, helped me learn what kind of work environment I was most interested in aiming for.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:7&quot;&gt;
-&lt;p&gt;Google has the best actual onsite benefits of any company I&amp;rsquo;ve ever seen. (I worked there a while back in 2007.) But this cushiness means the engineers there don&amp;rsquo;t have the same incentives to be cutting edge. Multiple high-profile engineers, notably &lt;a href=&quot;https://medium.com/@steve.yegge/why-i-left-google-to-join-grab-86dfffc0be84&quot;&gt;Steve Yegge&lt;/a&gt; and &lt;a href=&quot;https://paygo.media/p/25171&quot;&gt;Waze&amp;rsquo;s CEO Noam Bardin&lt;/a&gt;, have written about why they eventually had to leave Google in order to make better headway in &lt;a href=&quot;/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/&quot;&gt;making a difference in the world&lt;/a&gt;. All of that said, Google is still &lt;em&gt;very&lt;/em&gt; cushy and I don&amp;rsquo;t think any less of those who choose to work there.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;One of the most valuable classes I took in college assigned me the task of creating an online portfolo website. Although the &lt;a href=&quot;/prism/projects/&quot;&gt;initial version&lt;/a&gt; of that (and this) site was a bit rough, later editions were quite helpful in landing positions. In particular it helped get the attention of my cofounder at &lt;a href=&quot;https://www.techsmart.codes/&quot;&gt;TechSmart&lt;/a&gt;. ✨&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:8&quot;&gt;
+&lt;p&gt;Google has the best actual onsite benefits of any company I&amp;rsquo;ve ever seen. (I worked there a while back in 2007.) But this cushiness means the engineers there don&amp;rsquo;t have the same incentives to be cutting edge. Multiple high-profile engineers, notably &lt;a href=&quot;https://medium.com/@steve.yegge/why-i-left-google-to-join-grab-86dfffc0be84&quot;&gt;Steve Yegge&lt;/a&gt; and &lt;a href=&quot;https://paygo.media/p/25171&quot;&gt;Waze&amp;rsquo;s CEO Noam Bardin&lt;/a&gt;, have written about why they eventually had to leave Google in order to make better headway in &lt;a href=&quot;/articles/2013/01/08/programming-is-fun-but-what-matters-is-solving-a-real-problem/&quot;&gt;making a difference in the world&lt;/a&gt;. All of that said, Google is still &lt;em&gt;very&lt;/em&gt; cushy and I don&amp;rsquo;t think any less of those who choose to work there.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
