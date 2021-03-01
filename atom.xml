@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-03-01T01:28:27+00:00</updated>
+ <updated>2021-03-01T02:07:14+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -488,7 +488,13 @@ export function defineTodoList() {
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps&lt;/a&gt; - Writing deterministic performance tests for database-dependent code in Django&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has ideas for creatively using automated tests to enforce various (non-functional) properties in your Django web app.&lt;/li&gt;
-&lt;li&gt;Other &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Django&quot;&gt;Django&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt; articles&lt;/li&gt;
+&lt;li&gt;Other &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Django&quot;&gt;
+Django&lt;sup&gt;4&lt;/sup&gt;
+&lt;/a&gt;
+&lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Django.xml&quot;&gt;
+&lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Django&quot; title=&quot;Subscribe to Django&quot;/&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/span&gt; articles&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -1056,7 +1062,13 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 &lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
 
-&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Productivity&quot;&gt;Productivity&lt;sup&gt;13&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Productivity&quot;&gt;
+  Productivity&lt;sup&gt;13&lt;/sup&gt;
+&lt;/a&gt;
+&lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Productivity.xml&quot;&gt;
+  &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Productivity&quot; title=&quot;Subscribe to Productivity&quot;/&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2015/03/23/block-distracting-websites/&quot;&gt;Block Distracting Websites&lt;/a&gt;&lt;/li&gt;
@@ -1065,7 +1077,13 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 &lt;/ul&gt;
 
 
-&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Software&quot;&gt;Software&lt;sup&gt;58&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
+  Software&lt;sup&gt;58&lt;/sup&gt;
+&lt;/a&gt;
+&lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
+  &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt;&lt;/li&gt;
