@@ -2,6 +2,9 @@
 https://dafoster.net/about/
 https://dafoster.net/apps/
 https://dafoster.net/articles/
+https://dafoster.net/articles/topics/Django.xml
+https://dafoster.net/articles/topics/Productivity.xml
+https://dafoster.net/articles/topics/Software.xml
 https://dafoster.net/articles/topics/
 https://dafoster.net/assets/bootswatch-readable-3.4.1/bootstrap.css
 https://dafoster.net/assets/bootswatch-readable-3.4.1/bootstrap.min.css

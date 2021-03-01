@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>DaFoster (Django)</title>
+ <link href="https://dafoster.net/articles/topics/#Django"/>
+ <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
+ <updated>2021-03-01T01:28:27+00:00</updated>
+ <id>https://dafoster.net/articles/topics/#Django</id>
+ <author>
+   <name>David Foster</name>
+   
+ </author>
+ <icon>https://dafoster.net/favicon.ico</icon>
+ <logo>https://dafoster.net/favicon.ico</logo>
+
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide</id>
+   <title>Building web apps with Vue and Django - The Ultimate Guide</title>
+   <published>2021-02-16T00:00:00+00:00</published>
+   <updated>2021-02-16T00:00:00+00:00</updated>
+   
+     <category term="Django"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">
+
+&lt;div class=&quot;toc toc-floating&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1-server-or-2-servers&quot;&gt;1 server or 2 servers?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#1-server-approach&quot;&gt;1-server approach&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#bundling-strategy&quot;&gt;Bundling strategies&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#concatenated-bundling&quot;&gt;Concatenated Bundling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#import-traced-bundling&quot;&gt;Import-Traced Bundling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#transpiled-bundling&quot;&gt;Transpiled Bundling&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#render-baseline-html-with-django&quot;&gt;Render baseline HTML with Django&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enhance-baseline-html-with-vue&quot;&gt;Enhance baseline HTML with Vue&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#2-server-approach&quot;&gt;2-server approach&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;https://vuejs.org/v2/guide/&quot;&gt;Vue&lt;/a&gt; and &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; are both fantastic for building modern web apps - bringing declarative functional reactive programming to the frontend, and an integrated web app platform, ecosystem, and battle-hardened ORM to the backend. However they can be somewhat tricky to use &lt;em&gt;together&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here I&amp;rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&amp;rsquo;ve been building web apps with Django for ~6 years and with Vue for ~3 years, and in particular I&amp;rsquo;ve extensively tested the &lt;a href=&quot;#1-server-approach&quot;&gt;1&amp;#8209;server&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach described below in production.&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;1-server-or-2-servers&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;1 server or 2 servers?&lt;/h1&gt;
+
+&lt;p&gt;The first question to consider when planning to use Django and Vue together is whether to use a single server that serves both backend endpoints and frontend assets, or to use two different servers, one to host the frontend and a separate &amp;ldquo;API server&amp;rdquo; to host the backend.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/1-server-vs-2-server.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: 1-server vs 2-server setup&quot; src=&quot;/assets/2021/vue-and-django/1-server-vs-2-server.svg&quot; style=&quot;max-width: 100%;&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Factors in favor of a 1-server setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Operational maintenance costs&lt;/strong&gt; are significantly simplified with only a single server to deploy, monitor, and manage.&lt;/li&gt;
+&lt;li&gt;Relegating Django&amp;rsquo;s role to only that of an API server - in the 2-server setup - will complicate or even prevent you from using any &lt;strong&gt;Django features or third-party apps that rely on server-side rendering by Django&lt;/strong&gt;, such as its famous built-in administration interface. Instead you&amp;rsquo;ll be doing most of your server-side rendering with some JavaScript framework that is Node-compatible. And Node-based server-side rendering is generally rather complex to setup.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Factors in favor of a 2-server setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want to use the latest and greatest version of JavaScript, with transpilation and module bundling, the 2-server setup has &lt;strong&gt;great community documentation for setting up a frontend server and build pipeline that supports all of these new JavaScript features&lt;/strong&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;However most of those features can &lt;em&gt;still&lt;/em&gt; be obtained in a single-server setup with some effort, as described later in this article.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If your organization already has &lt;strong&gt;separate frontend and backend teams&lt;/strong&gt;, it may be easier to have 2 servers - one managed by the frontend team, and one managed by the backend team - to allow each team to focus on each server separately (and satisfy Conway&amp;rsquo;s Law &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; 🙂).&lt;/li&gt;
+&lt;li&gt;If your organization already has a &lt;strong&gt;separate operations team&lt;/strong&gt; that has the capacity to manage the additional server implied by a 2-server setup, then the additional operational overhead may be acceptable.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;At my company we went with the single server option because our engineering team is small (&amp;lt; 5 engineers) - so we care a lot about minimizing operational overhead - and is composed of full-stack generalists who are familar with both backend and frontend technologies - so we have engineers that can work anywhere in the stack but aggressively prefer &lt;em&gt;simple&lt;/em&gt; architechures that don&amp;rsquo;t require extreme specialization in multiple domains.&lt;/p&gt;
+
+&lt;p&gt;In the next section I&amp;rsquo;ll drill down into the 1-server approach, but you can also skip to the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server approach&lt;/a&gt; if that&amp;rsquo;s what you&amp;rsquo;re leaning toward.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;1-server-approach&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;1-server approach&lt;/h1&gt;
+
+&lt;p&gt;When using a single server, you&amp;rsquo;ll need to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;pick an asset &lt;a href=&quot;#bundling-strategy&quot;&gt;bundling strategy&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#render-baseline-html-with-django&quot;&gt;render SEO-friendly HTML server-side&lt;/a&gt; with critical navigation and content available immediately on page load, and&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enhance-baseline-html-with-vue&quot;&gt;enhance that HTML client-side with Vue after page load&lt;/a&gt; with additional dynamic content.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;bundling-strategy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Bundling strategies&lt;/h2&gt;
+
+&lt;p&gt;When using a single integrated Django server to not only host your backend but also serve your frontend, you&amp;rsquo;ll need to decide how you want to bundle your JavaScript assets on the frontend together. &lt;strong&gt;Bundling of some kind is necessary for a production deployment&lt;/strong&gt; that is fast enough to be mobile-friendly and usable by distant international customers who may not have fast network connectivity to your server.&lt;/p&gt;
+
+&lt;p&gt;There are multiple bundling techniques that can be used with Django, with various pros and cons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#concatenated-bundling&quot;&gt;Concatenated Bundling&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#import-traced-bundling&quot;&gt;Import-Traced Bundling&lt;/a&gt;, and&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#transpiled-bundling&quot;&gt;Transpiled Bundling&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;concatenated-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Concatenated Bundling&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/bundling-strategies/concatenated.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: Concatenated Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/concatenated.svg&quot; class=&quot;bundling-diagram&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is by far the easiest bundling technique to use with Django and is a good technique to start with.&lt;/p&gt;
+
+&lt;p&gt;With concatenated bundling, you write JavaScript files that consist entirely of top-level function definitions and other non-executable code. Your HTML template served by Django contains &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-includes of every JavaScript file that the current page requires, directly or transitively. And after all JavaScript files are included the HTML page uses an inline &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; to call the root JavaScript function which sets up the rest of the page:&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- todo/templates/todo/todo.html --&amp;gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
+{% compress js %}
+    &amp;lt;script src=&quot;{% static &#39;todo/todo.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;todo/todo/list.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;todo/todo/item.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script&amp;gt;
+        setupTodoPage();
+    &amp;lt;/script&amp;gt;
+{% endcompress %}
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;{% compress js %}&lt;/code&gt; tag above assumes that you are using the excellent &lt;a href=&quot;https://django-compressor.readthedocs.io/en/stable/&quot;&gt;Django Compressor&lt;/a&gt; library which integrates well with Django as your concatenating bundler.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Pros of concatenated bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Very easy to setup.&lt;/strong&gt; Leverages excellent documentation from the Django Compressor library.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero bundle build times during development.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Fastest bundle build times during deployment, compared with other approaches.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Cons of concatenated bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You must manage your JS dependencies in HTML manually:
+
+&lt;ul&gt;
+&lt;li&gt;Whenever adding a new JS module you must remember to add it to the HTML for the appropriate page(s).&lt;/li&gt;
+&lt;li&gt;If you alter an existing JS module to depend on a new JS module, you must find all page HTMLs that include the first module and update them to include the second module if needed.&lt;/li&gt;
+&lt;li&gt;If you want to avoid managing JS dependencies manually, consider &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&amp;rsquo;t supported by your customers&#39; browsers then you&amp;rsquo;re out of luck. If you need transpilation consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
+&lt;li&gt;It is awkward to define a class in a JavaScript module that inherits from a base class in a different module, because that &lt;em&gt;requires&lt;/em&gt; &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-including the base class&amp;rsquo;s module first, breaking the usual rule that &amp;ldquo;the order that JS files are imported should not matter&amp;rdquo;. (However if you just limit inheritance to be within a single module or avoid it entirely, then this restriction doesn&amp;rsquo;t matter in practice.)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Note that choosing concatenated bundling does &lt;em&gt;not&lt;/em&gt; prevent you from using TypeScript-based type checking in your JS files, which I &lt;em&gt;do&lt;/em&gt; recommend for long-lived projects. In short, you can put a special &lt;code&gt;// @ts-check&lt;/code&gt; comment at the top of a JS file to &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html&quot;&gt;enable type-checking of JS with the TypeScript compiler&lt;/a&gt; (&lt;code&gt;tsc&lt;/code&gt;). &lt;!-- Using TypeScript to type-check JS files doesn&#39;t seem like a very-well known technique, so I plan to write a future article about it. --&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;import-traced-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Import-Traced Bundling&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: Import-Traced Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot; class=&quot;bundling-diagram&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;With the advent of the &lt;a href=&quot;https://www.snowpack.dev/&quot;&gt;Snowpack&lt;/a&gt; bundler we can get all the benefits of the &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.&lt;/p&gt;
+
+&lt;p&gt;With import-traced bundling, you write a root JavaScript file for each page that uses regular &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import&quot;&gt;JavaScript import statements&lt;/a&gt; to bring in related modules. Your HTML template then only needs to include the root JavaScript file:&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- todo/templates/todo/todo.html --&amp;gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
+&amp;lt;!-- js --&amp;gt;
+    &amp;lt;script type=&quot;module&quot;&amp;gt;
+        import { setupTodoPage } from &quot;{% static &#39;todo/todo.js&#39; %}&quot;;
+        setupTodoPage();
+    &amp;lt;/script&amp;gt;
+&amp;lt;!-- endjs --&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;The root JavaScript file might look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// static/todo/todo.js
+import { defineTodoList } from &quot;./todo/list.js&quot;;
+
+export function setupTodoPage() {
+    defineTodoList();
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;And that root JS file can include other modules like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// static/todo/list.js
+import { defineTodoItem } from &quot;./item.js&quot;;
+
+export function defineTodoList() {
+    defineTodoItem();
+    
+    Vue.component(&#39;todo-list&#39;, {
+        props: {
+            ...
+        },
+        template: `
+            ...
+        `,
+        methods: {
+            ...
+        }
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Some key differences between import-traced bundling and concatenated bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The HTML page only needs to include the root JS file for the page and not any of its indirect JS dependencies.&lt;/li&gt;
+&lt;li&gt;JS modules must use &lt;code&gt;import&lt;/code&gt; to declare other JS modules that they depend on, and &lt;code&gt;export&lt;/code&gt; any functions that they want to be importable by other modules.&lt;/li&gt;
+&lt;li&gt;JS files for &lt;em&gt;all&lt;/em&gt; Django apps in the Django project should be put in a common &lt;code&gt;static&lt;/code&gt; directory rather than using per-app &lt;code&gt;static&lt;/code&gt; directories. Having a common directory for all JS files will make it easier to configure Snowpack to build combined JS bundles for production deployments.&lt;/li&gt;
+&lt;li&gt;There is no longer a need to use Django Compressor.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For a production deployment, you&amp;rsquo;ll need to alter your deployment script to run Snowpack on the root &lt;code&gt;static&lt;/code&gt; directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.&lt;/p&gt;
+
+&lt;p&gt;Pros of import-traced bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Easy to setup for development.&lt;/strong&gt; (Trickier to setup for deployment.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero bundle build times during development.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Fast bundle build times during deployment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JS dependencies are automatically managed&lt;/strong&gt; through regular &lt;code&gt;import&lt;/code&gt; statements in JS.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Cons of import-traced bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaScript files are not transpiled at &lt;em&gt;development time&lt;/em&gt; (although they &lt;em&gt;are&lt;/em&gt; at deployment time), so if you want to use the most bleeding-edge JavaScript features that aren&amp;rsquo;t even supported by your development browser then you&amp;rsquo;re out of luck. If you need transpilation during development consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
+&lt;li&gt;Requires that your development browsers &lt;a href=&quot;https://caniuse.com/mdn-javascript_statements_import&quot;&gt;support JavaScript import&lt;/a&gt; and JS modules in general.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;transpiled-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Transpiled Bundling&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot;&gt;
+    &lt;img alt=&quot;Diagram: Transpiled Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot; class=&quot;bundling-diagram bundling-diagram-wide&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want the latest and greatest JavaScript features that haven&amp;rsquo;t made it even to your latest &lt;em&gt;development&lt;/em&gt; browser (ex: the latest Chrome or Firefox) then you&amp;rsquo;ll need to pay the cost of needing to transpile during development time:&lt;/p&gt;
+
+&lt;p&gt;The transpiled bundling approach generally uses the same kind of HTML, JS, and filesystem structure as the &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; approach but you have additional flexibility depending on the particular set of bundler and transpiler tools you select.&lt;/p&gt;
+
+&lt;p&gt;Common choices for transpiler tools as of early 2021 are &lt;a href=&quot;https://webpack.js.org/&quot;&gt;Webpack&lt;/a&gt;, &lt;a href=&quot;https://babeljs.io/&quot;&gt;Babel&lt;/a&gt;, and &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&amp;rsquo;s &lt;a href=&quot;https://youtu.be/E613X3RBegI?t=1203&quot;&gt;thoughts on the transpiled bundling approach at PyCon 2019&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pros of transpiled bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Latest bleeding-edge JavaScript features are available.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JS dependencies are automatically managed.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can also manage dependencies automatically with the simpler &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; approach.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Cons of transpiled bundling:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Moderate-to-slow bundle build times during development.&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can eliminate build times during development entirely using either the &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; or &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approaches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Slow bundle build times during deployment, assuming you enable aggressive optimizations.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;render-baseline-html-with-django&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Render baseline HTML with Django&lt;/h2&gt;
+
+&lt;p&gt;Now that you&amp;rsquo;ve picked a &lt;a href=&quot;#bundling-strategy&quot;&gt;bundling approach&lt;/a&gt;, we can move on to rendering our first page with Django and Vue.&lt;/p&gt;
+
+&lt;p&gt;When a browser (or search engine crawler) first requests a page from your site, it will only be able to immediately render the initial HTML served by Django. In particular, browsers will take some time to start running any JavaScript on your HTML page, so it&amp;rsquo;s important that the initial HTML served by Django contains your most important page content.&lt;/p&gt;
+
+&lt;p&gt;For example if we were building the product page of an online store, we&amp;rsquo;d want to ensure the initial HTML rendered by Django immediately contained things like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the site logo and top navigation links,&lt;/li&gt;
+&lt;li&gt;the product image,&lt;/li&gt;
+&lt;li&gt;the product description,&lt;/li&gt;
+&lt;li&gt;placeholders for other less-important panels that are okay to load later in JavaScript, with appropriate animated spinner icons or other loading indicators.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- (TODO: Diagram: Example product page after initial page load) --&gt;
+
+
+&lt;p&gt;So the HTML rendered by Django might look something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- store/templates/store/product.html --&amp;gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;!-- Top navigation --&amp;gt;
+    &amp;lt;nav class=&quot;navbar navbar-inverse&quot;&amp;gt;
+        &amp;lt;div class=&quot;container-fluid&quot;&amp;gt;
+            &amp;lt;div class=&quot;navbar-header&quot;&amp;gt;
+                &amp;lt;!-- Site logo --&amp;gt;
+                &amp;lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&amp;gt;Acme Store&amp;lt;/a&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;div class=&quot;navbar-collapse collapse&quot;&amp;gt;
+                &amp;lt;!-- Top navigation links --&amp;gt;
+                &amp;lt;ul class=&quot;nav navbar-nav&quot;&amp;gt;
+                    &amp;lt;li&amp;gt;&amp;lt;a href=&quot;/computer-systems/&quot;&amp;gt;Computer Systems&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                    &amp;lt;li&amp;gt;&amp;lt;a href=&quot;/components/&quot;&amp;gt;Components&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                    &amp;lt;li&amp;gt;&amp;lt;a href=&quot;/electronics/&quot;&amp;gt;Electronics&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                    ...
+                &amp;lt;/ul&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/nav&amp;gt;
+    
+    &amp;lt;!-- Main content --&amp;gt;
+    &amp;lt;div class=&quot;container&quot;&amp;gt;
+        &amp;lt;div class=&quot;content-container&quot;&amp;gt;
+            &amp;lt;!-- Primary panel --&amp;gt;
+            &amp;lt;img alt=&quot;Product image&quot; href=&quot;{{ product.image_url }}&quot; style=&quot;float: left;&quot; /&amp;gt;
+            &amp;lt;h1&amp;gt;{{ product.title }}&amp;lt;/h1&amp;gt;
+            &amp;lt;div&amp;gt;
+                {{ product.description }}
+            &amp;lt;/div&amp;gt;
+            
+            &amp;lt;!-- Secondary panel; a placeholder filled out by JS later --&amp;gt;
+            &amp;lt;div id=&quot;recommendations-panel&quot;&amp;gt;
+                &amp;lt;h2&amp;gt;Recommended for You&amp;lt;/h2&amp;gt;
+                &amp;lt;img
+                    v-if=&quot;loading&quot; 
+                    alt=&quot;Loading spinner&quot;
+                    src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+                &amp;lt;template
+                    v-else
+                    v-cloak&amp;gt;
+                    ...
+                &amp;lt;/template&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+
+{{ recommendations_panel_data|json_script:&quot;recommendations-panel-data&quot; }}
+
+{% compress js %}
+    &amp;lt;script src=&quot;{% static &#39;store/product.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static &#39;store/product/recommendations.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script&amp;gt;
+        setupProductPage();
+    &amp;lt;/script&amp;gt;
+{% endcompress %}
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Notice that most of the page is initially rendered server-side with Django&amp;rsquo;s built-in templating system and &lt;em&gt;not&lt;/em&gt; with Vue. This server-side rendered content loads fast and can be appropriately indexed by search engines for better SEO.&lt;/p&gt;
+
+&lt;p&gt;However certain less-important panels like the Recommendations panel don&amp;rsquo;t need to be loaded immediately and will be given life by Vue later after the page&amp;rsquo;s JavaScript starts running. Let&amp;rsquo;s consider how that works:&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;enhance-baseline-html-with-vue&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Enhance baseline HTML with Vue&lt;/h2&gt;
+
+&lt;p&gt;When the browser (or search engine) first loads the Recommendations panel it will initially see just a loading spinner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&quot;recommendations-panel&quot;&amp;gt;
+    &amp;lt;h2&amp;gt;Recommended for You&amp;lt;/h2&amp;gt;
+    &amp;lt;img
+        v-if=&quot;loading&quot; 
+        alt=&quot;Loading spinner&quot;
+        src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+    &amp;lt;template
+        v-else
+        v-cloak&amp;gt;
+        ...
+    &amp;lt;/template&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;v-cloak&lt;/code&gt; directive is associated with the CSS rule &lt;code&gt;[v-cloak] { display: none; }&lt;/code&gt; so nothing marked by that directive will be displayed initially.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Later when the page&amp;rsquo;s JavaScript starts running, it will call &lt;code&gt;setupProductPage()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// store/product.js
+/*public*/ function setupProductPage() {
+    setupRecommendationsPanel();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which will call &lt;code&gt;setupRecommendationsPanel()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// store/product/recommendations.js
+/*public*/ function setupRecommendationsPanel() {
+    new Vue({
+        el: &#39;#recommendations-panel&#39;,
+        data: function() {
+            return document.querySelector(&#39;#recommendations-panel-data&#39;).innerText;
+        },
+        computed: {
+            loading: function() {
+                ...
+            },
+            ...
+        },
+        methods: {
+            ...
+        }
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which will use Vue to render the interior of the panel, perhaps after performing an Ajax request back to a Django endpoint to fetch more data.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Notice that some data for the panel can be prepopulated in HTML via the &lt;code&gt;{{ ...|json_script:&quot;...&quot; }}&lt;/code&gt; template tag by Django and then fetched later via &lt;code&gt;document.querySelector(...).innerText&lt;/code&gt; in JavaScript.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Done! Skip to the &lt;a href=&quot;#conclusion&quot;&gt;conclusion&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;2-server-approach&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;2-server approach&lt;/h1&gt;
+
+&lt;p&gt;When using a separate frontend server for Vue and a separate backend server for Django, you&amp;rsquo;ll need to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;setup &lt;a href=&quot;https://v3.vuejs.org/guide/installation.html#installation&quot;&gt;a standalone Vue server&lt;/a&gt; and &lt;a href=&quot;https://www.djangoproject.com/start/&quot;&gt;a standalone Django server&lt;/a&gt; using official documentation from each project,&lt;/li&gt;
+&lt;li&gt;alter the frontend Vue server to &lt;a href=&quot;https://ssr.vuejs.org/#why-ssr&quot;&gt;support server-side rendering or prerendering&lt;/a&gt; using official documentation,&lt;/li&gt;
+&lt;li&gt;create some pages in Vue, some endpoints in Django (perhaps using the &lt;a href=&quot;https://www.django-rest-framework.org/&quot;&gt;Django REST Framework&lt;/a&gt;), and have those pages access those routes using plain old &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch&quot;&gt;window.fetch()&lt;/a&gt;&amp;nbsp;(or something shinier like &lt;a href=&quot;https://github.com/axios/axios#readme&quot;&gt;Axios&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;conclusion&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Hopefully this guide has been useful in helping you setup Vue inside your new or existing Django web app. Happy coding!&lt;/p&gt;
+
+&lt;h2&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps&lt;/a&gt; - Writing deterministic performance tests for database-dependent code in Django&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has ideas for creatively using automated tests to enforce various (non-functional) properties in your Django web app.&lt;/li&gt;
+&lt;li&gt;Other &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span&gt;&lt;a href=&quot;/articles/topics/#Django&quot;&gt;Django&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt; articles&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;&lt;em&gt;Related Projects&lt;/em&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/techsmart-platform&quot;&gt;TechSmart Platform&lt;/a&gt; - Large web app that I work on that uses Django and Vue. (Sorry it’s closed-source!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Conway%27s_law&quot;&gt;Conway&amp;rsquo;s Law&lt;/a&gt;: The technical architecture of a system tends to mirror the organizational and communication structure of the people that build it. So if you have 2 teams building a compiler, they&amp;rsquo;re likely to build a 2-pass compiler. Similarly if you have a frontend and a backend team, they&amp;rsquo;re likely to build separate frontend and backend servers if left to themselves.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;At the time of writing it takes 2.1 seconds for me to bundle 100,650 lines (5,304 KiB) of JS and 17,617 lines (699 KiB) of CSS using Django Compressor&amp;rsquo;s default settings which uses &lt;a href=&quot;http://opensource.perlig.de/rjsmin/&quot;&gt;rJSMin&lt;/a&gt; to minify JS (via &lt;a href=&quot;https://stackoverflow.com/a/1732454/604063&quot;&gt;regex&lt;/a&gt; no less!).&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code</id>
+   <title>Database clamps: Deterministic performance tests for database-dependent code</title>
+   <published>2021-02-09T00:00:00+00:00</published>
+   <updated>2021-02-09T00:00:00+00:00</updated>
+   
+     <category term="Django"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;If you&amp;rsquo;ve got a moderate-sized &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; web application then you&amp;rsquo;re probably already writing automated tests to make sure none of its pages break unexpectedly when you&amp;rsquo;re making changes to them. That is, you&amp;rsquo;re testing page &lt;em&gt;functionality&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;However another way that pages can break is that they take too long to display, or otherwise don&amp;rsquo;t have enough &lt;em&gt;performance&lt;/em&gt;. The very first Django application I deployed to customers got crushed with only &lt;em&gt;12&lt;/em&gt; concurrent users! How embarassing! 🤭 I hadn&amp;rsquo;t even bothered to do basic performance testing before that initial deployment because I didn&amp;rsquo;t think it was &lt;em&gt;possible&lt;/em&gt; for such a small number of expected users to bring down my site. I now know better and require that any new web page have &lt;strong&gt;automated performance tests&lt;/strong&gt; before being deployed to customers.&lt;/p&gt;
+
+&lt;p&gt;There are many kinds of performance tests, but right now I&amp;rsquo;d like to focus on automated &lt;em&gt;database&lt;/em&gt; performance tests, or what I like to call &lt;strong&gt;database clamps&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;h3&gt;What are they?&lt;/h3&gt;
+
+&lt;p&gt;A database clamp measures the number of database queries issued when a web page is being rendered server-side. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from django.test import TestCase
+
+class TodoListPageTests(TestCase):
+    ...
+
+    def test_todo_list_mdp(self):  # mdp = maintains database performance
+        self.client.login(username=&#39;user&#39;, password=&#39;password&#39;)
+        with self.assertNumQueries(3):  # &amp;lt;-- DATABASE CLAMP
+            response = self.client.get(reverse(&#39;todo:list&#39;))
+            self.assertEqual(200, response.status_code)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, &lt;a href=&quot;https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries&quot;&gt;assertNumQueries&lt;/a&gt; is used to clamp the number of database queries issued when the &lt;code&gt;todo:list&lt;/code&gt; page is rendered server-side. If any changes are made to the the page that increases (or otherwise changes) the number of database queries issued, then the test will detect the change and fail.&lt;/p&gt;
+
+&lt;h3&gt;Why are they useful?&lt;/h3&gt;
+
+&lt;p&gt;Database clamps are particularly useful for web applications because &lt;strong&gt;server-side rendering time is typically dominated by database query time&lt;/strong&gt;. If you get your database access patterns under control then it&amp;rsquo;s likely the remaining server-side rendering time will be negligible.&lt;/p&gt;
+
+&lt;p&gt;Also, unlike most &lt;a href=&quot;/articles/2018/06/02/performance-testing/&quot;&gt;other kinds of performance tests&lt;/a&gt;, database clamps are fully &lt;em&gt;deterministic&lt;/em&gt; and always give consistent results no matter how fast the machine the test is being run on. Very useful!&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Avoid the embarassment of your site falling over when only a handful of customers try to use it. Use database clamps!&lt;/p&gt;
+
+&lt;h3&gt;Appendix: Better database clamps&lt;/h3&gt;
+
+&lt;p&gt;A database clamp which uses Django&amp;rsquo;s &lt;a href=&quot;https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.TransactionTestCase.assertNumQueries&quot;&gt;assertNumQueries&lt;/a&gt; function will fail not just when the number of database queries &lt;em&gt;increases&lt;/em&gt; (which is usually a problem) but will also fail when the number of queries &lt;em&gt;decreases&lt;/em&gt; (which is usually okay, and even desirable).&lt;/p&gt;
+
+&lt;p&gt;In my own Django web application I use a custom version of &lt;code&gt;assertNumQueries&lt;/code&gt; that still fails if the number of queries &lt;em&gt;increases&lt;/em&gt; but only issues a warning (via &lt;code&gt;warnings.warn(...)&lt;/code&gt;) if the number of queries &lt;em&gt;decreases&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python3 manage.py test gradebook
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.758s
+
+OK
+
+Warnings:
+gradebook/tests/test_gradebook.py:425: UserWarning: 14 database queries executed, no more than 15 expected. Consider reducing the expected query count to match.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In addition, my version of &lt;code&gt;assertNumQueries&lt;/code&gt; expects to be called from an automated test method whose name contains the word &lt;code&gt;mdp&lt;/code&gt; (&amp;ldquo;maintains database performance&amp;rdquo;) and warns if it is being called from a test lacking that acronym. This restriction allows my engineering team to easily search for and run exactly those tests which use database clamps when making large scale changes that may break many database clamps at once:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python3 manage.py test $(python3 manage.py list_tests mdp -s)
+System check identified no issues (0 silenced).
+..............s..s..................................................
+----------------------------------------------------------------------
+Ran X tests in Ys
+
+OK (skipped=Z)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2018/06/02/performance-testing/&quot;&gt;Performance Testing&lt;/a&gt; - Details a few of the big guns of performance testing.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has more ideas for creatively using automated tests to enforce additional (non-functional) properties in your backend web application.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/02/02/tests-as-policy-automation</id>
+   <title>Tests as Policy Automation</title>
+   <published>2021-02-02T00:00:00+00:00</published>
+   <updated>2021-02-02T00:00:00+00:00</updated>
+   
+     <category term="Django"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/02/02/tests-as-policy-automation/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Automated tests are usually used for testing functional requirements of your product code. But they can &lt;em&gt;also&lt;/em&gt; be used to enforce other policies and coding practices as well.&lt;/p&gt;
+
+&lt;p&gt;If writing a web application it&amp;rsquo;s likely you already have a rule like &amp;ldquo;all automated tests must pass before any new version of the web application can be deployed to customers on the production environment&amp;rdquo;. In that case any new policies you want to enforce regularly can be added to your standard automated test suite and they will necessarily have to be satisfied on every deployment!&lt;/p&gt;
+
+&lt;p&gt;Here are some example of special policies I&amp;rsquo;ve enforced from the automated test suite of &lt;a href=&quot;/projects/techsmart-platform/&quot;&gt;a large web application I work on&lt;/a&gt; (which uses &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt;, Python+&lt;a href=&quot;http://mypy-lang.org/index.html&quot;&gt;mypy&lt;/a&gt;, and JavaScript+TypeScript as core technologies):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure the typechecker reports no errors
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;type_&lt;wbr/&gt;checker_&lt;wbr/&gt;reports_&lt;wbr/&gt;no_&lt;wbr/&gt;errors_&lt;wbr/&gt;in_&lt;wbr/&gt;python&lt;/code&gt; &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;type_&lt;wbr/&gt;checker_&lt;wbr/&gt;reports_&lt;wbr/&gt;no_&lt;wbr/&gt;errors_&lt;wbr/&gt;in_&lt;wbr/&gt;typed_&lt;wbr/&gt;javascript&lt;/code&gt; &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ban unsafe coding patterns by inspecting source code
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;no_&lt;wbr/&gt;new_&lt;wbr/&gt;fragile_&lt;wbr/&gt;test_&lt;wbr/&gt;suites&lt;/code&gt;&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;ensure_&lt;wbr/&gt;all_&lt;wbr/&gt;directories_&lt;wbr/&gt;containing_&lt;wbr/&gt;py_&lt;wbr/&gt;files_&lt;wbr/&gt;have_&lt;wbr/&gt;init_&lt;wbr/&gt;file&lt;/code&gt;&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ensure hard-coded debug modes are turned off
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;the_&lt;wbr/&gt;debug_&lt;wbr/&gt;toolbar_&lt;wbr/&gt;is_&lt;wbr/&gt;disabled&lt;/code&gt; &lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;that_&lt;wbr/&gt;compress_&lt;wbr/&gt;is_&lt;wbr/&gt;enabled&lt;/code&gt; &lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ensure test-only environmental settings are correctly configured
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;that_&lt;wbr/&gt;tests_&lt;wbr/&gt;do_&lt;wbr/&gt;not_&lt;wbr/&gt;send_&lt;wbr/&gt;real_&lt;wbr/&gt;emails&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ensure invariants that should apply to all types of a large/unbounded number of domain objects are satisfied:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;all_&lt;wbr/&gt;django_&lt;wbr/&gt;add_&lt;wbr/&gt;and_&lt;wbr/&gt;edit_&lt;wbr/&gt;admin_&lt;wbr/&gt;pages_&lt;wbr/&gt;render&lt;/code&gt; &lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; 👈 &lt;strong&gt;especially useful and powerful&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;block_&lt;wbr/&gt;type_&lt;wbr/&gt;satisfies_&lt;wbr/&gt;all_&lt;wbr/&gt;block_&lt;wbr/&gt;standards&lt;/code&gt; &lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;c_&lt;wbr/&gt;blocks_&lt;wbr/&gt;for_&lt;wbr/&gt;python_&lt;wbr/&gt;blocks_&lt;wbr/&gt;must_&lt;wbr/&gt;use_&lt;wbr/&gt;consistent_&lt;wbr/&gt;indent_&lt;wbr/&gt;width&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;field_&lt;wbr/&gt;id_&lt;wbr/&gt;must_&lt;wbr/&gt;use_&lt;wbr/&gt;underscore_&lt;wbr/&gt;case&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;every_&lt;wbr/&gt;block_&lt;wbr/&gt;type_&lt;wbr/&gt;whose_&lt;wbr/&gt;codegen_&lt;wbr/&gt;always_&lt;wbr/&gt;references_&lt;wbr/&gt;x_&lt;wbr/&gt;library_&lt;wbr/&gt;must_&lt;wbr/&gt;import_&lt;wbr/&gt;x_&lt;wbr/&gt;library&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&amp;hellip; (9 more)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Prevent certain configuration settings from changing without triggering a discussion with Product Management, the Business, or your Dev Lead
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;test_&lt;wbr/&gt;max_&lt;wbr/&gt;redirect_&lt;wbr/&gt;count_&lt;wbr/&gt;is_&lt;wbr/&gt;5&lt;/code&gt; &lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; rel=&quot;footnote&quot;&gt;9&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Hopefully these examples give you some ideas of some special policies you might enforce in your own automated test suite. Happy coding!&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://sirupsen.com/shitlists/&quot; class=&quot;external&quot;&gt;Shitlist Driven Development&lt;/a&gt; - Gives techniques for how to effectively apply automated policy changes of the type discussed in this article at &lt;em&gt;large&lt;/em&gt; scale.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!-- * [Performance Testing](/articles/2018/06/02/performance-testing/) --&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps: Deterministic performance tests for database-dependent code&lt;/a&gt; - Shows how to clamp the database performance of server-side rendering using automated tests.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;TechSmart&amp;rsquo;s backend Python and Django code is typechecked using the &lt;a href=&quot;http://mypy-lang.org/&quot;&gt;mypy&lt;/a&gt; type checker.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;TechSmart&amp;rsquo;s frontend JavaScript code is typechecked using the &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt; compiler, &lt;code&gt;tsc&lt;/code&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;In this context a &amp;ldquo;fragile test suite&amp;rdquo; corresponds to a subclass of Django&amp;rsquo;s &lt;code&gt;StaticLiveServerTestCase&lt;/code&gt; or &lt;code&gt;TestCase&lt;/code&gt; whose &lt;code&gt;setUpClass&lt;/code&gt; method fails to use a &lt;code&gt;try-finally&lt;/code&gt; to invoke &lt;code&gt;super().tearDownClass()&lt;/code&gt; explicitly if something goes wrong partway through the test suite setup. This fragile-detection metatest walks through all test suite classes and uses Python&amp;rsquo;s &lt;code&gt;inspect.getsourcelines&lt;/code&gt; to read the source code of all test classes to look for the absense of the proper kind of try-finally.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;It is important for any directory containing Python source files (&lt;code&gt;*.py&lt;/code&gt;) to contain an &lt;code&gt;__init__.py&lt;/code&gt; file so that the directory is marked properly as a Python package and is recognized correctly by Python typecheckers like mypy.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/jazzband/django-debug-toolbar#readme&quot;&gt;Django Debug Toolbar&lt;/a&gt; is an amazingly useful tool to profile the database queries that your Django-rendered page is making.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:6&quot;&gt;
+&lt;p&gt;TechSmart&amp;rsquo;s frontend JavaScript code is concatentated and minified using the excellent &lt;a href=&quot;https://pypi.org/project/django-compressor/&quot;&gt;Django Compressor&lt;/a&gt; app. At some point we may migrate instead to using &lt;a href=&quot;https://www.snowpack.dev/&quot;&gt;Snowpack&lt;/a&gt;, a lightweight module bundler.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:7&quot;&gt;
+&lt;p&gt;The &amp;ldquo;all Django Add and Edit pages must render&amp;rdquo; metatest automatically discovers all Django models and related pages that exist in Django&amp;rsquo;s admin site. Then it tries to navigate to each such admin page and ensures that it renders completely. This metatest has caught cases where some of our more complex custom admin pages broke due to a code change elsewhere.&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:8&quot;&gt;
+&lt;p&gt;The &amp;ldquo;blocks&amp;rdquo; referred to here are the lego-like blocks which snap together to form programs in the visual &lt;a href=&quot;/projects/skylark/&quot;&gt;Skylark language&lt;/a&gt;.&lt;a href=&quot;#fnref:8&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:9&quot;&gt;
+&lt;p&gt;The Python IDE &lt;!-- TODO: Make non-redirecting DPython project page --&gt; in the TechSmart Platform contains an API-compatible reimplementation of the popular &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;Requests&lt;/a&gt; HTTP client library so that students can write programs that access the internet, in a controlled fashion.&lt;a href=&quot;#fnref:9&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2018/06/02/performance-testing</id>
+   <title>Performance Testing</title>
+   <published>2018-06-02T00:00:00+00:00</published>
+   <updated>2018-06-02T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+     <category term="Django"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2018/06/02/performance-testing/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;In this article I will describe the theory of &lt;strong&gt;performance testing&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and how we conduct such testing in practice at my company TechSmart, in the context of rich web applications and web services.&lt;/p&gt;
+
+&lt;p&gt;By the end of this article you should understand how we define performance testing and perhaps get some ideas for implementing or customizing your own tools for performance-testing your own web service.&lt;/p&gt;
+
+&lt;h2&gt;Theory&lt;/h2&gt;
+
+&lt;p&gt;Performance testing of a web service typically involves verifying non-functional requirements such as whether it is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Responsive&lt;/strong&gt; - responds quickly to requests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resilient&lt;/strong&gt; - handles a large number of requests; avoids crashing outright; rejects or queues requests as needed if too many in progress at once&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fault-Tolerant&lt;/strong&gt; - whether the service self-heals if it crashes&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Performance testing aims to answer the following kinds of questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How responsive is the service under a particular amount of load?&lt;br/&gt;
+(See &lt;a href=&quot;#pt-run&quot;&gt;§ &amp;ldquo;perftest run&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;li&gt;What is the maximum load that the service can handle?&lt;br/&gt;
+(See &lt;a href=&quot;#pt-maxload&quot;&gt;§ &amp;ldquo;perftest maxload&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;li&gt;How responsive is the service under its maximum load?&lt;/li&gt;
+&lt;li&gt;What is the bottleneck that is saturated when the service is at its maximum load?&lt;br/&gt;
+(See &lt;a href=&quot;#bottleneck-isolation&quot;&gt;§ &amp;ldquo;Bottleneck isolation&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;li&gt;How does the service behave when stressed beyond its maximum load?&lt;br/&gt;
+(See &lt;a href=&quot;#overload-behavior&quot;&gt;§ &amp;ldquo;Overload behavior&amp;rdquo;&lt;/a&gt; below)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The core of performance testing is &lt;strong&gt;load generation&lt;/strong&gt;. You write a program that generates a specified amount of load on your target web service and measure what happens when various amounts of load are applied.&lt;/p&gt;
+
+&lt;p&gt;There are many load generation tools that exist:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;One of the oldest load generation tools is &lt;a href=&quot;https://jmeter.apache.org/&quot;&gt;JMeter&lt;/a&gt;, which uses a GUI to define simulation programs in an XML-based file format. JMeter uses a separate OS thread for each concurrent HTTP connection which severely limits the number of concurrent HTTP connections it can host on a single box.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;At my company TechSmart we use &lt;a href=&quot;http://gatling.io&quot;&gt;Gatling&lt;/a&gt; as our load generation tool. Compared with JMeter, Gatling is far more efficient at generating load because it uses multiplexed async I/O on a single OS thread to handle all HTTP connections. Also, Gatling simulations are written in an actual programming language (Scala) rather than XML, so you can write your simulations with more resilient abstractions and do more-advanced customizations.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Gatling Concepts&lt;/h2&gt;
+
+&lt;h3&gt;Scenarios and simulations&lt;/h3&gt;
+
+&lt;p&gt;A &lt;strong&gt;scenario&lt;/strong&gt; describes a pattern of HTTP requests that a single user makes against a web service. For example in the &lt;code&gt;ViewCodePage&lt;/code&gt; scenario a user performs the {&lt;code&gt;LoginPage.loginWithoutRedirect&lt;/code&gt;, &lt;code&gt;CodePage.view&lt;/code&gt;} subscenarios which consist of individual HTTP requests.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;simulation&lt;/strong&gt; describes an aggregate pattern of HTTP requests that &lt;em&gt;multiple&lt;/em&gt; users make against a web service. For example the &lt;code&gt;ViewCodePage(X, Y)&lt;/code&gt; simulation simulates X users arriving over Y seconds that each perform the actions described in the &lt;code&gt;ViewCodePage&lt;/code&gt; scenario.&lt;/p&gt;
+
+&lt;p&gt;At TechSmart we have written several simulations that exercise each of the major pages on our platform website.&lt;/p&gt;
+
+&lt;h3&gt;Simulation parameters&lt;/h3&gt;
+
+&lt;p&gt;Most simulations written at TechSmart vary their behavior based on &lt;em&gt;parameters&lt;/em&gt; that are passed in as environment variables. Simulations read these environment variables upon initialization using code like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class LoginAsStudent extends Simulation {
+    val X = sys.env.getOrElse(&quot;X&quot;, &quot;__missing__&quot;).toInt
+    val Y = sys.env.getOrElse(&quot;Y&quot;, &quot;__missing__&quot;).toInt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thus the set of parameters that a particular simulation expects can be deduced by reading the top of the simulation&amp;rsquo;s source code.&lt;/p&gt;
+
+&lt;p&gt;Most simulations at TechSmart support X and Y parameters to inject X users over Y seconds during the simulation.&lt;/p&gt;
+
+&lt;h2&gt;Load generation&lt;/h2&gt;
+
+&lt;h3&gt;The &amp;ldquo;gatling&amp;rdquo; management command&lt;/h3&gt;
+
+&lt;p&gt;The &amp;ldquo;gatling&amp;rdquo; management command is a low-level command we&amp;rsquo;ve implemented at TechSmart that invokes the Gatling tool, sets up various required paths automatically, and runs a Gatling simulation script.&lt;/p&gt;
+
+&lt;p&gt;A typical invocation of the &amp;ldquo;gatling&amp;rdquo; management command looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 pm gatling --simulation tskplatform.LoginAsStudent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;pm&lt;/code&gt; command above is an alias for &lt;code&gt;python3 manage.py&lt;/code&gt; which is the Django task runner.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;This invocation is equivalent to the more-verbose:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 $GATLING_HOME/bin/gatling.sh --simulation tskplatform.LoginAsStudent --simulations-folder $PERFORMANCE_HOME/simulations --data-folder $PERFORMANCE_HOME/data --bodies-folder $PERFORMANCE_HOME/bodies
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Gatling tool emits lots of output in the console while it is running and eventually generates an HTML report with detailed statistics about what HTTP requests were made during the simulation, response times for individual and aggregated requests, and other information.&lt;/p&gt;
+
+&lt;!-- TODO: Include an image of a typical Gatling report --&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;pt-run&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;The &amp;ldquo;perftest run&amp;rdquo; management command&lt;/h3&gt;
+
+&lt;p&gt;Typically the most important information in the Gatling HTML report generated by running a simulation is the &lt;strong&gt;maximum response time&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; for a particular type of HTTP request that was made during the simulation. &lt;!-- For example the `ViewCodePage(X, Y)` simulation makes many HTTP requests of type {`view_login`, `submit_login`, and `view_code`} but we only care about the maximum response time of the `view_code` requests. --&gt;&lt;/p&gt;
+
+&lt;p&gt;Consequently we&amp;rsquo;ve created a &amp;ldquo;perftest run&amp;rdquo; management command that behaves similarly to the &amp;ldquo;gatling&amp;rdquo; command but automatically presents the maximum response time for the most important request type&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; after running the simulation.&lt;/p&gt;
+
+&lt;p&gt;With the &amp;ldquo;perftest run&amp;rdquo; management command, we can easily answer the question:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How responsive is the service under a particular amount of load?
+
+&lt;ul&gt;
+&lt;li&gt;When R requests/second are made continuously, for some R = X/Y:
+
+&lt;ul&gt;
+&lt;li&gt;What is the maximum response time?&lt;/li&gt;
+&lt;li&gt;What does the response time distribution look like?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Here is an example of running a simple simulation, using &amp;ldquo;perftest setup&amp;rdquo; to create test data and then using &amp;ldquo;perftest run&amp;rdquo; to get the maximum response time for a particular amount of load:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm perftest setup students 8
+Deleting test students...
+Creating 8 test student(s)...
+
+$ pm perftest setup calendars 1
+Deleting test calendars...
+Creating 1 test calendar(s)...
+Associating 8 user(s) with 1 calendar(s)...
+
+$ pm perftest run LoginAsStudent 4 1
+Running simulation with 4 user(s) over 1 second(s)...
+When 4 user(s) over 1 second(s), max response time for request &#39;submit_login&#39; is 393 ms.
+  Report: /Users/me/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497049484195/index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(We also have a &amp;ldquo;perftest teardown&amp;rdquo; command that deletes all test data created by &amp;ldquo;perftest setup&amp;rdquo;.)&lt;/p&gt;
+
+&lt;h3&gt;Targeting remote environments&lt;/h3&gt;
+
+&lt;p&gt;Our simulations are written by default to target the website running on the developer&amp;rsquo;s local machine (127.0.0.1). For real testing you&amp;rsquo;ll want to run tests on a remote version of the website such as the one on a dedicated perf environment (perf.example.com).&lt;/p&gt;
+
+&lt;p&gt;For example, to run a command on our performance environment we would first setup the environment with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm on perf perftest setup students 8
+$ pm on perf perftest setup calendars 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &amp;ldquo;on&amp;rdquo; management command runs some other command in the context of a particular remote environment.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;And then we&amp;rsquo;d run the performance test by typing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm on perf perftest run LoginAsStudent 4 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &amp;ldquo;on&amp;rdquo; command sets the &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; environment variable (among other things) and the &amp;ldquo;perftest run&amp;rdquo; subcommand passes that environment variable to the underlying Gatling simulation. The &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; variable specifies the base URL that all HTTP requests are prefixed with. For example the above command is equivalent to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ # (Change environment to &quot;perf&quot;, defaulting to its database tier, cache tier, etc)
+$ X=4 Y=1 GATLING_BASE_URL=http://perf.example.com pm gatling --simulation tskplatform.LoginAsStudent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All simulations support the &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; parameter to change the base URL because they all use a common Gatling HTTP Protocol object that defines its base URL from &lt;code&gt;GATLING_BASE_URL&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class LoginAsStudent extends Simulation {
+    ...
+    val httpProtocol = Common.httpProtocol
+    ...
+}
+
+object Common {
+    private val baseUrl = sys.env.getOrElse(
+        &quot;GATLING_BASE_URL&quot;, &quot;http://127.0.0.1:8000&quot;)
+
+    val httpProtocol = http
+        .baseURL(baseUrl)
+        ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Stress testing&lt;/h2&gt;
+
+&lt;p&gt;&lt;a name=&quot;pt-maxload&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;The &amp;ldquo;perftest maxload&amp;rdquo; management command&lt;/h3&gt;
+
+&lt;p&gt;The &amp;ldquo;perftest maxload&amp;rdquo; management command can be used to automatically perform &amp;ldquo;perftest run&amp;rdquo; several times to determine the maximum number of users (X) over a given period of time (Y) such that the maximum response time for the HTTP request of interest is less than a particular threshold (1,200 ms by default).&lt;/p&gt;
+
+&lt;p&gt;With the &amp;ldquo;perftest maxload&amp;rdquo; management command, we can answer the questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What is the maximum load that the service can handle?
+
+&lt;ul&gt;
+&lt;li&gt;What is the maximum requests/second that can be made before the requests start backing up and response times go hockeystick?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How responsive is the service under its maximum load?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;An example invocation of &amp;ldquo;perftest maxload&amp;rdquo; looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm perftest maxload LoginAsStudent --preserve-calendars
+Determining baseline response time...
+
+Deleting test students...
+Creating 1 test student(s)...
+Associating 1 user(s) with 1 calendar(s)...
+Running simulation with 1 user(s) over 5 second(s)...
+When 1 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 138 ms.
+  Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567171908/index.html
+
+Seeking shaft of hockeystick...
+
+Deleting test students...
+Creating 2 test student(s)...
+Associating 2 user(s) with 1 calendar(s)...
+Running simulation with 2 user(s) over 5 second(s)...
+When 2 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 124 ms.
+  Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567182571/index.html
+
+(... ditto for 4 users over 5 seconds ... OK ...)
+(... ditto for 8 users over 5 seconds ... OK ...)
+(... ditto for 16 users over 5 seconds ... OK ...)
+(... ditto for 32 users over 5 seconds ... OK ...)
+(... ditto for 64 users over 5 seconds ... OK ...)
+(... ditto for 128 users over 5 seconds ... FAIL ...)
+
+Seeking knee of hockeystick... About 6 step(s) or 1:41.
+
+Deleting test students...
+Creating 96 test student(s)...
+Associating 96 user(s) with 1 calendar(s)...
+Running simulation with 96 user(s) over 5 second(s)...
+When 96 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 3754 ms.
+  Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567312703/index.html
+
+(... ditto several times, performing a binary search ...)
+
+num_users,response_time,num_seconds
+1,138,5
+2,124,5
+4,120,5
+8,157,5
+16,123,5
+32,182,5
+64,920,5
+128,6844,5
+96,3754,5
+80,2407,5
+72,1449,5
+68,1227,5
+66,1232,5
+65,939,5
+
+Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response time of 939 ms.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice how &amp;ldquo;maxload&amp;rdquo; used a binary search to automatically find the maximum load that the service could handle before the maximum response times went out of bounds. Neat.&lt;/p&gt;
+
+&lt;p&gt;Also notice that &amp;ldquo;maxload&amp;rdquo; outputs a CSV of every sample taken. This CSV is useful to graph as a scatterplot to see graphically how the response time varies depending on the number of users. We generate these scatterplot graphs often enough that we&amp;rsquo;ll probably extend &amp;ldquo;maxload&amp;rdquo; in the future to just generate a scatterplot image automatically.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;bottleneck-isolation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Bottleneck isolation&lt;/h3&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve determined the maximum load that your service can support, you can ask yourself whether that load is good enough, based on the level of traffic that you forecast your site will receive in the near future.&lt;/p&gt;
+
+&lt;p&gt;Should the maximum load not be good enough, you&amp;rsquo;ll want to isolate the &lt;strong&gt;bottleneck&lt;/strong&gt; in the system that is constraining the maximum load. Then you can focus on optimizing that bottleneck so that the maximum load increases to be good enough. Note that if you optimize a bottleneck in one area sufficiently, you may find that the bottleneck moves to a different location.&lt;/p&gt;
+
+&lt;p&gt;For a web service, the most common bottlenecks in our experience are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CPU
+
+&lt;ul&gt;
+&lt;li&gt;Is the CPU usage 100% on some box?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Network
+
+&lt;ul&gt;
+&lt;li&gt;Are the number of synchronous database requests made by the application tier to the database tier very high (i.e. more than a dozen or so)?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Memory
+
+&lt;ul&gt;
+&lt;li&gt;Is there no available memory remaining on some box?&lt;/li&gt;
+&lt;li&gt;Is there paging activity on some box?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;IOPS
+
+&lt;ul&gt;
+&lt;li&gt;Are the IOPS the maximum for the storage type on some box?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;To isolate the bottleneck, use &amp;ldquo;perftest run&amp;rdquo; to start generating a load on the service equivalent to the maximum load  it can handle (as measured previously by &amp;ldquo;perftest maxload&amp;rdquo;) for a long time interval, say 10 minutes. While that load is being generated, use monitoring tools to look at the usage of CPU, Memory, IOPS, and other resources on each box in the system to look for saturation. When you find the saturated resource, that&amp;rsquo;s the bottleneck.&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve located the bottleneck, there are usually a few ways to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not enough frontend workers
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: All frontend Gunicon workers busy 100% of the time, yet not 100% of the CPU utilized&lt;/li&gt;
+&lt;li&gt;Fix: Reconfigure Gunicorn to increase the worker count to (2*N + 1), where N is the number of CPU cores.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Too many database requests
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: Frontends busy waiting on the network for dozens of synchronous database queries to complete for a single page load&lt;/li&gt;
+&lt;li&gt;Fix: Optimize frontend logic to reduce the number of database queries per page load to less than a dozen. Use automated tests to clamp the database query count so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Not enough frontend CPU
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: 100% CPU on each box in the frontend cluster.&lt;/li&gt;
+&lt;li&gt;Fix: Increase frontend cluster size from 2 up to 5 boxes. At this point the bottleneck moves elsewhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And here are some bottlenecks that our performance testing has identified we will hit under much higher loads than what we currently experience:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not enough database CPU
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: 100% CPU on the single master database server&lt;/li&gt;
+&lt;li&gt;Potential fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Cache more aggressively, so that requests are diverted from the database tier to the cache tier.&lt;/li&gt;
+&lt;li&gt;Scale reads. Create read replicas of the database.&lt;/li&gt;
+&lt;li&gt;Scale writes. Shard the database to multiple database masters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Not enough database IOPS
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: IOPS is maximum for the database storage type (i.e. Magnetic or SSD).&lt;/li&gt;
+&lt;li&gt;Potential fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Shrink database contents with compression to reduce persisted data volume.&lt;/li&gt;
+&lt;li&gt;Increase RAM on database servers so that the database contents fit into memory, making IOPS irrelevent.&lt;/li&gt;
+&lt;li&gt;Switch database storage type from Magnetic to SSD to increase the maximum IOPS.&lt;/li&gt;
+&lt;li&gt;Scale reads. Create read replicas of the database.&lt;/li&gt;
+&lt;li&gt;Scale writes. Shard the database to multiple database masters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;overload-behavior&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Overload behavior&lt;/h3&gt;
+
+&lt;p&gt;It is useful to determine what happens when your service is subjected to greater than its maximum load. In particular:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Does it reject requests loudly?&lt;/li&gt;
+&lt;li&gt;Does it drop requests silently?&lt;/li&gt;
+&lt;li&gt;Does it crash?&lt;/li&gt;
+&lt;li&gt;If it crashes, does it automatically restart?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;You should decide what desired behavior you want your system to exhibit when receiving a temporary over-maximum load (i.e. a spike) or a sustained over-maximum load (i.e. a flood). Then verify whether the actual behavior matches the desired behavior.&lt;/p&gt;
+
+&lt;p&gt;If your service is generally written with infinitely-flexible buffers, it&amp;rsquo;s likely that receiving sustained over-maximum load will causes requests to queue up until memory is exhausted, and the out-of-memory condition will cause the service to crash.&lt;/p&gt;
+
+&lt;p&gt;On the other hand if your service is generally written with fixed-size buffers, it&amp;rsquo;s likely that receiving any over-maximum load will cause requests to be rejected or dropped.&lt;/p&gt;
+
+&lt;h2&gt;End&lt;/h2&gt;
+
+&lt;p&gt;Hopefully this article has provided some insight into concepts around performance testing and given you some ideas about how to implement or improve tooling to perform performance testing.&lt;/p&gt;
+
+&lt;p&gt;If you have any improvements or other comments on the contents of this article &lt;a href=&quot;/contact&quot;&gt;I&amp;rsquo;d love to hear from you&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;For the purposes of this article I define performance testing to include &lt;strong&gt;load testing&lt;/strong&gt; and &lt;strong&gt;stress testing&lt;/strong&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;Many other performance testing tools focus not on the &lt;strong&gt;maximum&lt;/strong&gt; response time but rather on other measures such as the &lt;strong&gt;99th percentile&lt;/strong&gt; response time or the &lt;strong&gt;mean&lt;/strong&gt; response time, which are &lt;a href=&quot;https://www.youtube.com/watch?v=lJ8ydIuPFeU&quot;&gt;inappropriate to use&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;The most important request type for a particular simulation is determined by inspecting the source code for a simulation file and looking for a line like &lt;code&gt;val PROFILED_REQUEST_NAME = &quot;view_code&quot;&lt;/code&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ 
+</feed>
