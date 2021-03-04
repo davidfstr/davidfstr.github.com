@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Real-time updates in Django with WebSockets, Channels, and pub-sub | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+  
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dafoster.net/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/"
+      },
+      "headline": "Real-time updates in Django with WebSockets, Channels, and pub-sub",
+      
+      "datePublished": "2021-03-02T00:00:00+00:00",
+      "dateModified": "2021-03-02T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "David Foster",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "David Foster",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      }
+    }
+    </script>
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+      <style>
+        /* Override blockquote to use same font size as body text */
+blockquote { font-size: 16px !important; }
+
+      </style>
+    
+
+    <!-- Fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1 class="post-title post-title--long">Real-time updates in Django with WebSockets, Channels, and pub-sub</h1>
+    <div class="post-metadata">
+      
+        Mar 02, 2021
+       &ndash; Filed under: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Django">
+  Django<sup>5</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Django.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Django" title="Subscribe to Django"/>
+</a>
+</span>
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>59</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
+        
+      </span>
+      
+    </div>
+    
+    <p>It&rsquo;s easy to build a simple chat server in Channels with real-time updates<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> but it&rsquo;s a bit more complicated to design a system for a more realistic (and complex) data model that has real-time updates. Here, I will show a <strong>publish-subscribe</strong> (or <strong>“pub-sub”</strong>) <strong>pattern</strong> using WebSockets and Channels that can be used by your frontend to watch elements of your backend data model for updates in real-time.</p>
+
+<div class="toc">
+  <ul>
+<li><a href="#topics-and-messages">Topics and Messages</a></li>
+<li><a href="#public-chat-rooms">Simple Example: Public Chat Rooms</a></li>
+<li><a href="#private-chat-rooms">Extended Example: Private Chat Rooms</a></li>
+<li><a href="#implementation-in-django">Implementation in Django</a>
+
+<ul>
+<li><a href="#models-consumers-and-routes">Models, Consumers, and Routes</a></li>
+<li><a href="#connect-frontend-to-backend">Connect Frontend to Backend</a></li>
+<li><a href="#backend-can-send-messages-to-frontend">Backend Can Send Messages to Frontend</a></li>
+<li><a href="#backend-triggers-event-to-send-to-frontend">Backend Triggers Event to Send to Frontend</a></li>
+<li><a href="#wiring-up-the-user-home-page">Wiring up the User Home Page</a></li>
+<li><a href="#review-of-implementation">Review of Implementation</a></li>
+</ul>
+</li>
+<li><a href="#lost-events">Challenge: Lost events</a></li>
+</ul>
+
+
+</div>
+
+
+<p><a name="topics-and-messages"></a></p>
+
+<h2>Topics and Messages</h2>
+
+<p>In a publish-subscribe design, frontend pages subscribe to <strong>topics</strong> that are managed by the backend, by connecting a WebSocket to a <code>wss://</code> backend endpoint corresponding to the topic.</p>
+
+<p>The backend sends <strong>messages</strong> to a topic when taking certain actions and those messages are then forwarded on by the topic to all of its subscribers.</p>
+
+<p><a name="public-chat-rooms"></a></p>
+
+<h2>Simple Example: Public Chat Rooms</h2>
+
+<p><a href="/assets/2021/pub-sub/chat-app.svg">
+    <img alt="Diagram: Chat app: Models, topics, and pages" src="/assets/2021/pub-sub/chat-app.svg" style="max-width: 100%;" />
+</a></p>
+
+<p>In the context of a simple chat app, there exist Chat Rooms and Chat Messages as models in the database. There also exists a frontend Chat Room Page which is populated with the initial set of Chat Messages on page load. This page wants to observe any new Chat Messages created related to the Chat Room it&rsquo;s displaying.</p>
+
+<p>To observe newly created Chat Messages, the Chat Room Page subscribes to a Chat Room Topic by immediately opening a WebSocket to the topic endpoint as soon as its JavaScript starts running. That topic receives messages like</p>
+
+<pre><code>{
+    'type': 'chat_message_created',
+    'kwargs': {
+        'id': '42',
+        'message': 'Hello world!'
+    }
+}
+</code></pre>
+
+<p>which the Chat Room Page then also receives and uses to update its local copy of Chat Messages on the page.</p>
+
+<p><a name="private-chat-rooms"></a></p>
+
+<h2>Extended Example: Private Chat Rooms</h2>
+
+<p>Let&rsquo;s say you wanted to extend your chat app such that each chat room is owned by a particular user and that other users must get permission from that owning user before they are allowed to join the room:</p>
+
+<p><a href="/assets/2021/pub-sub/extended-chat-app.svg">
+    <img alt="Diagram: Extended chat app: Models, topics, and pages" src="/assets/2021/pub-sub/extended-chat-app.svg" style="max-width: 100%;" />
+</a></p>
+
+<p>Now there are Users, each of which has their own User Home Page which lists the set of Chat Rooms they are already members of and all Chat Rooms that they have submitted a request to join. From this page a user can navigate to a chat room or submit a request to join a new room, perhaps by providing some kind of join code associated with the room.</p>
+
+<p><a href="/assets/2021/pub-sub/user-home-page.svg">
+    <img alt="Diagram: User Home Page" src="/assets/2021/pub-sub/user-home-page.svg" style="max-width: 100%;" />
+</a></p>
+
+<p>Additionally the Chat Room Page is extended so that if the person viewing the Chat Room is also the owner of the Chat Room, the page will display not just the list of users already in the room but also a list of users that have created a join request and are waiting to join the room. The owner can then choose to admit a waiting user to the room or to deny a waiting user from entering.</p>
+
+<p><a href="/assets/2021/pub-sub/chat-room-page.svg">
+    <img alt="Diagram: Chat Room Page" src="/assets/2021/pub-sub/chat-room-page.svg" style="max-width: 100%;" />
+</a></p>
+
+<p>Now things are a bit more complicated:</p>
+
+<ul>
+<li>There is now an additional User Topic that the User Home Page must subscribe to.</li>
+<li>There is a new Chat Room Join Request model to track which rooms a user has requested to join. <strong>Creating</strong> a new request needs to be observed by the Chat Room Page in real-time so that it can display the new waiting user to the room owner. When the owner chooses to <strong>admit</strong> or <strong>deny</strong> the join request, that action needs to be observed in real-time on the User Home Page of the requesting user.</li>
+<li>A single model (Chat Room Join Request) can have various actions applied to it (create, admit, deny) that are observed by <em>multiple</em> types of pages.</li>
+<li>Topics need to <em>authenticate</em> its subscribers:
+
+<ul>
+<li>In particular the Chat Room Topic will only allow members of the Chat Room to subscribe to it.</li>
+<li>And the User Topic will only allow its related User to subscribe to it.</li>
+</ul>
+</li>
+<li>Some Topics choose to forward certain types of messages to only a <em>subset</em> of their subscribers. In particular the Chat Room Topic should forward Chat Room Join Request messages to the room owner only and not to the other room members.</li>
+</ul>
+
+
+<p><a name="implementation-in-django"></a></p>
+
+<h2>Implementation in Django</h2>
+
+<p><a name="models-consumers-and-routes"></a></p>
+
+<h3>Models, Consumers, and Routes</h3>
+
+<p>Here&rsquo;s a sketch of what an implementation of the above extended chat app might look like in Django with the Channels library.</p>
+
+<p>First we need some models:</p>
+
+<pre><code># django/contrib/auth/models.py
+
+class User(models.Model): ...  # built-in to Django
+</code></pre>
+
+<pre><code># chat_project/chat/models.py
+from django.db import models
+
+class ChatRoom(models.Model):
+    owner = models.ForeignKey(
+        'User', related_name='owned_room_set', on_delete=models.PROTECT)
+    title = models.CharField(max_length=50)
+    member_set = models.ManyToManyField(
+        'User', related_name='joined_room_set', blank=True)
+
+class ChatMessage(models.Model):
+    room = models.ForeignKey(
+        'ChatRoom', related_name='message_set', on_delete=models.CASCADE)
+    sender = models.ForeignKey(
+        'User', related_name='message_set' on_delete=models.PROTECT)
+    posted = models.DateTimeField(auto_now_add=True)
+    message = models.CharField(max_length=200)
+
+class ChatRoomJoinRequest(models.Model):
+    user = models.ForeignKey(
+        'User', related_name='join_request_set', on_delete=models.CASCADE)
+    room = models.ForeignKey(
+        'ChatRoom', related_name='join_request_set', on_delete=models.CASCADE)
+</code></pre>
+
+<p>Then we need some topics. In Django Channels the backend object that manages a topic is called a &ldquo;consumer&rdquo;, so let&rsquo;s create some consumers:</p>
+
+<pre><code># chat_project/main/routing.py
+import chat.routing
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
+from django.conf.urls import url
+
+application = ProtocolTypeRouter({
+    # (http-&gt;django views is added by default)
+    'websocket': AuthMiddlewareStack(
+        URLRouter(
+            chat.routing.websocket_urlpatterns +
+            # (add websocket_urlpatterns from more apps here)
+            []
+        )
+    ),
+})
+</code></pre>
+
+<pre><code># chat_project/chat/routing.py
+from django.conf.urls import url
+
+from . import consumers
+
+websocket_urlpatterns = [
+    url(r'^ws/user/(?P&lt;user_id&gt;\d+)$', consumers.UserConsumer),
+    url(r'^ws/room/(?P&lt;chat_room_id&gt;\d+)$', consumers.ChatRoomConsumer),
+]
+</code></pre>
+
+<pre><code># chat_project/chat/consumers.py
+from channels.generic.websocket import WebsocketConsumer
+
+class UserConsumer(WebsocketConsumer): ...
+
+class ChatRoomConsumer(WebsocketConsumer): ...
+</code></pre>
+
+<p><a name="connect-frontend-to-backend"></a></p>
+
+<h3>Connect Frontend to Backend</h3>
+
+<p>Let&rsquo;s subscribe to a topic from the frontend:</p>
+
+<pre><code>// chat_project/chat/static/chat/room.js
+
+/*public*/ function setupChatRoomPage() {
+    const roomId = ...;
+
+    setupChatRoomSocket(roomId);  // create early to avoid missing events
+
+    ...
+}
+</code></pre>
+
+<pre><code>// chat_project/chat/static/chat/sockets.js
+
+/*public*/ function setupChatRoomSocket(roomId) {
+    new WebSocketClient(
+        '/ws/room/' + roomId, {
+            onmessage: function(e) {
+                didReceiveChatRoomSocketMessage(JSON.parse(e.data));
+            },
+        }
+    );
+}
+
+function didReceiveChatRoomSocketMessage(data) {
+    ...
+}
+</code></pre>
+
+<blockquote><p><code>WebSocketClient</code> opens and manages a WebSocket, transparently handling connect failures and temporary disconnections, retrying with exponential backoff and jitter. Please substitute your favorite WebSocket management library here.</p></blockquote>
+
+<p>Now let&rsquo;s fill out the consumer on the backend so that it can accept a connection from the frontend:</p>
+
+<pre><code># chat_project/chat/consumers.py
+from asgiref.sync import async_to_sync
+from channels.generic.websocket import WebsocketConsumer
+from channels.layers import get_channel_layer
+from chat.models import ChatRoom
+from django.contrib.auth.models import User
+import json
+
+class ChatRoomConsumer(WebsocketConsumer):
+    def __init__(self, *args, **kwargs) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self.user_group = None
+
+    def connect(self) -&gt; None:
+        # Authenticate
+        if self.user.is_anonymous:
+            self.close(code=401)  # Unauthorized
+            return
+
+        room_id = self.scope['url_route']['kwargs']['room_id']
+
+        # Identify requested objects
+        try:
+            self.room = ChatRoom.objects.get(id=room_id)
+        except ChatRoom.DoesNotExist:
+            self.close(code=404)  # Not Found
+            return
+
+        # Authorize
+        if (self.user.id != self.room.owner_id and 
+                self.user not in self.room.member_set.all()):
+            self.close(code=403)  # Forbidden
+            return
+
+        # Join group
+        self.room_group = self.room_group_for(room_id)
+        async_to_sync(self.channel_layer.group_add)(
+            self.room_group,
+            self.channel_name
+        )
+
+        self.accept()
+
+    def disconnect(self, close_code) -&gt; None: ...
+
+    # === Group ===
+
+    @staticmethod
+    def room_group_for(room_id: int) -&gt; str:
+        return 'room_%s' % room_id
+
+    # === Utility ===
+
+    @property
+    def user(self) -&gt; User:
+        return self.scope['user']
+</code></pre>
+
+<p>In a regular Django view:</p>
+
+<ul>
+<li><p>We&rsquo;d normally use the <code>@login_required</code> decorator
+to authenticate a user but here we need to do that manually by checking
+<code>user.is_anonymous</code> and returning WS 401 Unauthorized manually if the
+user hasn&rsquo;t logged in.</p></li>
+<li><p>We&rsquo;d normally receive parameters from the URL as arguments to the view
+function but here we have to look up the arguments manually from
+<code>self.scope['url_route']['kwargs']['PARAMETER_NAME']</code> instead.</p></li>
+<li><p>When authorizing we&rsquo;d normally check properties of <code>request.user</code>
+against the room ownership and membership, but here we must check
+<code>self.user</code> (which is a shortcut for <code>self.scope['user']</code>) instead.
+A failure would normally be reported using an <code>HttpResponseForbidden</code>
+but here we must manually return a WS 403 Forbidden code.</p></li>
+</ul>
+
+
+<p>At the end of the connection sequence the consumer adds itself to the
+Channels &ldquo;group&rdquo; for all consumers related to the same room topic.</p>
+
+<p>Upon disconnection the consumer also need to unregister from the group:</p>
+
+<pre><code>class ChatRoomConsumer(WebsocketConsumer):
+    def __init__(self, *args, **kwargs) -&gt; None: ...
+
+    def connect(self) -&gt; None: ...
+
+    def disconnect(self, close_code) -&gt; None:
+        # Leave group
+        if self.room_group is not None:
+            async_to_sync(self.channel_layer.group_discard)(
+                self.room_group,
+                self.channel_name
+            )
+
+    ...
+</code></pre>
+
+<p>This consumer does not expect to <em>receive</em> any incoming messages from the frontend; it only expects to <em>send</em> messages to the frontend later:</p>
+
+<pre><code>class ChatRoomConsumer(WebsocketConsumer):
+    def __init__(self, *args, **kwargs) -&gt; None: ...
+
+    def connect(self) -&gt; None: ...
+
+    def disconnect(self, close_code) -&gt; None: ...
+
+    # Receive message from page via WebSocket
+    def receive(self, text_data) -&gt; None:
+        pass
+
+    ...
+</code></pre>
+
+<p><a name="backend-can-send-messages-to-frontend"></a></p>
+
+<h3>Backend Can Send Messages to Frontend</h3>
+
+<p>Okay now we have the frontend connecting to the backend. How about we trigger an event on the backend such that it gets observed by the frontend in real-time?</p>
+
+<p>Let&rsquo;s create a helper method on the consumer that sends an event to all other consumers in the same topic, and forwards it on to the frontend through the consumer&rsquo;s connected socket:</p>
+
+<pre><code># chat_project/chat/consumers.py
+...
+from chat.models import ChatRoomJoinRequest
+from typing import Literal
+
+class ChatRoomConsumer(WebsocketConsumer):
+    def __init__(self, *args, **kwargs) -&gt; None: ...
+
+    def connect(self) -&gt; None: ...
+
+    def disconnect(self, close_code) -&gt; None: ...
+
+    def receive(self, text_data) -&gt; None: ...
+
+    # Send message to group
+    @classmethod
+    def notify_did_alter_join_request(cls,
+            join_request: ChatRoomJoinRequest,
+            action: Literal['create', 'admit', 'deny']) -&gt; None:
+        async_to_sync(get_channel_layer().group_send)(
+            cls.room_group_for(join_request.room_id),
+            {
+                'type': 'did_alter_join_request',
+                'kwargs': {
+                    'id': join_request.id,
+                    'action': action,
+                    'requesting_user': {
+                        'id': join_request.user_id,
+                        'first_name': join_request.user.first_name,
+                        'last_name': join_request.user.last_name,
+                    } if action == 'create' else None
+                }
+            }
+        )
+
+    # Receive message from group
+    def did_alter_join_request(self, event) -&gt; None:
+        kwargs = event['kwargs']
+
+        # Only the room owner may observe join request events so suppress for other users
+        if self.user.id == self.room.owner_id:
+            # Forward message to page via WebSocket
+            self.send(text_data=json.dumps({
+                'type': 'did_alter_join_request',
+                'kwargs': {
+                    'id': str(kwargs['id']),
+                    'action': kwargs['action'],
+                    'requesting_user': kwargs['requesting_user'],
+                }
+            }))
+</code></pre>
+
+<p>Notice that only the room <em>owner</em> (and not its other <em>members</em>) are notified of events related to join-requests, since the room owner is the only one with the ability to admit or deny folks trying to join the room.</p>
+
+<p>Now we need to receive that forwarded event on the frontend:</p>
+
+<pre><code>// chat_project/chat/static/chat/sockets.js
+
+/*public*/ function setupChatRoomSocket(roomId) { ... }
+
+function didReceiveChatRoomSocketMessage(data) {
+    var type = data['type'];
+    var kwargs = data['kwargs'];
+    if (type === 'did_alter_join_request') {
+        console.log(
+            'Chat room socket: Did alter join request: ' + 
+            kwargs['action'] + ' ' + kwargs['id']);
+
+        if (kwargs['action'] === 'create') {
+            // TODO: Create a new row on Chat Room Page in the Members section
+        } else if (kwargs['action'] === 'admit') {
+            // TODO: Promote the row in the Members section to a full member of
+            //       the room, removing the "Deny" and "Allow" buttons
+        } else if (kwargs['action'] === 'deny') {
+            // TODO: Remove the row in the Members section
+        }
+    } else {
+        console.warn(
+            'Chat room socket: Did receive unexpected message type: ' + type);
+    }
+}
+</code></pre>
+
+<p>We&rsquo;ve now carved out a path for events related to join-requests to be forwarded all the way to the frontend in real-time.</p>
+
+<p><a name="backend-triggers-event-to-send-to-frontend"></a></p>
+
+<h3>Backend Triggers Event to Send to Frontend</h3>
+
+<p>We still need to actually <em>trigger</em> the event in the backend by calling <code>ChatRoomConsumer.<wbr/>notify_did_alter_join_request()</code> somewhere.</p>
+
+<p>Let&rsquo;s make a <code>ChatRoomJoinRequest</code> model fire a <code>create</code> event automatically when it is created by an initial save:</p>
+
+<pre><code># chat_project/chat/models.py
+
+class ChatRoomJoinRequest(models.Model):
+    ...  # fields
+
+    def save(self, *args, **kwargs) -&gt; None:
+        change = self.id is not None  # capture
+        super().save(*args, **kwargs)
+        if not change:  # add
+            self.notify_did_alter('create')
+
+    def notify_did_alter(self,
+            action: Literal['create', 'admit', 'deny']) -&gt; None:
+        from chat.consumers import ChatRoomConsumer  # avoid circular import
+        ChatRoomConsumer.notify_did_alter_join_request(self, action)
+
+        # NOTE: In the future we'll want to notify the User Home Page here too
+        #from chat.consumers import UserConsumer  # avoid circular import
+        #UserConsumer.notify_did_alter_join_request(self, action)
+</code></pre>
+
+<p>Now if a <code>ChatRoomJoinRequest</code> is created in the Django admin site, its creation should be observed in real-time by the Chat Room Page. Great!</p>
+
+<p>Now let&rsquo;s alter <code>ChatRoomJoinRequest</code> such that an <strong>admit</strong> or <strong>deny</strong> action fires an <code>admit</code> or <code>deny</code> event appropriately. We can temporary add a <code>status</code> field to the model, with a &ldquo;pending&rdquo;, &ldquo;admitted&rdquo;, or &ldquo;denied&rdquo; state, and listen for state changes to determine whether an <code>admit</code> or <code>deny</code> action has been taken:</p>
+
+<pre><code>class ChatRoomJoinRequest(models.Model):
+    ...  # original fields
+    status = models.CharField(
+        max_length=10,
+        choices=[
+            ('pending', '⏳ Pending'),
+            ('admitted', '✅ Admitted'),
+            ('denied', '✖️ Denied'),
+        ],
+        default='pending',
+    )
+
+    def __init__(self, *args, **kwargs) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self._initial_status = self.status
+
+    def save(self, *args, **kwargs) -&gt; None:
+        change = self.id is not None  # capture
+        super().save(*args, **kwargs)
+        if not change:  # add
+            self.notify_did_alter('create')
+        else:  # change
+            if self.status != self._initial_status:
+                if self.status == 'admitted':
+                    self.notify_did_alter('admit')
+                elif self.status == 'denied':
+                    self.notify_did_alter('deny')
+
+    def notify_did_alter(self, ...): ...
+</code></pre>
+
+<p>Now if the <code>status</code> field of a <code>ChatRoomJoinRequest</code> is changed in the Django admin site, the related <code>admit</code> or <code>deny</code> event should be observed in real-time by the Chat Room Page. Fantastic!</p>
+
+<p>Now <em>all</em> actions that can be taken on a <code>ChatRoomJoinRequest</code> can be observed by the Chat Room Page in real-time. ✅ But what the User Home Page? It also wants to be notified of events related to join-requests.</p>
+
+<p><a name="wiring-up-the-user-home-page"></a></p>
+
+<h3>Wiring up the User Home Page</h3>
+
+<p>Recall that the User Home Page also wants to observe events related to <code>ChatRoomJoinRequest</code>s so that it can notify a user whether their request to join a room was approved or denied by the room owner, in real-time.</p>
+
+<p>Similar to how the Chat Room Page observes events in real-time, we&rsquo;ll need to create a User Topic that is backed by a frontend socket and a backend consumer that manages that socket (<code>UserConsumer</code>).</p>
+
+<p>The code for <code>setupUserSocket</code> is in the same pattern as that for <code>setupChatRoomSocket</code> so I won&rsquo;t bother listing it.</p>
+
+<p>Ditto for <code>UserConsumer</code>, whose code is similar to that for <code>ChatRoomConsumer</code>.</p>
+
+<p>Now we need to link <code>ChatRoomJoinRequest.notify_did_alter</code> to notify not just the Chat Room Topic of changes, but also the User Topic via <code>UserConsumer.<wbr/>notify_did_alter_join_request</code>:</p>
+
+<pre><code># chat_project/chat/models.py
+
+class ChatRoomJoinRequest(models.Model):
+    ...  # fields
+
+    def save(self, *args, **kwargs) -&gt; None:
+        change = self.id is not None  # capture
+        super().save(*args, **kwargs)
+        if not change:  # add
+            self.notify_did_alter('create')
+
+    def notify_did_alter(self,
+            action: Literal['create', 'admit', 'deny']) -&gt; None:
+        from chat.consumers import ChatRoomConsumer  # avoid circular import
+        ChatRoomConsumer.notify_did_alter_join_request(self, action)
+
+        from chat.consumers import UserConsumer  # avoid circular import
+        UserConsumer.notify_did_alter_join_request(self, action)
+</code></pre>
+
+<p><a name="review-of-implementation"></a></p>
+
+<h3>Review of Implementation</h3>
+
+<p>Congratulations! You&rsquo;ve wired up a non-trivial chat server that can admit and deny requests to join private chat rooms! 🎉</p>
+
+<p>Let&rsquo;s review how a particular sequence of actions might be taken on the backend and observed on the frontend in real-time:</p>
+
+<ul>
+<li>A staff member logs into the Django admin site and creates a <code>ChatRoomJoinRequest</code> object:
+
+<ul>
+<li><code>ChatRoomJoinRequest.save()</code> triggers and detects a <code>create</code> action.</li>
+<li><code>ChatRoomJoinRequest.<wbr/>notify_did_alter()</code> does forward the message to all interested consumers.</li>
+<li><code>*Consumer.<wbr/>notify_did_alter_join_request()</code> does forward the message to the Channels group corresponding to the <code>*</code> topic (either a Chat Room Topic or a User Topic).</li>
+<li><code>*Consumer.<wbr/>did_alter_join_request()</code> for all related consumer instances (on all backend servers) does receive the message, and forwards it on to its connected socket.</li>
+<li><code>didReceive*SocketMessage</code> on either the Chat Room Page or User Home Page does receive the message, and takes action to update the page immediately. ✅</li>
+</ul>
+</li>
+<li>The staff member changes the <code>status</code> field from its default <code>⏳ Pending</code> value to be <code>✅ Admitted</code>, and presses the &ldquo;Save and continue&rdquo; button on the admin page:
+
+<ul>
+<li><code>ChatRoomJoinRequest.save()</code> triggers and detects an <code>admit</code> action.</li>
+<li><em>(&hellip; same intermediate calls as above &hellip;)</em></li>
+<li><code>didReceive*SocketMessage</code> on either the Chat Room Page or User Home Page does receive the message, and takes action to update the page immediately. ✅</li>
+</ul>
+</li>
+<li>The staff member does press the &ldquo;Delete&rdquo; button on the admin page.
+
+<ul>
+<li>The <code>ChatRoomJoinRequest</code> model is deleted.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><a name="lost-events"></a></p>
+
+<h2>Challenge: Lost events</h2>
+
+<p>The above implementation does not handle a particular race condition that can occur if an event of interest (such as the creation of a Chat Message) happens <em>while</em> a page (like the Chat Room Page) is loading. Imagine:</p>
+
+<ul>
+<li>User Alice is on the Chat Room Page and has already posted a first message to the room.</li>
+<li>User Bob requests the Chat Room Page from Django, which renders to HTML the current set of Chat Messages in the Chat Room. Bob&rsquo;s Chat Room Page hasn&rsquo;t yet loaded its JavaScript yet&hellip;</li>
+<li>Alice posts a second message to the room, which fires a <code>create</code> action to every loaded page that is listening to the room. However because Bob&rsquo;s page hasn&rsquo;t finished loading its JavaScript yet, it has not established a socket connection to the backend yet and misses the event.</li>
+<li>Bob&rsquo;s JavaScript finally loads and establishes a socket connection to the backend.</li>
+<li>Alice posts a third message to the room, which get observed by Bob, now that his socket is connected.</li>
+</ul>
+
+
+<p>By the end of this story Alice has posted three messages to the chat room but Bob only sees the first and third message that Alice posted. Bob missed the second message because it was fired in between when Bob started and finished loading the Chat Room Page.</p>
+
+<p>How can we avoid losing events like this? <a href="javascript:scrollToSubscribeBlock();">Join me next week</a> as I sketch some solutions to this tricky scenario.</p>
+
+<p>Happy coding!</p>
+
+<h3><em>Related Articles</em></h3>
+
+<p>In <span class="tag_box tag_box--inline"><span class="tag"><a class="tag__pill" href="/articles/topics/#Django">
+  Django<sup>5</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Django.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Django" title="Subscribe to Django"/>
+</a>
+</span></span>:</p>
+
+<ul>
+<li><a href="/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/">Building web apps with Vue and Django - The Ultimate Guide</a> - Planning how to integrate Vue with a new or existing Django app</li>
+<li><a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">Database clamps</a> - Writing deterministic performance tests for database-dependent code in Django</li>
+<li><a href="/articles/2021/02/02/tests-as-policy-automation/">Tests as Policy Automation</a> - Has ideas for creatively using automated tests to enforce various (non-functional) properties in your Django web app.</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>The <a href="https://channels.readthedocs.io/en/latest/tutorial/">official Channels tutorial</a> has a nice example of building a chat server. (Although since I wrote it I may be biased. 😉)<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div id="subscribe-block" class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+  <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+</a>
+<a class="subscribe" href="feed://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" />Subscribe (RSS)
+</a>
+<span class="subscribe subscribe-last subscribe__frequency">
+  <i>Updated articles every week!</i>
+</span>
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/" title="Building web apps with Vue and Django - The Ultimate Guide">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2021 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    <script>
+      /*public*/ function scrollToSubscribeBlock() {
+    var subscribeBlock = document.querySelector('#subscribe-block');
+    subscribeBlock.querySelector('.subscribe__prompt').style['backgroundColor'] = '#ffff0070';
+    subscribeBlock.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+    </script>
+  
+    
+  
+    
+  
+  </body>
+</html>
