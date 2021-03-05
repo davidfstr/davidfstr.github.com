@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2021-03-04T02:30:45+00:00</updated>
+ <updated>2021-03-05T05:32:25+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -625,7 +625,7 @@ class ChatRoomJoinRequest(models.Model):
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;The &lt;a href=&quot;https://channels.readthedocs.io/en/latest/tutorial/&quot;&gt;official Channels tutorial&lt;/a&gt; has a nice example of building a chat server. (Although since I wrote it I may be biased. 😉)&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;The &lt;a href=&quot;https://channels.readthedocs.io/en/latest/tutorial/&quot;&gt;official Channels tutorial&lt;/a&gt; has a nice example of building a chat server.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
