@@ -221,7 +221,7 @@ blockquote { font-size: 16px !important; }
         
         
           <span class="tag"><a class="tag__pill" href="/articles/topics/#Django">
-  Django<sup>5</sup>
+  Django<sup>6</sup>
 </a>
 <a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Django.xml">
   <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Django" title="Subscribe to Django"/>
@@ -229,7 +229,7 @@ blockquote { font-size: 16px !important; }
 </span>
         
           <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
-  Software<sup>59</sup>
+  Software<sup>60</sup>
 </a>
 <a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
   <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
@@ -815,14 +815,14 @@ class ChatRoomJoinRequest(models.Model):
 
 <p>By the end of this story Alice has posted three messages to the chat room but Bob only sees the first and third message that Alice posted. Bob missed the second message because it was fired in between when Bob started and finished loading the Chat Room Page.</p>
 
-<p>How can we avoid losing events like this? <a href="javascript:scrollToSubscribeBlock();">Join me next week</a> as I sketch some solutions to this tricky scenario.</p>
+<p>How can we avoid losing events like this? <a href="/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data/">Join me next week</a> as I sketch some solutions to this tricky scenario.</p>
 
 <p>Happy coding!</p>
 
 <h3><em>Related Articles</em></h3>
 
 <p>In <span class="tag_box tag_box--inline"><span class="tag"><a class="tag__pill" href="/articles/topics/#Django">
-  Django<sup>5</sup>
+  Django<sup>6</sup>
 </a>
 <a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Django.xml">
   <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Django" title="Subscribe to Django"/>
@@ -871,7 +871,7 @@ class ChatRoomJoinRequest(models.Model):
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next disabled"><a>Next &rarr;</a>
+        <li class="next"><a href="/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data/" title="Reliable rendering of web pages that view concurrently modified data">Next &rarr;</a></li>
       
       </ul>
     </div>
@@ -895,11 +895,11 @@ class ChatRoomJoinRequest(models.Model):
   
   
     <script>
-      /*public*/ function scrollToSubscribeBlock() {
-    var subscribeBlock = document.querySelector('#subscribe-block');
-    subscribeBlock.querySelector('.subscribe__prompt').style['backgroundColor'] = '#ffff0070';
-    subscribeBlock.scrollIntoView({behavior: 'smooth', block: 'start'});
-}
+      ///*public*/ function scrollToSubscribeBlock() {
+//    var subscribeBlock = document.querySelector('#subscribe-block');
+//    subscribeBlock.querySelector('.subscribe__prompt').style['backgroundColor'] = '#ffff0070';
+//    subscribeBlock.scrollIntoView({behavior: 'smooth', block: 'start'});
+//}
 
     </script>
   

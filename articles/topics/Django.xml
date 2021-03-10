@@ -4,7 +4,7 @@
  <title>DaFoster (Django)</title>
  <link href="https://dafoster.net/articles/topics/#Django"/>
  <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
- <updated>2021-03-05T16:42:01+00:00</updated>
+ <updated>2021-03-10T05:29:10+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Django</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,255 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data</id>
+   <title>Reliable rendering of web pages that view concurrently modified data</title>
+   <published>2021-03-09T00:00:00+00:00</published>
+   <updated>2021-03-09T00:00:00+00:00</updated>
+   
+     <category term="Django"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Any time a backend Django or Rails function calculates something complex from the database to send to the frontend as part of a view, there is a chance the database will be modified concurrently before the view is displayed to the visitor, causing the site visitor to see outdated information.&lt;/p&gt;
+
+&lt;p&gt;In many cases displaying stale information is fine. After all refreshing the page will bring the latest information to a visitor who is temporarily seeing stale information. But in other cases showing stale information can be a major problem:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;For example if the stale data is some editable text that is shared with other site visitors and the new visitor tries to edit it, they&amp;rsquo;ll clobber the last set of changes made by the previous visitor! Data loss is not OK.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Or perhaps the stale information controls whether the visitor is allowed to access a piece of content that they are actively interested in. For example a user may be requesting to join a chat room and is waiting to be let in. Presenting stale access information saying that the visitor is locked out when they really aren&amp;rsquo;t will cause them to wait forever and eventually give up! Abandonment is not OK.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;How can we avoid serving stale data to the frontend to avoid such problems? This article presents one technique to both avoid serving stale data from the backend in the first place and repair the stale data quickly after page load if necessary.&lt;/p&gt;
+
+&lt;p&gt;Although this article is written from the perspective of a Django developer, the concepts apply to any web page that is rendered dynamically based on data from a database or other data source that is subject to concurrent modification.&lt;/p&gt;
+
+&lt;h2&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start by reviewing the problem: Consider a web page that is templated by a backend server such as Django or Rails which uses information from a database. &lt;strong&gt;If visitor A reads from the database while templating such a page, but visitor B then alter the part of the database that A read, A will see outdated information&lt;/strong&gt; when her page finishes loading:&lt;/p&gt;
+
+&lt;!-- &lt;img alt=&quot;Diagram: Visitor A templates a page from database data, while a visitor B makes a concurrent modification to database data&quot; src=&quot;/assets/2021/concurrent-rendering/1-backend-interrupt.svg&quot; class=&quot;sequence-diagram&quot; /&gt; --&gt;
+
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A templates a page from database data, while a visitor B makes a concurrent modification to database data&quot; src=&quot;/assets/2021/concurrent-rendering/1H-backend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We want to ensure that A sees the freshest data either immediately or as quickly as possible after initial page load.&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear=&quot;all&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Designing a Solution&lt;/h2&gt;
+
+&lt;p&gt;How can visitor A detect the change made by visitor B? One idea is to &lt;strong&gt;double-check the freshness of information from the database just before returning information to the frontend&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;!-- &lt;img alt=&quot;Diagram: Visitor A makes one extra query to the database just before returning information to the frontend&quot; src=&quot;/assets/2021/concurrent-rendering/2-backend-freshness-check.svg&quot; class=&quot;sequence-diagram&quot; /&gt; --&gt;
+
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A makes one extra query to the database just before returning information to the frontend&quot; src=&quot;/assets/2021/concurrent-rendering/2H-backend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Although such a strategy does narrow the time window in which a race condition could occur, it is still possible that a concurrent modification is made while the templated page is in transit to the frontend:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a concurrent modification while data for Visitor A is in transit to the frontend&quot; src=&quot;/assets/2021/concurrent-rendering/3H-network-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Another idea is for the frontend to &lt;strong&gt;explicitly double-check the freshness of the information it receives from the backend shortly after it initially renders&lt;/strong&gt;. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A&#39;s frontend does check for any concurrent modification immediately after rendering the initial information received from the backend&quot; src=&quot;/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This strategy is almost perfect (for getting the most up-to-date state reliably to the frontend). However there&amp;rsquo;s still a narrow time window in which visitor B can make a modification after visitor A&amp;rsquo;s final request.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a change slightly after visitor A&#39;s frontend makes a final freshness check&quot; src=&quot;/assets/2021/concurrent-rendering/5H-frontend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;What now? To detect these types of concurrent changes it is necessary for the backend to &lt;strong&gt;push any new changes to the frontend in real-time (via WebSocket)&lt;/strong&gt; and the frontend needs to be prepared to receive these kinds of updates to its displayed state continuously:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Every time Visitor B makes a change, an update is pushed to Visitor A in real-time, quickly bringing Visitor A&#39;s frontend up to date.&quot; src=&quot;/assets/2021/concurrent-rendering/6H-push-fresh-data-live.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Note: My last article explains in depth &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/&quot;&gt;how to setup such real-time updates over WebSocket in Django&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Additionally the backend must be prepared to &lt;strong&gt;push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket yet&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A&#39;s socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Great! We&amp;rsquo;ve got a bulletproof design to quickly observe an accurate up-to-date state on the frontend. But it does seem to be rather complex&amp;hellip;&lt;/p&gt;
+
+&lt;h2&gt;Alternative Design: No backend templating&lt;/h2&gt;
+
+&lt;p&gt;It is &lt;em&gt;possible&lt;/em&gt; to remove the initial logic that templates information initially on the backend and &lt;strong&gt;rely entirely on the WebSocket established after frontend page load to receive both the initial page state and any updates to that state in real-time&lt;/strong&gt;. Indeed this is the approach taken by many Single Page Applications (SPAs):&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Diagram: Backend does not preload any data. Frontend pulls data and changes from backend.&quot; src=&quot;/assets/2021/concurrent-rendering/8H-push-only.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;However removing backend templating entirely will cause the initial page load to contain no content, which will destroy your SEO performance. It will also raise your time-to-first-rendered-content because of the extra delay in establishing a socket connection before loading &lt;em&gt;any&lt;/em&gt; content, disproportionately slowing the browsing experience of any site visitor who isn&amp;rsquo;t on a fast low-latency internet connection.&lt;/p&gt;
+
+&lt;p&gt;I find such a user experience to be unacceptable. So we&amp;rsquo;re back to the more complex design with both backend templating and real-time updates&amp;hellip;&lt;/p&gt;
+
+&lt;h2&gt;Implementation&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s actually sketch our design for reliable rendering in code!&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll use the &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/#private-chat-rooms&quot;&gt;example of a User Home Page that lists a set of associated Chat Rooms&lt;/a&gt; from my last article.&lt;/p&gt;
+
+&lt;p&gt;Please review the &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/#models-consumers-and-routes&quot;&gt;User, ChatRoom, and ChatRoomJoinRequest models&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s define a &lt;strong&gt;cacheable calculation&lt;/strong&gt; for the set of available rooms given a particular user:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from typing import TypedDict
+
+IntStr = str  # parseable as an int
+
+class RoomInfo(TypedDict):
+    id: IntStr
+    title: str
+    pending: bool
+
+def calculate_chat_room_list(user: User) -&amp;gt; List[RoomInfo]:
+    joined_rooms = [
+        dict(
+            id=str(room.id),
+            title=room.title,
+            pending=False,
+        )
+        for room in user.joined_room_set.all()
+    ]
+    pending_rooms = [
+        dict(
+            id=str(join_request.room.id),
+            title=join_request.room.title,
+            pending=True,
+        )
+        for join_request in ChatRoomJoinRequest.filter(user=user, status=&#39;pending&#39;)
+    ]
+    return list(sorted(
+        joined_rooms + pending_rooms,
+        key=lambda room_info: (room_info[&#39;title&#39;], int(room_info[&#39;id&#39;]))
+    ))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then in the backend view function that templates the page&amp;rsquo;s HTML, we&amp;rsquo;ll prepopulate the latest data in that HTML:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# chat_project/chat/views.py
+
+@login_required
+def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
+    ...
+
+    last_updated = UserConsumer.create_timepoint()  # capture
+    chat_room_list = calculate_chat_room_list(request.user)  # capture
+
+    return render(request, &#39;chat/user_home_page.html&#39;, dict(
+        user_id=request.user.id,
+        last_updated=last_updated,
+        chat_room_list=chat_room_list,
+    ))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then on the frontend JavaScript will wake up and establish a WebSocket connection to the backend, to see if any concurrent changes were made to the room list since the version in the HTML was calculated:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# chat_project/chat/static/chat/user_home_page.js
+
+/*public*/ function setupUserHomePage() {
+    const userId = JSON.parse(
+        document.querySelector(&#39;#user-id&#39;).innerText);
+    const lastUpdated = JSON.parse(
+        document.querySelector(&#39;#last-updated&#39;).innerText);
+    setupUserSocket(userId, lastUpdated);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Whenever a user&amp;rsquo;s room join request is updated, the backend must notify the frontend appropriately through the socket by creating, buffering, and forwarding an event stamped with a new &lt;strong&gt;timepoint&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# chat_project/chat/models.py
+
+class ChatRoomJoinRequest(models.Model):
+    ...  # fields
+
+    def save(self, *args, **kwargs) -&amp;gt; None: ...
+
+    def notify_did_alter(self,
+            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+        ...
+
+        from chat.consumers import UserConsumer  # avoid circular import
+        UserConsumer.notify_did_alter_join_request(self, action)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;# chat_project/chat/consumers.py
+
+class UserConsumer(WebsocketConsumer):
+    ...
+
+    # Send message to group
+    @classmethod
+    def notify_did_alter_join_request(cls,
+            join_request: ChatRoomJoinRequest,
+            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+        update_timepoint = cls.create_timepoint()  # capture
+        async_to_sync(get_channel_layer().group_send)(
+            cls.user_group_for(join_request.user_id),
+            {
+                &#39;timepoint&#39;: update_timepoint,
+                &#39;type&#39;: &#39;did_alter_join_request&#39;,
+                &#39;kwargs&#39;: { ... }
+            }
+        )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the frontend first connects a socket to the backend, the backend will attempt to immediately forward any events that were buffered since the timepoint passed in the connect call:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# chat_project/chat/static/chat/sockets.js
+
+/*public*/ function setupUserSocket(userId, lastUpdated) {
+    new WebSocketClient(
+        &#39;/ws/user/&#39; + userId + &#39;/&#39; + lastUpdated, {
+            onmessage: function(e) {
+                didReceiveUserSocketMessage(JSON.parse(e.data));
+            },
+        }
+    );
+}
+
+function didReceiveUserSocketMessage(data) {
+    var type = data[&#39;type&#39;];
+    var kwargs = data[&#39;kwargs&#39;];
+    if (type === &#39;did_alter_join_request&#39;) {
+        console.log(
+            &#39;User socket: Did alter join request: &#39; + 
+            kwargs[&#39;action&#39;] + &#39; &#39; + kwargs[&#39;id&#39;]);
+        if (kwargs[&#39;action&#39;] === &#39;create&#39;) {
+            // TODO: Create a new row on User Home Page in the Rooms section
+        } else if (kwargs[&#39;action&#39;] === &#39;admit&#39;) {
+            // TODO: Promote the row in the Rooms section to be a full room,
+            //       removing the &quot;Waiting to be admitted&quot; banner
+        } else if (kwargs[&#39;action&#39;] === &#39;deny&#39;) {
+            // TODO: Remove the row in the Rooms section
+        }
+    } else {
+        console.warn(
+            &#39;User socket: Did receive unexpected message type: &#39; + type);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! Hopefully you found this technique useful for reliably rendering the freshest information to visitors, even in the presence of concurrent modifications.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Django&quot;&gt;
+  Django&lt;sup&gt;6&lt;/sup&gt;
+&lt;/a&gt;
+&lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Django.xml&quot;&gt;
+  &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Django&quot; title=&quot;Subscribe to Django&quot;/&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/span&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/#models-consumers-and-routes&quot;&gt;Real-time updates in Django with WebSockets, Channels, and pub-sub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/&quot;&gt;Building web apps with Vue and Django - The Ultimate Guide&lt;/a&gt; - Planning how to integrate Vue with a new or existing Django app&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -601,14 +850,14 @@ class ChatRoomJoinRequest(models.Model):
 
 &lt;p&gt;By the end of this story Alice has posted three messages to the chat room but Bob only sees the first and third message that Alice posted. Bob missed the second message because it was fired in between when Bob started and finished loading the Chat Room Page.&lt;/p&gt;
 
-&lt;p&gt;How can we avoid losing events like this? &lt;a href=&quot;javascript:scrollToSubscribeBlock();&quot;&gt;Join me next week&lt;/a&gt; as I sketch some solutions to this tricky scenario.&lt;/p&gt;
+&lt;p&gt;How can we avoid losing events like this? &lt;a href=&quot;/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data/&quot;&gt;Join me next week&lt;/a&gt; as I sketch some solutions to this tricky scenario.&lt;/p&gt;
 
 &lt;p&gt;Happy coding!&lt;/p&gt;
 
 &lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Django&quot;&gt;
-  Django&lt;sup&gt;5&lt;/sup&gt;
+  Django&lt;sup&gt;6&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Django.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Django&quot; title=&quot;Subscribe to Django&quot;/&gt;
@@ -1107,7 +1356,7 @@ export function defineTodoList() {
 &lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps&lt;/a&gt; - Writing deterministic performance tests for database-dependent code in Django&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has ideas for creatively using automated tests to enforce various (non-functional) properties in your Django web app.&lt;/li&gt;
 &lt;li&gt;Other &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Django&quot;&gt;
-Django&lt;sup&gt;5&lt;/sup&gt;
+Django&lt;sup&gt;6&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Django.xml&quot;&gt;
 &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Django&quot; title=&quot;Subscribe to Django&quot;/&gt;
