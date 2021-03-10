@@ -261,10 +261,7 @@ blockquote { font-size: 16px !important; }
 
 <h2>The Problem</h2>
 
-<p>Let&rsquo;s start by reviewing the problem: Consider a web page that is templated by a backend server such as Django or Rails which uses information from a database. <strong>If visitor A reads from the database while templating such a page, but visitor B then alter the part of the database that A read, A will see outdated information</strong> when her page finishes loading:</p>
-
-<!-- <img alt="Diagram: Visitor A templates a page from database data, while a visitor B makes a concurrent modification to database data" src="/assets/2021/concurrent-rendering/1-backend-interrupt.svg" class="sequence-diagram" /> -->
-
+<p>Let&rsquo;s start by reviewing the problem: Consider a web page that is templated by a backend server such as Django or Rails which uses information from a database. <strong>If visitor A reads from the database while templating such a page, but visitor B then alters the part of the database that A read, A will see outdated information</strong> when her page finishes loading:</p>
 
 <p><img alt="Diagram: Visitor A templates a page from database data, while a visitor B makes a concurrent modification to database data" src="/assets/2021/concurrent-rendering/1H-backend-interrupt.svg" class="sequence-diagram-h" /></p>
 
@@ -276,16 +273,13 @@ blockquote { font-size: 16px !important; }
 
 <p>How can visitor A detect the change made by visitor B? One idea is to <strong>double-check the freshness of information from the database just before returning information to the frontend</strong>:</p>
 
-<!-- <img alt="Diagram: Visitor A makes one extra query to the database just before returning information to the frontend" src="/assets/2021/concurrent-rendering/2-backend-freshness-check.svg" class="sequence-diagram" /> -->
-
-
 <p><img alt="Diagram: Visitor A makes one extra query to the database just before returning information to the frontend" src="/assets/2021/concurrent-rendering/2H-backend-freshness-check.svg" class="sequence-diagram-h" /></p>
 
 <p>Although such a strategy does narrow the time window in which a race condition could occur, it is still possible that a concurrent modification is made while the templated page is in transit to the frontend:</p>
 
 <p><img alt="Diagram: Visitor B makes a concurrent modification while data for Visitor A is in transit to the frontend" src="/assets/2021/concurrent-rendering/3H-network-interrupt.svg" class="sequence-diagram-h" /></p>
 
-<p>Another idea is for the frontend to <strong>explicitly double-check the freshness of the information it receives from the backend shortly after it initially renders</strong>. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:</p>
+<p>Another idea is for the frontend to explicitly <strong>double-check the freshness of the information it receives from the backend shortly after it initially renders</strong>. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:</p>
 
 <p><img alt="Diagram: Visitor A's frontend does check for any concurrent modification immediately after rendering the initial information received from the backend" src="/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg" class="sequence-diagram-h" /></p>
 
@@ -299,7 +293,7 @@ blockquote { font-size: 16px !important; }
 
 <blockquote><p>Note: My last article explains in depth <a href="/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/">how to setup such real-time updates over WebSocket in Django</a>.</p></blockquote>
 
-<p>Additionally the backend must be prepared to <strong>push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket yet</strong>:</p>
+<p>Additionally the backend must be prepared to <strong>push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket</strong>:</p>
 
 <p><img alt="Diagram: Changes made by Visitor B are buffered so that when Visitor A's socket connects later the change is still pushed to Visitor A." src="/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg" class="sequence-diagram-h" /></p>
 

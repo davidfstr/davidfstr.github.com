@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2021-03-10T05:29:10+00:00</updated>
+ <updated>2021-03-10T05:34:57+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -42,10 +42,7 @@
 
 &lt;h2&gt;The Problem&lt;/h2&gt;
 
-&lt;p&gt;Let&amp;rsquo;s start by reviewing the problem: Consider a web page that is templated by a backend server such as Django or Rails which uses information from a database. &lt;strong&gt;If visitor A reads from the database while templating such a page, but visitor B then alter the part of the database that A read, A will see outdated information&lt;/strong&gt; when her page finishes loading:&lt;/p&gt;
-
-&lt;!-- &lt;img alt=&quot;Diagram: Visitor A templates a page from database data, while a visitor B makes a concurrent modification to database data&quot; src=&quot;/assets/2021/concurrent-rendering/1-backend-interrupt.svg&quot; class=&quot;sequence-diagram&quot; /&gt; --&gt;
-
+&lt;p&gt;Let&amp;rsquo;s start by reviewing the problem: Consider a web page that is templated by a backend server such as Django or Rails which uses information from a database. &lt;strong&gt;If visitor A reads from the database while templating such a page, but visitor B then alters the part of the database that A read, A will see outdated information&lt;/strong&gt; when her page finishes loading:&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A templates a page from database data, while a visitor B makes a concurrent modification to database data&quot; src=&quot;/assets/2021/concurrent-rendering/1H-backend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
@@ -57,16 +54,13 @@
 
 &lt;p&gt;How can visitor A detect the change made by visitor B? One idea is to &lt;strong&gt;double-check the freshness of information from the database just before returning information to the frontend&lt;/strong&gt;:&lt;/p&gt;
 
-&lt;!-- &lt;img alt=&quot;Diagram: Visitor A makes one extra query to the database just before returning information to the frontend&quot; src=&quot;/assets/2021/concurrent-rendering/2-backend-freshness-check.svg&quot; class=&quot;sequence-diagram&quot; /&gt; --&gt;
-
-
 &lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A makes one extra query to the database just before returning information to the frontend&quot; src=&quot;/assets/2021/concurrent-rendering/2H-backend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Although such a strategy does narrow the time window in which a race condition could occur, it is still possible that a concurrent modification is made while the templated page is in transit to the frontend:&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a concurrent modification while data for Visitor A is in transit to the frontend&quot; src=&quot;/assets/2021/concurrent-rendering/3H-network-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Another idea is for the frontend to &lt;strong&gt;explicitly double-check the freshness of the information it receives from the backend shortly after it initially renders&lt;/strong&gt;. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:&lt;/p&gt;
+&lt;p&gt;Another idea is for the frontend to explicitly &lt;strong&gt;double-check the freshness of the information it receives from the backend shortly after it initially renders&lt;/strong&gt;. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A&#39;s frontend does check for any concurrent modification immediately after rendering the initial information received from the backend&quot; src=&quot;/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
@@ -80,7 +74,7 @@
 
 &lt;blockquote&gt;&lt;p&gt;Note: My last article explains in depth &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/&quot;&gt;how to setup such real-time updates over WebSocket in Django&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
 
-&lt;p&gt;Additionally the backend must be prepared to &lt;strong&gt;push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket yet&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Additionally the backend must be prepared to &lt;strong&gt;push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A&#39;s socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
