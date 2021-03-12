@@ -4,7 +4,7 @@
  <title>DaFoster (Django)</title>
  <link href="https://dafoster.net/articles/topics/#Django"/>
  <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
- <updated>2021-03-10T15:18:24+00:00</updated>
+ <updated>2021-03-12T01:07:35+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Django</id>
  <author>
    <name>David Foster</name>
@@ -90,7 +90,7 @@
 
 &lt;p&gt;I find such a user experience to be unacceptable. So we&amp;rsquo;re back to the more complex design with both backend templating and real-time updates&amp;hellip;&lt;/p&gt;
 
-&lt;h2&gt;Implementation&lt;/h2&gt;
+&lt;h2&gt;Implementation &lt;small&gt;(using Django)&lt;/small&gt;&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s actually sketch our design for reliable rendering in code!&lt;/p&gt;
 

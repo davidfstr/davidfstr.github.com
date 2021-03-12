@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 10 Mar 2021 15:18:24 +0000</pubDate>
-    <lastBuildDate>Wed, 10 Mar 2021 15:18:24 +0000</lastBuildDate>
+    <pubDate>Fri, 12 Mar 2021 01:07:35 +0000</pubDate>
+    <lastBuildDate>Fri, 12 Mar 2021 01:07:35 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -86,7 +86,7 @@
 
 &lt;p&gt;I find such a user experience to be unacceptable. So we&amp;rsquo;re back to the more complex design with both backend templating and real-time updates&amp;hellip;&lt;/p&gt;
 
-&lt;h2&gt;Implementation&lt;/h2&gt;
+&lt;h2&gt;Implementation &lt;small&gt;(using Django)&lt;/small&gt;&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s actually sketch our design for reliable rendering in code!&lt;/p&gt;
 
