@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 12 Mar 2021 01:07:35 +0000</pubDate>
-    <lastBuildDate>Fri, 12 Mar 2021 01:07:35 +0000</lastBuildDate>
+    <pubDate>Fri, 12 Mar 2021 04:02:39 +0000</pubDate>
+    <lastBuildDate>Fri, 12 Mar 2021 04:02:39 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -140,7 +140,7 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
     chat_room_list = calculate_chat_room_list(request.user)  # capture
 
     return render(request, &#39;chat/user_home_page.html&#39;, dict(
-        user_id=request.user.id,
+        user_id=str(request.user.id),
         last_updated=last_updated,
         chat_room_list=chat_room_list,
     ))

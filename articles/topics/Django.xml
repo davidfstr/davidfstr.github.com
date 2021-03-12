@@ -4,7 +4,7 @@
  <title>DaFoster (Django)</title>
  <link href="https://dafoster.net/articles/topics/#Django"/>
  <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
- <updated>2021-03-12T01:07:35+00:00</updated>
+ <updated>2021-03-12T04:02:39+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Django</id>
  <author>
    <name>David Foster</name>
@@ -144,7 +144,7 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
     chat_room_list = calculate_chat_room_list(request.user)  # capture
 
     return render(request, &#39;chat/user_home_page.html&#39;, dict(
-        user_id=request.user.id,
+        user_id=str(request.user.id),
         last_updated=last_updated,
         chat_room_list=chat_room_list,
     ))
