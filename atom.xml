@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2021-03-15T14:30:33+00:00</updated>
+ <updated>2021-03-17T15:25:47+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,165 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/03/16/you-might-not-need-centralized-continuous-integration</id>
+   <title>You might not need centralized continuous integration</title>
+   <published>2021-03-16T00:00:00+00:00</published>
+   <updated>2021-03-16T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/03/16/you-might-not-need-centralized-continuous-integration/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;The general availability of easy-to-use centralized &lt;strong&gt;continuous integration&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; (CI) solutions in recent years - from GitHub Actions&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and Travis as hosted solutions, and from Jenkins&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; and Hudson as on-premises solutions - has been wonderful for allowing software to be tested continuously throughout development, catching errors early &lt;em&gt;before&lt;/em&gt; changes are merged to shared development and mainline branches.&lt;/p&gt;
+
+&lt;p&gt;Today I&amp;rsquo;d like to explore the now perhaps-controversial idea of &amp;ldquo;When might it &lt;em&gt;not&lt;/em&gt; be worth the effort to setup a centralized continuous integration service?&amp;rdquo; In particular I&amp;rsquo;ve somehow managed to &lt;em&gt;not&lt;/em&gt; setup a CI server for the primary web app I&amp;rsquo;ve been developing and running in production even after several years.&lt;!--[^ts-platform]--&gt;&lt;/p&gt;
+
+&lt;!-- [^ts-platform]: In case you&#39;re curious, the web app I mentioned that I&#39;ve been developing for several years that currently lacks *centralized* continuous integration is the [TechSmart Platform](/projects/techsmart-platform/) for online computer science learning and coding. --&gt;
+
+
+&lt;h2&gt;The wonders of continuous integration&lt;/h2&gt;
+
+&lt;p&gt;First, I want to dispel any notion that I&amp;rsquo;m against the idea of continuous integration in general. Nothing could be further from the truth: Continuous integration - automatically running a project&amp;rsquo;s test suite against smaller branches in version control that are pending merge to a larger branch - is extremely valuable to detect new bugs as early as possible, before they reach customers and before they even reach other members of your development team. Detecting bugs early helps you ship high-quality software faster.&lt;/p&gt;
+
+&lt;h2&gt;The trouble with &lt;em&gt;centralized&lt;/em&gt; continuous integration&lt;/h2&gt;
+
+&lt;p&gt;That being said, &lt;em&gt;centralized&lt;/em&gt; continuous integration, where there&amp;rsquo;s a single dedicated service or server that is responsible for running CI jobs, can be complex to setup. If you&amp;rsquo;re setting up CI for a project that has only a command-line interface, is an API, or is otherwise &lt;em&gt;functional&lt;/em&gt; in design, then you should just stop here and go setup centralized CI for your project. For those cases it&amp;rsquo;s generally not that hard to setup these days. On the other hand if you&amp;rsquo;re trying to setup CI for a graphical program or something like a website that requires UI testing, then getting CI setup can be much more tricky.&lt;/p&gt;
+
+&lt;p&gt;Now it is absolutely &lt;em&gt;possible&lt;/em&gt; to get CI setup for a project that requires graphical testing, it&amp;rsquo;s just a lot of work: You&amp;rsquo;ll probably need to automate the creation of a VM with the target operating system (through a Docker container for Linux, or a true VM for Mac or Windows), build &amp;amp; install the latest project version from source, install related web browsers and other UI tools, and setup some kind of remote graphical access (through VNC for Linux or Mac, or Remote Desktop for Windows) to debug any test failures that only occur during the CI process.&lt;/p&gt;
+
+&lt;h2&gt;Alternative: &lt;em&gt;Distributed&lt;/em&gt; &lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; continuous integration&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;rsquo;s another idea: You already have a test suite that runs on your development machines right? What if you were to just lean on that existing process for your CI needs?&lt;/p&gt;
+
+&lt;p&gt;In particular the thought is that you would make it a policy to regularly run the full test suite at certain intervals, perhaps before merging a feature branch in version control to the development branch. Or perhaps before merging the development branch to the mainline branch released to end-users and production.&lt;/p&gt;
+
+&lt;p&gt;How might you enforce such a policy? Well, you likely already have a custom tool that helps you merge &amp;amp; release the development branch to end-users that already runs on your local development machine. What if you just add a step to that tool that runs the test suite, and have the tool only continue if the tests pass? Easy right?&lt;/p&gt;
+
+&lt;p&gt;Of course any sufficiently large test suite - especially one interacting with a GUI or a live network - will have at least a few flaky tests that fail occasionally and cannot be fixed immediately. So there should still be a way for a developer to quickly rerun any (flaky) tests that fail so that they hopefully pass, and the developer can manually certify that all tests did eventually pass. To manually certify that all tests did pass on a particular commit, a developer could be required to manually &amp;ldquo;sign off&amp;rdquo; on the testing by typing out part of the commit&amp;rsquo;s hash, perhaps just the first few characters of it.&lt;/p&gt;
+
+&lt;h2&gt;Putting it all together &lt;small&gt;An example distributed continuous integration system&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;Given the design above, what might an implementation of a distributed continuous integration system look like in practice? Here&amp;rsquo;s what it looks like for my primary web app, a Django-based rich web application:&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say I&amp;rsquo;m on the tip of our development branch (&lt;code&gt;develop&lt;/code&gt;) and want to merge into the mainline branch (&lt;code&gt;main&lt;/code&gt;) and deploy to production. My Git history might look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;* a8affa5f7 &amp;lt;David Foster&amp;gt; - (main) Hotfix
+| * bd8821196 &amp;lt;David Foster&amp;gt; - (HEAD -&amp;gt; develop) Feature D
+| * 26adfda55 &amp;lt;David Foster&amp;gt; - Feature C
+|/  
+* b005bfee9 &amp;lt;David Foster&amp;gt; - Deploy to production.
+|\  
+| * 77e0fc2a1 &amp;lt;David Foster&amp;gt; - Feature B
+| * d6f29d264 &amp;lt;David Foster&amp;gt; - Feature A
+|/ 
+* 588e5e61b &amp;lt;David Foster&amp;gt; - Deploy to production.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To merge I&amp;rsquo;d run our special-purpose &lt;code&gt;mergedeploy&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python3 manage.py mergedeploy
+Merging: main &amp;lt;- develop
+Pulling trunk and feature branches...
+Creating merge commit...
+Running tests...
+  Log: /var/folders/vm/nd6nhd948xj4ds001s76srj80000gn/T/mergedeploy-fabs0_mt.log
+CommandError: Tests failed.
+Fix, commit the fix, and run: pm mergedeploy --continue
+Or abort with: pm mergedeploy --abort
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Inspecting the log I see:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Creating test database for alias &#39;default&#39;...
+System check identified no issues (1 silenced).
+......ssssssssssssssssssssssssssssssssssssssssssssF..........
+----------------------------------------------------------------------
+Ran 61 tests in 16.154s
+
+FAILED (failures=1)
+Destroying test database for alias &#39;default&#39;...
+
+Rerun failed tests with:
+$ python3 manage.py test \
+    ide.tests.PerformanceTests.test_mouse_move_near_top_of_large_program_is_fast_enough
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks like there&amp;rsquo;s a single failing non-deterministic performance test that&amp;rsquo;s likely to be flaky. Let&amp;rsquo;s rerun it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python3 manage.py test \
+    ide.tests.PerformanceTests.test_mouse_move_near_top_of_large_program_is_fast_enough
+Creating test database for alias &#39;default&#39;...
+System check identified no issues (1 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 15.562s
+
+OK
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Great it passed! Now all of our tests are passing.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s try the &lt;code&gt;mergedeploy&lt;/code&gt; again, using the first few characters of merge commit&amp;rsquo;s hash as our value to &amp;ldquo;sign off&amp;rdquo; that all tests did eventually pass:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git rev-parse HEAD
+4dff0746ae59de693b7c5cd3a6550cad47a1e58d
+
+$ python3 manage.py mergedeploy --continue --token=4dff07
+Skipping tests because token already available.
+Committing the merge...
+Deploying...
+
+Fetching latest code from Github...
+Fast-forwarding deployed code to target branch...
+Fetching latest submodules from Github...
+Updating virtual environment...
+Checking for deployment issues...
+Collecting static files...
+Compressing JS and CSS assets...
+Building deployment archive...
+Applying migrations to database...
+Operations to perform:
+  Apply all migrations: admin, auth, in_school, ...
+Running migrations:
+  Applying in_school.0073_auto_20210308_1248... OK
+Uploading static files...
+  Uploading: CACHE
+  Uploading: everything else
+Uploading deployment archive to AWS and starting deployment...
+Optimizing...
+  Clearing expired sessions...
+  Auditing user permissions...
+  Auditing primary keys...
+Deployment STARTED
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it! A really easy distributed continuous integration system.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/02/tests-as-policy-automation/&quot;&gt;Tests as Policy Automation&lt;/a&gt; - Has ideas for creatively using automated tests to enforce additional (non-functional) properties in your application.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;Database clamps&lt;/a&gt; - Shows how to write deterministic performance tests for database-dependent code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/devops/learn/what-is-continuous-integration&quot;&gt;https://docs.microsoft.com/en-us/azure/devops/learn/what-is-continuous-integration&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.github.com/en/actions&quot;&gt;GitHub Actions&lt;/a&gt; is my favorite hosted continution integration solution at the moment, replacing the formerly-excellent Travis, which has become unfriendly to open-source development in recent years.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:3&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.jenkins.io/doc/&quot;&gt;Jenkins&lt;/a&gt; is the venerated and popular self-hosted continuous integration server that&amp;rsquo;s been around for the last decade or so.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;I call this approach &lt;em&gt;distributed&lt;/em&gt; continuous integration because it is distributed across your team&amp;rsquo;s development machines, rather than relying on being run on a central CI server or &amp;ldquo;build box&amp;rdquo;.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -1939,7 +2098,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;60&lt;/sup&gt;
+  Software&lt;sup&gt;61&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

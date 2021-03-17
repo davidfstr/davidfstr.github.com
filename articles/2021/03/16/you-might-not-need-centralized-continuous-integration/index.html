@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>You might not need centralized continuous integration | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+  
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dafoster.net/articles/2021/03/16/you-might-not-need-centralized-continuous-integration/"
+      },
+      "headline": "You might not need centralized continuous integration",
+      
+      "datePublished": "2021-03-16T00:00:00+00:00",
+      "dateModified": "2021-03-16T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "David Foster",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "David Foster",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dafoster.net/about/profile.jpg"
+        }
+      }
+    }
+    </script>
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18719089-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+
+    <!-- Fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1 class="post-title">You might not need centralized continuous integration</h1>
+    <div class="post-metadata">
+      
+        Mar 16, 2021
+       &ndash; Filed as: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>61</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
+        
+      </span>
+      
+    </div>
+    
+    <p>The general availability of easy-to-use centralized <strong>continuous integration</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> (CI) solutions in recent years - from GitHub Actions<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and Travis as hosted solutions, and from Jenkins<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> and Hudson as on-premises solutions - has been wonderful for allowing software to be tested continuously throughout development, catching errors early <em>before</em> changes are merged to shared development and mainline branches.</p>
+
+<p>Today I&rsquo;d like to explore the now perhaps-controversial idea of &ldquo;When might it <em>not</em> be worth the effort to setup a centralized continuous integration service?&rdquo; In particular I&rsquo;ve somehow managed to <em>not</em> setup a CI server for the primary web app I&rsquo;ve been developing and running in production even after several years.<!--[^ts-platform]--></p>
+
+<!-- [^ts-platform]: In case you're curious, the web app I mentioned that I've been developing for several years that currently lacks *centralized* continuous integration is the [TechSmart Platform](/projects/techsmart-platform/) for online computer science learning and coding. -->
+
+
+<h2>The wonders of continuous integration</h2>
+
+<p>First, I want to dispel any notion that I&rsquo;m against the idea of continuous integration in general. Nothing could be further from the truth: Continuous integration - automatically running a project&rsquo;s test suite against smaller branches in version control that are pending merge to a larger branch - is extremely valuable to detect new bugs as early as possible, before they reach customers and before they even reach other members of your development team. Detecting bugs early helps you ship high-quality software faster.</p>
+
+<h2>The trouble with <em>centralized</em> continuous integration</h2>
+
+<p>That being said, <em>centralized</em> continuous integration, where there&rsquo;s a single dedicated service or server that is responsible for running CI jobs, can be complex to setup. If you&rsquo;re setting up CI for a project that has only a command-line interface, is an API, or is otherwise <em>functional</em> in design, then you should just stop here and go setup centralized CI for your project. For those cases it&rsquo;s generally not that hard to setup these days. On the other hand if you&rsquo;re trying to setup CI for a graphical program or something like a website that requires UI testing, then getting CI setup can be much more tricky.</p>
+
+<p>Now it is absolutely <em>possible</em> to get CI setup for a project that requires graphical testing, it&rsquo;s just a lot of work: You&rsquo;ll probably need to automate the creation of a VM with the target operating system (through a Docker container for Linux, or a true VM for Mac or Windows), build &amp; install the latest project version from source, install related web browsers and other UI tools, and setup some kind of remote graphical access (through VNC for Linux or Mac, or Remote Desktop for Windows) to debug any test failures that only occur during the CI process.</p>
+
+<h2>Alternative: <em>Distributed</em> <sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> continuous integration</h2>
+
+<p>Here&rsquo;s another idea: You already have a test suite that runs on your development machines right? What if you were to just lean on that existing process for your CI needs?</p>
+
+<p>In particular the thought is that you would make it a policy to regularly run the full test suite at certain intervals, perhaps before merging a feature branch in version control to the development branch. Or perhaps before merging the development branch to the mainline branch released to end-users and production.</p>
+
+<p>How might you enforce such a policy? Well, you likely already have a custom tool that helps you merge &amp; release the development branch to end-users that already runs on your local development machine. What if you just add a step to that tool that runs the test suite, and have the tool only continue if the tests pass? Easy right?</p>
+
+<p>Of course any sufficiently large test suite - especially one interacting with a GUI or a live network - will have at least a few flaky tests that fail occasionally and cannot be fixed immediately. So there should still be a way for a developer to quickly rerun any (flaky) tests that fail so that they hopefully pass, and the developer can manually certify that all tests did eventually pass. To manually certify that all tests did pass on a particular commit, a developer could be required to manually &ldquo;sign off&rdquo; on the testing by typing out part of the commit&rsquo;s hash, perhaps just the first few characters of it.</p>
+
+<h2>Putting it all together <small>An example distributed continuous integration system</small></h2>
+
+<p>Given the design above, what might an implementation of a distributed continuous integration system look like in practice? Here&rsquo;s what it looks like for my primary web app, a Django-based rich web application:</p>
+
+<p>Let&rsquo;s say I&rsquo;m on the tip of our development branch (<code>develop</code>) and want to merge into the mainline branch (<code>main</code>) and deploy to production. My Git history might look like:</p>
+
+<pre><code>* a8affa5f7 &lt;David Foster&gt; - (main) Hotfix
+| * bd8821196 &lt;David Foster&gt; - (HEAD -&gt; develop) Feature D
+| * 26adfda55 &lt;David Foster&gt; - Feature C
+|/  
+* b005bfee9 &lt;David Foster&gt; - Deploy to production.
+|\  
+| * 77e0fc2a1 &lt;David Foster&gt; - Feature B
+| * d6f29d264 &lt;David Foster&gt; - Feature A
+|/ 
+* 588e5e61b &lt;David Foster&gt; - Deploy to production.
+</code></pre>
+
+<p>To merge I&rsquo;d run our special-purpose <code>mergedeploy</code> command:</p>
+
+<pre><code>$ python3 manage.py mergedeploy
+Merging: main &lt;- develop
+Pulling trunk and feature branches...
+Creating merge commit...
+Running tests...
+  Log: /var/folders/vm/nd6nhd948xj4ds001s76srj80000gn/T/mergedeploy-fabs0_mt.log
+CommandError: Tests failed.
+Fix, commit the fix, and run: pm mergedeploy --continue
+Or abort with: pm mergedeploy --abort
+</code></pre>
+
+<p>Inspecting the log I see:</p>
+
+<pre><code>Creating test database for alias 'default'...
+System check identified no issues (1 silenced).
+......ssssssssssssssssssssssssssssssssssssssssssssF..........
+----------------------------------------------------------------------
+Ran 61 tests in 16.154s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...
+
+Rerun failed tests with:
+$ python3 manage.py test \
+    ide.tests.PerformanceTests.test_mouse_move_near_top_of_large_program_is_fast_enough
+</code></pre>
+
+<p>Looks like there&rsquo;s a single failing non-deterministic performance test that&rsquo;s likely to be flaky. Let&rsquo;s rerun it:</p>
+
+<pre><code>$ python3 manage.py test \
+    ide.tests.PerformanceTests.test_mouse_move_near_top_of_large_program_is_fast_enough
+Creating test database for alias 'default'...
+System check identified no issues (1 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 15.562s
+
+OK
+</code></pre>
+
+<p>Great it passed! Now all of our tests are passing.</p>
+
+<p>So let&rsquo;s try the <code>mergedeploy</code> again, using the first few characters of merge commit&rsquo;s hash as our value to &ldquo;sign off&rdquo; that all tests did eventually pass:</p>
+
+<pre><code>$ git rev-parse HEAD
+4dff0746ae59de693b7c5cd3a6550cad47a1e58d
+
+$ python3 manage.py mergedeploy --continue --token=4dff07
+Skipping tests because token already available.
+Committing the merge...
+Deploying...
+
+Fetching latest code from Github...
+Fast-forwarding deployed code to target branch...
+Fetching latest submodules from Github...
+Updating virtual environment...
+Checking for deployment issues...
+Collecting static files...
+Compressing JS and CSS assets...
+Building deployment archive...
+Applying migrations to database...
+Operations to perform:
+  Apply all migrations: admin, auth, in_school, ...
+Running migrations:
+  Applying in_school.0073_auto_20210308_1248... OK
+Uploading static files...
+  Uploading: CACHE
+  Uploading: everything else
+Uploading deployment archive to AWS and starting deployment...
+Optimizing...
+  Clearing expired sessions...
+  Auditing user permissions...
+  Auditing primary keys...
+Deployment STARTED
+</code></pre>
+
+<p>And that&rsquo;s it! A really easy distributed continuous integration system.</p>
+
+<h3><em>Related Articles</em></h3>
+
+<ul>
+<li><a href="/articles/2021/02/02/tests-as-policy-automation/">Tests as Policy Automation</a> - Has ideas for creatively using automated tests to enforce additional (non-functional) properties in your application.</li>
+<li><a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">Database clamps</a> - Shows how to write deterministic performance tests for database-dependent code.</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://docs.microsoft.com/en-us/azure/devops/learn/what-is-continuous-integration">https://docs.microsoft.com/en-us/azure/devops/learn/what-is-continuous-integration</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p><a href="https://docs.github.com/en/actions">GitHub Actions</a> is my favorite hosted continution integration solution at the moment, replacing the formerly-excellent Travis, which has become unfriendly to open-source development in recent years.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p><a href="https://www.jenkins.io/doc/">Jenkins</a> is the venerated and popular self-hosted continuous integration server that&rsquo;s been around for the last decade or so.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>I call this approach <em>distributed</em> continuous integration because it is distributed across your team&rsquo;s development machines, rather than relying on being run on a central CI server or &ldquo;build box&rdquo;.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div id="subscribe-block" class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://twitter.com/davidfstr">
+  <img src="/assets/twitter-icon-16x16.png" alt="" width="16" height="16" />Subscribe (Twitter)
+</a>
+<a class="subscribe" href="feed://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="" width="14" height="14" />Subscribe (RSS)
+</a>
+<span class="subscribe subscribe-last subscribe__frequency">
+  <i>Updated articles every week!</i>
+</span>
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data/" title="Reliable rendering of web pages that view concurrently modified data">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2021 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
