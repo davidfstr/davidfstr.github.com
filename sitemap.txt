@@ -2,6 +2,7 @@
 https://dafoster.net/about/
 https://dafoster.net/apps/
 https://dafoster.net/articles/
+https://dafoster.net/articles/topics/DigitalPreservation.xml
 https://dafoster.net/articles/topics/Django.xml
 https://dafoster.net/articles/topics/Productivity.xml
 https://dafoster.net/articles/topics/Software.xml
@@ -13,6 +14,7 @@ https://dafoster.net/contact/
 https://dafoster.net/
 https://dafoster.net/projects/burn-planner/donate/
 https://dafoster.net/projects/burn-planner/
+https://dafoster.net/projects/classicbox/
 https://dafoster.net/projects/crystal-web-archiver/
 https://dafoster.net/projects/handbrake-subtitle-support/
 https://dafoster.net/projects/incoming-game/
@@ -30,6 +32,7 @@ https://dafoster.net/projects/website-2/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/
 https://dafoster.net/articles/2021/03/16/you-might-not-need-centralized-continuous-integration/
 https://dafoster.net/articles/2021/03/09/reliable-rendering-of-web-pages-that-view-concurrently-modified-data/
 https://dafoster.net/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/

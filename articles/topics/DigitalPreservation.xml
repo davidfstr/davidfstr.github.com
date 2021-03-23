@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>DaFoster (DigitalPreservation)</title>
+ <link href="https://dafoster.net/articles/topics/#DigitalPreservation"/>
+ <link href="https://dafoster.net/articles/topics/DigitalPreservation.xml" rel="self"/>
+ <updated>2021-03-23T18:51:17+00:00</updated>
+ <id>https://dafoster.net/articles/topics/#DigitalPreservation</id>
+ <author>
+   <name>David Foster</name>
+   
+ </author>
+ <icon>https://dafoster.net/favicon.ico</icon>
+ <logo>https://dafoster.net/favicon.ico</logo>
+
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released</id>
+   <title>Crystal Web Archiver 1.1.0b Released!</title>
+   <published>2021-03-23T00:00:00+00:00</published>
+   <updated>2021-03-23T00:00:00+00:00</updated>
+   
+     <category term="DigitalPreservation"/>
+   
+     <category term="Other"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet. Today I&amp;rsquo;m pleased to announce Crystal&amp;rsquo;s first beta release, bringing support for downloading more complex static sites than ever before, and generally being stable enough for a full public release.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.1.0b/crystal-mac-1.1.0b.dmg&quot;&gt;Download Crystal for macOS 10.14 and later&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.1.0b/crystal-win-1.1.0b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#quickstart-&quot;&gt;Quickstart guide&lt;/a&gt; for downloading your first website&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Many new types of sites can be successfully downloaded with this release of Crystal, including DeviantArt portfolio websites at &lt;code&gt;*.daportfolio.com&lt;/code&gt; (which are scheduled to fall off the internet in about a week after this post), &lt;a href=&quot;http://otakuworld.com/&quot;&gt;Otaku World&lt;/a&gt;, and &lt;a href=&quot;https://www.16personalities.com/&quot;&gt;16Personalities&lt;/a&gt;. &lt;!-- Some others sites of interest like [bongo.cat](https://bongo.cat/) and the [Calm Blog](https://blog.calm.com/) require additional work. --&gt;&lt;/p&gt;
+
+&lt;h3&gt;Digital preservation is important&lt;/h3&gt;
+
+&lt;p&gt;I personally care a lot about &lt;strong&gt;digital preservation&lt;/strong&gt;, which makes it possible to access and enjoy digital content even after it was originally released, substantially beyond the usual lifetime of such works. I&amp;rsquo;m planning to work on a few projects this year to advance the state of the art in preserving both online sites and old Macintosh programs from the 1990&amp;rsquo;s. If this topic is also of interest to you, please consider &lt;a href=&quot;javascript:scrollToSubscribeBlock();&quot;&gt;following me&lt;/a&gt; on Twitter or RSS. I like hearing from people who have similar interests.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Projects&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/classicbox/&quot;&gt;ClassicBox&lt;/a&gt; - &lt;strong&gt;(Pre-alpha)&lt;/strong&gt; Makes it easy to play old Mac games from the 1990s on modern hardware, similar to the &lt;a href=&quot;https://www.dosbox.com/&quot;&gt;DOSBox&lt;/a&gt; project.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ 
+</feed>
