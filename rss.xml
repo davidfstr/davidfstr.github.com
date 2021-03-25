@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 23 Mar 2021 18:51:17 +0000</pubDate>
-    <lastBuildDate>Tue, 23 Mar 2021 18:51:17 +0000</lastBuildDate>
+    <pubDate>Thu, 25 Mar 2021 06:08:27 +0000</pubDate>
+    <lastBuildDate>Thu, 25 Mar 2021 06:08:27 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -257,11 +257,13 @@ Deployment STARTED
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Every time Visitor B makes a change, an update is pushed to Visitor A in real-time, quickly bringing Visitor A&#39;s frontend up to date.&quot; src=&quot;/assets/2021/concurrent-rendering/6H-push-fresh-data-live.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;Note: My last article explains in depth &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/&quot;&gt;how to setup such real-time updates over WebSocket in Django&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; My last article explains in depth &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/&quot;&gt;how to setup such real-time updates over WebSocket in Django using Channels&lt;/a&gt;. In Rails you&amp;rsquo;d use ActionCable.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Additionally the backend must be prepared to &lt;strong&gt;push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A&#39;s socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Neither Django&amp;rsquo;s Channels nor Rails&#39; ActionCable provide out-of-the box support for observing events that occur during this critical time period. In the &lt;a href=&quot;#implementation&quot;&gt;Implementation&lt;/a&gt; section below I outline a technique of tracking the &amp;ldquo;timepoint&amp;rdquo; an event was generated at so that it can be buffered and delivered later reliably.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Great! We&amp;rsquo;ve got a bulletproof design to quickly observe an accurate up-to-date state on the frontend. But it does seem to be rather complex&amp;hellip;&lt;/p&gt;
 
@@ -271,9 +273,11 @@ Deployment STARTED
 
 &lt;p&gt;&lt;img alt=&quot;Diagram: Backend does not preload any data. Frontend pulls data and changes from backend.&quot; src=&quot;/assets/2021/concurrent-rendering/8H-push-only.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;However removing backend templating entirely will cause the initial page load to contain no content, which will destroy your SEO performance. It will also raise your time-to-first-rendered-content because of the extra delay in establishing a socket connection before loading &lt;em&gt;any&lt;/em&gt; content, disproportionately slowing the browsing experience of any site visitor who isn&amp;rsquo;t on a fast low-latency internet connection.&lt;/p&gt;
+&lt;p&gt;However removing backend templating entirely will cause the initial page load to contain no content (beyond an annoying spinner) and raise your time-to-first-render. Content won&amp;rsquo;t be delivered until after JavaScript is loaded - which can take a while on mobile devices - &lt;em&gt;and&lt;/em&gt; after a socket connection is established, disproportionately slowing the browsing experience of any site visitor who isn&amp;rsquo;t on a high-end device with a fast low-latency internet connection.&lt;/p&gt;
 
-&lt;p&gt;I find such a user experience to be unacceptable. So we&amp;rsquo;re back to the more complex design with both backend templating and real-time updates&amp;hellip;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d like to reach users who are on mobile devices, in rural areas, and from faraway countries where minimizing latency and bandwidth is important to avoid an unacceptable user experience. So we&amp;rsquo;re back to the more complex design with both backend templating and real-time updates&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;implementation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Implementation &lt;small&gt;(using Django)&lt;/small&gt;&lt;/h2&gt;
 
@@ -348,7 +352,7 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Whenever a user&amp;rsquo;s room join request is updated, the backend must notify the frontend appropriately through the socket by creating, buffering, and forwarding an event stamped with a new &lt;strong&gt;timepoint&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Whenever a user&amp;rsquo;s room join request is updated, the backend must notify the frontend appropriately through the socket by creating, buffering, and forwarding an event stamped with a new &lt;strong&gt;timepoint&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# chat_project/chat/models.py
 
@@ -438,6 +442,14 @@ function didReceiveUserSocketMessage(data) {
 &lt;li&gt;&lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/#models-consumers-and-routes&quot;&gt;Real-time updates in Django with WebSockets, Channels, and pub-sub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/&quot;&gt;Building web apps with Vue and Django - The Ultimate Guide&lt;/a&gt; - Planning how to integrate Vue with a new or existing Django app&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;A &lt;em&gt;timepoint&lt;/em&gt; represents a point in time relative to a shared clock. If you have a single shared Redis instance which you&amp;rsquo;re already using to forward socket messages, as is the case with Django&amp;rsquo;s default Channels configuration, it is convenient to use Redis&amp;rsquo;s &lt;a href=&quot;https://redis.io/commands/time&quot;&gt;TIME&lt;/a&gt; command to generate a timepoint, perhaps as part of a &lt;a href=&quot;https://redis.io/commands/eval&quot;&gt;stored procedure&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 
 </description>
     </item>
