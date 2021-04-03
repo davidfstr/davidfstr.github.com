@@ -4,7 +4,7 @@
  <title>DaFoster (DigitalPreservation)</title>
  <link href="https://dafoster.net/articles/topics/#DigitalPreservation"/>
  <link href="https://dafoster.net/articles/topics/DigitalPreservation.xml" rel="self"/>
- <updated>2021-03-30T12:04:11+00:00</updated>
+ <updated>2021-04-03T05:06:46+00:00</updated>
  <id>https://dafoster.net/articles/topics/#DigitalPreservation</id>
  <author>
    <name>David Foster</name>
@@ -31,23 +31,20 @@
 &lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet. Today I&amp;rsquo;m pleased to announce Crystal&amp;rsquo;s first beta release, bringing support for downloading more complex static sites than ever before, and generally being stable enough for a full public release.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.1.0b/crystal-win-1.1.0b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.1.0b/crystal-mac-1.1.0b.dmg&quot;&gt;Download Crystal for macOS 10.14 and later&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.1.1b/crystal-win-1.1.1b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.1.1b/crystal-mac-1.1.1b.dmg&quot;&gt;Download Crystal for macOS 10.14 and later&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;You will need to &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/20&quot;&gt;right-click or Control-click on the application
 and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;You will need to &lt;a href=&quot;https://www.python.org/ftp/python/3.8.8/python-3.8.8-macosx10.9.pkg&quot;&gt;install Python 3.8 and its certificates from python.org&lt;/a&gt;
-to work around a &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/21&quot;&gt;bug&lt;/a&gt;
-that prevents HTTPS websites from being downloaded correctly.&lt;/li&gt;
-&lt;li&gt;You can cancel/ignore any prompts related to
-&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/19&quot;&gt;SetFile&lt;/a&gt; or
-&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/12&quot;&gt;&amp;ldquo;accessing your photos&amp;rdquo;&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#quickstart-&quot;&gt;Quickstart guide&lt;/a&gt; for downloading your first website&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; These download links have been updated to point to the 1.1.1b release,
+which has a number of fixes related to first-time-launch issues.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Many new types of sites can be successfully downloaded with this release of Crystal, including DeviantArt portfolio websites at &lt;code&gt;*.daportfolio.com&lt;/code&gt; (which are scheduled to fall off the internet in about a week after this post), &lt;a href=&quot;http://otakuworld.com/&quot;&gt;Otaku World&lt;/a&gt;, and &lt;a href=&quot;https://www.16personalities.com/&quot;&gt;16Personalities&lt;/a&gt;. &lt;!-- Some others sites of interest like [bongo.cat](https://bongo.cat/) and the [Calm Blog](https://blog.calm.com/) require additional work. --&gt;&lt;/p&gt;
 
