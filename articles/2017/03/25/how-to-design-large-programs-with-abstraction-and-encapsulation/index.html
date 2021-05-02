@@ -10,38 +10,6 @@
   
   
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://dafoster.net/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/"
-      },
-      "headline": "How to Design Large Programs with Abstraction and Encapsulation",
-      
-      "datePublished": "2017-03-25T00:00:00+00:00",
-      "dateModified": "2017-03-25T00:00:00+00:00",
-      "author": {
-        "@type": "Person",
-        "name": "David Foster",
-        "image": {
-          "@type": "ImageObject",
-          "url": "https://dafoster.net/about/profile.jpg"
-        }
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "David Foster",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://dafoster.net/about/profile.jpg"
-        }
-      }
-    }
-    </script>
-  
-    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Feeds -->
@@ -89,11 +57,7 @@ ga('send', 'pageview');
     
     <!-- Scripts -->
   
-    <script src="/assets/js/jquery-1.12.4.min.js"></script>
   
-  
-  
-    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
   
   
   </head>
@@ -117,7 +81,17 @@ ga('send', 'pageview');
               
             
               
-                <li><a href="/about/">About</a></li>
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
               
             
               
@@ -129,37 +103,27 @@ ga('send', 'pageview');
               
             
               
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
                 <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
               
             
               
@@ -236,7 +200,7 @@ ga('send', 'pageview');
 
 <p>A large program has a lot of behavior to specify. The complexity of the behavior specified by a program is roughly proportional to its size.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
-<p><img src="/assets/2017/abstraction-and-encapsulation/1-lines.png" alt="Lines" /></p>
+<p><img src="/assets/2017/abstraction-and-encapsulation/1-lines.svg" alt="Lines" /></p>
 
 <p>However a coder, being only human, can only hold a fixed amount of <strong>concepts</strong> in their head at once.</p>
 
@@ -244,8 +208,8 @@ ga('send', 'pageview');
 
 <p>The number of concepts can be reduced by <strong>chunking</strong> them into larger concepts that are less numerous. For example a bundle of <em>lines</em> can be chunked into a single <em>function</em> or a <em>method</em>.</p>
 
-<p><a href="/assets/2017/abstraction-and-encapsulation/2-functions.png">
-    <img alt="Functions" src="/assets/2017/abstraction-and-encapsulation/2-functions.png" style="max-width: 100%" />
+<p><a href="/assets/2017/abstraction-and-encapsulation/2-functions.svg">
+    <img alt="Functions" src="/assets/2017/abstraction-and-encapsulation/2-functions.svg" style="max-width: 100%" />
 </a></p>
 
 <p>Chunking allows you to reduce the total number of concepts that you need to keep in your head at once.</p>
@@ -278,17 +242,17 @@ ga('send', 'pageview');
 
 <p>For a <em>function</em> unit, it has a function name, some number of <em>parameters</em> and a <em>return value</em> which serves as the public surface area, and a body of code lines which serve as the private interior.</p>
 
-<p><img src="/assets/2017/abstraction-and-encapsulation/3-func_anatomy.png" alt="Anatomy of a Function" /></p>
+<p><img src="/assets/2017/abstraction-and-encapsulation/3-func_anatomy.svg" alt="Anatomy of a Function" /></p>
 
 <h3>Encapsulation</h3>
 
 <p>An abstraction reduces global complexity by hiding (or <strong>encapsulating</strong>) its large private interior, exposing only the smaller public surface area to the rest of the system. One only needs to understand the smaller public surface area when using the function and not the details of the private interior.</p>
 
-<p>A well-designed abstraction thus strives to <strong>minimize its public surface area</strong> while maximizing its private interior. Such an abstraction takes up only small mental space relative to its interior complexity.</p>
+<p>A well-designed abstraction thus strives to <strong>minimize its public surface area</strong> while maximizing its private interior.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> Such an abstraction takes up only small mental space relative to its interior complexity.</p>
 
 <p>As an example of minimizing public surface area, let&rsquo;s consider the example of a larger kind of unit, a <em>class</em>:</p>
 
-<p><img src="/assets/2017/abstraction-and-encapsulation/4-class_anatomy.png" alt="Anatomy of a Class" /></p>
+<p><img src="/assets/2017/abstraction-and-encapsulation/4-class_anatomy.svg" alt="Anatomy of a Class" /></p>
 
 <p>By extension of the principle above, <strong>everything should be private by default</strong>; only those methods that need to be public (because they are used externally) should be made public.</p>
 
@@ -296,7 +260,7 @@ ga('send', 'pageview');
 
 <p>The same principle applies yet again to <em>modules</em>, a larger kind of unit:</p>
 
-<p><img src="/assets/2017/abstraction-and-encapsulation/5-module_anatomy.png" alt="Anatomy of a Module" /></p>
+<p><img src="/assets/2017/abstraction-and-encapsulation/5-module_anatomy.svg" alt="Anatomy of a Module" /></p>
 
 <p>Again, everything should be private by default.</p>
 
@@ -360,6 +324,8 @@ ga('send', 'pageview');
 <p>A module contains functions, classes, and variables, among other things.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 <li id="fn:4">
 <p>A package is a module that contains submodules.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p><a href="https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201/">A Philosophy of Software Design</a> makes the same recommendation under the guidance &ldquo;Modules should be deep&rdquo;, where a &ldquo;deep module&rdquo; is an abstraction whose public surface area is small compared to the volume of its private interior.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 

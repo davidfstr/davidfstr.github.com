@@ -4,7 +4,7 @@
  <title>DaFoster (Productivity)</title>
  <link href="https://dafoster.net/articles/topics/#Productivity"/>
  <link href="https://dafoster.net/articles/topics/Productivity.xml" rel="self"/>
- <updated>2021-04-19T14:20:12+00:00</updated>
+ <updated>2021-05-02T16:32:27+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Productivity</id>
  <author>
    <name>David Foster</name>
@@ -398,7 +398,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
    <link rel="alternate" href="https://dafoster.net/articles/2015/03/23/block-distracting-websites/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;div class=&quot;img-box-right&quot;&gt;
     &lt;a href=&quot;/assets/2015/distracting-websites.png&quot;&gt;
-        &lt;img class=&quot;img-225&quot; alt=&quot;Comic: Person on left: &#39;I just watched you open Google News and then close it without reading it &lt;em&gt;five times in a row&lt;/em&gt;.&#39; Person on right: &#39;The fact that I spend most of my time so stupidly only makes it &lt;em&gt;more&lt;/em&gt; important not to waste any here.&#39;&quot; src=&quot;/assets/2015/distracting-websites.png&quot; /&gt;
+        &lt;img class=&quot;img-225&quot; alt=&quot;Comic: Person on left: 'I just watched you open Google News and then close it without reading it &lt;em&gt;five times in a row&lt;/em&gt;.' Person on right: 'The fact that I spend most of my time so stupidly only makes it &lt;em&gt;more&lt;/em&gt; important not to waste any here.'&quot; src=&quot;/assets/2015/distracting-websites.png&quot; /&gt;
     &lt;/a&gt;
     &lt;div&gt;&lt;i&gt;Courtesy of &lt;a href=&quot;http://xkcd.com/1502/&quot;&gt;xkcd&lt;/a&gt;&lt;/i&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -649,7 +649,7 @@ Verifying connection to SMTP server... OK
 &lt;p&gt;Once you have &lt;code&gt;notifymail&lt;/code&gt; installed, you can send an email to yourself in a Python script with as little code as:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;import notifymail
-notifymail.send(&#39;Subject&#39;, &#39;Hello World&#39;, from_name=&#39;greeting_script&#39;)
+notifymail.send('Subject', 'Hello World', from_name='greeting_script')
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Or you can invoke &lt;code&gt;notifymail&lt;/code&gt; from the command line:&lt;/p&gt;

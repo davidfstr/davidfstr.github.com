@@ -10,38 +10,6 @@
   
   
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://dafoster.net/articles/2017/04/09/the-trouble-with-global-variables/"
-      },
-      "headline": "The Trouble with Global Variables",
-      
-      "datePublished": "2017-04-09T00:00:00+00:00",
-      "dateModified": "2017-04-09T00:00:00+00:00",
-      "author": {
-        "@type": "Person",
-        "name": "David Foster",
-        "image": {
-          "@type": "ImageObject",
-          "url": "https://dafoster.net/about/profile.jpg"
-        }
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "David Foster",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://dafoster.net/about/profile.jpg"
-        }
-      }
-    }
-    </script>
-  
-    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Feeds -->
@@ -89,11 +57,7 @@ ga('send', 'pageview');
     
     <!-- Scripts -->
   
-    <script src="/assets/js/jquery-1.12.4.min.js"></script>
   
-  
-  
-    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
   
   
   </head>
@@ -117,7 +81,17 @@ ga('send', 'pageview');
               
             
               
-                <li><a href="/about/">About</a></li>
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
               
             
               
@@ -129,37 +103,27 @@ ga('send', 'pageview');
               
             
               
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
                 <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
               
             
               
@@ -248,7 +212,7 @@ def warn(message):
 
 <p>For example consider a parser that has a root <code>parse_calendar_file</code> function that calls a tree of subordinate functions to parse data from a YAML document into domain objects. Any of these subordinate functions may emit warnings.</p>
 
-<p><img src="/assets/2017/the-trouble-with-global-variables/parse_calendar_file.png" alt="" /></p>
+<p><img src="/assets/2017/the-trouble-with-global-variables/parse_calendar_file.svg" alt="" /></p>
 
 <h2>Why are globals problematic?</h2>
 
@@ -270,7 +234,7 @@ def warn(message):
 
 <p>In the parsing example above consider what would happen if you were to invoke a subordinate parsing function like <code>parse_bell_schedule</code> directly, without going through the root function that initializes the <code>warnings</code> global. Since the call tree of the subordinate function eventually reaches <code>warn</code>, which expects <code>warnings</code> to be initialized, calling the subordinate function directly will crash!</p>
 
-<p><img src="/assets/2017/the-trouble-with-global-variables/write_crashes.png" alt="" /></p>
+<p><img src="/assets/2017/the-trouble-with-global-variables/write_crashes.svg" alt="" /></p>
 
 <p>It is not possible to read only the implementation of the subordinate function <code>parse_bell_schedule</code> to discern that it depends on the <code>warnings</code> global: you have to read the implementation of <em>every</em> function that it calls, directly or indirectly, to see whether it uses the global! This is a massive encapsulation violation of the entire call tree that leads to the global! Every function in the call tree becomes easy to misuse.</p>
 
@@ -296,7 +260,7 @@ def warn(message):
 
 <p>For our parsing example, we&rsquo;ll create a <code>warnings</code> parameter on all parsing functions:</p>
 
-<p><img src="/assets/2017/the-trouble-with-global-variables/explicit_parameters.png" alt="" /></p>
+<p><img src="/assets/2017/the-trouble-with-global-variables/explicit_parameters.svg" alt="" /></p>
 
 <p>Our parsing example really wants some encapsulation around the shared <code>warnings</code> variable and is likely to want more shared variables later (like <code>errors</code>) so the explicit parameter approach is not appropriate here.</p>
 
@@ -306,7 +270,7 @@ def warn(message):
 
 <p>For our parsing example, we&rsquo;ll create a <code>WarningsContext</code> class which is then passed around among all parsing functions:</p>
 
-<p><img src="/assets/2017/the-trouble-with-global-variables/context_object.png" alt="" /></p>
+<p><img src="/assets/2017/the-trouble-with-global-variables/context_object.svg" alt="" /></p>
 
 <p>It now becomes explicit as to which functions depend on the ability to issue warnings, at the cost of adding noise to the function signatures.</p>
 
@@ -322,7 +286,7 @@ def warn(message):
 
 <p>For our parsing example we&rsquo;ll create a <code>CalendarFileParser</code> class:</p>
 
-<p><img src="/assets/2017/the-trouble-with-global-variables/method_object.png" alt="" /></p>
+<p><img src="/assets/2017/the-trouble-with-global-variables/method_object.svg" alt="" /></p>
 
 <p>A Method Object is especially useful when there are <em>many</em> variables that are used by the same set of cohesive functions and these variables are tightly bound to the functions themselves.</p>
 

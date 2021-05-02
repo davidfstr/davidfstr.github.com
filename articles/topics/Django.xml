@@ -4,7 +4,7 @@
  <title>DaFoster (Django)</title>
  <link href="https://dafoster.net/articles/topics/#Django"/>
  <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
- <updated>2021-04-19T14:20:12+00:00</updated>
+ <updated>2021-05-02T16:32:27+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Django</id>
  <author>
    <name>David Foster</name>
@@ -62,23 +62,23 @@
 
 &lt;p&gt;Another idea is for the frontend to explicitly &lt;strong&gt;double-check the freshness of the information it receives from the backend shortly after it initially renders&lt;/strong&gt;. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A&#39;s frontend does check for any concurrent modification immediately after rendering the initial information received from the backend&quot; src=&quot;/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A's frontend does check for any concurrent modification immediately after rendering the initial information received from the backend&quot; src=&quot;/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This strategy is almost perfect (for getting the most up-to-date state reliably to the frontend). However there&amp;rsquo;s still a narrow time window in which visitor B can make a modification after visitor A&amp;rsquo;s final request.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a change slightly after visitor A&#39;s frontend makes a final freshness check&quot; src=&quot;/assets/2021/concurrent-rendering/5H-frontend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a change slightly after visitor A's frontend makes a final freshness check&quot; src=&quot;/assets/2021/concurrent-rendering/5H-frontend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;What now? To detect these types of concurrent changes it is necessary for the backend to &lt;strong&gt;push any new changes to the frontend in real-time (via WebSocket)&lt;/strong&gt; and the frontend needs to be prepared to receive these kinds of updates to its displayed state continuously:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Every time Visitor B makes a change, an update is pushed to Visitor A in real-time, quickly bringing Visitor A&#39;s frontend up to date.&quot; src=&quot;/assets/2021/concurrent-rendering/6H-push-fresh-data-live.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Every time Visitor B makes a change, an update is pushed to Visitor A in real-time, quickly bringing Visitor A's frontend up to date.&quot; src=&quot;/assets/2021/concurrent-rendering/6H-push-fresh-data-live.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; My last article explains in depth &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/&quot;&gt;how to setup such real-time updates over WebSocket in Django using Channels&lt;/a&gt;. In Rails you&amp;rsquo;d use ActionCable.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Additionally the backend must be prepared to &lt;strong&gt;push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket&lt;/strong&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A&#39;s socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A's socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Neither Django&amp;rsquo;s Channels nor Rails&#39; ActionCable provide out-of-the box support for observing events that occur during this critical time period. In the &lt;a href=&quot;#implementation&quot;&gt;Implementation&lt;/a&gt; section below I outline a technique of tracking the &amp;ldquo;timepoint&amp;rdquo; an event was generated at so that it can be buffered and delivered later reliably.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Neither Django&amp;rsquo;s Channels nor Rails' ActionCable provide out-of-the box support for observing events that occur during this critical time period. In the &lt;a href=&quot;#implementation&quot;&gt;Implementation&lt;/a&gt; section below I outline a technique of tracking the &amp;ldquo;timepoint&amp;rdquo; an event was generated at so that it can be buffered and delivered later reliably.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Great! We&amp;rsquo;ve got a bulletproof design to quickly observe an accurate up-to-date state on the frontend. But it does seem to be rather complex&amp;hellip;&lt;/p&gt;
 
@@ -128,11 +128,11 @@ def calculate_chat_room_list(user: User) -&amp;gt; List[RoomInfo]:
             title=join_request.room.title,
             pending=True,
         )
-        for join_request in ChatRoomJoinRequest.filter(user=user, status=&#39;pending&#39;)
+        for join_request in ChatRoomJoinRequest.filter(user=user, status='pending')
     ]
     return list(sorted(
         joined_rooms + pending_rooms,
-        key=lambda room_info: (room_info[&#39;title&#39;], int(room_info[&#39;id&#39;]))
+        key=lambda room_info: (room_info['title'], int(room_info['id']))
     ))
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -147,7 +147,7 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
     last_updated = UserConsumer.create_timepoint()  # capture
     chat_room_list = calculate_chat_room_list(request.user)  # capture
 
-    return render(request, &#39;chat/user_home_page.html&#39;, dict(
+    return render(request, 'chat/user_home_page.html', dict(
         user_id=str(request.user.id),
         last_updated=last_updated,
         chat_room_list=chat_room_list,
@@ -160,9 +160,9 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
 
 /*public*/ function setupUserHomePage() {
     const userId = JSON.parse(
-        document.querySelector(&#39;#user-id&#39;).innerText);
+        document.querySelector('#user-id').innerText);
     const lastUpdated = JSON.parse(
-        document.querySelector(&#39;#last-updated&#39;).innerText);
+        document.querySelector('#last-updated').innerText);
     setupUserSocket(userId, lastUpdated);
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -177,7 +177,7 @@ class ChatRoomJoinRequest(models.Model):
     def save(self, *args, **kwargs) -&amp;gt; None: ...
 
     def notify_did_alter(self,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         ...
 
         from chat.consumers import UserConsumer  # avoid circular import
@@ -193,14 +193,14 @@ class UserConsumer(WebsocketConsumer):
     @classmethod
     def notify_did_alter_join_request(cls,
             join_request: ChatRoomJoinRequest,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         update_timepoint = cls.create_timepoint()  # capture
         async_to_sync(get_channel_layer().group_send)(
             cls.user_group_for(join_request.user_id),
             {
-                &#39;timepoint&#39;: update_timepoint,
-                &#39;type&#39;: &#39;did_alter_join_request&#39;,
-                &#39;kwargs&#39;: { ... }
+                'timepoint': update_timepoint,
+                'type': 'did_alter_join_request',
+                'kwargs': { ... }
             }
         )
 &lt;/code&gt;&lt;/pre&gt;
@@ -211,7 +211,7 @@ class UserConsumer(WebsocketConsumer):
 
 /*public*/ function setupUserSocket(userId, lastUpdated) {
     new WebSocketClient(
-        &#39;/ws/user/&#39; + userId + &#39;/&#39; + lastUpdated, {
+        '/ws/user/' + userId + '/' + lastUpdated, {
             onmessage: function(e) {
                 didReceiveUserSocketMessage(JSON.parse(e.data));
             },
@@ -220,23 +220,23 @@ class UserConsumer(WebsocketConsumer):
 }
 
 function didReceiveUserSocketMessage(data) {
-    var type = data[&#39;type&#39;];
-    var kwargs = data[&#39;kwargs&#39;];
-    if (type === &#39;did_alter_join_request&#39;) {
+    var type = data['type'];
+    var kwargs = data['kwargs'];
+    if (type === 'did_alter_join_request') {
         console.log(
-            &#39;User socket: Did alter join request: &#39; + 
-            kwargs[&#39;action&#39;] + &#39; &#39; + kwargs[&#39;id&#39;]);
-        if (kwargs[&#39;action&#39;] === &#39;create&#39;) {
+            'User socket: Did alter join request: ' + 
+            kwargs['action'] + ' ' + kwargs['id']);
+        if (kwargs['action'] === 'create') {
             // TODO: Create a new row on User Home Page in the Rooms section
-        } else if (kwargs[&#39;action&#39;] === &#39;admit&#39;) {
+        } else if (kwargs['action'] === 'admit') {
             // TODO: Promote the row in the Rooms section to be a full room,
             //       removing the &quot;Waiting to be admitted&quot; banner
-        } else if (kwargs[&#39;action&#39;] === &#39;deny&#39;) {
+        } else if (kwargs['action'] === 'deny') {
             // TODO: Remove the row in the Rooms section
         }
     } else {
         console.warn(
-            &#39;User socket: Did receive unexpected message type: &#39; + type);
+            'User socket: Did receive unexpected message type: ' + type);
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -327,10 +327,10 @@ function didReceiveUserSocketMessage(data) {
 &lt;p&gt;To observe newly created Chat Messages, the Chat Room Page subscribes to a Chat Room Topic by immediately opening a WebSocket to the topic endpoint as soon as its JavaScript starts running. That topic receives messages like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-    &#39;type&#39;: &#39;chat_message_created&#39;,
-    &#39;kwargs&#39;: {
-        &#39;id&#39;: &#39;42&#39;,
-        &#39;message&#39;: &#39;Hello world!&#39;
+    'type': 'chat_message_created',
+    'kwargs': {
+        'id': '42',
+        'message': 'Hello world!'
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -398,24 +398,24 @@ from django.db import models
 
 class ChatRoom(models.Model):
     owner = models.ForeignKey(
-        &#39;User&#39;, related_name=&#39;owned_room_set&#39;, on_delete=models.PROTECT)
+        'User', related_name='owned_room_set', on_delete=models.PROTECT)
     title = models.CharField(max_length=50)
     member_set = models.ManyToManyField(
-        &#39;User&#39;, related_name=&#39;joined_room_set&#39;, blank=True)
+        'User', related_name='joined_room_set', blank=True)
 
 class ChatMessage(models.Model):
     room = models.ForeignKey(
-        &#39;ChatRoom&#39;, related_name=&#39;message_set&#39;, on_delete=models.CASCADE)
+        'ChatRoom', related_name='message_set', on_delete=models.CASCADE)
     sender = models.ForeignKey(
-        &#39;User&#39;, related_name=&#39;message_set&#39; on_delete=models.PROTECT)
+        'User', related_name='message_set' on_delete=models.PROTECT)
     posted = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=200)
 
 class ChatRoomJoinRequest(models.Model):
     user = models.ForeignKey(
-        &#39;User&#39;, related_name=&#39;join_request_set&#39;, on_delete=models.CASCADE)
+        'User', related_name='join_request_set', on_delete=models.CASCADE)
     room = models.ForeignKey(
-        &#39;ChatRoom&#39;, related_name=&#39;join_request_set&#39;, on_delete=models.CASCADE)
+        'ChatRoom', related_name='join_request_set', on_delete=models.CASCADE)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then we need some topics. In Django Channels the backend object that manages a topic is called a &amp;ldquo;consumer&amp;rdquo;, so let&amp;rsquo;s create some consumers:&lt;/p&gt;
@@ -428,7 +428,7 @@ from django.conf.urls import url
 
 application = ProtocolTypeRouter({
     # (http-&amp;gt;django views is added by default)
-    &#39;websocket&#39;: AuthMiddlewareStack(
+    'websocket': AuthMiddlewareStack(
         URLRouter(
             chat.routing.websocket_urlpatterns +
             # (add websocket_urlpatterns from more apps here)
@@ -444,8 +444,8 @@ from django.conf.urls import url
 from . import consumers
 
 websocket_urlpatterns = [
-    url(r&#39;^ws/user/(?P&amp;lt;user_id&amp;gt;\d+)$&#39;, consumers.UserConsumer),
-    url(r&#39;^ws/room/(?P&amp;lt;chat_room_id&amp;gt;\d+)$&#39;, consumers.ChatRoomConsumer),
+    url(r'^ws/user/(?P&amp;lt;user_id&amp;gt;\d+)$', consumers.UserConsumer),
+    url(r'^ws/room/(?P&amp;lt;chat_room_id&amp;gt;\d+)$', consumers.ChatRoomConsumer),
 ]
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -478,7 +478,7 @@ class ChatRoomConsumer(WebsocketConsumer): ...
 
 /*public*/ function setupChatRoomSocket(roomId) {
     new WebSocketClient(
-        &#39;/ws/room/&#39; + roomId, {
+        '/ws/room/' + roomId, {
             onmessage: function(e) {
                 didReceiveChatRoomSocketMessage(JSON.parse(e.data));
             },
@@ -514,7 +514,7 @@ class ChatRoomConsumer(WebsocketConsumer):
             self.close(code=401)  # Unauthorized
             return
 
-        room_id = self.scope[&#39;url_route&#39;][&#39;kwargs&#39;][&#39;room_id&#39;]
+        room_id = self.scope['url_route']['kwargs']['room_id']
 
         # Identify requested objects
         try:
@@ -544,13 +544,13 @@ class ChatRoomConsumer(WebsocketConsumer):
 
     @staticmethod
     def room_group_for(room_id: int) -&amp;gt; str:
-        return &#39;room_%s&#39; % room_id
+        return 'room_%s' % room_id
 
     # === Utility ===
 
     @property
     def user(self) -&amp;gt; User:
-        return self.scope[&#39;user&#39;]
+        return self.scope['user']
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In a regular Django view:&lt;/p&gt;
@@ -562,10 +562,10 @@ to authenticate a user but here we need to do that manually by checking
 user hasn&amp;rsquo;t logged in.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;We&amp;rsquo;d normally receive parameters from the URL as arguments to the view
 function but here we have to look up the arguments manually from
-&lt;code&gt;self.scope[&#39;url_route&#39;][&#39;kwargs&#39;][&#39;PARAMETER_NAME&#39;]&lt;/code&gt; instead.&lt;/p&gt;&lt;/li&gt;
+&lt;code&gt;self.scope['url_route']['kwargs']['PARAMETER_NAME']&lt;/code&gt; instead.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;When authorizing we&amp;rsquo;d normally check properties of &lt;code&gt;request.user&lt;/code&gt;
 against the room ownership and membership, but here we must check
-&lt;code&gt;self.user&lt;/code&gt; (which is a shortcut for &lt;code&gt;self.scope[&#39;user&#39;]&lt;/code&gt;) instead.
+&lt;code&gt;self.user&lt;/code&gt; (which is a shortcut for &lt;code&gt;self.scope['user']&lt;/code&gt;) instead.
 A failure would normally be reported using an &lt;code&gt;HttpResponseForbidden&lt;/code&gt;
 but here we must manually return a WS 403 Forbidden code.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -634,36 +634,36 @@ class ChatRoomConsumer(WebsocketConsumer):
     @classmethod
     def notify_did_alter_join_request(cls,
             join_request: ChatRoomJoinRequest,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         async_to_sync(get_channel_layer().group_send)(
             cls.room_group_for(join_request.room_id),
             {
-                &#39;type&#39;: &#39;did_alter_join_request&#39;,
-                &#39;kwargs&#39;: {
-                    &#39;id&#39;: join_request.id,
-                    &#39;action&#39;: action,
-                    &#39;requesting_user&#39;: {
-                        &#39;id&#39;: join_request.user_id,
-                        &#39;first_name&#39;: join_request.user.first_name,
-                        &#39;last_name&#39;: join_request.user.last_name,
-                    } if action == &#39;create&#39; else None
+                'type': 'did_alter_join_request',
+                'kwargs': {
+                    'id': join_request.id,
+                    'action': action,
+                    'requesting_user': {
+                        'id': join_request.user_id,
+                        'first_name': join_request.user.first_name,
+                        'last_name': join_request.user.last_name,
+                    } if action == 'create' else None
                 }
             }
         )
 
     # Receive message from group
     def did_alter_join_request(self, event) -&amp;gt; None:
-        kwargs = event[&#39;kwargs&#39;]
+        kwargs = event['kwargs']
 
         # Only the room owner may observe join request events so suppress for other users
         if self.user.id == self.room.owner_id:
             # Forward message to page via WebSocket
             self.send(text_data=json.dumps({
-                &#39;type&#39;: &#39;did_alter_join_request&#39;,
-                &#39;kwargs&#39;: {
-                    &#39;id&#39;: str(kwargs[&#39;id&#39;]),
-                    &#39;action&#39;: kwargs[&#39;action&#39;],
-                    &#39;requesting_user&#39;: kwargs[&#39;requesting_user&#39;],
+                'type': 'did_alter_join_request',
+                'kwargs': {
+                    'id': str(kwargs['id']),
+                    'action': kwargs['action'],
+                    'requesting_user': kwargs['requesting_user'],
                 }
             }))
 &lt;/code&gt;&lt;/pre&gt;
@@ -677,24 +677,24 @@ class ChatRoomConsumer(WebsocketConsumer):
 /*public*/ function setupChatRoomSocket(roomId) { ... }
 
 function didReceiveChatRoomSocketMessage(data) {
-    var type = data[&#39;type&#39;];
-    var kwargs = data[&#39;kwargs&#39;];
-    if (type === &#39;did_alter_join_request&#39;) {
+    var type = data['type'];
+    var kwargs = data['kwargs'];
+    if (type === 'did_alter_join_request') {
         console.log(
-            &#39;Chat room socket: Did alter join request: &#39; + 
-            kwargs[&#39;action&#39;] + &#39; &#39; + kwargs[&#39;id&#39;]);
+            'Chat room socket: Did alter join request: ' + 
+            kwargs['action'] + ' ' + kwargs['id']);
 
-        if (kwargs[&#39;action&#39;] === &#39;create&#39;) {
+        if (kwargs['action'] === 'create') {
             // TODO: Create a new row on Chat Room Page in the Members section
-        } else if (kwargs[&#39;action&#39;] === &#39;admit&#39;) {
+        } else if (kwargs['action'] === 'admit') {
             // TODO: Promote the row in the Members section to a full member of
             //       the room, removing the &quot;Deny&quot; and &quot;Allow&quot; buttons
-        } else if (kwargs[&#39;action&#39;] === &#39;deny&#39;) {
+        } else if (kwargs['action'] === 'deny') {
             // TODO: Remove the row in the Members section
         }
     } else {
         console.warn(
-            &#39;Chat room socket: Did receive unexpected message type: &#39; + type);
+            'Chat room socket: Did receive unexpected message type: ' + type);
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -718,14 +718,14 @@ class ChatRoomJoinRequest(models.Model):
         change = self.id is not None  # capture
         super().save(*args, **kwargs)
         if not change:  # add
-            self.notify_did_alter(&#39;create&#39;)
+            self.notify_did_alter('create')
 
     def notify_did_alter(self,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         from chat.consumers import ChatRoomConsumer  # avoid circular import
         ChatRoomConsumer.notify_did_alter_join_request(self, action)
 
-        # NOTE: In the future we&#39;ll want to notify the User Home Page here too
+        # NOTE: In the future we'll want to notify the User Home Page here too
         #from chat.consumers import UserConsumer  # avoid circular import
         #UserConsumer.notify_did_alter_join_request(self, action)
 &lt;/code&gt;&lt;/pre&gt;
@@ -739,11 +739,11 @@ class ChatRoomJoinRequest(models.Model):
     status = models.CharField(
         max_length=10,
         choices=[
-            (&#39;pending&#39;, &#39;⏳ Pending&#39;),
-            (&#39;admitted&#39;, &#39;✅ Admitted&#39;),
-            (&#39;denied&#39;, &#39;✖️ Denied&#39;),
+            ('pending', '⏳ Pending'),
+            ('admitted', '✅ Admitted'),
+            ('denied', '✖️ Denied'),
         ],
-        default=&#39;pending&#39;,
+        default='pending',
     )
 
     def __init__(self, *args, **kwargs) -&amp;gt; None:
@@ -754,13 +754,13 @@ class ChatRoomJoinRequest(models.Model):
         change = self.id is not None  # capture
         super().save(*args, **kwargs)
         if not change:  # add
-            self.notify_did_alter(&#39;create&#39;)
+            self.notify_did_alter('create')
         else:  # change
             if self.status != self._initial_status:
-                if self.status == &#39;admitted&#39;:
-                    self.notify_did_alter(&#39;admit&#39;)
-                elif self.status == &#39;denied&#39;:
-                    self.notify_did_alter(&#39;deny&#39;)
+                if self.status == 'admitted':
+                    self.notify_did_alter('admit')
+                elif self.status == 'denied':
+                    self.notify_did_alter('deny')
 
     def notify_did_alter(self, ...): ...
 &lt;/code&gt;&lt;/pre&gt;
@@ -792,10 +792,10 @@ class ChatRoomJoinRequest(models.Model):
         change = self.id is not None  # capture
         super().save(*args, **kwargs)
         if not change:  # add
-            self.notify_did_alter(&#39;create&#39;)
+            self.notify_did_alter('create')
 
     def notify_did_alter(self,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         from chat.consumers import ChatRoomConsumer  # avoid circular import
         ChatRoomConsumer.notify_did_alter_join_request(self, action)
 
@@ -1013,9 +1013,9 @@ class ChatRoomJoinRequest(models.Model):
 &amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
 &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
 {% compress js %}
-    &amp;lt;script src=&quot;{% static &#39;todo/todo.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;todo/todo/list.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;todo/todo/item.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'todo/todo.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'todo/todo/list.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'todo/todo/item.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;script&amp;gt;
         setupTodoPage();
     &amp;lt;/script&amp;gt;
@@ -1046,12 +1046,12 @@ class ChatRoomJoinRequest(models.Model):
 &lt;li&gt;If you want to avoid managing JS dependencies manually, consider &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; instead.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&amp;rsquo;t supported by your customers&#39; browsers then you&amp;rsquo;re out of luck. If you need transpilation consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
+&lt;li&gt;JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&amp;rsquo;t supported by your customers' browsers then you&amp;rsquo;re out of luck. If you need transpilation consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
 &lt;li&gt;It is awkward to define a class in a JavaScript module that inherits from a base class in a different module, because that &lt;em&gt;requires&lt;/em&gt; &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-including the base class&amp;rsquo;s module first, breaking the usual rule that &amp;ldquo;the order that JS files are imported should not matter&amp;rdquo;. (However if you just limit inheritance to be within a single module or avoid it entirely, then this restriction doesn&amp;rsquo;t matter in practice.)&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Note that choosing concatenated bundling does &lt;em&gt;not&lt;/em&gt; prevent you from using TypeScript-based type checking in your JS files, which I &lt;em&gt;do&lt;/em&gt; recommend for long-lived projects. In short, you can put a special &lt;code&gt;// @ts-check&lt;/code&gt; comment at the top of a JS file to &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html&quot;&gt;enable type-checking of JS with the TypeScript compiler&lt;/a&gt; (&lt;code&gt;tsc&lt;/code&gt;). &lt;!-- Using TypeScript to type-check JS files doesn&#39;t seem like a very-well known technique, so I plan to write a future article about it. --&gt;&lt;/p&gt;
+&lt;p&gt;Note that choosing concatenated bundling does &lt;em&gt;not&lt;/em&gt; prevent you from using TypeScript-based type checking in your JS files, which I &lt;em&gt;do&lt;/em&gt; recommend for long-lived projects. In short, you can put a special &lt;code&gt;// @ts-check&lt;/code&gt; comment at the top of a JS file to &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html&quot;&gt;enable type-checking of JS with the TypeScript compiler&lt;/a&gt; (&lt;code&gt;tsc&lt;/code&gt;). &lt;!-- Using TypeScript to type-check JS files doesn't seem like a very-well known technique, so I plan to write a future article about it. --&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;import-traced-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1072,7 +1072,7 @@ class ChatRoomJoinRequest(models.Model):
 &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
 &amp;lt;!-- js --&amp;gt;
     &amp;lt;script type=&quot;module&quot;&amp;gt;
-        import { setupTodoPage } from &quot;{% static &#39;todo/todo.js&#39; %}&quot;;
+        import { setupTodoPage } from &quot;{% static 'todo/todo.js' %}&quot;;
         setupTodoPage();
     &amp;lt;/script&amp;gt;
 &amp;lt;!-- endjs --&amp;gt;
@@ -1100,7 +1100,7 @@ import { defineTodoItem } from &quot;./item.js&quot;;
 export function defineTodoList() {
     defineTodoItem();
     
-    Vue.component(&#39;todo-list&#39;, {
+    Vue.component('todo-list', {
         props: {
             ...
         },
@@ -1250,7 +1250,7 @@ export function defineTodoList() {
                 &amp;lt;img
                     v-if=&quot;loading&quot; 
                     alt=&quot;Loading spinner&quot;
-                    src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+                    src=&quot;{% static 'store/loading-spinner.gif' %}&quot; /&amp;gt;
                 &amp;lt;template
                     v-else
                     v-cloak&amp;gt;
@@ -1264,8 +1264,8 @@ export function defineTodoList() {
 {{ recommendations_panel_data|json_script:&quot;recommendations-panel-data&quot; }}
 
 {% compress js %}
-    &amp;lt;script src=&quot;{% static &#39;store/product.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;store/product/recommendations.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'store/product.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'store/product/recommendations.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;script&amp;gt;
         setupProductPage();
     &amp;lt;/script&amp;gt;
@@ -1289,7 +1289,7 @@ export function defineTodoList() {
     &amp;lt;img
         v-if=&quot;loading&quot; 
         alt=&quot;Loading spinner&quot;
-        src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+        src=&quot;{% static 'store/loading-spinner.gif' %}&quot; /&amp;gt;
     &amp;lt;template
         v-else
         v-cloak&amp;gt;
@@ -1314,9 +1314,9 @@ export function defineTodoList() {
 &lt;pre&gt;&lt;code&gt;// store/product/recommendations.js
 /*public*/ function setupRecommendationsPanel() {
     new Vue({
-        el: &#39;#recommendations-panel&#39;,
+        el: '#recommendations-panel',
         data: function() {
-            return document.querySelector(&#39;#recommendations-panel-data&#39;).innerText;
+            return document.querySelector('#recommendations-panel-data').innerText;
         },
         computed: {
             loading: function() {
@@ -1418,9 +1418,9 @@ class TodoListPageTests(TestCase):
     ...
 
     def test_todo_list_mdp(self):  # mdp = maintains database performance
-        self.client.login(username=&#39;user&#39;, password=&#39;password&#39;)
+        self.client.login(username='user', password='password')
         with self.assertNumQueries(3):  # &amp;lt;-- DATABASE CLAMP
-            response = self.client.get(reverse(&#39;todo:list&#39;))
+            response = self.client.get(reverse('todo:list'))
             self.assertEqual(200, response.status_code)
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1725,7 +1725,7 @@ Associating 8 user(s) with 1 calendar(s)...
 
 $ pm perftest run LoginAsStudent 4 1
 Running simulation with 4 user(s) over 1 second(s)...
-When 4 user(s) over 1 second(s), max response time for request &#39;submit_login&#39; is 393 ms.
+When 4 user(s) over 1 second(s), max response time for request 'submit_login' is 393 ms.
   Report: /Users/me/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497049484195/index.html
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1802,7 +1802,7 @@ Deleting test students...
 Creating 1 test student(s)...
 Associating 1 user(s) with 1 calendar(s)...
 Running simulation with 1 user(s) over 5 second(s)...
-When 1 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 138 ms.
+When 1 user(s) over 5 second(s), max response time for request 'submit_login' is 138 ms.
   Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567171908/index.html
 
 Seeking shaft of hockeystick...
@@ -1811,7 +1811,7 @@ Deleting test students...
 Creating 2 test student(s)...
 Associating 2 user(s) with 1 calendar(s)...
 Running simulation with 2 user(s) over 5 second(s)...
-When 2 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 124 ms.
+When 2 user(s) over 5 second(s), max response time for request 'submit_login' is 124 ms.
   Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567182571/index.html
 
 (... ditto for 4 users over 5 seconds ... OK ...)
@@ -1827,7 +1827,7 @@ Deleting test students...
 Creating 96 test student(s)...
 Associating 96 user(s) with 1 calendar(s)...
 Running simulation with 96 user(s) over 5 second(s)...
-When 96 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 3754 ms.
+When 96 user(s) over 5 second(s), max response time for request 'submit_login' is 3754 ms.
   Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567312703/index.html
 
 (... ditto several times, performing a binary search ...)

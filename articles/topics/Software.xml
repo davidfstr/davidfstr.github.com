@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2021-04-19T14:20:12+00:00</updated>
+ <updated>2021-05-02T16:32:27+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -28,7 +28,7 @@
 
 &lt;p&gt;Today I&amp;rsquo;d like to explore the now perhaps-controversial idea of &amp;ldquo;When might it &lt;em&gt;not&lt;/em&gt; be worth the effort to setup a centralized continuous integration service?&amp;rdquo; In particular I&amp;rsquo;ve somehow managed to &lt;em&gt;not&lt;/em&gt; setup a CI server for the primary web app I&amp;rsquo;ve been developing and running in production even after several years.&lt;!--[^ts-platform]--&gt;&lt;/p&gt;
 
-&lt;!-- [^ts-platform]: In case you&#39;re curious, the web app I mentioned that I&#39;ve been developing for several years that currently lacks *centralized* continuous integration is the [TechSmart Platform](/projects/techsmart-platform/) for online computer science learning and coding. --&gt;
+&lt;!-- [^ts-platform]: In case you're curious, the web app I mentioned that I've been developing for several years that currently lacks *centralized* continuous integration is the [TechSmart Platform](/projects/techsmart-platform/) for online computer science learning and coding. --&gt;
 
 
 &lt;h2&gt;The wonders of continuous integration&lt;/h2&gt;
@@ -84,14 +84,14 @@ Or abort with: pm mergedeploy --abort
 
 &lt;p&gt;Inspecting the log I see:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Creating test database for alias &#39;default&#39;...
+&lt;pre&gt;&lt;code&gt;Creating test database for alias 'default'...
 System check identified no issues (1 silenced).
 ......ssssssssssssssssssssssssssssssssssssssssssssF..........
 ----------------------------------------------------------------------
 Ran 61 tests in 16.154s
 
 FAILED (failures=1)
-Destroying test database for alias &#39;default&#39;...
+Destroying test database for alias 'default'...
 
 Rerun failed tests with:
 $ python3 manage.py test \
@@ -102,7 +102,7 @@ $ python3 manage.py test \
 
 &lt;pre&gt;&lt;code&gt;$ python3 manage.py test \
     ide.tests.PerformanceTests.test_mouse_move_near_top_of_large_program_is_fast_enough
-Creating test database for alias &#39;default&#39;...
+Creating test database for alias 'default'...
 System check identified no issues (1 silenced).
 .
 ----------------------------------------------------------------------
@@ -221,23 +221,23 @@ Deployment STARTED
 
 &lt;p&gt;Another idea is for the frontend to explicitly &lt;strong&gt;double-check the freshness of the information it receives from the backend shortly after it initially renders&lt;/strong&gt;. If the frontend happens to be displaying outdated information it can repair its state immediately with the new information from the backend:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A&#39;s frontend does check for any concurrent modification immediately after rendering the initial information received from the backend&quot; src=&quot;/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor A's frontend does check for any concurrent modification immediately after rendering the initial information received from the backend&quot; src=&quot;/assets/2021/concurrent-rendering/4H-frontend-freshness-check.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This strategy is almost perfect (for getting the most up-to-date state reliably to the frontend). However there&amp;rsquo;s still a narrow time window in which visitor B can make a modification after visitor A&amp;rsquo;s final request.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a change slightly after visitor A&#39;s frontend makes a final freshness check&quot; src=&quot;/assets/2021/concurrent-rendering/5H-frontend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Visitor B makes a change slightly after visitor A's frontend makes a final freshness check&quot; src=&quot;/assets/2021/concurrent-rendering/5H-frontend-interrupt.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;What now? To detect these types of concurrent changes it is necessary for the backend to &lt;strong&gt;push any new changes to the frontend in real-time (via WebSocket)&lt;/strong&gt; and the frontend needs to be prepared to receive these kinds of updates to its displayed state continuously:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Every time Visitor B makes a change, an update is pushed to Visitor A in real-time, quickly bringing Visitor A&#39;s frontend up to date.&quot; src=&quot;/assets/2021/concurrent-rendering/6H-push-fresh-data-live.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Every time Visitor B makes a change, an update is pushed to Visitor A in real-time, quickly bringing Visitor A's frontend up to date.&quot; src=&quot;/assets/2021/concurrent-rendering/6H-push-fresh-data-live.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; My last article explains in depth &lt;a href=&quot;/articles/2021/03/02/real-time-updates-in-django-with-websockets-channels-and-pub-sub/&quot;&gt;how to setup such real-time updates over WebSocket in Django using Channels&lt;/a&gt;. In Rails you&amp;rsquo;d use ActionCable.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Additionally the backend must be prepared to &lt;strong&gt;push even those changes that occur between when the backend templates a view and before the frontend has connected a WebSocket&lt;/strong&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A&#39;s socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Diagram: Changes made by Visitor B are buffered so that when Visitor A's socket connects later the change is still pushed to Visitor A.&quot; src=&quot;/assets/2021/concurrent-rendering/7H-push-fresh-data-buffered.svg&quot; class=&quot;sequence-diagram-h&quot; /&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Neither Django&amp;rsquo;s Channels nor Rails&#39; ActionCable provide out-of-the box support for observing events that occur during this critical time period. In the &lt;a href=&quot;#implementation&quot;&gt;Implementation&lt;/a&gt; section below I outline a technique of tracking the &amp;ldquo;timepoint&amp;rdquo; an event was generated at so that it can be buffered and delivered later reliably.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Neither Django&amp;rsquo;s Channels nor Rails' ActionCable provide out-of-the box support for observing events that occur during this critical time period. In the &lt;a href=&quot;#implementation&quot;&gt;Implementation&lt;/a&gt; section below I outline a technique of tracking the &amp;ldquo;timepoint&amp;rdquo; an event was generated at so that it can be buffered and delivered later reliably.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Great! We&amp;rsquo;ve got a bulletproof design to quickly observe an accurate up-to-date state on the frontend. But it does seem to be rather complex&amp;hellip;&lt;/p&gt;
 
@@ -287,11 +287,11 @@ def calculate_chat_room_list(user: User) -&amp;gt; List[RoomInfo]:
             title=join_request.room.title,
             pending=True,
         )
-        for join_request in ChatRoomJoinRequest.filter(user=user, status=&#39;pending&#39;)
+        for join_request in ChatRoomJoinRequest.filter(user=user, status='pending')
     ]
     return list(sorted(
         joined_rooms + pending_rooms,
-        key=lambda room_info: (room_info[&#39;title&#39;], int(room_info[&#39;id&#39;]))
+        key=lambda room_info: (room_info['title'], int(room_info['id']))
     ))
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -306,7 +306,7 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
     last_updated = UserConsumer.create_timepoint()  # capture
     chat_room_list = calculate_chat_room_list(request.user)  # capture
 
-    return render(request, &#39;chat/user_home_page.html&#39;, dict(
+    return render(request, 'chat/user_home_page.html', dict(
         user_id=str(request.user.id),
         last_updated=last_updated,
         chat_room_list=chat_room_list,
@@ -319,9 +319,9 @@ def user_home_page(request: HttpRequest) -&amp;gt; HttpResponse:
 
 /*public*/ function setupUserHomePage() {
     const userId = JSON.parse(
-        document.querySelector(&#39;#user-id&#39;).innerText);
+        document.querySelector('#user-id').innerText);
     const lastUpdated = JSON.parse(
-        document.querySelector(&#39;#last-updated&#39;).innerText);
+        document.querySelector('#last-updated').innerText);
     setupUserSocket(userId, lastUpdated);
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -336,7 +336,7 @@ class ChatRoomJoinRequest(models.Model):
     def save(self, *args, **kwargs) -&amp;gt; None: ...
 
     def notify_did_alter(self,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         ...
 
         from chat.consumers import UserConsumer  # avoid circular import
@@ -352,14 +352,14 @@ class UserConsumer(WebsocketConsumer):
     @classmethod
     def notify_did_alter_join_request(cls,
             join_request: ChatRoomJoinRequest,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         update_timepoint = cls.create_timepoint()  # capture
         async_to_sync(get_channel_layer().group_send)(
             cls.user_group_for(join_request.user_id),
             {
-                &#39;timepoint&#39;: update_timepoint,
-                &#39;type&#39;: &#39;did_alter_join_request&#39;,
-                &#39;kwargs&#39;: { ... }
+                'timepoint': update_timepoint,
+                'type': 'did_alter_join_request',
+                'kwargs': { ... }
             }
         )
 &lt;/code&gt;&lt;/pre&gt;
@@ -370,7 +370,7 @@ class UserConsumer(WebsocketConsumer):
 
 /*public*/ function setupUserSocket(userId, lastUpdated) {
     new WebSocketClient(
-        &#39;/ws/user/&#39; + userId + &#39;/&#39; + lastUpdated, {
+        '/ws/user/' + userId + '/' + lastUpdated, {
             onmessage: function(e) {
                 didReceiveUserSocketMessage(JSON.parse(e.data));
             },
@@ -379,23 +379,23 @@ class UserConsumer(WebsocketConsumer):
 }
 
 function didReceiveUserSocketMessage(data) {
-    var type = data[&#39;type&#39;];
-    var kwargs = data[&#39;kwargs&#39;];
-    if (type === &#39;did_alter_join_request&#39;) {
+    var type = data['type'];
+    var kwargs = data['kwargs'];
+    if (type === 'did_alter_join_request') {
         console.log(
-            &#39;User socket: Did alter join request: &#39; + 
-            kwargs[&#39;action&#39;] + &#39; &#39; + kwargs[&#39;id&#39;]);
-        if (kwargs[&#39;action&#39;] === &#39;create&#39;) {
+            'User socket: Did alter join request: ' + 
+            kwargs['action'] + ' ' + kwargs['id']);
+        if (kwargs['action'] === 'create') {
             // TODO: Create a new row on User Home Page in the Rooms section
-        } else if (kwargs[&#39;action&#39;] === &#39;admit&#39;) {
+        } else if (kwargs['action'] === 'admit') {
             // TODO: Promote the row in the Rooms section to be a full room,
             //       removing the &quot;Waiting to be admitted&quot; banner
-        } else if (kwargs[&#39;action&#39;] === &#39;deny&#39;) {
+        } else if (kwargs['action'] === 'deny') {
             // TODO: Remove the row in the Rooms section
         }
     } else {
         console.warn(
-            &#39;User socket: Did receive unexpected message type: &#39; + type);
+            'User socket: Did receive unexpected message type: ' + type);
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -486,10 +486,10 @@ function didReceiveUserSocketMessage(data) {
 &lt;p&gt;To observe newly created Chat Messages, the Chat Room Page subscribes to a Chat Room Topic by immediately opening a WebSocket to the topic endpoint as soon as its JavaScript starts running. That topic receives messages like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-    &#39;type&#39;: &#39;chat_message_created&#39;,
-    &#39;kwargs&#39;: {
-        &#39;id&#39;: &#39;42&#39;,
-        &#39;message&#39;: &#39;Hello world!&#39;
+    'type': 'chat_message_created',
+    'kwargs': {
+        'id': '42',
+        'message': 'Hello world!'
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -557,24 +557,24 @@ from django.db import models
 
 class ChatRoom(models.Model):
     owner = models.ForeignKey(
-        &#39;User&#39;, related_name=&#39;owned_room_set&#39;, on_delete=models.PROTECT)
+        'User', related_name='owned_room_set', on_delete=models.PROTECT)
     title = models.CharField(max_length=50)
     member_set = models.ManyToManyField(
-        &#39;User&#39;, related_name=&#39;joined_room_set&#39;, blank=True)
+        'User', related_name='joined_room_set', blank=True)
 
 class ChatMessage(models.Model):
     room = models.ForeignKey(
-        &#39;ChatRoom&#39;, related_name=&#39;message_set&#39;, on_delete=models.CASCADE)
+        'ChatRoom', related_name='message_set', on_delete=models.CASCADE)
     sender = models.ForeignKey(
-        &#39;User&#39;, related_name=&#39;message_set&#39; on_delete=models.PROTECT)
+        'User', related_name='message_set' on_delete=models.PROTECT)
     posted = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=200)
 
 class ChatRoomJoinRequest(models.Model):
     user = models.ForeignKey(
-        &#39;User&#39;, related_name=&#39;join_request_set&#39;, on_delete=models.CASCADE)
+        'User', related_name='join_request_set', on_delete=models.CASCADE)
     room = models.ForeignKey(
-        &#39;ChatRoom&#39;, related_name=&#39;join_request_set&#39;, on_delete=models.CASCADE)
+        'ChatRoom', related_name='join_request_set', on_delete=models.CASCADE)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then we need some topics. In Django Channels the backend object that manages a topic is called a &amp;ldquo;consumer&amp;rdquo;, so let&amp;rsquo;s create some consumers:&lt;/p&gt;
@@ -587,7 +587,7 @@ from django.conf.urls import url
 
 application = ProtocolTypeRouter({
     # (http-&amp;gt;django views is added by default)
-    &#39;websocket&#39;: AuthMiddlewareStack(
+    'websocket': AuthMiddlewareStack(
         URLRouter(
             chat.routing.websocket_urlpatterns +
             # (add websocket_urlpatterns from more apps here)
@@ -603,8 +603,8 @@ from django.conf.urls import url
 from . import consumers
 
 websocket_urlpatterns = [
-    url(r&#39;^ws/user/(?P&amp;lt;user_id&amp;gt;\d+)$&#39;, consumers.UserConsumer),
-    url(r&#39;^ws/room/(?P&amp;lt;chat_room_id&amp;gt;\d+)$&#39;, consumers.ChatRoomConsumer),
+    url(r'^ws/user/(?P&amp;lt;user_id&amp;gt;\d+)$', consumers.UserConsumer),
+    url(r'^ws/room/(?P&amp;lt;chat_room_id&amp;gt;\d+)$', consumers.ChatRoomConsumer),
 ]
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -637,7 +637,7 @@ class ChatRoomConsumer(WebsocketConsumer): ...
 
 /*public*/ function setupChatRoomSocket(roomId) {
     new WebSocketClient(
-        &#39;/ws/room/&#39; + roomId, {
+        '/ws/room/' + roomId, {
             onmessage: function(e) {
                 didReceiveChatRoomSocketMessage(JSON.parse(e.data));
             },
@@ -673,7 +673,7 @@ class ChatRoomConsumer(WebsocketConsumer):
             self.close(code=401)  # Unauthorized
             return
 
-        room_id = self.scope[&#39;url_route&#39;][&#39;kwargs&#39;][&#39;room_id&#39;]
+        room_id = self.scope['url_route']['kwargs']['room_id']
 
         # Identify requested objects
         try:
@@ -703,13 +703,13 @@ class ChatRoomConsumer(WebsocketConsumer):
 
     @staticmethod
     def room_group_for(room_id: int) -&amp;gt; str:
-        return &#39;room_%s&#39; % room_id
+        return 'room_%s' % room_id
 
     # === Utility ===
 
     @property
     def user(self) -&amp;gt; User:
-        return self.scope[&#39;user&#39;]
+        return self.scope['user']
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In a regular Django view:&lt;/p&gt;
@@ -721,10 +721,10 @@ to authenticate a user but here we need to do that manually by checking
 user hasn&amp;rsquo;t logged in.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;We&amp;rsquo;d normally receive parameters from the URL as arguments to the view
 function but here we have to look up the arguments manually from
-&lt;code&gt;self.scope[&#39;url_route&#39;][&#39;kwargs&#39;][&#39;PARAMETER_NAME&#39;]&lt;/code&gt; instead.&lt;/p&gt;&lt;/li&gt;
+&lt;code&gt;self.scope['url_route']['kwargs']['PARAMETER_NAME']&lt;/code&gt; instead.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;When authorizing we&amp;rsquo;d normally check properties of &lt;code&gt;request.user&lt;/code&gt;
 against the room ownership and membership, but here we must check
-&lt;code&gt;self.user&lt;/code&gt; (which is a shortcut for &lt;code&gt;self.scope[&#39;user&#39;]&lt;/code&gt;) instead.
+&lt;code&gt;self.user&lt;/code&gt; (which is a shortcut for &lt;code&gt;self.scope['user']&lt;/code&gt;) instead.
 A failure would normally be reported using an &lt;code&gt;HttpResponseForbidden&lt;/code&gt;
 but here we must manually return a WS 403 Forbidden code.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -793,36 +793,36 @@ class ChatRoomConsumer(WebsocketConsumer):
     @classmethod
     def notify_did_alter_join_request(cls,
             join_request: ChatRoomJoinRequest,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         async_to_sync(get_channel_layer().group_send)(
             cls.room_group_for(join_request.room_id),
             {
-                &#39;type&#39;: &#39;did_alter_join_request&#39;,
-                &#39;kwargs&#39;: {
-                    &#39;id&#39;: join_request.id,
-                    &#39;action&#39;: action,
-                    &#39;requesting_user&#39;: {
-                        &#39;id&#39;: join_request.user_id,
-                        &#39;first_name&#39;: join_request.user.first_name,
-                        &#39;last_name&#39;: join_request.user.last_name,
-                    } if action == &#39;create&#39; else None
+                'type': 'did_alter_join_request',
+                'kwargs': {
+                    'id': join_request.id,
+                    'action': action,
+                    'requesting_user': {
+                        'id': join_request.user_id,
+                        'first_name': join_request.user.first_name,
+                        'last_name': join_request.user.last_name,
+                    } if action == 'create' else None
                 }
             }
         )
 
     # Receive message from group
     def did_alter_join_request(self, event) -&amp;gt; None:
-        kwargs = event[&#39;kwargs&#39;]
+        kwargs = event['kwargs']
 
         # Only the room owner may observe join request events so suppress for other users
         if self.user.id == self.room.owner_id:
             # Forward message to page via WebSocket
             self.send(text_data=json.dumps({
-                &#39;type&#39;: &#39;did_alter_join_request&#39;,
-                &#39;kwargs&#39;: {
-                    &#39;id&#39;: str(kwargs[&#39;id&#39;]),
-                    &#39;action&#39;: kwargs[&#39;action&#39;],
-                    &#39;requesting_user&#39;: kwargs[&#39;requesting_user&#39;],
+                'type': 'did_alter_join_request',
+                'kwargs': {
+                    'id': str(kwargs['id']),
+                    'action': kwargs['action'],
+                    'requesting_user': kwargs['requesting_user'],
                 }
             }))
 &lt;/code&gt;&lt;/pre&gt;
@@ -836,24 +836,24 @@ class ChatRoomConsumer(WebsocketConsumer):
 /*public*/ function setupChatRoomSocket(roomId) { ... }
 
 function didReceiveChatRoomSocketMessage(data) {
-    var type = data[&#39;type&#39;];
-    var kwargs = data[&#39;kwargs&#39;];
-    if (type === &#39;did_alter_join_request&#39;) {
+    var type = data['type'];
+    var kwargs = data['kwargs'];
+    if (type === 'did_alter_join_request') {
         console.log(
-            &#39;Chat room socket: Did alter join request: &#39; + 
-            kwargs[&#39;action&#39;] + &#39; &#39; + kwargs[&#39;id&#39;]);
+            'Chat room socket: Did alter join request: ' + 
+            kwargs['action'] + ' ' + kwargs['id']);
 
-        if (kwargs[&#39;action&#39;] === &#39;create&#39;) {
+        if (kwargs['action'] === 'create') {
             // TODO: Create a new row on Chat Room Page in the Members section
-        } else if (kwargs[&#39;action&#39;] === &#39;admit&#39;) {
+        } else if (kwargs['action'] === 'admit') {
             // TODO: Promote the row in the Members section to a full member of
             //       the room, removing the &quot;Deny&quot; and &quot;Allow&quot; buttons
-        } else if (kwargs[&#39;action&#39;] === &#39;deny&#39;) {
+        } else if (kwargs['action'] === 'deny') {
             // TODO: Remove the row in the Members section
         }
     } else {
         console.warn(
-            &#39;Chat room socket: Did receive unexpected message type: &#39; + type);
+            'Chat room socket: Did receive unexpected message type: ' + type);
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -877,14 +877,14 @@ class ChatRoomJoinRequest(models.Model):
         change = self.id is not None  # capture
         super().save(*args, **kwargs)
         if not change:  # add
-            self.notify_did_alter(&#39;create&#39;)
+            self.notify_did_alter('create')
 
     def notify_did_alter(self,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         from chat.consumers import ChatRoomConsumer  # avoid circular import
         ChatRoomConsumer.notify_did_alter_join_request(self, action)
 
-        # NOTE: In the future we&#39;ll want to notify the User Home Page here too
+        # NOTE: In the future we'll want to notify the User Home Page here too
         #from chat.consumers import UserConsumer  # avoid circular import
         #UserConsumer.notify_did_alter_join_request(self, action)
 &lt;/code&gt;&lt;/pre&gt;
@@ -898,11 +898,11 @@ class ChatRoomJoinRequest(models.Model):
     status = models.CharField(
         max_length=10,
         choices=[
-            (&#39;pending&#39;, &#39;⏳ Pending&#39;),
-            (&#39;admitted&#39;, &#39;✅ Admitted&#39;),
-            (&#39;denied&#39;, &#39;✖️ Denied&#39;),
+            ('pending', '⏳ Pending'),
+            ('admitted', '✅ Admitted'),
+            ('denied', '✖️ Denied'),
         ],
-        default=&#39;pending&#39;,
+        default='pending',
     )
 
     def __init__(self, *args, **kwargs) -&amp;gt; None:
@@ -913,13 +913,13 @@ class ChatRoomJoinRequest(models.Model):
         change = self.id is not None  # capture
         super().save(*args, **kwargs)
         if not change:  # add
-            self.notify_did_alter(&#39;create&#39;)
+            self.notify_did_alter('create')
         else:  # change
             if self.status != self._initial_status:
-                if self.status == &#39;admitted&#39;:
-                    self.notify_did_alter(&#39;admit&#39;)
-                elif self.status == &#39;denied&#39;:
-                    self.notify_did_alter(&#39;deny&#39;)
+                if self.status == 'admitted':
+                    self.notify_did_alter('admit')
+                elif self.status == 'denied':
+                    self.notify_did_alter('deny')
 
     def notify_did_alter(self, ...): ...
 &lt;/code&gt;&lt;/pre&gt;
@@ -951,10 +951,10 @@ class ChatRoomJoinRequest(models.Model):
         change = self.id is not None  # capture
         super().save(*args, **kwargs)
         if not change:  # add
-            self.notify_did_alter(&#39;create&#39;)
+            self.notify_did_alter('create')
 
     def notify_did_alter(self,
-            action: Literal[&#39;create&#39;, &#39;admit&#39;, &#39;deny&#39;]) -&amp;gt; None:
+            action: Literal['create', 'admit', 'deny']) -&amp;gt; None:
         from chat.consumers import ChatRoomConsumer  # avoid circular import
         ChatRoomConsumer.notify_did_alter_join_request(self, action)
 
@@ -1172,9 +1172,9 @@ class ChatRoomJoinRequest(models.Model):
 &amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
 &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
 {% compress js %}
-    &amp;lt;script src=&quot;{% static &#39;todo/todo.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;todo/todo/list.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;todo/todo/item.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'todo/todo.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'todo/todo/list.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'todo/todo/item.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;script&amp;gt;
         setupTodoPage();
     &amp;lt;/script&amp;gt;
@@ -1205,12 +1205,12 @@ class ChatRoomJoinRequest(models.Model):
 &lt;li&gt;If you want to avoid managing JS dependencies manually, consider &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; instead.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&amp;rsquo;t supported by your customers&#39; browsers then you&amp;rsquo;re out of luck. If you need transpilation consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
+&lt;li&gt;JavaScript files are not transformed or transpiled in any way, so if you want to use newer JavaScript features that aren&amp;rsquo;t supported by your customers' browsers then you&amp;rsquo;re out of luck. If you need transpilation consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
 &lt;li&gt;It is awkward to define a class in a JavaScript module that inherits from a base class in a different module, because that &lt;em&gt;requires&lt;/em&gt; &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;-including the base class&amp;rsquo;s module first, breaking the usual rule that &amp;ldquo;the order that JS files are imported should not matter&amp;rdquo;. (However if you just limit inheritance to be within a single module or avoid it entirely, then this restriction doesn&amp;rsquo;t matter in practice.)&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Note that choosing concatenated bundling does &lt;em&gt;not&lt;/em&gt; prevent you from using TypeScript-based type checking in your JS files, which I &lt;em&gt;do&lt;/em&gt; recommend for long-lived projects. In short, you can put a special &lt;code&gt;// @ts-check&lt;/code&gt; comment at the top of a JS file to &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html&quot;&gt;enable type-checking of JS with the TypeScript compiler&lt;/a&gt; (&lt;code&gt;tsc&lt;/code&gt;). &lt;!-- Using TypeScript to type-check JS files doesn&#39;t seem like a very-well known technique, so I plan to write a future article about it. --&gt;&lt;/p&gt;
+&lt;p&gt;Note that choosing concatenated bundling does &lt;em&gt;not&lt;/em&gt; prevent you from using TypeScript-based type checking in your JS files, which I &lt;em&gt;do&lt;/em&gt; recommend for long-lived projects. In short, you can put a special &lt;code&gt;// @ts-check&lt;/code&gt; comment at the top of a JS file to &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html&quot;&gt;enable type-checking of JS with the TypeScript compiler&lt;/a&gt; (&lt;code&gt;tsc&lt;/code&gt;). &lt;!-- Using TypeScript to type-check JS files doesn't seem like a very-well known technique, so I plan to write a future article about it. --&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;import-traced-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1231,7 +1231,7 @@ class ChatRoomJoinRequest(models.Model):
 &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
 &amp;lt;!-- js --&amp;gt;
     &amp;lt;script type=&quot;module&quot;&amp;gt;
-        import { setupTodoPage } from &quot;{% static &#39;todo/todo.js&#39; %}&quot;;
+        import { setupTodoPage } from &quot;{% static 'todo/todo.js' %}&quot;;
         setupTodoPage();
     &amp;lt;/script&amp;gt;
 &amp;lt;!-- endjs --&amp;gt;
@@ -1259,7 +1259,7 @@ import { defineTodoItem } from &quot;./item.js&quot;;
 export function defineTodoList() {
     defineTodoItem();
     
-    Vue.component(&#39;todo-list&#39;, {
+    Vue.component('todo-list', {
         props: {
             ...
         },
@@ -1409,7 +1409,7 @@ export function defineTodoList() {
                 &amp;lt;img
                     v-if=&quot;loading&quot; 
                     alt=&quot;Loading spinner&quot;
-                    src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+                    src=&quot;{% static 'store/loading-spinner.gif' %}&quot; /&amp;gt;
                 &amp;lt;template
                     v-else
                     v-cloak&amp;gt;
@@ -1423,8 +1423,8 @@ export function defineTodoList() {
 {{ recommendations_panel_data|json_script:&quot;recommendations-panel-data&quot; }}
 
 {% compress js %}
-    &amp;lt;script src=&quot;{% static &#39;store/product.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;store/product/recommendations.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'store/product.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'store/product/recommendations.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;script&amp;gt;
         setupProductPage();
     &amp;lt;/script&amp;gt;
@@ -1448,7 +1448,7 @@ export function defineTodoList() {
     &amp;lt;img
         v-if=&quot;loading&quot; 
         alt=&quot;Loading spinner&quot;
-        src=&quot;{% static &#39;store/loading-spinner.gif&#39; %}&quot; /&amp;gt;
+        src=&quot;{% static 'store/loading-spinner.gif' %}&quot; /&amp;gt;
     &amp;lt;template
         v-else
         v-cloak&amp;gt;
@@ -1473,9 +1473,9 @@ export function defineTodoList() {
 &lt;pre&gt;&lt;code&gt;// store/product/recommendations.js
 /*public*/ function setupRecommendationsPanel() {
     new Vue({
-        el: &#39;#recommendations-panel&#39;,
+        el: '#recommendations-panel',
         data: function() {
-            return document.querySelector(&#39;#recommendations-panel-data&#39;).innerText;
+            return document.querySelector('#recommendations-panel-data').innerText;
         },
         computed: {
             loading: function() {
@@ -1577,9 +1577,9 @@ class TodoListPageTests(TestCase):
     ...
 
     def test_todo_list_mdp(self):  # mdp = maintains database performance
-        self.client.login(username=&#39;user&#39;, password=&#39;password&#39;)
+        self.client.login(username='user', password='password')
         with self.assertNumQueries(3):  # &amp;lt;-- DATABASE CLAMP
-            response = self.client.get(reverse(&#39;todo:list&#39;))
+            response = self.client.get(reverse('todo:list'))
             self.assertEqual(200, response.status_code)
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1750,13 +1750,13 @@ OK (skipped=Z)
  
  <entry>
    <id>https://dafoster.net/articles/2021/01/26/python's-type-checking-renaissance</id>
-   <title>Python&#39;s type checking renaissance</title>
+   <title>Python's type checking renaissance</title>
    <published>2021-01-26T00:00:00+00:00</published>
    <updated>2021-01-26T00:00:00+00:00</updated>
    
      <category term="Software"/>
    
-   <link rel="alternate" href="https://dafoster.net/articles/2021/01/26/python%27s-type-checking-renaissance/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <link rel="alternate" href="https://dafoster.net/articles/2021/01/26/python's-type-checking-renaissance/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;You may have heard that TypeScript has been taking the web development space by storm in the &lt;a href=&quot;https://2018.stateofjs.com/javascript-flavors/typescript/&quot;&gt;last&lt;/a&gt; &lt;a href=&quot;https://2019.stateofjs.com/javascript-flavors/typescript/&quot;&gt;few&lt;/a&gt; &lt;a href=&quot;https://2020.stateofjs.com/en-US/technologies/javascript-flavors/&quot;&gt;years&lt;/a&gt;, bringing to it static types. I believe the same thing is starting to happen in the world of Python, where type checkers like &lt;a href=&quot;http://mypy-lang.org/&quot;&gt;mypy&lt;/a&gt;,  &lt;a href=&quot;https://pyre-check.org/&quot;&gt;Pyre&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Microsoft/pyright&quot;&gt;Pyright&lt;/a&gt; are increasingly used, at least where Python is used by companies to write large systems.&lt;/p&gt;
 
 &lt;p&gt;For the last several releases of Python, there have been an increasing number of type checking features added to each release by various PEPs:&lt;/p&gt;
@@ -2154,7 +2154,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
  
  <entry>
    <id>https://dafoster.net/articles/2018/11/24/why-isnt-the-external-link-symbol-in-unicode</id>
-   <title>Why isn&#39;t the external link symbol in Unicode?</title>
+   <title>Why isn't the external link symbol in Unicode?</title>
    <published>2018-11-24T00:00:00+00:00</published>
    <updated>2018-11-24T00:00:00+00:00</updated>
    
@@ -2262,36 +2262,36 @@ function setupSaveToken() {
 
 &lt;pre&gt;&lt;code&gt;{% compress js %}
     &amp;lt;!-- Library --&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/student_survey.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/dialog.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/markdown.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/slider.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/url.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/util/websocket.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/vendor/jquery.min.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;tsk_platform/vendor/mdl/material.min.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/student_survey.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/util/dialog.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/util/markdown.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/util/slider.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/util/url.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/util/websocket.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/vendor/jquery.min.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'tsk_platform/vendor/mdl/material.min.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
 
     &amp;lt;!-- Page-Specific --&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/assignment/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/assignment/code_comprehension.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/assignment/code_writing.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/code_instructions.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/project.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/panels/slides.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/run/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/run/engine/java.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/run/engine/python.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/run/run_window.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/__init__.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/blocks.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/font.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/image.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/scene.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/sound.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/editor/text.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;{% static &#39;ide/code/tabs/save.js&#39; %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/__init__.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/__init__.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/assignment/__init__.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/assignment/code_comprehension.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/assignment/code_writing.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/code_instructions.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/project.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/panels/slides.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/run/__init__.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/run/engine/java.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/run/engine/python.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/run/run_window.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/__init__.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/editor/blocks.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/editor/font.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/editor/image.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/editor/scene.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/editor/sound.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/editor/text.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;{% static 'ide/code/tabs/save.js' %}&quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;script&amp;gt;
         setupCodePage();
     &amp;lt;/script&amp;gt;
@@ -2517,7 +2517,7 @@ Associating 8 user(s) with 1 calendar(s)...
 
 $ pm perftest run LoginAsStudent 4 1
 Running simulation with 4 user(s) over 1 second(s)...
-When 4 user(s) over 1 second(s), max response time for request &#39;submit_login&#39; is 393 ms.
+When 4 user(s) over 1 second(s), max response time for request 'submit_login' is 393 ms.
   Report: /Users/me/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497049484195/index.html
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2594,7 +2594,7 @@ Deleting test students...
 Creating 1 test student(s)...
 Associating 1 user(s) with 1 calendar(s)...
 Running simulation with 1 user(s) over 5 second(s)...
-When 1 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 138 ms.
+When 1 user(s) over 5 second(s), max response time for request 'submit_login' is 138 ms.
   Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567171908/index.html
 
 Seeking shaft of hockeystick...
@@ -2603,7 +2603,7 @@ Deleting test students...
 Creating 2 test student(s)...
 Associating 2 user(s) with 1 calendar(s)...
 Running simulation with 2 user(s) over 5 second(s)...
-When 2 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 124 ms.
+When 2 user(s) over 5 second(s), max response time for request 'submit_login' is 124 ms.
   Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567182571/index.html
 
 (... ditto for 4 users over 5 seconds ... OK ...)
@@ -2619,7 +2619,7 @@ Deleting test students...
 Creating 96 test student(s)...
 Associating 96 user(s) with 1 calendar(s)...
 Running simulation with 96 user(s) over 5 second(s)...
-When 96 user(s) over 5 second(s), max response time for request &#39;submit_login&#39; is 3754 ms.
+When 96 user(s) over 5 second(s), max response time for request 'submit_login' is 3754 ms.
   Report: /Users/davidf/pkgs/gatling-charts-highcharts-bundle-2.2.2/results/loginasstudent-1497567312703/index.html
 
 (... ditto several times, performing a binary search ...)
@@ -2993,7 +2993,7 @@ def warn(message):
 
 &lt;p&gt;For example consider a parser that has a root &lt;code&gt;parse_calendar_file&lt;/code&gt; function that calls a tree of subordinate functions to parse data from a YAML document into domain objects. Any of these subordinate functions may emit warnings.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/parse_calendar_file.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/parse_calendar_file.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Why are globals problematic?&lt;/h2&gt;
 
@@ -3015,7 +3015,7 @@ def warn(message):
 
 &lt;p&gt;In the parsing example above consider what would happen if you were to invoke a subordinate parsing function like &lt;code&gt;parse_bell_schedule&lt;/code&gt; directly, without going through the root function that initializes the &lt;code&gt;warnings&lt;/code&gt; global. Since the call tree of the subordinate function eventually reaches &lt;code&gt;warn&lt;/code&gt;, which expects &lt;code&gt;warnings&lt;/code&gt; to be initialized, calling the subordinate function directly will crash!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/write_crashes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/write_crashes.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It is not possible to read only the implementation of the subordinate function &lt;code&gt;parse_bell_schedule&lt;/code&gt; to discern that it depends on the &lt;code&gt;warnings&lt;/code&gt; global: you have to read the implementation of &lt;em&gt;every&lt;/em&gt; function that it calls, directly or indirectly, to see whether it uses the global! This is a massive encapsulation violation of the entire call tree that leads to the global! Every function in the call tree becomes easy to misuse.&lt;/p&gt;
 
@@ -3041,7 +3041,7 @@ def warn(message):
 
 &lt;p&gt;For our parsing example, we&amp;rsquo;ll create a &lt;code&gt;warnings&lt;/code&gt; parameter on all parsing functions:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/explicit_parameters.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/explicit_parameters.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Our parsing example really wants some encapsulation around the shared &lt;code&gt;warnings&lt;/code&gt; variable and is likely to want more shared variables later (like &lt;code&gt;errors&lt;/code&gt;) so the explicit parameter approach is not appropriate here.&lt;/p&gt;
 
@@ -3051,7 +3051,7 @@ def warn(message):
 
 &lt;p&gt;For our parsing example, we&amp;rsquo;ll create a &lt;code&gt;WarningsContext&lt;/code&gt; class which is then passed around among all parsing functions:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/context_object.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/context_object.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It now becomes explicit as to which functions depend on the ability to issue warnings, at the cost of adding noise to the function signatures.&lt;/p&gt;
 
@@ -3067,7 +3067,7 @@ def warn(message):
 
 &lt;p&gt;For our parsing example we&amp;rsquo;ll create a &lt;code&gt;CalendarFileParser&lt;/code&gt; class:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/method_object.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/method_object.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A Method Object is especially useful when there are &lt;em&gt;many&lt;/em&gt; variables that are used by the same set of cohesive functions and these variables are tightly bound to the functions themselves.&lt;/p&gt;
 
@@ -3111,7 +3111,7 @@ def warn(message):
 
 &lt;p&gt;A large program has a lot of behavior to specify. The complexity of the behavior specified by a program is roughly proportional to its size.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/1-lines.png&quot; alt=&quot;Lines&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/1-lines.svg&quot; alt=&quot;Lines&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;However a coder, being only human, can only hold a fixed amount of &lt;strong&gt;concepts&lt;/strong&gt; in their head at once.&lt;/p&gt;
 
@@ -3119,8 +3119,8 @@ def warn(message):
 
 &lt;p&gt;The number of concepts can be reduced by &lt;strong&gt;chunking&lt;/strong&gt; them into larger concepts that are less numerous. For example a bundle of &lt;em&gt;lines&lt;/em&gt; can be chunked into a single &lt;em&gt;function&lt;/em&gt; or a &lt;em&gt;method&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.png&quot;&gt;
-    &lt;img alt=&quot;Functions&quot; src=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.png&quot; style=&quot;max-width: 100%&quot; /&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.svg&quot;&gt;
+    &lt;img alt=&quot;Functions&quot; src=&quot;/assets/2017/abstraction-and-encapsulation/2-functions.svg&quot; style=&quot;max-width: 100%&quot; /&gt;
 &lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Chunking allows you to reduce the total number of concepts that you need to keep in your head at once.&lt;/p&gt;
@@ -3153,17 +3153,17 @@ def warn(message):
 
 &lt;p&gt;For a &lt;em&gt;function&lt;/em&gt; unit, it has a function name, some number of &lt;em&gt;parameters&lt;/em&gt; and a &lt;em&gt;return value&lt;/em&gt; which serves as the public surface area, and a body of code lines which serve as the private interior.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/3-func_anatomy.png&quot; alt=&quot;Anatomy of a Function&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/3-func_anatomy.svg&quot; alt=&quot;Anatomy of a Function&quot; /&gt;&lt;/p&gt;
 
 &lt;h3&gt;Encapsulation&lt;/h3&gt;
 
 &lt;p&gt;An abstraction reduces global complexity by hiding (or &lt;strong&gt;encapsulating&lt;/strong&gt;) its large private interior, exposing only the smaller public surface area to the rest of the system. One only needs to understand the smaller public surface area when using the function and not the details of the private interior.&lt;/p&gt;
 
-&lt;p&gt;A well-designed abstraction thus strives to &lt;strong&gt;minimize its public surface area&lt;/strong&gt; while maximizing its private interior. Such an abstraction takes up only small mental space relative to its interior complexity.&lt;/p&gt;
+&lt;p&gt;A well-designed abstraction thus strives to &lt;strong&gt;minimize its public surface area&lt;/strong&gt; while maximizing its private interior.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; Such an abstraction takes up only small mental space relative to its interior complexity.&lt;/p&gt;
 
 &lt;p&gt;As an example of minimizing public surface area, let&amp;rsquo;s consider the example of a larger kind of unit, a &lt;em&gt;class&lt;/em&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/4-class_anatomy.png&quot; alt=&quot;Anatomy of a Class&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/4-class_anatomy.svg&quot; alt=&quot;Anatomy of a Class&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;By extension of the principle above, &lt;strong&gt;everything should be private by default&lt;/strong&gt;; only those methods that need to be public (because they are used externally) should be made public.&lt;/p&gt;
 
@@ -3171,7 +3171,7 @@ def warn(message):
 
 &lt;p&gt;The same principle applies yet again to &lt;em&gt;modules&lt;/em&gt;, a larger kind of unit:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/5-module_anatomy.png&quot; alt=&quot;Anatomy of a Module&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2017/abstraction-and-encapsulation/5-module_anatomy.svg&quot; alt=&quot;Anatomy of a Module&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Again, everything should be private by default.&lt;/p&gt;
 
@@ -3235,6 +3235,8 @@ def warn(message):
 &lt;p&gt;A module contains functions, classes, and variables, among other things.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:4&quot;&gt;
 &lt;p&gt;A package is a module that contains submodules.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:5&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201/&quot;&gt;A Philosophy of Software Design&lt;/a&gt; makes the same recommendation under the guidance &amp;ldquo;Modules should be deep&amp;rdquo;, where a &amp;ldquo;deep module&amp;rdquo; is an abstraction whose public surface area is small compared to the volume of its private interior.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -3953,7 +3955,7 @@ def warn(message):
 
 An operator completes tasks within a predetermined framework. An operator does not generally create new things outside that framework. Although this may sound limiting, many types of operators are highly skilled.
 
-Software teams don&#39;t typically have many operators since they primarily focus on creating new things. Therefore most work that could be performed by a dedicated operator is usually performed by an engineer instead.
+Software teams don't typically have many operators since they primarily focus on creating new things. Therefore most work that could be performed by a dedicated operator is usually performed by an engineer instead.
 
 Examples of operators inside software teams, when full-stack engineers are not available:
 
@@ -4943,13 +4945,13 @@ Oh : So True
 Idris&amp;gt; :module Data.So
 *So&amp;gt; the (So (1 /= 1)) Oh
 (input):1:5:When elaborating argument x to function Prelude.Basics.the:
-        Can&#39;t unify
+        Can't unify
                 So True
         with
                 So (fromInteger 1 &amp;gt; fromInteger 2)
 
         Specifically:
-                Can&#39;t unify
+                Can't unify
                         True
                 with
                         fromInteger 1 &amp;gt; fromInteger 2
@@ -4999,13 +5001,13 @@ Syntax notes:
 Oh : So True
 *IsLte&amp;gt; the (IsLte 2 1) Oh
 (input):1:5:When elaborating argument x to function Prelude.Basics.the:
-        Can&#39;t unify
+        Can't unify
                 So True
         with
                 IsLte (fromInteger 2) (fromInteger 1)
 
         Specifically:
-                Can&#39;t unify
+                Can't unify
                         True
                 with
                         fromInteger 2 &amp;lt;= fromInteger 1
@@ -5144,7 +5146,7 @@ Syntax notes:
         (x:e) -&amp;gt;
         IsSorted (x::Nil)
     IsSortedMany :
-        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n&#39;&#39; e) -&amp;gt;     -- (n&#39;&#39; == (n - 2))
+        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n'' e) -&amp;gt;     -- (n'' == (n - 2))
         (IsLte x y) -&amp;gt; IsSorted (y::ys) -&amp;gt;
         IsSorted (x::(y::ys))
 &lt;/code&gt;&lt;/pre&gt;
@@ -5173,7 +5175,7 @@ Syntax notes:
 
 &lt;div class=&quot;terminal-box&quot;&gt;&lt;pre&gt;&lt;code&gt;$ idris -o Scratch Scratch.idr 
 Scratch.idr:17:18:When elaborating type of Main.IsSortedMany:
-Can&#39;t resolve type class Ord e
+Can't resolve type class Ord e
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -5188,7 +5190,7 @@ Can&#39;t resolve type class Ord e
         IsSorted (x::Nil)
     IsSortedMany :
         Ord e =&amp;gt;
-        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n&#39;&#39; e) -&amp;gt;    -- (n&#39;&#39; == (n - 2))
+        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n'' e) -&amp;gt;    -- (n'' == (n - 2))
         (IsLte x y) -&amp;gt; IsSorted (y::ys) -&amp;gt;
         IsSorted (x::(y::ys))
 &lt;/code&gt;&lt;/pre&gt;
@@ -5205,7 +5207,7 @@ Can&#39;t resolve type class Ord e
         IsSorted (x::Nil)
     IsSortedMany :
         Ord e =&amp;gt; 
-        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n&#39;&#39; e) -&amp;gt;    -- (n&#39;&#39; == (n - 2))
+        (x:e) -&amp;gt; (y:e) -&amp;gt; (ys:Vect n'' e) -&amp;gt;    -- (n'' == (n - 2))
         (IsLte x y) -&amp;gt; IsSorted (y::ys) -&amp;gt;
         IsSorted (x::(y::ys))
 &lt;/code&gt;&lt;/pre&gt;
@@ -5288,7 +5290,7 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 &lt;li id=&quot;fn:4&quot;&gt;
 &lt;p&gt;In my initial attempt to define &lt;code&gt;IsSorted&lt;/code&gt; I incorrectly required only the subproof &lt;code&gt;IsSorted ys&lt;/code&gt; and not &lt;code&gt;IsSorted (y::ys)&lt;/code&gt; when proving &lt;code&gt;IsSorted x::(y::ys)&lt;/code&gt;. But that restriction allows you to construct &lt;code&gt;IsSorted [9,10,1,2]&lt;/code&gt; which is clearly bogus. Pay attention to how your proof types are defined.&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:5&quot;&gt;
-&lt;p&gt;If you fail to add the &lt;code&gt;Ord e&lt;/code&gt; constraint to the other type constructors, you will eventually run into errors like &lt;code&gt;Can&#39;t unify &quot;So (&amp;lt;=) {{constrarg1}} x y&quot; with &quot;So (&amp;lt;=) {{constrarg}} x y&quot;&lt;/code&gt; where the compiler loses type information about the specific &lt;code&gt;Ord e&lt;/code&gt; instance when trying to pull type information through the &lt;code&gt;IsSortedZero&lt;/code&gt; or &lt;code&gt;IsSortedOne&lt;/code&gt; type constructors during type unification. That probably didn&amp;rsquo;t make much sense - especially the part about &amp;ldquo;type unification&amp;rdquo; - but you&amp;rsquo;ll probably have to debug a similar issue at some point.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;If you fail to add the &lt;code&gt;Ord e&lt;/code&gt; constraint to the other type constructors, you will eventually run into errors like &lt;code&gt;Can't unify &quot;So (&amp;lt;=) {{constrarg1}} x y&quot; with &quot;So (&amp;lt;=) {{constrarg}} x y&quot;&lt;/code&gt; where the compiler loses type information about the specific &lt;code&gt;Ord e&lt;/code&gt; instance when trying to pull type information through the &lt;code&gt;IsSortedZero&lt;/code&gt; or &lt;code&gt;IsSortedOne&lt;/code&gt; type constructors during type unification. That probably didn&amp;rsquo;t make much sense - especially the part about &amp;ldquo;type unification&amp;rdquo; - but you&amp;rsquo;ll probably have to debug a similar issue at some point.&lt;a href=&quot;#fnref:5&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -5545,19 +5547,19 @@ Nothing : Maybe (IsSorted [3, 2, 1])
 
 &lt;pre&gt;&lt;code&gt;from setuptools import setup
 
-APP = [&#39;src/HelloAppStore.py&#39;]
+APP = ['src/HelloAppStore.py']
 DATA_FILES = []
 OPTIONS = {
-    &#39;argv_emulation&#39;: True,
-    #&#39;iconfile&#39;: &#39;src/Icon.icns&#39;,  # optional
-    #&#39;plist&#39;: &#39;src/Info.plist&#39;,    # optional
+    'argv_emulation': True,
+    #'iconfile': 'src/Icon.icns',  # optional
+    #'plist': 'src/Info.plist',    # optional
 }
 
 setup(
     app=APP,
     data_files=DATA_FILES,
-    options={&#39;py2app&#39;: OPTIONS},
-    setup_requires=[&#39;py2app&#39;],
+    options={'py2app': OPTIONS},
+    setup_requires=['py2app'],
 )
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -5819,7 +5821,7 @@ data ℕ : Set where
 _+_ : ℕ → ℕ → ℕ
 zero + zero  = zero
 zero + n     = n
-(suc n) + n&#39; = suc (n + n&#39;)
+(suc n) + n' = suc (n + n')
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -5872,11 +5874,11 @@ import IO.Primitive as Prim
 five : ℕ
 five = 5
 
-main&#39; : IO ⊤
-main&#39; = putStrLn (show five)
+main' : IO ⊤
+main' = putStrLn (show five)
 
 main : Prim.IO ⊤
-main = run main&#39;
+main = run main'
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -5942,11 +5944,11 @@ import IO.Primitive as Prim
 greeting : String
 greeting = &quot;Hello World&quot;
 
-main&#39; : IO ⊤
-main&#39; = putStrLn greeting
+main' : IO ⊤
+main' = putStrLn greeting
 
 main : Prim.IO ⊤
-main = run main&#39;
+main = run main'
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -6000,11 +6002,11 @@ doThis = putStr &quot;Everybody say coinductive deep embedding! &quot;
 thenThat : IO ⊤
 thenThat = putStrLn &quot;Coinductive deep embedding!&quot;
 
-main&#39; : IO ⊤
-main&#39; = (♯ doThis) &amp;gt;&amp;gt; (♯ thenThat)
+main' : IO ⊤
+main' = (♯ doThis) &amp;gt;&amp;gt; (♯ thenThat)
 
 main : Prim.IO ⊤
-main = run main&#39;
+main = run main'
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -6132,7 +6134,7 @@ postulate
 
 main : IO Unit
 main = 
-  putStrLn (toCostring &quot;What&#39;s your name?&quot;) &amp;gt;&amp;gt;= (λ _ → 
+  putStrLn (toCostring &quot;What's your name?&quot;) &amp;gt;&amp;gt;= (λ _ → 
   getLine &amp;gt;&amp;gt;= (λ s → 
   putStr (toCostring &quot;Hello &quot;) &amp;gt;&amp;gt;= (λ _ → 
   putStrLn s)))
@@ -6186,8 +6188,8 @@ postulate
 main : IO Unit
 main = 
   getLine &amp;gt;&amp;gt;= (λ s → 
-  return (toCostring (fromList (reverse (toList s)))) &amp;gt;&amp;gt;= (λ s&#39; → 
-  putStrLn s&#39;))
+  return (toCostring (fromList (reverse (toList s)))) &amp;gt;&amp;gt;= (λ s' → 
+  putStrLn s'))
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -6247,33 +6249,33 @@ postulate
 
 parseInt : String → Maybe ℕ
 parseInt s = 
-  then? (unwrap (parseDigits s)) (λ s&#39; → 
-  just (digitsToℕ s&#39;))
+  then? (unwrap (parseDigits s)) (λ s' → 
+  just (digitsToℕ s'))
   where
     parseDigits : String → List (Maybe ℕ)
     parseDigits s = map toDigit (toList s) where
       toDigit : Char → Maybe ℕ
-      toDigit &#39;0&#39; = just 0
-      toDigit &#39;1&#39; = just 1
-      toDigit &#39;2&#39; = just 2
-      toDigit &#39;3&#39; = just 3
-      toDigit &#39;4&#39; = just 4
-      toDigit &#39;5&#39; = just 5
-      toDigit &#39;6&#39; = just 6
-      toDigit &#39;7&#39; = just 7
-      toDigit &#39;8&#39; = just 8
-      toDigit &#39;9&#39; = just 9
+      toDigit '0' = just 0
+      toDigit '1' = just 1
+      toDigit '2' = just 2
+      toDigit '3' = just 3
+      toDigit '4' = just 4
+      toDigit '5' = just 5
+      toDigit '6' = just 6
+      toDigit '7' = just 7
+      toDigit '8' = just 8
+      toDigit '9' = just 9
       toDigit _   = nothing
 
-    -- TODO: There&#39;s probably a standard-library function that does this
-    --       but I can&#39;t find it.
+    -- TODO: There's probably a standard-library function that does this
+    --       but I can't find it.
     unwrap : List (Maybe ℕ) → Maybe (List ℕ)
-    unwrap xs = unwrap&#39; (just []) xs where
-      unwrap&#39; : Maybe (List ℕ) → List (Maybe ℕ) → Maybe (List ℕ)
-      unwrap&#39; (just xs) (just y ∷ ys) = unwrap&#39; (just (Data.List._++_ xs [ y ])) ys  -- makes unwrap O(N^2)!
-      unwrap&#39; (just xs) (nothing ∷ _) = nothing
-      unwrap&#39; (just xs) []            = just xs
-      unwrap&#39; nothing   _             = nothing
+    unwrap xs = unwrap' (just []) xs where
+      unwrap' : Maybe (List ℕ) → List (Maybe ℕ) → Maybe (List ℕ)
+      unwrap' (just xs) (just y ∷ ys) = unwrap' (just (Data.List._++_ xs [ y ])) ys  -- makes unwrap O(N^2)!
+      unwrap' (just xs) (nothing ∷ _) = nothing
+      unwrap' (just xs) []            = just xs
+      unwrap' nothing   _             = nothing
 
     -- TODO: Look for a monadic _&amp;gt;&amp;gt;=_ that does the same thing
     then? : {A : Set} → {B : Set} → Maybe A → (A → Maybe B) → Maybe B
@@ -6281,10 +6283,10 @@ parseInt s =
     then? (just r1) op2 = op2 r1
 
     digitsToℕ : List ℕ → ℕ
-    digitsToℕ xs = digitsToℕ&#39; (reverse xs) where
-      digitsToℕ&#39; : List ℕ → ℕ
-      digitsToℕ&#39; []       = 0
-      digitsToℕ&#39; (x ∷ xs) = x + (10 * (digitsToℕ&#39; xs))
+    digitsToℕ xs = digitsToℕ' (reverse xs) where
+      digitsToℕ' : List ℕ → ℕ
+      digitsToℕ' []       = 0
+      digitsToℕ' (x ∷ xs) = x + (10 * (digitsToℕ' xs))
 
 ℕ? : Maybe ℕ -&amp;gt; ℕ
 ℕ? (just x) = x
@@ -6293,8 +6295,8 @@ parseInt s =
 main : IO Unit
 main = 
   getLine &amp;gt;&amp;gt;= (λ s → 
-  return (show (ℕ? (parseInt s))) &amp;gt;&amp;gt;= (λ s&#39; → 
-  putStrLn (toCostring s&#39;)))
+  return (show (ℕ? (parseInt s))) &amp;gt;&amp;gt;= (λ s' → 
+  putStrLn (toCostring s')))
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -6616,7 +6618,7 @@ pages fell off the internet a while ago.&lt;/li&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
 &lt;p&gt;&lt;p&gt;I first recognized that you could write this kind of provably correct sorting function when I read &lt;a href=&quot;http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/intertheodraft1.pdf&quot;&gt;these slides&lt;/a&gt; at &lt;a href=&quot;http://www.cs.swan.ac.uk/~csetzer/lectures/intertheo/07/interactiveTheoremProvingForAgdaUsers.html&quot;&gt;swan.ac.uk&lt;/a&gt;. You end up having a sorting function with a signature like &lt;code&gt;sort : (inList : List a) -&amp;gt; (outList : List a, IsSorted outList, EqElements inList outList)&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;The &lt;code&gt;IsSorted outList&lt;/code&gt; type represents proofs that &lt;code&gt;outList&lt;/code&gt; is sorted. Thus the existence of a member of the &lt;code&gt;IsSorted outList&lt;/code&gt; type proves that &lt;code&gt;outList&lt;/code&gt; is sorted. Similarly the &lt;code&gt;EqElements inList outList&lt;/code&gt; is a proof type where &lt;code&gt;inList&lt;/code&gt; and &lt;code&gt;outList&lt;/code&gt; are proven to have equal elements.&lt;/p&gt;&lt;p&gt;See also the &lt;a href=&quot;http://mazzo.li/posts/AgdaSort.html&quot;&gt;dedicated article at mazzo.li&lt;/a&gt;&lt;/p&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
-&lt;p&gt;None of the people who currently release Agda are running Windows according to the latest &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII&quot;&gt;Agda Implementors&#39; Meeting&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;None of the people who currently release Agda are running Windows according to the latest &lt;a href=&quot;http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.AIMXVIII&quot;&gt;Agda Implementors' Meeting&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -7045,7 +7047,7 @@ main = getArgs &amp;gt;&amp;gt;= putStrLn . show . eval . readExpr . (!! 0)
 * [**Programming a 144-computer chip to minimize power**](http://www.infoq.com/presentations/power-144-chip) - Chuck Moore - 40 min
     * A custom hardware programming environment for programming very low power applications.
     * Easily the lowest-level talk at the conference. Basically involves using a custom assembly language. Includes tips and tricks to optimize the assembly for the hardware and power.
-    * Skip this presentation if low-level programming and bit twiddling isn&#39;t your thing.
+    * Skip this presentation if low-level programming and bit twiddling isn't your thing.
 --&gt;
 
 </content>
@@ -7355,7 +7357,7 @@ from retriable import retriable
 @retriable
 def identity(input):
     if input in [5, 7]:
-        raise ValueError(&#39;Could not understand input: %d&#39; % input)
+        raise ValueError('Could not understand input: %d' % input)
     return input
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -7379,7 +7381,7 @@ for i in xrange(1, 10 + 1):
 3
 4
 &amp;gt; /Users/davidf/Projects/scrape-tools/flakey.py(7)identity()
--&amp;gt; raise ValueError(&#39;Could not understand input: %d&#39; % input)
+-&amp;gt; raise ValueError('Could not understand input: %d' % input)
 (Pdb) 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -7399,7 +7401,7 @@ for i in xrange(1, 10 + 1):
 5
 6
 &amp;gt; /Users/davidf/Projects/scrape-tools/flakey.py(7)identity()
--&amp;gt; raise ValueError(&#39;Could not understand input: %d&#39; % input)
+-&amp;gt; raise ValueError('Could not understand input: %d' % input)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now the function handled &lt;code&gt;5&lt;/code&gt; but crashed on input &lt;code&gt;7&lt;/code&gt;. Again we fix the function by removing the condition completely, leaving only: &lt;code&gt;def identity(input): return input&lt;/code&gt;. Resaving and retrying the function gives:&lt;/p&gt;
@@ -7456,10 +7458,10 @@ def retriable(func):
     Tested On: CPython 2.7
     &quot;&quot;&quot;
 
-    if sys._getframe().f_back.f_code.co_name != &#39;&amp;lt;module&amp;gt;&#39;:
+    if sys._getframe().f_back.f_code.co_name != '&amp;lt;module&amp;gt;':
         raise AssertionError(
-            &#39;The @retriable decorator can only be safely applied to &#39; +
-            &#39;top-level functions within a module.&#39;)
+            'The @retriable decorator can only be safely applied to ' +
+            'top-level functions within a module.')
 
     module = sys.modules[func.__module__]
     func_name = func.__name__
@@ -7476,14 +7478,14 @@ def retriable(func):
                 # Prompt user whether to try again or not
                 while True:
                     choice = raw_input(
-                        &#39;[R]etry after reload, Rais[E], or [Q]uit? [R] &#39;)
-                    if len(choice) == 0 or choice[0].lower() == &#39;r&#39;:
+                        '[R]etry after reload, Rais[E], or [Q]uit? [R] ')
+                    if len(choice) == 0 or choice[0].lower() == 'r':
                         # Retry after reload
                         break
-                    elif choice[0].lower() == &#39;e&#39;:
+                    elif choice[0].lower() == 'e':
                         # Raise
                         raise
-                    elif choice[0].lower() == &#39;q&#39;:
+                    elif choice[0].lower() == 'q':
                         # Quit
                         sys.exit(1)
                     else:
@@ -7544,7 +7546,7 @@ Verifying connection to SMTP server... OK
 &lt;p&gt;Once you have &lt;code&gt;notifymail&lt;/code&gt; installed, you can send an email to yourself in a Python script with as little code as:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;import notifymail
-notifymail.send(&#39;Subject&#39;, &#39;Hello World&#39;, from_name=&#39;greeting_script&#39;)
+notifymail.send('Subject', 'Hello World', from_name='greeting_script')
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Or you can invoke &lt;code&gt;notifymail&lt;/code&gt; from the command line:&lt;/p&gt;
@@ -7670,7 +7672,7 @@ In many domains error handling is not treated very seriously as errors may be un
 &lt;li&gt;In PHP it is an idiom to use the &lt;code&gt;die()&lt;/code&gt; function upon the failure of many operations:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;pre&gt;&lt;code&gt;$connection = mysql_connect(&#39;localhost&#39;, &#39;dbuser&#39;, &#39;password&#39;) or die(&#39;Could not connect to MySQL server.&#39;);
+&lt;li&gt;&lt;pre&gt;&lt;code&gt;$connection = mysql_connect('localhost', 'dbuser', 'password') or die('Could not connect to MySQL server.');
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -7909,7 +7911,7 @@ try {
 &lt;p&gt;Here is a naive implementation that makes no guarantees to its caller in the event of an error.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;/** Copies the source CSV file to the destination file. */
-// (I didn&#39;t think about error handling at all.)
+// (I didn't think about error handling at all.)
 public static void copyCsvFile(File sourceFile, File destFile) throws IOException {
     InputStream fileIn = new FileInputStream(sourceFile);
     OutputStream fileOut = new FileOutputStream(destFile);
@@ -7982,7 +7984,7 @@ public static void copyCsvFile(File sourceFile, File destFile) throws IOExceptio
             if (!finishedCopying) {
                 boolean deleteSuccess = destFile.delete();
                 // If the delete fails then the rollback failed.
-                // Since there&#39;s nothing that can be done in that case,
+                // Since there's nothing that can be done in that case,
                 // we ignore deletion failures.
             }
         }
@@ -8007,10 +8009,10 @@ public static void copyCsvFile(File sourceFile, File destFile) throws IOExceptio
     If an error occurs while copying, as many rows as possible are copied,
     leaving a valid destination CSV file.
     &quot;&quot;&quot;
-    with open(source_filepath, &#39;rb&#39;) as file_in:
+    with open(source_filepath, 'rb') as file_in:
         offset_to_last_line_written = 0
         finished_copying = False
-        file_out = open(dest_filepath, &#39;wb&#39;)
+        file_out = open(dest_filepath, 'wb')
         try:
             while True:
                 cur_line_bytes = file_in.readline()
@@ -8260,7 +8262,7 @@ public class RuleParser {
 
 &lt;p&gt;Consider the following example:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;// A generic exception that wraps its own set of error codes. DON&#39;T DO THIS.
+&lt;pre&gt;&lt;code&gt;// A generic exception that wraps its own set of error codes. DON'T DO THIS.
 public class FetchException extends RuntimeException {
     private int code;
     private String text;
@@ -8403,7 +8405,7 @@ public class AmbiguousNameException extends FetchException { ... }
 &lt;hr/&gt;
 &lt;ol&gt;
 &lt;li id=&quot;fn:1&quot;&gt;
-&lt;p&gt;Flawed functions that return sentinel values that are actually &lt;em&gt;valid&lt;/em&gt; place extra onus on the caller to perform additional checks to determine whether an error actually occurred. For example PHP&amp;rsquo;s &lt;a href=&quot;http://php.net/manual/en/function.stream-get-contents.php&quot;&gt;&lt;code&gt;stream_get_contents&lt;/code&gt;&lt;/a&gt; function can return &lt;code&gt;&#39;&#39;&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; upon failure. But it can also return &lt;code&gt;&#39;&#39;&lt;/code&gt; upon success. See my insane &lt;a href=&quot;https://github.com/splunk/splunk-sdk-php/blob/master/Splunk/Util.php&quot;&gt;workaround&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Flawed functions that return sentinel values that are actually &lt;em&gt;valid&lt;/em&gt; place extra onus on the caller to perform additional checks to determine whether an error actually occurred. For example PHP&amp;rsquo;s &lt;a href=&quot;http://php.net/manual/en/function.stream-get-contents.php&quot;&gt;&lt;code&gt;stream_get_contents&lt;/code&gt;&lt;/a&gt; function can return &lt;code&gt;''&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; upon failure. But it can also return &lt;code&gt;''&lt;/code&gt; upon success. See my insane &lt;a href=&quot;https://github.com/splunk/splunk-sdk-php/blob/master/Splunk/Util.php&quot;&gt;workaround&lt;/a&gt;.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:2&quot;&gt;
 &lt;p&gt;Most programs treat out-of-memory errors as fatal, although there are a few hardened programs like SQLite that treat out-of-memory as an &lt;em&gt;expected&lt;/em&gt; error.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
@@ -8776,7 +8778,7 @@ Supplementary characters (0x10000-0x10FFFF) are encoded as two 16-bit &lt;strong
 
 &lt;p&gt;Consider the following Java program:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
 String footString = new String(footBytes);                    // WRONG: OS-dependent
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -8784,13 +8786,13 @@ String footString = new String(footBytes);                    // WRONG: OS-depen
 
 &lt;p&gt;Here&amp;rsquo;s the fixed program, which specifies the UTF-8 encoding explicitly:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
 String footString = new String(footBytes, &quot;UTF-8&quot;);           // CORRECT
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As another example, consider the Java &lt;code&gt;InputStreamReader&lt;/code&gt; and &lt;code&gt;FileReader&lt;/code&gt; classes, both of which convert from byte streams to character streams.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
 InputStream footStream = new ByteArrayInputStream(footBytes);
 Reader footReader = new InputStreamReader(footStream);        // WRONG: OS-dependent
 &lt;/code&gt;&lt;/pre&gt;
@@ -8804,7 +8806,7 @@ Reader footReader = new InputStreamReader(footStream);        // WRONG: OS-depen
 
 &lt;p&gt;The former example can be fixed by adding &lt;code&gt;&quot;UTF-8&quot;&lt;/code&gt; as the second constructor argument:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;byte[] footBytes = {&#39;f&#39;, &#39;u&#39;, (byte)0xC3, (byte)0x9F};
+&lt;pre&gt;&lt;code&gt;byte[] footBytes = {'f', 'u', (byte)0xC3, (byte)0x9F};
 InputStream footStream = new ByteArrayInputStream(footBytes);
 Reader footReader = new InputStreamReader(footStream, &quot;UTF-8&quot;);    // CORRECT
 &lt;/code&gt;&lt;/pre&gt;
@@ -9039,9 +9041,9 @@ public static void main(String[] args) {
 &lt;pre&gt;&lt;code&gt;import codecs
 
 file_path = sys.argv[1]
-with codecs.open(file_path, &#39;rb&#39;, &#39;utf-8&#39;) as stream:
+with codecs.open(file_path, 'rb', 'utf-8') as stream:
     for line_with_terminator in stream:
-        line = line_with_terminator.rstrip(u&#39;\r\n&#39;)    # remove any trailing &#39;\r&#39; and &#39;\n&#39;s
+        line = line_with_terminator.rstrip(u'\r\n')    # remove any trailing '\r' and '\n's
         print line
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -9054,10 +9056,10 @@ with codecs.open(file_path, &#39;rb&#39;, &#39;utf-8&#39;) as stream:
 &lt;pre&gt;&lt;code&gt;import codecs
 
 file_path = sys.argv[1]
-with open(file_path, &#39;rU&#39;) as stream:     # the U mode converts all line endings to &#39;\n&#39;
+with open(file_path, 'rU') as stream:     # the U mode converts all line endings to '\n'
     for line_with_terminator in stream:
         # WRONG: If last line lack an EOL this will chop off its trailing character improperly
-        line = line_with_terminator[:-1]  # remove trailing &#39;\n&#39;
+        line = line_with_terminator[:-1]  # remove trailing '\n'
         # WRONG: Treating a bytestring as if it were a Unicode string
         print line
 &lt;/code&gt;&lt;/pre&gt;
@@ -9069,10 +9071,10 @@ with open(file_path, &#39;rU&#39;) as stream:     # the U mode converts all line
 &lt;pre&gt;&lt;code&gt;import codecs
 
 file_path = sys.argv[1]
-with open(file_path, &#39;rb&#39;) as stream:
+with open(file_path, 'rb') as stream:
     for line_with_terminator in stream:
         # WRONG: Assumes EOL is one byte long, which is incorrect on Windows
-        line = line_with_terminator[:-1]  # remove trailing &#39;\n&#39;
+        line = line_with_terminator[:-1]  # remove trailing '\n'
         # WRONG: Treating a bytestring as if it were a Unicode string
         print line
 &lt;/code&gt;&lt;/pre&gt;
@@ -9225,7 +9227,7 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
         Audience
     &lt;/p&gt;
     &lt;p style=&quot;margin-bottom: 0em;&quot;&gt;
-        I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function&#39;s signature requires. This is called &quot;partial application of a function&quot;.
+        I assume familiarity with the Haskell programming language or some other language that supports calling a function with less arguments than the function's signature requires. This is called &quot;partial application of a function&quot;.
     &lt;/p&gt;
 &lt;/div&gt;
 
@@ -9319,11 +9321,11 @@ Handling of special characters in headings is also improved.&lt;/li&gt;
 (alpha beta gamma ...)   
 
 -- alpha takes 1 argument and returns a 1-argument function;
--- expression&#39;s return type matches that of the 1-argument function
+-- expression's return type matches that of the 1-argument function
 ((alpha beta) gamma)
 
 -- alpha takes 1 argument and returns a (1+K)-argument function;
--- expression&#39;s return type is a partially applied K-argument function
+-- expression's return type is a partially applied K-argument function
 ((alpha beta) gamma ...)
 &lt;/pre&gt;
 
@@ -9348,11 +9350,11 @@ alpha(beta, gamma)
 alpha(beta, gamma, ...)   
 
 -- alpha takes 1 argument and returns a 1-argument function;
--- expression&#39;s return type matches that of the 1-argument function
+-- expression's return type matches that of the 1-argument function
 alpha(beta)(gamma)
 
 -- alpha takes 1 argument and returns a (1+K)-argument function;
--- expression&#39;s return type is a partially applied K-argument function
+-- expression's return type is a partially applied K-argument function
 alpha(beta)(gamma, ...)
 &lt;/pre&gt;
 
@@ -10666,7 +10668,7 @@ else:
 
 
 &lt;ul&gt;
-&lt;li&gt;Beware of comparisons with &lt;code&gt;&#39;&#39;&lt;/code&gt;. Some of them probably need to be converted to comparisons with &lt;code&gt;b&#39;&#39;&lt;/code&gt;. For example, I had to adjust my &lt;code&gt;at_eof&lt;/code&gt; utility function:&lt;/li&gt;
+&lt;li&gt;Beware of comparisons with &lt;code&gt;''&lt;/code&gt;. Some of them probably need to be converted to comparisons with &lt;code&gt;b''&lt;/code&gt;. For example, I had to adjust my &lt;code&gt;at_eof&lt;/code&gt; utility function:&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -10676,7 +10678,7 @@ def at_eof(input):
     Returns whether the specified input stream is at EOF.
     &quot;&quot;&quot;
     with save_stream_position(input):
-        at_eof = input.read(1) == b&#39;&#39;
+        at_eof = input.read(1) == b''
     return at_eof
 &lt;/pre&gt;
 
@@ -10687,7 +10689,7 @@ def at_eof(input):
 
 
 &lt;pre&gt;
-if type_code == b&#39;APPL&#39;:
+if type_code == b'APPL':
 &lt;/pre&gt;
 
 
@@ -10721,9 +10723,9 @@ else:
 
 
 &lt;pre&gt;
-now_string = time.strftime(&#39;%b %d %H:%M&#39;, time.localtime(now))
+now_string = time.strftime('%b %d %H:%M', time.localtime(now))
 if not isinstance(now_string, unicode):
-    now_string = now_string.decode(&#39;ascii&#39;)
+    now_string = now_string.decode('ascii')
 &lt;/pre&gt;
 
 
@@ -10731,7 +10733,7 @@ if not isinstance(now_string, unicode):
 &lt;li&gt;&lt;p&gt;Regular expressions that are intended to apply to bytestrings instead of Unicode strings may need updating.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;For example the pattern &lt;code&gt;re.compile(r&#39;^Volume name is &quot;(.*)&quot;$&#39;)&lt;/code&gt; which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read &lt;code&gt;re.compile(br&#39;^Volume name is &quot;(.*)&quot;$&#39;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;For example the pattern &lt;code&gt;re.compile(r'^Volume name is &quot;(.*)&quot;$')&lt;/code&gt; which is designed to be applied to a MacRoman-encoded bytestring would need to be updated to read &lt;code&gt;re.compile(br'^Volume name is &quot;(.*)&quot;$')&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Don&amp;rsquo;t forget to update your documentation to specify where Unicode (or ASCII bytestring literals) are expected.&lt;/p&gt;&lt;/li&gt;
@@ -11563,7 +11565,7 @@ add(X, Y, Result) :- Result is X + Y.
 
 &lt;p&gt;Some built-in clauses trigger side effects when they are examined by the unification algorithm. Programs take advantage of such &amp;ldquo;impure predicates&amp;rdquo; to do I/O and other types of side-effecting work.&lt;/p&gt;
 
-&lt;p&gt;For example asking the question &lt;code&gt;print(&#39;Hello&#39;)&lt;/code&gt; will print &lt;code&gt;Hello&lt;/code&gt; to the screen.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;For example asking the question &lt;code&gt;print('Hello')&lt;/code&gt; will print &lt;code&gt;Hello&lt;/code&gt; to the screen.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;To write to a file you might define:&lt;/p&gt;
 
@@ -11575,7 +11577,7 @@ printfile(Filename, Text) :-
 &lt;/pre&gt;
 
 
-&lt;p&gt;And then pose the question &lt;code&gt;printfile(&#39;hogwarts.txt&#39;, &#39;Hogwarts&#39;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;And then pose the question &lt;code&gt;printfile('hogwarts.txt', 'Hogwarts')&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;During evaluation, the &lt;code&gt;printfile&lt;/code&gt; is rewritten to &lt;code&gt;open(...) AND write(...) AND nl(...) AND close(...)&lt;/code&gt;. Each of those subclauses is then each evaluated to &lt;code&gt;true&lt;/code&gt; (performing the associated side effect) and the overall clause becomes just &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
 
@@ -11613,7 +11615,7 @@ printfile(Filename, Text) :-
 &lt;li id=&quot;fn:6&quot;&gt;
 &lt;p&gt;Memoization is where a function that computes a value caches the result of the computation so that repeated invocations with the same input can immediately return the saved result. This can speed of performance in certain applications. See &lt;a href=&quot;http://www.learnprolognow.org/lpnpage.php?pagetype=html&amp;amp;pageid=lpn-htmlse48&quot;&gt;LPM §11.1 &amp;ldquo;Database Manipulation&amp;rdquo;&lt;/a&gt; for an example.&lt;a href=&quot;#fnref:6&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:7&quot;&gt;
-&lt;p&gt;Note that &lt;code&gt;&#39;Hello&#39;&lt;/code&gt; (with single quotes) is a variable, not a string. The string &lt;code&gt;&quot;Hello&quot;&lt;/code&gt; (with double quotes) is equivalent to a list of codepoints (&lt;code&gt;[72, 101, 108, 108, 111]&lt;/code&gt;).&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Note that &lt;code&gt;'Hello'&lt;/code&gt; (with single quotes) is a variable, not a string. The string &lt;code&gt;&quot;Hello&quot;&lt;/code&gt; (with double quotes) is equivalent to a list of codepoints (&lt;code&gt;[72, 101, 108, 108, 111]&lt;/code&gt;).&lt;a href=&quot;#fnref:7&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -12025,7 +12027,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
    
    <link rel="alternate" href="https://dafoster.net/articles/2013/01/29/unique-features-of-various-programming-languages/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;blockquote&gt;
-  A language that doesn&#39;t affect the way you think about programming, is not worth knowing.&lt;br/&gt;
+  A language that doesn't affect the way you think about programming, is not worth knowing.&lt;br/&gt;
   &lt;br/&gt;
   &amp;ndash; &lt;a href=&quot;http://www-pu.informatik.uni-tuebingen.de/users/klaeren/epigrams.html&quot;&gt;Alan Perlis&lt;/a&gt;
 &lt;/blockquote&gt;
@@ -12193,7 +12195,7 @@ from a set of initial set of declarative statements.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Collections are first class&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;You can type &lt;code&gt;[1,2,3]&lt;/code&gt; to get a list, &lt;code&gt;{&#39;key&#39;: &#39;value&#39;}&lt;/code&gt; to get a dictionary, and &lt;code&gt;{1,2,3}&lt;/code&gt; to get a set. So much faster than &lt;code&gt;new ArrayList&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, &lt;code&gt;new HashMap&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, or &lt;code&gt;new HashSet&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You can type &lt;code&gt;[1,2,3]&lt;/code&gt; to get a list, &lt;code&gt;{'key': 'value'}&lt;/code&gt; to get a dictionary, and &lt;code&gt;{1,2,3}&lt;/code&gt; to get a set. So much faster than &lt;code&gt;new ArrayList&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, &lt;code&gt;new HashMap&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;, or &lt;code&gt;new HashSet&amp;lt;Integer&amp;gt;(...)&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Functions are first class&lt;/strong&gt;
@@ -12353,7 +12355,7 @@ Count me in!&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Call-with-current-continuation&lt;/strong&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Allows you to save the current execution state of the program in a variable and jump back to it later. Multiple times, even. It&amp;rsquo;s like a friggin&#39; time machine. You can implement fairly complex control flow operators with this function.&lt;/li&gt;
+&lt;li&gt;Allows you to save the current execution state of the program in a variable and jump back to it later. Multiple times, even. It&amp;rsquo;s like a friggin' time machine. You can implement fairly complex control flow operators with this function.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -12575,7 +12577,7 @@ It&amp;rsquo;s not &lt;em&gt;who&lt;/em&gt; you know.&lt;br/&gt;
 
 &lt;ul&gt;
 &lt;li&gt;They don&amp;rsquo;t have a magic wand. They don&amp;rsquo;t automatically fix problems.&lt;/li&gt;
-&lt;li&gt;Managers do not have a superset of the employees&#39; (team members&#39;) knowledge.&lt;/li&gt;
+&lt;li&gt;Managers do not have a superset of the employees' (team members') knowledge.&lt;/li&gt;
 &lt;li&gt;Managers can&amp;rsquo;t read minds. Don&amp;rsquo;t assume. Communicate explicitly.&lt;/li&gt;
 &lt;li&gt;You are responsible for your own career. But ask for help.&lt;/li&gt;
 &lt;/ul&gt;
