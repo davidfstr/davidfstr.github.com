@@ -6,14 +6,61 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 02 May 2021 16:40:25 +0000</pubDate>
-    <lastBuildDate>Sun, 02 May 2021 16:40:25 +0000</lastBuildDate>
+    <pubDate>Sun, 02 May 2021 18:35:24 +0000</pubDate>
+    <lastBuildDate>Sun, 02 May 2021 18:35:24 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Interview with David Foster</title>
+      <link>https://dafoster.net/articles/2021/05/02/interview-with-david-foster/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2021/05/02/interview-with-david-foster</guid>
+      <description>&lt;p&gt;&lt;span style=&quot;color: gray;&quot;&gt;&lt;em&gt;In March 2021 I was interviewed by Vladislav from softdroid.net. Since it gives a bit of my personal background, it may be of interest to others:&lt;/em&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 1.5em; font-weight: 500;&quot;&gt;I&amp;rsquo;m David Foster, software engineer, writer, and educator. I&amp;rsquo;m the CTO of TechSmart, where we seek to bring world-class computer science education to the next generation of K-12 students &amp;amp; teachers.&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;What is your programming background?&lt;/h3&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been programming since I was 6 years old, which means I&amp;rsquo;ve been at it for more than 25 years. I started with HyperCard (similar to Visual Basic or a 2D version of Unity) on a Mac SE making my own board games, music players, painting programs, and other toys for myself. Later I picked up Pascal, C/C++, and Java at National Computer Camps. And I continued learning on my own, picking up C#, Python, and JavaScript among other less-well-known languages.&lt;/p&gt;
+
+&lt;h3&gt;What languages / frameworks do you use mainly for coding?&lt;/h3&gt;
+
+&lt;p&gt;These days I spend most of my time in web development, using Python/Django on the backend, JavaScript/Vue on the frontend, and Amazon Web Services for datacenter operations. Python is probably my favorite all-around language, with Java coming in second.&lt;/p&gt;
+
+&lt;h3&gt;How does your typical working day look like? How COVID-19 changed your working routine?&lt;/h3&gt;
+
+&lt;p&gt;I wake around 6 AM, get myself ready to go, maybe work on a short personal item, and then start work at 8:30 AM. For the next 30 minutes I plan and write down what I&amp;rsquo;d like to do during the work day and process email. At 9 AM I have a daily standup meeting with the rest of the engineering team. Often immediately afterwards one or more folks will want to trade code reviews with me, or have a quick design discussion. For the rest of the morning until lunch I process various administrative items, reading email, updating our board of cards that track workitems, and have short meetings with other teammembers as needed. I take an hour lunch from 11:30 - 12:30, where the last half of that time I&amp;rsquo;ll read up on the latest technical news, often from Hacker News and some other sources. Directly after lunch there may be someone else who wants to trade code reviews. Then I&amp;rsquo;ll go heads-down coding for the rest of the day, working on my own items that require deep focus, up until the end of the work day at 5 PM sharp.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m rather structured with my time and am very careful to keep work within working hours. Otherwise - since I actually rather &lt;em&gt;enjoy&lt;/em&gt; my work - I might just keep going and not get anything done with my personal time! It&amp;rsquo;s important to avoid burning out even with a fun job.&lt;/p&gt;
+
+&lt;p&gt;COVID-19 has eliminated my commute entirely (saving about 30 minutes each way), and has encouraged me to increase my lunch break from 30 minutes to a full hour, so that I could take more time to make my own lunch and do some house chores at the same time. Not much else has changed at work.&lt;/p&gt;
+
+&lt;h3&gt;What is your current project you work on?&lt;/h3&gt;
+
+&lt;p&gt;I just finished releasing &lt;a href=&quot;/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=crystal-2021&quot;&gt;Crystal Web Archiver&lt;/a&gt;, a website downloader that is designed to archive and preserve websites for the long-term. I was dismayed to hear that DeviantArt&amp;rsquo;s old portfolio websites were falling off the internet March 31st, so I wanted to get my downloader working again (so that I could save a few sites) before that happened.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m currently working on extending Python&amp;rsquo;s optional static typechecking with &lt;a href=&quot;https://www.python.org/dev/peps/pep-0655/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=required&quot;&gt;a new feature for TypedDict&lt;/a&gt;, that will make it easy to mark optional vs. required keys in a dictionary type, hopefully in time to make it into Python 3.10.&lt;/p&gt;
+
+&lt;p&gt;Later this year I hope to finish work on another optional static typechecking feature called &lt;a href=&quot;/projects/typeform/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=typeform&quot;&gt;TypeForm&lt;/a&gt;, that will make it easy for me to implement &lt;a href=&quot;/projects/trycast/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=trycast&quot;&gt;trycast&lt;/a&gt;, a library for validating the shape of JSON blobs (among other things) at runtime, which makes it easier to write secure web applications (among other uses). Hopefully this will be done before the Typing Summit at this year&amp;rsquo;s PyCon conference.&lt;/p&gt;
+
+&lt;p&gt;In the background I&amp;rsquo;m striving to post a useful article on &lt;a href=&quot;/articles/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=articles&quot;&gt;my blog&lt;/a&gt; each week, at least for the first quarter or two of 2021, with the goal of letting a wider variety of folks know about some of the interesting things I&amp;rsquo;m up to.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m not usually working on quite this many projects at the same time, but I seem to have gained a lot of new energy at the start of this year after the low of 2020 so I&amp;rsquo;m rolling with it for now. :)&lt;/p&gt;
+
+&lt;h3&gt;Who would you recommend to look at TechSmart?&lt;/h3&gt;
+
+&lt;p&gt;Right now TechSmart is focused on bringing computer science education to grades 3 through 12 in the United States. Any parent who is interested in their children learning to code that is in Washington, California, Texas, or Utah in particular may already be in a school district that we&amp;rsquo;re serving.&lt;/p&gt;
+
+&lt;p&gt;Over the next few years I&amp;rsquo;d like to expand TechSmart to the majority of schools in the United States, and perhaps even go international to other countries, once we have enough staff to provide a quality experience to such a large number of locations. With patience and diligence I expect to realize this dream over time.&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>
