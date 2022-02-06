@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 11 May 2021 14:55:13 +0000</pubDate>
-    <lastBuildDate>Tue, 11 May 2021 14:55:13 +0000</lastBuildDate>
+    <pubDate>Sun, 06 Feb 2022 21:11:04 +0000</pubDate>
+    <lastBuildDate>Sun, 06 Feb 2022 21:11:04 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2750,6 +2750,41 @@ function setupSaveToken() {
 
 &lt;p&gt;By the end of this article you should understand how we define performance testing and perhaps get some ideas for implementing or customizing your own tools for performance-testing your own web service.&lt;/p&gt;
 
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#theory&quot;&gt;Theory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#gatling-concepts&quot;&gt;Gatling Concepts&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#scenarios-and-simulations&quot;&gt;Scenarios and simulations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#simulation-parameters&quot;&gt;Simulation parameters&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#load-generation&quot;&gt;Load generation&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#the-gatling-management-command&quot;&gt;The &amp;ldquo;gatling&amp;rdquo; management command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#pt-run&quot;&gt;The &amp;ldquo;perftest run&amp;rdquo; management command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#targeting-remote-environments&quot;&gt;Targeting remote environments&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#stress-testing&quot;&gt;Stress testing&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#pt-maxload&quot;&gt;The &amp;ldquo;perftest maxload&amp;rdquo; management command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#bottleneck-isolation&quot;&gt;Bottleneck isolation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#overload-behavior&quot;&gt;Overload behavior&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#end&quot;&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a id=&quot;theory&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Theory&lt;/h2&gt;
 
 &lt;p&gt;Performance testing of a web service typically involves verifying non-functional requirements such as whether it is:&lt;/p&gt;
@@ -2786,7 +2821,11 @@ function setupSaveToken() {
 &lt;/ul&gt;
 
 
+&lt;p&gt;&lt;a id=&quot;gatling-concepts&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Gatling Concepts&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;scenarios-and-simulations&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Scenarios and simulations&lt;/h3&gt;
 
@@ -2795,6 +2834,8 @@ function setupSaveToken() {
 &lt;p&gt;A &lt;strong&gt;simulation&lt;/strong&gt; describes an aggregate pattern of HTTP requests that &lt;em&gt;multiple&lt;/em&gt; users make against a web service. For example the &lt;code&gt;ViewCodePage(X, Y)&lt;/code&gt; simulation simulates X users arriving over Y seconds that each perform the actions described in the &lt;code&gt;ViewCodePage&lt;/code&gt; scenario.&lt;/p&gt;
 
 &lt;p&gt;At TechSmart we have written several simulations that exercise each of the major pages on our platform website.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;simulation-parameters&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Simulation parameters&lt;/h3&gt;
 
@@ -2809,7 +2850,11 @@ function setupSaveToken() {
 
 &lt;p&gt;Most simulations at TechSmart support X and Y parameters to inject X users over Y seconds during the simulation.&lt;/p&gt;
 
+&lt;p&gt;&lt;a id=&quot;load-generation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;Load generation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;the-gatling-management-command&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;The &amp;ldquo;gatling&amp;rdquo; management command&lt;/h3&gt;
 
@@ -2817,14 +2862,14 @@ function setupSaveToken() {
 
 &lt;p&gt;A typical invocation of the &amp;ldquo;gatling&amp;rdquo; management command looks like:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 pm gatling --simulation tskplatform.LoginAsStudent
+&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 pm gatling --simulation tsplatform.LoginAsStudent
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;pm&lt;/code&gt; command above is an alias for &lt;code&gt;python3 manage.py&lt;/code&gt; which is the Django task runner.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;This invocation is equivalent to the more-verbose:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 $GATLING_HOME/bin/gatling.sh --simulation tskplatform.LoginAsStudent --simulations-folder $PERFORMANCE_HOME/simulations --data-folder $PERFORMANCE_HOME/data --bodies-folder $PERFORMANCE_HOME/bodies
+&lt;pre&gt;&lt;code&gt;$ X=4 Y=1 $GATLING_HOME/bin/gatling.sh --simulation tsplatform.LoginAsStudent --simulations-folder $PERFORMANCE_HOME/simulations --data-folder $PERFORMANCE_HOME/data --bodies-folder $PERFORMANCE_HOME/bodies
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The Gatling tool emits lots of output in the console while it is running and eventually generates an HTML report with detailed statistics about what HTTP requests were made during the simulation, response times for individual and aggregated requests, and other information.&lt;/p&gt;
@@ -2877,6 +2922,8 @@ When 4 user(s) over 1 second(s), max response time for request 'submit_login' is
 
 &lt;p&gt;(We also have a &amp;ldquo;perftest teardown&amp;rdquo; command that deletes all test data created by &amp;ldquo;perftest setup&amp;rdquo;.)&lt;/p&gt;
 
+&lt;p&gt;&lt;a id=&quot;targeting-remote-environments&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Targeting remote environments&lt;/h3&gt;
 
 &lt;p&gt;Our simulations are written by default to target the website running on the developer&amp;rsquo;s local machine (127.0.0.1). For real testing you&amp;rsquo;ll want to run tests on a remote version of the website such as the one on a dedicated perf environment (perf.example.com).&lt;/p&gt;
@@ -2897,7 +2944,7 @@ $ pm on perf perftest setup calendars 1
 &lt;p&gt;The &amp;ldquo;on&amp;rdquo; command sets the &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; environment variable (among other things) and the &amp;ldquo;perftest run&amp;rdquo; subcommand passes that environment variable to the underlying Gatling simulation. The &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; variable specifies the base URL that all HTTP requests are prefixed with. For example the above command is equivalent to:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ # (Change environment to &quot;perf&quot;, defaulting to its database tier, cache tier, etc)
-$ X=4 Y=1 GATLING_BASE_URL=http://perf.example.com pm gatling --simulation tskplatform.LoginAsStudent
+$ X=4 Y=1 GATLING_BASE_URL=http://perf.example.com pm gatling --simulation tsplatform.LoginAsStudent
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;All simulations support the &lt;code&gt;GATLING_BASE_URL&lt;/code&gt; parameter to change the base URL because they all use a common Gatling HTTP Protocol object that defines its base URL from &lt;code&gt;GATLING_BASE_URL&lt;/code&gt;:&lt;/p&gt;
@@ -2917,6 +2964,8 @@ object Common {
         ...
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a id=&quot;stress-testing&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Stress testing&lt;/h2&gt;
 
@@ -3037,12 +3086,25 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;li&gt;Are the IOPS the maximum for the storage type on some box?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;Concurrency Configuration
+
+&lt;ul&gt;
+&lt;li&gt;Is the &lt;a href=&quot;https://docs.gunicorn.org/en/stable/settings.html#worker-processes&quot;&gt;maximum number of worker processes&lt;/a&gt; active? (Gunicorn)&lt;/li&gt;
+&lt;li&gt;Is the &lt;a href=&quot;https://nginx.org/en/docs/ngx_core_module.html#worker_connections&quot;&gt;maximum number of connections per worker process&lt;/a&gt; being reached? (Nginx)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disk Usage
+
+&lt;ul&gt;
+&lt;li&gt;Has the maximum quota on the /tmp filesystem been reached?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;p&gt;To isolate the bottleneck, use &amp;ldquo;perftest run&amp;rdquo; to start generating a load on the service equivalent to the maximum load  it can handle (as measured previously by &amp;ldquo;perftest maxload&amp;rdquo;) for a long time interval, say 10 minutes. While that load is being generated, use monitoring tools to look at the usage of CPU, Memory, IOPS, and other resources on each box in the system to look for saturation. When you find the saturated resource, that&amp;rsquo;s the bottleneck.&lt;/p&gt;
 
-&lt;p&gt;Once you&amp;rsquo;ve located the bottleneck, there are usually a few ways to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing:&lt;/p&gt;
+&lt;p&gt;Once you&amp;rsquo;ve located the bottleneck, there are usually a few ways to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing (from least to most recently):&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Not enough frontend workers
@@ -3056,14 +3118,42 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 
 &lt;ul&gt;
 &lt;li&gt;Saturated resource: Frontends busy waiting on the network for dozens of synchronous database queries to complete for a single page load&lt;/li&gt;
-&lt;li&gt;Fix: Optimize frontend logic to reduce the number of database queries per page load to less than a dozen. Use automated tests to clamp the database query count so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
+&lt;li&gt;Fix: Optimize frontend logic to reduce the number of database queries per page load to less than a dozen. Use automated tests to &lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;clamp the database query count&lt;/a&gt; so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Not enough frontend CPU
 
 &lt;ul&gt;
-&lt;li&gt;Saturated resource: 100% CPU on each box in the frontend cluster.&lt;/li&gt;
+&lt;li&gt;Saturated resource: 100% CPU on each box in the frontend cluster&lt;/li&gt;
 &lt;li&gt;Fix: Increase frontend cluster size from 2 up to 5 boxes. At this point the bottleneck moves elsewhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Not enough database IOPS
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: IOPS is maximum for the database storage type (i.e. Magnetic or SSD).&lt;/li&gt;
+&lt;li&gt;Fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Shrink database contents with compression to reduce persisted data volume.&lt;/li&gt;
+&lt;li&gt;Switch database storage type from Magnetic to SSD to increase the maximum IOPS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Other potential fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Increase RAM on database servers so that the database contents fit into memory, making IOPS irrelevent.&lt;/li&gt;
+&lt;li&gt;Scale reads. Create read replicas of the database.&lt;/li&gt;
+&lt;li&gt;Scale writes. Shard the database to multiple database masters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Not enough remaining concurrent requests
+
+&lt;ul&gt;
+&lt;li&gt;Saturated resource: Maximum number of concurrent requests to Nginx&lt;/li&gt;
+&lt;li&gt;Fix: Increase configured maximum number of concurrent requests.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -3086,22 +3176,6 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Not enough database IOPS
-
-&lt;ul&gt;
-&lt;li&gt;Saturated resource: IOPS is maximum for the database storage type (i.e. Magnetic or SSD).&lt;/li&gt;
-&lt;li&gt;Potential fixes:
-
-&lt;ul&gt;
-&lt;li&gt;Shrink database contents with compression to reduce persisted data volume.&lt;/li&gt;
-&lt;li&gt;Increase RAM on database servers so that the database contents fit into memory, making IOPS irrelevent.&lt;/li&gt;
-&lt;li&gt;Switch database storage type from Magnetic to SSD to increase the maximum IOPS.&lt;/li&gt;
-&lt;li&gt;Scale reads. Create read replicas of the database.&lt;/li&gt;
-&lt;li&gt;Scale writes. Shard the database to multiple database masters.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -3112,24 +3186,42 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;p&gt;It is useful to determine what happens when your service is subjected to greater than its maximum load. In particular:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Does it reject requests loudly?&lt;/li&gt;
-&lt;li&gt;Does it drop requests silently?&lt;/li&gt;
-&lt;li&gt;Does it crash?&lt;/li&gt;
-&lt;li&gt;If it crashes, does it automatically restart?&lt;/li&gt;
+&lt;li&gt;Does it &lt;strong&gt;reject&lt;/strong&gt; requests loudly?&lt;/li&gt;
+&lt;li&gt;Does it &lt;strong&gt;drop&lt;/strong&gt; requests silently?&lt;/li&gt;
+&lt;li&gt;Does it &lt;strong&gt;queue&lt;/strong&gt; requests? Up to a particular soft or hard limit?&lt;/li&gt;
+&lt;li&gt;Does it &lt;strong&gt;crash&lt;/strong&gt;?&lt;/li&gt;
+&lt;li&gt;If it crashes, does it automatically &lt;strong&gt;restart&lt;/strong&gt;?&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;You should decide what desired behavior you want your system to exhibit when receiving a temporary over-maximum load (i.e. a spike) or a sustained over-maximum load (i.e. a flood). Then verify whether the actual behavior matches the desired behavior.&lt;/p&gt;
+&lt;p&gt;You should decide what desired behavior you want your system to exhibit when receiving a temporary over-maximum load (i.e. a &lt;strong&gt;spike&lt;/strong&gt;) or a sustained over-maximum load (i.e. a &lt;strong&gt;flood&lt;/strong&gt;). Then verify whether the actual behavior matches the desired behavior.&lt;/p&gt;
 
-&lt;p&gt;If your service is generally written with infinitely-flexible buffers, it&amp;rsquo;s likely that receiving sustained over-maximum load will causes requests to queue up until memory is exhausted, and the out-of-memory condition will cause the service to crash.&lt;/p&gt;
+&lt;p&gt;If your service is generally written with &lt;em&gt;infinitely-flexible buffers&lt;/em&gt;, it&amp;rsquo;s likely that receiving sustained over-maximum load will causes requests to queue up until memory is exhausted, and the out-of-memory condition will cause the service to crash.&lt;/p&gt;
 
-&lt;p&gt;On the other hand if your service is generally written with fixed-size buffers, it&amp;rsquo;s likely that receiving any over-maximum load will cause requests to be rejected or dropped.&lt;/p&gt;
+&lt;p&gt;On the other hand if your service is generally written with &lt;em&gt;fixed-size buffers&lt;/em&gt;, it&amp;rsquo;s likely that receiving any over-maximum load will cause requests to be rejected or dropped.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;end&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;End&lt;/h2&gt;
 
 &lt;p&gt;Hopefully this article has provided some insight into concepts around performance testing and given you some ideas about how to implement or improve tooling to perform performance testing.&lt;/p&gt;
 
 &lt;p&gt;If you have any improvements or other comments on the contents of this article &lt;a href=&quot;/contact&quot;&gt;I&amp;rsquo;d love to hear from you&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Updates:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2022-02-06:
+
+&lt;ul&gt;
+&lt;li&gt;Mention more types of &lt;a href=&quot;#bottleneck-isolation&quot;&gt;bottlenecks&lt;/a&gt; I&amp;rsquo;ve
+encountered at TechSmart since 2018.&lt;/li&gt;
+&lt;li&gt;Bold common patterns of &lt;a href=&quot;#overload-behavior&quot;&gt;overload behavior&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Add table of contents for easier navigation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
