@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2022-02-27T19:05:52+00:00</updated>
+ <updated>2022-02-27T19:08:35+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -3199,7 +3199,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;li&gt;Fixes:
 
 &lt;ul&gt;
-&lt;li&gt;Optimize&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; frontend logic to reduce the number of database queries per page load to less than a dozen.&lt;/li&gt;
+&lt;li&gt;Optimize frontend logic to reduce the number of database queries per page load to less than a dozen.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Use automated tests to &lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;clamp the database query count&lt;/a&gt; so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
