@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2022-02-06T21:11:04+00:00</updated>
+ <updated>2022-02-27T18:09:36+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -3141,17 +3141,17 @@ def warn(message):
 
 &lt;p&gt;A Context Object bundles together a bunch of variables that are shared among a set of related functions as fields. The related functions then take the Context Object as an explicit parameter.&lt;/p&gt;
 
-&lt;p&gt;For our parsing example, we&amp;rsquo;ll create a &lt;code&gt;WarningsContext&lt;/code&gt; class which is then passed around among all parsing functions:&lt;/p&gt;
+&lt;p&gt;For our parsing example, we&amp;rsquo;ll create a &lt;code&gt;ParsingContext&lt;/code&gt; class which is then passed around among all parsing functions:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2017/the-trouble-with-global-variables/context_object.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It now becomes explicit as to which functions depend on the ability to issue warnings, at the cost of adding noise to the function signatures.&lt;/p&gt;
 
-&lt;p&gt;In our parsing example if a new caller was introduced that wanted to call the subordinate &lt;code&gt;parse_bell_schedule&lt;/code&gt; function directly it would now be obvious that the caller would need to create and initialize a &lt;code&gt;WarningsContext&lt;/code&gt; object first and pass it to the subordinate function. No more crashes. Nice.&lt;/p&gt;
+&lt;p&gt;In our parsing example if a new caller was introduced that wanted to call the subordinate &lt;code&gt;parse_bell_schedule&lt;/code&gt; function directly it would now be obvious that the caller would need to create and initialize a &lt;code&gt;ParsingContext&lt;/code&gt; object first and pass it to the subordinate function. No more crashes. Nice.&lt;/p&gt;
 
-&lt;p&gt;Also notice that &lt;code&gt;WarningsContext&lt;/code&gt; is sufficiently encapsulated to be usable by not just the calendar file parser code but also &lt;em&gt;reusable&lt;/em&gt; by other code that wishes to generate warnings. Cool.&lt;/p&gt;
+&lt;p&gt;Also notice that &lt;code&gt;ParsingContext&lt;/code&gt; is sufficiently encapsulated to be usable by not just the calendar file parser code but also &lt;em&gt;reusable&lt;/em&gt; by other code that wishes to generate warnings. Cool.&lt;/p&gt;
 
-&lt;p&gt;If there is a desire to add another variable that the parsing functions all depend on (like &lt;code&gt;errors&lt;/code&gt;), it is easy to add it to the &lt;code&gt;WarningsContext&lt;/code&gt; class which is already being passed around everywhere, and then rename the class to something more specific like &lt;code&gt;CalendarParsingContext&lt;/code&gt;. However if you are using a very specific context name you probably want a Method Object instead&amp;hellip;&lt;/p&gt;
+&lt;p&gt;If there is a desire to add another variable that the parsing functions all depend on (like &lt;code&gt;errors&lt;/code&gt;), it is easy to add it to the &lt;code&gt;ParsingContext&lt;/code&gt; class which is already being passed around everywhere, and then rename the class to something more specific like &lt;code&gt;CalendarParsingContext&lt;/code&gt;. However if you are using a very specific context name you probably want a Method Object instead&amp;hellip;&lt;/p&gt;
 
 &lt;h3&gt;Method Objects&lt;/h3&gt;
 

@@ -272,17 +272,17 @@ def warn(message):
 
 <p>A Context Object bundles together a bunch of variables that are shared among a set of related functions as fields. The related functions then take the Context Object as an explicit parameter.</p>
 
-<p>For our parsing example, we&rsquo;ll create a <code>WarningsContext</code> class which is then passed around among all parsing functions:</p>
+<p>For our parsing example, we&rsquo;ll create a <code>ParsingContext</code> class which is then passed around among all parsing functions:</p>
 
 <p><img src="/assets/2017/the-trouble-with-global-variables/context_object.svg" alt="" /></p>
 
 <p>It now becomes explicit as to which functions depend on the ability to issue warnings, at the cost of adding noise to the function signatures.</p>
 
-<p>In our parsing example if a new caller was introduced that wanted to call the subordinate <code>parse_bell_schedule</code> function directly it would now be obvious that the caller would need to create and initialize a <code>WarningsContext</code> object first and pass it to the subordinate function. No more crashes. Nice.</p>
+<p>In our parsing example if a new caller was introduced that wanted to call the subordinate <code>parse_bell_schedule</code> function directly it would now be obvious that the caller would need to create and initialize a <code>ParsingContext</code> object first and pass it to the subordinate function. No more crashes. Nice.</p>
 
-<p>Also notice that <code>WarningsContext</code> is sufficiently encapsulated to be usable by not just the calendar file parser code but also <em>reusable</em> by other code that wishes to generate warnings. Cool.</p>
+<p>Also notice that <code>ParsingContext</code> is sufficiently encapsulated to be usable by not just the calendar file parser code but also <em>reusable</em> by other code that wishes to generate warnings. Cool.</p>
 
-<p>If there is a desire to add another variable that the parsing functions all depend on (like <code>errors</code>), it is easy to add it to the <code>WarningsContext</code> class which is already being passed around everywhere, and then rename the class to something more specific like <code>CalendarParsingContext</code>. However if you are using a very specific context name you probably want a Method Object instead&hellip;</p>
+<p>If there is a desire to add another variable that the parsing functions all depend on (like <code>errors</code>), it is easy to add it to the <code>ParsingContext</code> class which is already being passed around everywhere, and then rename the class to something more specific like <code>CalendarParsingContext</code>. However if you are using a very specific context name you probably want a Method Object instead&hellip;</p>
 
 <h3>Method Objects</h3>
 
