@@ -4,7 +4,7 @@
  <title>DaFoster (Django)</title>
  <link href="https://dafoster.net/articles/topics/#Django"/>
  <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
- <updated>2022-02-27T18:32:09+00:00</updated>
+ <updated>2022-02-27T18:50:02+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Django</id>
  <author>
    <name>David Foster</name>
@@ -511,7 +511,7 @@ class ChatRoomConsumer(WebsocketConsumer):
     def connect(self) -&amp;gt; None:
         # Authenticate
         if self.user.is_anonymous:
-            self.close(code=401)  # Unauthorized
+            self.close_during_connect(code=4401)  # Unauthorized
             return
 
         room_id = self.scope['url_route']['kwargs']['room_id']
@@ -520,13 +520,13 @@ class ChatRoomConsumer(WebsocketConsumer):
         try:
             self.room = ChatRoom.objects.get(id=room_id)
         except ChatRoom.DoesNotExist:
-            self.close(code=404)  # Not Found
+            self.close_during_connect(code=4404)  # Not Found
             return
 
         # Authorize
         if (self.user.id != self.room.owner_id and 
                 self.user not in self.room.member_set.all()):
-            self.close(code=403)  # Forbidden
+            self.close_during_connect(code=4403)  # Forbidden
             return
 
         # Join group
@@ -537,6 +537,10 @@ class ChatRoomConsumer(WebsocketConsumer):
         )
 
         self.accept()
+
+    def close_during_connect(*, code: int) -&amp;gt; None:
+        self.accept()  # must accept before closing with custom code
+        self.close(code=code)
 
     def disconnect(self, close_code) -&amp;gt; None: ...
 
@@ -558,7 +562,7 @@ class ChatRoomConsumer(WebsocketConsumer):
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;We&amp;rsquo;d normally use the &lt;code&gt;@login_required&lt;/code&gt; decorator
 to authenticate a user but here we need to do that manually by checking
-&lt;code&gt;user.is_anonymous&lt;/code&gt; and returning WS 401 Unauthorized manually if the
+&lt;code&gt;user.is_anonymous&lt;/code&gt; and returning WS 4401 Unauthorized manually if the
 user hasn&amp;rsquo;t logged in.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;We&amp;rsquo;d normally receive parameters from the URL as arguments to the view
 function but here we have to look up the arguments manually from
@@ -567,7 +571,7 @@ function but here we have to look up the arguments manually from
 against the room ownership and membership, but here we must check
 &lt;code&gt;self.user&lt;/code&gt; (which is a shortcut for &lt;code&gt;self.scope['user']&lt;/code&gt;) instead.
 A failure would normally be reported using an &lt;code&gt;HttpResponseForbidden&lt;/code&gt;
-but here we must manually return a WS 403 Forbidden code.&lt;/p&gt;&lt;/li&gt;
+but here we must manually return a WS 4403 Forbidden code.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
