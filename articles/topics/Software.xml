@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2022-02-27T18:50:02+00:00</updated>
+ <updated>2022-02-27T19:05:52+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -2467,7 +2467,7 @@ function setupSaveToken() {
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;One of the oldest load generation tools is &lt;a href=&quot;https://jmeter.apache.org/&quot;&gt;JMeter&lt;/a&gt;, which uses a GUI to define simulation programs in an XML-based file format. JMeter uses a separate OS thread for each concurrent HTTP connection which severely limits the number of concurrent HTTP connections it can host on a single box.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;At my company TechSmart we use &lt;a href=&quot;http://gatling.io&quot;&gt;Gatling&lt;/a&gt; as our load generation tool. Compared with JMeter, Gatling is far more efficient at generating load because it uses multiplexed async I/O on a single OS thread to handle all HTTP connections. Also, Gatling simulations are written in an actual programming language (Scala) rather than XML, so you can write your simulations with more resilient abstractions and do more-advanced customizations.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;At my company TechSmart we use &lt;a href=&quot;http://gatling.io&quot;&gt;Gatling&lt;/a&gt; as our load generation tool. Compared with JMeter, Gatling is far more efficient at generating load because it uses multiplexed async I/O on a single OS thread to handle all HTTP connections. Also, Gatling simulations are written in an actual programming language (Scala) rather than XML, so you can write your simulations with rich abstractions and do more-advanced customizations.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -2754,7 +2754,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 
 &lt;p&gt;To isolate the bottleneck, use &amp;ldquo;perftest run&amp;rdquo; to start generating a load on the service equivalent to the maximum load  it can handle (as measured previously by &amp;ldquo;perftest maxload&amp;rdquo;) for a long time interval, say 10 minutes. While that load is being generated, use monitoring tools to look at the usage of CPU, Memory, IOPS, and other resources on each box in the system to look for saturation. When you find the saturated resource, that&amp;rsquo;s the bottleneck.&lt;/p&gt;
 
-&lt;p&gt;Once you&amp;rsquo;ve located the bottleneck, there are usually a few ways to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing (from least to most recently):&lt;/p&gt;
+&lt;p&gt;Once you&amp;rsquo;ve located the bottleneck, there are usually a few options to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing (from least to most recently):&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Not enough frontend workers
@@ -2768,7 +2768,13 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 
 &lt;ul&gt;
 &lt;li&gt;Saturated resource: Frontends busy waiting on the network for dozens of synchronous database queries to complete for a single page load&lt;/li&gt;
-&lt;li&gt;Fix: Optimize frontend logic to reduce the number of database queries per page load to less than a dozen. Use automated tests to &lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;clamp the database query count&lt;/a&gt; so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
+&lt;li&gt;Fixes:
+
+&lt;ul&gt;
+&lt;li&gt;Optimize&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; frontend logic to reduce the number of database queries per page load to less than a dozen.&lt;/li&gt;
+&lt;li&gt;Use automated tests to &lt;a href=&quot;/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/&quot;&gt;clamp the database query count&lt;/a&gt; so that it doesn&amp;rsquo;t increase.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Not enough frontend CPU
@@ -2799,7 +2805,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Not enough remaining concurrent requests
+&lt;li&gt;Not enough remaining concurrent requests quota
 
 &lt;ul&gt;
 &lt;li&gt;Saturated resource: Maximum number of concurrent requests to Nginx&lt;/li&gt;
@@ -2881,6 +2887,8 @@ encountered at TechSmart since 2018.&lt;/li&gt;
 &lt;p&gt;Many other performance testing tools focus not on the &lt;strong&gt;maximum&lt;/strong&gt; response time but rather on other measures such as the &lt;strong&gt;99th percentile&lt;/strong&gt; response time or the &lt;strong&gt;mean&lt;/strong&gt; response time, which are &lt;a href=&quot;https://www.youtube.com/watch?v=lJ8ydIuPFeU&quot;&gt;inappropriate to use&lt;/a&gt;.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&quot;fn:3&quot;&gt;
 &lt;p&gt;The most important request type for a particular simulation is determined by inspecting the source code for a simulation file and looking for a line like &lt;code&gt;val PROFILED_REQUEST_NAME = &quot;view_code&quot;&lt;/code&gt;.&lt;a href=&quot;#fnref:3&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:4&quot;&gt;
+&lt;p&gt;In Django, an easy way to eliminate a bunch of database queries is to make appropriate use of &lt;a href=&quot;https://docs.djangoproject.com/en/4.0/ref/models/querysets/#select-related&quot;&gt;&lt;code&gt;select_related()&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://docs.djangoproject.com/en/4.0/ref/models/querysets/#prefetch-related&quot;&gt;&lt;code&gt;prefetch_related()&lt;/code&gt;&lt;/a&gt; to pre-fetch a group of relationships all at once (with a constant number of queries) rather than one at a time (with a variable number of queries, depending on how many relationships there are).&lt;a href=&quot;#fnref:4&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 

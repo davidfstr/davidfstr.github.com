@@ -275,7 +275,7 @@ ga('send', 'pageview');
 
 <ul>
 <li><p>One of the oldest load generation tools is <a href="https://jmeter.apache.org/">JMeter</a>, which uses a GUI to define simulation programs in an XML-based file format. JMeter uses a separate OS thread for each concurrent HTTP connection which severely limits the number of concurrent HTTP connections it can host on a single box.</p></li>
-<li><p>At my company TechSmart we use <a href="http://gatling.io">Gatling</a> as our load generation tool. Compared with JMeter, Gatling is far more efficient at generating load because it uses multiplexed async I/O on a single OS thread to handle all HTTP connections. Also, Gatling simulations are written in an actual programming language (Scala) rather than XML, so you can write your simulations with more resilient abstractions and do more-advanced customizations.</p></li>
+<li><p>At my company TechSmart we use <a href="http://gatling.io">Gatling</a> as our load generation tool. Compared with JMeter, Gatling is far more efficient at generating load because it uses multiplexed async I/O on a single OS thread to handle all HTTP connections. Also, Gatling simulations are written in an actual programming language (Scala) rather than XML, so you can write your simulations with rich abstractions and do more-advanced customizations.</p></li>
 </ul>
 
 
@@ -562,7 +562,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 
 <p>To isolate the bottleneck, use &ldquo;perftest run&rdquo; to start generating a load on the service equivalent to the maximum load  it can handle (as measured previously by &ldquo;perftest maxload&rdquo;) for a long time interval, say 10 minutes. While that load is being generated, use monitoring tools to look at the usage of CPU, Memory, IOPS, and other resources on each box in the system to look for saturation. When you find the saturated resource, that&rsquo;s the bottleneck.</p>
 
-<p>Once you&rsquo;ve located the bottleneck, there are usually a few ways to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing (from least to most recently):</p>
+<p>Once you&rsquo;ve located the bottleneck, there are usually a few options to optimize it away. To give you some ideas, here are some bottlenecks that the TechSmart website has hit in its performance testing (from least to most recently):</p>
 
 <ul>
 <li>Not enough frontend workers
@@ -576,7 +576,13 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 
 <ul>
 <li>Saturated resource: Frontends busy waiting on the network for dozens of synchronous database queries to complete for a single page load</li>
-<li>Fix: Optimize frontend logic to reduce the number of database queries per page load to less than a dozen. Use automated tests to <a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">clamp the database query count</a> so that it doesn&rsquo;t increase.</li>
+<li>Fixes:
+
+<ul>
+<li>Optimize<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> frontend logic to reduce the number of database queries per page load to less than a dozen.</li>
+<li>Use automated tests to <a href="/articles/2021/02/09/database-clamps-deterministic-performance-tests-for-database-dependent-code/">clamp the database query count</a> so that it doesn&rsquo;t increase.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Not enough frontend CPU
@@ -607,7 +613,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 </li>
 </ul>
 </li>
-<li>Not enough remaining concurrent requests
+<li>Not enough remaining concurrent requests quota
 
 <ul>
 <li>Saturated resource: Maximum number of concurrent requests to Nginx</li>
@@ -689,6 +695,8 @@ encountered at TechSmart since 2018.</li>
 <p>Many other performance testing tools focus not on the <strong>maximum</strong> response time but rather on other measures such as the <strong>99th percentile</strong> response time or the <strong>mean</strong> response time, which are <a href="https://www.youtube.com/watch?v=lJ8ydIuPFeU">inappropriate to use</a>.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
 <p>The most important request type for a particular simulation is determined by inspecting the source code for a simulation file and looking for a line like <code>val PROFILED_REQUEST_NAME = "view_code"</code>.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>In Django, an easy way to eliminate a bunch of database queries is to make appropriate use of <a href="https://docs.djangoproject.com/en/4.0/ref/models/querysets/#select-related"><code>select_related()</code></a> and <a href="https://docs.djangoproject.com/en/4.0/ref/models/querysets/#prefetch-related"><code>prefetch_related()</code></a> to pre-fetch a group of relationships all at once (with a constant number of queries) rather than one at a time (with a variable number of queries, depending on how many relationships there are).<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
