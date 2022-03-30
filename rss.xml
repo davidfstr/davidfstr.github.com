@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 27 Feb 2022 19:08:35 +0000</pubDate>
-    <lastBuildDate>Sun, 27 Feb 2022 19:08:35 +0000</lastBuildDate>
+    <pubDate>Wed, 30 Mar 2022 05:48:44 +0000</pubDate>
+    <lastBuildDate>Wed, 30 Mar 2022 05:48:44 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -1979,7 +1979,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Python 3.10 &lt;small&gt;(Pending release Oct 2021)&lt;/small&gt;
+&lt;li&gt;Python 3.10 &lt;small&gt;(Released Oct 2021)&lt;/small&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations&quot;&gt;Deferred Evaluation of Annotations, without &lt;code&gt;__future__&lt;/code&gt; (PEP 563)&lt;/a&gt;&lt;/li&gt;
@@ -1987,21 +1987,57 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0604/&quot;&gt;Union types are shortened to &lt;code&gt;X | Y&lt;/code&gt; (PEP 604)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;(?) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;New kinds of types:
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0612/&quot;&gt;Parameter Specification Variables: &lt;code&gt;ParamSpec&lt;/code&gt; (PEP 612)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;(?) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0647/&quot;&gt;User-Defined Type Guards: &lt;code&gt;TypeGuard&lt;/code&gt; (PEP 647)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;(?) Type Hint for Typing Special Forms and Regular Types: &lt;code&gt;TypeForm&lt;/code&gt; &amp;ndash; in development&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0647/&quot;&gt;User-Defined Type Guards: &lt;code&gt;TypeGuard&lt;/code&gt; (PEP 647)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;New syntax useful for types:
 
 &lt;ul&gt;
-&lt;li&gt;(?) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0637/&quot;&gt;Support for indexing with keyword arguments (PEP 637)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0613&quot;&gt;Explicit Type Aliases (PEP 613)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strike&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0637/&quot;&gt;Support for indexing with keyword arguments (PEP 637)&lt;/a&gt;&lt;/strike&gt; (Rejected 😞)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.11 &lt;small&gt;(Scheduled for Oct 2022)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(?) &lt;a href=&quot;https://peps.python.org/pep-0681/&quot;&gt;Data Class Transforms (PEP 681)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;New kinds of types:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0675/&quot;&gt;Arbitrary Literal String Type (PEP 675)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0673/&quot;&gt;&lt;code&gt;Self&lt;/code&gt; Type (PEP 673)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0646/&quot;&gt;Variadic Generics with &lt;code&gt;TypeVarTuple&lt;/code&gt; (PEP 646)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New syntax useful for types:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strike&gt;&lt;a href=&quot;https://peps.python.org/pep-0677/&quot;&gt;Callable Type Syntax (PEP 677)&lt;/a&gt;&lt;/strike&gt; (Rejected 😞)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 3.12 &lt;small&gt;(Forecasted for Oct 2023)&lt;/small&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fewer imports from the &lt;code&gt;typing&lt;/code&gt; module are needed:
+
+&lt;ul&gt;
+&lt;li&gt;(??) &lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New kinds of types:
+
+&lt;ul&gt;
+&lt;li&gt;(??) &lt;a href=&quot;https://dafoster.net/projects/typeform/&quot;&gt;Type Hint for Typing Special Forms and Regular Types: &lt;code&gt;TypeForm&lt;/code&gt;&lt;/a&gt; (planned)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2066,6 +2102,20 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://news.ycombinator.com/item?id=25916628&quot;&gt;Hacker News&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;em&gt;Update History&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2022-03-29:
+
+&lt;ul&gt;
+&lt;li&gt;Update final PEPs for Python 3.10, which has now been released.&lt;/li&gt;
+&lt;li&gt;Update in-progress PEPs for Python 3.11, which is now in development.&lt;/li&gt;
+&lt;li&gt;Update speculative PEPs for Python 3.12, which is in the future.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
