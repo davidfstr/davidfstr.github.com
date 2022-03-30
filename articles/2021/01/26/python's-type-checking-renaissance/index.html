@@ -204,7 +204,7 @@ ga('send', 'pageview');
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#python-releases" href="#collapseOne">
-        <span class="expand-symbol"></span>Python releases, and related type checking features
+        <span class="expand-symbol"></span><strong>Python releases, and related type checking features</strong>
       </a>
     </div>
     <div id="collapseOne" class="accordion-body collapse">
@@ -225,7 +225,7 @@ ga('send', 'pageview');
 <li>Python 3.7 <small>(Released Jun 2018)</small>
 
 <ul>
-<li><a href="https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations">Deferred Evaluation of Annotations (PEP 563)</a> - Most type checking annotations no longer need to be in runtime context.</li>
+<li><a href="https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations">Deferred Evaluation of Annotations with Strings (PEP 563)</a> - Most type checking annotations no longer need to be in runtime context.</li>
 <li>New kinds of types:
 
 <ul>
@@ -261,7 +261,6 @@ ga('send', 'pageview');
 <li>Python 3.10 <small>(Released Oct 2021)</small>
 
 <ul>
-<li><a href="https://www.python.org/dev/peps/pep-0563/#non-typing-usage-of-annotations">Deferred Evaluation of Annotations, without <code>__future__</code> (PEP 563)</a></li>
 <li>Fewer imports from the <code>typing</code> module are needed:
 
 <ul>
@@ -287,7 +286,6 @@ ga('send', 'pageview');
 <li>Python 3.11 <small>(Scheduled for Oct 2022)</small>
 
 <ul>
-<li>(?) <a href="https://peps.python.org/pep-0681/">Data Class Transforms (PEP 681)</a></li>
 <li>New kinds of types:
 
 <ul>
@@ -302,6 +300,13 @@ ga('send', 'pageview');
 <li><strike><a href="https://peps.python.org/pep-0677/">Callable Type Syntax (PEP 677)</a></strike> (Rejected 😞)</li>
 </ul>
 </li>
+<li>Extensions to existing typing features:
+
+<ul>
+<li><a href="https://peps.python.org/pep-0655/">Required[] and NotRequired[] items for TypedDict (PEP 655)</a></li>
+<li>(?) <a href="https://peps.python.org/pep-0681/">Data Class Transforms (PEP 681)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Python 3.12 <small>(Forecasted for Oct 2023)</small>
@@ -313,10 +318,16 @@ ga('send', 'pageview');
 <li>(??) <a href="https://www.python.org/dev/peps/pep-0645/">Optional types shortened to <code>X?</code> (PEP 645)</a></li>
 </ul>
 </li>
+<li>New syntax useful for types:
+
+<ul>
+<li>(??) <a href="https://peps.python.org/pep-0649/">Deferred Evaluation Of Annotations Using Descriptors (PEP 649)</a> - Most type checking annotations no longer need to be in runtime context.</li>
+</ul>
+</li>
 <li>New kinds of types:
 
 <ul>
-<li>(??) <a href="https://dafoster.net/projects/typeform/">Type Hint for Typing Special Forms and Regular Types: <code>TypeForm</code></a> (planned)</li>
+<li>(??) <a href="https://dafoster.net/projects/typeform/">Type Hint for Runtime Type Annotation Objects: <code>TypeForm</code></a> (planned)</li>
 </ul>
 </li>
 </ul>
