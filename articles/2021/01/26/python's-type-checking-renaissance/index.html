@@ -261,12 +261,6 @@ ga('send', 'pageview');
 <li>Python 3.10 <small>(Released Oct 2021)</small>
 
 <ul>
-<li>Fewer imports from the <code>typing</code> module are needed:
-
-<ul>
-<li><a href="https://www.python.org/dev/peps/pep-0604/">Union types are shortened to <code>X | Y</code> (PEP 604)</a></li>
-</ul>
-</li>
 <li>New kinds of types:
 
 <ul>
@@ -279,6 +273,18 @@ ga('send', 'pageview');
 <ul>
 <li><a href="https://www.python.org/dev/peps/pep-0613">Explicit Type Aliases (PEP 613)</a></li>
 <li><strike><a href="https://www.python.org/dev/peps/pep-0637/">Support for indexing with keyword arguments (PEP 637)</a></strike> (Rejected 😞)</li>
+</ul>
+</li>
+<li>Fewer imports from the <code>typing</code> module are needed:
+
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0604/">Union types are shortened to <code>X | Y</code> (PEP 604)</a>
+
+<ul>
+<li>Optional types shortened to <code>X | None</code></li>
+</ul>
+</li>
+<li><strike><a href="https://www.python.org/dev/peps/pep-0645/">Optional types shortened to <code>X?</code> (PEP 645)</a></strike> (<a href="https://mail.python.org/archives/list/typing-sig@python.org/message/YVEIYEK3H6KPZVYR5NBTXSVJ77WHBXHY/">Withdrawn 👌</a>)</li>
 </ul>
 </li>
 </ul>
@@ -312,22 +318,16 @@ ga('send', 'pageview');
 <li>Python 3.12 <small>(Forecasted for Oct 2023)</small>
 
 <ul>
-<li>Fewer imports from the <code>typing</code> module are needed:
+<li>New kinds of types:
 
 <ul>
-<li>(??) <a href="https://www.python.org/dev/peps/pep-0645/">Optional types shortened to <code>X?</code> (PEP 645)</a></li>
+<li>(??) <a href="https://dafoster.net/projects/typeform/">Type Hint for Runtime Type Annotation Objects: <code>TypeForm</code></a> (planned)</li>
 </ul>
 </li>
 <li>New syntax useful for types:
 
 <ul>
 <li>(??) <a href="https://peps.python.org/pep-0649/">Deferred Evaluation Of Annotations Using Descriptors (PEP 649)</a> - Most type checking annotations no longer need to be in runtime context.</li>
-</ul>
-</li>
-<li>New kinds of types:
-
-<ul>
-<li>(??) <a href="https://dafoster.net/projects/typeform/">Type Hint for Runtime Type Annotation Objects: <code>TypeForm</code></a> (planned)</li>
 </ul>
 </li>
 </ul>
