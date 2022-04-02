@@ -204,12 +204,22 @@ ga('send', 'pageview');
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#python-releases" href="#collapseOne">
-        <span class="expand-symbol"></span><strong>Python releases, and related type checking features</strong>
+        <span class="expand-symbol"></span>Python releases, and related type checking features
       </a>
     </div>
-    <div id="collapseOne" class="accordion-body collapse">
+    <div id="collapseOne" class="accordion-body collapse in">
       <div class="accordion-inner">
-        <ul>
+        <!-- begin inner -->
+        <div class="accordion" id="python-releases-old">
+          <div class="accordion-group">
+            <div class="accordion-heading" style="margin-left: 25px;">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#python-releases-old" href="#collapseTwo">
+                <span class="expand-symbol"></span>Python 3.5 - 3.9
+              </a>
+            </div>
+            <div id="collapseTwo" class="accordion-body collapse">
+              <div class="accordion-inner" style="margin-left: 40px">
+                <ul>
 <li>Python 3.5 <small>(Released Sep 2015)</small>
 
 <ul>
@@ -258,6 +268,14 @@ ga('send', 'pageview');
 </li>
 </ul>
 </li>
+</ul>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul>
 <li>Python 3.10 <small>(Released Oct 2021)</small>
 
 <ul>
@@ -296,8 +314,9 @@ ga('send', 'pageview');
 
 <ul>
 <li><a href="https://peps.python.org/pep-0675/">Arbitrary Literal String Type (PEP 675)</a></li>
-<li><a href="https://peps.python.org/pep-0673/"><code>Self</code> Type (PEP 673)</a></li>
 <li><a href="https://peps.python.org/pep-0646/">Variadic Generics with <code>TypeVarTuple</code> (PEP 646)</a></li>
+<li><a href="https://peps.python.org/pep-0673/"><code>Self</code> Type (PEP 673)</a></li>
+<li>(?) <a href="https://peps.python.org/pep-0681/">Data Class Transforms (PEP 681)</a></li>
 </ul>
 </li>
 <li>New syntax useful for types:
@@ -310,7 +329,6 @@ ga('send', 'pageview');
 
 <ul>
 <li><a href="https://peps.python.org/pep-0655/">Required[] and NotRequired[] items for TypedDict (PEP 655)</a></li>
-<li>(?) <a href="https://peps.python.org/pep-0681/">Data Class Transforms (PEP 681)</a></li>
 </ul>
 </li>
 </ul>
@@ -335,6 +353,7 @@ ga('send', 'pageview');
 </ul>
 
 
+        <!-- end inner -->
       </div>
     </div>
   </div>
@@ -469,16 +488,23 @@ ga('send', 'pageview');
   
     <script>
       // Rotate triangle symbol when accordian toggled
-$('.accordion-toggle .expand-symbol').text('▸ ');
-$('.accordion-toggle').click(function() {
-    var accordianBodySelector = $(this).attr('href');
-    var isCollapsed = $(accordianBodySelector).attr('class').indexOf("in") !== -1;
+function updateAccordianExpandSymbol(accordianToggleEl, willToggle) {
+    var accordianBodySelector = accordianToggleEl.attr('href');
+    var isCollapsed = !$(accordianBodySelector).attr('class').split(' ').includes('in');
+    if (willToggle) {
+        isCollapsed = !isCollapsed;
+    }
     
     if (isCollapsed) {
-        $('.expand-symbol', this).text('▸ ');
+        $('.expand-symbol', accordianToggleEl).text('▸ ');
     } else {
-        $('.expand-symbol', this).text('▾ ');
+        $('.expand-symbol', accordianToggleEl).text('▾ ');
     }
+}
+$('.accordion-toggle').click(function() {
+    updateAccordianExpandSymbol($(this), true);
+}).each(function(_, accordianToggleDom) {
+    updateAccordianExpandSymbol($(accordianToggleDom));
 });
 
     </script>

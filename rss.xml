@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 02 Apr 2022 19:53:29 +0000</pubDate>
-    <lastBuildDate>Sat, 02 Apr 2022 19:53:29 +0000</lastBuildDate>
+    <pubDate>Sat, 02 Apr 2022 21:16:30 +0000</pubDate>
+    <lastBuildDate>Sat, 02 Apr 2022 21:16:30 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -1925,12 +1925,22 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
   &lt;div class=&quot;accordion-group&quot;&gt;
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#python-releases&quot; href=&quot;#collapseOne&quot;&gt;
-        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;&lt;strong&gt;Python releases, and related type checking features&lt;/strong&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;Python releases, and related type checking features
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;div id=&quot;collapseOne&quot; class=&quot;accordion-body collapse&quot;&gt;
+    &lt;div id=&quot;collapseOne&quot; class=&quot;accordion-body collapse in&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-        &lt;ul&gt;
+        &lt;!-- begin inner --&gt;
+        &lt;div class=&quot;accordion&quot; id=&quot;python-releases-old&quot;&gt;
+          &lt;div class=&quot;accordion-group&quot;&gt;
+            &lt;div class=&quot;accordion-heading&quot; style=&quot;margin-left: 25px;&quot;&gt;
+              &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#python-releases-old&quot; href=&quot;#collapseTwo&quot;&gt;
+                &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;Python 3.5 - 3.9
+              &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div id=&quot;collapseTwo&quot; class=&quot;accordion-body collapse&quot;&gt;
+              &lt;div class=&quot;accordion-inner&quot; style=&quot;margin-left: 40px&quot;&gt;
+                &lt;ul&gt;
 &lt;li&gt;Python 3.5 &lt;small&gt;(Released Sep 2015)&lt;/small&gt;
 
 &lt;ul&gt;
@@ -1979,6 +1989,14 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+
+
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;ul&gt;
 &lt;li&gt;Python 3.10 &lt;small&gt;(Released Oct 2021)&lt;/small&gt;
 
 &lt;ul&gt;
@@ -2017,8 +2035,9 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0675/&quot;&gt;Arbitrary Literal String Type (PEP 675)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0673/&quot;&gt;&lt;code&gt;Self&lt;/code&gt; Type (PEP 673)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0646/&quot;&gt;Variadic Generics with &lt;code&gt;TypeVarTuple&lt;/code&gt; (PEP 646)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0673/&quot;&gt;&lt;code&gt;Self&lt;/code&gt; Type (PEP 673)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;(?) &lt;a href=&quot;https://peps.python.org/pep-0681/&quot;&gt;Data Class Transforms (PEP 681)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;New syntax useful for types:
@@ -2031,7 +2050,6 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0655/&quot;&gt;Required[] and NotRequired[] items for TypedDict (PEP 655)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;(?) &lt;a href=&quot;https://peps.python.org/pep-0681/&quot;&gt;Data Class Transforms (PEP 681)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2056,6 +2074,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
+        &lt;!-- end inner --&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
