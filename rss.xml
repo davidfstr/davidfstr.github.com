@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 02 Apr 2022 21:16:30 +0000</pubDate>
-    <lastBuildDate>Sat, 02 Apr 2022 21:16:30 +0000</lastBuildDate>
+    <pubDate>Sun, 03 Apr 2022 21:22:14 +0000</pubDate>
+    <lastBuildDate>Sun, 03 Apr 2022 21:22:14 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2023,7 +2023,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Optional types shortened to &lt;code&gt;X | None&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strike&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/strike&gt; (&lt;a href=&quot;https://mail.python.org/archives/list/typing-sig@python.org/message/YVEIYEK3H6KPZVYR5NBTXSVJ77WHBXHY/&quot;&gt;Withdrawn 👌&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strike&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/strike&gt; (&lt;a href=&quot;https://mail.python.org/archives/list/typing-sig@python.org/message/YVEIYEK3H6KPZVYR5NBTXSVJ77WHBXHY/&quot;&gt;Withdrawn&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

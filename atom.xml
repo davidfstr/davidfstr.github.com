@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2022-04-02T21:16:30+00:00</updated>
+ <updated>2022-04-03T21:22:14+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -2064,7 +2064,7 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Optional types shortened to &lt;code&gt;X | None&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strike&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/strike&gt; (&lt;a href=&quot;https://mail.python.org/archives/list/typing-sig@python.org/message/YVEIYEK3H6KPZVYR5NBTXSVJ77WHBXHY/&quot;&gt;Withdrawn 👌&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strike&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0645/&quot;&gt;Optional types shortened to &lt;code&gt;X?&lt;/code&gt; (PEP 645)&lt;/a&gt;&lt;/strike&gt; (&lt;a href=&quot;https://mail.python.org/archives/list/typing-sig@python.org/message/YVEIYEK3H6KPZVYR5NBTXSVJ77WHBXHY/&quot;&gt;Withdrawn&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
