@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 20 Apr 2022 14:58:07 +0000</pubDate>
-    <lastBuildDate>Wed, 20 Apr 2022 14:58:07 +0000</lastBuildDate>
+    <pubDate>Wed, 27 Apr 2022 18:16:32 +0000</pubDate>
+    <lastBuildDate>Wed, 27 Apr 2022 18:16:32 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2112,6 +2112,13 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 &lt;p&gt;I appreciate this increased productivity that type checking gives me when working on large programs. And I hope that more Python users try type checking for themselves, especially as Python gains an increasing number of related features in recent releases. It&amp;rsquo;s an exciting time to be a Python developer!&lt;/p&gt;
 
+&lt;h3&gt;&lt;em&gt;Related Discussion&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://news.ycombinator.com/item?id=25916628&quot;&gt;Hacker News&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
 &lt;h3&gt;&lt;em&gt;Related Articles&lt;/em&gt;&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -2125,13 +2132,6 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/projects/typeddict/&quot;&gt;TypedDict&lt;/a&gt; - Python typechecker support for recognizing structured dictionaries with specific named keys mapped to specific value types.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/projects/trycast/&quot;&gt;trycast&lt;/a&gt; — Parses JSON-like values whose shape is defined by typed dictionaries (TypedDicts) and other standard Python type hints.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;&lt;em&gt;Related Discussion&lt;/em&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://news.ycombinator.com/item?id=25916628&quot;&gt;Hacker News&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
