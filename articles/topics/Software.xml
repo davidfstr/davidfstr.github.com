@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2022-07-11T13:38:08+00:00</updated>
+ <updated>2022-07-11T20:10:28+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -2981,7 +2981,7 @@ Maximum load is 65 user(s) over 5 second(s) (13.0 users/second) with a response 
 &lt;li&gt;Fixes:
 
 &lt;ul&gt;
-&lt;li&gt;Shrink database contents with compression to reduce persisted data volume.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/&quot;&gt;Shrink database contents with compression&lt;/a&gt; to reduce persisted data volume.&lt;/li&gt;
 &lt;li&gt;Switch database storage type from Magnetic to SSD to increase the maximum IOPS.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
