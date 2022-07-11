@@ -4,7 +4,7 @@
  <title>DaFoster (DigitalPreservation)</title>
  <link href="https://dafoster.net/articles/topics/#DigitalPreservation"/>
  <link href="https://dafoster.net/articles/topics/DigitalPreservation.xml" rel="self"/>
- <updated>2022-04-27T18:16:32+00:00</updated>
+ <updated>2022-07-11T13:38:08+00:00</updated>
  <id>https://dafoster.net/articles/topics/#DigitalPreservation</id>
  <author>
    <name>David Foster</name>
@@ -16,6 +16,50 @@
  
  
  <entry>
+   <id>https://dafoster.net/articles/2022/07/10/crystal-1-3-0-released</id>
+   <title>Crystal Web Archiver 1.3.0b Released!</title>
+   <published>2022-07-10T00:00:00+00:00</published>
+   <updated>2022-07-10T00:00:00+00:00</updated>
+   
+     <category term="DigitalPreservation"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2022/07/10/crystal-1-3-0-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet.&lt;/p&gt;
+
+&lt;p&gt;Today&amp;rsquo;s release brings the ability to download sites requiring login, better-support for infinite-scrolling sites, a &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Read-Only-Projects&quot;&gt;read-only mode&lt;/a&gt;, and a &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Shell&quot;&gt;CLI shell&lt;/a&gt;. See the &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#v130b-july-10-2022&quot;&gt;release notes&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.3.0b/crystal-win-1.3.0b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.3.0b/crystal-mac-1.3.0b.dmg&quot;&gt;Download Crystal for macOS 10.14 and later&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You will need to &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/20&quot;&gt;right-click or Control-click on the application
+and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#quickstart-&quot;&gt;Quickstart guide&lt;/a&gt; for downloading your first website&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;https://substack.com/&quot;&gt;Substack sites&lt;/a&gt; in particular can be successfully downloaded with this release of Crystal.&lt;/p&gt;
+
+&lt;p&gt;The next release of Crystal will probably be the first final (non-beta) release, with an improved visual appearance, tutorials, and lots of documentation. See the &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Roadmap&quot;&gt;roadmap&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Previous Releases&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/03/23/crystal-web-archiver-beta-released/&quot;&gt;Crystal 1.1.0b and 1.2.0b&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
    <id>https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released</id>
    <title>Crystal Web Archiver 1.1.0b Released!</title>
    <published>2021-03-23T00:00:00+00:00</published>
@@ -23,12 +67,12 @@
    
      <category term="DigitalPreservation"/>
    
-     <category term="Other"/>
-   
    <link rel="alternate" href="https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet. Today I&amp;rsquo;m pleased to announce Crystal&amp;rsquo;s first beta release, bringing support for downloading more complex static sites than ever before, and generally being stable enough for a full public release.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet.&lt;/p&gt;
+
+&lt;p&gt;Today I&amp;rsquo;m pleased to announce Crystal&amp;rsquo;s first beta release, bringing support for downloading more complex static sites than ever before, and generally being stable enough for a full public release.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.2.0b/crystal-win-1.2.0b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;

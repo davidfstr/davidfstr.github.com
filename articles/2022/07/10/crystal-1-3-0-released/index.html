@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Introducing p4status: A status command for Perforce | DaFoster</title>
+    <title>Crystal Web Archiver 1.3.0b Released! | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -176,13 +176,21 @@ ga('send', 'pageview');
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">Introducing p4status: A status command for Perforce</h1>
+    <h1 class="post-title">Crystal Web Archiver 1.3.0b Released!</h1>
     <div class="post-metadata">
       
-        Mar 16, 2013
+        Jul 10, 2022
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#DigitalPreservation">
+  DigitalPreservation<sup>2</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/DigitalPreservation.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to DigitalPreservation" title="Subscribe to DigitalPreservation"/>
+</a>
+</span>
         
           <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
   Software<sup>63</sup>
@@ -196,95 +204,33 @@ ga('send', 'pageview');
       
     </div>
     
-    <p><strong>p4status</strong> works like <code>git status</code> (or <code>svn status</code>), but works in Perforce.</p>
+    <p><img class="img-box-right img-200" alt="Logo: Crystal Web Archiver" src="/assets/2021/crystal-web-archiver/logo@2x.png" /></p>
 
-<p>It will list changelist files and locally modified files that haven&rsquo;t been added to any changelist (including unadded files) in a readable format.</p>
+<p><a href="/projects/crystal-web-archiver/">Crystal</a> is a <strong>website downloader program</strong> that is intended to save websites for long-term archival, even after the original site has fallen off the internet.</p>
 
-<div style="padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;">
-    <p style="font-weight: bold; color: #487858;">
-        Note
-    </p>
-    <p style="margin-bottom: 0em;">
-        The 2012 version of Perforce has an official
-        <b>p4 status</b> command. However this command is only available if 
-        your corporate Perforce server has been upgraded to 2012. If your 
-        company, like mine, has not upgraded their server, this script will 
-        make your life easier.
-    </p>
-</div>
-
-
-<h3>Example</h3>
-
-<pre><code>[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
-# On changelist 154055
-# 
-# Changes to be committed in changelist default:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
-# 
-#       deleted:    server/apps/setupfx/splunkd/default/extract.conf
-# 
-# Changes to be committed in changelist 154076:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW.conf
-#       modified:   server/apps/setupfx/splunkd/default/inputs.conf
-# 
-# Changes not staged for commit:
-#   (use "p4 add/edit/delete &lt;file&gt;..." to update what will be committed)
-#   (use "p4 sync -f &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW2.conf
-# 
-</code></pre>
-
-<h3>Installation</h3>
+<p>Today&rsquo;s release brings the ability to download sites requiring login, better-support for infinite-scrolling sites, a <a href="https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Read-Only-Projects">read-only mode</a>, and a <a href="https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Shell">CLI shell</a>. See the <a href="https://github.com/davidfstr/Crystal-Web-Archiver#v130b-july-10-2022">release notes</a> for more information.</p>
 
 <ul>
-<li>Download to your local <code>bin</code> directory:
-<a href="https://github.com/davidfstr/dotfiles/blob/master/bin/p4status">https://github.com/davidfstr/dotfiles/blob/master/bin/p4status</a></li>
-<li>Mark as executable with <code>chmod a+x p4status</code></li>
-</ul>
-
-
-<h3>Usage</h3>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.3.0b/crystal-win-1.3.0b.exe">Download Crystal for Windows 7, 8, and 10</a></li>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.3.0b/crystal-mac-1.3.0b.dmg">Download Crystal for macOS 10.14 and later</a>
 
 <ul>
-<li><code>cd</code> to the primary directory that you&rsquo;ll be working under.</li>
-<li>Run <code>p4status</code>.</li>
-</ul>
-
-
-<h3>Limitations</h3>
-
-<ul>
-<li><p>Only detects unstaged files under the directory in which the command is run. Therefore it is best to reserve a terminal window that is <code>cd</code>-ed to the correct place where this command can be run safely.</p></li>
-<li><p>This command is too slow to run from the root of very large branches.</p></li>
-</ul>
-
-
-<h3>Alternatives</h3>
-
-<ul>
-<li>Use the excellent Git-to-Perforce bridge, <a href="http://git-scm.com/docs/git-p4">git-p4</a>.
-
-<ul>
-<li>This allows you to work with your Perforce repository as if it were a Git repository. And you can use Git&rsquo;s very fast <code>git status</code> command.</li>
+<li>You will need to <a href="https://github.com/davidfstr/Crystal-Web-Archiver/issues/20">right-click or Control-click on the application
+and select &ldquo;Open&rdquo; to open it for the first time</a>.</li>
 </ul>
 </li>
-<li>Convince your Perforce server administrator to upgrade to the 2012 version. This may take some time, depending on the size of your company.</li>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver#quickstart-">Quickstart guide</a> for downloading your first website</li>
 </ul>
 
 
-<h3><em>Related Projects</em></h3>
+<p><a href="https://substack.com/">Substack sites</a> in particular can be successfully downloaded with this release of Crystal.</p>
+
+<p>The next release of Crystal will probably be the first final (non-beta) release, with an improved visual appearance, tutorials, and lots of documentation. See the <a href="https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Roadmap">roadmap</a> for more information.</p>
+
+<h3><em>Previous Releases</em></h3>
 
 <ul>
-<li><a href="https://github.com/davidfstr/dotfiles">dotfiles</a>
-
-<ul>
-<li><em>My command-line shortcuts, including several for working with Git, particularly in an OS X environment.</em></li>
-</ul>
-</li>
+<li><a href="/articles/2021/03/23/crystal-web-archiver-beta-released/">Crystal 1.1.0b and 1.2.0b</a></li>
 </ul>
 
 
@@ -309,11 +255,11 @@ ga('send', 'pageview');
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2013/03/10/killer-apps-for-software-platforms/" title="Killer apps for software platforms">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/" title="CompressedTextField for Django & MySQL is released!">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/" title="Migrating from BBEdit to Sublime Text">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

@@ -33,6 +33,8 @@ https://dafoster.net/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2022/07/10/crystal-1-3-0-released/
+https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/
 https://dafoster.net/articles/2021/05/02/interview-with-david-foster/
 https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/
 https://dafoster.net/articles/2021/03/16/you-might-not-need-centralized-continuous-integration/

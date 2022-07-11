@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2022-04-27T18:16:32+00:00</updated>
+ <updated>2022-07-11T13:38:08+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,116 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2022/07/10/crystal-1-3-0-released</id>
+   <title>Crystal Web Archiver 1.3.0b Released!</title>
+   <published>2022-07-10T00:00:00+00:00</published>
+   <updated>2022-07-10T00:00:00+00:00</updated>
+   
+     <category term="DigitalPreservation"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2022/07/10/crystal-1-3-0-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet.&lt;/p&gt;
+
+&lt;p&gt;Today&amp;rsquo;s release brings the ability to download sites requiring login, better-support for infinite-scrolling sites, a &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Read-Only-Projects&quot;&gt;read-only mode&lt;/a&gt;, and a &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Shell&quot;&gt;CLI shell&lt;/a&gt;. See the &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#v130b-july-10-2022&quot;&gt;release notes&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.3.0b/crystal-win-1.3.0b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.3.0b/crystal-mac-1.3.0b.dmg&quot;&gt;Download Crystal for macOS 10.14 and later&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You will need to &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/20&quot;&gt;right-click or Control-click on the application
+and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#quickstart-&quot;&gt;Quickstart guide&lt;/a&gt; for downloading your first website&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;https://substack.com/&quot;&gt;Substack sites&lt;/a&gt; in particular can be successfully downloaded with this release of Crystal.&lt;/p&gt;
+
+&lt;p&gt;The next release of Crystal will probably be the first final (non-beta) release, with an improved visual appearance, tutorials, and lots of documentation. See the &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Roadmap&quot;&gt;roadmap&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Previous Releases&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/2021/03/23/crystal-web-archiver-beta-released/&quot;&gt;Crystal 1.1.0b and 1.2.0b&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released</id>
+   <title>CompressedTextField for Django &amp; MySQL is released!</title>
+   <published>2022-07-07T00:00:00+00:00</published>
+   <updated>2022-07-07T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-compressed-fields#readme&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
+provides a &lt;em&gt;compressed&lt;/em&gt; version of Django&amp;rsquo;s TextField for use with a MySQL
+&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; database! This is the first library from &lt;a href=&quot;https://www.techsmart.codes/&quot;&gt;TechSmart&lt;/a&gt; to be
+open-sourced. 🎉&lt;/p&gt;
+
+&lt;p&gt;In particular you can replace a &lt;a href=&quot;https://docs.djangoproject.com/en/3.2/ref/models/fields/#textfield&quot;&gt;TextField&lt;/a&gt; or &lt;a href=&quot;https://docs.djangoproject.com/en/3.2/ref/models/fields/#charfield&quot;&gt;CharField&lt;/a&gt; like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;from django.db import models
+
+class ProjectTextFile(models.Model):
+    content = models.TextField(blank=True)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;from django.db import models
+from mysql_compressed_fields import CompressedTextField
+
+class ProjectTextFile(models.Model):
+    content = CompressedTextField(blank=True)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;such that the text value of the field is actually compressed in the database.&lt;/p&gt;
+
+&lt;p&gt;String-based lookups are supported:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;html_files = ProjectTextFile.objects.filter(content__contains='&amp;lt;html')
+html_files = ProjectTextFile.objects.filter(content__startswith='&amp;lt;!DOCTYPE')
+html_files = ProjectTextFile.objects.filter(content__endswith='&amp;lt;/html&amp;gt;')
+empty_html_files = ProjectTextFile.objects.filter(content__in=['', '&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;'])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Advanced manipulations with MySQL&amp;rsquo;s &lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/encryption-functions.html#function_compress&quot;&gt;COMPRESS()&lt;/a&gt;, &lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/encryption-functions.html#function_uncompress&quot;&gt;UNCOMPRESS()&lt;/a&gt;, and
+&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/encryption-functions.html#function_uncompressed-length&quot;&gt;UNCOMPRESSED_LENGTH()&lt;/a&gt; functions are also supported:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;from django.db.models import F
+from mysql_compressed_fields import UncompressedLength
+
+files = ProjectTextFile.objects.only('id').annotate(
+    content_length=UncompressedLength(F('content'))
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more information, including how to &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-compressed-fields#migration-steps&quot;&gt;migrate to use CompressedTextField&lt;/a&gt;,
+please see the &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-compressed-fields#readme&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;My understanding is that the Postgres database - another database type that works well with Django - transparently compresses all text fields automatically, so a library like this one wouldn&amp;rsquo;t be useful for users of that database.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -2095,7 +2205,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;61&lt;/sup&gt;
+  Software&lt;sup&gt;63&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
