@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2022-07-11T20:10:28+00:00</updated>
+ <updated>2022-07-12T23:25:54+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -68,7 +68,7 @@ and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&l
      <category term="Software"/>
    
    <link rel="alternate" href="https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-compressed-fields#readme&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
+   <content type="html">&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;/projects/django-mysql-compressed-fields/&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
 provides a &lt;em&gt;compressed&lt;/em&gt; version of Django&amp;rsquo;s TextField for use with a MySQL
 &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; database! This is the first library from &lt;a href=&quot;https://www.techsmart.codes/&quot;&gt;TechSmart&lt;/a&gt; to be
 open-sourced. 🎉&lt;/p&gt;
@@ -120,6 +120,56 @@ please see the &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-co
 &lt;p&gt;My understanding is that the Postgres database - another database type that works well with Django - transparently compresses all text fields automatically, so a library like this one wouldn&amp;rsquo;t be useful for users of that database.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released</id>
+   <title>Crystal Web Archiver 1.1.0b Released!</title>
+   <published>2021-03-23T00:00:00+00:00</published>
+   <updated>2021-03-23T00:00:00+00:00</updated>
+   
+     <category term="DigitalPreservation"/>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; is a &lt;strong&gt;website downloader program&lt;/strong&gt; that is intended to save websites for long-term archival, even after the original site has fallen off the internet.&lt;/p&gt;
+
+&lt;p&gt;Today I&amp;rsquo;m pleased to announce Crystal&amp;rsquo;s first beta release, bringing support for downloading more complex static sites than ever before, and generally being stable enough for a full public release.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.2.0b/crystal-win-1.2.0b.exe&quot;&gt;Download Crystal for Windows 7, 8, and 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v1.2.0b/crystal-mac-1.2.0b.dmg&quot;&gt;Download Crystal for macOS 10.14 and later&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You will need to &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/issues/20&quot;&gt;right-click or Control-click on the application
+and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver#quickstart-&quot;&gt;Quickstart guide&lt;/a&gt; for downloading your first website&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; These download links have been updated to point to the 1.2.0b release,
+which has a number of fixes related to first-time-launch issues and improvements for downloading
+large websites (with 10,000+ URLs).&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Many new types of sites can be successfully downloaded with this release of Crystal, including DeviantArt portfolio websites at &lt;code&gt;*.daportfolio.com&lt;/code&gt; (which are scheduled to fall off the internet in about a week after this post), &lt;a href=&quot;http://otakuworld.com/&quot;&gt;Otaku World&lt;/a&gt;, and &lt;a href=&quot;https://www.16personalities.com/&quot;&gt;16Personalities&lt;/a&gt;. &lt;!-- Some others sites of interest like [bongo.cat](https://bongo.cat/) and the [Calm Blog](https://blog.calm.com/) require additional work. --&gt;&lt;/p&gt;
+
+&lt;h3&gt;Digital preservation is important&lt;/h3&gt;
+
+&lt;p&gt;I personally care a lot about &lt;strong&gt;digital preservation&lt;/strong&gt;, which makes it possible to access and enjoy digital content even after it was originally released, substantially beyond the usual lifetime of such works. I&amp;rsquo;m planning to work on a few projects this year to advance the state of the art in preserving both online sites and old Macintosh programs from the 1990&amp;rsquo;s. If this topic is also of interest to you, please consider &lt;a href=&quot;javascript:scrollToSubscribeBlock();&quot;&gt;following me&lt;/a&gt; on Twitter or RSS. I like hearing from people who have similar interests.&lt;/p&gt;
+
+&lt;h3&gt;&lt;em&gt;Related Projects&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/projects/classicbox/&quot;&gt;ClassicBox&lt;/a&gt; - &lt;strong&gt;(Pre-alpha)&lt;/strong&gt; Makes it easy to play old Mac games from the 1990s on modern hardware, similar to the &lt;a href=&quot;https://www.dosbox.com/&quot;&gt;DOSBox&lt;/a&gt; project.&lt;/li&gt;
+&lt;/ul&gt;
 
 </content>
  </entry>
@@ -2205,7 +2255,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;63&lt;/sup&gt;
+  Software&lt;sup&gt;64&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

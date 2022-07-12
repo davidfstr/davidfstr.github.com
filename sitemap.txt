@@ -17,6 +17,7 @@ https://dafoster.net/projects/burn-planner/donate/
 https://dafoster.net/projects/burn-planner/
 https://dafoster.net/projects/classicbox/
 https://dafoster.net/projects/crystal-web-archiver/
+https://dafoster.net/projects/django-mysql-compressed-fields/
 https://dafoster.net/projects/handbrake-subtitle-support/
 https://dafoster.net/projects/incoming-game/
 https://dafoster.net/projects/rdiscount/

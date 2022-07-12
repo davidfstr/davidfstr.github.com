@@ -4,7 +4,7 @@
  <title>DaFoster (DigitalPreservation)</title>
  <link href="https://dafoster.net/articles/topics/#DigitalPreservation"/>
  <link href="https://dafoster.net/articles/topics/DigitalPreservation.xml" rel="self"/>
- <updated>2022-07-11T20:10:28+00:00</updated>
+ <updated>2022-07-12T23:25:54+00:00</updated>
  <id>https://dafoster.net/articles/topics/#DigitalPreservation</id>
  <author>
    <name>David Foster</name>
@@ -66,6 +66,8 @@ and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&l
    <updated>2021-03-23T00:00:00+00:00</updated>
    
      <category term="DigitalPreservation"/>
+   
+     <category term="Software"/>
    
    <link rel="alternate" href="https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;

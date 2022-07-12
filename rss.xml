@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 11 Jul 2022 20:10:28 +0000</pubDate>
-    <lastBuildDate>Mon, 11 Jul 2022 20:10:28 +0000</lastBuildDate>
+    <pubDate>Tue, 12 Jul 2022 23:25:54 +0000</pubDate>
+    <lastBuildDate>Tue, 12 Jul 2022 23:25:54 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -61,7 +61,7 @@ and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&l
       <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-compressed-fields#readme&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
+      <description>&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;/projects/django-mysql-compressed-fields/&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
 provides a &lt;em&gt;compressed&lt;/em&gt; version of Django&amp;rsquo;s TextField for use with a MySQL
 &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; database! This is the first library from &lt;a href=&quot;https://www.techsmart.codes/&quot;&gt;TechSmart&lt;/a&gt; to be
 open-sourced. 🎉&lt;/p&gt;
@@ -2348,7 +2348,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;63&lt;/sup&gt;
+  Software&lt;sup&gt;64&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

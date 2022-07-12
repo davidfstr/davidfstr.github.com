@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2022-07-11T20:10:28+00:00</updated>
+ <updated>2022-07-12T23:25:54+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -68,7 +68,7 @@ and select &amp;ldquo;Open&amp;rdquo; to open it for the first time&lt;/a&gt;.&l
      <category term="Software"/>
    
    <link rel="alternate" href="https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-compressed-fields#readme&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
+   <content type="html">&lt;p&gt;I&amp;rsquo;m proud to release &lt;a href=&quot;/projects/django-mysql-compressed-fields/&quot;&gt;django-mysql-compressed-fields&lt;/a&gt;: a new library that
 provides a &lt;em&gt;compressed&lt;/em&gt; version of Django&amp;rsquo;s TextField for use with a MySQL
 &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; database! This is the first library from &lt;a href=&quot;https://www.techsmart.codes/&quot;&gt;TechSmart&lt;/a&gt; to be
 open-sourced. 🎉&lt;/p&gt;
@@ -182,6 +182,8 @@ please see the &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-co
    <updated>2021-03-23T00:00:00+00:00</updated>
    
      <category term="DigitalPreservation"/>
+   
+     <category term="Software"/>
    
    <link rel="alternate" href="https://dafoster.net/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
    <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-200&quot; alt=&quot;Logo: Crystal Web Archiver&quot; src=&quot;/assets/2021/crystal-web-archiver/logo@2x.png&quot; /&gt;&lt;/p&gt;
@@ -2402,7 +2404,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;63&lt;/sup&gt;
+  Software&lt;sup&gt;64&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
