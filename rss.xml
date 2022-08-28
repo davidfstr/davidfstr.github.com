@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 12 Jul 2022 23:25:54 +0000</pubDate>
-    <lastBuildDate>Tue, 12 Jul 2022 23:25:54 +0000</lastBuildDate>
+    <pubDate>Sun, 28 Aug 2022 20:05:00 +0000</pubDate>
+    <lastBuildDate>Sun, 28 Aug 2022 20:05:00 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -136,7 +136,7 @@ please see the &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-co
 
 &lt;p&gt;These days I spend most of my time in web development, using Python/Django on the backend, JavaScript/Vue on the frontend, and Amazon Web Services for datacenter operations. Python is probably my favorite all-around language, with Java coming in second.&lt;/p&gt;
 
-&lt;h3&gt;How does your typical working day look like? How COVID-19 changed your working routine?&lt;/h3&gt;
+&lt;h3&gt;How does your typical working day look like? How did COVID-19 change your working routine?&lt;/h3&gt;
 
 &lt;p&gt;I wake around 6 AM, get myself ready to go, maybe work on a short personal item, and then start work at 8:30 AM. For the next 30 minutes I plan and write down what I&amp;rsquo;d like to do during the work day and process email. At 9 AM I have a daily standup meeting with the rest of the engineering team. Often immediately afterwards one or more folks will want to trade code reviews with me, or have a quick design discussion. For the rest of the morning until lunch I process various administrative items, reading email, updating our board of cards that track workitems, and have short meetings with other teammembers as needed. I take an hour lunch from 11:30 - 12:30, where the last half of that time I&amp;rsquo;ll read up on the latest technical news, often from Hacker News and some other sources. Directly after lunch there may be someone else who wants to trade code reviews. Then I&amp;rsquo;ll go heads-down coding for the rest of the day, working on my own items that require deep focus, up until the end of the work day at 5 PM sharp.&lt;/p&gt;
 
@@ -146,13 +146,13 @@ please see the &lt;a href=&quot;https://github.com/techsmartkids/django-mysql-co
 
 &lt;h3&gt;What is your current project you work on?&lt;/h3&gt;
 
-&lt;p&gt;I just finished releasing &lt;a href=&quot;/articles/2021/03/23/crystal-web-archiver-beta-released/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=crystal-2021&quot;&gt;Crystal Web Archiver&lt;/a&gt;, a website downloader that is designed to archive and preserve websites for the long-term. I was dismayed to hear that DeviantArt&amp;rsquo;s old portfolio websites were falling off the internet March 31st, so I wanted to get my downloader working again (so that I could save a few sites) before that happened.&lt;/p&gt;
+&lt;p&gt;I just finished releasing &lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;Crystal Web Archiver&lt;/a&gt;, a website downloader that is designed to archive and preserve websites for the long-term. I was dismayed to hear that DeviantArt&amp;rsquo;s old portfolio websites were falling off the internet March 31st, so I wanted to get my downloader working again (so that I could save a few sites) before that happened.&lt;/p&gt;
 
-&lt;p&gt;I&amp;rsquo;m currently working on extending Python&amp;rsquo;s optional static typechecking with &lt;a href=&quot;https://www.python.org/dev/peps/pep-0655/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=required&quot;&gt;a new feature for TypedDict&lt;/a&gt;, that will make it easy to mark optional vs. required keys in a dictionary type, hopefully in time to make it into Python 3.10.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m currently working on extending Python&amp;rsquo;s optional static typechecking with &lt;a href=&quot;https://www.python.org/dev/peps/pep-0655/&quot;&gt;a new feature for TypedDict&lt;/a&gt;, that will make it easy to mark optional vs. required keys in a dictionary type, hopefully in time to make it into Python 3.10.&lt;/p&gt;
 
-&lt;p&gt;Later this year I hope to finish work on another optional static typechecking feature called &lt;a href=&quot;/projects/typeform/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=typeform&quot;&gt;TypeForm&lt;/a&gt;, that will make it easy for me to implement &lt;a href=&quot;/projects/trycast/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=trycast&quot;&gt;trycast&lt;/a&gt;, a library for validating the shape of JSON blobs (among other things) at runtime, which makes it easier to write secure web applications (among other uses). Hopefully this will be done before the Typing Summit at this year&amp;rsquo;s PyCon conference.&lt;/p&gt;
+&lt;p&gt;Later this year I hope to finish work on another optional static typechecking feature called &lt;a href=&quot;/projects/typeform/&quot;&gt;TypeForm&lt;/a&gt;, that will make it easy for me to implement &lt;a href=&quot;/projects/trycast/&quot;&gt;trycast&lt;/a&gt;, a library for validating the shape of JSON blobs (among other things) at runtime, which makes it easier to write secure web applications (among other uses). Hopefully this will be done before the Typing Summit at this year&amp;rsquo;s PyCon conference.&lt;/p&gt;
 
-&lt;p&gt;In the background I&amp;rsquo;m striving to post a useful article on &lt;a href=&quot;/articles/?utm_source=news&amp;amp;utm_medium=vlad&amp;amp;utm_campaign=articles&quot;&gt;my blog&lt;/a&gt; each week, at least for the first quarter or two of 2021, with the goal of letting a wider variety of folks know about some of the interesting things I&amp;rsquo;m up to.&lt;/p&gt;
+&lt;p&gt;In the background I&amp;rsquo;m striving to post a useful article on &lt;a href=&quot;/articles/&quot;&gt;my blog&lt;/a&gt; each week, at least for the first quarter or two of 2021, with the goal of letting a wider variety of folks know about some of the interesting things I&amp;rsquo;m up to.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m not usually working on quite this many projects at the same time, but I seem to have gained a lot of new energy at the start of this year after the low of 2020 so I&amp;rsquo;m rolling with it for now. :)&lt;/p&gt;
 
