@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2023-05-22T18:51:33+00:00</updated>
+ <updated>2023-06-14T23:54:34+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,200 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2023/02/22/debugging-bash-scripts-with-the-bashdb-debugger</id>
+   <title>Debugging bash scripts with the bashdb debugger</title>
+   <published>2023-02-22T00:00:00+00:00</published>
+   <updated>2023-02-22T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2023/02/22/debugging-bash-scripts-with-the-bashdb-debugger/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;Sometimes when I have a problem with a bash script I want the ability to run each line of the script one by one to see what is wrong. There is a debugger called &lt;a href=&quot;https://bashdb.sourceforge.net/&quot;&gt;bashdb&lt;/a&gt; that can be used in this way. It behaves similarly to gdb (used for debugging C and C++ programs) and pdb (used for debugging Python programs).&lt;/p&gt;
+
+&lt;!-- 
+The following commands are tested in a Linux container created with:
+    $ docker run -it --rm ubuntu:latest
+--&gt;
+
+
+&lt;h2&gt;How to install bashdb&lt;/h2&gt;
+
+&lt;p&gt;First you need to determine what version of bash you are running, since you need to use a corresponding version of bashdb:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# bash --version
+GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This version of bash is 5.1.16, so we need a bashdb version 5.1.x. Let&amp;rsquo;s download it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For versions of bashdb &amp;lt;= 5.0.x, download from: &lt;a href=&quot;https://sourceforge.net/projects/bashdb/files/bashdb/&quot;&gt;https://sourceforge.net/projects/bashdb/files/bashdb/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;For versions of bashdb &gt;= 5.1.x, you must download from the associated Git branch. For example bashdb 5.1.x is in git branch &lt;a href=&quot;https://sourceforge.net/p/bashdb/code/ci/bash-5.1/tree/&quot;&gt;bash-5.1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&quot;warning-box&quot;&gt;&lt;p&gt;NOTE: The following commands are written for an Ubuntu- or Debian-based Linux distribution. Also, you may need to prefix some commands with &lt;code&gt;sudo&lt;/code&gt; to avoid permission errors.&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;pre&gt;&lt;code&gt;# apt-get update
+# apt-get install git -y
+# git clone https://git.code.sf.net/p/bashdb/code bashdb-code
+# cd bashdb-code/
+# git checkout bash-5.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For bashdb &gt;= 5.1.x, you&amp;rsquo;ll need to build the &lt;code&gt;configure&lt;/code&gt; and &lt;code&gt;bashdb&lt;/code&gt; files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# apt-get update
+# apt-get install autoconf -y  # to run autogen.sh
+# apt-get install binutils -y  # to install &quot;strings&quot; tool, for autogen.sh
+# apt-get install make -y  # to install &quot;make&quot; tool
+# apt-get install texinfo -y  # to install &quot;makeinfo&quot; tool, for make
+# ./autogen.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now have a &lt;code&gt;bashdb&lt;/code&gt; file in the current directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ls | grep bashdb
+bashdb
+bashdb-main.inc
+bashdb-main.inc.in
+bashdb-part2.sh
+bashdb-trace
+bashdb-trace.in
+bashdb.in
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Optional) If you have root permissions, you can install bashdb:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;How to run bashdb&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create an example script to debug:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cat &amp;lt;&amp;lt; EOF &amp;gt; /tmp/hello.sh
+echo 1
+echo 2
+echo 3
+echo 4
+EOF
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you did install bashdb in the step above, start the debugger on a Bash script at &lt;code&gt;/tmp/hello.sh&lt;/code&gt; with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# bash --debugger /tmp/hello.sh 
+...
+(/tmp/hello.sh:1):
+1:  echo 1
+bashdb&amp;lt;0&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you did not install bashdb, you can run the debugger by calling the bashdb script manually:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# bash ./bashdb /tmp/hello.sh 
+...
+(/tmp/hello.sh:1):
+1:  echo 1
+bashdb&amp;lt;0&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Common commands in bashdb&lt;/h2&gt;
+
+&lt;p&gt;See all debugger commands using &lt;code&gt;help&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bashdb&amp;lt;0&amp;gt; help
+Available commands:
+-------------------
+  action     condition  edit     frame    load     run     source  unalias  
+  alias      continue   enable   handle   next     search  step    undisplay
+  backtrace  debug      eval     help     print    set     step+   untrace  
+  break      delete     examine  history  pwd      shell   step-   up       
+  clear      disable    export   info     quit     show    tbreak  watch    
+  commands   display    file     kill     return   signal  trace   watche   
+  complete   down       finish   list     reverse  skip    tty   
+
+Readline command line editing (emacs/vi mode) is available.
+Type &quot;help&quot; followed by command name for full documentation.
+bashdb&amp;lt;1&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See where you are in the script using &lt;code&gt;list&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bashdb&amp;lt;1&amp;gt; list
+  1: =&amp;gt; echo 1
+  2:    echo 2
+  3:    echo 3
+  4:    echo 4
+  5:    
+bashdb&amp;lt;2&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can &lt;strong&gt;step over&lt;/strong&gt; the current line using &lt;code&gt;next&lt;/code&gt; or &lt;code&gt;n&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bashdb&amp;lt;3&amp;gt; next
+1
+(/tmp/hello.sh:2):
+2:  echo 2
+bashdb&amp;lt;4&amp;gt; list
+  1:    echo 1
+  2: =&amp;gt; echo 2
+  3:    echo 3
+  4:    echo 4
+  5:    
+bashdb&amp;lt;5&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can &lt;strong&gt;step into&lt;/strong&gt; the current line using &lt;code&gt;step&lt;/code&gt; or &lt;code&gt;s&lt;/code&gt;. This is useful to enter into a function call or a line that uses &lt;code&gt;source&lt;/code&gt; to call another script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bashdb&amp;lt;6&amp;gt; step
+2
+(/tmp/hello.sh:3):
+3:  echo 3
+bashdb&amp;lt;7&amp;gt; list
+  1:    echo 1
+  2:    echo 2
+  3: =&amp;gt; echo 3
+  4:    echo 4
+  5:    
+bashdb&amp;lt;8&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can &lt;strong&gt;step out&lt;/strong&gt; of the current function with &lt;code&gt;finish&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Other common commands include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;eval STATEMENT&lt;/code&gt; - Run a statement.
+
+&lt;ul&gt;
+&lt;li&gt;Example: &lt;code&gt;eval X=1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;print EXPR&lt;/code&gt; - Print an expression, such as a variable.
+
+&lt;ul&gt;
+&lt;li&gt;Example: &lt;code&gt;print $X&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;break&lt;/code&gt; - Set a breakpoint.
+
+&lt;ul&gt;
+&lt;li&gt;Example: &lt;code&gt;break 3&lt;/code&gt; (set breakpoint on line 3)&lt;/li&gt;
+&lt;li&gt;Example: &lt;code&gt;break /tmp/hello.sh:4&lt;/code&gt; (set breakpoint on line 4 of file &lt;code&gt;/tmp/hello&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;continue&lt;/code&gt;, &lt;code&gt;cont&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; - Step continuously until a breakpoint is hit or the script ends.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exit&lt;/code&gt; - Stop the script and exit the debugger.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  
  <entry>
@@ -2404,7 +2598,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;64&lt;/sup&gt;
+  Software&lt;sup&gt;65&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>OS Abstractions are Failing Us | DaFoster</title>
+    <title>Debugging bash scripts with the bashdb debugger | DaFoster</title>
   
   
     <meta name="author" content="David Foster">
@@ -32,6 +32,18 @@
     
     
     
+    
+      <style>
+        .warning-box {
+    background-color: #ffffe0; /* light yellow */
+    border: 1px solid lightgray;
+    padding: 5px;
+}
+.warning-box p {
+    margin: 0;
+}
+
+      </style>
     
 
     <!-- Fav and touch icons -->
@@ -172,10 +184,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">OS Abstractions are Failing Us</h1>
+    <h1 class="post-title">Debugging bash scripts with the bashdb debugger</h1>
     <div class="post-metadata">
       
-        Jun 27, 2019
+        Feb 22, 2023
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
@@ -192,32 +204,186 @@
       
     </div>
     
-    <p>In recent years I&rsquo;ve increasingly noticed software being written that cannot get the performance it needs unless it bypasses usual operating system services.</p>
+    <p>Sometimes when I have a problem with a bash script I want the ability to run each line of the script one by one to see what is wrong. There is a debugger called <a href="https://bashdb.sourceforge.net/">bashdb</a> that can be used in this way. It behaves similarly to gdb (used for debugging C and C++ programs) and pdb (used for debugging Python programs).</p>
 
-<h2>Concurrency</h2>
+<!-- 
+The following commands are tested in a Linux container created with:
+    $ docker run -it --rm ubuntu:latest
+-->
 
-<p>For example let&rsquo;s consider a program that wants to do many tasks at the same time. Traditionally you would either create multiple <strong>threads</strong> or multiple <strong>processes</strong> for each parallel line of execution. But threads and processes have a lot of overhead - in particular they take up a lot of memory - so it&rsquo;s unwise to have more than a few hundred of them. So if you have a web service handling hundreds or thousands of connections per second, you cannot effectively serve all those requests on one machine using a thread or process per connection.</p>
 
-<p>So some developers turn to writing their web servers with asynchronous I/O and <strong>green threads</strong> so that they can multiplex multiple concurrent tasks onto a single OS thread. You can run millions of these green threads concurrently per machine on modern hardware. That&rsquo;s pretty slick, at least until one of those green threads starts hogging the CPU or accidentally performs a blocking operation. Such a misbehaving green thread will block all other green threads from running, since they use cooperative multitasking and cannot be preempted.</p>
+<h2>How to install bashdb</h2>
 
-<p>Other developers turn to <strong>microthreads</strong> in languages like Go, Erlang, or Elixir<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. These environments have an in-process scheduler that multiplexes microthreads onto a single OS thread. Again you can run millions of microthreads concurrently on modern hardware. Happily microthreads <em>can</em> be preempted by the scheduler and so a misbehaving microthread won&rsquo;t interfere with other microthreads, although it may cause your server to burn CPU wastefully.</p>
+<p>First you need to determine what version of bash you are running, since you need to use a corresponding version of bashdb:</p>
 
-<h2>Disk I/O throughput</h2>
+<pre><code># bash --version
+GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+</code></pre>
 
-<p>These days our disks are solid-state drives with access times similar to RAM rather than the slower rotating magnetic platters of earlier years. Yet my understanding is that the common filesystem and socket abstractions require per-operation overhead comparable to the time spent actually performing the I/O. Yikes. Research seems to be underway considering ways to bypass various OS abstractions to get faster results.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+<p>This version of bash is 5.1.16, so we need a bashdb version 5.1.x. Let&rsquo;s download it:</p>
 
-<h2>Exciting times</h2>
+<ul>
+<li>For versions of bashdb &lt;= 5.0.x, download from: <a href="https://sourceforge.net/projects/bashdb/files/bashdb/">https://sourceforge.net/projects/bashdb/files/bashdb/</a></li>
+<li>For versions of bashdb >= 5.1.x, you must download from the associated Git branch. For example bashdb 5.1.x is in git branch <a href="https://sourceforge.net/p/bashdb/code/ci/bash-5.1/tree/">bash-5.1</a></li>
+</ul>
 
-<p>It&rsquo;s neat to be working in computing at the time when some of the fundamental abstractions are being called into question. When practitioners are receptive to change there&rsquo;s an opportunity to contribute new ideas and actually have them tried and used.</p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p><a href="https://youtu.be/JvBT4XBdoUE?t=358">The Soul of Erlang and Elixir - Saša Jurić</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p><a href="https://penberg.org/parakernel-hotos19.pdf">I/O Is Faster Than the CPU – Let&rsquo;s Partition Resources and Eliminate (Most) OS Abstractions</a><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-</ol>
+
+<div class="warning-box"><p>NOTE: The following commands are written for an Ubuntu- or Debian-based Linux distribution. Also, you may need to prefix some commands with <code>sudo</code> to avoid permission errors.</p>
 </div>
+
+
+<pre><code># apt-get update
+# apt-get install git -y
+# git clone https://git.code.sf.net/p/bashdb/code bashdb-code
+# cd bashdb-code/
+# git checkout bash-5.1
+</code></pre>
+
+<p>For bashdb >= 5.1.x, you&rsquo;ll need to build the <code>configure</code> and <code>bashdb</code> files:</p>
+
+<pre><code># apt-get update
+# apt-get install autoconf -y  # to run autogen.sh
+# apt-get install binutils -y  # to install "strings" tool, for autogen.sh
+# apt-get install make -y  # to install "make" tool
+# apt-get install texinfo -y  # to install "makeinfo" tool, for make
+# ./autogen.sh
+</code></pre>
+
+<p>You should now have a <code>bashdb</code> file in the current directory:</p>
+
+<pre><code># ls | grep bashdb
+bashdb
+bashdb-main.inc
+bashdb-main.inc.in
+bashdb-part2.sh
+bashdb-trace
+bashdb-trace.in
+bashdb.in
+</code></pre>
+
+<p>(Optional) If you have root permissions, you can install bashdb:</p>
+
+<pre><code># make install
+</code></pre>
+
+<h2>How to run bashdb</h2>
+
+<p>Let&rsquo;s create an example script to debug:</p>
+
+<pre><code># cat &lt;&lt; EOF &gt; /tmp/hello.sh
+echo 1
+echo 2
+echo 3
+echo 4
+EOF
+</code></pre>
+
+<p>If you did install bashdb in the step above, start the debugger on a Bash script at <code>/tmp/hello.sh</code> with:</p>
+
+<pre><code># bash --debugger /tmp/hello.sh 
+...
+(/tmp/hello.sh:1):
+1:  echo 1
+bashdb&lt;0&gt; 
+</code></pre>
+
+<p>If you did not install bashdb, you can run the debugger by calling the bashdb script manually:</p>
+
+<pre><code># bash ./bashdb /tmp/hello.sh 
+...
+(/tmp/hello.sh:1):
+1:  echo 1
+bashdb&lt;0&gt; 
+</code></pre>
+
+<h2>Common commands in bashdb</h2>
+
+<p>See all debugger commands using <code>help</code>:</p>
+
+<pre><code>bashdb&lt;0&gt; help
+Available commands:
+-------------------
+  action     condition  edit     frame    load     run     source  unalias  
+  alias      continue   enable   handle   next     search  step    undisplay
+  backtrace  debug      eval     help     print    set     step+   untrace  
+  break      delete     examine  history  pwd      shell   step-   up       
+  clear      disable    export   info     quit     show    tbreak  watch    
+  commands   display    file     kill     return   signal  trace   watche   
+  complete   down       finish   list     reverse  skip    tty   
+
+Readline command line editing (emacs/vi mode) is available.
+Type "help" followed by command name for full documentation.
+bashdb&lt;1&gt; 
+</code></pre>
+
+<p>See where you are in the script using <code>list</code>:</p>
+
+<pre><code>bashdb&lt;1&gt; list
+  1: =&gt; echo 1
+  2:    echo 2
+  3:    echo 3
+  4:    echo 4
+  5:    
+bashdb&lt;2&gt; 
+</code></pre>
+
+<p>You can <strong>step over</strong> the current line using <code>next</code> or <code>n</code>:</p>
+
+<pre><code>bashdb&lt;3&gt; next
+1
+(/tmp/hello.sh:2):
+2:  echo 2
+bashdb&lt;4&gt; list
+  1:    echo 1
+  2: =&gt; echo 2
+  3:    echo 3
+  4:    echo 4
+  5:    
+bashdb&lt;5&gt; 
+</code></pre>
+
+<p>You can <strong>step into</strong> the current line using <code>step</code> or <code>s</code>. This is useful to enter into a function call or a line that uses <code>source</code> to call another script:</p>
+
+<pre><code>bashdb&lt;6&gt; step
+2
+(/tmp/hello.sh:3):
+3:  echo 3
+bashdb&lt;7&gt; list
+  1:    echo 1
+  2:    echo 2
+  3: =&gt; echo 3
+  4:    echo 4
+  5:    
+bashdb&lt;8&gt; 
+</code></pre>
+
+<p>You can <strong>step out</strong> of the current function with <code>finish</code>.</p>
+
+<p>Other common commands include:</p>
+
+<ul>
+<li><code>eval STATEMENT</code> - Run a statement.
+
+<ul>
+<li>Example: <code>eval X=1</code></li>
+</ul>
+</li>
+<li><code>print EXPR</code> - Print an expression, such as a variable.
+
+<ul>
+<li>Example: <code>print $X</code></li>
+</ul>
+</li>
+<li><code>break</code> - Set a breakpoint.
+
+<ul>
+<li>Example: <code>break 3</code> (set breakpoint on line 3)</li>
+<li>Example: <code>break /tmp/hello.sh:4</code> (set breakpoint on line 4 of file <code>/tmp/hello</code>)</li>
+</ul>
+</li>
+<li><code>continue</code>, <code>cont</code>, <code>c</code> - Step continuously until a breakpoint is hit or the script ends.</li>
+<li><code>exit</code> - Stop the script and exit the debugger.</li>
+</ul>
 
 
   </div>
@@ -244,11 +410,11 @@
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2019/01/06/dependent-types-impressions-of-a-software-practitioner/" title="Dependent Types: Impressions of a software practitioner">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2022/07/10/crystal-1-3-0-released/" title="Crystal Web Archiver 1.3.0b Released!">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2020/01/18/stress/" title="Stress">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
@@ -264,7 +430,7 @@
         <p>&copy; 2023 <a href="/about/">David Foster</a>
         
          | <a href="javascript:void(window.location='x-validator-sac://open?uri='+escape(window.location))"><span class="private">Validate HTML</span></a>
-         | <a href="https://dafoster.net/articles/2019/06/27/os-abstractions-are-failing-us/"><span class="private">View in Production</span></a>
+         | <a href="https://dafoster.net/articles/2023/02/22/debugging-bash-scripts-with-the-bashdb-debugger/"><span class="private">View in Production</span></a>
          | <a href="/apps/ga-url-builder/"><span class="private">GA URL Builder</span></a>
         <br/>
            <a href="https://github.com/davidfstr/davidfstr.github.com/deployments/activity_log?environment=github-pages"><span class="private">Deployment Log</span></a>
