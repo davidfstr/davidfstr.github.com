@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Wed, 19 Jul 2023 13:42:48 +0000</pubDate>
-    <lastBuildDate>Wed, 19 Jul 2023 13:42:48 +0000</lastBuildDate>
+    <pubDate>Sat, 22 Jul 2023 12:14:49 +0000</pubDate>
+    <lastBuildDate>Sat, 22 Jul 2023 12:14:49 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -4179,7 +4179,7 @@ def warn(message):
 
 &lt;h2&gt;&lt;em&gt;To Be Continued&lt;/em&gt;&lt;/h2&gt;
 
-&lt;p&gt;I&amp;rsquo;ve got many other techniquies for designing large programs. In the next few articles I hope to share some of these with you.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve got many other techniques for designing large programs. In future articles I hope to share some of these with you.&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;

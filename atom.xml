@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2023-07-19T13:42:48+00:00</updated>
+ <updated>2023-07-22T12:14:49+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -4282,7 +4282,7 @@ def warn(message):
 
 &lt;h2&gt;&lt;em&gt;To Be Continued&lt;/em&gt;&lt;/h2&gt;
 
-&lt;p&gt;I&amp;rsquo;ve got many other techniquies for designing large programs. In the next few articles I hope to share some of these with you.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve got many other techniques for designing large programs. In future articles I hope to share some of these with you.&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr/&gt;
 &lt;ol&gt;
