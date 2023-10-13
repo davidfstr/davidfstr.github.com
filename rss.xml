@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 13 Oct 2023 14:04:25 +0000</pubDate>
-    <lastBuildDate>Fri, 13 Oct 2023 14:04:25 +0000</lastBuildDate>
+    <pubDate>Fri, 13 Oct 2023 14:13:39 +0000</pubDate>
+    <lastBuildDate>Fri, 13 Oct 2023 14:13:39 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -192,7 +192,7 @@ InfoTip=Crystal Project
 
 &lt;p&gt;When creating a desktop application for end users it&amp;rsquo;s important to get icons for your app and its documents configured correctly to provide a good user experience, but it getting those configurations correct can be challenging.&lt;/p&gt;
 
-&lt;p&gt;I&amp;rsquo;d like to file bugs on several Linux desktop environments so that future Linux application developers don&amp;rsquo;t have such a hard time getting icons setup, but right now I just don&amp;rsquo;t have the energy. Hopefully at least this blog post will help other Linux developers configure icons more quickly.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d like to file bugs on several Linux desktop environments so that future Linux application developers don&amp;rsquo;t have such a hard time getting icons setup, but right now I just don&amp;rsquo;t have the energy. Hopefully at least this blog post will help other application developers configure icons more quickly.&lt;/p&gt;
 </description>
     </item>
     

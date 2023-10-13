@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2023-10-13T14:04:25+00:00</updated>
+ <updated>2023-10-13T14:13:39+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -194,7 +194,7 @@ InfoTip=Crystal Project
 
 &lt;p&gt;When creating a desktop application for end users it&amp;rsquo;s important to get icons for your app and its documents configured correctly to provide a good user experience, but it getting those configurations correct can be challenging.&lt;/p&gt;
 
-&lt;p&gt;I&amp;rsquo;d like to file bugs on several Linux desktop environments so that future Linux application developers don&amp;rsquo;t have such a hard time getting icons setup, but right now I just don&amp;rsquo;t have the energy. Hopefully at least this blog post will help other Linux developers configure icons more quickly.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d like to file bugs on several Linux desktop environments so that future Linux application developers don&amp;rsquo;t have such a hard time getting icons setup, but right now I just don&amp;rsquo;t have the energy. Hopefully at least this blog post will help other application developers configure icons more quickly.&lt;/p&gt;
 </content>
  </entry>
  
