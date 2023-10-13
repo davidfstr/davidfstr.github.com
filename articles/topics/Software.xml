@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2023-10-13T13:43:33+00:00</updated>
+ <updated>2023-10-13T13:55:00+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -114,25 +114,25 @@ IconIndex=0
 InfoTip=Crystal Project
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram showing how to customize a folder's icon on Windows with desktop.ini&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-icon.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-icon.png&quot;&gt;&lt;img alt=&quot;Diagram showing how to customize a folder's icon on Windows with desktop.ini&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-icon.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;It&amp;rsquo;s even possible to &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#implementing-custom-verbs-for-folders-through-desktopini&quot;&gt;tell Windows to open Crystal when the folder is double-clicked on&lt;/a&gt; by setting some registry keys:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram showing how to customize a folder's open action on Windows with registry keys and desktop.ini&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open.png&quot;&gt;&lt;img alt=&quot;Diagram showing how to customize a folder's open action on Windows with registry keys and desktop.ini&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Reference explaining how to customize a folder's open action on Windows with registry keys and desktop.ini&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open-reference.png&quot; style=&quot;max-width: 100%; border: .5px solid black;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open-reference.png&quot;&gt;&lt;img alt=&quot;Reference explaining how to customize a folder's open action on Windows with registry keys and desktop.ini&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open-reference.png&quot; style=&quot;max-width: 100%; border: .5px solid black;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;However it&amp;rsquo;s still possible to navigate inside of a such a folder, notably from Open and Save dialogs, so we need another way to open projects in those contexts. My solution was to add a special &amp;ldquo;opener&amp;rdquo; file inside of a project folder which could be used to open the enclosing project:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;.crystalproj folder containing a .crystalopen opener file&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/crystalproj-contents.png&quot; style=&quot;max-width: 488px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2023/custom-file-icons-and-folder-icons/crystalproj-contents.png&quot;&gt;&lt;img alt=&quot;.crystalproj folder containing a .crystalopen opener file&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/crystalproj-contents.png&quot; style=&quot;max-width: calc(min(488px, 100%))&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Of course that &lt;code&gt;.crystalopen&lt;/code&gt; file itself needs an icon. Again you can set some registry keys to tell Windows about this new file extension and its associated icon:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram showing how to customize a file's icon on Windows with registry keys&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-icon.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-icon.png&quot;&gt;&lt;img alt=&quot;Diagram showing how to customize a file's icon on Windows with registry keys&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-icon.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;And if a &lt;code&gt;.crystalopen&lt;/code&gt; file is double-clicked we want it to open Crystal, which can be configured with more registry keys:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&quot;Diagram showing how to customize a file's open action on Windows with registry keys&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-open.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-open.png&quot;&gt;&lt;img alt=&quot;Diagram showing how to customize a file's open action on Windows with registry keys&quot; src=&quot;/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-open.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;All of these registry keys should be &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/setup/win-installer.iss#L13-L54&quot;&gt;set by the installer for the app&lt;/a&gt;.&lt;/p&gt;
 
