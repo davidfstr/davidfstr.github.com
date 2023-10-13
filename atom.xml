@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2023-10-13T14:13:39+00:00</updated>
+ <updated>2023-10-13T14:36:04+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -195,6 +195,371 @@ InfoTip=Crystal Project
 &lt;p&gt;When creating a desktop application for end users it&amp;rsquo;s important to get icons for your app and its documents configured correctly to provide a good user experience, but it getting those configurations correct can be challenging.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;d like to file bugs on several Linux desktop environments so that future Linux application developers don&amp;rsquo;t have such a hard time getting icons setup, but right now I just don&amp;rsquo;t have the energy. Hopefully at least this blog post will help other application developers configure icons more quickly.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2023/08/31/how-to-make-a-binary-deb-debian-package-using-docker</id>
+   <title>How to make a binary .deb Debian package using Docker</title>
+   <published>2023-08-31T00:00:00+00:00</published>
+   <updated>2023-08-31T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2023/08/31/how-to-make-a-binary-deb-debian-package-using-docker/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;The official instructions for making a .deb Debian package&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; I found to be
+rather long-winded and fiddly, so I came up with a hopefully
+more-straightforward method of building a .deb package, using Docker.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;deb-anatomy&quot;&gt;&lt;/a&gt;What&amp;rsquo;s in a binary .deb package?&lt;/h2&gt;
+
+&lt;p&gt;A binary .deb package is kind of like a .zip file whose contents are unpacked
+to &lt;code&gt;/&lt;/code&gt; during the installation process. For example, a simple .deb package that
+installs a &lt;code&gt;hello&lt;/code&gt; program to &lt;code&gt;/usr/bin&lt;/code&gt; might have the following
+structure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ dpkg -c hello_1.0-1_darwin-amd64.deb  # show contents of .deb package
+./usr/
+./usr/bin/
+./usr/bin/hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A .deb package also contains a &lt;strong&gt;control file&lt;/strong&gt; with metadata describing the package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ cat ./DEBIAN/control
+Package: hello
+Version: 1.0-1
+Section: misc
+Priority: optional
+Architecture: all
+Maintainer: David Foster &amp;lt;david@example.com&amp;gt;
+Description: A program that prints a hello world message and exits.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;How can Docker be used to build a binary .deb package?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you make a Dockerfile that builds and installs the &lt;code&gt;hello&lt;/code&gt; program,
+based on the official build and install instructions for the program.
+Such a Dockerfile might look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;dockerfile&quot;&gt;FROM debian:latest
+
+# Install build dependencies
+RUN apt-get update
+RUN apt-get install build-essential -y  # install gcc
+
+# Download source code
+COPY ./hello.c /usr/src/
+
+# Compile the binary (AKA: make)
+RUN gcc -o /tmp/hello /usr/src/hello.c
+
+# Install the binary (AKA: make install)
+RUN cp /tmp/hello /usr/bin/hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you build a Docker image from such a Dockerfile, each capitalized
+command in the Dockerfile (like &lt;code&gt;RUN&lt;/code&gt; and &lt;code&gt;COPY&lt;/code&gt;) creates a separate &lt;strong&gt;layer&lt;/strong&gt;
+which contains the files created by the command.&lt;/p&gt;
+
+&lt;p&gt;Notably, the last &lt;code&gt;RUN&lt;/code&gt; command above which actually installs the &lt;code&gt;hello&lt;/code&gt; binary
+creates a layer containing &lt;em&gt;exactly those files which should be installed&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;If we could extract the files from that &amp;ldquo;install&amp;rdquo; layer then we&amp;rsquo;d have exactly
+the set of files that a &lt;code&gt;hello&lt;/code&gt; .deb package should install. It turns out we &lt;em&gt;can&lt;/em&gt;!&lt;/p&gt;
+
+&lt;h2&gt;Extracting the installed files from a Docker image layer&lt;/h2&gt;
+
+&lt;p&gt;First build the Docker image from the Dockerfile:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ docker build -t hello-build:latest .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then extract the contents of all Docker image layers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ mkdir build
+$ docker save -o build/hello-build.tar hello-build:latest
+$ cd build
+$ tar xf hello-build.tar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see a directory structure like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ tree
+.
+├── 05bc8a33fbd971aa8c6d6e3613ea41f0477e4507229e6072c43f3ef61b549b82
+│   ├── VERSION
+│   ├── json
+│   └── layer.tar
+├── 2745707919ffe930cb00def7c34e4e9bbac8e30b99f66e631edb2eb6b3a5b89c
+│   ├── VERSION
+│   ├── json
+│   └── layer.tar
+├── 3bda020d2a872426189c67863e8add029463c14957b9fa17690e591a6a1455e2
+│   ├── VERSION
+│   ├── json
+│   └── layer.tar
+├── 440d2890e2b9b3ce91db819ee42fb77a807daf2f46f02579a4c0df9274eebc13
+│   ├── VERSION
+│   ├── json
+│   └── layer.tar
+├── 8c7b379494075edb4563162a9e844d548d797a470cb55c3f49f0969b9437b1e4.json
+├── 9bc167af8f88fb2b70b47cc2b2be68a8be5862e49572353c13075eb5ce8845bc
+│   ├── VERSION
+│   ├── json
+│   └── layer.tar
+├── b6100c2b22f88d1698c24d418c989bfe0174d7a4e20ca7d60824dc36d1013638
+│   ├── VERSION
+│   ├── json
+│   └── layer.tar
+├── hello-build.tar
+├── manifest.json
+└── repositories
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each of the directories with a very long name corresponds to a Docker image layer.
+The contents of each directory is the set of files the layer contains.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;manifest.json&lt;/code&gt; contains information about which layer corresponds to
+which directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ cat manifest.json | jq
+[
+  {
+    &quot;Config&quot;: &quot;8c7b379494075edb4563162a9e844d548d797a470cb55c3f49f0969b9437b1e4.json&quot;,
+    &quot;RepoTags&quot;: [
+      &quot;hello-build:latest&quot;
+    ],
+    &quot;Layers&quot;: [
+      &quot;05bc8a33fbd971aa8c6d6e3613ea41f0477e4507229e6072c43f3ef61b549b82/layer.tar&quot;,
+      &quot;b6100c2b22f88d1698c24d418c989bfe0174d7a4e20ca7d60824dc36d1013638/layer.tar&quot;,
+      &quot;9bc167af8f88fb2b70b47cc2b2be68a8be5862e49572353c13075eb5ce8845bc/layer.tar&quot;,
+      &quot;440d2890e2b9b3ce91db819ee42fb77a807daf2f46f02579a4c0df9274eebc13/layer.tar&quot;,
+      &quot;2745707919ffe930cb00def7c34e4e9bbac8e30b99f66e631edb2eb6b3a5b89c/layer.tar&quot;,
+      &quot;3bda020d2a872426189c67863e8add029463c14957b9fa17690e591a6a1455e2/layer.tar&quot;
+    ]
+  }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now remember, we want to find the files in the layer for the &lt;em&gt;install&lt;/em&gt; step in the
+Dockerfile, which happens to be the last step and thus also the last layer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;dockerfile&quot;&gt;# Install the binary (AKA: make install)
+RUN cp /tmp/hello /usr/bin/hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we just need to look at the last item in the &lt;code&gt;&quot;Layers&quot;&lt;/code&gt; key from the
+&lt;code&gt;manifest.json&lt;/code&gt; file to find the directory we want:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&quot;3bda020d2a872426189c67863e8add029463c14957b9fa17690e591a6a1455e2/layer.tar&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So let&amp;rsquo;s unpack the files for that layer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ export LAYER_TARFILE=&quot;3bda020d2a872426189c67863e8add029463c14957b9fa17690e591a6a1455e2/layer.tar&quot;
+$ mkdir layer
+$ tar Cxf layer $LAYER_TARFILE
+$ cd layer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And indeed we see the installed files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ tree
+.
+└── usr
+    └── bin
+        └── hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Building a .deb package from a set of files&lt;/h2&gt;
+
+&lt;p&gt;Remember that a binary .deb package is built from a directory of files to install
+&lt;em&gt;plus&lt;/em&gt; &lt;a href=&quot;#deb-anatomy&quot;&gt;a &lt;code&gt;DEBIAN&lt;/code&gt; directory containing at least a &lt;code&gt;control&lt;/code&gt; file&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Write a &lt;code&gt;control&lt;/code&gt; file&lt;/h3&gt;
+
+&lt;p&gt;Since we already have a directory of files to install from the last step,
+we just need to add a &lt;code&gt;DEBIAN&lt;/code&gt; directory and write a &lt;code&gt;control&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ mkdir DEBIAN
+$ cat &amp;gt; DEBIAN/control &amp;lt;&amp;lt;EOF
+Package: hello
+Version: 1.0
+Section: misc
+Priority: optional
+Architecture: all
+Maintainer: David Foster &amp;lt;david@example.com&amp;gt;
+Description: Prints a hello world message and exits.
+EOF
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here are some important parameters in a typical &lt;code&gt;control&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-package&quot;&gt;Package&lt;/a&gt;&lt;/strong&gt; (required) &amp;ndash; Name of the package. Used to refer to it as a dependency.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-controlfields.html#version&quot;&gt;Version&lt;/a&gt;&lt;/strong&gt; (required) &amp;ndash; Version of the package.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-archive.html#s-subsections&quot;&gt;Section&lt;/a&gt;&lt;/strong&gt; (recommended) &amp;ndash; &lt;code&gt;misc&lt;/code&gt; is fine, although a more targeted category
+may make your package more discoverable if you upload it to a package archive.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-archive.html#s-priorities&quot;&gt;Priority&lt;/a&gt;&lt;/strong&gt; (recommended) &amp;ndash; &lt;code&gt;optional&lt;/code&gt; is probably what you want.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-customized-programs.html#s-arch-spec&quot;&gt;Architecture&lt;/a&gt;&lt;/strong&gt; (required) &amp;ndash; &lt;code&gt;all&lt;/code&gt; disables machine architecture checking.
+Get a list of valid architectures for your current machine using &lt;code&gt;dpkg-architecture -L&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-maintainer&quot;&gt;Maintainer&lt;/a&gt;&lt;/strong&gt; (required) &amp;ndash; The package maintainer’s name and email address.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-description&quot;&gt;Description&lt;/a&gt;&lt;/strong&gt; (required) &amp;ndash; The short description and long description of the package.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps&quot;&gt;Depends&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Names other packages to install alongside this package.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps&quot;&gt;Recommends&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Names other packages to install by default alongside this package unless
+&lt;code&gt;--no-install-recommends&lt;/code&gt; is passed to &lt;code&gt;apt-get install&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.debian.org/doc/debian-policy/ch-relationships.html#s-conflicts&quot;&gt;Conflicts&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Names other packages whose presence will prevent this package from
+being installed.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Build the &lt;code&gt;.deb&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;With the &lt;code&gt;control&lt;/code&gt; file written, we now have all files that we want to put into
+the &lt;code&gt;.deb&lt;/code&gt; package. So let&amp;rsquo;s actually bundle it into a &lt;code&gt;.deb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ docker run -it -v .:/home --name deb-builder debian:latest
+$$ dpkg-deb --root-owner-group --build home
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Inspect the &lt;code&gt;.deb&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;You can inspect the contents of the &lt;code&gt;.deb&lt;/code&gt; to verify that it looks reasonable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$$ dpkg -c home.deb | more  # (Optional) verify contents look OK
+drwxr-xr-x root/root         0 2023-09-08 18:50 ./
+drwxr-xr-x root/root         0 2023-07-25 00:00 ./usr/
+drwxr-xr-x root/root         0 2023-09-08 18:46 ./usr/bin/
+-rwxr-xr-x root/root     15952 2023-09-08 18:46 ./usr/bin/hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Find and fix errors with Lintian&lt;/h3&gt;
+
+&lt;p&gt;You can also use the Lintian tool to look for problems with your package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$$ apt-get update &amp;amp;&amp;amp; apt-get install lintian -y
+$$ lintian --tag-display-limit 0 home.deb  # (Optional) verify output looks OK; some ERRs are OK
+E: hello: arch-independent-package-contains-binary-or-object [usr/bin/hello]
+E: hello: extended-description-is-empty
+E: hello: no-changelog usr/share/doc/hello/changelog.gz (native package)
+E: hello: no-copyright-file
+E: hello: unstripped-binary-or-object [usr/bin/hello]
+W: hello: no-manual-page [usr/bin/hello]
+W: hello: undeclared-elf-prerequisites (libc.so.6) [usr/bin/hello]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each line starting with &lt;code&gt;E&lt;/code&gt; is an &lt;strong&gt;error&lt;/strong&gt;, and each line starting with &lt;code&gt;W&lt;/code&gt; is a &lt;strong&gt;warning&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can get a detailed description of each error by adding running lintian
+with the &lt;code&gt;-i&lt;/code&gt; option:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$$ lintian -i --tag-display-limit 0 home.deb
+E: hello: arch-independent-package-contains-binary-or-object [usr/bin/hello]
+N: 
+N:   The package contains a binary or object file but is tagged Architecture: all.
+N:   
+N:   If this package contains binaries or objects for cross-compiling or binary blobs for other purposes independent of the
+N:   host architecture (such as BIOS updates or firmware), please add a Lintian override.
+N: 
+N:   Visibility: error
+N:   Show-Always: no
+N:   Check: binaries/architecture
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s quite possible the .deb may work as-is even if there are errors.
+However it&amp;rsquo;s best to fix as many of the errors and warnings as possible.&lt;/p&gt;
+
+&lt;p&gt;For example, to fix the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;W: hello: undeclared-elf-prerequisites (libc.so.6) [usr/bin/hello]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can add &lt;code&gt;Depends: libc6&lt;/code&gt; to the &lt;code&gt;control&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h3&gt;Don&amp;rsquo;t install to &lt;code&gt;/usr/local&lt;/code&gt;!&lt;/h3&gt;
+
+&lt;p&gt;A common type of error you &lt;em&gt;do&lt;/em&gt; need to fix happens when you try to install
+something into &lt;code&gt;/usr/local&lt;/code&gt;, because Debian reserves the &lt;code&gt;local&lt;/code&gt; directory
+for its own purposes. For example if we installed &lt;code&gt;hello&lt;/code&gt; to &lt;code&gt;/usr/local&lt;/code&gt;,
+we&amp;rsquo;d see Lintian errors that look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;E: hello: dir-in-usr-local [usr/local/bin/]
+E: hello: file-in-usr-local [usr/local/bin/hello]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Fix those errors by altering the build process in your Dockerfile to install to
+&lt;code&gt;/usr/bin&lt;/code&gt; rather than to &lt;code&gt;/usr/local/bin&lt;/code&gt;. For many Linux programs built
+using a line like &lt;code&gt;./configure&lt;/code&gt;, you can usually alter that line to be
+&lt;code&gt;./configure --prefix=/usr&lt;/code&gt; to configure the install process to install to
+&lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Copy out the &lt;code&gt;.deb&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Once you&amp;rsquo;re happy with the &lt;code&gt;.deb&lt;/code&gt; package, copy it out of your build container,
+give it a proper name, and exit the build container:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$$ cp home.deb /home/hello_1.0_all.deb
+$$ exit
+$ ls
+hello_1.0_all.deb
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;If you need to reenter the build container later, use:
+&lt;code&gt;console
+$ docker start -i deb-builder
+&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Testing your .deb package&lt;/h3&gt;
+
+&lt;p&gt;It&amp;rsquo;s a good idea to verify that package is installable.
+You can do that in another fresh container:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;$ docker run -it -v .:/home --name deb-tester debian:latest
+$$ apt-get update
+$$ apt-get install ./home/hello_1.0_all.deb -y
+$$ which hello  # ensure installed
+/usr/bin/hello
+$$ hello  # ensure runs
+Hello world!
+$$ exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;If you need to reenter the testing container later, use:
+&lt;code&gt;console
+$ docker start -i deb-tester
+&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;Putting it all together&lt;/h2&gt;
+
+&lt;p&gt;A complete example of all the files to build the &lt;code&gt;hello&lt;/code&gt; .deb package
+is in the following GitHub repository:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/davidfstr/hello-deb-package#readme&quot;&gt;hello-deb-package&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;!--
+And here is a real-world example of creating a .deb package to install 
+Python 2.7 in Debian 12 Bookworm:
+
+TODO
+--&gt;
+
+
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://wiki.debian.org/Packaging&quot;&gt;https://wiki.debian.org/Packaging&lt;/a&gt;&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
 </content>
  </entry>
  
@@ -2782,7 +3147,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;66&lt;/sup&gt;
+  Software&lt;sup&gt;67&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
