@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Custom file icons, folder icons, and app icons on different operating systems | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YVPE3YRSVP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YVPE3YRSVP');
+</script>
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+
+    <!-- Fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1 class="post-title">Custom file icons, folder icons, and app icons on different operating systems</h1>
+    <div class="post-metadata">
+      
+        Oct 12, 2023
+       &ndash; Filed as: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>66</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
+        
+      </span>
+      
+    </div>
+    
+    <p>I recently extended my <a href="/projects/crystal-web-archiver/">website downloader, Crystal</a>, so that the projects it creates have a proper icon on macOS, Windows, and Linux. It was a lot more challenging than I expected!</p>
+
+<p>Crystal organizes a group of downloaded web pages into a <strong>project</strong>, which is a special folder containing a particular arrangement of files:</p>
+
+<pre><code>$ tree xkcd.crystalproj
+xkcd.crystalproj      ← project
+├── database.sqlite   ← web page metadata
+└── revisions
+    ├── 1   ← web page #1 content
+    ├── 2   ← web page #2 content
+    ├── 3   ← web page #3 content
+    ├── 4   ← web page #4 content
+    └── 5   ← web page #5 content
+</code></pre>
+
+<p>My goal was to make each of these projects appear as a <em>file</em>, rather than as a folder, and to open in Crystal automatically when it is double-clicked on:</p>
+
+<p><img src="/assets/2023/custom-file-icons-and-folder-icons/crystalproj.png" alt="A project" /><br/>
+<em>Looks and behaves like a file, but is secretly a folder!</em></p>
+
+<h2>Icons in macOS</h2>
+
+<p>On macOS it&rsquo;s easy to get projects to behave the way I wanted. It&rsquo;s actually common on macOS for certain types of folders - called <a href="https://en.wikipedia.org/wiki/Bundle_(macOS)">bundles</a> - to behave like files. For example apps on macOS are themselves stored as bundles with the <code>.app</code> extension.</p>
+
+<p>To tell macOS that folders ending with <code>.crystalproj</code> are bundles I added the following to Crystal&rsquo;s <code>Info.plist</code> file, which is included in all macOS applications:</p>
+
+<pre><code class="xml">&lt;key&gt;CFBundleDocumentTypes&lt;/key&gt;
+&lt;array&gt;
+    &lt;dict&gt;
+        &lt;key&gt;CFBundleTypeExtensions&lt;/key&gt;
+        &lt;array&gt;
+            &lt;string&gt;crystalproj&lt;/string&gt;
+        &lt;/array&gt;
+        &lt;key&gt;CFBundleTypeIconFile&lt;/key&gt;
+        &lt;string&gt;DocIconMac.icns&lt;/string&gt;
+        &lt;key&gt;CFBundleTypeName&lt;/key&gt;
+        &lt;string&gt;Crystal Project&lt;/string&gt;
+        &lt;key&gt;CFBundleTypeRole&lt;/key&gt;
+        &lt;string&gt;Editor&lt;/string&gt;
+        &lt;key&gt;LSTypeIsPackage&lt;/key&gt;
+        &lt;true/&gt;
+    &lt;/dict&gt;
+&lt;/array&gt;
+</code></pre>
+
+<p>The important parts of this <code>Info.plist</code> are:</p>
+
+<ul>
+<li>CFBundleTypeExtensions = [&lsquo;crystalproj&rsquo;]
+
+<ul>
+<li>Defines the extension used to recognize a project</li>
+</ul>
+</li>
+<li>LSTypeIsPackage = true
+
+<ul>
+<li>Says that a project is a bundle and therefore should be treated as a file even though it is a folder</li>
+</ul>
+</li>
+<li>CFBundleTypeIconFile = &ldquo;DocIconMac.icns&rdquo;
+
+<ul>
+<li>Defines the name of the <code>.icns</code> icon file to use for a project</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Setting the app icon requires similar changes to the <code>Info.plist</code>:</p>
+
+<pre><code>&lt;key&gt;CFBundleIconFile&lt;/key&gt;
+&lt;string&gt;AppIconMac.icns&lt;/string&gt;
+</code></pre>
+
+<p>Simple.</p>
+
+<h2>Icons in Windows</h2>
+
+<p>On Windows there is no concept of a &ldquo;bundle&rdquo;. However it is possible to give a folder a custom icon by putting <a href="https://learn.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini">a specially crafted <code>desktop.ini</code> file</a> inside of it:</p>
+
+<pre><code class="console">$ cat xkcd.crystalproj/desktop.ini
+[.ShellClassInfo]
+DirectoryClass=crystalproj
+ConfirmFileOp=0
+IconFile=icons\docicon.ico
+IconIndex=0
+InfoTip=Crystal Project
+</code></pre>
+
+<p><img alt="Diagram showing how to customize a folder's icon on Windows with desktop.ini" src="/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-icon.png" style="max-width: 100%" /></p>
+
+<p>It&rsquo;s even possible to <a href="https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#implementing-custom-verbs-for-folders-through-desktopini">tell Windows to open Crystal when the folder is double-clicked on</a> by setting some registry keys:</p>
+
+<p><img alt="Diagram showing how to customize a folder's open action on Windows with registry keys and desktop.ini" src="/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open.png" style="max-width: 100%" /></p>
+
+<p><img alt="Reference explaining how to customize a folder's open action on Windows with registry keys and desktop.ini" src="/assets/2023/custom-file-icons-and-folder-icons/windows-customize-folder-open-reference.png" style="max-width: 100%; border: .5px solid black;" /></p>
+
+<p>However it&rsquo;s still possible to navigate inside of a such a folder, notably from Open and Save dialogs, so we need another way to open projects in those contexts. My solution was to add a special &ldquo;opener&rdquo; file inside of a project folder which could be used to open the enclosing project:</p>
+
+<p><img alt=".crystalproj folder containing a .crystalopen opener file" src="/assets/2023/custom-file-icons-and-folder-icons/crystalproj-contents.png" style="max-width: 488px" /></p>
+
+<p>Of course that <code>.crystalopen</code> file itself needs an icon. Again you can set some registry keys to tell Windows about this new file extension and its associated icon:</p>
+
+<p><img alt="Diagram showing how to customize a file's icon on Windows with registry keys" src="/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-icon.png" style="max-width: 100%" /></p>
+
+<p>And if a <code>.crystalopen</code> file is double-clicked we want it to open Crystal, which can be configured with more registry keys:</p>
+
+<p><img alt="Diagram showing how to customize a file's open action on Windows with registry keys" src="/assets/2023/custom-file-icons-and-folder-icons/windows-customize-file-open.png" style="max-width: 100%" /></p>
+
+<p>All of these registry keys should be <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/setup/win-installer.iss#L13-L54">set by the installer for the app</a>.</p>
+
+<h2>Icons in Linux</h2>
+
+<p>Oh Linux&hellip; Icons for files, folders, and apps are displayed by the <strong>desktop environment</strong>, and multiple such desktop environments exist for Linux. The most common ones (in 2023) seem to be <strong>GNOME 3</strong> and <strong>KDE</strong>, but there&rsquo;s also xfce, MATE (GNOME 2), and Budgie, among others. Most of these desktop environments strive to implement the <a href="https://specifications.freedesktop.org/">Freedesktop Specifications</a> for defining file types &amp; icons, but with varying degrees of compatibility.</p>
+
+<p>According to the <a href="https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html">Icon Theme Specification</a>, which is one of the Freedesktop Specifications, an application developer <em>should</em> be able to install icons for file types to <!-- known locations in --> a special &ldquo;hicolor&rdquo; theme which all other themes must eventually inherit from. But there are some problems:</p>
+
+<ul>
+<li><a href="https://askubuntu.com/questions/52138/how-do-i-change-the-icon-for-a-particular-file-type/752316#752316">GNOME doesn&rsquo;t seem to implement theme inheritance correctly</a>, so icons installed in the &ldquo;hicolor&rdquo; theme aren&rsquo;t picked up by other themes. So instead of installing there I wrote a script that <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/install.py#L107-L230">installed icons to every theme on the user&rsquo;s system</a>. <a href="https://askubuntu.com/questions/1486524/how-to-set-the-icon-for-a-file-extension-in-a-portable-way-without-sudo">Nobody on StackOverflow</a> has been able to find a better solution so far.</li>
+<li>GNOME stores custom icon references for folders in <a href="https://askubuntu.com/a/1235178/1724736">the GIO database</a> but KDE (and the Freedesktop Specification) use <a href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">.directory files</a>.</li>
+<li>GNOME has not one but <em>two</em> GIO attributes for storing custom icon references, and not all programs recognize both of them:
+
+<ul>
+<li>The <code>metadata::custom-icon-name</code> key references the name of an icon installed to a theme.
+
+<ul>
+<li>However the Desktop Icons GNOME Shell Extension, which is responsible for displaying icons on the desktop, does not understand this key!</li>
+</ul>
+</li>
+<li>The <code>metadata::custom-icon</code> key references a single icon file.
+
+<ul>
+<li>All programs in GNOME seem to understand this kind of key so long as you use an absolute <code>file://</code> URL rather than an absolute or relative file path.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Some programs only recognize PNG icons and other programs only recognize SVG icons, so <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/install.py#L144-L151">you must install both PNG and SVG versions of each icon</a>.
+
+<ul>
+<li>In particular some programs in KDE only seem to recognize SVG icons even though the <a href="https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html">Icon Theme Specification</a> implies that support for PNG icons is mandatory.</li>
+<li>GNOME by contrast seems to prefer PNG icons.</li>
+<li>If you started with only a raster version of an icon, as I did, you&rsquo;ll have to vectorize the icon to make it an SVG. I had some success using the <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/resources/application-vnd.crystal.opener.svg-README.txt#L4-L11">Adobe Express PNG to SVG converter tool</a> to make an initial conversion and <a href="https://inkscape.org/">Inkscape</a> for touching it up.</li>
+</ul>
+</li>
+<li>Some programs don&rsquo;t notice new icons immediately after installing them.
+
+<ul>
+<li>KDE&rsquo;s desktop, <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/install.py#L232-L261">Plasma, must be restarted</a> before it notices new icons.</li>
+<li>KDE&rsquo;s file manager Dolphin doesn&rsquo;t seem to notice new icons until it is restarted. Unfortunately I haven&rsquo;t found a safe way to restart Dolphin without losing information about the windows and tabs it has open.</li>
+</ul>
+</li>
+<li>Some programs - notably Open and Save dialogs - aren&rsquo;t able to scale icons to the size they expect, so <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/install.py#L264-L288">you must provide prescaled versions of each icon</a>.
+
+<ul>
+<li>Scaling SVG icons isn&rsquo;t particularly straightforward, but I managed to do so with the <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/resources/application-vnd.crystal.opener.svg-README.txt#L17">rconvert-svg tool</a>.</li>
+</ul>
+</li>
+<li>Icons for apps on the desktop don&rsquo;t show up correctly in GNOME unless you <a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/147adc7bea1fa8d278258e75be3e51fd26892bfa/src/crystal/install.py#L84-L97">set the <code>metadata::trusted</code> GIO attribute on it</a>.</li>
+<li>There are probably even more issues in desktop environments other than GNOME 3 and KDE, but I did not test any additional desktop environments.</li>
+</ul>
+
+
+<p>In short, my experience in getting icons to work in Linux has been a big poorly-documented mess. But after 2 weeks I did succeed!</p>
+
+<h2>Conclusions</h2>
+
+<p>When creating a desktop application for end users it&rsquo;s important to get icons for your app and its documents configured correctly to provide a good user experience, but it getting those configurations correct can be challenging.</p>
+
+<p>I&rsquo;d like to file bugs on several Linux desktop environments so that future Linux application developers don&rsquo;t have such a hard time getting icons setup, but right now I just don&rsquo;t have the energy. Hopefully at least this blog post will help other Linux developers configure icons more quickly.</p>
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div id="subscribe-block" class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://mastodon.world/@davidfstr">
+  <img src="/assets/mastodon-icon-48x48.png" alt="Mastodon icon, by Icons8." width="16" height="16" />Subscribe (Mastodon)
+</a>
+<a class="subscribe" href="https://twitter.com/davidfstr">
+  <img src="/assets/twitter-icon-16x16.png" alt="Twitter icon" width="16" height="16" />Subscribe (Twitter)
+</a>
+<a class="subscribe" href="feed://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="RSS icon" width="14" height="14" />Subscribe (RSS)
+</a>
+<a class="subscribe" href="mailto:add@rssby.email?body=feed://dafoster.net/atom.xml&subject=Subscribe">
+  <img src="/assets/mail-48x48.png" alt="Email icon, by Freepik at Flaticon.com" width="18" height="18" style="margin-left: -2px;" />Subscribe (Email)
+</a>
+
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2023/02/22/debugging-bash-scripts-with-the-bashdb-debugger/" title="Debugging bash scripts with the bashdb debugger">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2023 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
