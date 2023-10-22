@@ -34,6 +34,7 @@ https://dafoster.net/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2023/10/20/debugging-a-deadlock-in-python/
 https://dafoster.net/articles/2023/10/12/custom-file-icons-and-folder-icons/
 https://dafoster.net/articles/2023/08/31/how-to-make-a-binary-deb-debian-package-using-docker/
 https://dafoster.net/articles/2023/02/22/debugging-bash-scripts-with-the-bashdb-debugger/

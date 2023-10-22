@@ -6,14 +6,316 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 13 Oct 2023 14:36:04 +0000</pubDate>
-    <lastBuildDate>Fri, 13 Oct 2023 14:36:04 +0000</lastBuildDate>
+    <pubDate>Sun, 22 Oct 2023 15:10:58 +0000</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2023 15:10:58 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Debugging a deadlock in Python</title>
+      <link>https://dafoster.net/articles/2023/10/20/debugging-a-deadlock-in-python/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2023/10/20/debugging-a-deadlock-in-python</guid>
+      <description>&lt;p&gt;I recently encountered a deadlock while running the automated tests of my &lt;a href=&quot;/projects/crystal-web-archiver/&quot;&gt;website downloader, Crystal&lt;/a&gt;. The process for investigating and fixing this deadlock was interesting, so I thought I&amp;rsquo;d share it:&lt;/p&gt;
+
+&lt;h2&gt;What does a deadlock look like?&lt;/h2&gt;
+
+&lt;p&gt;One day after making some changes to my program, when I ran the program&amp;rsquo;s automated tests the program just completely froze, becoming unresponsive to all input and not providing any further output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ crystal --test
+...
+======================================================================
+RUNNING: test_some_tasks_may_complete_immediately (crystal.tests.test_tasks)
+----------------------------------------------------------------------
+    &quot;GET /_/https/example.com/ HTTP/1.1&quot; 404 -
+    *** Requested resource not in archive: https://example.com/
+    &quot;GET /_/https/xkcd.com/1/ HTTP/1.1&quot; 200 -
+⚠️ No further output printed. No further input accepted. Program is stuck.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To investigate why the program was frozen I wanted to &lt;strong&gt;see exactly which lines of code the program was stuck on&lt;/strong&gt;. Python has a useful &lt;a href=&quot;https://docs.python.org/3/library/faulthandler.html&quot;&gt;faulthandler&lt;/a&gt; module in the standard library that, among other things, can start listening for various Unix signals and print out a traceback showing the line of code being executed on all threads.&lt;/p&gt;
+
+&lt;p&gt;To enable the faulthandler when running a program you can use the &lt;code&gt;PYTHONFAULTHANDLER&lt;/code&gt; environment variable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ PYTHONFAULTHANDLER=1 crystal --test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then after the program becomes stuck, you can open a new terminal window and send a SIGABRT signal to the stuck program to trigger the faulthandler:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kill -SIGABRT 7984  # 7984 = PID of the python process
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When triggered on the Crystal program, the faulthandler printed tracebacks like:&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+    faulthandler traceback
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+    &lt;pre&gt;&lt;code&gt;======================================================================
+RUNNING: test_some_tasks_may_complete_immediately (crystal.tests.test_tasks)
+----------------------------------------------------------------------
+    &quot;GET /_/https/example.com/ HTTP/1.1&quot; 404 -
+    *** Requested resource not in archive: https://example.com/
+    &quot;GET /_/https/xkcd.com/1/ HTTP/1.1&quot; 200 -
+Fatal Python error: Aborted
+
+Thread 0x0000700058d9b000 (most recent call first):
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 111 in acquire
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 134 in __enter__
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 577 in __new__
+  File &quot;/Users/me/Crystal/src/crystal/util/progress.py&quot;, line 143 in __init__
+  ...
+
+Thread 0x0000700057d98000 (most recent call first):
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 111 in acquire
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 134 in __enter__
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/_monitor.py&quot;, line 66 in run
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 973 in _bootstrap_inner
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 930 in _bootstrap
+
+(... 🤔 62 copies of the above paragraph ...)
+
+Thread 0x0000700017c55000 (most recent call first):
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/selectors.py&quot;, line 416 in select
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socketserver.py&quot;, line 232 in serve_forever
+  File &quot;/Users/me/Crystal/src/crystal/tests/test_download_body.py&quot;, line 129 in do_serve_forever
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 910 in run
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 973 in _bootstrap_inner
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 930 in _bootstrap
+
+Thread 0x000070000ab28000 (most recent call first):
+  File &quot;/Users/me/Crystal/src/crystal/tests/util/runner.py&quot;, line 130 in run
+  File &quot;/Users/me/Crystal/src/crystal/util/xthreading.py&quot;, line 101 in wrapper
+  File &quot;/Users/me/Crystal/src/crystal/tests/util/runner.py&quot;, line 49 in run_test
+  File &quot;/Users/me/Crystal/src/crystal/util/xthreading.py&quot;, line 101 in wrapper
+  File &quot;/Users/me/Crystal/src/crystal/tests/index.py&quot;, line 107 in _run_tests
+  File &quot;/Users/me/Crystal/src/crystal/tests/index.py&quot;, line 80 in run_tests
+  File &quot;/Users/me/Crystal/src/crystal/util/xthreading.py&quot;, line 101 in wrapper
+  File &quot;/Users/me/Crystal/src/crystal/__main__.py&quot;, line 314 in bg_task
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 910 in run
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 973 in _bootstrap_inner
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 930 in _bootstrap
+
+Current thread 0x000000011b0405c0 (most recent call first):
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/wx/core.py&quot;, line 2262 in MainLoop
+  File &quot;/Users/me/Crystal/src/crystal/__main__.py&quot;, line 323 in _main
+  File &quot;/Users/me/Crystal/src/crystal/__main__.py&quot;, line 45 in main
+  File &quot;/Users/me/Crystal/venv3.9/bin/crystal&quot;, line 6 in &amp;lt;module&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Notice in the traceback above that several of the stuck threads are at &lt;code&gt;tqdm/std.py&quot;, line 111 in acquire&lt;/code&gt;, which is trying to acquire a low-level &lt;a href=&quot;https://docs.python.org/3/library/threading.html#threading.RLock&quot;&gt;threading.RLock&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;When there is at least one thread trying to acquire a lock and not making any progress, there&amp;rsquo;s probably a deadlock.&lt;/strong&gt; So the program definitely seems to be deadlocked.&lt;/p&gt;
+
+&lt;h2&gt;Isolating and fixing a deadlock&lt;/h2&gt;
+
+&lt;p&gt;To debug further, it would be &lt;strong&gt;useful for the program to detect when it cannot acquire the lock it wants and then immediately print out:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;the traceback which is trying to acquire the lock&lt;/strong&gt; and&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the traceback which is currently holding the lock&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;So I made some modifications around the code that acquires/releases the lock to log that information:&lt;/p&gt;
+
+&lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+    Code to add deadlock detection and logging to lock acquire &amp; release
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;✚ import threading
+✚ import traceback
+
+class TqdmDefaultWriteLock(object):
+    th_lock = TRLock()
+✚   th_lock_holders = []  # type: List[Tuple[threading.Thread, traceback.StackSummary]]
+
+    def acquire(self, *a, **k):
+✚       if 'timeout' not in k:
+✚           k['timeout'] = 5.0  # seconds
+
+        for lock in self.locks:
+            ok = lock.acquire(*a, **k)
+✚           if not ok:
+✚               print(
+✚                   f'*** TqdmDefaultWriteLock: Failed to acquire lock in '
+✚                   f'{k[&quot;timeout&quot;]} seconds. '
+✚                   f'Lock holder is {TqdmDefaultWriteLock.th_lock_holders[-1][0]} at:\n'
+✚                   f'{&quot;&quot;.join(TqdmDefaultWriteLock.th_lock_holders[-1][1])}')
+✚               print(f'*** New acquirer is:\n{&quot;&quot;.join(traceback.format_stack())}')
+✚               raise AssertionError('Failed to acquire TqdmDefaultWriteLock')
+
+✚       TqdmDefaultWriteLock.th_lock_holders.append((
+✚           threading.current_thread(),
+✚           traceback.format_stack()
+✚       ))
+
+    def release(self):
+✚       TqdmDefaultWriteLock.th_lock_holders.pop()
+
+        for lock in self.locks[::-1]:  # Release in inverse order of acquisition
+            lock.release()
+&lt;/code&gt;&lt;/pre&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;With those modifications in place, I can pinpoint the smoking gun:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;======================================================================
+RUNNING: test_project_opens_as_readonly_when_project_is_on_readonly_filesystem (crystal.tests.test_readonly_mode)
+----------------------------------------------------------------------
+*** TqdmDefaultWriteLock: Failed to acquire lock in 5.0 seconds. Lock holder is &amp;lt;_MainThread(MainThread, started 4446586304)&amp;gt; at:
+  ...
+  File &quot;/Users/me/Crystal/src/crystal/model.py&quot;, line 679, in _apply_migrations
+    self._process_table_rows(
+  File &quot;/Users/me/Crystal/src/crystal/model.py&quot;, line 785, in _process_table_rows
+    progress_bar.update()
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 1263, in update
+    self.refresh(lock_args=self.lock_args)
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 1367, in refresh
+    self._lock.acquire()
+
+*** New acquirer is:
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 930, in _bootstrap
+    self._bootstrap_inner()
+  File &quot;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py&quot;, line 973, in _bootstrap_inner
+    self.run()
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/_monitor.py&quot;, line 66, in run
+    with self.tqdm_cls.get_lock():
+  File &quot;/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py&quot;, line 134, in __enter__
+    self.acquire()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, I notice that the traceback [&lt;code&gt;_apply_migrations()&lt;/code&gt; → &lt;code&gt;_process_table_rows()&lt;/code&gt; → &lt;code&gt;update()&lt;/code&gt;] is holding the global &lt;code&gt;tqdm._lock&lt;/code&gt;, which is strange because &lt;strong&gt;there shouldn&amp;rsquo;t be a reason for this code to hold a lock at all&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Culprit: Inappropriate locking&lt;/h3&gt;
+
+&lt;p&gt;Originally I thought &lt;code&gt;update()&lt;/code&gt; just called &lt;code&gt;display()&lt;/code&gt; directly:&lt;/p&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+sequenceDiagram
+    participant Project
+    participant ProgressBar as ProgressBar&lt;br/&gt;(extends tqdm)
+    participant lock as tqdm._lock&lt;br/&gt;«global»
+    participant ProgressListener
+
+    Project-&gt;&gt;+Project: _process_table_rows
+        loop each table row
+            Project-&gt;&gt;+ProgressBar: update
+                ProgressBar-&gt;&gt;+ProgressBar: display [about once per second]
+                ProgressBar-&gt;&gt;ProgressListener: update_gui_progress_bar_func
+                deactivate ProgressBar
+            deactivate ProgressBar
+        end
+    deactivate Project
+&lt;/div&gt;
+
+
+&lt;p&gt;But actually &lt;code&gt;update()&lt;/code&gt; calls a &lt;code&gt;refresh()&lt;/code&gt; method first, and &lt;em&gt;that&lt;/em&gt; call to &lt;code&gt;refresh()&lt;/code&gt; grabs the global &lt;code&gt;tqdm._lock&lt;/code&gt;!&lt;/p&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+sequenceDiagram
+    participant Project
+    participant ProgressBar as ProgressBar&lt;br/&gt;(extends tqdm)
+    box rgb(191, 223, 255)
+        participant lock as tqdm._lock&lt;br/&gt;«global»
+    end
+    participant ProgressListener
+
+    Project-&gt;&gt;+Project: _process_table_rows
+        loop each table row
+            Project-&gt;&gt;+ProgressBar: update
+                rect rgb(191, 223, 255)
+                    note over ProgressBar,ProgressListener: ⚠️ Intermediate refresh() method acquires tqdm._lock!
+                    ProgressBar-&gt;&gt;+ProgressBar: refresh [about once per second]
+                        ProgressBar-&gt;&gt;lock: acquire
+                        rect white
+                            ProgressBar-&gt;&gt;+ProgressBar: display
+                            ProgressBar-&gt;&gt;ProgressListener: update_gui_progress_bar_func
+                            deactivate ProgressBar
+                        end
+                        ProgressBar-&gt;&gt;lock: release
+                    deactivate ProgressBar
+                end
+            deactivate ProgressBar
+        end
+    deactivate Project
+&lt;/div&gt;
+
+
+&lt;p&gt;It makes sense for the &lt;code&gt;update()&lt;/code&gt; method on a normal &lt;code&gt;tqdm&lt;/code&gt; instance to use a lock because it prints its progress bar to a shared terminal, possibly at the same time that other instances are also trying to print to the same terminal. However the custom &lt;code&gt;ProgressBar&lt;/code&gt; subclass of &lt;code&gt;tqdm&lt;/code&gt; which is used here is displaying a &lt;em&gt;graphical&lt;/em&gt; progress bar in an unshared dialog and so it does not need to do additional locking.&lt;/p&gt;
+
+&lt;p&gt;So we need to avoid the locking done by &lt;code&gt;refresh()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When looking at the code for that method, I notice that it&amp;rsquo;s possible to pass a &lt;code&gt;nolock=True&lt;/code&gt; argument to disable its locking behavior:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;class tqdm(...):
+    def refresh(self, nolock=False, lock_args=None):
+        if not nolock:
+            self._lock.acquire(...)
+        self.display()
+        if not nolock:
+            self._lock.release()
+        return True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So it should be possible to override &lt;code&gt;refresh()&lt;/code&gt; to &lt;em&gt;always&lt;/em&gt; assume &lt;code&gt;nolock=True&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class ProgressBar(tqdm):
+✚   @overrides
+✚   def refresh(self, nolock=False, lock_args=None) -&amp;gt; bool:
+✚       # Never grab the global tqdm._lock,
+✚       # because we're NOT printing a CLI progress bar to a shared terminal
+✚       return super().refresh(nolock=True, lock_args=lock_args)
+
+    # Override tqdm's normal behavior of printing a CLI progress bar
+    # to instead update a GUI progress bar
+    @overrides
+    def display(self, *args, **kwargs) -&amp;gt; None:
+        update_gui_progress_bar_func(self.n, self.miniters)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lo and behold, the deadlocking behavior is no longer observed! 🎉&lt;/p&gt;
+
+&lt;h3&gt;Common culprit: Acquiring multiple locks in an inconsistent order&lt;/h3&gt;
+
+&lt;p&gt;Although not a problem in the above example, another common cause of deadlocks happens when a section of code acquires multiple locks at the same time but a different section of code tries to acquire the same locks in a different order.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A common fix for deadlock related to acquiring locks in an inconsistent order is to give each lock a unique ID upon construction. Whenever a section of code wants to acquire multiple locks at a time, it must acquire each individual lock in increasing order of ID.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3&gt;Fin&lt;/h3&gt;
+
+&lt;p&gt;So, that was my recent adventure in tracking down and fixing a deadlock in Python. Perhaps some of the techniques mentioned above will be helpful for you in debugging your own programs. Happy coding!&lt;/p&gt;
+</description>
+    </item>
     
     
     <item>
@@ -2759,26 +3061,27 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 
 &lt;p&gt;For the last several releases of Python, there have been an increasing number of type checking features added to each release by various PEPs:&lt;/p&gt;
 
-&lt;div class=&quot;accordion&quot; id=&quot;python-releases&quot; style=&quot;margin-bottom: 1em;&quot;&gt;
+&lt;div class=&quot;accordion&quot;&gt;
   &lt;div class=&quot;accordion-group&quot;&gt;
     &lt;div class=&quot;accordion-heading&quot;&gt;
-      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#python-releases&quot; href=&quot;#collapseOne&quot;&gt;
-        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;Python releases, and related type checking features
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+    Python releases, and related type checking features
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;div id=&quot;collapseOne&quot; class=&quot;accordion-body collapse in&quot;&gt;
+    &lt;div class=&quot;accordion-body collapse in&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-        &lt;!-- begin inner --&gt;
-        &lt;div class=&quot;accordion&quot; id=&quot;python-releases-old&quot;&gt;
-          &lt;div class=&quot;accordion-group&quot;&gt;
-            &lt;div class=&quot;accordion-heading&quot; style=&quot;margin-left: 25px;&quot;&gt;
-              &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#python-releases-old&quot; href=&quot;#collapseTwo&quot;&gt;
-                &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;Python 3.5 - 3.9
-              &lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div id=&quot;collapseTwo&quot; class=&quot;accordion-body collapse&quot;&gt;
-              &lt;div class=&quot;accordion-inner&quot; style=&quot;margin-left: 40px&quot;&gt;
-                &lt;ul&gt;
+    &lt;div class=&quot;accordion&quot;&gt;
+  &lt;div class=&quot;accordion-group&quot;&gt;
+    &lt;div class=&quot;accordion-heading&quot; style=&quot;margin-left: 25px;&quot;&gt;
+      &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
+        Python 3.5 - 3.9
+          &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;accordion-body collapse&quot;&gt;
+      &lt;div class=&quot;accordion-inner&quot; style=&quot;margin-left: 40px&quot;&gt;
+        &lt;ul&gt;
 &lt;li&gt;Python 3.5 &lt;small&gt;(Released Sep 2015)&lt;/small&gt;
 
 &lt;ul&gt;
@@ -2830,11 +3133,11 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-              &lt;/div&gt;
-            &lt;/div&gt;
           &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    &lt;ul&gt;
 &lt;li&gt;Python 3.10 &lt;small&gt;(Released Oct 2021)&lt;/small&gt;
 
 &lt;ul&gt;
@@ -2912,7 +3215,6 @@ exploring Tor Hidden Services.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-        &lt;!-- end inner --&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -3082,7 +3384,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;67&lt;/sup&gt;
+  Software&lt;sup&gt;68&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
@@ -7817,14 +8119,11 @@ observer.join()
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;Peano.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module Peano where
 
 data ℕ : Set where
@@ -7836,7 +8135,6 @@ zero + zero  = zero
 zero + n     = n
 (suc n) + n' = suc (n + n')
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -7867,14 +8165,11 @@ zero + n     = n
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;HelloNumber.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module HelloNumber where
 
 -- Agda standard library 0.7
@@ -7893,7 +8188,6 @@ main' = putStrLn (show five)
 main : Prim.IO ⊤
 main = run main'
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -7938,14 +8232,11 @@ main = run main'
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;HelloWorld.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module HelloWorld where
 
 -- Agda standard library 0.7
@@ -7963,7 +8254,6 @@ main' = putStrLn greeting
 main : Prim.IO ⊤
 main = run main'
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -7992,14 +8282,11 @@ main = run main'
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;PrintTwoThings.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module PrintTwoThings where
 
 -- Agda standard library 0.7
@@ -8021,7 +8308,6 @@ main' = (♯ doThis) &amp;gt;&amp;gt; (♯ thenThat)
 main : Prim.IO ⊤
 main = run main'
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -8068,14 +8354,11 @@ However if this is the case then calling out to Haskell functions through the fo
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;EchoInput.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module EchoInput where
 
 -- Agda standard library 0.7
@@ -8097,7 +8380,6 @@ thenThat = λ s → putStrLn s
 main : IO Unit
 main = doThis &amp;gt;&amp;gt;= thenThat
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -8125,14 +8407,11 @@ main = doThis &amp;gt;&amp;gt;= thenThat
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;PromptForName.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module PromptForName where
 
 -- Agda standard library 0.7
@@ -8152,7 +8431,6 @@ main =
   putStr (toCostring &quot;Hello &quot;) &amp;gt;&amp;gt;= (λ _ → 
   putStrLn s)))
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -8177,14 +8455,11 @@ main =
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;EchoInputReverse.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module EchoInputReverse where
 
 -- Agda standard library 0.7
@@ -8204,7 +8479,6 @@ main =
   return (toCostring (fromList (reverse (toList s)))) &amp;gt;&amp;gt;= (λ s' → 
   putStrLn s'))
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;
@@ -8235,14 +8509,11 @@ main =
     &lt;div class=&quot;accordion-heading&quot;&gt;
       &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
         &lt;span class=&quot;expand-symbol&quot;&gt;&lt;/span&gt;
-
     &lt;code&gt;ParseInt.agda&lt;/code&gt;
-
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;accordion-body collapse&quot;&gt;
       &lt;div class=&quot;accordion-inner&quot;&gt;
-
     &lt;pre&gt;&lt;code&gt;module ParseInt where
 
 -- Agda standard library 0.7
@@ -8311,7 +8582,6 @@ main =
   return (show (ℕ? (parseInt s))) &amp;gt;&amp;gt;= (λ s' → 
   putStrLn (toCostring s')))
 &lt;/code&gt;&lt;/pre&gt;
-
 
       &lt;/div&gt;
     &lt;/div&gt;

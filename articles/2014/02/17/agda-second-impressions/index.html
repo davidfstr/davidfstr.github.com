@@ -68,6 +68,7 @@
     <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
   
   
+  
   </head>
 
   <body>
@@ -191,7 +192,7 @@
         
         
           <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
-  Software<sup>67</sup>
+  Software<sup>68</sup>
 </a>
 <a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
   <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
@@ -311,14 +312,11 @@
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>Peano.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module Peano where
 
 data ℕ : Set where
@@ -330,7 +328,6 @@ zero + zero  = zero
 zero + n     = n
 (suc n) + n' = suc (n + n')
 </code></pre>
-
 
       </div>
     </div>
@@ -361,14 +358,11 @@ zero + n     = n
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>HelloNumber.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module HelloNumber where
 
 -- Agda standard library 0.7
@@ -387,7 +381,6 @@ main' = putStrLn (show five)
 main : Prim.IO ⊤
 main = run main'
 </code></pre>
-
 
       </div>
     </div>
@@ -432,14 +425,11 @@ main = run main'
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>HelloWorld.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module HelloWorld where
 
 -- Agda standard library 0.7
@@ -457,7 +447,6 @@ main' = putStrLn greeting
 main : Prim.IO ⊤
 main = run main'
 </code></pre>
-
 
       </div>
     </div>
@@ -486,14 +475,11 @@ main = run main'
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>PrintTwoThings.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module PrintTwoThings where
 
 -- Agda standard library 0.7
@@ -515,7 +501,6 @@ main' = (♯ doThis) &gt;&gt; (♯ thenThat)
 main : Prim.IO ⊤
 main = run main'
 </code></pre>
-
 
       </div>
     </div>
@@ -562,14 +547,11 @@ However if this is the case then calling out to Haskell functions through the fo
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>EchoInput.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module EchoInput where
 
 -- Agda standard library 0.7
@@ -591,7 +573,6 @@ thenThat = λ s → putStrLn s
 main : IO Unit
 main = doThis &gt;&gt;= thenThat
 </code></pre>
-
 
       </div>
     </div>
@@ -619,14 +600,11 @@ main = doThis &gt;&gt;= thenThat
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>PromptForName.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module PromptForName where
 
 -- Agda standard library 0.7
@@ -646,7 +624,6 @@ main =
   putStr (toCostring "Hello ") &gt;&gt;= (λ _ → 
   putStrLn s)))
 </code></pre>
-
 
       </div>
     </div>
@@ -671,14 +648,11 @@ main =
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>EchoInputReverse.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module EchoInputReverse where
 
 -- Agda standard library 0.7
@@ -698,7 +672,6 @@ main =
   return (toCostring (fromList (reverse (toList s)))) &gt;&gt;= (λ s' → 
   putStrLn s'))
 </code></pre>
-
 
       </div>
     </div>
@@ -729,14 +702,11 @@ main =
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" href="#">
         <span class="expand-symbol"></span>
-
     <code>ParseInt.agda</code>
-
       </a>
     </div>
     <div class="accordion-body collapse">
       <div class="accordion-inner">
-
     <pre><code>module ParseInt where
 
 -- Agda standard library 0.7
@@ -805,7 +775,6 @@ main =
   return (show (ℕ? (parseInt s))) &gt;&gt;= (λ s' → 
   putStrLn (toCostring s')))
 </code></pre>
-
 
       </div>
     </div>
@@ -925,27 +894,36 @@ _A_10 s → _B_11 s
   
     <script>
       // Link each accordion toggle to its body. Required by jQuery Accordion plugin.
-var accordions = $('.accordion');
-for (var i = 0; i < accordions.length; i++) {
-    var curAccordion = accordions[i];
-    $('.accordion-toggle', curAccordion).attr('href', '#acc' + i);
-    $('.accordion-body', curAccordion).attr('id', 'acc' + i);
-}
-
-// Rotate triangle symbol when accordian toggled
-$('.accordion-toggle .expand-symbol').text('▸ ');
-$('.accordion-toggle').click(function() {
-    var accordianBodySelector = $(this).attr('href');
-    var isCollapsed = $(accordianBodySelector).attr('class').indexOf("in") !== -1;
-    
-    if (isCollapsed) {
-        $('.expand-symbol', this).text('▸ ');
-    } else {
-        $('.expand-symbol', this).text('▾ ');
-    }
-});
-
+      var accordions = $('.accordion');
+      for (var i = 0; i < accordions.length; i++) {
+          var curAccordion = accordions[i];
+          $('.accordion-toggle', curAccordion).attr('href', '#acc' + i);
+          $('.accordion-body', curAccordion).attr('id', 'acc' + i);
+      }
+      
+      // 1. Initialize triangle symbol state
+      // 2. Rotate triangle symbol when accordian toggled
+      function updateAccordianExpandSymbol(accordianToggleEl, willToggle/*=false*/) {
+          var accordianBodySelector = accordianToggleEl.attr('href');
+          var isCollapsed = !$(accordianBodySelector).attr('class').split(' ').includes('in');
+          if (willToggle) {
+              isCollapsed = !isCollapsed;
+          }
+          
+          if (isCollapsed) {
+              $('.expand-symbol', accordianToggleEl).text('▸ ');
+          } else {
+              $('.expand-symbol', accordianToggleEl).text('▾ ');
+          }
+      }
+      $('.accordion-toggle').each(function(_, accordianToggleDom) {
+          updateAccordianExpandSymbol($(accordianToggleDom));
+      }).click(function() {
+          updateAccordianExpandSymbol($(this), /*willToggle=*/true);
+      });
     </script>
+  
+  
   
     
   

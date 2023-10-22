@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Debugging a deadlock in Python | DaFoster</title>
+  
+  
+    <meta name="author" content="David Foster">
+  
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YVPE3YRSVP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YVPE3YRSVP');
+</script>
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+      <style>
+        .accordion-inner > pre:last-child {
+    margin-bottom: 0;
+}
+.accordion:has(.accordion-inner > pre:last-child) {
+    margin-bottom: 15px;
+}
+
+      </style>
+    
+
+    <!-- Fav and touch icons -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Update these with your own images
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+    
+    <!-- Scripts -->
+  
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+  
+  
+  
+    <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  
+    <!-- Enable use of .mermaid blocks to draw diagrams -->
+    <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.5.1/dist/mermaid.min.js"></script>
+    <style>
+      /* Show loading placeholder for .mermaid blocks */
+      .mermaid:not([data-processed="true"]) {
+        height: 3em;
+        background-color: #f3f3f3;
+        
+        color: transparent;
+        overflow: hidden;
+        
+        margin-bottom: 1em;
+      }
+    </style>
+  
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1 class="post-title">Debugging a deadlock in Python</h1>
+    <div class="post-metadata">
+      
+        Oct 20, 2023
+       &ndash; Filed as: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>68</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
+        
+      </span>
+      
+    </div>
+    
+    <p>I recently encountered a deadlock while running the automated tests of my <a href="/projects/crystal-web-archiver/">website downloader, Crystal</a>. The process for investigating and fixing this deadlock was interesting, so I thought I&rsquo;d share it:</p>
+
+<h2>What does a deadlock look like?</h2>
+
+<p>One day after making some changes to my program, when I ran the program&rsquo;s automated tests the program just completely froze, becoming unresponsive to all input and not providing any further output:</p>
+
+<pre><code>$ crystal --test
+...
+======================================================================
+RUNNING: test_some_tasks_may_complete_immediately (crystal.tests.test_tasks)
+----------------------------------------------------------------------
+    "GET /_/https/example.com/ HTTP/1.1" 404 -
+    *** Requested resource not in archive: https://example.com/
+    "GET /_/https/xkcd.com/1/ HTTP/1.1" 200 -
+⚠️ No further output printed. No further input accepted. Program is stuck.
+</code></pre>
+
+<p>To investigate why the program was frozen I wanted to <strong>see exactly which lines of code the program was stuck on</strong>. Python has a useful <a href="https://docs.python.org/3/library/faulthandler.html">faulthandler</a> module in the standard library that, among other things, can start listening for various Unix signals and print out a traceback showing the line of code being executed on all threads.</p>
+
+<p>To enable the faulthandler when running a program you can use the <code>PYTHONFAULTHANDLER</code> environment variable:</p>
+
+<pre><code>$ PYTHONFAULTHANDLER=1 crystal --test
+</code></pre>
+
+<p>Then after the program becomes stuck, you can open a new terminal window and send a SIGABRT signal to the stuck program to trigger the faulthandler:</p>
+
+<pre><code>$ kill -SIGABRT 7984  # 7984 = PID of the python process
+</code></pre>
+
+<p>When triggered on the Crystal program, the faulthandler printed tracebacks like:</p>
+
+<div class="accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" href="#">
+        <span class="expand-symbol"></span>
+    faulthandler traceback
+      </a>
+    </div>
+    <div class="accordion-body collapse">
+      <div class="accordion-inner">
+    <pre><code>======================================================================
+RUNNING: test_some_tasks_may_complete_immediately (crystal.tests.test_tasks)
+----------------------------------------------------------------------
+    "GET /_/https/example.com/ HTTP/1.1" 404 -
+    *** Requested resource not in archive: https://example.com/
+    "GET /_/https/xkcd.com/1/ HTTP/1.1" 200 -
+Fatal Python error: Aborted
+
+Thread 0x0000700058d9b000 (most recent call first):
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 111 in acquire
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 134 in __enter__
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 577 in __new__
+  File "/Users/me/Crystal/src/crystal/util/progress.py", line 143 in __init__
+  ...
+
+Thread 0x0000700057d98000 (most recent call first):
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 111 in acquire
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 134 in __enter__
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/_monitor.py", line 66 in run
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 973 in _bootstrap_inner
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 930 in _bootstrap
+
+(... 🤔 62 copies of the above paragraph ...)
+
+Thread 0x0000700017c55000 (most recent call first):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/selectors.py", line 416 in select
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socketserver.py", line 232 in serve_forever
+  File "/Users/me/Crystal/src/crystal/tests/test_download_body.py", line 129 in do_serve_forever
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 910 in run
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 973 in _bootstrap_inner
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 930 in _bootstrap
+
+Thread 0x000070000ab28000 (most recent call first):
+  File "/Users/me/Crystal/src/crystal/tests/util/runner.py", line 130 in run
+  File "/Users/me/Crystal/src/crystal/util/xthreading.py", line 101 in wrapper
+  File "/Users/me/Crystal/src/crystal/tests/util/runner.py", line 49 in run_test
+  File "/Users/me/Crystal/src/crystal/util/xthreading.py", line 101 in wrapper
+  File "/Users/me/Crystal/src/crystal/tests/index.py", line 107 in _run_tests
+  File "/Users/me/Crystal/src/crystal/tests/index.py", line 80 in run_tests
+  File "/Users/me/Crystal/src/crystal/util/xthreading.py", line 101 in wrapper
+  File "/Users/me/Crystal/src/crystal/__main__.py", line 314 in bg_task
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 910 in run
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 973 in _bootstrap_inner
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 930 in _bootstrap
+
+Current thread 0x000000011b0405c0 (most recent call first):
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/wx/core.py", line 2262 in MainLoop
+  File "/Users/me/Crystal/src/crystal/__main__.py", line 323 in _main
+  File "/Users/me/Crystal/src/crystal/__main__.py", line 45 in main
+  File "/Users/me/Crystal/venv3.9/bin/crystal", line 6 in &lt;module&gt;
+</code></pre>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p>Notice in the traceback above that several of the stuck threads are at <code>tqdm/std.py", line 111 in acquire</code>, which is trying to acquire a low-level <a href="https://docs.python.org/3/library/threading.html#threading.RLock">threading.RLock</a>.</p>
+
+<p><strong>When there is at least one thread trying to acquire a lock and not making any progress, there&rsquo;s probably a deadlock.</strong> So the program definitely seems to be deadlocked.</p>
+
+<h2>Isolating and fixing a deadlock</h2>
+
+<p>To debug further, it would be <strong>useful for the program to detect when it cannot acquire the lock it wants and then immediately print out:</strong></p>
+
+<ol>
+<li><strong>the traceback which is trying to acquire the lock</strong> and</li>
+<li><strong>the traceback which is currently holding the lock</strong>.</li>
+</ol>
+
+
+<p>So I made some modifications around the code that acquires/releases the lock to log that information:</p>
+
+<div class="accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" href="#">
+        <span class="expand-symbol"></span>
+    Code to add deadlock detection and logging to lock acquire & release
+      </a>
+    </div>
+    <div class="accordion-body collapse">
+      <div class="accordion-inner">
+    <pre><code class="python">✚ import threading
+✚ import traceback
+
+class TqdmDefaultWriteLock(object):
+    th_lock = TRLock()
+✚   th_lock_holders = []  # type: List[Tuple[threading.Thread, traceback.StackSummary]]
+
+    def acquire(self, *a, **k):
+✚       if 'timeout' not in k:
+✚           k['timeout'] = 5.0  # seconds
+
+        for lock in self.locks:
+            ok = lock.acquire(*a, **k)
+✚           if not ok:
+✚               print(
+✚                   f'*** TqdmDefaultWriteLock: Failed to acquire lock in '
+✚                   f'{k["timeout"]} seconds. '
+✚                   f'Lock holder is {TqdmDefaultWriteLock.th_lock_holders[-1][0]} at:\n'
+✚                   f'{"".join(TqdmDefaultWriteLock.th_lock_holders[-1][1])}')
+✚               print(f'*** New acquirer is:\n{"".join(traceback.format_stack())}')
+✚               raise AssertionError('Failed to acquire TqdmDefaultWriteLock')
+
+✚       TqdmDefaultWriteLock.th_lock_holders.append((
+✚           threading.current_thread(),
+✚           traceback.format_stack()
+✚       ))
+
+    def release(self):
+✚       TqdmDefaultWriteLock.th_lock_holders.pop()
+
+        for lock in self.locks[::-1]:  # Release in inverse order of acquisition
+            lock.release()
+</code></pre>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p>With those modifications in place, I can pinpoint the smoking gun:</p>
+
+<pre><code>======================================================================
+RUNNING: test_project_opens_as_readonly_when_project_is_on_readonly_filesystem (crystal.tests.test_readonly_mode)
+----------------------------------------------------------------------
+*** TqdmDefaultWriteLock: Failed to acquire lock in 5.0 seconds. Lock holder is &lt;_MainThread(MainThread, started 4446586304)&gt; at:
+  ...
+  File "/Users/me/Crystal/src/crystal/model.py", line 679, in _apply_migrations
+    self._process_table_rows(
+  File "/Users/me/Crystal/src/crystal/model.py", line 785, in _process_table_rows
+    progress_bar.update()
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 1263, in update
+    self.refresh(lock_args=self.lock_args)
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 1367, in refresh
+    self._lock.acquire()
+
+*** New acquirer is:
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/_monitor.py", line 66, in run
+    with self.tqdm_cls.get_lock():
+  File "/Users/me/Crystal/venv3.9/lib/python3.9/site-packages/tqdm/std.py", line 134, in __enter__
+    self.acquire()
+</code></pre>
+
+<p>Here, I notice that the traceback [<code>_apply_migrations()</code> → <code>_process_table_rows()</code> → <code>update()</code>] is holding the global <code>tqdm._lock</code>, which is strange because <strong>there shouldn&rsquo;t be a reason for this code to hold a lock at all</strong>.</p>
+
+<h3>Culprit: Inappropriate locking</h3>
+
+<p>Originally I thought <code>update()</code> just called <code>display()</code> directly:</p>
+
+<div class="mermaid">
+sequenceDiagram
+    participant Project
+    participant ProgressBar as ProgressBar<br/>(extends tqdm)
+    participant lock as tqdm._lock<br/>«global»
+    participant ProgressListener
+
+    Project->>+Project: _process_table_rows
+        loop each table row
+            Project->>+ProgressBar: update
+                ProgressBar->>+ProgressBar: display [about once per second]
+                ProgressBar->>ProgressListener: update_gui_progress_bar_func
+                deactivate ProgressBar
+            deactivate ProgressBar
+        end
+    deactivate Project
+</div>
+
+
+<p>But actually <code>update()</code> calls a <code>refresh()</code> method first, and <em>that</em> call to <code>refresh()</code> grabs the global <code>tqdm._lock</code>!</p>
+
+<div class="mermaid">
+sequenceDiagram
+    participant Project
+    participant ProgressBar as ProgressBar<br/>(extends tqdm)
+    box rgb(191, 223, 255)
+        participant lock as tqdm._lock<br/>«global»
+    end
+    participant ProgressListener
+
+    Project->>+Project: _process_table_rows
+        loop each table row
+            Project->>+ProgressBar: update
+                rect rgb(191, 223, 255)
+                    note over ProgressBar,ProgressListener: ⚠️ Intermediate refresh() method acquires tqdm._lock!
+                    ProgressBar->>+ProgressBar: refresh [about once per second]
+                        ProgressBar->>lock: acquire
+                        rect white
+                            ProgressBar->>+ProgressBar: display
+                            ProgressBar->>ProgressListener: update_gui_progress_bar_func
+                            deactivate ProgressBar
+                        end
+                        ProgressBar->>lock: release
+                    deactivate ProgressBar
+                end
+            deactivate ProgressBar
+        end
+    deactivate Project
+</div>
+
+
+<p>It makes sense for the <code>update()</code> method on a normal <code>tqdm</code> instance to use a lock because it prints its progress bar to a shared terminal, possibly at the same time that other instances are also trying to print to the same terminal. However the custom <code>ProgressBar</code> subclass of <code>tqdm</code> which is used here is displaying a <em>graphical</em> progress bar in an unshared dialog and so it does not need to do additional locking.</p>
+
+<p>So we need to avoid the locking done by <code>refresh()</code>.</p>
+
+<p>When looking at the code for that method, I notice that it&rsquo;s possible to pass a <code>nolock=True</code> argument to disable its locking behavior:</p>
+
+<pre><code class="python">class tqdm(...):
+    def refresh(self, nolock=False, lock_args=None):
+        if not nolock:
+            self._lock.acquire(...)
+        self.display()
+        if not nolock:
+            self._lock.release()
+        return True
+</code></pre>
+
+<p>So it should be possible to override <code>refresh()</code> to <em>always</em> assume <code>nolock=True</code>:</p>
+
+<pre><code>class ProgressBar(tqdm):
+✚   @overrides
+✚   def refresh(self, nolock=False, lock_args=None) -&gt; bool:
+✚       # Never grab the global tqdm._lock,
+✚       # because we're NOT printing a CLI progress bar to a shared terminal
+✚       return super().refresh(nolock=True, lock_args=lock_args)
+
+    # Override tqdm's normal behavior of printing a CLI progress bar
+    # to instead update a GUI progress bar
+    @overrides
+    def display(self, *args, **kwargs) -&gt; None:
+        update_gui_progress_bar_func(self.n, self.miniters)
+</code></pre>
+
+<p>Lo and behold, the deadlocking behavior is no longer observed! 🎉</p>
+
+<h3>Common culprit: Acquiring multiple locks in an inconsistent order</h3>
+
+<p>Although not a problem in the above example, another common cause of deadlocks happens when a section of code acquires multiple locks at the same time but a different section of code tries to acquire the same locks in a different order.</p>
+
+<p><strong>A common fix for deadlock related to acquiring locks in an inconsistent order is to give each lock a unique ID upon construction. Whenever a section of code wants to acquire multiple locks at a time, it must acquire each individual lock in increasing order of ID.</strong></p>
+
+<h3>Fin</h3>
+
+<p>So, that was my recent adventure in tracking down and fixing a deadlock in Python. Perhaps some of the techniques mentioned above will be helpful for you in debugging your own programs. Happy coding!</p>
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div id="subscribe-block" class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://mastodon.world/@davidfstr">
+  <img src="/assets/mastodon-icon-48x48.png" alt="Mastodon icon, by Icons8." width="16" height="16" />Subscribe (Mastodon)
+</a>
+<a class="subscribe" href="https://twitter.com/davidfstr">
+  <img src="/assets/twitter-icon-16x16.png" alt="Twitter icon" width="16" height="16" />Subscribe (Twitter / X)
+</a>
+<a class="subscribe" href="feed://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="RSS icon" width="14" height="14" />Subscribe (RSS)
+</a>
+<a class="subscribe" href="mailto:add@rssby.email?body=feed://dafoster.net/atom.xml&subject=Subscribe">
+  <img src="/assets/mail-48x48.png" alt="Email icon, by Freepik at Flaticon.com" width="18" height="18" style="margin-left: -2px;" />Subscribe (Email)
+</a>
+
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2023/10/12/custom-file-icons-and-folder-icons/" title="Custom file icons, folder icons, and app icons on different operating systems">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2023 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+    <script>
+      // Link each accordion toggle to its body. Required by jQuery Accordion plugin.
+      var accordions = $('.accordion');
+      for (var i = 0; i < accordions.length; i++) {
+          var curAccordion = accordions[i];
+          $('.accordion-toggle', curAccordion).attr('href', '#acc' + i);
+          $('.accordion-body', curAccordion).attr('id', 'acc' + i);
+      }
+      
+      // 1. Initialize triangle symbol state
+      // 2. Rotate triangle symbol when accordian toggled
+      function updateAccordianExpandSymbol(accordianToggleEl, willToggle/*=false*/) {
+          var accordianBodySelector = accordianToggleEl.attr('href');
+          var isCollapsed = !$(accordianBodySelector).attr('class').split(' ').includes('in');
+          if (willToggle) {
+              isCollapsed = !isCollapsed;
+          }
+          
+          if (isCollapsed) {
+              $('.expand-symbol', accordianToggleEl).text('▸ ');
+          } else {
+              $('.expand-symbol', accordianToggleEl).text('▾ ');
+          }
+      }
+      $('.accordion-toggle').each(function(_, accordianToggleDom) {
+          updateAccordianExpandSymbol($(accordianToggleDom));
+      }).click(function() {
+          updateAccordianExpandSymbol($(this), /*willToggle=*/true);
+      });
+    </script>
+  
+  
+  
+    
+  
+    
+  
+  </body>
+</html>
