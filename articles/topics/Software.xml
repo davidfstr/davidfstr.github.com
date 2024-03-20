@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2024-03-20T13:25:41+00:00</updated>
+ <updated>2024-03-20T13:44:31+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -24,7 +24,7 @@
      <category term="Software"/>
    
    <link rel="alternate" href="https://dafoster.net/articles/2024/02/28/bulkheads-a-pattern-for-handling-unexpected-errors-in-software/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
-   <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-350&quot; alt=&quot;Book: The Little Typer&quot; src=&quot;/assets/2024/bulkheads-a-pattern-for-handling-unexpected-errors-in-software/bulkheads-software.jpg&quot; /&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img class=&quot;img-box-right img-350&quot; alt=&quot;Ship with bulkheads&quot; src=&quot;/assets/2024/bulkheads-a-pattern-for-handling-unexpected-errors-in-software/bulkheads-software.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Some seafaring ships divide their body into multiple watertight compartments, so that if one compartment becomes flooded the rest of the ship will remain floodfree and intact. I got the idea of using a similar pattern of &amp;ldquo;bulkheads&amp;rdquo; in software to &lt;strong&gt;limit the damage caused by an unhandled &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html&quot;&gt;exception&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
 
