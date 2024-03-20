@@ -6,14 +6,370 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 18 Mar 2024 14:21:41 +0000</pubDate>
-    <lastBuildDate>Mon, 18 Mar 2024 14:21:41 +0000</lastBuildDate>
+    <pubDate>Wed, 20 Mar 2024 13:25:41 +0000</pubDate>
+    <lastBuildDate>Wed, 20 Mar 2024 13:25:41 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Bulkheads: A pattern for handling unexpected errors in software</title>
+      <link>https://dafoster.net/articles/2024/02/28/bulkheads-a-pattern-for-handling-unexpected-errors-in-software/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Wed, 28 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2024/02/28/bulkheads-a-pattern-for-handling-unexpected-errors-in-software</guid>
+      <description>&lt;p&gt;&lt;img class=&quot;img-box-right img-350&quot; alt=&quot;Book: The Little Typer&quot; src=&quot;/assets/2024/bulkheads-a-pattern-for-handling-unexpected-errors-in-software/bulkheads-software.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Some seafaring ships divide their body into multiple watertight compartments, so that if one compartment becomes flooded the rest of the ship will remain floodfree and intact. I got the idea of using a similar pattern of &amp;ldquo;bulkheads&amp;rdquo; in software to &lt;strong&gt;limit the damage caused by an unhandled &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html&quot;&gt;exception&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Normally an unhandled exception will cause its thread to print diagnostic information to the console and then stop. This is an acceptable error-handling strategy for many command-line programs, but it is &lt;em&gt;not&lt;/em&gt; a good error-handling strategy for a graphical program where the console is invisible.&lt;/p&gt;
+
+&lt;h2&gt;Goals&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been working on a graphical program where &lt;strong&gt;I want &lt;em&gt;all&lt;/em&gt; exceptions and errors to be reported to the user&lt;/strong&gt; in some way, rather than failing silently and presenting an unresponsive user interface when something goes wrong.&lt;/p&gt;
+
+&lt;p&gt;Additionally, there are certain critical sections of the program where an unhandled exception could leave a nearby data structure in an invalid state, causing subsequent operations on that structure to fail and/or propagate the corruption to other parts of the program state. &lt;strong&gt;It would be better if an unhandled exception occurring in a critical section marked any affected data structures as corrupt, such that further operations attempting to access those structures would refuse to run.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;Bulkheads Pattern&lt;/strong&gt; can be used to meet both of those goals:&lt;/p&gt;
+
+&lt;h2&gt;How it Works&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve implemented a family of &lt;code&gt;@capture_crashes_to...&lt;/code&gt; function decorators in Python which mark a critical section of code and define which &lt;code&gt;Bulkhead&lt;/code&gt; the critical section is related to.&lt;/p&gt;
+
+&lt;p&gt;Any exception raised in the critical section which bubbles up to the decorator will be caught at the last moment and set as the &lt;code&gt;crash_reason&lt;/code&gt; for the associated bulkhead.&lt;/p&gt;
+
+&lt;p&gt;If a function calls into a critical section marked with &lt;code&gt;@capture_crashes_to...&lt;/code&gt; whose bulkhead has been marked as crashed, the critical section will refuse to run and will instead return to the caller immediately, possibly returning a default value.&lt;/p&gt;
+
+&lt;h2&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;Below, the &lt;code&gt;child_task_did_complete&lt;/code&gt; listener method is marked with &lt;code&gt;@capture_crashes_to_self&lt;/code&gt;, so any unexpected exception raised inside the listener won&amp;rsquo;t escape and crash the thread which called the listener. Instead the exception will be stored in the Task&amp;rsquo;s &lt;code&gt;crash_reason&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;class Task(Bulkhead):
+    crash_reason: Optional[BaseException] = None
+
+class DownloadResourceTask(Task):
+    @capture_crashes_to_self
+    def child_task_did_complete(self, task: Task) -&amp;gt; None:
+        if task is self._download_body_task:
+            ...
+        elif task is self._parse_links_task:
+            links = self._parse_links_task.future.result()
+            embedded_resources = [
+                Resource(
+                    self._resource.project,
+                    urljoin(self._resource.url, link.relative_url))
+                for link in links if not link.embedded
+            ]
+            for resource in embedded_resources:
+                self.append_child(resource.create_download_task(...))
+        else:
+            ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And indeed an unhandled exception &lt;em&gt;did&lt;/em&gt; end up getting raised in the above code: The &lt;code&gt;urljoin&lt;/code&gt; operation was &lt;a href=&quot;https://discuss.python.org/t/urlparse-can-sometimes-raise-an-exception-should-it/44465&quot;&gt;observed to raise an unexpected exception for certain unusual inputs&lt;/a&gt; even though it generally never raises.&lt;/p&gt;
+
+&lt;h2&gt;Try it!&lt;/h2&gt;
+
+&lt;p&gt;The infrastructure for using bulkheads currently lives as a utility module in the &lt;a href=&quot;https://dafoster.net/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; project. You can install it to your local Python virtual environment using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python -m pip install crystal-web
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is a small program you can run in the Python REPL that demonstrates the use of bulkheads:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; from crystal.util.bulkheads import capture_crashes_to_stderr
+&amp;gt;&amp;gt;&amp;gt; 
+&amp;gt;&amp;gt;&amp;gt; @capture_crashes_to_stderr
+... def divide(x, y):
+...     return x / y
+... 
+&amp;gt;&amp;gt;&amp;gt; divide(10, 2)
+5.0
+&amp;gt;&amp;gt;&amp;gt; divide(10, 0)
+Exception in bulkhead:
+Traceback (most recent call last):
+  File &quot;&amp;lt;stdin&amp;gt;&quot;, line 1, in &amp;lt;module&amp;gt;
+  File &quot;/Users/me/Projects/crystal-web/crystal/util/bulkheads.py&quot;, line 292, in bulkhead_call
+    return func(*args, **kwargs)  # cr-traceback: ignore
+  File &quot;&amp;lt;stdin&amp;gt;&quot;, line 3, in divide
+ZeroDivisionError: division by zero
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;#api&quot;&gt;API&lt;/a&gt; for more detailed information about how to use bulkheads.&lt;/p&gt;
+
+&lt;h2&gt;Appendix&lt;/h2&gt;
+
+&lt;div class=&quot;toc&quot;&gt;
+  &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#effective-critical-sections-and-bulkheads&quot;&gt;Effective Critical Sections and Bulkheads&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enforcing-that-an-error-handling-strategy-is-defined&quot;&gt;Enforcing that an error-handling strategy is defined&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#api&quot;&gt;API&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#bulkhead-api&quot;&gt;Bulkhead API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#critical-section-api&quot;&gt;Critical Section API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#error-handling-enforcement-utilities&quot;&gt;Error-handling enforcement utilities&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;effective-critical-sections-and-bulkheads&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Effective Critical Sections and Bulkheads&lt;/h3&gt;
+
+&lt;p&gt;For critical sections, I&amp;rsquo;ve found it effective to protect:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;listener methods&lt;/strong&gt;, since they usually operate in a different conceptual context than their caller, and it is useful to prevent crashes inside listeners from also crashing their callers;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the run function in new threads&lt;/strong&gt;, which can capture any exception that is about to crash the thread; and&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the main function in the main thread&lt;/strong&gt;, which can capture any exception that is about to crash the thread.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For bulkheads, I&amp;rsquo;ve found it effective to protect:&lt;/p&gt;
+
+&lt;!-- TODO: Add diagram showing nested components, and how a crash inside an inner bulkhead is quickly isolated before spreading to the entire composite, floated right. --&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Component structures&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; (which can be arranged in a tree, forming a larger &lt;a href=&quot;https://en.wikipedia.org/wiki/Composite_pattern&quot;&gt;Composite&lt;/a&gt; structure),&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;certain &amp;ldquo;top-level&amp;rdquo; structures&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; in the program&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a name=&quot;enforcing-that-an-error-handling-strategy-is-defined&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Enforcing that an error-handling strategy is defined&lt;/h3&gt;
+
+&lt;p&gt;It can be useful for a caller to enforce that a callee has an explicitly defined error-handling strategy (via a &lt;code&gt;@capture_crashes_to*&lt;/code&gt; decorator). For example, a function that is dispatching events to listeners may want to enforce that each listener is marked with &lt;code&gt;@capture_crashes_to*&lt;/code&gt; before calling it. Such enforcement can be implemented with the following utilities:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;run_bulkhead_call(func)&lt;/code&gt; &amp;ndash; Calls a function after verifying it is marked with &lt;code&gt;@capture_crashes_to*&lt;/code&gt;. Raises if the function is not marked.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ensure_is_bulkhead_call(func)&lt;/code&gt; &amp;ndash; Raises if the specified function is not marked with &lt;code&gt;@capture_crashes_to*&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;is_bulkhead_call(func)&lt;/code&gt; &amp;ndash; Returns whether the specified function is marked with &lt;code&gt;@capture_crashes_to*&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Example of an event dispatcher which enforces its listeners are marked with &lt;code&gt;@capture_crashes_to*&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def _resource_did_instantiate(self, resource: Resource) -&amp;gt; None:
+    for lis in self.listeners:
+        run_bulkhead_call(lis.resource_did_instantiate, resource)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href=&quot;#error-handling-enforcement-utilities&quot;&gt;API &gt; Error-handling enforcement utilities&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;api&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;API&lt;/h3&gt;
+
+&lt;p&gt;Everything in this section is imported from &lt;code&gt;crystal.util.bulkheads&lt;/code&gt;. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;from crystal.util.bulkheads import Bulkhead, capture_crashes_to_stderr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&quot;bulkhead-api&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Bulkhead API&lt;/h4&gt;
+
+&lt;p&gt;First, define locations where unhandled exceptions can be captured to by implementing the &lt;code&gt;Bulkhead&lt;/code&gt; protocol:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;class Bulkhead(Protocol):  # abstract
+    &quot;&quot;&quot;
+    A sink for unhandled exceptions (i.e. crashes).
+    &quot;&quot;&quot;
+    crash_reason: Optional[CrashReason]
+
+CrashReason = BaseException
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or if you don&amp;rsquo;t want to implement your own bulkhead type, you can use the included &lt;code&gt;BulkheadCell&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;class BulkheadCell(Bulkhead):
+    &quot;&quot;&quot;
+    A concrete Bulkhead which stores any crash that occurs,
+    but takes no special action to report such crashes.
+    &quot;&quot;&quot;
+    crash_reason: Optional[CrashReason]
+
+    def __init__(self, value: Optional[CrashReason]=None) -&amp;gt; None:
+        self.crash_reason = value
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&quot;critical-section-api&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Critical Section API&lt;/h4&gt;
+
+&lt;p&gt;Then, mark critical sections in your code with an appropriate &lt;code&gt;@capture_crashes_to*&lt;/code&gt; decorator. There are several to choose from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For critical sections defined as a method on a sensitive data structure that is its own bulkhead, &lt;code&gt;@capture_crashes_to_self&lt;/code&gt; is a good choice:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def capture_crashes_to_self(
+        bulkhead_method: Optional[Callable[Concatenate[_B, _P], _RT]]=None,
+        *, return_if_crashed=None  # _RF
+        ):
+    &quot;&quot;&quot;
+    A Bulkhead method that captures any raised exceptions to itself,
+    as the &quot;crash reason&quot; of the bulkhead.
+
+    If the bulkhead was already crashed (with a non-None &quot;crash reason&quot;) then
+    this method will immediately abort, returning `return_if_crashed`.
+
+    Examples:
+        class MyBulkhead(Bulkhead):
+            @capture_crashes_to_self
+            def foo_did_bar(self) -&amp;gt; None:
+                ...
+
+            @capture_crashes_to_self(return_if_crashed=Ellipsis)
+            def calculate_foo(self) -&amp;gt; Result:
+                ...
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For critical sections defined as a method which takes a sensitive data structure (i.e. a bulkhead) as an argument, &lt;code&gt;@capture_crashes_to_bulkhead_arg&lt;/code&gt; is a good choice:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def capture_crashes_to_bulkhead_arg(
+        method: Optional[Callable[Concatenate[_S, _B, _P], _RT]]=None,
+        *, return_if_crashed=None  # _RF
+        ):
+    &quot;&quot;&quot;
+    A method that captures any raised exceptions to its first Bulkhead argument,
+    as the &quot;crash reason&quot; of the bulkhead.
+
+    If the bulkhead was already crashed (with a non-None &quot;crash reason&quot;) then
+    this method will immediately abort, returning `return_if_crashed`.
+
+    Examples:
+        class MyClass:
+            @capture_crashes_to_bulkhead_arg
+            def other_foo_did_bar(self, other: Bulkhead) -&amp;gt; None:
+                ...
+
+            @capture_crashes_to_bulkhead_arg(return_if_crashed=Ellipsis)
+            def calculate_baz(self, other: Bulkhead) -&amp;gt; Result:
+                ...
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sometimes you may have an outer function that is already operating on a sensitive data structure (i.e. a bulkhead) which wants to define (and call) an inner function that also operates on the same structure. In that case it may be useful to protect the inner function with &lt;code&gt;@capture_crashes_to(bulkhead)&lt;/code&gt;, specifying the bulkhead to use at the time of decoration:&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def capture_crashes_to(
+        bulkhead: Bulkhead,
+        return_if_crashed=None  # _RF
+        ) -&amp;gt; Callable[[Callable[_P, _RT]], Callable[_P, Union[_RT, _RF]]]:
+    &quot;&quot;&quot;
+    A method that captures any raised exceptions to the specified Bulkhead,
+    as the &quot;crash reason&quot; of the bulkhead.
+
+    If the bulkhead was already crashed (with a non-None &quot;crash reason&quot;) then
+    this method will immediately abort, returning `return_if_crashed`.
+
+    Examples:
+        @capture_crashes_to(bulkhead)
+        def foo_did_bar() -&amp;gt; None:
+            ...
+
+        @capture_crashes_to(bulkhead, return_if_crashed=Ellipsis)
+        def calculate_foo() -&amp;gt; Result:
+            ...
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As a last resort, you may have a critical section where there is no reasonable bulkhead available to route an unhandled exception to. For example if your core error reporting infrastructure code (like a &lt;code&gt;display_error&lt;/code&gt; function) fails, the only reasonable choice may be to fallback to printing the exception to the standard error stream (&lt;code&gt;stderr&lt;/code&gt;):&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def capture_crashes_to_stderr(
+        func: Optional[Callable[_P, _RT]]=None,
+        *, return_if_crashed=None  # _RF
+        ):
+    &quot;&quot;&quot;
+    A method that captures any raised exceptions, and prints them to stderr.
+
+    Examples:
+        @capture_crashes_to_stderr
+        def foo(self) -&amp;gt; None:
+            ...
+
+        @capture_crashes_to_stderr(return_if_crashed=Ellipsis)
+        def calculate_foo(self) -&amp;gt; Result:
+            ...
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Critical Sections (in Crystal) always print to the standard error stream&lt;/h5&gt;
+
+&lt;p&gt;The current implementation of the &lt;code&gt;@capture_crashes_to*&lt;/code&gt; decorators in &lt;a href=&quot;https://dafoster.net/projects/crystal-web-archiver/&quot;&gt;Crystal&lt;/a&gt; always prints unhandled exceptions to &lt;code&gt;stderr&lt;/code&gt; as a side effect, to indicate that a crash happened.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Most of the decorators print in &lt;strong&gt;yellow warning text&lt;/strong&gt; because the crash was presumably handled when it was routed to a bulkhead.&lt;/li&gt;
+&lt;li&gt;However the &lt;code&gt;@capture_crashes_to_stderr&lt;/code&gt; decorator prints in &lt;strong&gt;red error text&lt;/strong&gt; to signal that the &lt;em&gt;only&lt;/em&gt; handling of the crash was to print it to &lt;code&gt;stderr&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In the future, if/when the &lt;code&gt;bulkheads.py&lt;/code&gt; module is extracted to its own package on PyPI, independent of Crystal, I expect I&amp;rsquo;ll alter the &lt;code&gt;@capture_crashes_to*&lt;/code&gt; decorators to NOT print anything to &lt;code&gt;stderr&lt;/code&gt; by default since I don&amp;rsquo;t think that side-effect is appropriate for all programs that may want to use these decorators.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;error-handling-enforcement-utilities&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Error-handling enforcement utilities&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def run_bulkhead_call(
+        bulkhead_call: Callable[_P, _R],
+        /, *args: _P.args,
+        **kwargs: _P.kwargs
+        ) -&amp;gt; '_R':
+    &quot;&quot;&quot;
+    Calls a function marked as @capture_crashes_to*,
+    which does not reraise exceptions from its interior.
+
+    Raises AssertionError if the specified function is not actually
+    marked with @capture_crashes_to*.
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def ensure_is_bulkhead_call(callable: Callable) -&amp;gt; None:
+    &quot;&quot;&quot;
+    Raises AssertionError if the specified function is not actually
+    marked with @capture_crashes_to*.
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def is_bulkhead_call(callable: Callable) -&amp;gt; bool:
+    &quot;&quot;&quot;
+    Returns whether the specified function is marked with @capture_crashes_to*.
+    &quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Component bulkhead structures&lt;/strong&gt; in my website downloader Crystal include (1) &lt;code&gt;Task&lt;/code&gt; (which compose to form the Task Tree) and (2) &lt;code&gt;entitytree.Node&lt;/code&gt; (which compose to form the Entity Tree)&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Top-level bulkhead structures&lt;/strong&gt; in my website downloader Crystal include (1) the Task Scheduler itself (by using the root &lt;code&gt;Task&lt;/code&gt; as the associated bulkhead), (2) the Task Tree UI (by again using the root &lt;code&gt;Task&lt;/code&gt; as the associated bulkhead), and (3) the Entity Tree UI (which is its own bulkhead that reports errors to the Task Tree UI).&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -3384,7 +3740,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;68&lt;/sup&gt;
+  Software&lt;sup&gt;69&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
