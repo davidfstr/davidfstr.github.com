@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2024-03-20T14:01:55+00:00</updated>
+ <updated>2024-03-24T13:36:02+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,30 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2024/03/24/redis-relicensing-why-is-this-a-problem</id>
+   <title>Redis relicensing: Why is this a problem?</title>
+   <published>2024-03-24T00:00:00+00:00</published>
+   <updated>2024-03-24T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2024/03/24/redis-relicensing-why-is-this-a-problem/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;I find the fire &amp;amp; heat around &lt;a href=&quot;https://redis.com/blog/redis-adopts-dual-source-available-licensing/&quot;&gt;Redis changing licensing&lt;/a&gt; surprising. Maintaining Redis takes effort which cannot be free in a sustainable fashion.&lt;/p&gt;
+
+&lt;p&gt;Consider &lt;a href=&quot;https://andrewkelley.me/post/redis-renamed-to-redict.html&quot;&gt;this post&lt;/a&gt; which complains Redis isn&amp;rsquo;t &amp;ldquo;uphold[ing] the ideals of Free and Open Source Software&amp;rdquo;, as if it was created as a vehicle to evangelize the FSF and OSI missions. But it was not, it was created to be &lt;em&gt;useful&lt;/em&gt;, as a data structure server.&lt;/p&gt;
+
+&lt;p&gt;I also disagree with that post&amp;rsquo;s assertion that Redis contributions would have been withheld if it started with a different license. I expect contributions would come from existing users of Redis who wanted new features themselves and were willing to sponsor the related effort, regardless of the license in use.&lt;/p&gt;
+
+&lt;p&gt;Certainly if Redis has started under its new license and I was using Redis on Azure - which Microsoft has already bought a commercial license for - then I wouldn&amp;rsquo;t care that Redis was licensed under the SSPL.&lt;/p&gt;
+
+&lt;p&gt;Frankly &lt;strong&gt;I think it would be a win for software sustainability if there was a trend of new software projects being offered under source-available licenses&lt;/strong&gt; requiring large cloud providers like AWS, Azure, and GCP to give back financially to the core maintainers.&lt;/p&gt;
+
+&lt;p&gt;I plan to be announcing a project of my own soon under a source-available license restricting unlicensed commercial use. I&amp;rsquo;ve already put several years of effort into this project. No way in hell do I want to &lt;a href=&quot;https://youtu.be/XZ3w_jec1v8?si=tUHKi3BVzqwTzyIS&amp;amp;t=1695&quot;&gt;&amp;ldquo;get Jeff'ed&amp;rdquo;&lt;/a&gt;, with someone else selling what I&amp;rsquo;ve put so much of my own effort into creating without giving anything back.&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>
@@ -3811,7 +3835,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;69&lt;/sup&gt;
+  Software&lt;sup&gt;70&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

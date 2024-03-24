@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Learning to cook better: My journey | DaFoster</title>
+    <title>Redis relicensing: Why is this a problem? | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -21,12 +21,12 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://dafoster.net/articles/2017/12/09/how-to-learn-to-cook-my-journey/"
+          "@id": "https://dafoster.net/articles/2024/03/24/redis-relicensing-why-is-this-a-problem/"
         },
-        "headline": "Learning to cook better: My journey",
+        "headline": "Redis relicensing: Why is this a problem?",
         
-        "datePublished": "2017-12-09T00:00:00+00:00",
-        "dateModified": "2017-12-09T00:00:00+00:00",
+        "datePublished": "2024-03-24T00:00:00+00:00",
+        "dateModified": "2024-03-24T00:00:00+00:00",
         "author": {
           "@type": "Person",
           "name": "David Foster",
@@ -52,7 +52,7 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Learning to cook better: My journey" />
+      <meta name="twitter:title" content="Redis relicensing: Why is this a problem?" />
       
       <meta name="twitter:description" content="" />
       <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
@@ -220,113 +220,37 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">Learning to cook better: My journey</h1>
+    <h1 class="post-title">Redis relicensing: Why is this a problem?</h1>
     <div class="post-metadata">
       
-        Dec 09, 2017
+        Mar 24, 2024
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
         
-          <span class="tag"><a class="tag__pill" href="/articles/topics/#Cooking">
-  Cooking<sup>2</sup>
-</a></span>
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>70</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
         
       </span>
       
     </div>
     
-    <p>This year I spent a lot of time teaching myself to cook more complicated dishes from cookbooks, doing meal planning, and learning related skills. In this article I&rsquo;d like to share my system for learning to cook better.</p>
+    <p>I find the fire &amp; heat around <a href="https://redis.com/blog/redis-adopts-dual-source-available-licensing/">Redis changing licensing</a> surprising. Maintaining Redis takes effort which cannot be free in a sustainable fashion.</p>
 
-<h3>Commit to becoming skilled at cooking</h3>
+<p>Consider <a href="https://andrewkelley.me/post/redis-renamed-to-redict.html">this post</a> which complains Redis isn&rsquo;t &ldquo;uphold[ing] the ideals of Free and Open Source Software&rdquo;, as if it was created as a vehicle to evangelize the FSF and OSI missions. But it was not, it was created to be <em>useful</em>, as a data structure server.</p>
 
-<p>This is all in your head: Decide that you really want to get better at cooking.</p>
+<p>I also disagree with that post&rsquo;s assertion that Redis contributions would have been withheld if it started with a different license. I expect contributions would come from existing users of Redis who wanted new features themselves and were willing to sponsor the related effort, regardless of the license in use.</p>
 
-<p>Get excited. Imagine your favorite tasty dish from a restaurant - eggs benedict in my case - and imagine how neat it would be if you could cook it yourself.</p>
+<p>Certainly if Redis has started under its new license and I was using Redis on Azure - which Microsoft has already bought a commercial license for - then I wouldn&rsquo;t care that Redis was licensed under the SSPL.</p>
 
-<p>Commit. Tell your friends that you&rsquo;re practicing cooking and to expect pictures of cooked dishes on social media. You wouldn&rsquo;t want to disappoint them.</p>
+<p>Frankly <strong>I think it would be a win for software sustainability if there was a trend of new software projects being offered under source-available licenses</strong> requiring large cloud providers like AWS, Azure, and GCP to give back financially to the core maintainers.</p>
 
-<h3>Reserve time each week for cooking</h3>
-
-<p>Practice makes perfect: The best way to learn cooking - or really any skill - is to <em>practice</em> on a regular basis.</p>
-
-<p>In my case I decided to cook at least one &ldquo;advanced&rdquo; (i.e. cookbook-based) dish per week on a consistent day. To do that I blocked out a few evenings:</p>
-
-<ul>
-<li><strong>Meal Planning Day</strong> (Sunday) - Decide what dish to cook this week. Write down ingredients.</li>
-<li><strong>Grocery Day</strong> (Monday) - Buy ingredients.</li>
-<li><strong>Cooking Day</strong> (Tuesday) - Assemble ingredients.</li>
-</ul>
-
-
-<h3>Select and buy a good cookbook</h3>
-
-<p>To provide a set of cooking goals - that is, dishes to cook - a cookbook is useful. When selecting a cookbook I looked for a few things:</p>
-
-<ul>
-<li><p>Targeted at new cooks.</p></li>
-<li><p>Compatible with my diet.</p>
-
-<p>In my case I don&rsquo;t like cooking meat, so vegetarian and vegan cookbooks are good choices.</p></li>
-<li><p>Has <em>pictures</em> of finished dishes.</p>
-
-<p>Tasty-looking pictures of the goal are inspiring.</p></li>
-<li><p>Uses similar ingredients across multiple dishes. Avoids exotic ingredients.</p>
-
-<p>With a small number of commonly-used ingredients you learn about those ingredients more quickly than if you had a large number.</p>
-
-<p>It also becomes less necessary to buy additional ingredients for every single recipe, since you&rsquo;ll probably have left-over ingredients from other dishes you&rsquo;ve cooked from the same book.</p></li>
-</ul>
-
-
-<p>In my particular case I selected <a href="https://www.amazon.com/Thug-Kitchen-Official-Cookbook-Like-ebook/dp/B00JVVQQ1G/">Thug Kitchen</a> - which I prefer to call Swearing Simple Vegan - as my cookbook. It&rsquo;s directed at new cooks, is vegan, uses common ingredients, and is hilarious.</p>
-
-<h3>Work the cooking pipeline</h3>
-
-<p>Practice. Practice. Practice.</p>
-
-<h4>Meal Planning Day (15-45 minutes)</h4>
-
-<ul>
-<li><p>Browse recipes in your cookbook. Mark ones you&rsquo;d like to cook sometime with a sticky note.</p>
-
-<p>I also occasionally looked up recipes online as well.</p></li>
-<li><p>Decide on 1-2 recipes to cook <em>this week</em> from your marked potential recipes.</p></li>
-<li><p>Record ingredients which you need but don&rsquo;t have in stock on a shopping list. Also record any missing cooking gadgets to purchase.</p></li>
-</ul>
-
-
-<h4>Grocery Day (1 hour)</h4>
-
-<ul>
-<li><p>Go to grocery store.</p></li>
-<li><p>Buy ingredients from your shopping list.</p></li>
-<li><p>Go home. Unpack ingredients.</p></li>
-</ul>
-
-
-<p>Tip: You can eliminate the first 2 steps by buying groceries online.</p>
-
-<h4>Cooking Day (3 hours)</h4>
-
-<ul>
-<li><p>Read through the recipe again. Annotate important items like cooking times.</p></li>
-<li><p>Arrange all ingredients on the counter.</p></li>
-<li><p>Follow the recipe instructions. Look for patterns and remember them.</p></li>
-<li><p>Eat delicious food.</p></li>
-<li><p>Photo the meal to record progress. Share on social media.</p></li>
-<li><p>Package leftovers for future lunches and dinners.</p></li>
-<li><p>Wash the dishes.</p></li>
-</ul>
-
-
-<h3>That&rsquo;s it!</h3>
-
-<p>After practicing for 2-3 months I became confident that I could cook most recipes from the same style of cookbook without it feeling difficult.</p>
-
-<p>I also learned a lot of little tips and tricks along the way to streamline the cooking process. I&rsquo;m planning to write another article in the near future about the most important tips I&rsquo;ve learned so far.</p>
-
-<p>Happy cooking!</p>
+<p>I plan to be announcing a project of my own soon under a source-available license restricting unlicensed commercial use. I&rsquo;ve already put several years of effort into this project. No way in hell do I want to <a href="https://youtu.be/XZ3w_jec1v8?si=tUHKi3BVzqwTzyIS&amp;t=1695">&ldquo;get Jeff'ed&rdquo;</a>, with someone else selling what I&rsquo;ve put so much of my own effort into creating without giving anything back.</p>
 
   </div>
   
@@ -355,11 +279,11 @@
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2017/04/09/the-trouble-with-global-variables/" title="The Trouble with Global Variables">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2024/02/28/bulkheads-a-pattern-for-handling-unexpected-errors-in-software/" title="Bulkheads: A pattern for handling unexpected errors in software">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2017/12/18/how-to-annotate-a-new-recipe/" title="How to annotate a new recipe">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
