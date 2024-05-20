@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sun, 24 Mar 2024 13:36:02 +0000</pubDate>
-    <lastBuildDate>Sun, 24 Mar 2024 13:36:02 +0000</lastBuildDate>
+    <pubDate>Mon, 20 May 2024 13:29:21 +0000</pubDate>
+    <lastBuildDate>Mon, 20 May 2024 13:29:21 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -102,15 +102,17 @@ class DownloadResourceTask(Task):
 
 &lt;p&gt;Here is a small program you can run in the Python REPL that demonstrates the use of bulkheads:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; from crystal.util.bulkheads import capture_crashes_to_stderr
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; from crystal.util.bulkheads import BulkheadCell, capture_crashes_to
 &amp;gt;&amp;gt;&amp;gt; 
-&amp;gt;&amp;gt;&amp;gt; @capture_crashes_to_stderr
+&amp;gt;&amp;gt;&amp;gt; divide_bulkhead = BulkheadCell()
+&amp;gt;&amp;gt;&amp;gt; 
+&amp;gt;&amp;gt;&amp;gt; @capture_crashes_to(divide_bulkhead)
 ... def divide(x, y):
 ...     return x / y
 ... 
-&amp;gt;&amp;gt;&amp;gt; divide(10, 2)
+&amp;gt;&amp;gt;&amp;gt; print(divide(10, 2))
 5.0
-&amp;gt;&amp;gt;&amp;gt; divide(10, 0)
+&amp;gt;&amp;gt;&amp;gt; print(divide(10, 0))
 Exception in bulkhead:
 Traceback (most recent call last):
   File &quot;&amp;lt;stdin&amp;gt;&quot;, line 1, in &amp;lt;module&amp;gt;
@@ -118,6 +120,11 @@ Traceback (most recent call last):
     return func(*args, **kwargs)  # cr-traceback: ignore
   File &quot;&amp;lt;stdin&amp;gt;&quot;, line 3, in divide
 ZeroDivisionError: division by zero
+None
+&amp;gt;&amp;gt;&amp;gt; divide_bulkhead.crash_reason
+ZeroDivisionError('division by zero')
+&amp;gt;&amp;gt;&amp;gt; print(divide(10, 5))
+None
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;See the &lt;a href=&quot;#api&quot;&gt;API&lt;/a&gt; for more detailed information about how to use bulkheads.&lt;/p&gt;

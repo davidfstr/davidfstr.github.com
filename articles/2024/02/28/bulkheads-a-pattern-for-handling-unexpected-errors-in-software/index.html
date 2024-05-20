@@ -299,15 +299,17 @@ class DownloadResourceTask(Task):
 
 <p>Here is a small program you can run in the Python REPL that demonstrates the use of bulkheads:</p>
 
-<pre><code class="python">&gt;&gt;&gt; from crystal.util.bulkheads import capture_crashes_to_stderr
+<pre><code class="python">&gt;&gt;&gt; from crystal.util.bulkheads import BulkheadCell, capture_crashes_to
 &gt;&gt;&gt; 
-&gt;&gt;&gt; @capture_crashes_to_stderr
+&gt;&gt;&gt; divide_bulkhead = BulkheadCell()
+&gt;&gt;&gt; 
+&gt;&gt;&gt; @capture_crashes_to(divide_bulkhead)
 ... def divide(x, y):
 ...     return x / y
 ... 
-&gt;&gt;&gt; divide(10, 2)
+&gt;&gt;&gt; print(divide(10, 2))
 5.0
-&gt;&gt;&gt; divide(10, 0)
+&gt;&gt;&gt; print(divide(10, 0))
 Exception in bulkhead:
 Traceback (most recent call last):
   File "&lt;stdin&gt;", line 1, in &lt;module&gt;
@@ -315,6 +317,11 @@ Traceback (most recent call last):
     return func(*args, **kwargs)  # cr-traceback: ignore
   File "&lt;stdin&gt;", line 3, in divide
 ZeroDivisionError: division by zero
+None
+&gt;&gt;&gt; divide_bulkhead.crash_reason
+ZeroDivisionError('division by zero')
+&gt;&gt;&gt; print(divide(10, 5))
+None
 </code></pre>
 
 <p>See the <a href="#api">API</a> for more detailed information about how to use bulkheads.</p>
