@@ -6,14 +6,139 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 20 May 2024 13:29:21 +0000</pubDate>
-    <lastBuildDate>Mon, 20 May 2024 13:29:21 +0000</lastBuildDate>
+    <pubDate>Sun, 16 Jun 2024 12:54:23 +0000</pubDate>
+    <lastBuildDate>Sun, 16 Jun 2024 12:54:23 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>PyCon US 2024 Highlights</title>
+      <link>https://dafoster.net/articles/2024/06/16/pycon-us-2024-highlights/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2024/06/16/pycon-us-2024-highlights</guid>
+      <description>&lt;p&gt;I was happy to be able to attend &lt;a href=&quot;https://us.pycon.org/2024/&quot;&gt;PyCon US 2024&lt;/a&gt; this past year, a prominent conference for the Python programming language. I got to meet in person a number of folks I&amp;rsquo;ve interacted with online, from the Python Typing community and elsewhere.&lt;/p&gt;
+
+&lt;h2&gt;Favorite Talks&lt;/h2&gt;
+
+&lt;p&gt;I particularly liked the following talks, which I&amp;rsquo;ve organized by topic.&lt;/p&gt;
+
+&lt;p&gt;Most video links below are to the Hublio platform, which only conference attendees can access. Unfortunately the talk recordings have not yet been shared more widely on YouTube.&lt;/p&gt;
+
+&lt;h3&gt;Performance&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unlocking the Parallel Universe: Subinterpreters and Free-Threading in Python 3.13&lt;/strong&gt; - Anthony Shaw
+
+&lt;ul&gt;
+&lt;li&gt;Shows many ways to run Python programs in parallel: in different processes, different interpreters, and different threads. There are tradeoffs with each strategy.&lt;/li&gt;
+&lt;li&gt;Insight: &amp;ldquo;Subinterpreters will be a better solution than Multiprocessing for long-running workers.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Insight: Free threading is a good solution for workers that need the fastest data exchange between workers. But free threading is difficult to program correctly, without race conditions.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234270&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Overcoming GIL with subinterpreters and immutability&lt;/strong&gt; - Yury Selivanov
+
+&lt;ul&gt;
+&lt;li&gt;Introduces &lt;a href=&quot;https://github.com/edgedb/memhive&quot;&gt;memhive&lt;/a&gt;, a new library for safely sharing state across multiple Python interpreters in the same process, by providing an immutable/persistent map structure (HAMT) that can be efficiently updated and shared between interpreters&lt;/li&gt;
+&lt;li&gt;Insight: Subinterpreters are a better solution than Multiprocessing for workers that need to share state - such as a cache - between workers, because subinterpreter workers share memory. Subinterpreters are easier to program than free threading.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234227&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Debugging&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Profiling at the speed of light&lt;/strong&gt; - Pablo Galindo Salgado
+
+&lt;ul&gt;
+&lt;li&gt;Showed how to use the &lt;a href=&quot;https://perf.wiki.kernel.org/index.php/Main_Page&quot;&gt;perf&lt;/a&gt; tool on a Python 3.12 and 3.13 process to look at low-level performance metrics like CPU-level and instruction-level counters.&lt;/li&gt;
+&lt;li&gt;Showed how to make flame graphs to see where a mixed Python+C program is spending its time visually.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234204&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rewind: Python Time-Travel Debugger&lt;/strong&gt; - Toby Ho
+
+&lt;ul&gt;
+&lt;li&gt;Showed &lt;a href=&quot;https://github.com/airportyh/time-traveling-debugger&quot;&gt;pyrewind&lt;/a&gt;, a time-travel reverse-debugger for Python. Looks like a promising tool for pure Python code.&lt;/li&gt;
+&lt;li&gt;It&amp;rsquo;s unclear whether the tool supports &lt;a href=&quot;https://github.com/airportyh/time-traveling-debugger/issues/47&quot;&gt;debugging in the presence of C extensions&lt;/a&gt;, which may have side effects that the debugger does not track.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234187&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;AI&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Keynote&lt;/strong&gt; - Simon Willison
+
+&lt;ul&gt;
+&lt;li&gt;Great talk about AI and Machine Learning. Many interesting quotes from this presentation.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;You shouldn&amp;rsquo;t need a CS degree to automate stuff with a computer&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234277&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lies, damned lies and large language models&lt;/strong&gt; - Jodie Burchell
+
+&lt;ul&gt;
+&lt;li&gt;Describes different types of hallucinations that Large Language Models (LLMs) can experience.&lt;/li&gt;
+&lt;li&gt;Shows how to measure how much a particular model hallucinates.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234236&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Typing System&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Theory of Type Hints, Revisited&lt;/strong&gt; - Carl Meyer
+
+&lt;ul&gt;
+&lt;li&gt;Covers in-progress efforts to increase the formality of the underlying theory behind Python&amp;rsquo;s type system, especially with respect to what the &lt;code&gt;Any&lt;/code&gt; type means. These efforts have been partially motivated by ongoing work (for over a year) to attempt to introduce an &lt;code&gt;Intersection&lt;/code&gt; type into Python&amp;rsquo;s typing system.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://discuss.python.org/t/typing-summit-at-pycon-us-2024-17-may-2024/44421&quot;&gt;📽 Video pending&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TypeForm: Type Hint for Type Expressions&lt;/strong&gt; - David Foster
+
+&lt;ul&gt;
+&lt;li&gt;Covers &lt;code&gt;TypeForm&lt;/code&gt;, an in-progress Python type system feature for spelling a &amp;ldquo;type expression object&amp;rdquo; at runtime. This was my own talk. More details in PEP 747.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=GOSG2qXMdcM&quot;&gt;📽 Video (YouTube)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Fun&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Build in-browser 3D experiences with WebGL and PyScript&lt;/strong&gt; - Łukasz Langa
+
+&lt;ul&gt;
+&lt;li&gt;Showed how to use Python to draw 3D graphics in the browser with WebGL.&lt;/li&gt;
+&lt;li&gt;Showed how to take data from a data processing library in Python and directly visualize it by talking to JavaScript visualization libraries.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234214&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connecting Old to New with CircuitPython: Retrocomputer input devices on modern PCs&lt;/strong&gt; - Jeff Epler
+
+&lt;ul&gt;
+&lt;li&gt;Shows how to use Python to build connectors to old keyboards, mice, and other hardware devices.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234265&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -3768,7 +3893,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;70&lt;/sup&gt;
+  Software&lt;sup&gt;71&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

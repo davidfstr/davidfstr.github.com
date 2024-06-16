@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Introducing p4status: A status command for Perforce | DaFoster</title>
+    <title>PyCon US 2024 Highlights | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -21,12 +21,12 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://dafoster.net/articles/2013/03/16/introducing-p4status-a-status-command-for-perforce/"
+          "@id": "https://dafoster.net/articles/2024/06/16/pycon-us-2024-highlights/"
         },
-        "headline": "Introducing p4status: A status command for Perforce",
+        "headline": "PyCon US 2024 Highlights",
         
-        "datePublished": "2013-03-16T00:00:00+00:00",
-        "dateModified": "2013-03-16T00:00:00+00:00",
+        "datePublished": "2024-06-16T00:00:00+00:00",
+        "dateModified": "2024-06-16T00:00:00+00:00",
         "author": {
           "@type": "Person",
           "name": "David Foster",
@@ -52,7 +52,7 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Introducing p4status: A status command for Perforce" />
+      <meta name="twitter:title" content="PyCon US 2024 Highlights" />
       
       <meta name="twitter:description" content="" />
       <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
@@ -220,10 +220,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">Introducing p4status: A status command for Perforce</h1>
+    <h1 class="post-title">PyCon US 2024 Highlights</h1>
     <div class="post-metadata">
       
-        Mar 16, 2013
+        Jun 16, 2024
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
@@ -240,93 +240,117 @@
       
     </div>
     
-    <p><strong>p4status</strong> works like <code>git status</code> (or <code>svn status</code>), but works in Perforce.</p>
+    <p>I was happy to be able to attend <a href="https://us.pycon.org/2024/">PyCon US 2024</a> this past year, a prominent conference for the Python programming language. I got to meet in person a number of folks I&rsquo;ve interacted with online, from the Python Typing community and elsewhere.</p>
 
-<p>It will list changelist files and locally modified files that haven&rsquo;t been added to any changelist (including unadded files) in a readable format.</p>
+<h2>Favorite Talks</h2>
 
-<div style="padding: .8em 1em .8em; margin-bottom: 1em; border: 1px solid #94da3a;">
-    <p style="font-weight: bold; color: #487858;">
-        Note
-    </p>
-    <p style="margin-bottom: 0em;">
-        The 2012 version of Perforce has an official
-        <b>p4 status</b> command. However this command is only available if 
-        your corporate Perforce server has been upgraded to 2012. If your 
-        company, like mine, has not upgraded their server, this script will 
-        make your life easier.
-    </p>
-</div>
+<p>I particularly liked the following talks, which I&rsquo;ve organized by topic.</p>
 
+<p>Most video links below are to the Hublio platform, which only conference attendees can access. Unfortunately the talk recordings have not yet been shared more widely on YouTube.</p>
 
-<h3>Example</h3>
-
-<pre><code>[dfoster ~/dev/p4/mybranch/path/to/myproject]$ p4status
-# On changelist 154055
-# 
-# Changes to be committed in changelist default:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
-# 
-#       deleted:    server/apps/setupfx/splunkd/default/extract.conf
-# 
-# Changes to be committed in changelist 154076:
-#   (use "p4 revert &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW.conf
-#       modified:   server/apps/setupfx/splunkd/default/inputs.conf
-# 
-# Changes not staged for commit:
-#   (use "p4 add/edit/delete &lt;file&gt;..." to update what will be committed)
-#   (use "p4 sync -f &lt;file&gt;..." to discard changes in working directory)
-# 
-#       new file:   server/apps/setupfx/splunkd/default/inputs-NEW2.conf
-# 
-</code></pre>
-
-<h3>Installation</h3>
+<h3>Performance</h3>
 
 <ul>
-<li>Download to your local <code>bin</code> directory:
-<a href="https://github.com/davidfstr/dotfiles/blob/master/bin/p4status">https://github.com/davidfstr/dotfiles/blob/master/bin/p4status</a></li>
-<li>Mark as executable with <code>chmod a+x p4status</code></li>
-</ul>
-
-
-<h3>Usage</h3>
+<li><strong>Unlocking the Parallel Universe: Subinterpreters and Free-Threading in Python 3.13</strong> - Anthony Shaw
 
 <ul>
-<li><code>cd</code> to the primary directory that you&rsquo;ll be working under.</li>
-<li>Run <code>p4status</code>.</li>
-</ul>
-
-
-<h3>Limitations</h3>
-
-<ul>
-<li><p>Only detects unstaged files under the directory in which the command is run. Therefore it is best to reserve a terminal window that is <code>cd</code>-ed to the correct place where this command can be run safely.</p></li>
-<li><p>This command is too slow to run from the root of very large branches.</p></li>
-</ul>
-
-
-<h3>Alternatives</h3>
-
-<ul>
-<li>Use the excellent Git-to-Perforce bridge, <a href="http://git-scm.com/docs/git-p4">git-p4</a>.
-
-<ul>
-<li>This allows you to work with your Perforce repository as if it were a Git repository. And you can use Git&rsquo;s very fast <code>git status</code> command.</li>
+<li>Shows many ways to run Python programs in parallel: in different processes, different interpreters, and different threads. There are tradeoffs with each strategy.</li>
+<li>Insight: &ldquo;Subinterpreters will be a better solution than Multiprocessing for long-running workers.&rdquo;</li>
+<li>Insight: Free threading is a good solution for workers that need the fastest data exchange between workers. But free threading is difficult to program correctly, without race conditions.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234270">📽 Video (Hublio)</a></li>
 </ul>
 </li>
-<li>Convince your Perforce server administrator to upgrade to the 2012 version. This may take some time, depending on the size of your company.</li>
+<li><strong>Overcoming GIL with subinterpreters and immutability</strong> - Yury Selivanov
+
+<ul>
+<li>Introduces <a href="https://github.com/edgedb/memhive">memhive</a>, a new library for safely sharing state across multiple Python interpreters in the same process, by providing an immutable/persistent map structure (HAMT) that can be efficiently updated and shared between interpreters</li>
+<li>Insight: Subinterpreters are a better solution than Multiprocessing for workers that need to share state - such as a cache - between workers, because subinterpreter workers share memory. Subinterpreters are easier to program than free threading.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234227">📽 Video (Hublio)</a></li>
+</ul>
+</li>
 </ul>
 
 
-<h3><em>Related Projects</em></h3>
+<h3>Debugging</h3>
 
 <ul>
-<li><a href="https://github.com/davidfstr/dotfiles">dotfiles</a>
+<li><strong>Profiling at the speed of light</strong> - Pablo Galindo Salgado
 
 <ul>
-<li><em>My command-line shortcuts, including several for working with Git, particularly in an OS X environment.</em></li>
+<li>Showed how to use the <a href="https://perf.wiki.kernel.org/index.php/Main_Page">perf</a> tool on a Python 3.12 and 3.13 process to look at low-level performance metrics like CPU-level and instruction-level counters.</li>
+<li>Showed how to make flame graphs to see where a mixed Python+C program is spending its time visually.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234204">📽 Video (Hublio)</a></li>
+</ul>
+</li>
+<li><strong>Rewind: Python Time-Travel Debugger</strong> - Toby Ho
+
+<ul>
+<li>Showed <a href="https://github.com/airportyh/time-traveling-debugger">pyrewind</a>, a time-travel reverse-debugger for Python. Looks like a promising tool for pure Python code.</li>
+<li>It&rsquo;s unclear whether the tool supports <a href="https://github.com/airportyh/time-traveling-debugger/issues/47">debugging in the presence of C extensions</a>, which may have side effects that the debugger does not track.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234187">📽 Video (Hublio)</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>AI</h3>
+
+<ul>
+<li><strong>Keynote</strong> - Simon Willison
+
+<ul>
+<li>Great talk about AI and Machine Learning. Many interesting quotes from this presentation.</li>
+<li>&ldquo;You shouldn&rsquo;t need a CS degree to automate stuff with a computer&rdquo;</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234277">📽 Video (Hublio)</a></li>
+</ul>
+</li>
+<li><strong>Lies, damned lies and large language models</strong> - Jodie Burchell
+
+<ul>
+<li>Describes different types of hallucinations that Large Language Models (LLMs) can experience.</li>
+<li>Shows how to measure how much a particular model hallucinates.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234236">📽 Video (Hublio)</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Typing System</h3>
+
+<ul>
+<li><strong>Theory of Type Hints, Revisited</strong> - Carl Meyer
+
+<ul>
+<li>Covers in-progress efforts to increase the formality of the underlying theory behind Python&rsquo;s type system, especially with respect to what the <code>Any</code> type means. These efforts have been partially motivated by ongoing work (for over a year) to attempt to introduce an <code>Intersection</code> type into Python&rsquo;s typing system.</li>
+<li><a href="https://discuss.python.org/t/typing-summit-at-pycon-us-2024-17-may-2024/44421">📽 Video pending</a></li>
+</ul>
+</li>
+<li><strong>TypeForm: Type Hint for Type Expressions</strong> - David Foster
+
+<ul>
+<li>Covers <code>TypeForm</code>, an in-progress Python type system feature for spelling a &ldquo;type expression object&rdquo; at runtime. This was my own talk. More details in PEP 747.</li>
+<li><a href="https://www.youtube.com/watch?v=GOSG2qXMdcM">📽 Video (YouTube)</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Fun</h3>
+
+<ul>
+<li><strong>Build in-browser 3D experiences with WebGL and PyScript</strong> - Łukasz Langa
+
+<ul>
+<li>Showed how to use Python to draw 3D graphics in the browser with WebGL.</li>
+<li>Showed how to take data from a data processing library in Python and directly visualize it by talking to JavaScript visualization libraries.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234214">📽 Video (Hublio)</a></li>
+</ul>
+</li>
+<li><strong>Connecting Old to New with CircuitPython: Retrocomputer input devices on modern PCs</strong> - Jeff Epler
+
+<ul>
+<li>Shows how to use Python to build connectors to old keyboards, mice, and other hardware devices.</li>
+<li><a href="https://events.hubilo.com/pycon-us-2024/session/234265">📽 Video (Hublio)</a></li>
 </ul>
 </li>
 </ul>
@@ -359,11 +383,11 @@
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2013/03/10/killer-apps-for-software-platforms/" title="Killer apps for software platforms">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2024/03/24/redis-relicensing-why-is-this-a-problem/" title="Redis relicensing: Why is this a problem?">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/03/22/migrating-from-bbedit-to-sublime-text/" title="Migrating from BBEdit to Sublime Text">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
