@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2024-06-16T12:54:23+00:00</updated>
+ <updated>2024-06-23T20:41:18+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -72,6 +72,22 @@
 &lt;li&gt;Showed &lt;a href=&quot;https://github.com/airportyh/time-traveling-debugger&quot;&gt;pyrewind&lt;/a&gt;, a time-travel reverse-debugger for Python. Looks like a promising tool for pure Python code.&lt;/li&gt;
 &lt;li&gt;It&amp;rsquo;s unclear whether the tool supports &lt;a href=&quot;https://github.com/airportyh/time-traveling-debugger/issues/47&quot;&gt;debugging in the presence of C extensions&lt;/a&gt;, which may have side effects that the debugger does not track.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234187&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;API Design&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Design of Everyday APIs&lt;/strong&gt; - Lynn Root
+
+&lt;ul&gt;
+&lt;li&gt;Outlined several principles for improving the design of APIs.&lt;/li&gt;
+&lt;li&gt;Gives &amp;ldquo;before&amp;rdquo; and &amp;ldquo;after&amp;rdquo; examples when applying these principles
+to an example API.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://events.hubilo.com/pycon-us-2024/session/234189&quot;&gt;📽 Video (Hublio)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.roguelynn.com/talks/everyday-apis/&quot;&gt;🎞 Slides&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
