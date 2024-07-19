@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2024-06-23T20:41:18+00:00</updated>
+ <updated>2024-07-19T19:40:13+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -2795,9 +2795,9 @@ class ChatRoomJoinRequest(models.Model):
  
  <entry>
    <id>https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide</id>
-   <title>Building web apps with Vue and Django - The Ultimate Guide</title>
+   <title>Building web apps with Vue and Django (2024) - Ultimate Guide</title>
    <published>2021-02-16T00:00:00+00:00</published>
-   <updated>2021-02-16T00:00:00+00:00</updated>
+   <updated>2024-06-28T00:00:00+00:00</updated>
    
      <category term="Django"/>
    
@@ -2834,7 +2834,7 @@ class ChatRoomJoinRequest(models.Model):
 
 &lt;p&gt;&lt;a href=&quot;https://vuejs.org/v2/guide/&quot;&gt;Vue&lt;/a&gt; and &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; are both fantastic for building modern web apps - bringing declarative functional reactive programming to the frontend, and an integrated web app platform, ecosystem, and battle-hardened ORM to the backend. However they can be somewhat tricky to use &lt;em&gt;together&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Here I&amp;rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&amp;rsquo;ve been building web apps with Django for ~6 years and with Vue for ~3 years, and in particular I&amp;rsquo;ve extensively tested the &lt;a href=&quot;#1-server-approach&quot;&gt;1&amp;#8209;server&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach described below in production.&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Here I&amp;rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&amp;rsquo;ve been building web apps with Django for ~9 years and with Vue for ~6 years, and in particular I&amp;rsquo;ve extensively tested the &lt;a href=&quot;#1-server-approach&quot;&gt;1&amp;#8209;server&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach described below in production.&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;1-server-or-2-servers&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2966,7 +2966,7 @@ class ChatRoomJoinRequest(models.Model):
     &lt;img alt=&quot;Diagram: Import-Traced Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/import-traced.svg&quot; class=&quot;bundling-diagram&quot; /&gt;
 &lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;With the advent of the &lt;a href=&quot;https://www.snowpack.dev/&quot;&gt;Snowpack&lt;/a&gt; bundler we can get all the benefits of the &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.&lt;/p&gt;
+&lt;p&gt;With the advent of the &lt;a href=&quot;https://vitejs.dev/&quot;&gt;Vite&lt;/a&gt; bundler we can get all the benefits of the &lt;a href=&quot;#concatenated-bundling&quot;&gt;concatenated bundling&lt;/a&gt; approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.&lt;/p&gt;
 
 &lt;p&gt;With import-traced bundling, you write a root JavaScript file for each page that uses regular &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import&quot;&gt;JavaScript import statements&lt;/a&gt; to bring in related modules. Your HTML template then only needs to include the root JavaScript file:&lt;br clear=&quot;both&quot; /&gt;&lt;/p&gt;
 
@@ -2977,7 +2977,7 @@ class ChatRoomJoinRequest(models.Model):
 &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt;
 &amp;lt;!-- js --&amp;gt;
     &amp;lt;script type=&quot;module&quot;&amp;gt;
-        import { setupTodoPage } from &quot;{% static 'todo/todo.js' %}&quot;;
+        import { setupTodoPage } from &quot;@app/todo/todo.js&quot;;
         setupTodoPage();
     &amp;lt;/script&amp;gt;
 &amp;lt;!-- endjs --&amp;gt;
@@ -2988,11 +2988,14 @@ class ChatRoomJoinRequest(models.Model):
 &lt;p&gt;The root JavaScript file might look like:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;// static/todo/todo.js
-import { defineTodoList } from &quot;./todo/list.js&quot;;
+import { defineTodoList } from &quot;@app/todo/list.js&quot;;
 
 export function setupTodoPage() {
-    defineTodoList();
-    ...
+    const app = Vue.createApp(...);
+    
+    defineTodoList(app);
+    
+    app.mount(...);
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -3000,12 +3003,10 @@ export function setupTodoPage() {
 &lt;p&gt;And that root JS file can include other modules like:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;// static/todo/list.js
-import { defineTodoItem } from &quot;./item.js&quot;;
+import { defineTodoItem } from &quot;@app/todo/item.js&quot;;
 
-export function defineTodoList() {
-    defineTodoItem();
-    
-    Vue.component('todo-list', {
+export function defineTodoList(app) {
+    app.component('todo-list', {
         props: {
             ...
         },
@@ -3016,21 +3017,30 @@ export function defineTodoList() {
             ...
         }
     });
+    
+    defineTodoItem(app);
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+
+&lt;blockquote&gt;&lt;p&gt;Note: The &lt;code&gt;import&lt;/code&gt; statements above assume that Vite has been configured to resolve &lt;code&gt;@app&lt;/code&gt; to Django&amp;rsquo;s root &lt;code&gt;static&lt;/code&gt; directory in &lt;code&gt;vite.config.js&lt;/code&gt;.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Some key differences between import-traced bundling and concatenated bundling:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;The HTML page only needs to include the root JS file for the page and not any of its indirect JS dependencies.&lt;/li&gt;
 &lt;li&gt;JS modules must use &lt;code&gt;import&lt;/code&gt; to declare other JS modules that they depend on, and &lt;code&gt;export&lt;/code&gt; any functions that they want to be importable by other modules.&lt;/li&gt;
-&lt;li&gt;JS files for &lt;em&gt;all&lt;/em&gt; Django apps in the Django project should be put in a common &lt;code&gt;static&lt;/code&gt; directory rather than using per-app &lt;code&gt;static&lt;/code&gt; directories. Having a common directory for all JS files will make it easier to configure Snowpack to build combined JS bundles for production deployments.&lt;/li&gt;
-&lt;li&gt;There is no longer a need to use Django Compressor.&lt;/li&gt;
+&lt;li&gt;JS files for &lt;em&gt;all&lt;/em&gt; Django apps in the Django project should be put in a common &lt;code&gt;static&lt;/code&gt; directory rather than using per-app &lt;code&gt;static&lt;/code&gt; directories. Having a common directory for all JS files will make it easier to configure Vite to build combined JS bundles for production deployments.
+
+&lt;ul&gt;
+&lt;li&gt;It &lt;em&gt;should&lt;/em&gt; still be possible to configure Vite to use app-specific &lt;code&gt;static&lt;/code&gt; directories, with some custom build system modifications, but I haven&amp;rsquo;t yet tried to do so myself.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Django Compressor is no longer necessary.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;For a production deployment, you&amp;rsquo;ll need to alter your deployment script to run Snowpack on the root &lt;code&gt;static&lt;/code&gt; directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.&lt;/p&gt;
+&lt;p&gt;For a production deployment, you&amp;rsquo;ll need to alter your deployment script to run Vite on the root &lt;code&gt;static&lt;/code&gt; directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.&lt;/p&gt;
 
 &lt;p&gt;Pros of import-traced bundling:&lt;/p&gt;
 
@@ -3046,9 +3056,10 @@ export function defineTodoList() {
 
 &lt;ul&gt;
 &lt;li&gt;JavaScript files are not transpiled at &lt;em&gt;development time&lt;/em&gt; (although they &lt;em&gt;are&lt;/em&gt; at deployment time), so if you want to use the most bleeding-edge JavaScript features that aren&amp;rsquo;t even supported by your development browser then you&amp;rsquo;re out of luck. If you need transpilation during development consider the &lt;a href=&quot;#transpiled-bundling&quot;&gt;transpiled&lt;/a&gt; or the &lt;a href=&quot;#2-server-approach&quot;&gt;2-server&lt;/a&gt; approaches instead.&lt;/li&gt;
-&lt;li&gt;Requires that your development browsers &lt;a href=&quot;https://caniuse.com/mdn-javascript_statements_import&quot;&gt;support JavaScript import&lt;/a&gt; and JS modules in general.&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;To see a full example of combining Django and Vite together using the above strategy, take a look at the &lt;a href=&quot;https://github.com/techsmartkids/hello-django-vite#readme&quot;&gt;hello-django-vite&lt;/a&gt; prototype I put together.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;transpiled-bundling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -3058,13 +3069,13 @@ export function defineTodoList() {
     &lt;img alt=&quot;Diagram: Transpiled Bundling Strategy&quot; src=&quot;/assets/2021/vue-and-django/bundling-strategies/transpiled.svg&quot; class=&quot;bundling-diagram bundling-diagram-wide&quot; /&gt;
 &lt;/a&gt;&lt;/p&gt;
 
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;2024 Update:&lt;/strong&gt; The &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; approach used with newer bundlers like Vite gives all the advantages of transpiled bundling without any of the downsides. Therefore I would not recommend a traditional transpiler approach in 2024.&lt;/p&gt;&lt;/blockquote&gt;
+
 &lt;p&gt;If you want the latest and greatest JavaScript features that haven&amp;rsquo;t made it even to your latest &lt;em&gt;development&lt;/em&gt; browser (ex: the latest Chrome or Firefox) then you&amp;rsquo;ll need to pay the cost of needing to transpile during development time:&lt;/p&gt;
 
 &lt;p&gt;The transpiled bundling approach generally uses the same kind of HTML, JS, and filesystem structure as the &lt;a href=&quot;#import-traced-bundling&quot;&gt;import-traced bundling&lt;/a&gt; approach but you have additional flexibility depending on the particular set of bundler and transpiler tools you select.&lt;/p&gt;
 
-&lt;p&gt;Common choices for transpiler tools as of early 2021 are &lt;a href=&quot;https://webpack.js.org/&quot;&gt;Webpack&lt;/a&gt;, &lt;a href=&quot;https://babeljs.io/&quot;&gt;Babel&lt;/a&gt;, and &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&amp;rsquo;s &lt;a href=&quot;https://youtu.be/E613X3RBegI?t=1203&quot;&gt;thoughts on the transpiled bundling approach at PyCon 2019&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Common choices for transpiler tools as of mid 2024 are &lt;a href=&quot;https://vitejs.dev/&quot;&gt;Vite&lt;/a&gt;/&lt;a href=&quot;https://rollupjs.org/&quot;&gt;Rollup&lt;/a&gt;, &lt;a href=&quot;https://webpack.js.org/&quot;&gt;Webpack&lt;/a&gt;, &lt;a href=&quot;https://babeljs.io/&quot;&gt;Babel&lt;/a&gt;, and &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Pros of transpiled bundling:&lt;/p&gt;
 
@@ -3091,6 +3102,8 @@ export function defineTodoList() {
 &lt;li&gt;Slow bundle build times during deployment, assuming you enable aggressive optimizations.&lt;/li&gt;
 &lt;/ul&gt;
 
+
+&lt;p&gt;For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&amp;rsquo;s &lt;a href=&quot;https://youtu.be/E613X3RBegI?t=1203&quot;&gt;thoughts on the transpiled bundling approach at PyCon 2019&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;render-baseline-html-with-django&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -3218,13 +3231,12 @@ export function defineTodoList() {
 
 &lt;pre&gt;&lt;code&gt;// store/product/recommendations.js
 /*public*/ function setupRecommendationsPanel() {
-    new Vue({
-        el: '#recommendations-panel',
-        data: function() {
-            return document.querySelector('#recommendations-panel-data').innerText;
+    Vue.createApp({
+        data() {
+            return JSON.parse(document.querySelector('#recommendations-panel-data').innerText);
         },
         computed: {
-            loading: function() {
+            loading() {
                 ...
             },
             ...
@@ -3232,7 +3244,7 @@ export function defineTodoList() {
         methods: {
             ...
         }
-    });
+    }).mount('#recommendations-panel');
 }
 &lt;/code&gt;&lt;/pre&gt;
 

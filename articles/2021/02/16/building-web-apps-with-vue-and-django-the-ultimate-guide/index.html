@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Building web apps with Vue and Django - The Ultimate Guide | DaFoster</title>
+    <title>Building web apps with Vue and Django (2024) - Ultimate Guide | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -23,10 +23,10 @@
           "@type": "WebPage",
           "@id": "https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/"
         },
-        "headline": "Building web apps with Vue and Django - The Ultimate Guide",
+        "headline": "Building web apps with Vue and Django (2024) - Ultimate Guide",
         
         "datePublished": "2021-02-16T00:00:00+00:00",
-        "dateModified": "2021-02-16T00:00:00+00:00",
+        "dateModified": "2024-06-28T00:00:00+00:00",
         "author": {
           "@type": "Person",
           "name": "David Foster",
@@ -52,7 +52,7 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Building web apps with Vue and Django - The Ultimate Guide" />
+      <meta name="twitter:title" content="Building web apps with Vue and Django (2024) - Ultimate Guide" />
       
       <meta name="twitter:description" content="" />
       <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
@@ -177,51 +177,51 @@
               
             
               
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
                 <li><a href="/articles/">Articles</a></li>
               
             
               
             
               
-                <li><a href="/projects/">Projects</a></li>
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
               
             
               
                 <li><a href="/about/">About</a></li>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
               
             
               
@@ -254,10 +254,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title post-title--long">Building web apps with Vue and Django - The Ultimate Guide</h1>
+    <h1 class="post-title post-title--long">Building web apps with Vue and Django (2024) - Ultimate Guide</h1>
     <div class="post-metadata">
       
-        Feb 16, 2021
+        <span title="Created Feb 16, 2021" style="cursor: help;">Updated Jun 28, 2024</span>
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
@@ -312,7 +312,7 @@
 
 <p><a href="https://vuejs.org/v2/guide/">Vue</a> and <a href="https://www.djangoproject.com/">Django</a> are both fantastic for building modern web apps - bringing declarative functional reactive programming to the frontend, and an integrated web app platform, ecosystem, and battle-hardened ORM to the backend. However they can be somewhat tricky to use <em>together</em>.</p>
 
-<p>Here I&rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&rsquo;ve been building web apps with Django for ~6 years and with Vue for ~3 years, and in particular I&rsquo;ve extensively tested the <a href="#1-server-approach">1&#8209;server</a>&nbsp;<a href="#concatenated-bundling">concatenated bundling</a> approach described below in production.<br clear="both" /></p>
+<p>Here I&rsquo;d like to show some approaches for setting Vue and Django up in combination for both new web apps and existing Django-based web apps. I&rsquo;ve been building web apps with Django for ~9 years and with Vue for ~6 years, and in particular I&rsquo;ve extensively tested the <a href="#1-server-approach">1&#8209;server</a>&nbsp;<a href="#concatenated-bundling">concatenated bundling</a> approach described below in production.<br clear="both" /></p>
 
 <p><a name="1-server-or-2-servers"></a></p>
 
@@ -444,7 +444,7 @@
     <img alt="Diagram: Import-Traced Bundling Strategy" src="/assets/2021/vue-and-django/bundling-strategies/import-traced.svg" class="bundling-diagram" />
 </a></p>
 
-<p>With the advent of the <a href="https://www.snowpack.dev/">Snowpack</a> bundler we can get all the benefits of the <a href="#concatenated-bundling">concatenated bundling</a> approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.</p>
+<p>With the advent of the <a href="https://vitejs.dev/">Vite</a> bundler we can get all the benefits of the <a href="#concatenated-bundling">concatenated bundling</a> approach while eliminating the need to manage JS dependencies manually, at the cost of a slightly-more-complex deployment process.</p>
 
 <p>With import-traced bundling, you write a root JavaScript file for each page that uses regular <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">JavaScript import statements</a> to bring in related modules. Your HTML template then only needs to include the root JavaScript file:<br clear="both" /></p>
 
@@ -455,7 +455,7 @@
 &lt;body&gt;...&lt;/body&gt;
 &lt;!-- js --&gt;
     &lt;script type="module"&gt;
-        import { setupTodoPage } from "{% static 'todo/todo.js' %}";
+        import { setupTodoPage } from "@app/todo/todo.js";
         setupTodoPage();
     &lt;/script&gt;
 &lt;!-- endjs --&gt;
@@ -466,11 +466,14 @@
 <p>The root JavaScript file might look like:</p>
 
 <pre><code>// static/todo/todo.js
-import { defineTodoList } from "./todo/list.js";
+import { defineTodoList } from "@app/todo/list.js";
 
 export function setupTodoPage() {
-    defineTodoList();
-    ...
+    const app = Vue.createApp(...);
+    
+    defineTodoList(app);
+    
+    app.mount(...);
 }
 </code></pre>
 
@@ -478,12 +481,10 @@ export function setupTodoPage() {
 <p>And that root JS file can include other modules like:</p>
 
 <pre><code>// static/todo/list.js
-import { defineTodoItem } from "./item.js";
+import { defineTodoItem } from "@app/todo/item.js";
 
-export function defineTodoList() {
-    defineTodoItem();
-    
-    Vue.component('todo-list', {
+export function defineTodoList(app) {
+    app.component('todo-list', {
         props: {
             ...
         },
@@ -494,21 +495,30 @@ export function defineTodoList() {
             ...
         }
     });
+    
+    defineTodoItem(app);
 }
 </code></pre>
 
+
+<blockquote><p>Note: The <code>import</code> statements above assume that Vite has been configured to resolve <code>@app</code> to Django&rsquo;s root <code>static</code> directory in <code>vite.config.js</code>.</p></blockquote>
 
 <p>Some key differences between import-traced bundling and concatenated bundling:</p>
 
 <ul>
 <li>The HTML page only needs to include the root JS file for the page and not any of its indirect JS dependencies.</li>
 <li>JS modules must use <code>import</code> to declare other JS modules that they depend on, and <code>export</code> any functions that they want to be importable by other modules.</li>
-<li>JS files for <em>all</em> Django apps in the Django project should be put in a common <code>static</code> directory rather than using per-app <code>static</code> directories. Having a common directory for all JS files will make it easier to configure Snowpack to build combined JS bundles for production deployments.</li>
-<li>There is no longer a need to use Django Compressor.</li>
+<li>JS files for <em>all</em> Django apps in the Django project should be put in a common <code>static</code> directory rather than using per-app <code>static</code> directories. Having a common directory for all JS files will make it easier to configure Vite to build combined JS bundles for production deployments.
+
+<ul>
+<li>It <em>should</em> still be possible to configure Vite to use app-specific <code>static</code> directories, with some custom build system modifications, but I haven&rsquo;t yet tried to do so myself.</li>
+</ul>
+</li>
+<li>Django Compressor is no longer necessary.</li>
 </ul>
 
 
-<p>For a production deployment, you&rsquo;ll need to alter your deployment script to run Snowpack on the root <code>static</code> directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.</p>
+<p>For a production deployment, you&rsquo;ll need to alter your deployment script to run Vite on the root <code>static</code> directory for the Django project, enumerating the set of root JS files, and generating same-named files for deployment to your static asset server.</p>
 
 <p>Pros of import-traced bundling:</p>
 
@@ -524,9 +534,10 @@ export function defineTodoList() {
 
 <ul>
 <li>JavaScript files are not transpiled at <em>development time</em> (although they <em>are</em> at deployment time), so if you want to use the most bleeding-edge JavaScript features that aren&rsquo;t even supported by your development browser then you&rsquo;re out of luck. If you need transpilation during development consider the <a href="#transpiled-bundling">transpiled</a> or the <a href="#2-server-approach">2-server</a> approaches instead.</li>
-<li>Requires that your development browsers <a href="https://caniuse.com/mdn-javascript_statements_import">support JavaScript import</a> and JS modules in general.</li>
 </ul>
 
+
+<p>To see a full example of combining Django and Vite together using the above strategy, take a look at the <a href="https://github.com/techsmartkids/hello-django-vite#readme">hello-django-vite</a> prototype I put together.</p>
 
 <p><a name="transpiled-bundling"></a></p>
 
@@ -536,13 +547,13 @@ export function defineTodoList() {
     <img alt="Diagram: Transpiled Bundling Strategy" src="/assets/2021/vue-and-django/bundling-strategies/transpiled.svg" class="bundling-diagram bundling-diagram-wide" />
 </a></p>
 
+<blockquote><p><strong>2024 Update:</strong> The <a href="#import-traced-bundling">import-traced bundling</a> approach used with newer bundlers like Vite gives all the advantages of transpiled bundling without any of the downsides. Therefore I would not recommend a traditional transpiler approach in 2024.</p></blockquote>
+
 <p>If you want the latest and greatest JavaScript features that haven&rsquo;t made it even to your latest <em>development</em> browser (ex: the latest Chrome or Firefox) then you&rsquo;ll need to pay the cost of needing to transpile during development time:</p>
 
 <p>The transpiled bundling approach generally uses the same kind of HTML, JS, and filesystem structure as the <a href="#import-traced-bundling">import-traced bundling</a> approach but you have additional flexibility depending on the particular set of bundler and transpiler tools you select.</p>
 
-<p>Common choices for transpiler tools as of early 2021 are <a href="https://webpack.js.org/">Webpack</a>, <a href="https://babeljs.io/">Babel</a>, and <a href="https://www.typescriptlang.org/">TypeScript</a>.</p>
-
-<p>For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&rsquo;s <a href="https://youtu.be/E613X3RBegI?t=1203">thoughts on the transpiled bundling approach at PyCon 2019</a>.</p>
+<p>Common choices for transpiler tools as of mid 2024 are <a href="https://vitejs.dev/">Vite</a>/<a href="https://rollupjs.org/">Rollup</a>, <a href="https://webpack.js.org/">Webpack</a>, <a href="https://babeljs.io/">Babel</a>, and <a href="https://www.typescriptlang.org/">TypeScript</a>.</p>
 
 <p>Pros of transpiled bundling:</p>
 
@@ -569,6 +580,8 @@ export function defineTodoList() {
 <li>Slow bundle build times during deployment, assuming you enable aggressive optimizations.</li>
 </ul>
 
+
+<p>For a sketch of how you might wire these tools together, take a look at Jacob Kaplan-Moss&rsquo;s <a href="https://youtu.be/E613X3RBegI?t=1203">thoughts on the transpiled bundling approach at PyCon 2019</a>.</p>
 
 <p><a name="render-baseline-html-with-django"></a></p>
 
@@ -696,13 +709,12 @@ export function defineTodoList() {
 
 <pre><code>// store/product/recommendations.js
 /*public*/ function setupRecommendationsPanel() {
-    new Vue({
-        el: '#recommendations-panel',
-        data: function() {
-            return document.querySelector('#recommendations-panel-data').innerText;
+    Vue.createApp({
+        data() {
+            return JSON.parse(document.querySelector('#recommendations-panel-data').innerText);
         },
         computed: {
-            loading: function() {
+            loading() {
                 ...
             },
             ...
@@ -710,7 +722,7 @@ export function defineTodoList() {
         methods: {
             ...
         }
-    });
+    }).mount('#recommendations-panel');
 }
 </code></pre>
 
@@ -778,9 +790,6 @@ Django<sup>6</sup>
   <div class="subscribe__prompt">Did you enjoy this article?</div>
   <a class="subscribe" href="https://mastodon.world/@davidfstr">
   <img src="/assets/mastodon-icon-48x48.png" alt="Mastodon icon, by Icons8." width="16" height="16" />Subscribe (Mastodon)
-</a>
-<a class="subscribe" href="https://twitter.com/davidfstr">
-  <img src="/assets/twitter-icon-16x16.png" alt="Twitter icon" width="16" height="16" />Subscribe (Twitter / X)
 </a>
 <a class="subscribe" href="feed://dafoster.net/atom.xml">
   <img src="/assets/feed-icon-14x14.png" alt="RSS icon" width="14" height="14" />Subscribe (RSS)
