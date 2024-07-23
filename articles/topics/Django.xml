@@ -4,7 +4,7 @@
  <title>DaFoster (Django)</title>
  <link href="https://dafoster.net/articles/topics/#Django"/>
  <link href="https://dafoster.net/articles/topics/Django.xml" rel="self"/>
- <updated>2024-07-19T19:40:13+00:00</updated>
+ <updated>2024-07-23T14:45:12+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Django</id>
  <author>
    <name>David Foster</name>
@@ -894,7 +894,7 @@ class ChatRoomJoinRequest(models.Model):
  
  <entry>
    <id>https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide</id>
-   <title>Building web apps with Vue and Django (2024) - Ultimate Guide</title>
+   <title>Building web apps with Vue and Django (2024) - The&amp;nbsp;Ultimate Guide</title>
    <published>2021-02-16T00:00:00+00:00</published>
    <updated>2024-06-28T00:00:00+00:00</updated>
    

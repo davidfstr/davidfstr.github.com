@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Fri, 19 Jul 2024 19:40:13 +0000</pubDate>
-    <lastBuildDate>Fri, 19 Jul 2024 19:40:13 +0000</lastBuildDate>
+    <pubDate>Tue, 23 Jul 2024 14:45:12 +0000</pubDate>
+    <lastBuildDate>Tue, 23 Jul 2024 14:45:12 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -2795,7 +2795,7 @@ class ChatRoomJoinRequest(models.Model):
     
     
     <item>
-      <title>Building web apps with Vue and Django (2024) - Ultimate Guide</title>
+      <title>Building web apps with Vue and Django (2024) - The&amp;nbsp;Ultimate Guide</title>
       <link>https://dafoster.net/articles/2021/02/16/building-web-apps-with-vue-and-django-the-ultimate-guide/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
       
