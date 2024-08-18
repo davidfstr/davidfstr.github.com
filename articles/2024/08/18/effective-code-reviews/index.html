@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Effective Code Reviews | DaFoster</title>
+    
+    <!-- Favicon -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+    
+  
+    <!-- Google Snippet -->
+    
+    <meta name="author" content="David Foster">
+    
+      
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://dafoster.net/articles/2024/08/18/effective-code-reviews/"
+        },
+        "headline": "Effective Code Reviews",
+        
+        "datePublished": "2024-08-18T00:00:00+00:00",
+        "dateModified": "2024-08-18T00:00:00+00:00",
+        "author": {
+          "@type": "Person",
+          "name": "David Foster",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://dafoster.net/about/profile.jpg"
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "David Foster",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dafoster.net/about/profile.jpg"
+          }
+        }
+      }
+      </script>
+    
+  
+    <!-- Twitter Card -->
+    
+    
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@davidfstr" />
+      <meta name="twitter:title" content="Effective Code Reviews" />
+      
+      <meta name="twitter:description" content="" />
+      <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
+    
+    
+    <!-- LinkedIn and Mastodon Card -->
+    
+    
+      <meta property="og:type" content="article" />
+      <meta name="image" property="og:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
+      
+      <meta name="description" property="og:description" content="" />
+    
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+    <!-- Analytics Header -->
+    
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YVPE3YRSVP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YVPE3YRSVP');
+</script>
+    
+    
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+    
+    <!-- Scripts -->
+    
+      <script src="/assets/js/jquery-1.12.4.min.js"></script>
+    
+    
+    
+      <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1 class="post-title">Effective Code Reviews</h1>
+    <div class="post-metadata">
+      
+        Aug 18, 2024
+       &ndash; Filed as: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>72</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
+        
+      </span>
+      
+    </div>
+    
+    <p>Software engineering research has identified<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> some techniques and rules of thumb for making code reviews more effective at identifying defects:</p>
+
+<ol>
+<li>Limit code reviews to <strong>1 hour or less</strong>.
+
+<ul>
+<li>After 60-90 minutes into a code review the ability to find further defects drops off dramatically due to focus fatigue.</li>
+<li>If a code review in progress is dragging on past 1 hour, consider taking a break and continuing the remainder later in a &ldquo;part 2&rdquo;.</li>
+</ul>
+</li>
+<li>Limit code reviews to <strong>400 lines of code or less</strong>.
+
+<ul>
+<li>Code reviews performed faster than 400-500 lines of code per hour show a dramatic drop in density of detected defects.</li>
+<li>Combining that result with the earlier result that reviews lasting longer than 1 hour are problematic, we can conclude that no more than 400 lines of code should be reviewed in the same session.</li>
+</ul>
+</li>
+<li><strong>Identify the most complex/risky/controversial changes to review first</strong> when there is the least focus fatigue.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
+<li><strong>Link to related &ldquo;context&rdquo; (i.e. files, documentation, classes, etc)</strong> alongside the immediate changes of a code review, for a 15-30% increase in defect detection.</li>
+<li><strong>Self-review changes before posting them for external review</strong>, because 50% of defects can be found in a self-review at half the time cost of an external review.</li>
+<li>An individual code review should be either asynchronous or synchronous but not both.
+
+<ul>
+<li>For a code review posted asynchronously, there is little gain in following up with an additional full synchronous review: Only an additional 4% of defects are likely to be found.</li>
+</ul>
+</li>
+</ol>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>All results in this article originate from the &ldquo;Modern Code Review&rdquo; chapter of <a href="https://www.amazon.com/Making-Software-Really-Works-Believe/dp/0596808321">&ldquo;Making Software: What Really Works, and Why We Believe It&rdquo;</a> by Jason Cohen, unless otherwise specified.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>This result comes from another source which I have since forgotten.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div id="subscribe-block" class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://mastodon.world/@davidfstr">
+  <img src="/assets/mastodon-icon-48x48.png" alt="Mastodon icon, by Icons8." width="16" height="16" />Subscribe (Mastodon)
+</a>
+<a class="subscribe" href="feed://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="RSS icon" width="14" height="14" />Subscribe (RSS)
+</a>
+<a class="subscribe" href="mailto:add@rssby.email?body=feed://dafoster.net/atom.xml&subject=Subscribe">
+  <img src="/assets/mail-48x48.png" alt="Email icon, by Freepik at Flaticon.com" width="18" height="18" style="margin-left: -2px;" />Subscribe (Email)
+</a>
+
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2024/06/16/pycon-us-2024-highlights/" title="PyCon US 2024 Highlights">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2024 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+  
+  
+    
+  <!-- Analytics Footer -->
+  
+    
+  
+  </body>
+</html>

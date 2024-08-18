@@ -6,14 +6,62 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Tue, 23 Jul 2024 14:45:12 +0000</pubDate>
-    <lastBuildDate>Tue, 23 Jul 2024 14:45:12 +0000</lastBuildDate>
+    <pubDate>Sun, 18 Aug 2024 15:48:02 +0000</pubDate>
+    <lastBuildDate>Sun, 18 Aug 2024 15:48:02 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
       <link>https://dafoster.net/</link>
     </image>
 
+    
+    
+    <item>
+      <title>Effective Code Reviews</title>
+      <link>https://dafoster.net/articles/2024/08/18/effective-code-reviews/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Sun, 18 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2024/08/18/effective-code-reviews</guid>
+      <description>&lt;p&gt;Software engineering research has identified&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; some techniques and rules of thumb for making code reviews more effective at identifying defects:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Limit code reviews to &lt;strong&gt;1 hour or less&lt;/strong&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;After 60-90 minutes into a code review the ability to find further defects drops off dramatically due to focus fatigue.&lt;/li&gt;
+&lt;li&gt;If a code review in progress is dragging on past 1 hour, consider taking a break and continuing the remainder later in a &amp;ldquo;part 2&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Limit code reviews to &lt;strong&gt;400 lines of code or less&lt;/strong&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;Code reviews performed faster than 400-500 lines of code per hour show a dramatic drop in density of detected defects.&lt;/li&gt;
+&lt;li&gt;Combining that result with the earlier result that reviews lasting longer than 1 hour are problematic, we can conclude that no more than 400 lines of code should be reviewed in the same session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Identify the most complex/risky/controversial changes to review first&lt;/strong&gt; when there is the least focus fatigue.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Link to related &amp;ldquo;context&amp;rdquo; (i.e. files, documentation, classes, etc)&lt;/strong&gt; alongside the immediate changes of a code review, for a 15-30% increase in defect detection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-review changes before posting them for external review&lt;/strong&gt;, because 50% of defects can be found in a self-review at half the time cost of an external review.&lt;/li&gt;
+&lt;li&gt;An individual code review should be either asynchronous or synchronous but not both.
+
+&lt;ul&gt;
+&lt;li&gt;For a code review posted asynchronously, there is little gain in following up with an additional full synchronous review: Only an additional 4% of defects are likely to be found.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;All results in this article originate from the &amp;ldquo;Modern Code Review&amp;rdquo; chapter of &lt;a href=&quot;https://www.amazon.com/Making-Software-Really-Works-Believe/dp/0596808321&quot;&gt;&amp;ldquo;Making Software: What Really Works, and Why We Believe It&amp;rdquo;&lt;/a&gt; by Jason Cohen, unless otherwise specified.&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&quot;fn:2&quot;&gt;
+&lt;p&gt;This result comes from another source which I have since forgotten.&lt;a href=&quot;#fnref:2&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     
     <item>
@@ -3921,7 +3969,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;71&lt;/sup&gt;
+  Software&lt;sup&gt;72&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
