@@ -34,6 +34,7 @@ https://dafoster.net/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2025/03/13/dump-traceback-on-print/
 https://dafoster.net/articles/2024/08/18/effective-code-reviews/
 https://dafoster.net/articles/2024/06/16/pycon-us-2024-highlights/
 https://dafoster.net/articles/2024/03/24/redis-relicensing-why-is-this-a-problem/

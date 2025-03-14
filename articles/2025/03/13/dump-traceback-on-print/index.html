@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Optional Structural Static Typing in Python | DaFoster</title>
+    <title>Dumping a traceback when an error message is printed | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -21,12 +21,12 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://dafoster.net/articles/2015/04/26/optional-structural-static-typing-in-python/"
+          "@id": "https://dafoster.net/articles/2025/03/13/dump-traceback-on-print/"
         },
-        "headline": "Optional Structural Static Typing in Python",
+        "headline": "Dumping a traceback when an error message is printed",
         
-        "datePublished": "2015-04-26T00:00:00+00:00",
-        "dateModified": "2015-04-26T00:00:00+00:00",
+        "datePublished": "2025-03-13T00:00:00+00:00",
+        "dateModified": "2025-03-13T00:00:00+00:00",
         "author": {
           "@type": "Person",
           "name": "David Foster",
@@ -52,7 +52,7 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Optional Structural Static Typing in Python" />
+      <meta name="twitter:title" content="Dumping a traceback when an error message is printed" />
       
       <meta name="twitter:description" content="" />
       <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
@@ -220,10 +220,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">Optional Structural Static Typing in Python</h1>
+    <h1 class="post-title">Dumping a traceback when an error message is printed</h1>
     <div class="post-metadata">
       
-        Apr 26, 2015
+        Mar 13, 2025
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
@@ -240,79 +240,137 @@
       
     </div>
     
-    <p>I&rsquo;m working on a new project to build a typechecking linter for Python, in the same vein as <a href="http://www.mypy-lang.org">mypy</a>. The big difference between mypy and what I&rsquo;m hoping to build is that my type system will be a <em>structural</em> type system rather than a <em>nominal</em> type system.</p>
+    <p>When a program I&rsquo;m debugging prints something unexpected like an error message, I can usually search for a fragment of the message in the program&rsquo;s code to figure out why it was printed.</p>
 
-<h2>Structural vs. Nominal Type Systems</h2>
+<p>However sometimes I&rsquo;m not able to locate the error message in the code at all! In that case one big hammer I have for isolating the offending code is to alter <code>print()</code>, <code>sys.stdout.write()</code>, and <code>sys.stderr.write()</code> to dump a traceback whenever a fragment of the error message is about to be printed:</p>
 
-<p>Let&rsquo;s consider the following program:</p>
-
-<pre><code>interface Foo { public int length(); }
-interface Bar { public int length(); }
-
-Foo foo = ...
-Bar bar = foo;   // Will this work?
+<pre><code>altair (https://github.com/vega/altair)
++ &lt;type_comment&gt;:1: SyntaxWarning: invalid escape sequence '\('
++ 
++ *** Keyword 'SyntaxWarning' printed at:
++   File "/new_mypy/bin/mypy", line 10, in &lt;module&gt;
++     sys.exit(console_entry())
++   File "/new_mypy/mypy/__main__.py", line 15, in console_entry
++     main()
++   File "/new_mypy/mypy/main.py", line 156, in main
++     res, messages, blockers = run_build(sources, options, fscache, t0, stdout, stderr)
++   File "/new_mypy/mypy/main.py", line 240, in run_build
++     res = build.build(sources, options, None, flush_errors, fscache, stdout, stderr)
++   File "/new_mypy/mypy/build.py", line 191, in build
++     result = _build(
++   File "/new_mypy/mypy/build.py", line 267, in _build
++     graph = dispatch(sources, manager, stdout)
++   File "/new_mypy/mypy/build.py", line 2937, in dispatch
++     process_graph(graph, manager)
++   File "/new_mypy/mypy/build.py", line 3335, in process_graph
++     process_stale_scc(graph, scc, manager)
++   File "/new_mypy/mypy/build.py", line 3430, in process_stale_scc
++     mypy.semanal_main.semantic_analysis_for_scc(graph, scc, manager.errors)
++   File "/new_mypy/mypy/semanal_main.py", line 94, in semantic_analysis_for_scc
++     process_functions(graph, scc, patches)
++   File "/new_mypy/mypy/semanal_main.py", line 252, in process_functions
++     process_top_level_function(
++   File "/new_mypy/mypy/semanal_main.py", line 291, in process_top_level_function
++     deferred, incomplete, progress = semantic_analyze_target(
++   File "/new_mypy/mypy/semanal_main.py", line 351, in semantic_analyze_target
++     analyzer.refresh_partial(
++   File "/new_mypy/mypy/semanal.py", line 668, in refresh_partial
++     self.accept(node)
++   File "/new_mypy/mypy/semanal.py", line 7320, in accept
++     node.accept(self)
++   File "/new_mypy/mypy/nodes.py", line 818, in accept
++     return visitor.visit_func_def(self)
++   File "/new_mypy/mypy/semanal.py", line 926, in visit_func_def
++     self.analyze_func_def(defn)
++   File "/new_mypy/mypy/semanal.py", line 1007, in analyze_func_def
++     self.analyze_function_body(defn)
++   File "/new_mypy/mypy/semanal.py", line 1601, in analyze_function_body
++     defn.body.accept(self)
++   File "/new_mypy/mypy/nodes.py", line 1285, in accept
++     return visitor.visit_block(self)
++   File "/new_mypy/mypy/semanal.py", line 5272, in visit_block
++     self.accept(s)
++   File "/new_mypy/mypy/semanal.py", line 7320, in accept
++     node.accept(self)
++   File "/new_mypy/mypy/nodes.py", line 1641, in accept
++     return visitor.visit_with_stmt(self)
++   File "/new_mypy/mypy/semanal.py", line 5424, in visit_with_stmt
++     e.accept(self)
++   File "/new_mypy/mypy/nodes.py", line 1997, in accept
++     return visitor.visit_call_expr(self)
++   File "/new_mypy/mypy/semanal.py", line 5837, in visit_call_expr
++     self.try_parse_as_type_expression(a)
++   File "/new_mypy/mypy/semanal.py", line 7719, in try_parse_as_type_expression
++     t = self.expr_to_analyzed_type(maybe_type_expr)
++   File "/new_mypy/mypy/semanal.py", line 7355, in expr_to_analyzed_type
++     typ = self.expr_to_unanalyzed_type(expr)
++   File "/new_mypy/mypy/semanal.py", line 7418, in expr_to_unanalyzed_type
++     return expr_to_unanalyzed_type(
++   File "/new_mypy/mypy/exprtotype.py", line 202, in expr_to_unanalyzed_type
++     return parse_type_string(expr.value, "builtins.str", expr.line, expr.column)
++   File "/new_mypy/mypy/fastparse.py", line 327, in parse_type_string
++     _, node = parse_type_comment(f"({expr_string})", line=line, column=column, errors=None)
++   File "/new_mypy/mypy/fastparse.py", line 288, in parse_type_comment
++     typ = ast3_parse(type_comment, "&lt;type_comment&gt;", "eval")
++   File "/new_mypy/mypy/fastparse.py", line 142, in ast3_parse
++     return ast3.parse(
++   File "/usr/lib/python3.12/ast.py", line 52, in parse
++     return compile(source, filename, mode, flags,
++   File "/usr/lib/python3.12/warnings.py", line 113, in _showwarnmsg
++     _showwarnmsg_impl(msg)
++   File "/usr/lib/python3.12/warnings.py", line 30, in _showwarnmsg_impl
++     file.write(text)
++   File "/new_mypy/mypy/main.py", line 98, in write
++     traceback.print_stack(file=self.wrapped)
 </code></pre>
 
-<p>In a structural type system (ex: Go, OCaml) the assignment would be allowed because both interfaces have exactly the same set of methods.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> If it looks like a duck then it <em>is</em> a duck.</p>
+<p>Notice that the dumped traceback points directly at the offending code.</p>
 
-<p>In a nominal type system (ex: Java, C#) the assignment would be rejected because there is no declared subtype relationship between the names <code>Foo</code> and <code>Bar</code>. The actual <em>structure</em> of the interfaces is completely ignored.</p>
+<p>Here&rsquo;s Python code which monkeypatches prints to dump a traceback whenever a particular substring is printed:</p>
 
-<h2>Why not Nominal Typing?</h2>
+<pre><code>import sys
+import traceback
 
-<p>It generally requires explicit type annotations for all function parameters, and sometimes function return types too. I don&rsquo;t want to write <em>any</em> type annotations for the majority of programs that I write, and certainly not annotations for every single function.</p>
+def print_traceback_whenever_printed_line_contains(needle: str) -&gt; None:
+    """
+    Replaces sys.stdout with a wrapper that inspects each write. If the output
+    contains 'needle', a traceback is printed to the original sys.stdout.
+    The monkeypatch remains in place after this function returns.
+    """
+    class PatchedStdStream:
+        def __init__(self, wrapped):
+            self.wrapped = wrapped
 
-<p>There is a serious risk that Python code written with a nominal type system in mind will start introducing large numbers of new abstract base classes for the <em>sole</em> purpose of making the typechecker happy. This is exactly the kind of pollution that I&rsquo;m trying to escape from when working in dynamic languages such as Python.</p>
+        def write(self, text: str) -&gt; None:
+            # Write text to the original stdout
+            self.wrapped.write(text)
 
-<h2>Why Structural Typing?</h2>
+            # Check if 'needle' is in the text being written
+            if needle in text:
+                # Print a traceback to the original stdout
+                self.wrapped.write(f'\n*** Keyword {needle!r} printed at:\n')
+                traceback.print_stack(file=self.wrapped)
 
-<p>The philosophy behind structural typing meshes a lot better with the &ldquo;duck typing&rdquo; that you see in classic Python with no type annotations. If you try to invoke a method on an object and the object has a method with a matching name, the program will work. This is exactly the properly that a structural type system checks.</p>
+        def __getattr__(self, name: str):
+            """
+            Forward all other attributes (e.g., flush, fileno, isatty, etc.)
+            to the original stdout.
+            """
+            return getattr(self.wrapped, name)
 
-<ul>
-<li><p>Loosely defined protocols such as &ldquo;file-like objects&rdquo; continue to work.</p></li>
-<li><p>More complex protocols such as &ldquo;file-like objects that support fileno()&rdquo; (as needed by the <code>subprocess</code> module) also work without needing to introduce further abstract base classes.</p></li>
-<li><p>Lightweight JSON-based objects continue to work and benefit from type checking.</p></li>
-</ul>
+    sys.stdout = PatchedStdStream(sys.stdout)
+    sys.stderr = PatchedStdStream(sys.stderr)
 
+if __name__ == "__main__":
+    # Activate the patch to watch for "ERROR" in any output
+    print_traceback_whenever_printed_line_contains("ERROR")
 
-<p>More importantly, structural type systems are much more amenable to global type inference, which can be used to eliminate the need for explicit type annotations. This would allow Python programs to still be type-checked without the need to specify type annotations in the usual case. Imagine if your programs <em>today</em>, without any type annotations, could suddenly become type checked with no additional effort from you, the programmer.</p>
+    print("Everything is normal here...")
+    print("Some random text with ERROR inside it!")
+    print("Continuing after error message...")
+</code></pre>
 
-<h2>Challenges with Structural Typing</h2>
-
-<p>Of course structural typing isn&rsquo;t all good. It has one major sticking point: Structural type systems tend to generate huge verbose error messages that aren’t particularly actionable.</p>
-
-<p>This happens because the type checker only knows that two (complex) inferred types are incompatible. It doesn&rsquo;t know which of the two types is correct. And the error messages containing the derivation of the inferred types typically involves lots of locations in the code unrelated to where the actual error lies. Imagine the same level of verbosity as C++ template errors.</p>
-
-<h2>Mission: Difficult</h2>
-
-<p>So in summary the goal is to make a type checking linter for Python with a structural type system and global type inference which nevertheless presents comprehensible and actionable error messages in a majority of error scenarios.</p>
-
-<p>I see some original research in my near future.</p>
-
-<h2>References</h2>
-
-<ul>
-<li><a href="https://www.youtube.com/watch?v=fDTt_uo0F-g">Uncovering the Unknown: Principles of Type Inference</a> (1h3m)
-
-<ul>
-<li>Excellent presentation outlining the difference between nominal vs. structural subtyping, typing inference, and some pros/cons between both kinds of type systems.</li>
-</ul>
-</li>
-<li><a href="http://www.amazon.com/Types-Programming-Languages-Benjamin-Pierce/dp/0262162091/ref=sr_1_1?ie=UTF8&amp;qid=1430091478&amp;sr=8-1&amp;keywords=types+and+programming+languages">Types and Programming Languages</a> (645 pages)
-
-<ul>
-<li>Excellent broad overview of type systems and type theory. Leans toward covering type systems similar to those used in mainstream programming languages. Has only limited information about type reconstruction and type inference.</li>
-</ul>
-</li>
-</ul>
-
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>To be more precise, the assignment would be allowed because <code>Foo</code> structure contains everything that <code>Bar</code> requires: the methods on <code>Bar</code> are a subset of the methods on <code>Foo</code>.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
+<p>Enjoy!</p>
 
   </div>
   
@@ -338,11 +396,11 @@ Bar bar = foo;   // Will this work?
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2015/03/23/block-distracting-websites/" title="Block Distracting Websites">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2024/08/18/effective-code-reviews/" title="Effective Code Reviews">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2015/06/27/unicode-101/" title="Unicode 101">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>

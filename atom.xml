@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2024-08-18T15:48:02+00:00</updated>
+ <updated>2025-03-14T02:05:09+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,150 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2025/03/13/dump-traceback-on-print</id>
+   <title>Dumping a traceback when an error message is printed</title>
+   <published>2025-03-13T00:00:00+00:00</published>
+   <updated>2025-03-13T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2025/03/13/dump-traceback-on-print/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;When a program I&amp;rsquo;m debugging prints something unexpected like an error message, I can usually search for a fragment of the message in the program&amp;rsquo;s code to figure out why it was printed.&lt;/p&gt;
+
+&lt;p&gt;However sometimes I&amp;rsquo;m not able to locate the error message in the code at all! In that case one big hammer I have for isolating the offending code is to alter &lt;code&gt;print()&lt;/code&gt;, &lt;code&gt;sys.stdout.write()&lt;/code&gt;, and &lt;code&gt;sys.stderr.write()&lt;/code&gt; to dump a traceback whenever a fragment of the error message is about to be printed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;altair (https://github.com/vega/altair)
++ &amp;lt;type_comment&amp;gt;:1: SyntaxWarning: invalid escape sequence '\('
++ 
++ *** Keyword 'SyntaxWarning' printed at:
++   File &quot;/new_mypy/bin/mypy&quot;, line 10, in &amp;lt;module&amp;gt;
++     sys.exit(console_entry())
++   File &quot;/new_mypy/mypy/__main__.py&quot;, line 15, in console_entry
++     main()
++   File &quot;/new_mypy/mypy/main.py&quot;, line 156, in main
++     res, messages, blockers = run_build(sources, options, fscache, t0, stdout, stderr)
++   File &quot;/new_mypy/mypy/main.py&quot;, line 240, in run_build
++     res = build.build(sources, options, None, flush_errors, fscache, stdout, stderr)
++   File &quot;/new_mypy/mypy/build.py&quot;, line 191, in build
++     result = _build(
++   File &quot;/new_mypy/mypy/build.py&quot;, line 267, in _build
++     graph = dispatch(sources, manager, stdout)
++   File &quot;/new_mypy/mypy/build.py&quot;, line 2937, in dispatch
++     process_graph(graph, manager)
++   File &quot;/new_mypy/mypy/build.py&quot;, line 3335, in process_graph
++     process_stale_scc(graph, scc, manager)
++   File &quot;/new_mypy/mypy/build.py&quot;, line 3430, in process_stale_scc
++     mypy.semanal_main.semantic_analysis_for_scc(graph, scc, manager.errors)
++   File &quot;/new_mypy/mypy/semanal_main.py&quot;, line 94, in semantic_analysis_for_scc
++     process_functions(graph, scc, patches)
++   File &quot;/new_mypy/mypy/semanal_main.py&quot;, line 252, in process_functions
++     process_top_level_function(
++   File &quot;/new_mypy/mypy/semanal_main.py&quot;, line 291, in process_top_level_function
++     deferred, incomplete, progress = semantic_analyze_target(
++   File &quot;/new_mypy/mypy/semanal_main.py&quot;, line 351, in semantic_analyze_target
++     analyzer.refresh_partial(
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 668, in refresh_partial
++     self.accept(node)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 7320, in accept
++     node.accept(self)
++   File &quot;/new_mypy/mypy/nodes.py&quot;, line 818, in accept
++     return visitor.visit_func_def(self)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 926, in visit_func_def
++     self.analyze_func_def(defn)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 1007, in analyze_func_def
++     self.analyze_function_body(defn)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 1601, in analyze_function_body
++     defn.body.accept(self)
++   File &quot;/new_mypy/mypy/nodes.py&quot;, line 1285, in accept
++     return visitor.visit_block(self)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 5272, in visit_block
++     self.accept(s)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 7320, in accept
++     node.accept(self)
++   File &quot;/new_mypy/mypy/nodes.py&quot;, line 1641, in accept
++     return visitor.visit_with_stmt(self)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 5424, in visit_with_stmt
++     e.accept(self)
++   File &quot;/new_mypy/mypy/nodes.py&quot;, line 1997, in accept
++     return visitor.visit_call_expr(self)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 5837, in visit_call_expr
++     self.try_parse_as_type_expression(a)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 7719, in try_parse_as_type_expression
++     t = self.expr_to_analyzed_type(maybe_type_expr)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 7355, in expr_to_analyzed_type
++     typ = self.expr_to_unanalyzed_type(expr)
++   File &quot;/new_mypy/mypy/semanal.py&quot;, line 7418, in expr_to_unanalyzed_type
++     return expr_to_unanalyzed_type(
++   File &quot;/new_mypy/mypy/exprtotype.py&quot;, line 202, in expr_to_unanalyzed_type
++     return parse_type_string(expr.value, &quot;builtins.str&quot;, expr.line, expr.column)
++   File &quot;/new_mypy/mypy/fastparse.py&quot;, line 327, in parse_type_string
++     _, node = parse_type_comment(f&quot;({expr_string})&quot;, line=line, column=column, errors=None)
++   File &quot;/new_mypy/mypy/fastparse.py&quot;, line 288, in parse_type_comment
++     typ = ast3_parse(type_comment, &quot;&amp;lt;type_comment&amp;gt;&quot;, &quot;eval&quot;)
++   File &quot;/new_mypy/mypy/fastparse.py&quot;, line 142, in ast3_parse
++     return ast3.parse(
++   File &quot;/usr/lib/python3.12/ast.py&quot;, line 52, in parse
++     return compile(source, filename, mode, flags,
++   File &quot;/usr/lib/python3.12/warnings.py&quot;, line 113, in _showwarnmsg
++     _showwarnmsg_impl(msg)
++   File &quot;/usr/lib/python3.12/warnings.py&quot;, line 30, in _showwarnmsg_impl
++     file.write(text)
++   File &quot;/new_mypy/mypy/main.py&quot;, line 98, in write
++     traceback.print_stack(file=self.wrapped)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that the dumped traceback points directly at the offending code.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s Python code which monkeypatches prints to dump a traceback whenever a particular substring is printed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import sys
+import traceback
+
+def print_traceback_whenever_printed_line_contains(needle: str) -&amp;gt; None:
+    &quot;&quot;&quot;
+    Replaces sys.stdout with a wrapper that inspects each write. If the output
+    contains 'needle', a traceback is printed to the original sys.stdout.
+    The monkeypatch remains in place after this function returns.
+    &quot;&quot;&quot;
+    class PatchedStdStream:
+        def __init__(self, wrapped):
+            self.wrapped = wrapped
+
+        def write(self, text: str) -&amp;gt; None:
+            # Write text to the original stdout
+            self.wrapped.write(text)
+
+            # Check if 'needle' is in the text being written
+            if needle in text:
+                # Print a traceback to the original stdout
+                self.wrapped.write(f'\n*** Keyword {needle!r} printed at:\n')
+                traceback.print_stack(file=self.wrapped)
+
+        def __getattr__(self, name: str):
+            &quot;&quot;&quot;
+            Forward all other attributes (e.g., flush, fileno, isatty, etc.)
+            to the original stdout.
+            &quot;&quot;&quot;
+            return getattr(self.wrapped, name)
+
+    sys.stdout = PatchedStdStream(sys.stdout)
+    sys.stderr = PatchedStdStream(sys.stderr)
+
+if __name__ == &quot;__main__&quot;:
+    # Activate the patch to watch for &quot;ERROR&quot; in any output
+    print_traceback_whenever_printed_line_contains(&quot;ERROR&quot;)
+
+    print(&quot;Everything is normal here...&quot;)
+    print(&quot;Some random text with ERROR inside it!&quot;)
+    print(&quot;Continuing after error message...&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Enjoy!&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>
@@ -4049,7 +4193,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;72&lt;/sup&gt;
+  Software&lt;sup&gt;73&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
