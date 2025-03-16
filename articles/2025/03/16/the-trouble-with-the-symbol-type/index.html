@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sending email from command line scripts | DaFoster</title>
+    <title>The trouble with the Symbol type | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -21,12 +21,12 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://dafoster.net/articles/2013/07/27/sending-email-from-command-line-scripts/"
+          "@id": "https://dafoster.net/articles/2025/03/16/the-trouble-with-the-symbol-type/"
         },
-        "headline": "Sending email from command line scripts",
+        "headline": "The trouble with the Symbol type",
         
-        "datePublished": "2013-07-27T00:00:00+00:00",
-        "dateModified": "2013-07-27T00:00:00+00:00",
+        "datePublished": "2025-03-16T00:00:00+00:00",
+        "dateModified": "2025-03-16T00:00:00+00:00",
         "author": {
           "@type": "Person",
           "name": "David Foster",
@@ -52,7 +52,7 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Sending email from command line scripts" />
+      <meta name="twitter:title" content="The trouble with the Symbol type" />
       
       <meta name="twitter:description" content="" />
       <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
@@ -220,10 +220,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">Sending email from command line scripts</h1>
+    <h1 class="post-title">The trouble with the Symbol type</h1>
     <div class="post-metadata">
       
-        Jul 27, 2013
+        Mar 16, 2025
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
@@ -236,77 +236,36 @@
 </a>
 </span>
         
-          <span class="tag"><a class="tag__pill" href="/articles/topics/#Productivity">
-  Productivity<sup>13</sup>
-</a>
-<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Productivity.xml">
-  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Productivity" title="Subscribe to Productivity"/>
-</a>
-</span>
-        
       </span>
       
     </div>
     
-    <p>This weekend I open-sourced a script called <a href="https://github.com/davidfstr/notifymail">notifymail</a> which I have been using for the past few years to send myself emails from automated scripts, particularly Python scripts.</p>
+    <p>There are a few languages that offer <strong>a symbol type</strong>, notably JavaScript, Ruby, Lisp, and Erlang. A symbol is similar to a string but guarantees that only one copy of the symbol exists with the same value. In JavaScript you can create a symbol with the code:</p>
 
-<p>It is very easy to configure <code>notifymail</code> for the first time:</p>
-
-<pre><code>$ pip install notifymail
-$ notifymail.py --setup
-SMTP Server Hostname: smtp.gmail.com
-SMTP Server Port [465]: 587
-SMTP Server Uses TLS (y/n) [n]: yes
-SMTP Username: robot@gmail.com
-SMTP Password: ********
-From Address [robot@gmail.com]: robot@gmail.com
-From Name (optional) []: notifymail
-To Address: admin@example.com
-
-Verifying connection to SMTP server... OK
+<pre><code class="javascript">Symbol.for('hello')
+// Symbol(hello)
 </code></pre>
 
-<p>Check your mail provider&rsquo;s documentation to get the SMTP settings mentioned above. For example I made an internet search for &ldquo;gmail SMTP settings&rdquo; to find <a href="https://support.google.com/mail/troubleshooter/1668960?hl=en#ts=1665119,1665162">Gmail&rsquo;s SMTP settings</a>:</p>
+<p><strong>Symbols can be compared with each other for equality very quickly</strong> because only the object references need to be compared; the values do not need to be compared. This high speed of comparison is the main advantage that symbols offer over strings.</p>
+
+<p>However:</p>
 
 <ul>
-<li><strong>Gmail SMTP Server:</strong> smtp.gmail.com</li>
-<li><strong>Gmail SMTP Port:</strong> 587 (for TLS)</li>
-<li><strong>Gmail SMTP Uses TLS?</strong> yes</li>
+<li>Every symbol that is created must be added to a global registry of all symbols to ensure that it is unique. Since all symbols live in this global registry and there is no way to remove a symbol from the registry, <strong>a symbol may never be garbage collected</strong>.</li>
+<li>Because symbols live forever, <strong>it is unwise to create a symbol from an arbitrary (unknown) string</strong>, because doing so repeatedly will fill up memory with immortal symbol objects.</li>
+<li>Similarly it is <strong>unwise to deserialize a symbol</strong> from (untrusted) input because - again - doing so repeatedly will fill up memory with immortal symbol objects.</li>
 </ul>
 
 
-<p>Once you have <code>notifymail</code> installed, you can send an email to yourself in a Python script with as little code as:</p>
+<p>To avoid the above problems <strong>I generally prefer using strings instead of symbols</strong>. Strings can be freely serialized/deserialized safely and they can be garbage collected. Although strings cannot be compared with each other as fast as symbols can, they still compare very fast, especially for short strings.</p>
 
-<pre><code>import notifymail
-notifymail.send('Subject', 'Hello World', from_name='greeting_script')
-</code></pre>
+<h2>Related: Interned Strings</h2>
 
-<p>Or you can invoke <code>notifymail</code> from the command line:</p>
+<p>Some languages don&rsquo;t have a symbol type but do have <strong>a string type that can be &ldquo;interned&rdquo;</strong>, notably Java and Python. When a string is interned it is added to the global registry of all interned strings (if it wasn&rsquo;t there already) and the copy from the registry is returned.</p>
 
-<pre><code>$ echo "Hello World" | notifymail.py -s "Subject"
-</code></pre>
+<p>Java&rsquo;s interned strings are immortal and are never garbage collected.</p>
 
-<p>Full documentation is available on the <a href="https://github.com/davidfstr/notifymail#readme">notifymail project page</a>.</p>
-
-<h2>Hasn&rsquo;t this been done before?</h2>
-
-<p>I reinvented my own wheel to send email principally because of the poor documentation of other alternatives:</p>
-
-<ul>
-<li><p><code>mail</code> and <code>postfix</code> were so complicated I couldn&rsquo;t figure out how to set them up.</p></li>
-<li><p><code>ssmtp</code> didn&rsquo;t work after I tried to configure it and there was no good documentation to help me debug why it wasn&rsquo;t working.</p></li>
-</ul>
-
-
-<p>For reference, here&rsquo;s <a href="http://unix.stackexchange.com/questions/36982/can-i-set-up-system-mail-to-use-an-external-smtp-server">some information for setting up those alternatives</a>.</p>
-
-<h2>Fun things to do with <code>notifymail</code></h2>
-
-<ul>
-<li><p>I have a script called <code>heartbeat</code> that periodically attempts to connect to all of my servers via SSH. If it cannot connect to a server it sends me an email with <code>notifymail</code>. If it cannot access email it displays a sticky Growl notification locally.</p></li>
-<li><p>I have another script called <code>meetupfilter</code> that tracks incoming &ldquo;New Meetup Group&rdquo; emails from <a href="http://www.meetup.com/">Meetup</a>. It waits until all such announced groups have at least 3 events on their calendar before sending me a notification at my personal email with <code>notifymail</code>. That way I don&rsquo;t hear about Meetup groups that appear but then fizzle out immediately, which is a surprising number. I may open-source this script eventually if I <a href="/contact">hear there is interest</a>.</p></li>
-</ul>
-
+<p>Python&rsquo;s interned strings are NOT immortal and will be garbage collected if no references to an interned string exist outside of the global registry.</p>
 
   </div>
   
@@ -332,11 +291,11 @@ notifymail.send('Subject', 'Hello World', from_name='greeting_script')
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2013/07/13/error-handling/" title="Error Handling">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2025/03/13/dump-traceback-on-print/" title="Dumping a traceback when an error message is printed">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2013/08/03/skills-i-learned-at-microsoft/" title="Skills I Learned at Microsoft">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
