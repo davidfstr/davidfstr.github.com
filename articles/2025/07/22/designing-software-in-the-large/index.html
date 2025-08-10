@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Designing Software in the Large | DaFoster</title>
+    
+    <!-- Favicon -->
+    <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+    
+  
+    <!-- Google Snippet -->
+    
+    <meta name="author" content="David Foster">
+    
+      
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://dafoster.net/articles/2025/07/22/designing-software-in-the-large/"
+        },
+        "headline": "Designing Software in the Large",
+        
+        "datePublished": "2025-07-22T00:00:00+00:00",
+        "dateModified": "2025-07-22T00:00:00+00:00",
+        "author": {
+          "@type": "Person",
+          "name": "David Foster",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://dafoster.net/about/profile.jpg"
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "David Foster",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dafoster.net/about/profile.jpg"
+          }
+        }
+      }
+      </script>
+    
+  
+    <!-- Twitter Card -->
+    
+    
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@davidfstr" />
+      <meta name="twitter:title" content="Designing Software in the Large" />
+      
+      <meta name="twitter:description" content="" />
+      <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
+    
+    
+    <!-- LinkedIn and Mastodon Card -->
+    
+    
+      <meta property="og:type" content="article" />
+      <meta name="image" property="og:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
+      
+      <meta name="description" property="og:description" content="" />
+    
+    
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+    <!-- Analytics Header -->
+    
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YVPE3YRSVP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YVPE3YRSVP');
+</script>
+    
+    
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <link rel="preload" href="/assets/bootswatch-readable-3.4.1/raleway/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootswatch-readable-3.4.1/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/assets/css/style.css" media="all">
+    <link rel="stylesheet" href="/assets/css/style-print.css" media="print">
+    
+    
+    
+      <style>
+        /*
+@media (max-width: 640px) {
+    #tactical-tornado-img {
+        max-width: 150px;
+    }
+}
+*/
+
+      </style>
+    
+    
+    <!-- Scripts -->
+    
+      <script src="/assets/js/jquery-1.12.4.min.js"></script>
+    
+    
+    
+      <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#df-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DaFoster</a>
+        </div>
+        <div class="navbar-collapse collapse" id="df-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/projects/">Projects</a></li>
+              
+            
+              
+            
+              
+                <li><a href="/articles/">Articles</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <li><a href="/about/">About</a></li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content-container">
+        <!-- Encourage IE 6 users to upgrade their browser. -->
+        <!--[if lt IE 7]>
+          <div style="clear: both; height: 59px; padding: 0 0 0 50px; position: relative;">
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+              <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"
+                border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+        
+        
+          <div class="row">
+  <div class="col-md-12 content post">
+    <h1 class="post-title">Designing Software in the Large</h1>
+    <div class="post-metadata">
+      
+        Jul 22, 2025
+       &ndash; Filed as: 
+      <span class="tag_box tag_box--inline">
+        
+        
+          <span class="tag"><a class="tag__pill" href="/articles/topics/#Software">
+  Software<sup>75</sup>
+</a>
+<a class="tag__subscribe subscribe" href="feed://dafoster.net/articles/topics/Software.xml">
+  <img src="/assets/feed-icon-14x14.png" width="14" height="14" alt="Subscribe to Software" title="Subscribe to Software"/>
+</a>
+</span>
+        
+      </span>
+      
+    </div>
+    
+    <p><a href="https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X/">A Philosophy of Software Design</a> is my favorite book I&rsquo;ve read to date about designing large long-lived maintainable software programs. Here&rsquo;s what I learned:</p>
+
+<h2>Complexity</h2>
+
+<p><strong>Complexity</strong> is anything related to the structure of a software system that makes it hard to understand &amp; modify the system.</p>
+
+<ul>
+<li><p>Symptoms of complexity:</p>
+
+<ul>
+<li><strong>Change Amplification</strong> - A seemingly simple change requires code modifications in many different places.</li>
+<li><strong>High Cognitive Load</strong> - High amount of information a developer needs to know to complete a task.</li>
+<li><strong>Unknown Unknowns</strong> - When it is not obvious which pieces of code must be modified to complete a task, or what information a developer must have to carry out the task successfully.</li>
+</ul>
+</li>
+<li><p>Causes of complexity:</p>
+
+<ul>
+<li><strong>Dependencies</strong> - A dependency exists when a given piece of code cannot be understood and modified in isolation; the code relates in some way to other code.</li>
+<li><strong>Obscurity</strong> - Obscurity occurs when important information is not obvious.</li>
+</ul>
+</li>
+</ul>
+
+
+<p><img src="/assets/2025/designing-software-in-the-large/section0.svg" style="max-width: 100%; max-height: 268px;" alt="A concept map diagram showing symptoms and causes of complexity, and how they related to each other" /></p>
+
+<p>To keep a software system maintainable, you must strive to keep the complexity of the system low as you &amp; others make changes to it.</p>
+
+<h3>The big picture</h3>
+
+<p>Concepts related to complexity, which the remaining sections of this article will zoom in on:</p>
+
+<p><a href="/assets/2025/designing-software-in-the-large/section2.svg"><img src="/assets/2025/designing-software-in-the-large/section2.svg" style="max-width: 100%; border: 4px solid lightgray; border-radius: 12px;" /></a></p>
+
+<h2>Dependencies: A Cause of Complexity</h2>
+
+<p>A <strong>dependency</strong> exists when a given piece of code cannot be understood in isolation; the code relates in some way to other code. Numerous and strong dependencies between modules of a system make it difficult to change one module without changing others (Change Amplification) and make it difficult to understand modules in isolation (High Cognitive Load).</p>
+
+<p>Key contributors to dependency-complexity are:</p>
+
+<ul>
+<li><strong>Duplication</strong> - Duplication occurs when the same knowledge is used in multiple places. This can be direct repetition of the same piece of code appearing in multiple places. Or it can be more subtle, such as multiple classes understanding the details of the same file format or network protocol.</li>
+<li><strong>Exceptions</strong> - An exception is a particularly complex element of an interface which can propagate not just from a method to its direct caller but also to higher level callers (and their interfaces).</li>
+<li><strong>Inheritance</strong> - Implementation inheritance in object-oriented systems creates dependencies between the parent class and each of its subclasses.</li>
+<li><strong>Temporal Decomposition</strong> - A system exhibits temporal decomposition when its structure corresponds to the time order in which operations will occur.</li>
+</ul>
+
+
+<p>The opposite of dependency-complexity is <strong>cohesive code</strong>, created primarily by focusing on designing <strong>deep modules</strong>.</p>
+
+<p><img src="/assets/2025/designing-software-in-the-large/section1.svg" style="max-width: 100%; max-height: 550px;" /></p>
+
+<p><strong>Deep modules</strong> allow a lot of functionality to be accessed through a small interface:</p>
+
+<p><img src="/assets/2025/designing-software-in-the-large/deep-and-shallow-modules.svg" style="max-width: 100%; max-height: 325px;" /></p>
+
+<p>Keeping module interfaces small lowers the number and strength of dependencies between modules, resulting in lower overall system complexity:</p>
+
+<p><a href="/assets/2017/abstraction-and-encapsulation/complexity_comparison.png"><img alt="Complexity with and without abstractions" src="/assets/2017/abstraction-and-encapsulation/complexity_comparison.png" style="max-width: 100%; max-height: 450px;" /></a></p>
+
+<p>Chapters 4-9 of the book are related to techniques for forming deeper modules. My article <a href="/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/">How to Design Large Programs with Abstraction and Encapsulation</a> also discusses deep modules in the context of encapsulation &amp; abstraction.</p>
+
+<h2>Obscurity: A Cause of Complexity</h2>
+
+<p><strong>Obscurity</strong> occurs when important information is not obvious.</p>
+
+<p>Obscurity creates Unknown Unknowns and contributes to High Cognitive Load:</p>
+
+<p><img src="/assets/2025/designing-software-in-the-large/section3.svg" style="max-width: 100%; max-height: 450px;" /></p>
+
+<p>Key contributors to obscurity:</p>
+
+<ul>
+<li><strong>Vague Names</strong></li>
+<li><strong>Inconsistency</strong></li>
+<li><strong>Inadequate Documentation</strong>.</li>
+</ul>
+
+
+<p>Smaller contributors to obscurity:</p>
+
+<ul>
+<li>indirection via <strong>listeners</strong></li>
+<li>indirection via <strong>polymorphism</strong></li>
+<li>using <strong>generic containers to hold structured data</strong></li>
+</ul>
+
+
+<p>The opposite of obscurity is <strong>obvious code</strong>. Obvious code</p>
+
+<ul>
+<li>uses <strong>precise names</strong>,</li>
+<li>is <strong>consistent</strong>,</li>
+<li>is <strong>well-documented</strong>, and</li>
+<li>makes good use of <strong>whitespace</strong>.</li>
+</ul>
+
+
+<p><img src="/assets/2025/designing-software-in-the-large/section4.svg" style="max-width: 100%; max-height: 400px;" /></p>
+
+<p>There are many techniques for creating <strong>consistency</strong> in code:</p>
+
+<ul>
+<li><p><strong>Consistent use of names</strong>, <strong>consistent code style</strong>, and <strong>consistent implementation patterns</strong> are hallmarks of consistency in general.</p></li>
+<li><p>Tools such as <strong>autoformatters</strong>, <strong>linters</strong>, and <strong>automated consistency tests</strong> are great for enforcing consistency.</p></li>
+<li><p><strong>Documentation</strong> of conventions can be captured in <strong>coding style guides</strong> and through references to documented <strong>design patterns</strong>.</p></li>
+</ul>
+
+
+<p><img src="/assets/2025/designing-software-in-the-large/section5.svg" style="max-width: 100%; max-height: 400px;" /></p>
+
+<h2>Strategic vs. Tactical Mindset</h2>
+
+<p><img id="tactical-tornado-img" src="/assets/2025/designing-software-in-the-large/tactical-tornado.svg" style="float: right; margin-left: 0.5em; margin-bottom: 0.5em; max-width: 150px;" /></p>
+
+<p>Complexity accumulates naturally in a software system if left unchecked.</p>
+
+<p>And once complexity has accumulated it is hard to eliminate.</p>
+
+<p>Therefore the book recommends taking a &ldquo;zero-tolerance&rdquo; stance toward the incremental introduction of complexity.</p>
+
+<p>Specifically, it advocates taking a <strong>strategic approach</strong> to programming tasks, where you intentionally invest time to produce clean designs and fix problems, in addition to getting new features working.</p>
+
+<p>Many programmers, by contrast, take a purely <strong>tactical approach</strong> that focuses <em>only</em> on getting new features working, disregarding the long-term costs of adding incremental complexity and other forms of cutting corners.</p>
+
+<p><strong>Working code (alone) is not enough.</strong></p>
+
+  </div>
+  
+  <div class="col-md-12 block-bar">
+    <div id="subscribe-block" class="block">
+  <div class="subscribe__prompt">Did you enjoy this article?</div>
+  <a class="subscribe" href="https://mastodon.world/@davidfstr">
+  <img src="/assets/mastodon-icon-48x48.png" alt="Mastodon icon, by Icons8." width="16" height="16" />Subscribe (Mastodon)
+</a>
+<a class="subscribe" href="feed://dafoster.net/atom.xml">
+  <img src="/assets/feed-icon-14x14.png" alt="RSS icon" width="14" height="14" />Subscribe (RSS)
+</a>
+<a class="subscribe" href="mailto:add@rssby.email?body=feed://dafoster.net/atom.xml&subject=Subscribe">
+  <img src="/assets/mail-48x48.png" alt="Email icon, by Freepik at Flaticon.com" width="18" height="18" style="margin-left: -2px;" />Subscribe (Email)
+</a>
+
+
+</div>
+
+  </div>
+  
+  <div class="col-md-12">
+    <div style="text-align: center;">
+      <ul class="pagination">
+      
+        <li class="prev"><a href="/articles/2025/03/16/the-trouble-with-the-symbol-type/" title="The trouble with the Symbol type">&larr; Previous</a></li>
+      
+        <li><a href="/articles/">Index</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+
+        
+      </div>
+
+      <footer>
+        <p>&copy; 2025 <a href="/about/">David Foster</a>
+        
+        </p>
+      </footer>
+
+    </div>
+    
+  
+  
+  
+  
+  
+    
+  <!-- Analytics Footer -->
+  
+    
+  
+  </body>
+</html>

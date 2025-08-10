@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2025-03-16T19:53:34+00:00</updated>
+ <updated>2025-08-10T23:47:16+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,146 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2025/07/22/designing-software-in-the-large</id>
+   <title>Designing Software in the Large</title>
+   <published>2025-07-22T00:00:00+00:00</published>
+   <updated>2025-07-22T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2025/07/22/designing-software-in-the-large/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X/&quot;&gt;A Philosophy of Software Design&lt;/a&gt; is my favorite book I&amp;rsquo;ve read to date about designing large long-lived maintainable software programs. Here&amp;rsquo;s what I learned:&lt;/p&gt;
+
+&lt;h2&gt;Complexity&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Complexity&lt;/strong&gt; is anything related to the structure of a software system that makes it hard to understand &amp;amp; modify the system.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Symptoms of complexity:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Change Amplification&lt;/strong&gt; - A seemingly simple change requires code modifications in many different places.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;High Cognitive Load&lt;/strong&gt; - High amount of information a developer needs to know to complete a task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unknown Unknowns&lt;/strong&gt; - When it is not obvious which pieces of code must be modified to complete a task, or what information a developer must have to carry out the task successfully.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Causes of complexity:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dependencies&lt;/strong&gt; - A dependency exists when a given piece of code cannot be understood and modified in isolation; the code relates in some way to other code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Obscurity&lt;/strong&gt; - Obscurity occurs when important information is not obvious.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section0.svg&quot; style=&quot;max-width: 100%; max-height: 268px;&quot; alt=&quot;A concept map diagram showing symptoms and causes of complexity, and how they related to each other&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To keep a software system maintainable, you must strive to keep the complexity of the system low as you &amp;amp; others make changes to it.&lt;/p&gt;
+
+&lt;h3&gt;The big picture&lt;/h3&gt;
+
+&lt;p&gt;Concepts related to complexity, which the remaining sections of this article will zoom in on:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/section2.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section2.svg&quot; style=&quot;max-width: 100%; border: 4px solid lightgray; border-radius: 12px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Dependencies: A Cause of Complexity&lt;/h2&gt;
+
+&lt;p&gt;A &lt;strong&gt;dependency&lt;/strong&gt; exists when a given piece of code cannot be understood in isolation; the code relates in some way to other code. Numerous and strong dependencies between modules of a system make it difficult to change one module without changing others (Change Amplification) and make it difficult to understand modules in isolation (High Cognitive Load).&lt;/p&gt;
+
+&lt;p&gt;Key contributors to dependency-complexity are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Duplication&lt;/strong&gt; - Duplication occurs when the same knowledge is used in multiple places. This can be direct repetition of the same piece of code appearing in multiple places. Or it can be more subtle, such as multiple classes understanding the details of the same file format or network protocol.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exceptions&lt;/strong&gt; - An exception is a particularly complex element of an interface which can propagate not just from a method to its direct caller but also to higher level callers (and their interfaces).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inheritance&lt;/strong&gt; - Implementation inheritance in object-oriented systems creates dependencies between the parent class and each of its subclasses.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temporal Decomposition&lt;/strong&gt; - A system exhibits temporal decomposition when its structure corresponds to the time order in which operations will occur.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The opposite of dependency-complexity is &lt;strong&gt;cohesive code&lt;/strong&gt;, created primarily by focusing on designing &lt;strong&gt;deep modules&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section1.svg&quot; style=&quot;max-width: 100%; max-height: 550px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Deep modules&lt;/strong&gt; allow a lot of functionality to be accessed through a small interface:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/deep-and-shallow-modules.svg&quot; style=&quot;max-width: 100%; max-height: 325px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Keeping module interfaces small lowers the number and strength of dependencies between modules, resulting in lower overall system complexity:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2017/abstraction-and-encapsulation/complexity_comparison.png&quot;&gt;&lt;img alt=&quot;Complexity with and without abstractions&quot; src=&quot;/assets/2017/abstraction-and-encapsulation/complexity_comparison.png&quot; style=&quot;max-width: 100%; max-height: 450px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Chapters 4-9 of the book are related to techniques for forming deeper modules. My article &lt;a href=&quot;/articles/2017/03/25/how-to-design-large-programs-with-abstraction-and-encapsulation/&quot;&gt;How to Design Large Programs with Abstraction and Encapsulation&lt;/a&gt; also discusses deep modules in the context of encapsulation &amp;amp; abstraction.&lt;/p&gt;
+
+&lt;h2&gt;Obscurity: A Cause of Complexity&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Obscurity&lt;/strong&gt; occurs when important information is not obvious.&lt;/p&gt;
+
+&lt;p&gt;Obscurity creates Unknown Unknowns and contributes to High Cognitive Load:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section3.svg&quot; style=&quot;max-width: 100%; max-height: 450px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Key contributors to obscurity:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Vague Names&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inconsistency&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inadequate Documentation&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Smaller contributors to obscurity:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;indirection via &lt;strong&gt;listeners&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;indirection via &lt;strong&gt;polymorphism&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;using &lt;strong&gt;generic containers to hold structured data&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The opposite of obscurity is &lt;strong&gt;obvious code&lt;/strong&gt;. Obvious code&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;uses &lt;strong&gt;precise names&lt;/strong&gt;,&lt;/li&gt;
+&lt;li&gt;is &lt;strong&gt;consistent&lt;/strong&gt;,&lt;/li&gt;
+&lt;li&gt;is &lt;strong&gt;well-documented&lt;/strong&gt;, and&lt;/li&gt;
+&lt;li&gt;makes good use of &lt;strong&gt;whitespace&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section4.svg&quot; style=&quot;max-width: 100%; max-height: 400px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are many techniques for creating &lt;strong&gt;consistency&lt;/strong&gt; in code:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Consistent use of names&lt;/strong&gt;, &lt;strong&gt;consistent code style&lt;/strong&gt;, and &lt;strong&gt;consistent implementation patterns&lt;/strong&gt; are hallmarks of consistency in general.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Tools such as &lt;strong&gt;autoformatters&lt;/strong&gt;, &lt;strong&gt;linters&lt;/strong&gt;, and &lt;strong&gt;automated consistency tests&lt;/strong&gt; are great for enforcing consistency.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Documentation&lt;/strong&gt; of conventions can be captured in &lt;strong&gt;coding style guides&lt;/strong&gt; and through references to documented &lt;strong&gt;design patterns&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section5.svg&quot; style=&quot;max-width: 100%; max-height: 400px;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Strategic vs. Tactical Mindset&lt;/h2&gt;
+
+&lt;p&gt;&lt;img id=&quot;tactical-tornado-img&quot; src=&quot;/assets/2025/designing-software-in-the-large/tactical-tornado.svg&quot; style=&quot;float: right; margin-left: 0.5em; margin-bottom: 0.5em; max-width: 150px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Complexity accumulates naturally in a software system if left unchecked.&lt;/p&gt;
+
+&lt;p&gt;And once complexity has accumulated it is hard to eliminate.&lt;/p&gt;
+
+&lt;p&gt;Therefore the book recommends taking a &amp;ldquo;zero-tolerance&amp;rdquo; stance toward the incremental introduction of complexity.&lt;/p&gt;
+
+&lt;p&gt;Specifically, it advocates taking a &lt;strong&gt;strategic approach&lt;/strong&gt; to programming tasks, where you intentionally invest time to produce clean designs and fix problems, in addition to getting new features working.&lt;/p&gt;
+
+&lt;p&gt;Many programmers, by contrast, take a purely &lt;strong&gt;tactical approach&lt;/strong&gt; that focuses &lt;em&gt;only&lt;/em&gt; on getting new features working, disregarding the long-term costs of adding incremental complexity and other forms of cutting corners.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Working code (alone) is not enough.&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>
@@ -4083,7 +4223,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;74&lt;/sup&gt;
+  Software&lt;sup&gt;75&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
