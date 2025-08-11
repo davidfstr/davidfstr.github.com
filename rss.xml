@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Mon, 11 Aug 2025 13:59:19 +0000</pubDate>
-    <lastBuildDate>Mon, 11 Aug 2025 13:59:19 +0000</lastBuildDate>
+    <pubDate>Mon, 11 Aug 2025 14:27:59 +0000</pubDate>
+    <lastBuildDate>Mon, 11 Aug 2025 14:27:59 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -148,7 +148,11 @@
 
 &lt;p&gt;Many programmers, by contrast, take a purely &lt;strong&gt;tactical approach&lt;/strong&gt; that focuses &lt;em&gt;only&lt;/em&gt; on getting new features working, disregarding the long-term costs of adding incremental complexity and other forms of cutting corners.&lt;/p&gt;
 
+&lt;h2&gt;Takeaway&lt;/h2&gt;
+
 &lt;p&gt;&lt;strong&gt;Working code (alone) is not enough.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To keep a software system maintainable, you must strive to keep the complexity of the system low as you &amp;amp; others make changes to it.&lt;/p&gt;
 </description>
     </item>
     

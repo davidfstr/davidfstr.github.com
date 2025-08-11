@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2025-08-11T13:59:19+00:00</updated>
+ <updated>2025-08-11T14:27:59+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -150,7 +150,11 @@
 
 &lt;p&gt;Many programmers, by contrast, take a purely &lt;strong&gt;tactical approach&lt;/strong&gt; that focuses &lt;em&gt;only&lt;/em&gt; on getting new features working, disregarding the long-term costs of adding incremental complexity and other forms of cutting corners.&lt;/p&gt;
 
+&lt;h2&gt;Takeaway&lt;/h2&gt;
+
 &lt;p&gt;&lt;strong&gt;Working code (alone) is not enough.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To keep a software system maintainable, you must strive to keep the complexity of the system low as you &amp;amp; others make changes to it.&lt;/p&gt;
 </content>
  </entry>
  
