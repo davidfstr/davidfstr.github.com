@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2025-08-10T23:47:16+00:00</updated>
+ <updated>2025-08-11T13:59:19+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -49,7 +49,7 @@
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section0.svg&quot; style=&quot;max-width: 100%; max-height: 268px;&quot; alt=&quot;A concept map diagram showing symptoms and causes of complexity, and how they related to each other&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/section0.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section0.svg&quot; style=&quot;max-width: 100%; max-height: 268px;&quot; alt=&quot;A concept map diagram showing symptoms and causes of complexity, and how they related to each other&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;To keep a software system maintainable, you must strive to keep the complexity of the system low as you &amp;amp; others make changes to it.&lt;/p&gt;
 
@@ -75,11 +75,11 @@
 
 &lt;p&gt;The opposite of dependency-complexity is &lt;strong&gt;cohesive code&lt;/strong&gt;, created primarily by focusing on designing &lt;strong&gt;deep modules&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section1.svg&quot; style=&quot;max-width: 100%; max-height: 550px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/section1.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section1.svg&quot; style=&quot;max-width: 100%; max-height: 550px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Deep modules&lt;/strong&gt; allow a lot of functionality to be accessed through a small interface:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/deep-and-shallow-modules.svg&quot; style=&quot;max-width: 100%; max-height: 325px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/deep-and-shallow-modules.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/deep-and-shallow-modules.svg&quot; style=&quot;max-width: 100%; max-height: 325px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Keeping module interfaces small lowers the number and strength of dependencies between modules, resulting in lower overall system complexity:&lt;/p&gt;
 
@@ -93,7 +93,7 @@
 
 &lt;p&gt;Obscurity creates Unknown Unknowns and contributes to High Cognitive Load:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section3.svg&quot; style=&quot;max-width: 100%; max-height: 450px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/section3.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section3.svg&quot; style=&quot;max-width: 100%; max-height: 450px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Key contributors to obscurity:&lt;/p&gt;
 
@@ -123,7 +123,7 @@
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section4.svg&quot; style=&quot;max-width: 100%; max-height: 400px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/section4.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section4.svg&quot; style=&quot;max-width: 100%; max-height: 400px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;There are many techniques for creating &lt;strong&gt;consistency&lt;/strong&gt; in code:&lt;/p&gt;
 
@@ -134,7 +134,7 @@
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section5.svg&quot; style=&quot;max-width: 100%; max-height: 400px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/2025/designing-software-in-the-large/section5.svg&quot;&gt;&lt;img src=&quot;/assets/2025/designing-software-in-the-large/section5.svg&quot; style=&quot;max-width: 100%; max-height: 400px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Strategic vs. Tactical Mindset&lt;/h2&gt;
 
