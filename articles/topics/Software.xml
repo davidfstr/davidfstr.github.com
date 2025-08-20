@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2025-08-20T14:36:45+00:00</updated>
+ <updated>2025-08-20T14:39:10+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -30,7 +30,7 @@
 
 &lt;p&gt;I think I&amp;rsquo;ve figured out why: Often when I complete an issue, I only complete the first 80% of the issue which is most valuable to me and file smaller issues for the remaining 20% that is left. So I end up with 1 big issue completed and 2+ smaller issues created. Net effect is that &lt;strong&gt;more issues are opened than closed even though the missing functionality goes down&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;It&amp;rsquo;s like a game of asteroids, where blowing up the big asteroid just creates a bunch of smaller asteroids:&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s like a game of asteroids, where blowing up the big asteroid just creates a bunch of smaller asteroids.&lt;/p&gt;
 
 &lt;p&gt;So I can&amp;rsquo;t easily see progress by watching the &lt;em&gt;issue count&lt;/em&gt; go down. Instead I need to think of a way to measure the amount of &lt;em&gt;missing functionality&lt;/em&gt; so that I can see that go down instead and feel good about completing issues. 🙂&lt;/p&gt;
 
