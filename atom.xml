@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2025-08-11T14:27:59+00:00</updated>
+ <updated>2025-08-20T14:33:42+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,30 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2025/08/20/issue-counts-always-go-up</id>
+   <title>Issue counts always go up</title>
+   <published>2025-08-20T00:00:00+00:00</published>
+   <updated>2025-08-20T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2025/08/20/issue-counts-always-go-up/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/assets/2025/issue-counts-always-go-up/issue-asteroids.jpg&quot;&gt;&lt;img id=&quot;issue-asteroids&quot; src=&quot;/assets/2025/issue-counts-always-go-up/issue-asteroids.jpg&quot; alt=&quot;A spaceship labelled 'Me' firing shots at a big asteroid, labelled '-1 Issue'. The big asteroid is exploding into 3 smaller asteroids, each labelled '+1 Issue'.&quot; data-credits=&quot;Gemini 2.0 Flash Preview Image Generation, prompted and manually edited in Acorn by David Foster&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve noticed that the GitHub issue count on my software project Crystal always seems to go up, even though I&amp;rsquo;m the only one who ever files issues (for now) and even though I&amp;rsquo;m actually completing issues occasionally.&lt;/p&gt;
+
+&lt;p&gt;I think I&amp;rsquo;ve figured out why: Often when I complete an issue, I only complete the first 80% of the issue which is most valuable to me and file smaller issues for the remaining 20% that is left. So I end up with 1 big issue completed and 2+ smaller issues created. Net effect is that &lt;strong&gt;more issues are opened than closed even though the missing functionality goes down&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s like a game of asteroids, where blowing up the big asteroid just creates a bunch of smaller asteroids:&lt;/p&gt;
+
+&lt;p&gt;So I can&amp;rsquo;t easily see progress by watching the &lt;em&gt;issue count&lt;/em&gt; go down. Instead I need to think of a way to measure the amount of &lt;em&gt;missing functionality&lt;/em&gt; so that I can see that go down instead and feel good about completing issues. 🙂&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2025/issue-counts-always-go-up/measuring-bugs.jpg&quot; style=&quot;max-width: 100%; max-height: 300px; display: block; margin: 0 auto;&quot; alt=&quot;Professor holding a measuring tool over a set of small bugs arranged on a table.&quot; data-credits=&quot;Gemini 2.0 Flash Preview Image Generation, prompted by David Foster&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>
@@ -4376,7 +4400,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;75&lt;/sup&gt;
+  Software&lt;sup&gt;76&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

@@ -34,6 +34,7 @@ https://dafoster.net/
 https://dafoster.net/rss.xml
 https://dafoster.net/sitemap.txt
 
+https://dafoster.net/articles/2025/08/20/issue-counts-always-go-up/
 https://dafoster.net/articles/2025/07/22/designing-software-in-the-large/
 https://dafoster.net/articles/2025/03/16/the-trouble-with-the-symbol-type/
 https://dafoster.net/articles/2025/03/13/dump-traceback-on-print/
