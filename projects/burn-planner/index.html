@@ -72,11 +72,13 @@
   float: right;
   background-color: #fafafa;
   border: 1px solid #dfdfdf;
+  /* Don't decrease logo size when adding padding */
+  box-sizing: content-box;
   padding: 20px;
   margin-left: 10px; margin-bottom: 10px;
 }
 @media (max-width: 576px) {
-  .logo { width: 125px; }
+  .logo { width: 85px; height: 85px; }
 }
 
       </style>
@@ -268,7 +270,7 @@ program to make the process faster.</p>
       
       
       <li id="crystal-web-archiver/-project">
-        <a href="/projects/crystal-web-archiver/" class="external">Crystal: A Website Archiver</a>
+        <a href="/projects/crystal-web-archiver/">Crystal: A Website Archiver</a>
       </li>
     
       
@@ -351,7 +353,7 @@ program to make the process faster.</p>
       </div>
 
       <footer>
-        <p>&copy; 2025 <a href="/about/">David Foster</a>
+        <p>&copy; 2026 <a href="/about/">David Foster</a>
         
         </p>
       </footer>

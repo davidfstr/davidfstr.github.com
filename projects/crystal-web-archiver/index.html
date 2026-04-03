@@ -2,21 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Crystal: A Website Archiver | DaFoster</title>
+    <title>Crystal: A Website Archiver | Free Website Downloader for Mac & Windows | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
     <link rel="shortcut icon" href="/favicon.ico">
   
     
-      <!-- Redirect -->
-      <meta http-equiv="refresh" content="0;URL='https://github.com/davidfstr/Crystal-Web-Archiver#readme'">
-    
   
     <!-- Google Snippet -->
     
       
-      <meta name="description" content="Downloads websites in an archival-friendly format.
+      <meta name="description" content="Crystal is a free website downloader and archiver for Mac, Windows, and Linux. Save entire websites for offline viewing and long-term digital preservation.
 ">
     
     <meta name="author" content="David Foster">
@@ -28,7 +25,7 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
       <meta name="twitter:title" content="Crystal: A Website Archiver" />
-      <meta name="twitter:description" content="Downloads websites in an archival-friendly format.
+      <meta name="twitter:description" content="Crystal is a free website downloader and archiver for Mac, Windows, and Linux. Save entire websites for offline viewing and long-term digital preservation.
 " />
       <meta name="twitter:image" content="https://dafoster.net/projects/crystal-web-archiver/logo-128.png" />
       <meta name="twitter:image:alt" content="Crystal: A Website Archiver Logo" />
@@ -39,7 +36,7 @@
     
       <meta property="og:type" content="website" />
       <meta name="image" property="og:image" content="https://dafoster.net/projects/crystal-web-archiver/logo-128.png" />
-      <meta name="description" property="og:description" content="Downloads websites in an archival-friendly format.
+      <meta name="description" property="og:description" content="Crystal is a free website downloader and archiver for Mac, Windows, and Linux. Save entire websites for offline viewing and long-term digital preservation.
 " />
     
     
@@ -75,15 +72,22 @@
   float: right;
   background-color: #fafafa;
   border: 1px solid #dfdfdf;
+  /* Don't decrease logo size when adding padding */
+  box-sizing: content-box;
   padding: 20px;
   margin-left: 10px; margin-bottom: 10px;
 }
 @media (max-width: 576px) {
-  .logo { width: 125px; }
+  .logo { width: 85px; height: 85px; }
 }
 
       </style>
     
+    
+      <style>
+        .download-links li { margin-bottom: 0.5em; }
+
+      </style>
     
     
     <!-- Scripts -->
@@ -212,30 +216,197 @@
         <![endif]-->
         
         
-          
-            <div class="row">
+          <div class="row">
   <div class="col-md-9 content">
     <img class="logo" src="logo-128.png" alt="Logo for Crystal: A Website Archiver" width="128" height="128" />
     
     <h1>Crystal: A Website Archiver</h1>
     
     
-      <em>Redirecting you to:</em><br />
-<a href="https://github.com/davidfstr/Crystal-Web-Archiver#readme">https://github.com/davidfstr/Crystal-Web-Archiver#readme</a>
+      <p><strong>Crystal</strong> is a free tool that downloads high-fidelity copies of websites
+for long-term archival and offline viewing.</p>
+
+<p>It works best on traditional websites made of distinct pages using
+limited JavaScript — such as <strong>blogs</strong>, <strong>wikis</strong>, and other <strong>static websites</strong> —
+although it can also download more dynamic sites which have infinitely
+scrolling feeds of content, such as social media sites.</p>
+
+<p>Crystal saves downloaded websites in an <strong>archival-friendly format</strong> where
+pages are stored in their original form (including all HTTP headers) and
+metadata is kept in a <a href="https://sqlite.org/lts.html">SQLite database</a>,
+making your archives durable and self-contained.</p>
+
+<p><img src="https://raw.githubusercontent.com/davidfstr/Crystal-Web-Archiver/main/README/crystal-ui.png"
+     alt="Crystal's user interface"
+     title="Crystal's user interface"
+     style="max-width: 100%;" /></p>
+
+<h2>Download</h2>
+
+<ul class="download-links">
+<li>📦 <a href="https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v2.3.0/crystal-mac-2.3.0.dmg"><strong>macOS 14 and later</strong></a></li>
+<li>📦 <a href="https://github.com/davidfstr/Crystal-Web-Archiver/releases/download/v2.3.0/crystal-win-2.3.0.exe"><strong>Windows 11 and later</strong></a></li>
+<li>📦 <strong>Linux:</strong> Install from source via <code>pipx install crystal-web</code> 
+    (<a href="https://github.com/davidfstr/Crystal-Web-Archiver#download">details</a>)</li>
+</ul>
+
+
+<p><a href="https://github.com/davidfstr/Crystal-Web-Archiver/releases">All releases &raquo;</a></p>
+
+<h2>Features</h2>
+
+<ul>
+<li><strong>Download entire websites</strong> with a single click, or precisely select
+which pages to download from complex sites.</li>
+<li><strong>Browse archived sites offline</strong> in your regular web browser —
+navigate downloaded pages just like you would online.</li>
+<li><strong>Archival-quality storage</strong> — pages are saved in their original form
+with all HTTP headers, suitable for long-term digital preservation.</li>
+<li><strong>Runs on Mac, Windows, and Linux.</strong></li>
+<li><strong>Free for noncommercial use.</strong></li>
+</ul>
+
+
+<h2>Getting Started</h2>
+
+<p>Crystal makes it easy to download and archive websites. For a step-by-step
+walkthrough — including video tutorials — see the
+<a href="https://github.com/davidfstr/Crystal-Web-Archiver#tutorial">Tutorial</a>
+on the project page.</p>
+
+<p>There are many practice websites you can try downloading at
+<a href="https://daarchive.net/">https://daarchive.net/</a>.</p>
+
+<h2>Learn More</h2>
+
+<ul>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver#readme">Full documentation &amp; source code on GitHub</a></li>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver/blob/main/RELEASE_NOTES.md">Release notes</a></li>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver/wiki/Complex-Website-Download-Examples">Complex website download examples</a></li>
+<li><a href="https://github.com/davidfstr/Crystal-Web-Archiver/issues/new">Report a bug or request a feature</a></li>
+</ul>
+
 
     
   </div>
   
   
+    
+    <div class="col-md-3 block-bar">
+      <div class="block">
+  <h3>Other Projects</h3>
+  
+  <ul class="tag_box" style="margin-bottom: .5em">
+    
+    
+      
+      
+      
+      
+      
+      <li id="burn-planner/-project">
+        <a href="/projects/burn-planner/">Burn Planner</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="django-mysql-compressed-fields/-project">
+        <a href="/projects/django-mysql-compressed-fields/" class="external">CompressedTextField for Django and MySQL</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="crystal-web-archiver/-project" class="active">
+        <a href="/projects/crystal-web-archiver/">Crystal: A Website Archiver</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="handbrake-subtitle-support/-project">
+        <a href="/projects/handbrake-subtitle-support/">HandBrake Subtitles</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="incoming-game/-project">
+        <a href="/projects/incoming-game/" class="external">Incoming (Game)</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="rdiscount/-project">
+        <a href="/projects/rdiscount/">RDiscount</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="typeddict/-project">
+        <a href="/projects/typeddict/">TypedDict</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="uhuru/-project">
+        <a href="/projects/uhuru/" class="external">Uhuru</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="website/-project">
+        <a href="/projects/website/">Website</a>
+      </li>
+    
+      
+      
+      
+      
+      
+      <li id="trycast/-project">
+        <a href="/projects/trycast/" class="external">trycast</a>
+      </li>
+    
+  </ul>
+  <p class="x-and-more-projects">And more at:</p>
+<ul>
+  <li><a href="https://github.com/davidfstr?tab=repositories&type=source" class="external">GitHub</a></li>
+  <li><a href="/prism/projects/" class="external">Historical Projects (2010 and older)</a></li>
+  <li><a href="/apps/">Web Apps</a></li>
+</ul>
+</div>
+    </div>
+    
   
 </div>
 
-          
         
       </div>
 
       <footer>
-        <p>&copy; 2025 <a href="/about/">David Foster</a>
+        <p>&copy; 2026 <a href="/about/">David Foster</a>
         
         </p>
       </footer>
