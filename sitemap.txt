@@ -16,6 +16,7 @@ https://dafoster.net/projects/techsmart-platform/
 https://dafoster.net/projects/website-2/
 https://dafoster.net/projects/webcrystal/
 https://dafoster.net/projects/django-mysql-compressed-fields/
+https://dafoster.net/projects/gvc/
 https://dafoster.net/projects/handbrake-subtitle-support/
 https://dafoster.net/projects/website/
 https://dafoster.net/projects/burn-planner/donate/

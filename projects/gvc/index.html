@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Website | DaFoster</title>
+    <title>gvc (Git Visual Compare) | A Visual Diff Viewer for macOS | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -13,7 +13,7 @@
     <!-- Google Snippet -->
     
       
-      <meta name="description" content="This website.
+      <meta name="description" content="A lightweight macOS GUI for viewing git diff output. The ease of a visual diff viewer, the power of a command-line diffing tool.
 ">
     
     <meta name="author" content="David Foster">
@@ -24,19 +24,19 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Website" />
-      <meta name="twitter:description" content="This website.
+      <meta name="twitter:title" content="gvc (Git Visual Compare)" />
+      <meta name="twitter:description" content="A lightweight macOS GUI for viewing git diff output. The ease of a visual diff viewer, the power of a command-line diffing tool.
 " />
-      <meta name="twitter:image" content="https://dafoster.net/projects/website/logo-128.png" />
-      <meta name="twitter:image:alt" content="Website Logo" />
+      <meta name="twitter:image" content="https://dafoster.net/projects/gvc/logo.png" />
+      <meta name="twitter:image:alt" content="gvc (Git Visual Compare) Logo" />
     
     
     <!-- LinkedIn and Mastodon Card -->
     
     
       <meta property="og:type" content="website" />
-      <meta name="image" property="og:image" content="https://dafoster.net/projects/website/logo-128.png" />
-      <meta name="description" property="og:description" content="This website.
+      <meta name="image" property="og:image" content="https://dafoster.net/projects/gvc/logo.png" />
+      <meta name="description" property="og:description" content="A lightweight macOS GUI for viewing git diff output. The ease of a visual diff viewer, the power of a command-line diffing tool.
 " />
     
     
@@ -89,8 +89,6 @@
     
       <script src="/assets/js/jquery-1.12.4.min.js"></script>
     
-    
-      <script src="/assets/js/jquery.ba-hashchange.min.js"></script>
     
     
       <script src="/assets/bootstrap-3.4.1/js/bootstrap.min.js"></script>
@@ -219,157 +217,129 @@
         
           <div class="row">
   <div class="col-md-9 content">
-    <img class="logo" src="logo-128.png" alt="Logo for Website" width="128" height="128" />
+    <img class="logo" src="logo.png" alt="Logo for gvc (Git Visual Compare)" width="128" height="128" />
     
-    <h1>Website</h1>
+    <h1>gvc (Git Visual Compare)</h1>
     
     
-      <p>This website has gone through a number of rewrites over the years.</p>
+      <blockquote><p>The ease of a visual diff viewer, the power of a command-line diffing tool.</p></blockquote>
 
-<div class="toc">
-  <ul>
-    <li><a href="#version-1-0">Version 1.0</a></li>
-    <li><a href="#version-2-0">Version 2.0</a></li>
-    <li><a href="#version-3-0">Version 3.0</a></li>
-  </ul>
-</div>
+<p><strong>gvc</strong> is a lightweight macOS GUI for viewing <code>git diff</code> output. Run <code>gvc</code>
+where you&rsquo;d normally run <code>git diff</code> — it opens a native window displaying a
+formatted, scrollable, searchable diff. It was built as a modern replacement
+for <a href="https://gitx.frim.nl/">GitX</a>&rsquo;s <code>--diff</code> mode, which served gvc&rsquo;s author
+faithfully for over a decade but lacked dark mode, find, and active maintenance.</p>
 
+<p><img src="https://raw.githubusercontent.com/davidfstr/git-visual-compare/main/README/screenshot-dark.png"
+     alt="Screenshot of gvc, showing a diff in dark mode"
+     style="max-width: 100%;" /></p>
 
-<p><br clear="all" /></p>
+<h2>Why Another Diff Tool?</h2>
 
-<h2 id="version-1-0">
-Version 1.0 <small>HTML with SSI (Aug 25, 2007 - Nov 12, 2007)</small>
-</h2>
-
-
-<p>I originally wanted to create a portfolio website to advertise my skills
-and help me get internships during college. Given my tenure at Google and
-Microsoft, I&rsquo;d say I succeeded. :-)</p>
-
-<p>This <a href="/prism/">original website</a> was maintained until around 2011 and is still
-referenced by parts of this site.</p>
-
-<h3>Technologies</h3>
+<p>Most visual diff tools fall into one of two camps: GUI diff apps limited to
+looking at a single commit at a time, or advanced TUI diff tools supporting
+commit ranges and per-file filtering that are nevertheless trapped inside a
+small terminal window. gvc fills the gap — it&rsquo;s a CLI-driven GUI. You type a
+CLI diff command — with as many bells and whistles as you want — and a full
+GUI window appears.</p>
 
 <ul>
-<li>HTML, CSS</li>
-<li>Server Side Includes (SSI)</li>
+<li><strong>Full <code>git diff</code> passthrough</strong> — anything you can pass to <code>git diff</code>,
+you can pass to <code>gvc</code>.</li>
+<li><strong>Lightweight</strong> — not a heavy Electron app, not a TUI. Uses a
+platform-native WebView (WKWebView) to display diffs.</li>
+<li><strong>Free and open source</strong> — no subscriptions, no accounts.</li>
 </ul>
 
 
-<h3>Special Features</h3>
+<h2>Features</h2>
 
 <ul>
-<li>Compatible with Internet Explorer 6<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
-<li>Accessible design for screenreaders</li>
+<li>Light and dark mode</li>
+<li>Find (Cmd+F)</li>
+<li>Adjustable font size (Cmd+Plus / Cmd+Minus)</li>
+<li>Table of contents to jump to any file</li>
+<li>Collapsible file sections with expand/collapse all</li>
 </ul>
 
 
-<h2 id="version-2-0" style="margin-top: .7em;">
-Version 2.0 <small>Drupal, PHP (Jun 14, 2010 - Sep 27, 2010)</small>
-</h2>
+<h2>Installation</h2>
+
+<p>Requires <strong>Python 3.14+</strong> and a working <code>git</code> installation.</p>
+
+<pre><code class="bash"># Install pipx first
+python3 -m pip install pipx
+
+# Install gvc
+pipx install gvc
+</code></pre>
+
+<p>After installation, <code>gvc</code> is available as a command in your shell.</p>
+
+<h2>Usage</h2>
+
+<p><code>gvc</code> takes the same arguments as <code>git diff</code>:</p>
+
+<pre><code class="bash">gvc                              # Working tree changes (unstaged)
+gvc --cached                     # Staged changes
+gvc HEAD~1 HEAD                  # Compare two commits
+gvc abc123 def456                # Compare any two refs
+gvc HEAD~3 HEAD -- src/foo.py    # Limit to specific files
+gvc -w HEAD~1 HEAD               # Ignore whitespace
+gvc -U20 HEAD~1 HEAD             # 20 lines of context
+</code></pre>
+
+<p>Each invocation opens a new window. The CLI returns immediately —
+your terminal is not blocked.</p>
+
+<h2>Keyboard Shortcuts</h2>
+
+<table>
+<thead>
+<tr>
+<th> Shortcut </th>
+<th> Action </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Cmd+F </td>
+<td> Open find bar </td>
+</tr>
+<tr>
+<td> Cmd+G </td>
+<td> Find next </td>
+</tr>
+<tr>
+<td> Shift+Cmd+G </td>
+<td> Find previous </td>
+</tr>
+<tr>
+<td> Cmd+Plus </td>
+<td> Increase font size </td>
+</tr>
+<tr>
+<td> Cmd+Minus </td>
+<td> Decrease font size </td>
+</tr>
+<tr>
+<td> Cmd+W </td>
+<td> Close window </td>
+</tr>
+<tr>
+<td> Cmd+Q </td>
+<td> Quit application </td>
+</tr>
+</tbody>
+</table>
 
 
-<p>Version 1.0 had a great fine-tuned layout but was difficult to modify,
-given the limited power of server side includes - the only dynamic rendering
-facility available.</p>
-
-<p>This version was intended to make it easy to add new projects, and to provide
-blogging capabilities.</p>
-
-<h3>Technologies</h3>
-
-<ul>
-<li>Drupal, PHP</li>
-<li>limited HTML &amp; CSS customizations</li>
-</ul>
-
-
-<h3>Special Features</h3>
-
-<ul>
-<li>Editable in the browser from any computer</li>
-<li>Graphic design (professional)</li>
-<li>First-class Projects, Project Languages, Project Categories, and Project Updates</li>
-<li>Blog.</li>
-<li>RSS feeds everywhere.</li>
-</ul>
-
-
-<h2 id="version-3-0" style="margin-top: .7em;">
-Version 3.0 <small>Jekyll, Markdown, Liquid (Dec 17, 2012 - Ongoing)</small>
-</h2>
-
-
-<p>Editing site content and structure in Drupal for version 2.0 was sufficiently
-annoying that I ended up doing less updates to the site than I wanted.</p>
-
-<p>In particular articles weren&rsquo;t getting written because the Markdown syntax in
-Drupal was getting munged by input filters and the CSS from the site theme.
-Since there were a lot of layers to Drupal&rsquo;s processing, this was complicated
-to debug and fix.</p>
-
-<p>So I decided to <a href="/articles/2012/12/16/why-i-no-longer-use-drupal/">stop using Drupal</a> and go with a simpler system: render all
-pages to static HTML which can then be deployed to any web host, including
-free ones. All dynamic behavior is farmed out to JavaScript and third party
-services (ex: Disqus).</p>
-
-<h3>Technologies</h3>
-
-<ul>
-<li>Jekyll<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, Liquid - generate pages</li>
-<li>Markdown - author content</li>
-<li>Bootstrap - base CSS</li>
-<li>Disqus - comments</li>
-<li>Google Analytics - basic analytics</li>
-<li>HTML5 Shim - make IE play nice with HTML5</li>
-<li>JQuery - trivial DOM manipulation in JavaScript</li>
-<li>Git - version control, deployment</li>
-</ul>
-
-
-<h3>Special Features</h3>
-
-<ul>
-<li>Markdown for authoring everything.
-
-<ul>
-<li>Can author with great local tools like <a href="http://mouapp.com">Mou</a> or any good text editor<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</li>
-</ul>
-</li>
-<li>Easy deployment with git.</li>
-<li>Deployable anywhere (since it&rsquo;s just static HTML).
+<h2>Learn More</h2>
 
 <ul>
-<li>In particular, deployable to free services like <a href="http://pages.github.com">GitHub Pages</a>.</li>
-<li>When deployed to free services, gains additional resilience against
-my death.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></li>
+<li><a href="https://github.com/davidfstr/git-visual-compare#readme">Source code on GitHub</a></li>
+<li><a href="https://github.com/davidfstr/git-visual-compare/issues/new">Report a bug or request a feature</a></li>
 </ul>
-</li>
-<li>Version control. For content <em>and</em> site structure.</li>
-</ul>
-
-
-<h2 id="version-3-1" style="margin-top: .7em;">
-Version 3.1 <small>Mobile-Friendly (Apr 29, 2019)</small>
-</h2>
-
-
-<p>At long last I upgraded the site to look reasonable on mobile devices.
-I also refreshed the overall typography.</p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>IE6 is surprisingly difficult to support. It doesn&rsquo;t understand PNGs, has a different layout model than other browsers, and has lots of other quirks.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>It&rsquo;s hard to learn Jekyll from its documentation, which is fairly poor (as of early 2013). Instead I learned Jekyll by forking the code for <a href="http://jekyllbootstrap.com">Jekyll-Bootstrap</a> and modifying the code (significantly) to get today&rsquo;s structure. If I were to do this site over again, I&rsquo;d probably start with <a href="http://octopress.org">Octopress</a> instead of Jekyll-Bootstrap.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-<li id="fn:3">
-<p><a href="http://www.barebones.com/products/bbedit/">BBEdit</a> and its free cousin <a href="http://www.barebones.com/products/textwrangler/">TextWrangler</a> are my favorite text editors. <a href="http://www.sublimetext.com">Sublime Text</a> is also good if you need cross-platform support. Many new Mac users like TextMate, but it is less powerful than BBEdit.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
-<li id="fn:4">
-<p>Given my hobbies of archival and digital preservation, I definitely think about how artifacts I create (such as this website) will operate after I am no longer alive to actively maintain them.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
 
 
     
@@ -470,7 +440,7 @@ I also refreshed the overall typography.</p>
       
       
       
-      <li id="website/-project" class="active">
+      <li id="website/-project">
         <a href="/projects/website/">Website</a>
       </li>
     
@@ -479,7 +449,7 @@ I also refreshed the overall typography.</p>
       
       
       
-      <li id="gvc/-project">
+      <li id="gvc/-project" class="active">
         <a href="/projects/gvc/">gvc (Git Visual Compare)</a>
       </li>
     
@@ -516,17 +486,6 @@ I also refreshed the overall typography.</p>
 
     </div>
     
-  
-    <script>
-      $(window).hashchange(function() {
-        // Highlight heading corresponding to current anchor (if specified)
-        if (location.hash) {
-          $('h2').removeClass('active');
-          $(location.hash).addClass('active');
-        }
-      });
-      $(window).hashchange();
-    </script>
   
   
   
