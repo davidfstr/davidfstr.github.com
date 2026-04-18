@@ -4,7 +4,7 @@
  <title>DaFoster (Software)</title>
  <link href="https://dafoster.net/articles/topics/#Software"/>
  <link href="https://dafoster.net/articles/topics/Software.xml" rel="self"/>
- <updated>2026-04-17T01:50:24+00:00</updated>
+ <updated>2026-04-18T01:13:59+00:00</updated>
  <id>https://dafoster.net/articles/topics/#Software</id>
  <author>
    <name>David Foster</name>
@@ -13,6 +13,63 @@
  <icon>https://dafoster.net/favicon.ico</icon>
  <logo>https://dafoster.net/favicon.ico</logo>
 
+ 
+ 
+ <entry>
+   <id>https://dafoster.net/articles/2026/04/17/ai-attribution-in-git</id>
+   <title>AI Attribution in Git</title>
+   <published>2026-04-17T00:00:00+00:00</published>
+   <updated>2026-04-17T00:00:00+00:00</updated>
+   
+     <category term="Software"/>
+   
+   <link rel="alternate" href="https://dafoster.net/articles/2026/04/17/ai-attribution-in-git/?utm_source=atom&amp;utm_medium=feed&amp;utm_campaign=feed"/>
+   <content type="html">&lt;p&gt;When making a git commit I&amp;rsquo;ve been looking for a way to record what AI model or coding agent harness I used to help me write the commit, ideally in a machine-readable way.&lt;/p&gt;
+
+&lt;p&gt;For &lt;strong&gt;AI-drafted code that I&amp;rsquo;ve reviewed&lt;/strong&gt; or &lt;strong&gt;self-drafted code with significant AI revisions&lt;/strong&gt;, I add one of the following trailers to my git commit message:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Co-authored-by: Claude Opus 4.6 &amp;lt;noreply@anthropic.com&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Co-authored-by: Claude Sonnet 4.6 &amp;lt;noreply@anthropic.com&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Co-authored-by: Claude Haiku 4.5 &amp;lt;noreply@anthropic.com&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Co-authored-by: GPT-5.3-Codex &amp;lt;noreply@openai.com&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Co-authored-by: Google Gemini 3.1 Flash Image (Nano Banana 2)&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TODO: Identify an email address to use for Gemini&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;Tip: I use &lt;a href=&quot;https://www.typesnap.app/blog/mac-text-replacement-guide/&quot;&gt;text expansion macros&lt;/a&gt; like &lt;code&gt;coa → &quot;Co-authored-by: &quot;&lt;/code&gt; and &lt;code&gt;aco → &quot;Claude Opus 4.6 &amp;lt;noreply@anthropic.com&amp;gt;&quot;&lt;/code&gt; to type those trailers quickly.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;For &lt;strong&gt;AI-drafted code that I&amp;rsquo;ve NOT reviewed&lt;/strong&gt; (rare; mostly for internal or one-off tools):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Author = one of the emails above, via &lt;code&gt;git commit --author=&quot;AI Model &amp;lt;noreply@example.com&amp;gt;&quot;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Co-authored-by = me:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Co-authored-by: David Foster &amp;lt;david@dafoster.net&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;If I ever want to make such unreviewed or minimally-reviewed AI-drafted code public, I can use &lt;code&gt;git blame&lt;/code&gt; to easily identify which lines are principally AI-drafted, so that I can go back and review them carefully; I never publish AI-written code that I haven&amp;rsquo;t reviewed myself.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Tip: I use the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=SyedNisarUlHaq.git-spotlight&quot;&gt;Git Spotlight&lt;/a&gt; tool to quickly see which lines of code are written by AI (&lt;code&gt;C4&lt;/code&gt; = Claude Opus 4.6) or by me (&lt;code&gt;DF&lt;/code&gt; = David Foster). See below:&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Visual 'git blame' view from the Git Spotlight VS Code extension&quot; src=&quot;/assets/2026/ai-attribution-in-git/git-blame-view-in-git-spotlight.png&quot; style=&quot;max-width: 100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Why the Co-authored-by pattern?&lt;/h2&gt;
+
+&lt;p&gt;Claude Code introduced the convention of adding a &lt;code&gt;Co-Authored-By: Claude &amp;lt;noreply@anthropic.com&amp;gt;&lt;/code&gt; trailer to any AI-authored commits by telling the AI to use such trailers &lt;a href=&quot;https://github.com/Piebald-AI/claude-code-system-prompts/blob/5bb71ee182ec4005d8fad0ae18fc70a19da9572b/system-prompts/tool-description-bash-git-commit-and-pr-creation-instructions.md&quot;&gt;in its system prompt&lt;/a&gt;, much to the &lt;a href=&quot;https://github.com/anthropics/claude-code/issues/45137#issuecomment-4234095781&quot;&gt;annoyance&lt;/a&gt; of some users. GitHub recognizes that Co-Authored-By trailer and displays Claude as a co-author of the related commit.&lt;/p&gt;
+
+&lt;p&gt;I think that kind of attribution is lightweight and makes sense.&lt;/p&gt;
+</content>
+ </entry>
  
  
  <entry>
@@ -4251,7 +4308,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;76&lt;/sup&gt;
+  Software&lt;sup&gt;77&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;

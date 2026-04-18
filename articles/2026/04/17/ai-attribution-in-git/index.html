@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Error handling styles in programming | DaFoster</title>
+    <title>AI Attribution in Git | DaFoster</title>
     
     <!-- Favicon -->
     <!-- NOTE: Feed readers only understand favicons at the root of the site. -->
@@ -21,12 +21,12 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://dafoster.net/articles/2014/11/22/error-handling-styles/"
+          "@id": "https://dafoster.net/articles/2026/04/17/ai-attribution-in-git/"
         },
-        "headline": "Error handling styles in programming",
+        "headline": "AI Attribution in Git",
         
-        "datePublished": "2014-11-22T00:00:00+00:00",
-        "dateModified": "2014-11-22T00:00:00+00:00",
+        "datePublished": "2026-04-17T00:00:00+00:00",
+        "dateModified": "2026-04-17T00:00:00+00:00",
         "author": {
           "@type": "Person",
           "name": "David Foster",
@@ -52,7 +52,7 @@
     
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@davidfstr" />
-      <meta name="twitter:title" content="Error handling styles in programming" />
+      <meta name="twitter:title" content="AI Attribution in Git" />
       
       <meta name="twitter:description" content="" />
       <meta name="twitter:image" content="https://dafoster.net/assets/article-pencil-wide.png" />
@@ -230,10 +230,10 @@
         
           <div class="row">
   <div class="col-md-12 content post">
-    <h1 class="post-title">Error handling styles in programming</h1>
+    <h1 class="post-title">AI Attribution in Git</h1>
     <div class="post-metadata">
       
-        Nov 22, 2014
+        Apr 17, 2026
        &ndash; Filed as: 
       <span class="tag_box tag_box--inline">
         
@@ -250,83 +250,50 @@
       
     </div>
     
-    <p>There are many ways that programs can handle errors at runtime. The excellent book <a href="https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;linkCode=w01&amp;linkId=7FSPMMHJB3KVNUKV&amp;creativeASIN=1482227371">Exercises in Programming Style</a> proposes an interesting categorization of common error handling patterns. Fascinatingly, the programming language that you work in often actively encourages one particular error handling pattern over another.</p>
+    <p>When making a git commit I&rsquo;ve been looking for a way to record what AI model or coding agent harness I used to help me write the commit, ideally in a machine-readable way.</p>
 
-<h2>Reinterpret and Continue <small>(Constructivist)</small></h2>
-
-<p><img style="float: right;" src="/assets/2014/error-handling-styles/constructivist.jpg" title="Constructivist"/></p>
-
-<p>In this style, a function that receives a bad input or encounters an error always returns a sensible result to its caller, silently reinterpreting the error to a valid value. Such a function will never crash the program but may produce unexpected results in the presence of bad inputs or errors.</p>
-
-<p>Languages whose standard libraries and syntax regularly reinterpret errors and questionable input make it difficult to write programs that are not in this style.</p>
-
-<p>Environments that encourage this style:</p>
-
-<p><img style="float: right;" src="/assets/2014/error-handling-styles/php-web.png" title="PHP, HTML, CSS, JavaScript"/></p>
+<p>For <strong>AI-drafted code that I&rsquo;ve reviewed</strong> or <strong>self-drafted code with significant AI revisions</strong>, I add one of the following trailers to my git commit message:</p>
 
 <ul>
-<li><strong>PHP</strong>
+<li><code>Co-authored-by: Claude Opus 4.6 &lt;noreply@anthropic.com&gt;</code></li>
+<li><code>Co-authored-by: Claude Sonnet 4.6 &lt;noreply@anthropic.com&gt;</code></li>
+<li><code>Co-authored-by: Claude Haiku 4.5 &lt;noreply@anthropic.com&gt;</code></li>
+<li><code>Co-authored-by: GPT-5.3-Codex &lt;noreply@openai.com&gt;</code></li>
+<li><code>Co-authored-by: Google Gemini 3.1 Flash Image (Nano Banana 2)</code>
 
 <ul>
-<li>Very few PHP errors will actually crash the program - instead you get strange results and error text inserted into rendered pages.</li>
-<li>Errors are printed to a server log file that nobody reads.</li>
-</ul>
-</li>
-<li><strong>HTML, CSS</strong>
-
-<ul>
-<li>Web browsers reinterpret bad markup as best they can to valid markup. Of course different browsers do this in different ways, so the only way to get a consistent rendering is to use valid markup.</li>
-<li>Rendering errors are not generally logged anywhere.</li>
-</ul>
-</li>
-<li><strong>JavaScript</strong></li>
-</ul>
-
-
-<p>Developers that wish to use a more Fail Fast style of error handling (see below) but are forced to write in one of these languages may use special validation and linting tools to look for errors in the program text before they can be reinterpreted.</p>
-
-<h2>Fail Fast <small>(Tantrum, Passive Aggressive)</small></h2>
-
-<p>In this style, a function that receives a bad input or encounters an error refuses to continue, returning an error back to its caller.</p>
-
-<p><img style="float: right;" src="/assets/2014/error-handling-styles/tantrum.jpg" title="Tantrum"/></p>
-
-<p><img style="float: right; clear: both; margin-top: .5em; margin-left: .5em;" src="/assets/2014/error-handling-styles/passive-aggressive.jpg" title="Passive Aggressive"/></p>
-
-<p><a href="https://www.amazon.com/Exercises-Programming-Style-Cristina-Videira/dp/1482227371/ref=as_sl_pc_ss_til?tag=dafo07-20&amp;linkCode=w01&amp;linkId=7FSPMMHJB3KVNUKV&amp;creativeASIN=1482227371">Exercises in Programming Style</a> makes the additional distinction that functions in some programs try to handle errors immediately at their point of detection no matter what (&ldquo;Tantrum&rdquo;), whereas functions in other programs prefer to bubble up errors to callers until a caller with enough context is reached that decides to actually handle the error (&ldquo;Passive Aggressive&rdquo;).</p>
-
-<p>Programs in the Tantrum substyle have lots of error handling code scattered throughout the program text, whereas programs in the Passive Aggressive substyle tend to consolidate most error handling code in top-level functions and let lower-level code just bubble up errors.</p>
-
-<p>Languages that have built-in exceptions make it easy to implement programs in the Passive Aggressive substyle.</p>
-
-<p>Environments that encourage this style:</p>
-
-<p><img style="float: right;" src="/assets/2014/error-handling-styles/java-csharp-python.png" title="Java, C#, Python"/></p>
-
-<ul>
-<li><strong>Java</strong></li>
-<li><strong>C#</strong></li>
-<li><strong>Python</strong></li>
-</ul>
-
-
-<h3><em>Related Articles</em></h3>
-
-<ul>
-<li><a href="/articles/2013/07/13/error-handling/">Error Handling</a>
-
-<ul>
-<li><p><em>More comprehensively discusses considerations and specific implementation techniques for writing code that is robust in the presence of errors.</em></p></li>
-</ul>
-</li>
-<li><a href="/articles/2016/05/17/abandonment-vs-unchecked-exceptions-for-error-handling/">Abandonment vs. Unchecked Exceptions for Error Handling</a>
-
-<ul>
-<li><em>Describes abandonment, an uncommon error-handling style.</em></li>
+<li>TODO: Identify an email address to use for Gemini</li>
 </ul>
 </li>
 </ul>
 
+
+<blockquote><p>Tip: I use <a href="https://www.typesnap.app/blog/mac-text-replacement-guide/">text expansion macros</a> like <code>coa → "Co-authored-by: "</code> and <code>aco → "Claude Opus 4.6 &lt;noreply@anthropic.com&gt;"</code> to type those trailers quickly.</p></blockquote>
+
+<p>For <strong>AI-drafted code that I&rsquo;ve NOT reviewed</strong> (rare; mostly for internal or one-off tools):</p>
+
+<ul>
+<li>Author = one of the emails above, via <code>git commit --author="AI Model &lt;noreply@example.com&gt;"</code>.</li>
+<li>Co-authored-by = me:
+
+<ul>
+<li><code>Co-authored-by: David Foster &lt;david@dafoster.net&gt;</code></li>
+</ul>
+</li>
+</ul>
+
+
+<p>If I ever want to make such unreviewed or minimally-reviewed AI-drafted code public, I can use <code>git blame</code> to easily identify which lines are principally AI-drafted, so that I can go back and review them carefully; I never publish AI-written code that I haven&rsquo;t reviewed myself.</p>
+
+<blockquote><p>Tip: I use the <a href="https://marketplace.visualstudio.com/items?itemName=SyedNisarUlHaq.git-spotlight">Git Spotlight</a> tool to quickly see which lines of code are written by AI (<code>C4</code> = Claude Opus 4.6) or by me (<code>DF</code> = David Foster). See below:</p></blockquote>
+
+<p><img alt="Visual 'git blame' view from the Git Spotlight VS Code extension" src="/assets/2026/ai-attribution-in-git/git-blame-view-in-git-spotlight.png" style="max-width: 100%" /></p>
+
+<h2>Why the Co-authored-by pattern?</h2>
+
+<p>Claude Code introduced the convention of adding a <code>Co-Authored-By: Claude &lt;noreply@anthropic.com&gt;</code> trailer to any AI-authored commits by telling the AI to use such trailers <a href="https://github.com/Piebald-AI/claude-code-system-prompts/blob/5bb71ee182ec4005d8fad0ae18fc70a19da9572b/system-prompts/tool-description-bash-git-commit-and-pr-creation-instructions.md">in its system prompt</a>, much to the <a href="https://github.com/anthropics/claude-code/issues/45137#issuecomment-4234095781">annoyance</a> of some users. GitHub recognizes that Co-Authored-By trailer and displays Claude as a co-author of the related commit.</p>
+
+<p>I think that kind of attribution is lightweight and makes sense.</p>
 
   </div>
   
@@ -352,11 +319,11 @@
     <div style="text-align: center;">
       <ul class="pagination">
       
-        <li class="prev"><a href="/articles/2014/11/08/learning-japanese-the-first-6-months/" title="Learning Japanese - the first 6 months">&larr; Previous</a></li>
+        <li class="prev"><a href="/articles/2025/08/20/issue-counts-always-go-up/" title="Issue counts always go up">&larr; Previous</a></li>
       
         <li><a href="/articles/">Index</a></li>
       
-        <li class="next"><a href="/articles/2014/12/20/languages-by-hardware-distance/" title="Spectrum of Languages by Hardware&nbsp;Distance">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
       </ul>
     </div>
