@@ -4,7 +4,7 @@
  <title>DaFoster</title>
  <link href="https://dafoster.net/"/>
  <link href="https://dafoster.net/atom.xml" rel="self"/>
- <updated>2026-04-25T11:27:09+00:00</updated>
+ <updated>2026-04-25T11:37:35+00:00</updated>
  <id>https://dafoster.net</id>
  <author>
    <name>David Foster</name>
@@ -126,13 +126,13 @@
 
 &lt;ol&gt;
 &lt;li&gt;Write new zip file to temporary location&lt;/li&gt;
-&lt;li&gt;Move aside the old zip file to a moved-aside location&lt;/li&gt;
-&lt;li&gt;Rename the new zip file to its permanent location, where the old zip file was
+&lt;li&gt;Move aside the old zip file to a moved-aside location
 
 &lt;ul&gt;
 &lt;li&gt;This is permitted even if the old zip file has readers, when opened with &lt;code&gt;FILE_SHARE_WRITE&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;Rename the new zip file to its permanent location, where the old zip file was&lt;/li&gt;
 &lt;li&gt;Delete the old zip file in its moved-aside location
 
 &lt;ul&gt;
