@@ -6,8 +6,8 @@
     <atom:link href="https://dafoster.net/rss.xml" rel="self" type="application/rss+xml" />
     <description>Thoughts on software and productivity from David Foster.</description>
     <language>en-us</language>
-    <pubDate>Sat, 18 Apr 2026 01:13:59 +0000</pubDate>
-    <lastBuildDate>Sat, 18 Apr 2026 01:13:59 +0000</lastBuildDate>
+    <pubDate>Sat, 25 Apr 2026 11:05:54 +0000</pubDate>
+    <lastBuildDate>Sat, 25 Apr 2026 11:05:54 +0000</lastBuildDate>
     <image>
       <url>https://dafoster.net/favicon.png</url>
       <title>DaFoster</title>
@@ -66,6 +66,123 @@
 &lt;p&gt;Claude Code introduced the convention of adding a &lt;code&gt;Co-Authored-By: Claude &amp;lt;noreply@anthropic.com&amp;gt;&lt;/code&gt; trailer to any AI-authored commits by telling the AI to use such trailers &lt;a href=&quot;https://github.com/Piebald-AI/claude-code-system-prompts/blob/5bb71ee182ec4005d8fad0ae18fc70a19da9572b/system-prompts/tool-description-bash-git-commit-and-pr-creation-instructions.md&quot;&gt;in its system prompt&lt;/a&gt;, much to the &lt;a href=&quot;https://github.com/anthropics/claude-code/issues/45137#issuecomment-4234095781&quot;&gt;annoyance&lt;/a&gt; of some users. GitHub recognizes that Co-Authored-By trailer and displays Claude as a co-author of the related commit.&lt;/p&gt;
 
 &lt;p&gt;I think that kind of attribution is lightweight and makes sense.&lt;/p&gt;
+</description>
+    </item>
+    
+    
+    <item>
+      <title>Oops, I wrote a database</title>
+      <link>https://dafoster.net/articles/2026/02/23/oops-i-wrote-a-database/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=feed</link>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://dafoster.net/articles/2026/02/23/oops-i-wrote-a-database</guid>
+      <description>&lt;blockquote&gt;&lt;p&gt;Never write your own database or filesystem. It&amp;rsquo;s way harder than you expect.&lt;br/&gt;
+— some wise programmer&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Databases and filesystems are hard to write in part because they have very strong requirements around &lt;strong&gt;never losing data&lt;/strong&gt; (durability) even when unusual events happen such as unexpected process termination, hardware failure, out of disk space, or out of memory. I realized recently that Crystal - a program of mine for downloading websites - should strive to provide the same high reliability guarantees when saving websites to disk in its project format. And so began my ~3-week quest to shore up the ACID (atomicity, consistency, isolation, and durability) properties of how Crystal writes to its projects. Here are a few things I learned along the way.&lt;/p&gt;
+
+&lt;h2&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;A Crystal project is an ACID-compliant storage system for holding downloaded website data: multiple-reader, single-writer.&lt;/p&gt;
+
+&lt;p&gt;It contains a SQLite table of downloaded page &lt;strong&gt;revisions&lt;/strong&gt;, each row of which corresponds to an on-disk file with the revision&amp;rsquo;s content.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2026/oops-i-wrote-a-database/revision-table-to-files.svg&quot; alt=&quot;A project's revisions table, with a line connecting each table row to a file&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Adding a revision requires creating both a database row and file at the same time.&lt;/p&gt;
+
+&lt;h2&gt;Strategy: Write file then rename to commit&lt;small&gt;, rather than (re)write in place&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;It&amp;rsquo;s not safe to write a file directly to its final location because sudden process termination or disk disconnection could abort the write in the middle, leaving an incompletely written file in its final &amp;ldquo;committed&amp;rdquo; location.&lt;/p&gt;
+
+&lt;p&gt;Instead it&amp;rsquo;s safer to write a file first to a temporary location on the same filesystem as its committed location. After the write is complete, move it to its final place.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2026/oops-i-wrote-a-database/file-write-and-replace.svg&quot; alt=&quot;An old revision file connected by line to multiple readers (👁 icons). A new revision file connected by line to one writer (✏️ icon). A wide &amp;quot;Replace&amp;quot; arrow leading from the new revision file to the old revision file.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If sudden process termination stops the write, when Crystal reopens the project it will delete the temporary file. Additionally Crystal will check whether the highest numbered revision row in the database is missing its corresponding revision file, and delete the incomplete revision row if so.&lt;/p&gt;
+
+&lt;h2&gt;Strategy: Write file then replace to commit&lt;small&gt;, if the file may have concurrent readers&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;Crystal projects using the Pack16 format have a more complex challenge: Each revision row now corresponds to an entry in a zip file that can be shared by up to 16 revisions. Thus writing one revision may require altering a zip file containing a different revision that is being concurrently read.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2026/oops-i-wrote-a-database/revision-table-to-zip-entries.svg&quot; alt=&quot;A project's revisions table, with a line connecting each table row to an entry inside a zip file. There are many rows but only a few zip files, with each zip file connected to multiple rows.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Similar to the write+rename strategy, we can use a write+replace strategy: Write a new revision to a new zip file and then replace the old zip file. Existing readers of the old zip file will not be disrupted; they will still be able to read from the copy of the zip file that they opened even though it is no longer visible in the filesystem.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2026/oops-i-wrote-a-database/zip-file-write-and-replace.svg&quot; alt=&quot;An old zip file connected by line to multiple readers (👁 icons). A new zip file connected by line to one writer (✏️ icon). A wide &amp;quot;Replace&amp;quot; arrow leading from the new zip file to the old zip file.&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Windows-only: Move-aside a file before replacing it&lt;/h2&gt;
+
+&lt;p&gt;On macOS and Linux the above strategy just works; it is possible to replace a file that is open for reading with a different file without doing anything special. However on Windows files are opened in an exclusive mode by default that prevents reading or writing the file while it is still open. &lt;strong&gt;You must &lt;em&gt;explicitly&lt;/em&gt; open a file with &lt;code&gt;FILE_SHARE_READ&lt;/code&gt;, &lt;code&gt;FILE_SHARE_WRITE&lt;/code&gt;, or &lt;code&gt;FILE_SHARE_DELETE&lt;/code&gt; modes on Windows if you want to allow concurrent readers, writers, or deleters.&lt;/strong&gt; Crystal defines its own &lt;a href=&quot;https://github.com/davidfstr/Crystal-Web-Archiver/blob/21bbf89d358d88336a8ba4e506a9681a2a62d83a/src/crystal/filesystem/local.py#L15-L92&quot;&gt;&lt;code&gt;open_nonexclusive&lt;/code&gt;&lt;/a&gt; function to get this same non-exclusive open behavior across all operating systems.&lt;/p&gt;
+
+&lt;p&gt;However Windows presents another challenge: It does not allow you to &lt;em&gt;replace&lt;/em&gt; a file that is opened for reading even if it is opened with all of &lt;code&gt;FILE_SHARE_READ&lt;/code&gt;, &lt;code&gt;FILE_SHARE_WRITE&lt;/code&gt;, and &lt;code&gt;FILE_SHARE_DELETE&lt;/code&gt;, despite allowing you to &lt;em&gt;delete&lt;/em&gt; it or &lt;em&gt;rename&lt;/em&gt; it.&lt;/p&gt;
+
+&lt;p&gt;So on Windows, Crystal renames an old zip file to a transitional (but crash-durable) &amp;ldquo;moved-aside&amp;rdquo; location before renaming the new zip file to the original location of the old zip file. So the total process looks like:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Write new zip file to temporary location&lt;/li&gt;
+&lt;li&gt;Move aside the old zip file to a moved-aside location&lt;/li&gt;
+&lt;li&gt;Rename the new zip file to its permanent location, where the old zip file was
+
+&lt;ul&gt;
+&lt;li&gt;This is permitted even if the old zip file has readers, when opened with &lt;code&gt;FILE_SHARE_WRITE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Delete the old zip file in its moved-aside location
+
+&lt;ul&gt;
+&lt;li&gt;This is permitted even if the old zip file has readers, when opened with &lt;code&gt;FILE_SHARE_DELETE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/assets/2026/oops-i-wrote-a-database/windows-move-aside.svg&quot; alt=&quot;An old zip file connected by line to multiple readers (👁 icons). A &amp;quot;moved-aside&amp;quot; zip file. A new zip file connected by line to one writer (✏️ icon). A wide &amp;quot;2. Move Aside&amp;quot; arrow leading from the old zip file to the moved-aside zip file. A wide &amp;quot;3. Rename&amp;quot; arrow leading from the new zip file to the old zip file. A &amp;quot;4. Delete&amp;quot; box beside the moved-aside zip file.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The above (non-atomic) process introduces several complexities:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ZeroWidthSpace;A. If &lt;strong&gt;a new concurrent reader&lt;/strong&gt; appears between steps 2 and 3, when the old zip file has been moved-aside but not yet replaced with a new zip file, the reader must know to look for the old zip file at the moved-aside location in addition to its normal location.&lt;/li&gt;
+&lt;li&gt;B1. If &lt;strong&gt;sudden process termination&lt;/strong&gt; happens between steps 2 and 3, some kind of repair process after reopening the project must move the old zip file from its moved-aside location back to its normal location.&lt;/li&gt;
+&lt;li&gt;B2. If &lt;strong&gt;sudden process termination&lt;/strong&gt; happens between steps 3 and 4, the old zip file in the moved-aside location should be deleted.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;In case B1, Crystal performs the repair at read time, when an entry from the zip file is first read after reopening the project.&lt;/p&gt;
+
+&lt;h2&gt;Read Repair&lt;small&gt;: A time to clean up incomplete operations&lt;/small&gt;&lt;/h2&gt;
+
+&lt;p&gt;When Crystal performs a read on a Pack16 project, looks for a zip file corresponding to a revision, and does not find it, it will then look for a moved-aside zip file that was left behind during scenario B1 above. If it finds such a moved-aside zip file it will &lt;em&gt;repair&lt;/em&gt; it by moving it back to its normal location.&lt;/p&gt;
+
+&lt;p&gt;Note that this kind of repair is itself a kind of &lt;strong&gt;write&lt;/strong&gt; which might happen during a high-level &lt;strong&gt;read&lt;/strong&gt; operation. Since Crystal allows &lt;em&gt;concurrent reads&lt;/em&gt;, the possibility of a repair happening during a read means that &lt;em&gt;concurrent writes&lt;/em&gt; are now possible too&amp;hellip; Yikes.&lt;/p&gt;
+
+&lt;p&gt;Concurrent writes to the same file are unsafe by default but can be made safe with &lt;strong&gt;mutual exclusion&lt;/strong&gt;. Crystal maintains an in-memory mutex lock for each file it is in the middle of repairing to prevent concurrent writes from corrupting the project.&lt;/p&gt;
+
+&lt;h2&gt;Zooming Out: The Big Picture&lt;/h2&gt;
+
+&lt;p&gt;I expected this work to take 1–1.5 weeks. It took about three. Most of the overrun came from a cascade of complications I didn&amp;rsquo;t see coming:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Windows opens files exclusively by default, so even allowing &lt;strong&gt;concurrent readers&lt;/strong&gt; required &lt;code&gt;FILE_SHARE_READ&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Windows then refused to &lt;em&gt;replace&lt;/em&gt; a file that was still open for reading — even with all three share modes set — so &lt;strong&gt;writes&lt;/strong&gt; required the move-aside dance and &lt;code&gt;FILE_SHARE_WRITE&lt;/code&gt; / &lt;code&gt;FILE_SHARE_DELETE&lt;/code&gt; on the reader side.&lt;/li&gt;
+&lt;li&gt;The move-aside dance introduced two new &lt;strong&gt;crash-recovery&lt;/strong&gt; cases (B1 and B2), which became read-repair.&lt;/li&gt;
+&lt;li&gt;Read-repair quietly turned reads into potential writes, which forced in-memory &lt;strong&gt;per-revision locks&lt;/strong&gt; to keep the multiple-reader/single-writer contract honest.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Each layer was reasonable on its own; the surprise was how much each one cost in aggregate.&lt;/p&gt;
+
+&lt;p&gt;Of the four ACID properties, &lt;strong&gt;atomicity&lt;/strong&gt; and &lt;strong&gt;durability&lt;/strong&gt; drove essentially all of this work. &lt;strong&gt;Consistency&lt;/strong&gt; was largely a freebie given the architecture: the database lives in one place, only one process ever opens a project, and that process has at most one writer. &lt;strong&gt;Isolation&lt;/strong&gt; was similarly cheap given the single-writer rule and the absence of in-place rewrites — with the wrinkle that read-repair turned a &amp;ldquo;read&amp;rdquo; into a {read + limited write}, requiring introducing per-revision locks.&lt;/p&gt;
+
+&lt;p&gt;It was a fun exercise in polishing one aspect of Crystal to a high standard. But I must say the caution around hand-rolling your own storage code is well earned: you may very well double or triple the time you expect it to take. 🙂&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr/&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn:1&quot;&gt;
+&lt;p&gt;I can&amp;rsquo;t find a specific original person who said &amp;ldquo;Never write your own database or filesystem&amp;rdquo;. The closest discussion I was able to locate comes from &lt;a href=&quot;https://terrycrowley.medium.com/never-write-your-own-database-736f704c780&quot;&gt;Never Write Your Own Database&lt;/a&gt;. So perhaps this specific quote just comes from me now 🙂&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
 </description>
     </item>
     
@@ -4362,7 +4479,7 @@ of the &lt;a href=&quot;https://lifehacker.com/ditch-the-great-suspender-before-
 
 
 &lt;p&gt;In &lt;span class=&quot;tag_box tag_box--inline&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;a class=&quot;tag__pill&quot; href=&quot;/articles/topics/#Software&quot;&gt;
-  Software&lt;sup&gt;77&lt;/sup&gt;
+  Software&lt;sup&gt;78&lt;/sup&gt;
 &lt;/a&gt;
 &lt;a class=&quot;tag__subscribe subscribe&quot; href=&quot;feed://dafoster.net/articles/topics/Software.xml&quot;&gt;
   &lt;img src=&quot;/assets/feed-icon-14x14.png&quot; width=&quot;14&quot; height=&quot;14&quot; alt=&quot;Subscribe to Software&quot; title=&quot;Subscribe to Software&quot;/&gt;
